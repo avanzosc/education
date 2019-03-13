@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_model_view_tree" model="ir.ui.view">
+        <field name="model">education.model</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false">
+                <field name="education_code" />
+                <field name="description" />
+                <field name="description_eu"
+                       groups="hezkuntza.education_basque" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_model_view_search" model="ir.ui.view">
+        <field name="model">education.model</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="education_code" />
+                <field name="description" />
+                <field name="description_eu" groups="hezkuntza.education_basque" />
+            </search>
+        </field>
+    </record>
+
+    <record id="education_model_view_form" model="ir.ui.view">
+        <field name="model">education.model</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false" edit="false">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="education_code" />
+                        <h1>
+                            <field name="education_code" />
+                        </h1>
+                    </div>
+                    <group name="description" string="Description">
+                        <label for="description" string="Spanish" />
+                        <field name="description" nolabel="1" colspan="4"/>
+                        <label for="description_eu" string="Basque"
+                               groups="hezkuntza.education_basque" />
+                        <field name="description_eu" nolabel="1" colspan="4"
+                               groups="hezkuntza.education_basque" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_education_model">
+        <field name="name">Educational Models</field>
+        <field name="res_model">education.model</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_model_view_tree" />
+    </record>
+
+</odoo>
