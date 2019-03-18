@@ -33,6 +33,7 @@
         "views/education_work_reason_view.xml",
         "views/education_workday_type_view.xml",
         "wizard/upload_education_activity_type_view.xml",
+        "wizard/upload_education_all_view.xml",
         "wizard/upload_education_contract_type_view.xml",
         "wizard/upload_education_course_view.xml",
         "wizard/upload_education_designation_level_view.xml",

@@ -36,5 +36,5 @@ class UploadEducationContractType(models.TransientModel):
                         task_types.write(vals)
                     else:
                         task_type_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_task_type')
+        action = self.env.ref('education.action_education_task_type')
         return action.read()[0]

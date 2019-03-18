@@ -34,5 +34,5 @@ class UploadEducationDesignationLevel(models.TransientModel):
                         designation_levels.write(vals)
                     else:
                         designation_level_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_designation_level')
+        action = self.env.ref('education.action_education_designation_level')
         return action.read()[0]

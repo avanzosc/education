@@ -34,5 +34,5 @@ class UploadEducationActivityType(models.TransientModel):
                         activity_types.write(vals)
                     else:
                         activity_type_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_activity_type')
+        action = self.env.ref('education.action_education_activity_type')
         return action.read()[0]

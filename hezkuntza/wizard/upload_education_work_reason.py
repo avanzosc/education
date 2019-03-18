@@ -34,5 +34,5 @@ class UploadEducationWorkReason(models.TransientModel):
                         work_reasons.write(vals)
                     else:
                         work_reason_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_work_reason')
+        action = self.env.ref('education.action_education_work_reason')
         return action.read()[0]

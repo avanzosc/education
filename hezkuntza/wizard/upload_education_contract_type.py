@@ -34,5 +34,5 @@ class UploadEducationContractType(models.TransientModel):
                         contract_types.write(vals)
                     else:
                         contract_type_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_contract_type')
+        action = self.env.ref('education.action_education_contract_type')
         return action.read()[0]

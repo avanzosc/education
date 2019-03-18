@@ -32,5 +32,5 @@ class UploadEducationIdType(models.TransientModel):
                         idtypes.write(vals)
                     else:
                         idtype_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_idtype')
+        action = self.env.ref('education.action_education_idtype')
         return action.read()[0]

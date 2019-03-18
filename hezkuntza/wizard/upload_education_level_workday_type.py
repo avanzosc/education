@@ -51,5 +51,5 @@ class UploadEducationLevelWorkdayType(models.TransientModel):
                             relations.write(vals)
                         else:
                             relation_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_level')
+        action = self.env.ref('education.action_education_level')
         return action.read()[0]

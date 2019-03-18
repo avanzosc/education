@@ -32,5 +32,5 @@ class UploadEducationGroupType(models.TransientModel):
                         group_types.write(vals)
                     else:
                         group_type_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_group_type')
+        action = self.env.ref('education.action_education_group_type')
         return action.read()[0]

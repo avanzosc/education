@@ -32,5 +32,5 @@ class UploadEducationContractType(models.TransientModel):
                         shifts.write(vals)
                     else:
                         shift_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_shift')
+        action = self.env.ref('education.action_education_shift')
         return action.read()[0]

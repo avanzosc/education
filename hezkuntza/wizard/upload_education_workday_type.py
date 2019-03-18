@@ -34,5 +34,5 @@ class UploadEducationWorkdayType(models.TransientModel):
                         workday_types.write(vals)
                     else:
                         workday_type_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_workday_type')
+        action = self.env.ref('education.action_education_workday_type')
         return action.read()[0]

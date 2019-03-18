@@ -43,5 +43,5 @@ class UploadEducationLevelTaskType(models.TransientModel):
                     task_type.write({
                         'level_ids': [(6, 0, relations[task_type_key])]
                     })
-        action = self.env.ref('hezkuntza.action_education_level')
+        action = self.env.ref('education.action_education_level')
         return action.read()[0]

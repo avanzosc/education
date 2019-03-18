@@ -32,5 +32,5 @@ class UploadEducationField(models.TransientModel):
                         fields.write(vals)
                     else:
                         field_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_field')
+        action = self.env.ref('education.action_education_field')
         return action.read()[0]

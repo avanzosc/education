@@ -21,3 +21,4 @@ from . import upload_education_subject
 from . import upload_education_task_type
 from . import upload_education_work_reason
 from . import upload_education_workday_type
+from . import upload_education_all

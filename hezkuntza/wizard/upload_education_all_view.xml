@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="upload_education_all_view_form"
+            model="ir.ui.view">
+        <field name="model">upload.education.all</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="file_designation_level" />
+                        <field name="file_normal_position" />
+                        <field name="file_work_reason" />
+                        <field name="file_group_type" />
+                        <field name="file_activity_type" />
+                        <field name="file_level_task_type" />
+                        <field name="file_level_workday_type" />
+                        <field name="file_task_type" />
+                        <field name="file_other_position" />
+                        <field name="file_workday_type" />
+                        <field name="file_contract_type" />
+                        <field name="file_language" />
+                        <field name="file_level" />
+                        <field name="file_course" />
+                        <field name="file_field" />
+                        <field name="file_level_course_subject" />
+                        <field name="file_shift" />
+                        <field name="file_model" />
+                        <field name="file_idtype" />
+                        <field name="file_subject" />
+                        <field name="file_level_field_subject" />
+                    </group>
+                    <footer>
+                        <button name="button_upload" string="Upload"
+                                type="object" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_upload_education_all" model="ir.actions.act_window">
+        <field name="name">Upload Education</field>
+        <field name="res_model">upload.education.all</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

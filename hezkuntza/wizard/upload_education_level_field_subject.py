@@ -48,5 +48,5 @@ class UploadEducationLevelFieldSubject(models.TransientModel):
                         ('subject_id', '=', subject.id)])
                     if not relations:
                         relation_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_subject')
+        action = self.env.ref('education.action_education_subject')
         return action.read()[0]

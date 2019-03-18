@@ -34,5 +34,5 @@ class UploadEducationLanguage(models.TransientModel):
                         languages.write(vals)
                     else:
                         language_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_language')
+        action = self.env.ref('education.action_education_language')
         return action.read()[0]

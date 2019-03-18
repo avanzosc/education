@@ -32,5 +32,5 @@ class UploadEducationModel(models.TransientModel):
                         models.write(vals)
                     else:
                         model_obj.create(vals)
-        action = self.env.ref('hezkuntza.action_education_model')
+        action = self.env.ref('education.action_education_model')
         return action.read()[0]
