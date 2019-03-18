@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-14 15:27+0000\n"
-"PO-Revision-Date: 2019-03-14 15:27+0000\n"
+"POT-Creation-Date: 2019-03-18 12:43+0000\n"
+"PO-Revision-Date: 2019-03-18 12:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,20 +17,8 @@ msgstr ""
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_academic_year
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__name
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__academic_year_id
 msgid "Academic Year"
-msgstr ""
-
-#. module: hezkuntza
-#: sql_constraint:education.academic_year:0
-msgid "Academic year must be unique!"
-msgstr ""
-
-#. module: hezkuntza
-#: code:addons/hezkuntza/models/education_academic_year.py:23
-#, python-format
-msgid "Academic year must be {} digits long!"
 msgstr ""
 
 #. module: hezkuntza
@@ -49,8 +37,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_shift_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_task_type_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.education_work_reason_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_workday_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.view_ce_causa_alta_priv_hezkuntza_form
 msgid "Basque"
 msgstr ""
 
@@ -74,11 +62,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__description_eu
 msgid "Basque Description"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__min_description_eu
-msgid "Basque Min. Description"
 msgstr ""
 
 #. module: hezkuntza
@@ -148,12 +131,6 @@ msgid "Contact"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_contract_type
-#: model:ir.ui.menu,name:hezkuntza.faculty_contract_type_menuitem
-msgid "Contract Type"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type__file
 msgid "Contract Types File (T31)"
 msgstr ""
@@ -165,38 +142,15 @@ msgid "Course"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_course
-#: model:ir.ui.menu,name:hezkuntza.schedule_course_menuitem
-msgid "Courses"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__file
 msgid "Courses File (V55T12)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__create_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__create_uid
@@ -221,27 +175,10 @@ msgid "Created by"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__create_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__create_date
@@ -266,59 +203,14 @@ msgid "Created on"
 msgstr ""
 
 #. module: hezkuntza
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_academic_year_view_form
-msgid "Dates"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__dedicated_working_day
 msgid "Dedicated Working Day"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_data__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__description
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__description
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_activity_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_contract_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_course_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_designation_level_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_field_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_group_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_idtype_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_language_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_level_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_model_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_plan_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_position_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_shift_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_task_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_workday_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.view_ce_causa_alta_priv_hezkuntza_form
 msgid "Description"
 msgstr "Deskribapena"
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_designation_level
-#: model:ir.ui.menu,name:hezkuntza.faculty_designation_level_menuitem
-msgid "Designation Levels"
-msgstr ""
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_designation_level__file
@@ -326,28 +218,10 @@ msgid "Designation Levels File (061)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_data__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__display_name
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__display_name
@@ -373,52 +247,32 @@ msgstr ""
 
 #. module: hezkuntza
 #: model:ir.module.category,name:hezkuntza.education_module_category
-#: model:ir.ui.menu,name:hezkuntza.education_menuitem
 msgid "Education"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_data__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__education_code
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_res_partner__education_code
-#: model:ir.model.fields,field_description:hezkuntza.field_res_users__education_code
 msgid "Education Code"
 msgstr ""
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/models/education_activity_type.py:19
-#: code:addons/hezkuntza/models/education_contract_type.py:19
-#: code:addons/hezkuntza/models/education_course.py:32
-#: code:addons/hezkuntza/models/education_designation_level.py:19
-#: code:addons/hezkuntza/models/education_field.py:23
-#: code:addons/hezkuntza/models/education_group_type.py:19
-#: code:addons/hezkuntza/models/education_idtype.py:19
-#: code:addons/hezkuntza/models/education_language.py:19
-#: code:addons/hezkuntza/models/education_level.py:30
-#: code:addons/hezkuntza/models/education_model.py:19
-#: code:addons/hezkuntza/models/education_plan.py:19
-#: code:addons/hezkuntza/models/education_position.py:24
+#: code:addons/hezkuntza/models/education_activity_type.py:17
+#: code:addons/hezkuntza/models/education_contract_type.py:17
+#: code:addons/hezkuntza/models/education_course.py:17
+#: code:addons/hezkuntza/models/education_designation_level.py:17
+#: code:addons/hezkuntza/models/education_field.py:17
+#: code:addons/hezkuntza/models/education_group_type.py:17
+#: code:addons/hezkuntza/models/education_idtype.py:17
+#: code:addons/hezkuntza/models/education_language.py:17
+#: code:addons/hezkuntza/models/education_level.py:17
+#: code:addons/hezkuntza/models/education_model.py:17
+#: code:addons/hezkuntza/models/education_plan.py:17
+#: code:addons/hezkuntza/models/education_position.py:17
 #: code:addons/hezkuntza/models/education_shift.py:19
-#: code:addons/hezkuntza/models/education_subject.py:45
-#: code:addons/hezkuntza/models/education_task_type.py:37
-#: code:addons/hezkuntza/models/education_work_reason.py:19
-#: code:addons/hezkuntza/models/education_workday_type.py:19
+#: code:addons/hezkuntza/models/education_subject.py:37
+#: code:addons/hezkuntza/models/education_task_type.py:26
+#: code:addons/hezkuntza/models/education_work_reason.py:17
+#: code:addons/hezkuntza/models/education_workday_type.py:17
 #, python-format
 msgid "Education Code must be {} digits long!"
 msgstr ""
@@ -504,43 +358,8 @@ msgid "Education Work Reason"
 msgstr ""
 
 #. module: hezkuntza
-#: sql_constraint:education.course:0
-msgid "Education code must be unique per level and field!"
-msgstr ""
-
-#. module: hezkuntza
-#: sql_constraint:education.level:0
-msgid "Education code must be unique per plan!"
-msgstr ""
-
-#. module: hezkuntza
-#: sql_constraint:education.position:0
-msgid "Education code must be unique per type!"
-msgstr ""
-
-#. module: hezkuntza
-#: sql_constraint:education.activity_type:0
-#: sql_constraint:education.contract_type:0
-#: sql_constraint:education.designation_level:0
-#: sql_constraint:education.field:0
-#: sql_constraint:education.group_type:0
-#: sql_constraint:education.idtype:0
-#: sql_constraint:education.language:0
-#: sql_constraint:education.model:0
-#: sql_constraint:education.plan:0
 #: sql_constraint:education.shift:0
-#: sql_constraint:education.subject:0
-#: sql_constraint:education.task_type:0
-#: sql_constraint:education.work_reason:0
-#: sql_constraint:education.workday_type:0
-#: sql_constraint:res.partner:0
 msgid "Education code must be unique!"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_academic_year
-#: model:ir.ui.menu,name:hezkuntza.schedule_academic_year_menuitem
-msgid "Educational Academic Year"
 msgstr ""
 
 #. module: hezkuntza
@@ -549,19 +368,8 @@ msgid "Educational Group Type"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_group_type
-#: model:ir.ui.menu,name:hezkuntza.group_type_menuitem
-msgid "Educational Group Types"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_group_type__file
 msgid "Educational Group Types File (T05)"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_level_workday_type
-msgid "Educational Level and Workday Type Relation"
 msgstr ""
 
 #. module: hezkuntza
@@ -570,20 +378,8 @@ msgid "Educational Model"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_model
-#: model:ir.ui.menu,name:hezkuntza.group_model_menuitem
-msgid "Educational Models"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_model__file
 msgid "Educational Models file (V55T35)"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_plan
-#: model:ir.ui.menu,name:hezkuntza.schedule_plan_menuitem
-msgid "Educational Plan"
 msgstr ""
 
 #. module: hezkuntza
@@ -612,67 +408,20 @@ msgid "Empty file."
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__date_end
-msgid "End Date"
-msgstr ""
-
-#. module: hezkuntza
-#: code:addons/hezkuntza/models/education_academic_year.py:31
-#, python-format
-msgid "End date must be after start date."
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.ui.menu,name:hezkuntza.faculty_configuration_menuitem
-#: model:ir.ui.menu,name:hezkuntza.faculty_menuitem
 msgid "Faculty"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__level_field_ids
-msgid "Fields by Level"
-msgstr ""
-
-#. module: hezkuntza
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_form
-msgid "Fields by Levels"
-msgstr ""
-
-#. module: hezkuntza
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_position_view_search
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_search
-msgid "Group By..."
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.ui.menu,name:hezkuntza.groups_configuration_menuitem
-#: model:ir.ui.menu,name:hezkuntza.groups_menuitem
 msgid "Groups"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_data__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__id
@@ -702,15 +451,7 @@ msgid "ID Types File (V55T86)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_idtype
-#: model:ir.ui.menu,name:hezkuntza.faculty_idtype_menuitem
-msgid "ID types"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_language
 #: model:ir.model,name:hezkuntza.model_education_language
-#: model:ir.ui.menu,name:hezkuntza.schedule_language_menuitem
 msgid "Language"
 msgstr ""
 
@@ -720,28 +461,10 @@ msgid "Languages File (T55)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_data____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason____last_update
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course____last_update
@@ -766,27 +489,10 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__write_uid
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__write_uid
@@ -811,27 +517,10 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__write_date
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_contract_type__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__write_date
@@ -856,13 +545,9 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_level
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__level_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__level_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__level_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__level_id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__level
-#: model:ir.ui.menu,name:hezkuntza.schedule_level_menuitem
 msgid "Level"
 msgstr ""
 
@@ -882,29 +567,8 @@ msgid "Level and Workday Type Relation File (T09)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__level_ids
-msgid "Levels"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_level__file
 msgid "Levels File (V55T11)"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__min_description
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_form
-msgid "Min. Description"
-msgstr ""
-
-#. module: hezkuntza
-#: selection:education.position,type:0
-msgid "Normal"
-msgstr ""
-
-#. module: hezkuntza
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_position_view_search
-msgid "Normal Position"
 msgstr ""
 
 #. module: hezkuntza
@@ -914,29 +578,8 @@ msgid "Only zip files are supported."
 msgstr ""
 
 #. module: hezkuntza
-#: selection:education.position,type:0
-msgid "Other"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__other_activities
-msgid "Other Activities"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_activity_type
-#: model:ir.ui.menu,name:hezkuntza.faculty_activity_type_menuitem
-msgid "Other Activity Type"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__file
 msgid "Other Activity Types File (T07)"
-msgstr ""
-
-#. module: hezkuntza
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_position_view_search
-msgid "Other Position"
 msgstr ""
 
 #. module: hezkuntza
@@ -945,22 +588,9 @@ msgid "Other Positions file (T16)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__plan_id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__plan_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__plan_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__plan_id
 msgid "Plan"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__type
-msgid "Position Type"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_position
-#: model:ir.ui.menu,name:hezkuntza.faculty_position_menuitem
-msgid "Positions"
 msgstr ""
 
 #. module: hezkuntza
@@ -980,7 +610,6 @@ msgstr ""
 
 #. module: hezkuntza
 #: model:ir.ui.menu,name:hezkuntza.schedule_table_configuration_menuitem
-#: model:ir.ui.menu,name:hezkuntza.schedule_table_menuitem
 msgid "Schedule Table"
 msgstr ""
 
@@ -990,39 +619,7 @@ msgid "School Working Day"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_shift
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__shift_id
-#: model:ir.ui.menu,name:hezkuntza.schedule_shift_menuitem
-msgid "Shift"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_activity_type__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_contract_type__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_data__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_designation_level__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group_type__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_idtype__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_language__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_model__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_plan__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_position__short_description
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__short_description
-#: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__short_description
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_activity_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_contract_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_designation_level_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_language_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_level_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_workday_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.view_ce_causa_alta_priv_hezkuntza_form
 msgid "Short Description"
 msgstr ""
 
@@ -1047,21 +644,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_shift_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_task_type_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.education_work_reason_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_workday_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.view_ce_causa_alta_priv_hezkuntza_form
 msgid "Spanish"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_academic_year__date_start
-msgid "Start Date"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_field
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__field_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__field_id
-#: model:ir.ui.menu,name:hezkuntza.schedule_field_menuitem
 msgid "Study Field"
 msgstr ""
 
@@ -1071,10 +660,8 @@ msgid "Study Fields File (V55T14)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_subject
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_course_subject__subject_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_field_subject__subject_id
-#: model:ir.ui.menu,name:hezkuntza.schedule_subject_menuitem
 msgid "Subject"
 msgstr ""
 
@@ -1084,56 +671,13 @@ msgid "Subjects File (V55T15W18T54_1)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_course__level_subject_ids
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_course_view_form
-msgid "Subjects by Level"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_field__level_subject_ids
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_field_view_form
-msgid "Subjects by Levels"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_task_type
-#: model:ir.ui.menu,name:hezkuntza.faculty_task_type_menuitem
-msgid "Task Type"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_level_task_type__file
 msgid "Task Type per Level File (T08)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__task_type_ids
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_level_view_form
-msgid "Task Types"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type__file
 msgid "Task Types File (T13)"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__tutoring
-msgid "Tutoring"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_subject__type
-#: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__type
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_position_view_search
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_subject_view_search
-msgid "Type"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_workday_type
-#: model:ir.ui.menu,name:hezkuntza.faculty_workday_type_menuitem
-msgid "Type of Workday"
 msgstr ""
 
 #. module: hezkuntza
@@ -1391,12 +935,6 @@ msgid "Wizard to Upload Subjects"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.actions.act_window,name:hezkuntza.action_education_work_reason
-#: model:ir.ui.menu,name:hezkuntza.faculty_work_reason_menuitem
-msgid "Work Reasons"
-msgstr ""
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__file
 msgid "Work Reasons File (T04)"
 msgstr ""
@@ -1404,12 +942,6 @@ msgstr ""
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_level_workday_type__workday_type_id
 msgid "Workday Type"
-msgstr ""
-
-#. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_level__academic_year_workday_type_id
-#: model_terms:ir.ui.view,arch_db:hezkuntza.education_level_view_form
-msgid "Workday Type per Academic Year"
 msgstr ""
 
 #. module: hezkuntza

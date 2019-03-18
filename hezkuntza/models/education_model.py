@@ -6,9 +6,7 @@ from odoo.exceptions import ValidationError
 
 
 class EducationModel(models.Model):
-    _name = 'education.model'
-    _inherit = 'education.data'
-    _description = 'Educational Model'
+    _inherit = 'education.model'
 
     @api.constrains('education_code')
     def _check_education_code(self):
@@ -18,8 +16,3 @@ class EducationModel(models.Model):
                 raise ValidationError(
                     _('Education Code must be {} digits long!').format(
                         code_length))
-
-    _sql_constraints = [
-        ('education_code_unique', 'unique(education_code)',
-         'Education code must be unique!'),
-    ]

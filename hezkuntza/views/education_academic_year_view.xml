@@ -2,52 +2,25 @@
 <odoo>
     <record id="education_academic_year_view_tree" model="ir.ui.view">
         <field name="model">education.academic_year</field>
+        <field name="inherit_id"
+               ref="education.education_academic_year_view_tree" />
         <field name="arch" type="xml">
-            <tree create="false" delete="false">
-                <field name="name" />
-                <field name="date_start" />
-                <field name="date_end" />
+            <tree position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="delete">false</attribute>
             </tree>
-        </field>
-    </record>
-
-    <record id="education_academic_year_view_search" model="ir.ui.view">
-        <field name="model">education.academic_year</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name" />
-                <field name="date_start" />
-                <field name="date_end" />
-            </search>
         </field>
     </record>
 
     <record id="education_academic_year_view_form" model="ir.ui.view">
         <field name="model">education.academic_year</field>
+        <field name="inherit_id"
+               ref="education.education_academic_year_view_form" />
         <field name="arch" type="xml">
-            <form create="false" delete="false">
-                <sheet>
-                    <div class="oe_title">
-                        <label for="name" />
-                        <h1>
-                            <field name="name" />
-                        </h1>
-                    </div>
-                    <group name="dates" string="Dates">
-                        <field name="date_start" />
-                        <field name="date_end" />
-                    </group>
-                </sheet>
+            <form position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="delete">false</attribute>
             </form>
         </field>
     </record>
-
-    <record model="ir.actions.act_window" id="action_education_academic_year">
-        <field name="name">Educational Academic Year</field>
-        <field name="res_model">education.academic_year</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="education_academic_year_view_tree" />
-    </record>
-
 </odoo>

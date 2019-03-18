@@ -2,6 +2,8 @@
 <odoo>
     <record id="education_level_workday_type_view_tree" model="ir.ui.view">
         <field name="model">education.level.workday_type</field>
+        <field name="inherit_id"
+               ref="education.education_level_workday_type_view_tree" />
         <field name="arch" type="xml">
             <tree create="false" edit="false" delete="false">
                 <field name="academic_year_id" />
@@ -15,6 +17,8 @@
 
     <record id="education_level_workday_type_view_search" model="ir.ui.view">
         <field name="model">education.level.workday_type</field>
+        <field name="inherit_id"
+               ref="education.education_level_workday_type_view_search" />
         <field name="arch" type="xml">
             <search>
                 <field name="academic_year_id" />
@@ -28,6 +32,7 @@
 
     <record id="education_level_workday_type_view_form" model="ir.ui.view">
         <field name="model">education.level.workday_type</field>
+        <field name="inherit_id" ref="education.education_level_workday_type_view_form" />
         <field name="arch" type="xml">
             <form create="false" edit="false" delete="false">
                 <sheet>
@@ -47,13 +52,4 @@
             </form>
         </field>
     </record>
-
-    <record model="ir.actions.act_window" id="action_education_level_workday_type">
-        <field name="name">Educational Level and Workday Type Relation</field>
-        <field name="res_model">education.level.workday_type</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="education_level_workday_type_view_tree" />
-    </record>
-
 </odoo>

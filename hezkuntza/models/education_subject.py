@@ -23,18 +23,10 @@ TIPO_ASIGNATURA_INDICES = [
 
 
 class EducationSubject(models.Model):
-    _name = 'education.subject'
-    _inherit = 'education.data'
-    _description = 'Education Subject'
+    _inherit = 'education.subject'
 
-    min_description = fields.Char(
-        string='Min. Description')
     min_description_eu = fields.Char(
         string='Basque Min. Description')
-    type = fields.Char(string='Type')
-    level_field_ids = fields.One2many(
-        comodel_name='education.level.field.subject',
-        inverse_name='subject_id', string='Fields by Level')
 
     @api.constrains('education_code')
     def _check_education_code(self):
@@ -44,8 +36,3 @@ class EducationSubject(models.Model):
                 raise ValidationError(
                     _('Education Code must be {} digits long!').format(
                         code_length))
-
-    _sql_constraints = [
-        ('education_code_unique', 'unique(education_code)',
-         'Education code must be unique!'),
-    ]
