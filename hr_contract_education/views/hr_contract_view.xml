@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_contract_view_form" model="ir.ui.view">
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+        <field name="arch" type="xml">
+            <group name="duration_group" position="after">
+                <group name="education_data" string="Education Data">
+                    <field name="ed_position_id"
+                           options="{'no_create_edit': True, 'no_create': True}" />
+                    <field name="ed_work_reason_id"
+                           options="{'no_create_edit': True, 'no_create': True}" />
+                    <field name="ed_contract_type_id"
+                           options="{'no_create_edit': True, 'no_create': True}" />
+                    <field name="ed_workday_type_id"
+                           options="{'no_create_edit': True, 'no_create': True}" />
+                    <field name="ed_contract_hours" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
