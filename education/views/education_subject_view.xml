@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_subject_view_tree" model="ir.ui.view">
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="education_code" />
+                <field name="description" />
+                <field name="type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_subject_view_search" model="ir.ui.view">
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="education_code" />
+                <field name="description" />
+                <field name="min_description" />
+                <field name="short_description" />
+                <field name="type" />
+                <group expand="0" string="Group By...">
+                    <filter string="Type" name="group_type"
+                            context="{'group_by': 'type'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_subject_view_form" model="ir.ui.view">
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="education_code" />
+                        <h1>
+                            <field name="education_code" />
+                        </h1>
+                    </div>
+                    <group name="description" string="Description">
+                        <field name="description" nolabel="1" colspan="4" />
+                    </group>
+                    <group>
+                        <group name="short_description"
+                               string="Short Description">
+                            <field name="short_description" />
+                        </group>
+                        <group name="min_description"
+                               string="Min. Description">
+                            <field name="min_description" />
+                        </group>
+                    </group>
+                    <group name="other">
+                         <field name="type" />
+                    </group>
+                    <group name="level_field"
+                           string="Fields by Levels">
+                        <field name="level_field_ids" nolabel="1">
+                            <tree>
+                                <field name="level_id" />
+                                <field name="field_id" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_education_subject">
+        <field name="name">Subject</field>
+        <field name="res_model">education.subject</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_subject_view_tree" />
+    </record>
+
+</odoo>

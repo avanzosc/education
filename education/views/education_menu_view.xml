@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem name="Education" id="education_menuitem" />
+
+    <menuitem id="faculty_menuitem"
+              name="Faculty"
+              parent="education_menuitem"
+              sequence="1" />
+
+    <menuitem id="faculty_workday_type_menuitem"
+              parent="faculty_menuitem"
+              action="action_education_workday_type"
+              sequence="1" />
+    <menuitem id="faculty_designation_level_menuitem"
+              parent="faculty_menuitem"
+              action="action_education_designation_level"
+              sequence="2" />
+    <menuitem id="faculty_work_reason_menuitem"
+              parent="faculty_menuitem"
+              action="action_education_work_reason"
+              sequence="3" />
+    <menuitem id="faculty_contract_type_menuitem"
+              parent="faculty_menuitem"
+              action="action_education_contract_type"
+              sequence="4" />
+    <menuitem id="faculty_idtype_menuitem"
+              parent="faculty_menuitem"
+              action="action_education_idtype"
+              sequence="5" />
+    <menuitem id="faculty_position_menuitem"
+              parent="faculty_menuitem"
+              action="action_education_position"
+              sequence="6" />
+
+    <menuitem id="groups_menuitem"
+              name="Groups"
+              parent="education_menuitem"
+              sequence="2" />
+
+    <menuitem id="group_model_menuitem"
+              parent="groups_menuitem"
+              action="action_education_model"
+              sequence="1" />
+    <menuitem id="group_type_menuitem"
+              parent="groups_menuitem"
+              action="action_education_group_type"
+              sequence="2" />
+
+    <menuitem id="schedule_table_menuitem"
+              name="Schedule Table"
+              parent="education_menuitem"
+              sequence="3" />
+
+    <menuitem id="schedule_subject_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_subject"
+              sequence="1" />
+    <menuitem id="schedule_course_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_course"
+              sequence="2" />
+    <menuitem id="schedule_field_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_field"
+              sequence="3" />
+    <menuitem id="schedule_level_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_level"
+              sequence="4" />
+    <menuitem id="schedule_language_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_language"
+              sequence="5" />
+    <menuitem id="faculty_task_type_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_task_type"
+              sequence="6" />
+    <menuitem id="faculty_activity_type_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_activity_type"
+              sequence="7" />
+    <menuitem id="schedule_shift_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_shift"
+              sequence="8" />
+    <menuitem id="schedule_plan_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_plan"
+              sequence="9" />
+    <menuitem id="schedule_academic_year_menuitem"
+              parent="schedule_table_menuitem"
+              action="action_education_academic_year"
+              sequence="10" />
+</odoo>
