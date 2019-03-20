@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_course_view_tree" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="education_code" />
+                <field name="level_id" />
+                <field name="plan_id" />
+                <field name="field_id" />
+                <field name="shift_id" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_course_view_search" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="education_code" />
+                <field name="description" />
+                <field name="level_id" />
+                <field name="plan_id" />
+                <field name="field_id" />
+                <field name="shift_id" />
+            </search>
+        </field>
+    </record>
+
+    <record id="education_course_view_form" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="education_code" />
+                        <h1>
+                            <field name="education_code" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="level_id"
+                               options="{'no_create_edit': True, 'no_create': True}" />
+                        <field name="plan_id"
+                               options="{'no_create_edit': True, 'no_create': True}"/>
+                        <field name="field_id"
+                               options="{'no_create_edit': True, 'no_create': True}" />
+                        <field name="shift_id"
+                               options="{'no_create_edit': True, 'no_create': True}" />
+                    </group>
+                    <group name="description" string="Description">
+                        <field name="description" nolabel="1" colspan="4"/>
+                    </group>
+                    <group name="level_subject" string="Subjects by Level">
+                        <field name="level_subject_ids" nolabel="1"
+                               context="{'default_course_id': active_id}">
+                            <tree>
+                                <field name="subject_id"
+                                       options="{'no_create_edit': True, 'no_create': True}" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_education_course">
+        <field name="name">Courses</field>
+        <field name="res_model">education.course</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_course_view_tree" />
+    </record>
+
+</odoo>
