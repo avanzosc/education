@@ -6,7 +6,6 @@
                ref="education.education_academic_year_view_tree" />
         <field name="arch" type="xml">
             <tree position="attributes">
-                <attribute name="create">false</attribute>
                 <attribute name="delete">false</attribute>
             </tree>
         </field>
@@ -18,7 +17,6 @@
                ref="education.education_academic_year_view_form" />
         <field name="arch" type="xml">
             <form position="attributes">
-                <attribute name="create">false</attribute>
                 <attribute name="delete">false</attribute>
             </form>
         </field>
