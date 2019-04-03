@@ -12,17 +12,11 @@ class EducationData(models.AbstractModel):
     _order = 'education_code'
 
     education_code = fields.Char(
-        string='Education Code', required=True, copy=False,
-        oldname='id_hezkuntza')
+        string='Education Code', required=True, copy=False)
     description = fields.Text(
-        string='Description', required=True, oldname='descripcion')
-    # description_eu = fields.Text(
-    #     string='Basque Description', oldname='descripcion_euskera')
+        string='Description', required=True)
     short_description = fields.Char(
-        string='Short Description', oldname='descripcion_abreviada')
-    # short_description_eu = fields.Char(
-    #     string='Basque Short Description',
-    #     oldname='descripcion_abreviada_euskera')
+        string='Short Description')
 
     @api.multi
     def name_get(self):

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <menuitem name="Education" id="education_menuitem" />
+    <menuitem name="Education" id="education_menuitem"
+              web_icon="education,static/description/icon.png"/>
 
     <menuitem id="faculty_menuitem"
               name="Faculty"
