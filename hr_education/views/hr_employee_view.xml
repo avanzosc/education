@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_employee_view_form" model="ir.ui.view">
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <group name="active_group" position="after">
+                <group name="education_info" string="Education Info">
+                    <field name="edu_level_ids"
+                           options="{'no_create': True}">
+                        <tree>
+                            <field name="education_code" />
+                            <field name="description" />
+                            <field name="plan_id" />
+                        </tree>
+                    </field>
+                    <field name="edu_language_ids"
+                           options="{'no_create': True}">
+                        <tree>
+                            <field name="education_code" />
+                            <field name="description" />
+                        </tree>
+                    </field>
+                    <field name="edu_subject_ids"
+                           options="{'no_create': True}">
+                        <tree>
+                            <field name="education_code" />
+                            <field name="description" />
+                            <field name="type" />
+                        </tree>
+                    </field>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
