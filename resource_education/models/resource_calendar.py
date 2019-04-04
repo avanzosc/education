@@ -55,7 +55,9 @@ class ResourceCalendarLine(models.Model):
                  'calendar_id.attendance_ids.hour_from')
     def _compute_daily_hour(self):
         for calendar in self.mapped('calendar_id'):
-            daily_hour = 1
-            for line in calendar.attendance_ids:
-                line.daily_hour = daily_hour
-                daily_hour += 1
+            for dayofweek in calendar.mapped('attendance_ids.dayofweek'):
+                daily_hour = 1
+                for line in calendar.attendance_ids.filtered(
+                        lambda a: a.dayofweek == dayofweek):
+                    line.daily_hour = daily_hour
+                    daily_hour += 1
