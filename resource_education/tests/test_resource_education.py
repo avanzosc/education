@@ -4,6 +4,7 @@
 import odoo.tests.common as common
 from odoo.addons.resource_education.models.resource_calendar import \
     EDUCATION_DAYOFWEEK_CODE
+from odoo.exceptions import ValidationError
 
 
 class TestResourceEducation(common.SavepointCase):
@@ -32,3 +33,16 @@ class TestResourceEducation(common.SavepointCase):
                 EDUCATION_DAYOFWEEK_CODE.get(attendance.dayofweek))
             self.assertEquals(
                 attendance.daily_hour, 1)
+
+    def test_resource_calendar_code(self):
+        with self.assertRaises(ValidationError):
+            self.calendar.write({
+                'education_code': '0000000',
+            })
+        with self.assertRaises(ValidationError):
+            self.calendar.write({
+                'education_code': '000000000',
+            })
+        self.calendar.write({
+            'education_code': '00000000',
+        })
