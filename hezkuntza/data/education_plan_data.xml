@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="educacion_model_0001" model="education.plan">
+        <field name="education_code">0001</field>
+        <field name="description">LOMCE</field>
+    </record>
+
+    <record id="educacion_model_0003" model="education.plan">
+        <field name="education_code">0003</field>
+        <field name="description">LOE</field>
+    </record>
+</odoo>
