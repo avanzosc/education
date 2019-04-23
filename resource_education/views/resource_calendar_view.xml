@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="resource_calendar_view_tree" model="ir.ui.view">
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="education_code" />
+            </field>
+        </field>
+    </record>
+    <record id="resource_calendar_view_form" model="ir.ui.view">
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.resource_calendar_form" />
+        <field name="arch" type="xml">
+            <field name="hours_per_day" position="before">
+                <field name="education_code" />
+            </field>
+        </field>
+    </record>
+    <record id="resource_calendar_attendance_view_tree"
+            model="ir.ui.view">
+        <field name="model">resource.calendar.attendance</field>
+        <field name="inherit_id"
+               ref="resource.view_resource_calendar_attendance_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="dayofweek_education" readonly="True"
+                       string="Code"/>
+                <field name="daily_hour" readonly="True" />
+            </field>
+        </field>
+    </record>
+</odoo>
