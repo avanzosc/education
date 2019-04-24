@@ -64,6 +64,15 @@
                             </tree>
                         </field>
                     </group>
+                    <group name="level_course"
+                           string="Courses by Levels">
+                        <field name="level_course_ids" nolabel="1">
+                            <tree>
+                                <field name="level_id" />
+                                <field name="course_id" />
+                            </tree>
+                        </field>
+                    </group>
                 </sheet>
             </form>
         </field>
