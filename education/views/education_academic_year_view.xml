@@ -34,8 +34,8 @@
                         </h1>
                     </div>
                     <group name="dates" string="Dates">
-                        <field name="date_start" />
-                        <field name="date_end" />
+                        <field name="date_start" required="True" />
+                        <field name="date_end" required="True" />
                     </group>
                 </sheet>
             </form>
