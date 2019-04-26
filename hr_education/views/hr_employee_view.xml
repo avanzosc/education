@@ -6,23 +6,28 @@
         <field name="arch" type="xml">
             <group name="active_group" position="after">
                 <group name="education_info" string="Education Info">
-                    <field name="edu_level_ids"
-                           options="{'no_create': True}">
+                    <field name="edu_position_ids" widget="many2many_tags"
+                           options="{'no_create': True}" />
+                    <separator string="Levels" />
+                    <field name="edu_level_ids" nolabel="1"
+                           options="{'no_create': True}" colspan="4">
                         <tree>
                             <field name="education_code" />
                             <field name="description" />
                             <field name="plan_id" />
                         </tree>
                     </field>
-                    <field name="edu_language_ids"
-                           options="{'no_create': True}">
+                    <separator string="Languages" />
+                    <field name="edu_language_ids" nolabel="1"
+                           options="{'no_create': True}" colspan="4">
                         <tree>
                             <field name="education_code" />
                             <field name="description" />
                         </tree>
                     </field>
-                    <field name="edu_subject_ids"
-                           options="{'no_create': True}">
+                    <separator string="Subjects" />
+                    <field name="edu_subject_ids" nolabel="1"
+                           options="{'no_create': True}" colspan="4">
                         <tree>
                             <field name="education_code" />
                             <field name="description" />
