@@ -7,6 +7,7 @@
                 <field name="name" />
                 <field name="date_start" />
                 <field name="date_end" />
+                <field name="active" invisible="True" />
             </tree>
         </field>
     </record>
@@ -18,6 +19,8 @@
                 <field name="name" />
                 <field name="date_start" />
                 <field name="date_end" />
+                <filter string="Archived" name="inactive"
+                        domain="[('active','=',False)]" />
             </search>
         </field>
     </record>
@@ -27,6 +30,12 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive"
+                                groups="education.education_responsible">
+                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <label for="name" />
                         <h1>

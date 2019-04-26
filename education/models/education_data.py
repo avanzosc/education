@@ -17,6 +17,7 @@ class EducationData(models.AbstractModel):
         string='Description', required=True)
     short_description = fields.Char(
         string='Short Description')
+    active = fields.Boolean('Active', default=True)
 
     @api.multi
     def name_get(self):

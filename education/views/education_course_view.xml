@@ -10,6 +10,7 @@
                 <field name="field_id" />
                 <field name="shift_id" />
                 <field name="description" />
+                <field name="active" invisible="True" />
             </tree>
         </field>
     </record>
@@ -24,6 +25,8 @@
                 <field name="plan_id" />
                 <field name="field_id" />
                 <field name="shift_id" />
+                <filter string="Archived" name="inactive"
+                        domain="[('active','=',False)]" />
             </search>
         </field>
     </record>
@@ -33,6 +36,12 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive"
+                                groups="education.education_responsible">
+                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <label for="education_code" />
                         <h1>
