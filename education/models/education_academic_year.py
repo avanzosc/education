@@ -13,6 +13,7 @@ class EducationAcademicYear(models.Model):
     name = fields.Char(string='Academic Year', required=True)
     date_start = fields.Date(string='Start Date')
     date_end = fields.Date(string='End Date')
+    active = fields.Boolean(string='Active', default=True)
 
     @api.constrains('name')
     def _check_education_code(self):
