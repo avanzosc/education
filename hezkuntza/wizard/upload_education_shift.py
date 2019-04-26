@@ -14,7 +14,8 @@ class UploadEducationContractType(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
-        shift_obj = self.env['education.shift']
+        shift_obj = self.env[
+            'education.shift'].with_context(active_test=False)
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:

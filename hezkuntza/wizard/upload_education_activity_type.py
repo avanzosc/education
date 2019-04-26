@@ -14,7 +14,8 @@ class UploadEducationActivityType(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
-        activity_type_obj = self.env['education.activity_type']
+        activity_type_obj = self.env[
+            'education.activity_type'].with_context(active_test=False)
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:

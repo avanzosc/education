@@ -14,7 +14,8 @@ class UploadEducationDesignationLevel(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
-        designation_level_obj = self.env['education.designation_level']
+        designation_level_obj = self.env[
+            'education.designation_level'].with_context(active_test=False)
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:

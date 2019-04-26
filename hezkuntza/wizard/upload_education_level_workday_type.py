@@ -14,10 +14,13 @@ class UploadEducationLevelWorkdayType(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
-        relation_obj = self.env['education.level.workday_type']
-        academic_year_obj = self.env['education.academic_year']
-        workday_type_obj = self.env['education.workday_type']
-        level_obj = self.env['education.level']
+        relation_obj = self.env[
+            'education.level.workday_type'].with_context(active_test=False)
+        academic_year_obj = self.env[
+            'education.academic_year'].with_context(active_test=False)
+        workday_type_obj = self.env[
+            'education.workday_type'].with_context(active_test=False)
+        level_obj = self.env['education.level'].with_context(active_test=False)
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:
