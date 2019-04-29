@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from . import upload_education_activity_type
+from . import upload_education_classroom
 from . import upload_education_contract_type
 from . import upload_education_course
 from . import upload_education_designation_level
