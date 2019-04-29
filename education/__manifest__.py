@@ -29,6 +29,7 @@
         "views/education_model_view.xml",
         "views/education_plan_view.xml",
         "views/education_position_view.xml",
+        "views/education_section_view.xml",
         "views/education_shift_view.xml",
         "views/education_subject_view.xml",
         "views/education_task_type_view.xml",

@@ -33,6 +33,8 @@ access_education_plan,education_plan all,model_education_plan,,1,0,0,0
 access_education_plan_manager,education_plan manager,model_education_plan,education_responsible,1,1,1,1
 access_education_position,education_position all,model_education_position,,1,0,0,0
 access_education_position_manager,education_position manager,model_education_position,education_responsible,1,1,1,1
+access_education_section,education_section all,model_education_section,,1,0,0,0
+access_education_section_manager,education_section manager,model_education_section,education.education_responsible,1,1,1,1
 access_education_shift,education_shift all,model_education_shift,,1,0,0,0
 access_education_shift_manager,education_shift manager,model_education_shift,education_responsible,1,1,1,1
 access_education_subject,education_subject all,model_education_subject,,1,0,0,0

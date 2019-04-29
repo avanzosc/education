@@ -102,4 +102,8 @@
               parent="education_center_menuitem"
               action="action_education_classroom"
               sequence="1" />
+    <menuitem id="education_section_menuitem"
+              parent="education_center_menuitem"
+              action="action_education_section"
+              sequence="2" />
 </odoo>
