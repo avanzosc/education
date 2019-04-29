@@ -3,6 +3,8 @@ access_education_academic_year,education_academic_year all,model_education_acade
 access_education_academic_year_manager,education_academic_year manager,model_education_academic_year,education_responsible,1,1,1,1
 access_education_activity_type,education_activity_type all,model_education_activity_type,,1,0,0,0
 access_education_activity_type_manager,education_activity_type manager,model_education_activity_type,education_responsible,1,1,1,1
+access_education_classroom,education_classroom all,model_education_classroom,,1,0,0,0
+access_education_classroom_manager,education_classroom manager,model_education_classroom,education_responsible,1,1,1,1
 access_education_course,education_course all,model_education_course,,1,0,0,0
 access_education_course_manager,education_course manager,model_education_course,education_responsible,1,1,1,1
 access_education_contract_type,education_contract_type all,model_education_contract_type,,1,0,0,0

@@ -53,7 +53,10 @@
                         </group>
                     </group>
                     <group name="other">
-                         <field name="type" />
+                        <field name="type" />
+                        <field name="level_ids" widget="many2many_tags" />
+                        <field name="field_ids" widget="many2many_tags" />
+                        <field name="course_ids" widget="many2many_tags" />
                     </group>
                     <group name="level_field"
                            string="Fields by Levels">

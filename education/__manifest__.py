@@ -3,7 +3,7 @@
 
 {
     "name": "Education",
-    "version": "12.0.1.0.0",
+    "version": "12.0.2.0.0",
     "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -16,6 +16,7 @@
         "security/ir.model.access.csv",
         "views/education_academic_year_view.xml",
         "views/education_activity_type_view.xml",
+        "views/education_classroom_view.xml",
         "views/education_contract_type_view.xml",
         "views/education_course_view.xml",
         "views/education_designation_level_view.xml",

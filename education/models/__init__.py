@@ -4,6 +4,7 @@
 from . import education_data
 from . import education_academic_year
 from . import education_activity_type
+from . import education_classroom
 from . import education_contract_type
 from . import education_course
 from . import education_designation_level
