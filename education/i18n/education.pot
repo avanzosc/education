@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-18 11:10+0000\n"
-"PO-Revision-Date: 2019-03-18 11:10+0000\n"
+"POT-Creation-Date: 2019-04-29 12:28+0000\n"
+"PO-Revision-Date: 2019-04-29 12:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,14 +28,54 @@ msgid "Academic year must be unique!"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_academic_year.py:23
+#: code:addons/education/models/education_academic_year.py:24
 #, python-format
 msgid "Academic year must be {} digits long!"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_academic_year__active
+#: model:ir.model.fields,field_description:education.field_education_activity_type__active
+#: model:ir.model.fields,field_description:education.field_education_classroom__active
+#: model:ir.model.fields,field_description:education.field_education_contract_type__active
+#: model:ir.model.fields,field_description:education.field_education_course__active
+#: model:ir.model.fields,field_description:education.field_education_data__active
+#: model:ir.model.fields,field_description:education.field_education_designation_level__active
+#: model:ir.model.fields,field_description:education.field_education_field__active
+#: model:ir.model.fields,field_description:education.field_education_group_type__active
+#: model:ir.model.fields,field_description:education.field_education_idtype__active
+#: model:ir.model.fields,field_description:education.field_education_language__active
+#: model:ir.model.fields,field_description:education.field_education_level__active
+#: model:ir.model.fields,field_description:education.field_education_model__active
+#: model:ir.model.fields,field_description:education.field_education_plan__active
+#: model:ir.model.fields,field_description:education.field_education_position__active
+#: model:ir.model.fields,field_description:education.field_education_shift__active
+#: model:ir.model.fields,field_description:education.field_education_subject__active
+#: model:ir.model.fields,field_description:education.field_education_task_type__active
+#: model:ir.model.fields,field_description:education.field_education_work_reason__active
+#: model:ir.model.fields,field_description:education.field_education_workday_type__active
+msgid "Active"
+msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_academic_year_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_classroom_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_course_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_level_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_plan_view_search
+msgid "Archived"
+msgstr ""
+
+#. module: education
 #: model:ir.model,name:education.model_education_shift
 msgid "Class Shift"
+msgstr ""
+
+#. module: education
+#: model:ir.actions.act_window,name:education.action_education_classroom
+#: model:ir.model,name:education.model_education_classroom
+#: model:ir.ui.menu,name:education.education_classroom_menuitem
+msgid "Classroom"
 msgstr ""
 
 #. module: education
@@ -57,13 +97,26 @@ msgstr ""
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_course
+#: model:ir.model.fields,field_description:education.field_education_plan__course_ids
+#: model:ir.model.fields,field_description:education.field_education_subject__course_ids
 #: model:ir.ui.menu,name:education.schedule_course_menuitem
 msgid "Courses"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_subject__level_course_ids
+msgid "Courses by Level"
+msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_subject_view_form
+msgid "Courses by Levels"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__create_uid
 #: model:ir.model.fields,field_description:education.field_education_activity_type__create_uid
+#: model:ir.model.fields,field_description:education.field_education_classroom__create_uid
 #: model:ir.model.fields,field_description:education.field_education_contract_type__create_uid
 #: model:ir.model.fields,field_description:education.field_education_course__create_uid
 #: model:ir.model.fields,field_description:education.field_education_designation_level__create_uid
@@ -89,6 +142,7 @@ msgstr ""
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__create_date
 #: model:ir.model.fields,field_description:education.field_education_activity_type__create_date
+#: model:ir.model.fields,field_description:education.field_education_classroom__create_date
 #: model:ir.model.fields,field_description:education.field_education_contract_type__create_date
 #: model:ir.model.fields,field_description:education.field_education_course__create_date
 #: model:ir.model.fields,field_description:education.field_education_designation_level__create_date
@@ -123,6 +177,7 @@ msgstr ""
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_activity_type__description
+#: model:ir.model.fields,field_description:education.field_education_classroom__description
 #: model:ir.model.fields,field_description:education.field_education_contract_type__description
 #: model:ir.model.fields,field_description:education.field_education_course__description
 #: model:ir.model.fields,field_description:education.field_education_data__description
@@ -141,6 +196,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_work_reason__description
 #: model:ir.model.fields,field_description:education.field_education_workday_type__description
 #: model_terms:ir.ui.view,arch_db:education.education_activity_type_view_form
+#: model_terms:ir.ui.view,arch_db:education.education_classroom_view_form
 #: model_terms:ir.ui.view,arch_db:education.education_contract_type_view_form
 #: model_terms:ir.ui.view,arch_db:education.education_course_view_form
 #: model_terms:ir.ui.view,arch_db:education.education_designation_level_view_form
@@ -169,6 +225,7 @@ msgstr ""
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__display_name
 #: model:ir.model.fields,field_description:education.field_education_activity_type__display_name
+#: model:ir.model.fields,field_description:education.field_education_classroom__display_name
 #: model:ir.model.fields,field_description:education.field_education_contract_type__display_name
 #: model:ir.model.fields,field_description:education.field_education_course__display_name
 #: model:ir.model.fields,field_description:education.field_education_data__display_name
@@ -199,7 +256,13 @@ msgid "Education"
 msgstr ""
 
 #. module: education
+#: model:ir.ui.menu,name:education.education_center_menuitem
+msgid "Education Center"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_activity_type__education_code
+#: model:ir.model.fields,field_description:education.field_education_classroom__education_code
 #: model:ir.model.fields,field_description:education.field_education_contract_type__education_code
 #: model:ir.model.fields,field_description:education.field_education_course__education_code
 #: model:ir.model.fields,field_description:education.field_education_data__education_code
@@ -380,7 +443,7 @@ msgid "End Date"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_academic_year.py:31
+#: code:addons/education/models/education_academic_year.py:32
 #, python-format
 msgid "End date must be after start date."
 msgstr ""
@@ -414,6 +477,7 @@ msgstr ""
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__id
 #: model:ir.model.fields,field_description:education.field_education_activity_type__id
+#: model:ir.model.fields,field_description:education.field_education_classroom__id
 #: model:ir.model.fields,field_description:education.field_education_contract_type__id
 #: model:ir.model.fields,field_description:education.field_education_course__id
 #: model:ir.model.fields,field_description:education.field_education_data__id
@@ -453,6 +517,7 @@ msgstr ""
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year____last_update
 #: model:ir.model.fields,field_description:education.field_education_activity_type____last_update
+#: model:ir.model.fields,field_description:education.field_education_classroom____last_update
 #: model:ir.model.fields,field_description:education.field_education_contract_type____last_update
 #: model:ir.model.fields,field_description:education.field_education_course____last_update
 #: model:ir.model.fields,field_description:education.field_education_data____last_update
@@ -479,6 +544,7 @@ msgstr ""
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__write_uid
 #: model:ir.model.fields,field_description:education.field_education_activity_type__write_uid
+#: model:ir.model.fields,field_description:education.field_education_classroom__write_uid
 #: model:ir.model.fields,field_description:education.field_education_contract_type__write_uid
 #: model:ir.model.fields,field_description:education.field_education_course__write_uid
 #: model:ir.model.fields,field_description:education.field_education_designation_level__write_uid
@@ -504,6 +570,7 @@ msgstr ""
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__write_date
 #: model:ir.model.fields,field_description:education.field_education_activity_type__write_date
+#: model:ir.model.fields,field_description:education.field_education_classroom__write_date
 #: model:ir.model.fields,field_description:education.field_education_contract_type__write_date
 #: model:ir.model.fields,field_description:education.field_education_course__write_date
 #: model:ir.model.fields,field_description:education.field_education_designation_level__write_date
@@ -538,6 +605,8 @@ msgid "Level"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_plan__level_ids
+#: model:ir.model.fields,field_description:education.field_education_subject__level_ids
 #: model:ir.model.fields,field_description:education.field_education_task_type__level_ids
 msgid "Levels"
 msgstr ""
@@ -614,6 +683,11 @@ msgid "School Working Day"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_classroom__capacity
+msgid "Seating Capacity"
+msgstr ""
+
+#. module: education
 #: model:ir.actions.act_window,name:education.action_education_shift
 #: model:ir.model.fields,field_description:education.field_education_course__shift_id
 #: model:ir.ui.menu,name:education.schedule_shift_menuitem
@@ -622,6 +696,7 @@ msgstr ""
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_activity_type__short_description
+#: model:ir.model.fields,field_description:education.field_education_classroom__short_description
 #: model:ir.model.fields,field_description:education.field_education_contract_type__short_description
 #: model:ir.model.fields,field_description:education.field_education_course__short_description
 #: model:ir.model.fields,field_description:education.field_education_data__short_description
@@ -661,6 +736,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_level_field_subject__field_id
 #: model:ir.ui.menu,name:education.schedule_field_menuitem
 msgid "Study Field"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_subject__field_ids
+msgid "Study Fields"
 msgstr ""
 
 #. module: education

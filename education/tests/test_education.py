@@ -3,6 +3,7 @@
 
 from odoo import fields
 from odoo.tests import common
+from odoo.exceptions import ValidationError
 
 
 @common.at_install(False)
@@ -12,9 +13,10 @@ class TestEducation(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestEducation, cls).setUpClass()
-        today = fields.Date.from_string(fields.Date.today())
-        cls.academic_year = cls.env['education.academic_year'].create({
-            'name': '{}+{}'.format(today.year + 10, today.year + 11)
+        cls.today = fields.Date.from_string(fields.Date.today())
+        cls.academic_year_model = cls.env['education.academic_year']
+        cls.academic_year = cls.academic_year_model.create({
+            'name': '{}+{}'.format(cls.today.year + 10, cls.today.year + 11)
         })
         cls.plan_model = cls.env['education.plan']
         cls.edu_plan_code = 'TEST'
@@ -33,11 +35,37 @@ class TestEducation(common.SavepointCase):
             'plan_id': cls.edu_plan.id,
             'level_id': cls.edu_level.id,
         })
+        cls.edu_field = cls.env['education.field'].create({
+            'education_code': 'TEST',
+            'description': 'Test Field',
+        })
+        cls.edu_subject = cls.env['education.subject'].create({
+            'education_code': 'TESTTEST',
+            'description': 'Test Subject',
+            'level_field_ids': [(0, 0, {
+                'level_id': cls.edu_level.id,
+                'field_id': cls.edu_field.id,
+            })],
+            'level_course_ids': [(0, 0, {
+                'course_id': cls.edu_course.id,
+                'level_id': cls.edu_level.id,
+                'plan_id': cls.edu_plan.id,
+            })],
+        })
 
     def test_education_academic_year(self):
         self.assertTrue(self.academic_year.active)
         self.academic_year.toggle_active()
         self.assertFalse(self.academic_year.active)
+        with self.assertRaises(ValidationError):
+            self.academic_year_model.create({
+                'name': 'TEST',
+            })
+        with self.assertRaises(ValidationError):
+            self.academic_year.write({
+                'date_start': self.today,
+                'date_end': self.today,
+            })
 
     def test_education_plan(self):
         self.assertTrue(self.edu_plan.active)
@@ -54,3 +82,25 @@ class TestEducation(common.SavepointCase):
         self.assertFalse(self.edu_plan.active)
         self.assertFalse(self.edu_level.active)
         self.assertFalse(self.edu_course.active)
+
+    def test_education_level_course_subject(self):
+        relation = self.edu_subject.level_course_ids[:1]
+        self.assertEquals(
+            relation.display_name,
+            '{}{}{}{}'.format(
+                relation.level_id.education_code,
+                relation.plan_id.education_code,
+                relation.course_id.education_code,
+                relation.subject_id.education_code))
+
+    def test_education_subject(self):
+        self.assertIn(self.edu_level, self.edu_subject.level_ids)
+        self.assertIn(self.edu_course, self.edu_subject.course_ids)
+        self.assertIn(self.edu_field, self.edu_subject.field_ids)
+
+    def test_education_level(self):
+        self.assertEquals(
+            self.edu_level.display_name,
+            '[{}] {} ({})'.format(
+                self.edu_level.education_code, self.edu_level.description,
+                self.edu_level.plan_id.description))
