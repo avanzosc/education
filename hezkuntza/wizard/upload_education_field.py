@@ -14,7 +14,7 @@ class UploadEducationField(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
-        field_obj = self.env['education.field']
+        field_obj = self.env['education.field'].with_context(active_test=False)
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:

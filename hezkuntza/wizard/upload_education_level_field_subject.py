@@ -16,11 +16,13 @@ class UploadEducationLevelFieldSubject(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
-        plan_obj = self.env['education.plan']
-        level_obj = self.env['education.level']
-        field_obj = self.env['education.field']
-        subject_obj = self.env['education.subject']
-        relation_obj = self.env['education.level.field.subject']
+        plan_obj = self.env['education.plan'].with_context(active_test=False)
+        level_obj = self.env['education.level'].with_context(active_test=False)
+        field_obj = self.env['education.field'].with_context(active_test=False)
+        subject_obj = self.env[
+            'education.subject'].with_context(active_test=False)
+        relation_obj = self.env[
+            'education.level.field.subject'].with_context(active_test=False)
         if not lines and not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:

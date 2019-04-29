@@ -17,7 +17,8 @@ class UploadEducationPosition(models.TransientModel):
     def button_upload(self):
         normal_lines = _read_binary_file(self.file_normal)
         other_lines = _read_binary_file(self.file_other)
-        position_obj = self.env['education.position']
+        position_obj = self.env[
+            'education.position'].with_context(active_test=False)
         if not normal_lines and not other_lines:
             raise exceptions.Warning(_('Empty file.'))
         else:

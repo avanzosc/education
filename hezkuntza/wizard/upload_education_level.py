@@ -14,8 +14,8 @@ class UploadEducationLevel(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
-        level_obj = self.env['education.level']
-        plan_obj = self.env['education.plan']
+        level_obj = self.env['education.level'].with_context(active_test=False)
+        plan_obj = self.env['education.plan'].with_context(active_test=False)
         if not lines and not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:
@@ -24,20 +24,22 @@ class UploadEducationLevel(models.TransientModel):
                     education_code = _format_info(line[0:4])
                     plan = plan_obj.search([
                         ('education_code', '=', _format_info(line[4:8]))])
-                    vals = {
-                        'education_code': education_code,
-                        'plan_id': plan.id,
-                        'description': _format_info(line[8:58]),
-                        'description_eu': _format_info(line[58:108]),
-                        'short_description': _format_info(line[108:128]),
-                        'short_description_eu': _format_info(line[128:148]),
-                    }
-                    levels = level_obj.search([
-                        ('education_code', '=', education_code),
-                        ('plan_id', '=', plan.id)])
-                    if levels:
-                        levels.write(vals)
-                    else:
-                        level_obj.create(vals)
+                    if plan:
+                        vals = {
+                            'education_code': education_code,
+                            'plan_id': plan.id,
+                            'description': _format_info(line[8:58]),
+                            'description_eu': _format_info(line[58:108]),
+                            'short_description': _format_info(line[108:128]),
+                            'short_description_eu': _format_info(
+                                line[128:148]),
+                        }
+                        levels = level_obj.search([
+                            ('education_code', '=', education_code),
+                            ('plan_id', '=', plan.id)])
+                        if levels:
+                            levels.write(vals)
+                        else:
+                            level_obj.create(vals)
         action = self.env.ref('education.action_education_level')
         return action.read()[0]
