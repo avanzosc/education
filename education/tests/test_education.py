@@ -97,3 +97,10 @@ class TestEducation(common.SavepointCase):
         self.assertIn(self.edu_level, self.edu_subject.level_ids)
         self.assertIn(self.edu_course, self.edu_subject.course_ids)
         self.assertIn(self.edu_field, self.edu_subject.field_ids)
+
+    def test_education_level(self):
+        self.assertEquals(
+            self.edu_level.display_name,
+            '[{}] {} ({})'.format(
+                self.edu_level.education_code, self.edu_level.description,
+                self.edu_level.plan_id.description))

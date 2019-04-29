@@ -19,6 +19,7 @@ from . import education_level_workday_type
 from . import education_model
 from . import education_plan
 from . import education_position
+from . import education_section
 from . import education_shift
 from . import education_subject
 from . import education_task_type
