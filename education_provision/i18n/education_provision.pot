@@ -1,0 +1,141 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* education_provision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-29 14:39+0000\n"
+"PO-Revision-Date: 2019-04-29 14:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__academic_year_id
+msgid "Academic Year"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__classroom_id
+msgid "Classroom"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__education_code
+msgid "Code"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__comments
+msgid "Comments"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__course_id
+msgid "Course"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__create_uid
+#: model:ir.model.fields,field_description:education_provision.field_education_section__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__create_date
+#: model:ir.model.fields,field_description:education_provision.field_education_section__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__display_name
+#: model:ir.model.fields,field_description:education_provision.field_education_section__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__edu_level_course_subject_id
+msgid "Education Level, Course and Subject Relation"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model,name:education_provision.model_education_provision
+msgid "Education Provision"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model,name:education_provision.model_education_section
+msgid "Education Section"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__subject_id
+msgid "Education Subject"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__id
+#: model:ir.model.fields,field_description:education_provision.field_education_section__id
+msgid "ID"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision____last_update
+#: model:ir.model.fields,field_description:education_provision.field_education_section____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__write_uid
+#: model:ir.model.fields,field_description:education_provision.field_education_section__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__write_date
+#: model:ir.model.fields,field_description:education_provision.field_education_section__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__level_id
+msgid "Level"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_section__name
+msgid "Name"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.actions.act_window,name:education_provision.action_education_provision
+#: model:ir.ui.menu,name:education_provision.education_provision_menuitem
+msgid "Provisions"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__school_id
+msgid "School"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__student_ids
+msgid "Students"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_education_provision__employee_id
+msgid "Teacher"
+msgstr ""
+
+#. module: education_provision
+#: model:ir.actions.act_window,name:education_provision.action_education_section
+#: model:ir.ui.menu,name:education_provision.education_section_menuitem
+msgid "sections"
+msgstr ""
+

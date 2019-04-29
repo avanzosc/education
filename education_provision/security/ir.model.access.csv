@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_education_provision,education_provision all,model_education_provision,,1,0,0,0
+access_education_provision_manager,education_provision manager,model_education_provision,education.education_responsible,1,1,1,1
+

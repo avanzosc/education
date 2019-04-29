@@ -1,0 +1,21 @@
+# Copyright 2019 Oihane Crucelaegui - AvanzOSC
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
+{
+    "name": "Education Provision",
+    "version": "12.0.1.0.0",
+    "category": "Tools",
+    "license": "AGPL-3",
+    "author": "AvanzOSC",
+    "website": "http://www.avanzosc.es",
+    "depends": [
+        "education",
+        "contacts_school",
+        "hr",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/education_provision_view.xml",
+    ],
+    "installable": True,
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_provision_view_tree" model="ir.ui.view">
+        <field name="model">education.provision</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="education_code" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_provision_view_form" model="ir.ui.view">
+        <field name="model">education.provision</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                    <field name="education_code" />
+                    <field name="edu_level_course_subject_id" />
+                    <field name="level_id" />
+                    <field name="course_id" />
+                    <field name="subject_id" />
+                    <field name="classroom_id" />
+                    <field name="employee_id" />
+                    <field name="student_ids" />
+                    <field name="academic_year_id" />
+                    <field name="school_id" />
+                    </group>
+                    <field name="comments" />
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="education_provision_view_search" model="ir.ui.view">
+        <field name="model">education.provision</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="education_code" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_education_provision">
+        <field name="name">Provisions</field>
+        <field name="res_model">education.provision</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_provision_view_tree" />
+    </record>
+
+    <menuitem id="education_provision_menuitem"
+              parent="education.education_center_menuitem"
+              action="action_education_provision"
+              sequence="10" />
+</odoo>
