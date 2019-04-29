@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_education_course_change,education_course_change all,model_education_course_change,,1,0,0,0
+access_education_course_change_manager,education_course_change manager,model_education_course_change,education.education_responsible,1,1,1,1

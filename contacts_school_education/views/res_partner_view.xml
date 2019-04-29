@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_res_partner_school">
+        <field name="name">Schools</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('educational_category', '=', 'school')]</field>
+    </record>
+
+    <menuitem id="res_partner_school_menuitem"
+              parent="education.education_center_menuitem"
+              action="action_res_partner_school"
+              sequence="10" />
+
+    <record model="ir.actions.act_window" id="action_res_partner_faculty">
+        <field name="name">Faculty</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('employee', '=', True)]</field>
+    </record>
+
+    <menuitem id="res_partner_faculty_menuitem"
+              parent="education.faculty_menuitem"
+              action="action_res_partner_faculty"
+              sequence="10" />
+
+</odoo>
