@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_course_change_view_tree"
+            model="ir.ui.view">
+        <field name="model">education.course.change</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="school_id" />
+                <field name="course_id" />
+                <field name="next_school_id" />
+                <field name="next_course_id" />
+                <field name="gender" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_course_change_view_form" model="ir.ui.view">
+        <field name="model">education.course.change</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string="Current Course and Center">
+                        <field name="school_id" />
+                        <field name="course_id" />
+                    </group>
+                    <group string="Next Course and Center">
+                        <field name="next_school_id"
+                               string="Education Center"/>
+                        <field name="next_course_id" string="Course" />
+                    </group>
+                </group>
+                <group string="Additional Info">
+                    <field name="gender" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_education_course_change">
+        <field name="name">Course Change</field>
+        <field name="res_model">education.course.change</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="education_course_change_menuitem"
+              parent="education.education_center_menuitem"
+              action="action_education_course_change"
+              sequence="1" />
+</odoo>
