@@ -3,7 +3,7 @@
 
 {
     "name": "Hezkuntza",
-    "version": "12.0.1.0.0",
+    "version": "12.0.2.0.0",
     "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -34,6 +34,7 @@
         "views/education_workday_type_view.xml",
         "wizard/upload_education_activity_type_view.xml",
         "wizard/upload_education_all_view.xml",
+        "wizard/upload_education_classroom_view.xml",
         "wizard/upload_education_contract_type_view.xml",
         "wizard/upload_education_course_view.xml",
         "wizard/upload_education_designation_level_view.xml",
