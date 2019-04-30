@@ -15,20 +15,23 @@
             <form>
                 <sheet>
                     <group>
-                    <field name="education_code" />
-                    <field name="edu_level_course_subject_id" />
-                    <field name="level_id" />
-                    <field name="course_id" />
-                    <field name="subject_id" />
-                    <field name="classroom_id" />
-                    <field name="employee_id" />
-                    <field name="student_ids" />
-                    <field name="academic_year_id" />
-                    <field name="school_id" />
+                        <field name="education_code" />
+                        <field name="edu_level_course_subject_id" />
+                        <field name="level_id" />
+                        <field name="course_id" />
+                        <field name="subject_id" />
+                        <field name="classroom_id" />
+                        <field name="employee_id" />
+                        <field name="student_ids">
+                            <tree>
+                                <field name="name" />
+                            </tree>
+                        </field>
+                        <field name="academic_year_id" />
+                        <field name="school_id" />
                     </group>
                     <field name="comments" />
                 </sheet>
-
             </form>
         </field>
     </record>

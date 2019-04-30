@@ -16,6 +16,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/education_provision_view.xml",
+        "views/res_partner_enrollment_view.xml",
     ],
     "installable": True,
 }

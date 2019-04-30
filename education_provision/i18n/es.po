@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-29 14:39+0000\n"
-"PO-Revision-Date: 2019-04-29 14:39+0000\n"
+"POT-Creation-Date: 2019-04-30 12:58+0000\n"
+"PO-Revision-Date: 2019-04-30 12:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__academic_year_id
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__academic_year_id
 msgid "Academic Year"
 msgstr "Año académico"
 
@@ -36,25 +37,31 @@ msgid "Comments"
 msgstr "Comentarios"
 
 #. module: education_provision
+#: model:ir.model,name:education_provision.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__course_id
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__course_id
 msgid "Course"
 msgstr "Curso"
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__create_uid
-#: model:ir.model.fields,field_description:education_provision.field_education_section__create_uid
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__create_date
-#: model:ir.model.fields,field_description:education_provision.field_education_section__create_date
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__create_date
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__display_name
-#: model:ir.model.fields,field_description:education_provision.field_education_section__display_name
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -79,26 +86,35 @@ msgid "Education Subject"
 msgstr "Asignatura"
 
 #. module: education_provision
+#: model:ir.actions.act_window,name:education_provision.action_res_partner_enrollment
+#: model:ir.model.fields,field_description:education_provision.field_res_partner__enrollment_ids
+#: model:ir.model.fields,field_description:education_provision.field_res_users__enrollment_ids
+#: model:ir.ui.menu,name:education_provision.res_partner_enrollment_menuitem
+#: model_terms:ir.ui.view,arch_db:education_provision.res_partner_view_form
+msgid "Enrollments"
+msgstr "Matriculas"
+
+#. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__id
-#: model:ir.model.fields,field_description:education_provision.field_education_section__id
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__id
 msgid "ID"
 msgstr ""
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision____last_update
-#: model:ir.model.fields,field_description:education_provision.field_education_section____last_update
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__write_uid
-#: model:ir.model.fields,field_description:education_provision.field_education_section__write_uid
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__write_date
-#: model:ir.model.fields,field_description:education_provision.field_education_section__write_date
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
@@ -108,9 +124,9 @@ msgid "Level"
 msgstr "Nivel"
 
 #. module: education_provision
-#: model:ir.model.fields,field_description:education_provision.field_education_section__name
-msgid "Name"
-msgstr "Nombre"
+#: model:ir.model,name:education_provision.model_res_partner_enrollment
+msgid "Partner Enrollment"
+msgstr "Matriculas"
 
 #. module: education_provision
 #: model:ir.actions.act_window,name:education_provision.action_education_provision
@@ -119,9 +135,19 @@ msgid "Provisions"
 msgstr "Imparticiones"
 
 #. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__repeating
+msgid "Repeating Course"
+msgstr "Repetidor"
+
+#. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__school_id
 msgid "School"
 msgstr "Colegio"
+
+#. module: education_provision
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__partner_id
+msgid "Student"
+msgstr "Alumno"
 
 #. module: education_provision
 #: model:ir.model.fields,field_description:education_provision.field_education_provision__student_ids
@@ -134,8 +160,7 @@ msgid "Teacher"
 msgstr "Profesor"
 
 #. module: education_provision
-#: model:ir.actions.act_window,name:education_provision.action_education_section
-#: model:ir.ui.menu,name:education_provision.education_section_menuitem
-msgid "sections"
-msgstr "secciones"
+#: model:ir.model.fields,field_description:education_provision.field_res_partner_enrollment__will_repeat
+msgid "Will Repeat this Course Next Year?"
+msgstr "Repetirá próximo?"
 
