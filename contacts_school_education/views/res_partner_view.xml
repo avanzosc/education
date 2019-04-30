@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <page name="sales_purchases" position="after">
+                <page name="course_changes" string="Courses"
+                      attrs="{'invisible': [('educational_category','!=','school')]}">
+                    <separator string="Next Courses" />
+                    <field name="next_course_ids"
+                           context="{'default_school_id': active_id}">
+                        <tree editable="top">
+                            <field name="course_id" />
+                            <field name="next_school_id" />
+                            <field name="next_course_id" />
+                            <field name="gender" />
+                        </tree>
+                    </field>
+                    <separator string="Previous Courses" />
+                    <field name="prev_course_ids"
+                           context="{'default_next_school_id': active_id}">
+                        <tree editable="top">
+                            <field name="school_id" string="Previous Education Center"/>
+                            <field name="course_id" string="Previous Course"/>
+                            <field name="next_course_id" string="Course"/>
+                            <field name="gender" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_res_partner_school">
-        <field name="name">Schools</field>
+        <field name="name">Education Centers</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
@@ -25,5 +57,4 @@
               parent="education.faculty_menuitem"
               action="action_res_partner_faculty"
               sequence="10" />
-
 </odoo>

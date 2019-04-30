@@ -8,6 +8,8 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     next_course_ids = fields.One2many(
-        comodel_name='education.course.change', inverse_name='school_id')
+        comodel_name='education.course.change', inverse_name='school_id',
+        string='Next Courses')
     prev_course_ids = fields.One2many(
-        comodel_name='education.course.change', inverse_name='next_school_id')
+        comodel_name='education.course.change', inverse_name='next_school_id',
+        string='Previous Courses')
