@@ -6,7 +6,11 @@
         <field name="arch" type="xml">
             <group name="active_group" position="after">
                 <group name="education_info" string="Education Info">
-                    <field name="edu_position_ids" widget="many2many_tags"
+                    <field name="edu_position_id"
+                           options="{'no_create': True}" />
+                    <field name="edu_position2_id"
+                           options="{'no_create': True}" />
+                    <field name="edu_other_position_id"
                            options="{'no_create': True}" />
                     <separator string="Levels" />
                     <field name="edu_level_ids" nolabel="1"

@@ -6,19 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-26 08:25+0000\n"
-"PO-Revision-Date: 2019-04-26 08:25+0000\n"
+"POT-Creation-Date: 2019-05-02 09:30+0000\n"
+"PO-Revision-Date: 2019-05-02 09:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: hr_education
-#: model:ir.model.fields,field_description:hr_education.field_education_subject__course_ids
-msgid "Courses"
-msgstr ""
 
 #. module: hr_education
 #: model_terms:ir.ui.view,arch_db:hr_education.hr_employee_view_form
@@ -42,24 +37,24 @@ msgid "Languages"
 msgstr ""
 
 #. module: hr_education
-#: model:ir.model.fields,field_description:hr_education.field_education_subject__level_id
-msgid "Level"
-msgstr ""
-
-#. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_level_ids
 #: model_terms:ir.ui.view,arch_db:hr_education.hr_employee_view_form
 msgid "Levels"
 msgstr ""
 
 #. module: hr_education
-#: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_position_ids
-msgid "Positions"
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_other_position_id
+msgid "Other Position"
 msgstr ""
 
 #. module: hr_education
-#: model:ir.model.fields,field_description:hr_education.field_education_subject__field_id
-msgid "Study Field"
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_position_id
+msgid "Position"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_position2_id
+msgid "Position2 "
 msgstr ""
 
 #. module: hr_education
