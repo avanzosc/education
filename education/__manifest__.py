@@ -21,6 +21,7 @@
         "views/education_course_view.xml",
         "views/education_designation_level_view.xml",
         "views/education_field_view.xml",
+        "views/education_group_view.xml",
         "views/education_group_type_view.xml",
         "views/education_idtype_view.xml",
         "views/education_language_view.xml",

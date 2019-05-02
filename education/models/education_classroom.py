@@ -10,3 +10,6 @@ class EducationClassroom(models.Model):
     _description = 'Classroom'
 
     capacity = fields.Integer(string='Seating Capacity')
+    center_id = fields.Many2one(
+        comodel_name='res.partner', string='Education Center',
+        domain=[('education_code', '!=', False)])

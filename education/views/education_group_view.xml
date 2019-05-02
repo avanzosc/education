@@ -1,51 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="education_classroom_view_tree" model="ir.ui.view">
-        <field name="model">education.classroom</field>
+    <record id="education_group_view_tree" model="ir.ui.view">
+        <field name="model">education.group</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="education_code" />
                 <field name="description" />
-                <field name="capacity" />
                 <field name="center_id" />
+                <field name="plan_id" />
+                <field name="level_id" />
+                <field name="field_id" />
+                <field name="classroom_id" />
                 <field name="active" invisible="True" />
             </tree>
         </field>
     </record>
 
-    <record id="education_classroom_view_search" model="ir.ui.view">
-        <field name="model">education.classroom</field>
+    <record id="education_group_view_search" model="ir.ui.view">
+        <field name="model">education.group</field>
         <field name="arch" type="xml">
             <search>
                 <field name="education_code" />
                 <field name="description" />
-                <field name="center_id" />
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
             </search>
         </field>
     </record>
 
-    <record id="education_classroom_view_form" model="ir.ui.view">
-        <field name="model">education.classroom</field>
+    <record id="education_group_view_form" model="ir.ui.view">
+        <field name="model">education.group</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive"
-                                groups="education.education_responsible">
-                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
-                        </button>
-                    </div>
                     <div class="oe_title">
                         <label for="education_code" />
                         <h1>
                             <field name="education_code" />
                         </h1>
                     </div>
-                    <group>
-                        <field name="capacity" />
-                        <field name="center_id" />
-                    </group>
                     <group name="description" string="Description">
                         <field name="description" nolabel="1" colspan="4"/>
                     </group>
@@ -54,12 +46,12 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_education_classroom">
-        <field name="name">Classroom</field>
-        <field name="res_model">education.classroom</field>
+    <record model="ir.actions.act_window" id="action_education_group">
+        <field name="name">Educational Groups</field>
+        <field name="res_model">education.group</field>
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="education_classroom_view_tree" />
+        <field name="view_id" ref="education_group_view_tree" />
     </record>
 
 </odoo>
