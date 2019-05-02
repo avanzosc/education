@@ -11,6 +11,8 @@ class UploadEducationClassroom(models.TransientModel):
 
     file = fields.Binary(
         string='Classrooms (T06)', filters='*.txt')
+    center_id = fields.Many2one(
+        comodel_name='res.partner', string='Education Center')
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
@@ -26,9 +28,12 @@ class UploadEducationClassroom(models.TransientModel):
                         'education_code': education_code,
                         'description': _format_info(line[8:58]),
                         'capacity': _format_info(line[58:61]),
+                        'center_id': self.center_id.id,
                     }
                     classrooms = classroom_obj.search([
-                        ('education_code', '=', education_code)])
+                        ('education_code', '=', education_code),
+                        ('center_id', '=', self.center_id.id),
+                    ])
                     if classrooms:
                         classrooms.write(vals)
                     else:

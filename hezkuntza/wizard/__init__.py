@@ -7,6 +7,7 @@ from . import upload_education_contract_type
 from . import upload_education_course
 from . import upload_education_designation_level
 from . import upload_education_field
+from . import upload_education_group
 from . import upload_education_group_type
 from . import upload_education_idtype
 from . import upload_education_language
