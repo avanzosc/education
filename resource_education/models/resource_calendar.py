@@ -39,11 +39,7 @@ class ResourceCalendarLine(models.Model):
         compute='_compute_dayofweek_education', store=True)
     daily_hour = fields.Integer(
         string='Hour in Day', compute='_compute_daily_hour')
-
-    @api.model
-    def default_get(self, fields_list):
-        res = super(ResourceCalendarLine, self).default_get(fields_list)
-        return res
+    recess = fields.Boolean(string='Recess')
 
     @api.depends('dayofweek')
     def _compute_dayofweek_education(self):
