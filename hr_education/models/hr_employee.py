@@ -7,10 +7,15 @@ from odoo import fields, models
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
-    edu_position_ids = fields.Many2many(
-        comodel_name='education.position', relation='edu_employee_position',
-        column1='employee_id', column2='edu_position_id', string='Positions',
+    edu_position_id = fields.Many2one(
+        comodel_name='education.position', string='Position',
         domain=[('type', '=', 'normal')])
+    edu_position2_id = fields.Many2one(
+        comodel_name='education.position', string='Position2 ',
+        domain=[('type', '=', 'normal')])
+    edu_other_position_id = fields.Many2one(
+        comodel_name='education.position', string='Other Position',
+        domain=[('type', '=', 'other')])
     edu_language_ids = fields.Many2many(
         comodel_name='education.language', relation='edu_employee_language',
         column1='employee_id', column2='edu_language_id', string='Languages')
