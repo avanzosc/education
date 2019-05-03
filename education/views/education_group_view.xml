@@ -10,6 +10,8 @@
                 <field name="plan_id" />
                 <field name="level_id" />
                 <field name="field_id" />
+                <field name="shift_id" />
+                <field name="course_id" />
                 <field name="classroom_id" />
                 <field name="active" invisible="True" />
             </tree>
@@ -38,8 +40,26 @@
                             <field name="education_code" />
                         </h1>
                     </div>
+                    <group>
+                        <group>
+                            <field name="center_id" />
+                            <field name="classroom_id" />
+                        </group>
+                        <group>
+                            <field name="plan_id" />
+                            <field name="level_id" />
+                            <field name="field_id" />
+                            <field name="shift_id" />
+                            <field name="course_id" />
+                            <field name="model_id" />
+                            <field name="group_type_id" />
+                        </group>
+                    </group>
                     <group name="description" string="Description">
                         <field name="description" nolabel="1" colspan="4"/>
+                    </group>
+                    <group name="comments" string="Comments">
+                        <field name="comments" nolabel="1" colspan="4"/>
                     </group>
                 </sheet>
             </form>
