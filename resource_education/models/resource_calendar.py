@@ -20,6 +20,9 @@ class ResourceCalendar(models.Model):
 
     education_code = fields.Char(
         string='Education Code', copy=False)
+    center_id = fields.Many2one(
+        comodel_name='res.partner', string='Education Center',
+        domain=[('education_code', '!=', False)])
 
     @api.constrains('education_code')
     def _check_education_code(self):
@@ -38,12 +41,8 @@ class ResourceCalendarLine(models.Model):
         string='Education Day of Week Code',
         compute='_compute_dayofweek_education', store=True)
     daily_hour = fields.Integer(
-        string='Hour in Day', compute='_compute_daily_hour')
-
-    @api.model
-    def default_get(self, fields_list):
-        res = super(ResourceCalendarLine, self).default_get(fields_list)
-        return res
+        string='Hour in Day', compute='_compute_daily_hour', store=True)
+    recess = fields.Boolean(string='Recess')
 
     @api.depends('dayofweek')
     def _compute_dayofweek_education(self):
