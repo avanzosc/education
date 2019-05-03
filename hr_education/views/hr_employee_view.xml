@@ -4,17 +4,21 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form" />
         <field name="arch" type="xml">
+            <field name="identification_id" position="after">
+                <field name="edu_idtype_id"
+                       options="{'no_create': True, 'no_open': True}"/>
+            </field>
             <group name="active_group" position="after">
                 <group name="education_info" string="Education Info">
                     <field name="edu_position_id"
-                           options="{'no_create': True}" />
+                           options="{'no_create': True, 'no_open': True}" />
                     <field name="edu_position2_id"
-                           options="{'no_create': True}" />
+                           options="{'no_create': True, 'no_open': True}" />
                     <field name="edu_other_position_id"
-                           options="{'no_create': True}" />
+                           options="{'no_create': True, 'no_open': True}" />
                     <separator string="Levels" />
                     <field name="edu_level_ids" nolabel="1"
-                           options="{'no_create': True}" colspan="4">
+                           options="{'no_create': True, 'no_open': True}" colspan="4">
                         <tree>
                             <field name="education_code" />
                             <field name="description" />
@@ -23,7 +27,7 @@
                     </field>
                     <separator string="Languages" />
                     <field name="edu_language_ids" nolabel="1"
-                           options="{'no_create': True}" colspan="4">
+                           options="{'no_create': True, 'no_open': True}" colspan="4">
                         <tree>
                             <field name="education_code" />
                             <field name="description" />
@@ -31,7 +35,7 @@
                     </field>
                     <separator string="Subjects" />
                     <field name="edu_subject_ids" nolabel="1"
-                           options="{'no_create': True}" colspan="4">
+                           options="{'no_create': True, 'no_open': True}" colspan="4">
                         <tree>
                             <field name="education_code" />
                             <field name="description" />

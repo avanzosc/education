@@ -7,6 +7,8 @@ from odoo import fields, models
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
+    edu_idtype_id = fields.Many2one(
+        comodel_name='education.idtype', string='ID Type')
     edu_position_id = fields.Many2one(
         comodel_name='education.position', string='Position',
         domain=[('type', '=', 'normal')])
