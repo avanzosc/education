@@ -32,9 +32,6 @@
         <field name="inherit_id"
                ref="resource.view_resource_calendar_attendance_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
-                <attribute name="decoration-mute">recess</attribute>
-            </tree>
             <field name="name" position="before">
                 <field name="dayofweek_education" readonly="True"
                        string="Code"/>
@@ -43,6 +40,9 @@
             <field name="day_period" position="after">
                 <field name="recess" />
             </field>
+            <tree position="attributes">
+                <attribute name="decoration-muted">recess==True</attribute>
+            </tree>
         </field>
     </record>
 
