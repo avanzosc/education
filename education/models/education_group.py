@@ -34,7 +34,13 @@ class EducationGroup(models.Model):
         comodel_name='education.model', string='Education Model')
     group_type_id = fields.Many2one(
         comodel_name='education.group_type', string='Group Type')
+    calendar_id = fields.Many2one(
+        comodel_name='resource.calendar', string='Calendar',
+        domain="[('center_id', '=', center_id)]")
     comments = fields.Text(string='Comments')
+    teacher_ids = fields.One2many(
+        comodel_name='education.group.teacher',
+        inverse_name='group_id', string='Teachers')
 
     _sql_constraints = [
         ('education_code_unique',
@@ -45,6 +51,17 @@ class EducationGroup(models.Model):
 
 class EducationGroupTeacher(models.Model):
     _name = 'education.group.teacher'
+    _description = 'Education Group Teachers'
 
-    group_id = fields.Many2one(comodel_name='education.group')
+    group_id = fields.Many2one(
+        comodel_name='education.group', required=True, ondelete='cascade')
     employee_id = fields.Many2one(comodel_name='hr.employee')
+    sequence = fields.Integer(string='Sequence')
+
+    _sql_constraints = [
+        ('group_sequence_unique',
+         'unique(group_id,sequence)',
+         'Sequence must be unique per group!'),
+        ('sequence_one2ten', 'check(sequence between 1 and 10)',
+         'Sequence must be between 1 and 10!'),
+    ]

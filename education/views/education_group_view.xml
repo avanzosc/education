@@ -53,6 +53,7 @@
                             <field name="course_id" />
                             <field name="model_id" />
                             <field name="group_type_id" />
+                            <field name="calendar_id" />
                         </group>
                     </group>
                     <group name="description" string="Description">
@@ -60,6 +61,16 @@
                     </group>
                     <group name="comments" string="Comments">
                         <field name="comments" nolabel="1" colspan="4"/>
+                    </group>
+                    <group>
+                        <field name="teacher_ids" nolabel="1" colspan="4"
+                               context="{'default_group_id': active_id}">
+                            <tree editable="bottom">
+                                <field name="sequence" />
+                                <field name="employee_id" />
+                                <field name="group_id" invisible="True" />
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>
