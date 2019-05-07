@@ -11,6 +11,7 @@
     "depends": [
         "education",
         "resource_education",
+        "hr_education",
         "contacts_school",
     ],
     "data": [
@@ -52,6 +53,7 @@
         "wizard/upload_education_level_workday_type_view.xml",
         "wizard/upload_education_model_view.xml",
         "wizard/upload_education_position_view.xml",
+        "wizard/upload_education_resource_view.xml",
         "wizard/upload_education_shift_view.xml",
         "wizard/upload_education_subject_view.xml",
         "wizard/upload_education_task_type_view.xml",

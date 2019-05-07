@@ -12,7 +12,8 @@ class UploadEducationClassroom(models.TransientModel):
     file = fields.Binary(
         string='Classrooms (T06)', filters='*.txt')
     center_id = fields.Many2one(
-        comodel_name='res.partner', string='Education Center')
+        comodel_name='res.partner', string='Education Center',
+        domain=[('educational_category', '=', 'school')])
 
     def button_upload(self):
         lines = _read_binary_file(self.file)

@@ -19,20 +19,33 @@ class UploadEducationGroup(models.TransientModel):
         plan_obj = self.env['education.plan'].with_context(active_test=False)
         level_obj = self.env['education.level'].with_context(active_test=False)
         field_obj = self.env['education.field'].with_context(active_test=False)
+        shift_obj = self.env['education.shift'].with_context(active_test=False)
+        course_obj = self.env['education.course'].with_context(
+            active_test=False)
+        model_obj = self.env['education.model'].with_context(active_test=False)
+        group_type_obj = self.env[
+            'education.group_type'].with_context(active_test=False)
+        calendar_obj = self.env['resource.calendar']
         classroom_obj = self.env[
             'education.classroom'].with_context(active_test=False)
+        idtype_obj = self.env[
+            'education.idtype'].with_context(active_test=False)
+        group_teacher_obj = self.env[
+            'education.group.teacher'].with_context(active_test=False)
+        employee_obj = self.env['hr.employee'].with_context(active_test=False)
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:
             for line in lines:
                 if len(line) > 0:
                     line_type = _format_info(line[:1])
-                    # print(_format_info(line))
                     if line_type == '1':
                         center_code = _format_info(line[3:9])
                         print('Center Code: {}'.format(center_code))
                         partner = partner_obj.search([
-                            ('education_code', '=', center_code)])
+                            ('education_code', '=', center_code),
+                            # ('center_id', '=', ),
+                        ])
                         # año = _format_info(line[9:13])
                     if line_type == '2' and partner:
                         group_code = _format_info(line[1:9])
@@ -45,10 +58,30 @@ class UploadEducationGroup(models.TransientModel):
                         field = field_obj.search([
                             ('education_code', '=', _format_info(line[67:71])),
                         ])
+                        shift = shift_obj.search([
+                            ('education_code', '=', _format_info(line[71:75])),
+                        ], limit=1)
+                        course = course_obj.search([
+                            ('education_code', '=', _format_info(line[75:79])),
+                            ('plan_id', '=', plan.id),
+                            ('level_id', '=', level.id),
+                            ('field_id', '=', field.id),
+                            ('shift_id', '=', shift.id),
+                        ], limit=1)
                         classroom = classroom_obj.search([
                             ('education_code', '=',
                              _format_info(line[539:547])),
                             ('center_id', '=', partner.id),
+                        ], limit=1)
+                        model = model_obj.search([
+                            ('education_code', '=', _format_info(line[79:83])),
+                        ], limit=1)
+                        group_type = group_type_obj.search([
+                            ('education_code', '=', _format_info(line[83:87])),
+                        ], limit=1)
+                        calendar = calendar_obj.search([
+                            ('education_code', '=', _format_info(line[87:95])),
+                            # ('center_id', '=')
                         ])
                         vals = {
                             'center_id': partner.id,
@@ -57,7 +90,13 @@ class UploadEducationGroup(models.TransientModel):
                             'plan_id': plan.id,
                             'level_id': level.id,
                             'field_id': field.id,
-                            'classroom_id': classroom.id
+                            'shift_id': shift.id,
+                            'course_id': course.id,
+                            'model_id': model.id,
+                            'group_type_id': group_type.id,
+                            'calendar_id': calendar.id,
+                            'comments': _format_info(line[289:539]),
+                            'classroom_id': classroom.id,
                         }
                         groups = group_obj.search([
                             ('education_code', '=', group_code),
@@ -65,28 +104,41 @@ class UploadEducationGroup(models.TransientModel):
                         if groups:
                             groups.write(vals)
                         else:
-                            group_obj.create(vals)
-                        shift = _format_info(line[71:75])
-                        course = _format_info(line[75:79])
-                        model = _format_info(line[79:83])
-                        group_type = _format_info(line[83:87])
-                        calendar = _format_info(line[87:95])
+                            groups = group_obj.create(vals)
                         start = 95
-                        for i in range(0, 10):
+                        for i in range(1, 11):
                             end = start + 4
                             doc_type = _format_info(line[start:end])
+                            idtype = idtype_obj.search([
+                                ('education_code', '=', doc_type),
+                            ], limit=1)
                             start = end + 15
                             doc = _format_info(line[end:start])
-                            print('document: [{}] {}'.format(doc_type, doc))
-                        student_count = _format_info(line[285:289])
-                        comments = _format_info(line[289:539])
-                        classroom = _format_info(line[539:547])
-                    if line_type == '3':
-                        group_code = _format_info(line[1:9])
-                        session = _format_info(line[9:11])
-                        weekday = _format_info(line[11:12])
-                        start = _format_info(line[12:17])
-                        end = _format_info(line[17:22])
-                        recess = _format_info(line[22:23])
+                            teacher = employee_obj.search([
+                                ('edu_idtype_id', '=', idtype.id),
+                                ('identification_id', '=', doc),
+                            ], limit=1)
+                            teacher_vals = {
+                                'group_id': groups.id,
+                                'sequence': i,
+                                'employee_id': teacher.id,
+                            }
+                            teachers = group_teacher_obj.search([
+                                ('group_id', '=', groups.id),
+                                ('sequence', '=', i)])
+                            if teachers:
+                                teachers.write(teacher_vals)
+                            else:
+                                group_teacher_obj.create(teacher_vals)
+                            if doc:
+                                print('document: [{}] {}'.format(doc_type, doc))
+                        # student_count = _format_info(line[285:289])
+                    # if line_type == '3':
+                    #     group_code = _format_info(line[1:9])
+                    #     session = _format_info(line[9:11])
+                    #     weekday = _format_info(line[11:12])
+                    #     start = _format_info(line[12:17])
+                    #     end = _format_info(line[17:22])
+                    #     recess = _format_info(line[22:23])
         action = self.env.ref('education.action_education_group')
         return action.read()[0]
