@@ -26,6 +26,9 @@
                 <field name="min_description" />
                 <field name="short_description" />
                 <field name="type" />
+                <field name="level_ids" />
+                <field name="field_ids" />
+                <field name="course_ids" />
                 <group expand="0" string="Group By...">
                     <filter string="Type" name="group_type"
                             context="{'group_by': 'type'}" />

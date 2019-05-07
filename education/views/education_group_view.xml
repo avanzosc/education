@@ -12,6 +12,8 @@
                 <field name="field_id" />
                 <field name="shift_id" />
                 <field name="course_id" />
+                <field name="model_id" />
+                <field name="group_type_id" />
                 <field name="classroom_id" />
                 <field name="active" invisible="True" />
             </tree>
@@ -25,6 +27,14 @@
                 <field name="education_code" />
                 <field name="description" />
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
+                <group expand="0" string="Group By...">
+                    <filter string="Education Center" name="center"
+                            context="{'group_by': 'center_id'}"/>
+                    <filter string="Classroom" name="classroom"
+                            context="{'group_by': 'classroom_id'}" />
+                    <filter string="Education Plan" name="plan"
+                            context="{'group_by': 'plan_id'}" />
+                </group>
             </search>
         </field>
     </record>
@@ -42,8 +52,10 @@
                     </div>
                     <group>
                         <group>
-                            <field name="center_id" />
+                            <field name="center_id"
+                                   options="{'no_create': True, 'no_open': True}" />
                             <field name="classroom_id" />
+                            <field name="calendar_id" />
                         </group>
                         <group>
                             <field name="plan_id" />
@@ -53,7 +65,6 @@
                             <field name="course_id" />
                             <field name="model_id" />
                             <field name="group_type_id" />
-                            <field name="calendar_id" />
                         </group>
                     </group>
                     <group name="description" string="Description">

@@ -12,8 +12,7 @@ class EducationGroup(models.Model):
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year')
     center_id = fields.Many2one(
-        comodel_name='res.partner', string='Education Center',
-        domain=[('education_code', '!=', False)])
+        comodel_name='res.partner', string='Education Center')
     plan_id = fields.Many2one(
         comodel_name='education.plan', string='Plan')
     level_id = fields.Many2one(
@@ -31,9 +30,9 @@ class EducationGroup(models.Model):
         domain="[('plan_id', '=', plan_id), ('level_id', '=', level_id),"
                "('field_id', '=', field_id), ('shift_id', '=', shift_id)]")
     model_id = fields.Many2one(
-        comodel_name='education.model', string='Education Model')
+        comodel_name='education.model', string='Educational Model')
     group_type_id = fields.Many2one(
-        comodel_name='education.group_type', string='Group Type')
+        comodel_name='education.group_type', string='Educational Group Type')
     calendar_id = fields.Many2one(
         comodel_name='resource.calendar', string='Calendar',
         domain="[('center_id', '=', center_id)]")
