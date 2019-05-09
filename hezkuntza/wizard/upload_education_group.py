@@ -15,6 +15,8 @@ class UploadEducationGroup(models.TransientModel):
     def button_upload(self):
         lines = _read_binary_file(self.file)
         partner_obj = self.env['res.partner']
+        academic_year_obj = self.env[
+            'education.academic_year'].with_context(active_test=False)
         group_obj = self.env['education.group'].with_context(active_test=False)
         plan_obj = self.env['education.plan'].with_context(active_test=False)
         level_obj = self.env['education.level'].with_context(active_test=False)
@@ -41,12 +43,14 @@ class UploadEducationGroup(models.TransientModel):
                     line_type = _format_info(line[:1])
                     if line_type == '1':
                         center_code = _format_info(line[3:9])
-                        print('Center Code: {}'.format(center_code))
                         partner = partner_obj.search([
                             ('education_code', '=', center_code),
-                            # ('center_id', '=', ),
+                            ('educational_category', '=', 'school'),
                         ])
-                        # año = _format_info(line[9:13])
+                        year = _format_info(line[9:13])
+                        academic_year = academic_year_obj.search([
+                            ('name', 'ilike', '{}-'.format(year)),
+                        ])
                     if line_type == '2' and partner:
                         group_code = _format_info(line[1:9])
                         plan = plan_obj.search([
@@ -81,10 +85,11 @@ class UploadEducationGroup(models.TransientModel):
                         ], limit=1)
                         calendar = calendar_obj.search([
                             ('education_code', '=', _format_info(line[87:95])),
-                            # ('center_id', '=')
+                            ('center_id', '=', partner.id),
                         ])
                         vals = {
                             'center_id': partner.id,
+                            'academic_year_id': academic_year.id,
                             'education_code': group_code,
                             'description': _format_info(line[9:59]),
                             'plan_id': plan.id,
@@ -131,7 +136,8 @@ class UploadEducationGroup(models.TransientModel):
                             else:
                                 group_teacher_obj.create(teacher_vals)
                             if doc:
-                                print('document: [{}] {}'.format(doc_type, doc))
+                                print('document: [{}] {}'.format(
+                                    doc_type, doc))
                         # student_count = _format_info(line[285:289])
                     # if line_type == '3':
                     #     group_code = _format_info(line[1:9])

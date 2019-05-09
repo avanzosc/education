@@ -20,6 +20,7 @@ from . import upload_education_model
 from . import upload_education_position
 from . import upload_education_resource
 from . import upload_education_shift
+from . import upload_education_student
 from . import upload_education_subject
 from . import upload_education_task_type
 from . import upload_education_work_reason
