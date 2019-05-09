@@ -14,6 +14,11 @@ class EducationClassroom(models.Model):
         comodel_name='res.partner', string='Education Center',
         required=True)
 
+    _sql_constraints = [
+        ('education_code_unique', 'unique(education_code,center_id)',
+         'Education code must be unique!'),
+    ]
+
     @api.multi
     def name_get(self):
         """ name_get() -> [(id, name), ...]

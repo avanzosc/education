@@ -28,12 +28,18 @@
                 <field name="description" />
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
                 <group expand="0" string="Group By...">
+                    <filter string="Academic Year" name="academic_year"
+                            context="{'group_by': 'academic_year_id'}" />
                     <filter string="Education Center" name="center"
                             context="{'group_by': 'center_id'}"/>
                     <filter string="Classroom" name="classroom"
                             context="{'group_by': 'classroom_id'}" />
+                    <filter string="Calendar" name="calendar"
+                            context="{'group_by': 'calendar_id'}" />
                     <filter string="Education Plan" name="plan"
                             context="{'group_by': 'plan_id'}" />
+                    <filter string="Level" name="level"
+                            context="{'group_by': 'level_id'}" />
                 </group>
             </search>
         </field>
@@ -54,17 +60,28 @@
                         <group>
                             <field name="center_id"
                                    options="{'no_create': True, 'no_open': True}" />
-                            <field name="classroom_id" />
-                            <field name="calendar_id" />
+                            <field name="academic_year_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="classroom_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="calendar_id"
+                                   options="{'no_create': True, 'no_open': True}" />
                         </group>
                         <group>
-                            <field name="plan_id" />
-                            <field name="level_id" />
-                            <field name="field_id" />
-                            <field name="shift_id" />
-                            <field name="course_id" />
-                            <field name="model_id" />
-                            <field name="group_type_id" />
+                            <field name="plan_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="level_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="field_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="shift_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="course_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="model_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="group_type_id"
+                                   options="{'no_create': True, 'no_open': True}" />
                         </group>
                     </group>
                     <group name="description" string="Description">
@@ -73,7 +90,7 @@
                     <group name="comments" string="Comments">
                         <field name="comments" nolabel="1" colspan="4"/>
                     </group>
-                    <group>
+                    <group name="teachers" string="Teachers">
                         <field name="teacher_ids" nolabel="1" colspan="4"
                                context="{'default_group_id': active_id}">
                             <tree editable="bottom">
@@ -82,6 +99,9 @@
                                 <field name="group_id" invisible="True" />
                             </tree>
                         </field>
+                    </group>
+                    <group name="students" string="Students">
+                        <field name="student_ids" />
                     </group>
                 </sheet>
             </form>

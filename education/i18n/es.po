@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-06 12:37+0000\n"
-"PO-Revision-Date: 2019-05-06 12:37+0000\n"
+"POT-Creation-Date: 2019-05-09 08:10+0000\n"
+"PO-Revision-Date: 2019-05-09 08:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_academic_year__name
 #: model:ir.model.fields,field_description:education.field_education_group__academic_year_id
 #: model:ir.model.fields,field_description:education.field_education_level_workday_type__academic_year_id
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Academic Year"
 msgstr "Año académico"
 
@@ -71,6 +72,7 @@ msgstr "Archivado"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_group__calendar_id
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Calendar"
 msgstr "Calendario"
 
@@ -84,6 +86,7 @@ msgstr "Turno"
 #: model:ir.model,name:education.model_education_classroom
 #: model:ir.model.fields,field_description:education.field_education_group__classroom_id
 #: model:ir.ui.menu,name:education.education_classroom_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Classroom"
 msgstr "Aula"
 
@@ -286,6 +289,8 @@ msgstr "Educación"
 #: model:ir.model.fields,field_description:education.field_education_classroom__center_id
 #: model:ir.model.fields,field_description:education.field_education_group__center_id
 #: model:ir.ui.menu,name:education.education_center_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_classroom_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
 
@@ -371,17 +376,13 @@ msgid "Education Level, Field and Subject Relation"
 msgstr "Relación entre nivel, especialidad y asignatura"
 
 #. module: education
-#: model:ir.model.fields,field_description:education.field_education_group__model_id
-msgid "Education Model"
-msgstr "Modelo educativo"
-
-#. module: education
 #: model:ir.model,name:education.model_education_activity_type
 msgid "Education Other Activity Type"
 msgstr "Tipos de otras actividades"
 
 #. module: education
 #: model:ir.model,name:education.model_education_plan
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Education Plan"
 msgstr "Plan educativo"
 
@@ -437,6 +438,7 @@ msgstr "El código de educación debe ser único por tipo!"
 
 #. module: education
 #: sql_constraint:education.activity_type:0
+#: sql_constraint:education.classroom:0
 #: sql_constraint:education.contract_type:0
 #: sql_constraint:education.designation_level:0
 #: sql_constraint:education.field:0
@@ -457,10 +459,11 @@ msgstr "¡El código de educación debe ser único!"
 #: model:ir.actions.act_window,name:education.action_education_academic_year
 #: model:ir.ui.menu,name:education.schedule_academic_year_menuitem
 msgid "Educational Academic Year"
-msgstr "Año académico"
+msgstr "Año academico"
 
 #. module: education
 #: model:ir.model,name:education.model_education_group_type
+#: model:ir.model.fields,field_description:education.field_education_group__group_type_id
 msgid "Educational Group Type"
 msgstr "Tipo de grupo"
 
@@ -483,6 +486,7 @@ msgstr "Relación entre niveles y tipos de jornada"
 
 #. module: education
 #: model:ir.model,name:education.model_education_model
+#: model:ir.model.fields,field_description:education.field_education_group__model_id
 msgid "Educational Model"
 msgstr "Modelo educativo"
 
@@ -490,7 +494,7 @@ msgstr "Modelo educativo"
 #: model:ir.actions.act_window,name:education.action_education_model
 #: model:ir.ui.menu,name:education.group_model_menuitem
 msgid "Educational Models"
-msgstr "Modelos educativos"
+msgstr "Modelos"
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_plan
@@ -535,15 +539,12 @@ msgid "Group"
 msgstr "Grupo"
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_classroom_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_position_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_subject_view_search
 msgid "Group By..."
 msgstr "Agrupar por..."
-
-#. module: education
-#: model:ir.model.fields,field_description:education.field_education_group__group_type_id
-msgid "Group Type"
-msgstr ""
 
 #. module: education
 #: model:ir.ui.menu,name:education.groups_menuitem
@@ -690,6 +691,7 @@ msgstr "Última actualización el"
 #: model:ir.model.fields,field_description:education.field_education_level_workday_type__level_id
 #: model:ir.model.fields,field_description:education.field_education_task_type__level
 #: model:ir.ui.menu,name:education.schedule_level_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Level"
 msgstr "Nivel"
 
@@ -714,7 +716,7 @@ msgstr "Nombre"
 #. module: education
 #: selection:education.position,type:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_position_view_search

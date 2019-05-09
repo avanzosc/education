@@ -10,9 +10,11 @@ class EducationGroup(models.Model):
     _description = 'Education Group'
 
     academic_year_id = fields.Many2one(
-        comodel_name='education.academic_year', string='Academic Year')
+        comodel_name='education.academic_year', string='Academic Year',
+        required=True)
     center_id = fields.Many2one(
-        comodel_name='res.partner', string='Education Center')
+        comodel_name='res.partner', string='Education Center',
+        required=True)
     plan_id = fields.Many2one(
         comodel_name='education.plan', string='Plan')
     level_id = fields.Many2one(
@@ -40,6 +42,9 @@ class EducationGroup(models.Model):
     teacher_ids = fields.One2many(
         comodel_name='education.group.teacher',
         inverse_name='group_id', string='Teachers')
+    student_ids = fields.Many2many(
+        comodel_name='res.partner', relation='edu_group_student',
+        column1='group_id', column2='student_id', string='Students')
 
     _sql_constraints = [
         ('education_code_unique',
