@@ -52,6 +52,14 @@ class TestEducation(common.SavepointCase):
                 'plan_id': cls.edu_plan.id,
             })],
         })
+        cls.edu_partner = cls.env['res.partner'].create({
+            'name': 'Test Partner',
+        })
+        cls.edu_classroom = cls.env['education.classroom'].create({
+            'education_code': 'TEST',
+            'description': 'Test Classroom',
+            'center_id': cls.edu_partner.id,
+        })
 
     def test_education_academic_year(self):
         self.assertTrue(self.academic_year.active)
@@ -104,3 +112,11 @@ class TestEducation(common.SavepointCase):
             '[{}] {} ({})'.format(
                 self.edu_level.education_code, self.edu_level.description,
                 self.edu_level.plan_id.description))
+
+    def test_education_classroom(self):
+        self.assertEquals(
+            self.edu_classroom.display_name,
+            '[{}] {} ({})'.format(
+                self.edu_classroom.education_code,
+                self.edu_classroom.description,
+                self.edu_classroom.center_id.name))

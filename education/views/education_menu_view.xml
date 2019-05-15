@@ -46,6 +46,10 @@
               parent="groups_menuitem"
               action="action_education_group_type"
               sequence="2" />
+    <menuitem id="group_menuitem"
+              parent="groups_menuitem"
+              action="action_education_group"
+              sequence="3" />
 
     <menuitem id="schedule_table_menuitem"
               name="Schedule Table"
