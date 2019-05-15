@@ -40,6 +40,10 @@
               parent="faculty_configuration_menuitem"
               action="action_upload_education_position"
               sequence="6" />
+    <menuitem id="upload_teacher_menuitem"
+              parent="faculty_configuration_menuitem"
+              action="action_upload_education_teacher"
+              sequence="7" />
 
     <menuitem id="groups_configuration_menuitem"
               name="Groups"

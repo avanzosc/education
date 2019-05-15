@@ -23,6 +23,7 @@ from . import upload_education_shift
 from . import upload_education_student
 from . import upload_education_subject
 from . import upload_education_task_type
+from . import upload_education_teacher
 from . import upload_education_work_reason
 from . import upload_education_workday_type
 from . import upload_education_all

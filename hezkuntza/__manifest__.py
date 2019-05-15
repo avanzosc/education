@@ -12,7 +12,9 @@
         "education",
         "resource_education",
         "hr_education",
+        "hr_contract_education",
         "contacts_school",
+        "partner_second_lastname",
     ],
     "data": [
         "data/education_plan_data.xml",
@@ -58,6 +60,7 @@
         "wizard/upload_education_student_view.xml",
         "wizard/upload_education_subject_view.xml",
         "wizard/upload_education_task_type_view.xml",
+        "wizard/upload_education_teacher_view.xml",
         "wizard/upload_education_work_reason_view.xml",
         "wizard/upload_education_workday_type_view.xml",
         "views/hezkuntza_menu_view.xml",

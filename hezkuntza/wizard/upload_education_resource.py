@@ -13,7 +13,7 @@ class UploadEducationGroup(models.TransientModel):
     _description = 'Wizard to Upload Resources'
 
     file = fields.Binary(
-        string='Plantillas', filters='*.txt')
+        string='Resources', filters='*.txt')
     center_id = fields.Many2one(
         comodel_name='res.partner', string='Education Center',
         domain=[('educational_category', '=', 'school')])
