@@ -8,6 +8,8 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     education_code = fields.Char(string='Education Code', copy=False)
+    edu_idtype_id = fields.Many2one(
+        comodel_name='education.idtype', string='ID Type')
 
     _sql_constraints = [
         ('education_code_uniq', 'unique(education_code)',

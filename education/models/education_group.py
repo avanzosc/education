@@ -1,7 +1,7 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class EducationGroup(models.Model):
@@ -42,6 +42,9 @@ class EducationGroup(models.Model):
     teacher_ids = fields.One2many(
         comodel_name='education.group.teacher',
         inverse_name='group_id', string='Teachers')
+    session_ids = fields.One2many(
+        comodel_name='education.group.session', inverse_name='group_id',
+        string='Sessions')
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_group_student',
         column1='group_id', column2='student_id', string='Students')
@@ -68,4 +71,35 @@ class EducationGroupTeacher(models.Model):
          'Sequence must be unique per group!'),
         ('sequence_one2ten', 'check(sequence between 1 and 10)',
          'Sequence must be between 1 and 10!'),
+    ]
+
+
+class EducationGroupSession(models.Model):
+    _name = 'education.group.session'
+    _description = 'Education Group Sessions'
+    _order = 'group_id,dayofweek,session_number'
+
+    @api.model
+    def _get_selection_dayofweek(self):
+        return self.env['resource.calendar.attendance'].fields_get(
+            allfields=['dayofweek'])['dayofweek']['selection']
+
+    def default_dayofweek(self):
+        default_dict = self.env['resource.calendar.attendance'].default_get([
+            'dayofweek'])
+        return default_dict.get('dayofweek')
+
+    group_id = fields.Many2one(
+        comodel_name='education.group', required=True, ondelete='cascade')
+    session_number = fields.Integer()
+    dayofweek = fields.Selection(
+        selection='_get_selection_dayofweek', string='Day of Week',
+        required=True, index=True, default=default_dayofweek)
+    hour_from = fields.Float(string='Work from', required=True, index=True)
+    hour_to = fields.Float(string='Work to', required=True)
+    recess = fields.Boolean(string='Recess')
+
+    _sql_constraints = [
+        ('unique_session', 'unique(group_id,session_number,dayofweek)',
+         'Session number unique per day of week and group!'),
     ]
