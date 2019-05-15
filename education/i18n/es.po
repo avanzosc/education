@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-09 08:10+0000\n"
-"PO-Revision-Date: 2019-05-09 08:10+0000\n"
+"POT-Creation-Date: 2019-05-13 09:10+0000\n"
+"PO-Revision-Date: 2019-05-13 09:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -851,6 +851,12 @@ msgid "Start Date"
 msgstr "Fecha de inicio"
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_group__student_ids
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_form
+msgid "Students"
+msgstr "Alumnos"
+
+#. module: education
 #: model:ir.actions.act_window,name:education.action_education_field
 #: model:ir.model.fields,field_description:education.field_education_course__field_id
 #: model:ir.model.fields,field_description:education.field_education_group__field_id
@@ -898,6 +904,7 @@ msgstr "Tipos de tarea"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_group__teacher_ids
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 msgid "Teachers"
 msgstr "Tutores"
 
