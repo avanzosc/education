@@ -15,6 +15,8 @@ access_education_field,education_field all,model_education_field,,1,0,0,0
 access_education_field_manager,education_field manager,model_education_field,education_responsible,1,1,1,1
 access_education_group,education_group all,model_education_group,,1,0,0,0
 access_education_group_manager,education_group manager,model_education_group,education_responsible,1,1,1,1
+access_education_group_session,education_group_session all,model_education_group_session,,1,0,0,0
+access_education_group_session_manager,education_group_session manager,model_education_group_session,education_responsible,1,1,1,1
 access_education_group_teacher,education_group_teacher all,model_education_group_teacher,,1,0,0,0
 access_education_group_teacher_manager,education_group_teacher manager,model_education_group_teacher,education_responsible,1,1,1,1
 access_education_group_type,education_group_type all,model_education_group_type,,1,0,0,0

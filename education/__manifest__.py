@@ -10,6 +10,7 @@
     "website": "http://www.avanzosc.es",
     "depends": [
         "base",
+        "resource",
     ],
     "data": [
         "security/education_groups.xml",

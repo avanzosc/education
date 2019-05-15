@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-13 09:10+0000\n"
-"PO-Revision-Date: 2019-05-13 09:10+0000\n"
+"POT-Creation-Date: 2019-05-15 10:15+0000\n"
+"PO-Revision-Date: 2019-05-15 10:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -141,6 +141,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_designation_level__create_uid
 #: model:ir.model.fields,field_description:education.field_education_field__create_uid
 #: model:ir.model.fields,field_description:education.field_education_group__create_uid
+#: model:ir.model.fields,field_description:education.field_education_group_session__create_uid
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__create_uid
 #: model:ir.model.fields,field_description:education.field_education_group_type__create_uid
 #: model:ir.model.fields,field_description:education.field_education_idtype__create_uid
@@ -170,6 +171,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_designation_level__create_date
 #: model:ir.model.fields,field_description:education.field_education_field__create_date
 #: model:ir.model.fields,field_description:education.field_education_group__create_date
+#: model:ir.model.fields,field_description:education.field_education_group_session__create_date
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__create_date
 #: model:ir.model.fields,field_description:education.field_education_group_type__create_date
 #: model:ir.model.fields,field_description:education.field_education_idtype__create_date
@@ -193,6 +195,11 @@ msgstr ""
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_academic_year_view_form
 msgid "Dates"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_session__dayofweek
+msgid "Day of Week"
 msgstr ""
 
 #. module: education
@@ -259,6 +266,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_designation_level__display_name
 #: model:ir.model.fields,field_description:education.field_education_field__display_name
 #: model:ir.model.fields,field_description:education.field_education_group__display_name
+#: model:ir.model.fields,field_description:education.field_education_group_session__display_name
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__display_name
 #: model:ir.model.fields,field_description:education.field_education_group_type__display_name
 #: model:ir.model.fields,field_description:education.field_education_idtype__display_name
@@ -343,6 +351,11 @@ msgstr ""
 #. module: education
 #: model:ir.model,name:education.model_education_group
 msgid "Education Group"
+msgstr ""
+
+#. module: education
+#: model:ir.model,name:education.model_education_group_session
+msgid "Education Group Sessions"
 msgstr ""
 
 #. module: education
@@ -534,6 +547,7 @@ msgid "Fields by Levels"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_session__group_id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__group_id
 msgid "Group"
 msgstr ""
@@ -561,6 +575,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_designation_level__id
 #: model:ir.model.fields,field_description:education.field_education_field__id
 #: model:ir.model.fields,field_description:education.field_education_group__id
+#: model:ir.model.fields,field_description:education.field_education_group_session__id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__id
 #: model:ir.model.fields,field_description:education.field_education_group_type__id
 #: model:ir.model.fields,field_description:education.field_education_idtype__id
@@ -604,6 +619,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_designation_level____last_update
 #: model:ir.model.fields,field_description:education.field_education_field____last_update
 #: model:ir.model.fields,field_description:education.field_education_group____last_update
+#: model:ir.model.fields,field_description:education.field_education_group_session____last_update
 #: model:ir.model.fields,field_description:education.field_education_group_teacher____last_update
 #: model:ir.model.fields,field_description:education.field_education_group_type____last_update
 #: model:ir.model.fields,field_description:education.field_education_idtype____last_update
@@ -633,6 +649,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_designation_level__write_uid
 #: model:ir.model.fields,field_description:education.field_education_field__write_uid
 #: model:ir.model.fields,field_description:education.field_education_group__write_uid
+#: model:ir.model.fields,field_description:education.field_education_group_session__write_uid
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__write_uid
 #: model:ir.model.fields,field_description:education.field_education_group_type__write_uid
 #: model:ir.model.fields,field_description:education.field_education_idtype__write_uid
@@ -662,6 +679,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_designation_level__write_date
 #: model:ir.model.fields,field_description:education.field_education_field__write_date
 #: model:ir.model.fields,field_description:education.field_education_group__write_date
+#: model:ir.model.fields,field_description:education.field_education_group_session__write_date
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__write_date
 #: model:ir.model.fields,field_description:education.field_education_group_type__write_date
 #: model:ir.model.fields,field_description:education.field_education_idtype__write_date
@@ -710,6 +728,7 @@ msgstr ""
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_section__name
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 msgid "Name"
 msgstr ""
 
@@ -765,6 +784,11 @@ msgid "Positions"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_session__recess
+msgid "Recess"
+msgstr ""
+
+#. module: education
 #: model:res.groups,name:education.education_responsible
 msgid "Responsible"
 msgstr ""
@@ -803,6 +827,22 @@ msgstr ""
 #. module: education
 #: sql_constraint:education.group.teacher:0
 msgid "Sequence must be unique per group!"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_session__session_number
+msgid "Session Number"
+msgstr ""
+
+#. module: education
+#: sql_constraint:education.group.session:0
+msgid "Session number unique per day of week and group!"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group__session_ids
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_form
+msgid "Sessions"
 msgstr ""
 
 #. module: education
@@ -936,6 +976,16 @@ msgstr ""
 #: model:ir.actions.act_window,name:education.action_education_work_reason
 #: model:ir.ui.menu,name:education.faculty_work_reason_menuitem
 msgid "Work Reasons"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_session__hour_from
+msgid "Work from"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_session__hour_to
+msgid "Work to"
 msgstr ""
 
 #. module: education
