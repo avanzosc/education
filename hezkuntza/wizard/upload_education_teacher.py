@@ -1,7 +1,8 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from ._common import _read_binary_file, _format_info
+from ._common import _read_binary_file, _format_info,\
+    _convert_time_str_to_float
 from odoo import _, exceptions, fields, models
 from datetime import datetime
 
@@ -59,9 +60,9 @@ class UploadEducationTeacher(models.TransientModel):
                         ])
                         user = (
                             employee.user_id or
-                            user_obj.search(['|', ('vat', 'ilike',
-                                                   id_number), ('login',
-                                                                '=', id_number)]))
+                            user_obj.search([
+                                ('vat', 'ilike', id_number),
+                                ('edu_idtype_id', '=', id_type.id)]))
                         if op_type == 'M':
                             # MODIFICACIÓN o ALTA
                             lastname = _format_info(line[21:71])
@@ -96,23 +97,17 @@ class UploadEducationTeacher(models.TransientModel):
                                 department_obj.create({
                                     'name': department_name,
                                 })
-                            print(
-                                'dpto: {}'.format(department.display_name))
                             dcode = '0{}'.format(_format_info(line[310:312]))
                             designation = designation_obj.search([
                                 ('education_code', '=', dcode),
                             ])
-                            print(
-                                'nomb: {}'.format(designation.display_name))
                             wcode = '00000{}'.format(
                                     _format_info(line[312:316]))
                             workday_type = workday_type_obj.search([
                                 ('education_code', '=', wcode),
                             ])
-                            print('jornada: {}'.format(
-                                workday_type.display_name))
-                            print('horas: {}'.format(
-                                _format_info(line[316:321])))
+                            workhours = _convert_time_str_to_float(
+                                _format_info(line[316:321]))
                             print(
                                 'lect: {}'.format(_format_info(line[321:326])))
                             print('mayor: {}'.format(
@@ -124,8 +119,9 @@ class UploadEducationTeacher(models.TransientModel):
                             print('causa: {}'.format(
                                 _format_info(line[578:582])))
                             date_start = \
-                                fields.Datetime.to_string(datetime.strptime(
-                                _format_info(line[582:590]), '%d%m%Y'))
+                                fields.Datetime.to_string(
+                                    datetime.strptime(
+                                        _format_info(line[582:590]), '%d%m%Y'))
                             print('fecha: {}'.format(
                                 fields.Date.from_string(date_start)))
                             contract_type = contract_type_obj.search([
@@ -144,6 +140,7 @@ class UploadEducationTeacher(models.TransientModel):
                                 vals.update({
                                     'login': id_number,
                                     'vat': id_number,
+                                    'edu_idtype_id': id_type.id,
                                 })
                                 user = user_obj.create(vals)
                             if not employee:
@@ -151,6 +148,8 @@ class UploadEducationTeacher(models.TransientModel):
                                     'edu_idtype_id': id_type.id,
                                     'identification_id': id_number,
                                     'user_id': user.id,
+                                    'gender': False,
+                                    'marital': False,
                                 })
                                 employee_obj.create(vals)
                             else:

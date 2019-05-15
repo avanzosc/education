@@ -26,4 +26,4 @@ def _convert_time_str_to_float(time_str):
     hour = time.strptime(time_str, '%H:%M')
     return (
         float(time.strftime('%H', hour)) +
-        (float(time.strftime('%M',hour)) / 60.0))
+        (float(time.strftime('%M', hour)) / 60.0))

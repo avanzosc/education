@@ -31,12 +31,6 @@ class UploadEducationStudent(models.TransientModel):
                         ('educational_category', '=', 'student'),
                     ], limit=1)
                     if group:
-                        if not student:
-                            student = partner_obj.create({
-                                'name': 'Student {}'.format(partner_code),
-                                'education_code': partner_code,
-                                'educational_category': 'student',
-                            })
                         group.write({
                             'student_ids': [(4, student.id)],
                         })
