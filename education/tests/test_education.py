@@ -15,6 +15,8 @@ class TestEducation(common.SavepointCase):
         super(TestEducation, cls).setUpClass()
         cls.today = fields.Date.from_string(fields.Date.today())
         cls.academic_year_model = cls.env['education.academic_year']
+        cls.group_session_model = cls.env['education.group.session']
+        cls.attendance_model = cls.env['resource.calendar.attendance']
         cls.academic_year = cls.academic_year_model.create({
             'name': '{}+{}'.format(cls.today.year + 10, cls.today.year + 11)
         })
@@ -120,3 +122,9 @@ class TestEducation(common.SavepointCase):
                 self.edu_classroom.education_code,
                 self.edu_classroom.description,
                 self.edu_classroom.center_id.name))
+
+    def test_education_group_session_default(self):
+        session_dict = self.group_session_model.default_get(['dayofweek'])
+        attendance_dict = self.attendance_model.default_get(['dayofweek'])
+        self.assertEquals(
+            session_dict.get('dayofweek'), attendance_dict.get('dayofweek'))

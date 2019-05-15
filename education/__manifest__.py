@@ -11,6 +11,7 @@
     "depends": [
         "base",
         "resource",
+        "hr",
     ],
     "data": [
         "security/education_groups.xml",
