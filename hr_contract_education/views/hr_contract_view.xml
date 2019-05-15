@@ -8,13 +8,17 @@
                 <group name="education_data" string="Education Data">
                     <field name="ed_position_id"
                            options="{'no_create_edit': True, 'no_create': True}" />
+                    <field name="ed_position2_id"
+                           options="{'no_create_edit': True, 'no_create': True}" />
+                    <field name="ed_otherposition_id"
+                           options="{'no_create_edit': True, 'no_create': True}" />
                     <field name="ed_work_reason_id"
                            options="{'no_create_edit': True, 'no_create': True}" />
                     <field name="ed_contract_type_id"
                            options="{'no_create_edit': True, 'no_create': True}" />
                     <field name="ed_workday_type_id"
                            options="{'no_create_edit': True, 'no_create': True}" />
-                    <field name="ed_contract_hours" />
+                    <field name="ed_contract_hours" widget="float_time"/>
                 </group>
             </group>
         </field>

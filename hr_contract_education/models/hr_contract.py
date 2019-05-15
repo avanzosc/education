@@ -8,7 +8,14 @@ class HrContract(models.Model):
     _inherit = 'hr.contract'
 
     ed_position_id = fields.Many2one(
-        comodel_name='education.position', string='Position')
+        comodel_name='education.position', string='Position',
+        domain=[('type', '=', 'normal')])
+    ed_position2_id = fields.Many2one(
+        comodel_name='education.position', string='Position 2',
+        domain=[('type', '=', 'normal')])
+    ed_otherposition_id = fields.Many2one(
+        comodel_name='education.position', string='Other Position',
+        domain=[('type', '=', 'other')])
     ed_work_reason_id = fields.Many2one(
         comodel_name='education.work_reason', string='Work Reason')
     ed_contract_type_id = fields.Many2one(
