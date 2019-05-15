@@ -5,6 +5,10 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
+            <field name="vat" position="before">
+                <field name="edu_idtype_id"
+                       options="{'no_create': True, 'no_open': True}"/>
+            </field>
             <field name="ref" position="after">
                 <field name="education_code" />
             </field>
