@@ -4,12 +4,13 @@
 {
     "name": "Resource for Education",
     "version": "12.0.1.0.0",
-    "category": "",
+    "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
     "depends": [
         "resource",
+        "education",
     ],
     "data": [
         "views/resource_calendar_view.xml",

@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as common
-from odoo.addons.resource_education.models.resource_calendar import \
-    EDUCATION_DAYOFWEEK_CODE
+from ..models.resource_calendar import EDUCATION_DAYOFWEEK_CODE
 from odoo.exceptions import ValidationError
 
 
