@@ -135,9 +135,9 @@ class UploadEducationGroup(models.TransientModel):
                                 teachers.write(teacher_vals)
                             else:
                                 group_teacher_obj.create(teacher_vals)
-                            if doc:
-                                print('document: [{}] {}'.format(
-                                    doc_type, doc))
+                            # if doc:
+                            #     print('document: [{}] {}'.format(
+                            #         doc_type, doc))
                         # student_count = _format_info(line[285:289])
                     # if line_type == '3':
                     #     group_code = _format_info(line[1:9])
