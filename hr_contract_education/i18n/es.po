@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-13 15:58+0000\n"
-"PO-Revision-Date: 2019-05-13 15:58+0000\n"
+"POT-Creation-Date: 2019-05-21 15:52+0000\n"
+"PO-Revision-Date: 2019-05-21 15:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: hr_contract_education
+#: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_academic_year_id
+msgid "Academic Year"
+msgstr "Año académico"
+
+#. module: hr_contract_education
+#: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_class_hours
+msgid "Class Hours"
+msgstr "Total de horas lectivas"
 
 #. module: hr_contract_education
 #: model:ir.model,name:hr_contract_education.model_hr_contract
@@ -29,6 +39,16 @@ msgstr "Horas del contrato"
 #: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_contract_type_id
 msgid "Contract Type"
 msgstr "Tipo de contrato"
+
+#. module: hr_contract_education
+#: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_designation_id
+msgid "Designation Level"
+msgstr "Nivel de nombramiento"
+
+#. module: hr_contract_education
+#: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_center_id
+msgid "Education Center"
+msgstr "Centro educativo"
 
 #. module: hr_contract_education
 #: model_terms:ir.ui.view,arch_db:hr_contract_education.hr_contract_view_form
@@ -49,6 +69,21 @@ msgstr "Cargo"
 #: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_position2_id
 msgid "Position 2"
 msgstr "Cargo 2"
+
+#. module: hr_contract_education
+#: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_reduction_age
+msgid "Reduction for being over 60 years old"
+msgstr "Reducción mayor de 60 años"
+
+#. module: hr_contract_education
+#: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_reduction_health
+msgid "Reduction for health reasons"
+msgstr "Reducción por motivos de salud"
+
+#. module: hr_contract_education
+#: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_work_hours
+msgid "Total Hours"
+msgstr "Total de horas"
 
 #. module: hr_contract_education
 #: model:ir.model.fields,field_description:hr_contract_education.field_hr_contract__ed_work_reason_id

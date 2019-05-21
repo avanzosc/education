@@ -6,19 +6,29 @@
         <field name="arch" type="xml">
             <group name="duration_group" position="after">
                 <group name="education_data" string="Education Data">
+                    <field name="ed_center_id"
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
+                    <field name="ed_academic_year_id"
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
                     <field name="ed_position_id"
-                           options="{'no_create_edit': True, 'no_create': True}" />
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
                     <field name="ed_position2_id"
-                           options="{'no_create_edit': True, 'no_create': True}" />
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
                     <field name="ed_otherposition_id"
-                           options="{'no_create_edit': True, 'no_create': True}" />
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
+                    <field name="ed_designation_id"
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
                     <field name="ed_work_reason_id"
-                           options="{'no_create_edit': True, 'no_create': True}" />
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
                     <field name="ed_contract_type_id"
-                           options="{'no_create_edit': True, 'no_create': True}" />
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
                     <field name="ed_workday_type_id"
-                           options="{'no_create_edit': True, 'no_create': True}" />
+                           options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
+                    <field name="ed_work_hours" widget="float_time" />
+                    <field name="ed_class_hours" widget="float_time" />
                     <field name="ed_contract_hours" widget="float_time"/>
+                    <field name="ed_reduction_age" />
+                    <field name="ed_reduction_health" />
                 </group>
             </group>
         </field>
