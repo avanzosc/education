@@ -32,6 +32,10 @@
               parent="faculty_menuitem"
               action="action_education_position"
               sequence="6" />
+    <menuitem id="faculty_employee_menuitem"
+              parent="faculty_menuitem"
+              action="hr.open_view_employee_list_my"
+              sequence="7" />
 
     <menuitem id="groups_menuitem"
               name="Groups"

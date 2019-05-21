@@ -48,12 +48,19 @@ class EducationGroup(models.Model):
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_group_student',
         column1='group_id', column2='student_id', string='Students')
+    student_count = fields.Integer(
+        string='Student Number', compute='_compute_student_count', store=True)
 
     _sql_constraints = [
         ('education_code_unique',
          'unique(education_code,center_id,academic_year_id)',
          'Education code must be unique per center and academic year!'),
     ]
+
+    @api.depends('student_ids')
+    def _compute_student_count(self):
+        for record in self:
+            record.student_count = len(record.student_ids)
 
 
 class EducationGroupTeacher(models.Model):
