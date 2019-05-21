@@ -23,7 +23,12 @@ def _format_info(info):
 
 
 def _convert_time_str_to_float(time_str):
-    hour = time.strptime(time_str, '%H:%M')
-    return (
-        float(time.strftime('%H', hour)) +
-        (float(time.strftime('%M', hour)) / 60.0))
+    if not time_str or time_str == '':
+        return 0.0
+    try:
+        hour = time.strptime(time_str, '%H:%M')
+        return (
+            float(time.strftime('%H', hour)) +
+            (float(time.strftime('%M', hour)) / 60.0))
+    except Exception:
+        return 0.0

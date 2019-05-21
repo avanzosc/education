@@ -1,8 +1,11 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from ._common import _read_binary_file, _format_info
+from ._common import _read_binary_file, _format_info,\
+    _convert_time_str_to_float
 from odoo import _, exceptions, fields, models
+from odoo.addons.resource_education.models.resource_calendar import\
+    EDUCATION_DAYOFWEEK_CODE
 
 
 class UploadEducationGroup(models.TransientModel):
@@ -34,7 +37,10 @@ class UploadEducationGroup(models.TransientModel):
             'education.idtype'].with_context(active_test=False)
         group_teacher_obj = self.env[
             'education.group.teacher'].with_context(active_test=False)
+        group_session_obj = self.env[
+            'education.group.session'].with_context(active_test=False)
         employee_obj = self.env['hr.employee'].with_context(active_test=False)
+        dayofweek_dict = dict(map(reversed, EDUCATION_DAYOFWEEK_CODE.items()))
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:
@@ -103,13 +109,13 @@ class UploadEducationGroup(models.TransientModel):
                             'comments': _format_info(line[289:539]),
                             'classroom_id': classroom.id,
                         }
-                        groups = group_obj.search([
+                        group = group_obj.search([
                             ('education_code', '=', group_code),
-                            ('center_id', '=', partner.id)])
-                        if groups:
-                            groups.write(vals)
+                            ('center_id', '=', partner.id)], limit=1)
+                        if group:
+                            group.write(vals)
                         else:
-                            groups = group_obj.create(vals)
+                            group = group_obj.create(vals)
                         start = 95
                         for i in range(1, 11):
                             end = start + 4
@@ -124,27 +130,40 @@ class UploadEducationGroup(models.TransientModel):
                                 ('identification_id', '=', doc),
                             ], limit=1)
                             teacher_vals = {
-                                'group_id': groups.id,
+                                'group_id': group.id,
                                 'sequence': i,
                                 'employee_id': teacher.id,
                             }
                             teachers = group_teacher_obj.search([
-                                ('group_id', '=', groups.id),
+                                ('group_id', '=', group.id),
                                 ('sequence', '=', i)])
                             if teachers:
                                 teachers.write(teacher_vals)
                             else:
                                 group_teacher_obj.create(teacher_vals)
-                            # if doc:
-                            #     print('document: [{}] {}'.format(
-                            #         doc_type, doc))
-                        # student_count = _format_info(line[285:289])
-                    # if line_type == '3':
-                    #     group_code = _format_info(line[1:9])
-                    #     session = _format_info(line[9:11])
-                    #     weekday = _format_info(line[11:12])
-                    #     start = _format_info(line[12:17])
-                    #     end = _format_info(line[17:22])
-                    #     recess = _format_info(line[22:23])
+                    if line_type == '3':
+                        session_number = int(_format_info(line[9:11]))
+                        dayofweek = dayofweek_dict.get(
+                            int(_format_info(line[11:12])))
+                        # weekday = _format_info(line[11:12])
+                        session = group_session_obj.search([
+                            ('group_id', '=', group.id),
+                            ('session_number', '=', session_number),
+                            ('dayofweek', '=', dayofweek),
+                        ], limit=1)
+                        session_vals = {
+                            'group_id': group.id,
+                            'session_number': session_number,
+                            'dayofweek': dayofweek,
+                            'hour_from': _convert_time_str_to_float(
+                                _format_info(line[12:17])),
+                            'hour_to': _convert_time_str_to_float(
+                                _format_info(line[17:22])),
+                            'recess': _format_info(line[22:23]) == '1',
+                        }
+                        if session:
+                            session.write(session_vals)
+                        else:
+                            group_session_obj.create(session_vals)
         action = self.env.ref('education.action_education_group')
         return action.read()[0]
