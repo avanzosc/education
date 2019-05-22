@@ -71,6 +71,7 @@ class UploadEducationTeacher(models.TransientModel):
                             ('employee_id', '=', employee.id),
                             ('ed_center_id', '=', center.id),
                             ('ed_academic_year_id', '=', academic_year.id),
+                            ('state', 'not in', ['close', 'cancel'])
                         ])
                         if op_type == 'M':
                             # MODIFICACIÓN o ALTA
@@ -111,28 +112,31 @@ class UploadEducationTeacher(models.TransientModel):
                             workday_type = workday_type_obj.search([
                                 ('education_code', '=', wcode),
                             ])
-                            # workhours = _convert_time_str_to_float(
-                            #     _format_info(line[316:321]))
-                            # print(
-                            #     'lect: {}'.format(
-                            # _format_info(line[321:326])))
+                            work_hours = _convert_time_str_to_float(
+                                _format_info(line[316:321]))
+                            class_hours = _convert_time_str_to_float(
+                                _format_info(line[321:326])
+                            )
                             age = _format_info(line[326:327]) == '1'
                             health = _format_info(line[327:328]) == '1'
                             notes = _format_info(line[328:578])
                             workreason = workreason_obj.search([
-                                ('education_code', '=', _format_info(line[578:582]))
+                                ('education_code', '=',
+                                 _format_info(line[578:582]))
                             ])
-                            date_start = \
-                                fields.Datetime.to_string(
-                                    datetime.strptime(
-                                        _format_info(line[582:590]), '%d%m%Y'))
+                            date_str = _format_info(line[582:590])
+                            if date_str != '':
+                                date_start = datetime.strptime(
+                                    date_str, '%d%m%Y')
+                            else:
+                                date_start = fields.Datetime.now()
+                            date_start = fields.Datetime.to_string(date_start)
                             contract_type = contract_type_obj.search([
                                 ('education_code', '=',
                                  _format_info(line[590:594])),
                             ])
-                            # contract_hours = _convert_time_str_to_float(
-                            #     _format_info(line[594:599])
-                            # )
+                            contract_hours = _convert_time_str_to_float(
+                                _format_info(line[594:599]))
                             vals = {
                                 'name': fullname,
                                 'department_id': department.id,
@@ -142,6 +146,9 @@ class UploadEducationTeacher(models.TransientModel):
                                     'login': id_number,
                                     'vat': id_number,
                                     'edu_idtype_id': id_type.id,
+                                    'lastname': lastname,
+                                    'lastname2': lastname2,
+                                    'firstname': firstname,
                                 })
                                 user = user_obj.create(vals)
                             if not employee:
@@ -173,11 +180,13 @@ class UploadEducationTeacher(models.TransientModel):
                                 'ed_otherposition_id': position3.id,
                                 'ed_designation_id': designation.id,
                                 'ed_workday_type_id': workday_type.id,
-                                # 'ed_contract_hours': contract_hours,
+                                'ed_contract_hours': contract_hours,
                                 'ed_work_reason_id': workreason.id,
                                 'ed_contract_type_id': contract_type.id,
                                 'ed_reduction_age': age,
                                 'ed_reduction_health': health,
+                                'ed_work_hours': work_hours,
+                                'ed_class_hours': class_hours,
                                 'notes': notes,
                                 'wage': 0.0,
                             }
@@ -185,12 +194,17 @@ class UploadEducationTeacher(models.TransientModel):
                                 hr_contract_obj.create(contract_vals)
                             else:
                                 contract.write(contract_vals)
-                        # if op_type == 'B':
-                        #     # BAJA
-                        #     print('cese: {}'.format(
-                        # _format_info(line[21:24])))
-                        #     print('fecha: {}'.format(_format_info(line[
-                        #                                           24:32])))
-        return True
-        # action = self.env.ref('education.action_education_classroom')
-        # return action.read()[0]
+                        if op_type == 'B':
+                            # BAJA
+                            if contract:
+                                # termination_code = _format_info(line[21:24])
+                                date_end = \
+                                    fields.Datetime.to_string(
+                                        datetime.strptime(
+                                            _format_info(line[24:32]),
+                                            '%d%m%Y'))
+                                contract.write({
+                                    'date_end': date_end,
+                                })
+        action = self.env.ref('hr.open_view_employee_list_my')
+        return action.read()[0]

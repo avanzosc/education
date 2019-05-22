@@ -145,7 +145,6 @@ class UploadEducationGroup(models.TransientModel):
                         session_number = int(_format_info(line[9:11]))
                         dayofweek = dayofweek_dict.get(
                             int(_format_info(line[11:12])))
-                        # weekday = _format_info(line[11:12])
                         session = group_session_obj.search([
                             ('group_id', '=', group.id),
                             ('session_number', '=', session_number),

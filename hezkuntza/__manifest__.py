@@ -56,6 +56,7 @@
         "wizard/upload_education_model_view.xml",
         "wizard/upload_education_position_view.xml",
         "wizard/upload_education_resource_view.xml",
+        "wizard/upload_education_schedule_view.xml",
         "wizard/upload_education_shift_view.xml",
         "wizard/upload_education_student_view.xml",
         "wizard/upload_education_subject_view.xml",

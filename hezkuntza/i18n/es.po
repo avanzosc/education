@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-13 09:11+0000\n"
-"PO-Revision-Date: 2019-05-13 09:11+0000\n"
+"POT-Creation-Date: 2019-05-22 12:47+0000\n"
+"PO-Revision-Date: 2019-05-22 12:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -118,6 +118,7 @@ msgstr "Descripción abreviada euskera"
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_student_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_subject_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_task_type_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_teacher_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_work_reason_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_workday_type_view_form
 msgid "Cancel"
@@ -143,6 +144,11 @@ msgstr "Aulas (T06)"
 #: model:ir.ui.menu,name:hezkuntza.education_configuration_menuitem
 msgid "Configuration"
 msgstr "Configuración"
+
+#. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_hr_contract
+msgid "Contract"
+msgstr "Contrato de empleado"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_contract_type
@@ -186,6 +192,7 @@ msgstr "Fichero de cursos (V55T12)"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_subject__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type__create_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__create_uid
 msgid "Created by"
@@ -216,6 +223,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_subject__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type__create_date
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__create_date
 msgid "Created on"
@@ -257,6 +265,7 @@ msgstr "Fichero de niveles de nombramiento (061)"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_subject__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type__display_name
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__display_name
 msgid "Display Name"
@@ -264,6 +273,7 @@ msgstr "Nombre mostrado"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_group__center_id
+#: model:ir.model.fields,field_description:hezkuntza.field_hr_contract__ed_center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_resource__center_id
 #: model:ir.ui.menu,name:hezkuntza.education_center_configuration_menuitem
@@ -402,7 +412,7 @@ msgstr "Fichero de modelos educativos (V55T35)"
 #: code:addons/hezkuntza/wizard/upload_education_course.py:24
 #: code:addons/hezkuntza/wizard/upload_education_designation_level.py:20
 #: code:addons/hezkuntza/wizard/upload_education_field.py:19
-#: code:addons/hezkuntza/wizard/upload_education_group.py:39
+#: code:addons/hezkuntza/wizard/upload_education_group.py:45
 #: code:addons/hezkuntza/wizard/upload_education_group_type.py:20
 #: code:addons/hezkuntza/wizard/upload_education_idtype.py:20
 #: code:addons/hezkuntza/wizard/upload_education_language.py:20
@@ -418,7 +428,7 @@ msgstr "Fichero de modelos educativos (V55T35)"
 #: code:addons/hezkuntza/wizard/upload_education_student.py:20
 #: code:addons/hezkuntza/wizard/upload_education_subject.py:20
 #: code:addons/hezkuntza/wizard/upload_education_task_type.py:20
-#: code:addons/hezkuntza/wizard/upload_education_teacher.py:20
+#: code:addons/hezkuntza/wizard/upload_education_teacher.py:41
 #: code:addons/hezkuntza/wizard/upload_education_work_reason.py:20
 #: code:addons/hezkuntza/wizard/upload_education_workday_type.py:20
 #, python-format
@@ -461,6 +471,7 @@ msgstr "Grupos"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_subject__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type__id
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__id
 msgid "ID"
@@ -508,6 +519,7 @@ msgstr "Fichero de idiomas (T55)"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_subject____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type____last_update
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type____last_update
 msgid "Last Modified on"
@@ -538,6 +550,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_subject__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type__write_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__write_uid
 msgid "Last Updated by"
@@ -568,6 +581,7 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_subject__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_task_type__write_date
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__write_date
 msgid "Last Updated on"
@@ -610,11 +624,6 @@ msgid "Other Positions file (T16)"
 msgstr "Fichero de otros cargos (T16)"
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_resource__file
-msgid "Resources"
-msgstr "Plantillas"
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_normal_position
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_position__file_normal
 msgid "Positions file (070)"
@@ -624,6 +633,11 @@ msgstr "Fichero de cargos (070)"
 #: model:ir.ui.menu,name:hezkuntza.relation_configuration_menuitem
 msgid "Relations"
 msgstr "Relaciones"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_resource__file
+msgid "Resources"
+msgstr "Recursos"
 
 #. module: hezkuntza
 #: model:ir.ui.menu,name:hezkuntza.schedule_table_configuration_menuitem
@@ -638,7 +652,7 @@ msgstr "Descripción abreviada"
 #. module: hezkuntza
 #: model:res.groups,name:hezkuntza.education_basque
 msgid "Show Basque Descriptions"
-msgstr "Mostrar descripciones en Euskera"
+msgstr ""
 
 #. module: hezkuntza
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_activity_type_view_form
@@ -691,6 +705,11 @@ msgid "Task Types File (T13)"
 msgstr "Fichero de tipos de tarea (T13)"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__file
+msgid "Teachers (T06)"
+msgstr ""
+
+#. module: hezkuntza
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_activity_type_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_all_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_classroom_view_form
@@ -714,6 +733,7 @@ msgstr "Fichero de tipos de tarea (T13)"
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_student_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_subject_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_task_type_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_teacher_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_work_reason_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_workday_type_view_form
 msgid "Upload"
@@ -819,7 +839,7 @@ msgstr "Cargar tipos de grupos"
 #: model:ir.actions.act_window,name:hezkuntza.action_upload_education_group
 #: model:ir.ui.menu,name:hezkuntza.upload_group_menuitem
 msgid "Upload Groups"
-msgstr "Subir grupos"
+msgstr "Cargar grupos"
 
 #. module: hezkuntza
 #: model:ir.actions.act_window,name:hezkuntza.action_upload_education_idtype
@@ -862,6 +882,12 @@ msgstr "Cargar especialidades"
 #: model:ir.ui.menu,name:hezkuntza.upload_task_type_menuitem
 msgid "Upload Task Types"
 msgstr "Cargar tipos de tarea"
+
+#. module: hezkuntza
+#: model:ir.actions.act_window,name:hezkuntza.action_upload_education_teacher
+#: model:ir.ui.menu,name:hezkuntza.upload_teacher_menuitem
+msgid "Upload Teachers"
+msgstr "Cargar profesorado"
 
 #. module: hezkuntza
 #: model:ir.actions.act_window,name:hezkuntza.action_upload_education_work_reason
@@ -1035,6 +1061,7 @@ msgstr "Fichero de tipos de jornada (T30)"
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_student_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_subject_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_task_type_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_teacher_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_work_reason_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_workday_type_view_form
 msgid "or"

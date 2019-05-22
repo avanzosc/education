@@ -107,6 +107,10 @@
               parent="schedule_table_configuration_menuitem"
               action="action_upload_education_resource"
               sequence="9" />
+    <menuitem id="upload_schedule_menuitem"
+              parent="schedule_table_configuration_menuitem"
+              action="action_upload_education_schedule"
+              sequence="9" />
 
     <menuitem name="Relations" id="relation_configuration_menuitem"
               parent="education_configuration_menuitem"
