@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class EducationSchedule(models.Model):
     _name = 'education.schedule'
+    _description = 'Class Schedule'
     _order = 'dayofweek,session_number'
 
     @api.model
