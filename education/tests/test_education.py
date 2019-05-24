@@ -17,6 +17,7 @@ class TestEducation(common.SavepointCase):
         cls.academic_year_model = cls.env['education.academic_year']
         cls.group_model = cls.env['education.group']
         cls.group_session_model = cls.env['education.group.session']
+        cls.schedule_model = cls.env['education.schedule']
         cls.attendance_model = cls.env['resource.calendar.attendance']
         cls.academic_year = cls.academic_year_model.create({
             'name': '{}+{}'.format(cls.today.year + 10, cls.today.year + 11)
@@ -129,6 +130,12 @@ class TestEducation(common.SavepointCase):
         attendance_dict = self.attendance_model.default_get(['dayofweek'])
         self.assertEquals(
             session_dict.get('dayofweek'), attendance_dict.get('dayofweek'))
+
+    def test_education_schedule_default(self):
+        schedule_dict = self.schedule_model.default_get(['dayofweek'])
+        attendance_dict = self.attendance_model.default_get(['dayofweek'])
+        self.assertEquals(
+            schedule_dict.get('dayofweek'), attendance_dict.get('dayofweek'))
 
     def test_education_group(self):
         group = self.group_model.create({
