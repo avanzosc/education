@@ -8,6 +8,8 @@
                 <sheet>
                     <group>
                         <field name="file" />
+                        <field name="center_id" />
+                        <field name="academic_year_id" />
                     </group>
                     <footer>
                         <button name="button_upload" string="Upload"

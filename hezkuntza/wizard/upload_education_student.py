@@ -13,7 +13,10 @@ class UploadEducationStudent(models.TransientModel):
         string='Students File (T27)', filters='*.txt')
     center_id = fields.Many2one(
         comodel_name='res.partner', string='Education Center',
-        domain=[('educational_category', '=', 'school')])
+        domain=[('educational_category', '=', 'school')], required=True)
+    academic_year_id = fields.Many2one(
+        comodel_name='education.academic_year', string='Academic Year',
+        required=True)
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
@@ -28,6 +31,7 @@ class UploadEducationStudent(models.TransientModel):
                     group = group_obj.search([
                         ('education_code', '=', group_code),
                         ('center_id', '=', self.center_id.id),
+                        ('academic_year_id', '=', self.academic_year_id.id),
                     ])
                     partner_code = _format_info(line[8:18])
                     student = partner_obj.search([
