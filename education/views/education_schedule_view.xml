@@ -9,6 +9,8 @@
                 <field name="teacher_id" />
                 <field name="session_number" />
                 <field name="dayofweek" />
+                <field name="hour_from" widget="float_time" />
+                <field name="hour_to" widget="float_time" />
             </tree>
         </field>
     </record>
@@ -29,21 +31,36 @@
                         <group>
                             <field name="dayofweek" />
                             <field name="session_number" />
-                            <field name="hour_from" />
-                            <field name="hour_to" />
+                            <field name="hour_from" widget="float_time" />
+                            <field name="hour_to" widget="float_time" />
                         </group>
                     </group>
                     <group>
-                        <group name="academic">
+                        <group name="academic" string="Academic Task">
                             <field name="subject_id" />
                             <field name="subject_type" />
                             <field name="language_id" />
                         </group>
-                        <group name="nonacademic">
+                        <group name="nonacademic" string="Non-Academic Task">
                             <field name="activity_type_id" />
                             <field name="level_id" />
                             <field name="plan_id" />
                         </group>
+                    </group>
+                    <group>
+                        <field name="group_ids">
+                            <tree>
+                                <field name="group_code" />
+                                <field name="group_id" />
+                                <field name="group_type_id" />
+                                <field name="session_number" />
+                                <field name="student_count" />
+                                <field name="group_alias" />
+                                <field name="parent_group_code" />
+                                <field name="parent_group_id" />
+                                <field name="parent_group_type_id" />
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>

@@ -47,3 +47,44 @@ class EducationSchedule(models.Model):
         comodel_name='education.level', string='Level')
     plan_id = fields.Many2one(
         comodel_name='education.plan', string='Education Plan')
+    group_ids = fields.One2many(
+        comodel_name='education.schedule.group', inverse_name='schedule_id',
+        string='Groups')
+
+
+class EducationScheduleGroup(models.Model):
+    _name = 'education.schedule.group'
+    _description = 'Class Schedule Group'
+
+    schedule_id = fields.Many2one(
+        comodel_name='education.schedule', string='Schedule')
+    group_code = fields.Char()
+    group_id = fields.Many2one(
+        comodel_name='education.group', string='Group',
+        compute='_compute_groups')
+    group_type_id = fields.Many2one(
+        comodel_name='education.group_type', string='Group Type',
+        related='group_id.group_type_id')
+    parent_group_code = fields.Char()
+    parent_group_id = fields.Many2one(
+        comodel_name='education.group', string='Parent Group',
+        compute='_compute_groups')
+    parent_group_type_id = fields.Many2one(
+        comodel_name='education.group_type', string='Parent Group Type',
+        related='parent_group_id.group_type_id')
+    session_number = fields.Integer()
+    student_count = fields.Integer()
+    group_alias = fields.Char(string='Alias')
+
+    @api.depends('group_code', 'schedule_id', 'schedule_id.center_id')
+    def _compute_groups(self):
+        group_obj = self.env['education.group'].with_context(active_test=False)
+        for record in self:
+            record.group_id = group_obj.search([
+                ('education_code', '=', record.group_code),
+                ('center_id', '=', record.schedule_id.center_id.id),
+            ])
+            record.parent_group_id = group_obj.search([
+                ('education_code', '=', record.parent_group_code),
+                ('center_id', '=', record.schedule_id.center_id.id),
+            ])
