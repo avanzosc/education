@@ -33,6 +33,8 @@ class UploadEducationContractType(models.TransientModel):
             'education.subject'].with_context(active_test=False)
         language_obj = self.env[
             'education.language'].with_context(active_test=False)
+        group_obj = self.env[
+            'education.schedule.group'].with_context(active_test=False)
         dayofweek_dict = dict(map(reversed, EDUCATION_DAYOFWEEK_CODE.items()))
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
@@ -119,14 +121,30 @@ class UploadEducationContractType(models.TransientModel):
                             schedule = schedule_obj.create(vals)
                     if line_type == '3':
                         group_code = _format_info(line[1:9])
-                        print('{}'.format(group_code))
-                        session_number = _format_info(line[9:13])
-                        print('{}'.format(session_number))
-                        student_count = _format_info(line[13:17])
-                        print('{}'.format(student_count))
+                        session_number = int(_format_info(line[9:13]))
+                        student_count = int(_format_info(line[13:17]))
                         alias = _format_info(line[17:67])
-                        print('{}'.format(alias))
                         group_code2 = _format_info(line[67:76])
-                        print('{}'.format(group_code2))
+                        vals = {
+                            'schedule_id': schedule.id,
+                            'group_code': group_code,
+                            'session_number': session_number,
+                            'student_count': student_count,
+                            'group_alias': alias,
+                            'parent_group_code': group_code2,
+                        }
+                        group = group_obj.search([
+                            ('schedule_id', '=', schedule.id),
+                            ('group_code', '=', group_code)
+                        ])
+                        if group:
+                            group.write(vals)
+                        else:
+                            group_obj.create(vals)
+                        # print('{}'.format(group_code))
+                        # print('{}'.format(session_number))
+                        # print('{}'.format(student_count))
+                        # print('{}'.format(alias))
+                        # print('{}'.format(group_code2))
         action = self.env.ref('education.action_education_schedule')
         return action.read()[0]

@@ -11,6 +11,9 @@ class UploadEducationStudent(models.TransientModel):
 
     file = fields.Binary(
         string='Students File (T27)', filters='*.txt')
+    center_id = fields.Many2one(
+        comodel_name='res.partner', string='Education Center',
+        domain=[('educational_category', '=', 'school')])
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
@@ -24,13 +27,14 @@ class UploadEducationStudent(models.TransientModel):
                     group_code = _format_info(line[0:8])
                     group = group_obj.search([
                         ('education_code', '=', group_code),
+                        ('center_id', '=', self.center_id.id),
                     ])
                     partner_code = _format_info(line[8:18])
                     student = partner_obj.search([
                         ('education_code', '=', partner_code),
                         ('educational_category', '=', 'student'),
                     ], limit=1)
-                    if group:
+                    if group and student:
                         group.write({
                             'student_ids': [(4, student.id)],
                         })
