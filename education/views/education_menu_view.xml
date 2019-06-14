@@ -35,7 +35,7 @@
     <menuitem id="faculty_employee_menuitem"
               parent="faculty_menuitem"
               action="hr.open_view_employee_list_my"
-              sequence="7" />
+              sequence="7" string="Faculty" />
 
     <menuitem id="groups_menuitem"
               name="Groups"

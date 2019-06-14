@@ -48,19 +48,61 @@
                         </group>
                     </group>
                     <group>
-                        <field name="group_ids">
+                        <field name="group_ids" />
+                        <field name="schedule_group_ids">
                             <tree>
-                                <field name="group_code" />
                                 <field name="group_id" />
                                 <field name="group_type_id" />
+                                <field name="group_student_count" />
                                 <field name="session_number" />
                                 <field name="student_count" />
                                 <field name="group_alias" />
-                                <field name="parent_group_code" />
                                 <field name="parent_group_id" />
                                 <field name="parent_group_type_id" />
+                                <field name="parent_group_student_count" />
                             </tree>
                         </field>
+                    </group>
+                    <group>
+                        <field name="student_ids" mode="kanban"
+                               nolabel="True" readonly="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_schedule_group_view_tree"
+            model="ir.ui.view">
+        <field name="model">education.schedule.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="group_id" />
+                <field name="group_type_id" />
+                <field name="session_number" />
+                <field name="student_count" />
+                <field name="group_alias" />
+                <field name="parent_group_id" />
+                <field name="parent_group_type_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_schedule_group_view_form"
+            model="ir.ui.view">
+        <field name="model">education.schedule.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="group_id" />
+                            <field name="group_type_id" />
+                        </group>
+                        <group>
+                            <field name="parent_group_id" />
+                            <field name="parent_group_type_id" />
+                        </group>
                     </group>
                 </sheet>
             </form>

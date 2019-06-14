@@ -3,18 +3,16 @@
     <record id="education_group_view_tree" model="ir.ui.view">
         <field name="model">education.group</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-muted="student_count == 0">
                 <field name="education_code" />
                 <field name="description" />
                 <field name="center_id" />
-                <field name="plan_id" />
                 <field name="level_id" />
-                <field name="field_id" />
-                <field name="shift_id" />
                 <field name="course_id" />
                 <field name="model_id" />
                 <field name="group_type_id" />
                 <field name="classroom_id" />
+                <field name="student_count" />
                 <field name="active" invisible="True" />
             </tree>
         </field>
@@ -25,6 +23,8 @@
         <field name="arch" type="xml">
             <search>
                 <field name="education_code" />
+                <field name="academic_year_id" />
+                <field name="center_id" />
                 <field name="description" />
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
                 <group expand="0" string="Group By...">
@@ -40,6 +40,10 @@
                             context="{'group_by': 'plan_id'}" />
                     <filter string="Level" name="level"
                             context="{'group_by': 'level_id'}" />
+                    <filter string="Study Field" name="study_field"
+                            context="{'group_by': 'field_id'}" />
+                    <filter string="Educational Group Type" name="group_type"
+                            context="{'group_by': 'group_type_id'}" />
                 </group>
             </search>
         </field>
@@ -82,6 +86,8 @@
                             <field name="model_id"
                                    options="{'no_create': True, 'no_open': True}" />
                             <field name="group_type_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="parent_id"
                                    options="{'no_create': True, 'no_open': True}" />
                         </group>
                     </group>

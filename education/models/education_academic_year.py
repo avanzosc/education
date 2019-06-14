@@ -34,3 +34,15 @@ class EducationAcademicYear(models.Model):
     _sql_constraints = [
         ('name_unique', 'unique(name)', 'Academic year must be unique!'),
     ]
+
+    @api.multi
+    def write(self, vals):
+        res = super(EducationAcademicYear, self).write(vals) if vals else True
+        if 'active' in vals:
+            # archiving/unarchiving a academic year does it on its groups, too
+            group_obj = self.env['education.group'].with_context(
+                active_test=False)
+            groups = group_obj.search([('academic_year_id', 'in', self.ids)])
+            groups.write({'active': vals['active']})
+        return res
+
