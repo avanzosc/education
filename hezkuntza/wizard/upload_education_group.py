@@ -57,6 +57,9 @@ class UploadEducationGroup(models.TransientModel):
                         academic_year = academic_year_obj.search([
                             ('name', 'ilike', '{}-'.format(year)),
                         ])
+                        if not partner:
+                            raise exceptions.Warning(
+                                _('Education center not found'))
                     if line_type == '2' and partner:
                         group_code = _format_info(line[1:9])
                         plan = plan_obj.search([
