@@ -77,6 +77,22 @@ class EducationSchedule(models.Model):
             schedule.student_ids = schedule.mapped(
                 'group_ids.student_ids')
 
+    @api.multi
+    def name_get(self):
+        """ name_get() -> [(id, name), ...]
+
+        Returns a textual representation for the records in ``self``.
+        By default this is the value of the ``display_name`` field.
+
+        :return: list of pairs ``(id, text_repr)`` for each records
+        :rtype: list(tuple)
+        """
+        result = []
+        for record in self:
+            result.append((record.id, '{} [{}]'.format(
+                record.subject_id.description, record.teacher_id.name)))
+        return result
+
 
 class EducationScheduleGroup(models.Model):
     _name = 'education.schedule.group'
@@ -90,7 +106,7 @@ class EducationScheduleGroup(models.Model):
         comodel_name='education.group_type', string='Group Type',
         related='group_id.group_type_id')
     group_student_count = fields.Integer(
-        related='parent_group_id.student_count')
+        related='group_id.student_count')
     parent_group_id = fields.Many2one(
         comodel_name='education.group', string='Parent Group', required=True)
     parent_group_type_id = fields.Many2one(
