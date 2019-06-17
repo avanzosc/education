@@ -9,6 +9,12 @@ class EducationSchedule(models.Model):
     _description = 'Class Schedule'
     _order = 'dayofweek,session_number'
 
+
+    @api.model
+    def _get_selection_task_type_type(self):
+        return self.env['education.task_type'].fields_get(
+            allfields=['type'])['type']['selection']
+
     @api.model
     def _get_selection_dayofweek(self):
         return self.env['resource.calendar.attendance'].fields_get(
@@ -20,13 +26,17 @@ class EducationSchedule(models.Model):
         return default_dict.get('dayofweek')
 
     center_id = fields.Many2one(
-        comodel_name='res.partner', string='Education Center')
+        comodel_name='res.partner', string='Education Center', required=True)
     academic_year_id = fields.Many2one(
-        comodel_name='education.academic_year', string='Academic Year')
+        comodel_name='education.academic_year', string='Academic Year',
+        required=True)
     teacher_id = fields.Many2one(
-        comodel_name='hr.employee', string='Teacher')
+        comodel_name='hr.employee', string='Teacher', required=True)
     task_type_id = fields.Many2one(
-        comodel_name='education.task_type', string='Task Type')
+        comodel_name='education.task_type', string='Task Type', required=True)
+    task_type_type = fields.Selection(
+        selection='_get_selection_task_type_type', string='Task Type Type',
+        related='task_type_id.type', store=True)
     session_number = fields.Integer()
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week',

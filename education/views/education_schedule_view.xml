@@ -3,7 +3,7 @@
     <record id="education_schedule_view_tree" model="ir.ui.view">
         <field name="model">education.schedule</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-muted="task_type_type != 'L'">
                 <field name="academic_year_id" />
                 <field name="center_id" />
                 <field name="teacher_id" />
@@ -11,6 +11,7 @@
                 <field name="dayofweek" />
                 <field name="hour_from" widget="float_time" />
                 <field name="hour_to" widget="float_time" />
+                <field name="task_type_type" invisible="True" />
             </tree>
         </field>
     </record>
@@ -27,6 +28,7 @@
                             <field name="teacher_id" />
                             <field name="classroom_id" />
                             <field name="task_type_id" />
+                            <field name="task_type_type" invisible="True" />
                         </group>
                         <group>
                             <field name="dayofweek" />
@@ -36,19 +38,21 @@
                         </group>
                     </group>
                     <group>
-                        <group name="academic" string="Academic Task">
+                        <group name="academic" string="Academic Task"
+                               attrs="{'invisible': [('task_type_type', '!=', 'L')]}">
                             <field name="subject_id" />
                             <field name="subject_type" />
                             <field name="language_id" />
                         </group>
-                        <group name="nonacademic" string="Non-Academic Task">
+                        <group name="nonacademic" string="Non-Academic Task"
+                               attrs="{'invisible': [('task_type_type', '!=', 'N')]}">
                             <field name="activity_type_id" />
                             <field name="level_id" />
                             <field name="plan_id" />
                         </group>
                     </group>
                     <group>
-                        <field name="group_ids" />
+                        <field name="group_ids" widget="many2many_tags" />
                         <field name="schedule_group_ids">
                             <tree>
                                 <field name="group_id" />
