@@ -45,4 +45,3 @@ class EducationAcademicYear(models.Model):
             groups = group_obj.search([('academic_year_id', 'in', self.ids)])
             groups.write({'active': vals['active']})
         return res
-

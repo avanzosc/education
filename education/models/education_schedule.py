@@ -9,7 +9,6 @@ class EducationSchedule(models.Model):
     _description = 'Class Schedule'
     _order = 'dayofweek,session_number'
 
-
     @api.model
     def _get_selection_task_type_type(self):
         return self.env['education.task_type'].fields_get(
