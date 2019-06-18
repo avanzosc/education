@@ -143,6 +143,11 @@ class TestEducation(common.SavepointCase):
             'description': 'Test Group',
             'center_id': self.edu_partner.id,
             'academic_year_id': self.academic_year.id,
+            'level_id': self.edu_level.id,
             'student_ids': [(6, 0, self.edu_partner.ids)],
         })
         self.assertEquals(group.student_count, len(group.student_ids))
+        with self.assertRaises(ValidationError):
+            group.write({
+                'parent_id': group.id,
+            })
