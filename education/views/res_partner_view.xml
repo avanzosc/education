@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="res_partner_hezkuntza_view_form"
+    <record id="res_partner_education_view_form"
             model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
@@ -12,6 +12,15 @@
             <field name="ref" position="after">
                 <field name="education_code" />
             </field>
+            <button name="toggle_active" position="before">
+                <button class="oe_stat_button" type="object"
+                        name="button_open_education_groups" icon="fa-users"
+                        attrs="{'invisible': [('education_group_count', '=', 0)]}">
+                    <field string="Education Groups"
+                           name="education_group_count"
+                           widget="statinfo"/>
+                </button>
+            </button>
         </field>
     </record>
 </odoo>

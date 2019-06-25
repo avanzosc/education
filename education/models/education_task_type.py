@@ -9,7 +9,8 @@ class EducationTaskType(models.Model):
     _inherit = 'education.data'
     _description = 'Education Task Type'
 
-    type = fields.Char()
+    type = fields.Selection(
+        selection=[('L', 'Teaching'), ('N', 'Non-teaching')])
     tutoring = fields.Char()
     level = fields.Char()
     other_activities = fields.Char()

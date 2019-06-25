@@ -1,7 +1,8 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class EducationGroup(models.Model):
@@ -19,7 +20,7 @@ class EducationGroup(models.Model):
         comodel_name='education.plan', string='Plan')
     level_id = fields.Many2one(
         comodel_name='education.level', string='Level',
-        domain="[('plan_id', '=', plan_id)]")
+        domain="[('plan_id', '=', plan_id)]", required=True)
     field_id = fields.Many2one(
         comodel_name='education.field', string='Study Field')
     classroom_id = fields.Many2one(
@@ -48,12 +49,29 @@ class EducationGroup(models.Model):
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_group_student',
         column1='group_id', column2='student_id', string='Students')
+    student_count = fields.Integer(
+        string='Student Number', compute='_compute_student_count', store=True)
+    parent_id = fields.Many2one(
+        comodel_name='education.group', string='Parent Group',
+        domain="[('academic_year_id', '=', academic_year_id),"
+               "('center_id', '=', center_id),"
+               "('course_id', '=', course_id)]")
 
     _sql_constraints = [
         ('education_code_unique',
          'unique(education_code,center_id,academic_year_id)',
          'Education code must be unique per center and academic year!'),
     ]
+
+    @api.constrains('parent_id')
+    def _check_group_recursion(self):
+        if not self._check_recursion():
+            raise ValidationError(_('You cannot create recursive groups.'))
+
+    @api.depends('student_ids')
+    def _compute_student_count(self):
+        for record in self:
+            record.student_count = len(record.student_ids)
 
 
 class EducationGroupTeacher(models.Model):

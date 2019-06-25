@@ -15,7 +15,9 @@ class TestEducation(common.SavepointCase):
         super(TestEducation, cls).setUpClass()
         cls.today = fields.Date.from_string(fields.Date.today())
         cls.academic_year_model = cls.env['education.academic_year']
+        cls.group_model = cls.env['education.group']
         cls.group_session_model = cls.env['education.group.session']
+        cls.schedule_model = cls.env['education.schedule']
         cls.attendance_model = cls.env['resource.calendar.attendance']
         cls.academic_year = cls.academic_year_model.create({
             'name': '{}+{}'.format(cls.today.year + 10, cls.today.year + 11)
@@ -57,10 +59,18 @@ class TestEducation(common.SavepointCase):
         cls.edu_partner = cls.env['res.partner'].create({
             'name': 'Test Partner',
         })
+        cls.teacher = cls.env['hr.employee'].create({
+            'name': 'Test Teacher',
+        })
         cls.edu_classroom = cls.env['education.classroom'].create({
             'education_code': 'TEST',
             'description': 'Test Classroom',
             'center_id': cls.edu_partner.id,
+        })
+        cls.edu_task_type = cls.env['education.task_type'].create({
+            'education_code': 'TEST',
+            'description': 'Test Task Type',
+            'type': 'L',
         })
 
     def test_education_academic_year(self):
@@ -128,3 +138,44 @@ class TestEducation(common.SavepointCase):
         attendance_dict = self.attendance_model.default_get(['dayofweek'])
         self.assertEquals(
             session_dict.get('dayofweek'), attendance_dict.get('dayofweek'))
+
+    def test_education_schedule_default(self):
+        schedule_dict = self.schedule_model.default_get(['dayofweek'])
+        attendance_dict = self.attendance_model.default_get(['dayofweek'])
+        self.assertEquals(
+            schedule_dict.get('dayofweek'), attendance_dict.get('dayofweek'))
+
+    def test_education_group(self):
+        group = self.group_model.create({
+            'education_code': 'TEST',
+            'description': 'Test Group',
+            'center_id': self.edu_partner.id,
+            'academic_year_id': self.academic_year.id,
+            'level_id': self.edu_level.id,
+            'student_ids': [(6, 0, self.edu_partner.ids)],
+        })
+        self.assertEquals(group.student_count, len(group.student_ids))
+        with self.assertRaises(ValidationError):
+            group.write({
+                'parent_id': group.id,
+            })
+        self.assertEquals(self.edu_partner.education_group_count, 1)
+        action_dict = self.edu_partner.button_open_education_groups()
+        self.assertEquals(action_dict.get('domain'),
+                          [('center_id', '=', self.edu_partner.id)])
+        schedule = self.schedule_model.create({
+            'center_id': self.edu_partner.id,
+            'academic_year_id': self.academic_year.id,
+            'teacher_id': self.teacher.id,
+            'task_type_id': self.edu_task_type.id,
+            'subject_id': self.edu_subject.id,
+            'group_ids': [(6, 0, group.ids)],
+            'hour_from': 12.0,
+            'hour_to': 13.0,
+        })
+        self.assertEquals(schedule.student_ids, group.student_ids)
+        self.assertEquals(
+            schedule.display_name,
+            '{} [{}]'.format(self.edu_subject.description,
+                             self.teacher.name))
+        self.assertEquals(schedule.task_type_type, self.edu_task_type.type)
