@@ -59,10 +59,18 @@ class TestEducation(common.SavepointCase):
         cls.edu_partner = cls.env['res.partner'].create({
             'name': 'Test Partner',
         })
+        cls.teacher = cls.env['hr.employee'].create({
+            'name': 'Test Teacher',
+        })
         cls.edu_classroom = cls.env['education.classroom'].create({
             'education_code': 'TEST',
             'description': 'Test Classroom',
             'center_id': cls.edu_partner.id,
+        })
+        cls.edu_task_type = cls.env['education.task_type'].create({
+            'education_code': 'TEST',
+            'description': 'Test Task Type',
+            'type': 'L',
         })
 
     def test_education_academic_year(self):
@@ -155,3 +163,19 @@ class TestEducation(common.SavepointCase):
         action_dict = self.edu_partner.button_open_education_groups()
         self.assertEquals(action_dict.get('domain'),
                           [('center_id', '=', self.edu_partner.id)])
+        schedule = self.schedule_model.create({
+            'center_id': self.edu_partner.id,
+            'academic_year_id': self.academic_year.id,
+            'teacher_id': self.teacher.id,
+            'task_type_id': self.edu_task_type.id,
+            'subject_id': self.edu_subject.id,
+            'group_ids': [(6, 0, group.ids)],
+            'hour_from': 12.0,
+            'hour_to': 13.0,
+        })
+        self.assertEquals(schedule.student_ids, group.student_ids)
+        self.assertEquals(
+            schedule.display_name,
+            '{} [{}]'.format(self.edu_subject.description,
+                             self.teacher.name))
+        self.assertEquals(schedule.task_type_type, self.edu_task_type.type)
