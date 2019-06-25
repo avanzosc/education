@@ -151,3 +151,7 @@ class TestEducation(common.SavepointCase):
             group.write({
                 'parent_id': group.id,
             })
+        self.assertEquals(self.edu_partner.education_group_count, 1)
+        action_dict = self.edu_partner.button_open_education_groups()
+        self.assertEquals(action_dict.get('domain'),
+                          [('center_id', '=', self.edu_partner.id)])

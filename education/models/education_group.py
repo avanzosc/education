@@ -67,7 +67,6 @@ class EducationGroup(models.Model):
     def _check_group_recursion(self):
         if not self._check_recursion():
             raise ValidationError(_('You cannot create recursive groups.'))
-        return True
 
     @api.depends('student_ids')
     def _compute_student_count(self):

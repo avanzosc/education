@@ -24,3 +24,13 @@ class ResPartner(models.Model):
         for partner in self:
             partner.education_group_count = group_obj.search_count([
                 ('center_id', '=', partner.id)])
+
+    @api.multi
+    def button_open_education_groups(self):
+        self.ensure_one()
+        action = self.env.ref('education.action_education_group')
+        action_dict = action.read()[0]
+        action_dict.update({
+            'domain': [('center_id', '=', self.id)],
+        })
+        return action_dict

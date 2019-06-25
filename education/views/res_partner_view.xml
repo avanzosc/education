@@ -12,9 +12,15 @@
             <field name="ref" position="after">
                 <field name="education_code" />
             </field>
-            <!--<button name="toggle_active" position="before">-->
-                <!---->
-            <!--</button>-->
+            <button name="toggle_active" position="before">
+                <button class="oe_stat_button" type="object"
+                        name="button_open_education_groups" icon="fa-users"
+                        attrs="{'invisible': [('education_group_count', '=', 0)]}">
+                    <field string="Education Groups"
+                           name="education_group_count"
+                           widget="statinfo"/>
+                </button>
+            </button>
         </field>
     </record>
 </odoo>
