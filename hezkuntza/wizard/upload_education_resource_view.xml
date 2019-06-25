@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="upload_education_classroom_view_form"
+    <record id="upload_education_resource_view_form"
             model="ir.ui.view">
-        <field name="model">upload.education.classroom</field>
+        <field name="model">upload.education.resource</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -21,9 +21,9 @@
         </field>
     </record>
 
-    <record id="action_upload_education_classroom" model="ir.actions.act_window">
-        <field name="name">Upload Classrooms</field>
-        <field name="res_model">upload.education.classroom</field>
+    <record id="action_upload_education_resource" model="ir.actions.act_window">
+        <field name="name">Upload Resources</field>
+        <field name="res_model">upload.education.resource</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
