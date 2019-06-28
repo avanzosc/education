@@ -13,3 +13,9 @@ class ResPartner(models.Model):
     prev_course_ids = fields.One2many(
         comodel_name='education.course.change', inverse_name='next_school_id',
         string='Previous Courses')
+    alumni_center_id = fields.Many2one(
+        comodel_name='res.partner', string='Last Education Center',
+        domain=[('educational_category', '=', 'school')])
+    alumni_academic_year_id = fields.Many2one(
+        comodel_name='education.academic_year', string='Last Academic Year')
+    alumni_member = fields.Boolean(string='Alumni Association Member')

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-30 09:02+0000\n"
-"PO-Revision-Date: 2019-04-30 09:02+0000\n"
+"POT-Creation-Date: 2019-06-28 11:27+0000\n"
+"PO-Revision-Date: 2019-06-28 11:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,18 @@ msgstr ""
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 msgid "Additional Info"
-msgstr "Info. adicional"
+msgstr "Info adicional"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__alumni_member
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__alumni_member
+msgid "Alumni Association Member"
+msgstr "Miembro asociación antiguos alumnos"
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
+msgid "Center And Promotion"
+msgstr "Centro y promoción"
 
 #. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_res_partner
@@ -97,6 +108,18 @@ msgstr "Género"
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__id
 msgid "ID"
 msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__alumni_academic_year_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__alumni_academic_year_id
+msgid "Last Academic Year"
+msgstr "Último año académico"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__alumni_center_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__alumni_center_id
+msgid "Last Education Center"
+msgstr "Último centro educativo"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change____last_update
