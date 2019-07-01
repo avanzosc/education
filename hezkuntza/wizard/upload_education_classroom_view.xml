@@ -8,7 +8,7 @@
                 <sheet>
                     <group>
                         <field name="file" />
-                        <field name="center_id" />
+                        <field name="center_id" options="{'no_create': True, 'no_open': True}" />
                     </group>
                     <footer>
                         <button name="button_upload" string="Upload"
