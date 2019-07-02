@@ -4,6 +4,21 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
+            <field name="old_student" position="after">
+                <label for="alumni_center_id" string="Center And Promotion"
+                       attrs="{'invisible': [('old_student', '!=', True)]}" />
+                <div attrs="{'invisible': [('old_student', '!=', True)]}" >
+                    <field name="alumni_center_id" class="oe_inline"
+                           options="{'no_create': True, 'no_open': True}" />
+                    <field
+                        name="alumni_academic_year_id"
+                        class="oe_inline"
+                        options="{'no_create': True, 'no_open': True}"
+                        context="{'active_test': False}" />
+                </div>
+                <field name="alumni_member"
+                       attrs="{'invisible': [('old_student', '!=', True)]}" />
+            </field>
             <page name="sales_purchases" position="after">
                 <page name="course_changes" string="Courses"
                       attrs="{'invisible': [('educational_category','!=','school')]}">
