@@ -98,4 +98,22 @@
         <field name="view_id" ref="education_subject_view_tree" />
     </record>
 
+    <record id="education_subject_type_view_tree" model="ir.ui.view">
+        <field name="model">education.subject.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="education_code" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_education_subject_type">
+        <field name="name">Subject Type</field>
+        <field name="res_model">education.subject.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_subject_type_view_tree" />
+    </record>
+
 </odoo>

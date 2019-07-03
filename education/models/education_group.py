@@ -55,7 +55,8 @@ class EducationGroup(models.Model):
         comodel_name='education.group', string='Parent Group',
         domain="[('academic_year_id', '=', academic_year_id),"
                "('center_id', '=', center_id),"
-               "('course_id', '=', course_id)]")
+               "('course_id', '=', course_id),"
+               "('group_type_id.type', '=', 'official')]")
 
     _sql_constraints = [
         ('education_code_unique',

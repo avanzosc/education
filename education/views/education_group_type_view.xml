@@ -6,6 +6,7 @@
             <tree>
                 <field name="education_code" />
                 <field name="description" />
+                <field name="type" />
             </tree>
         </field>
     </record>
@@ -16,6 +17,7 @@
             <search>
                 <field name="education_code" />
                 <field name="description" />
+                <field name="type" />
             </search>
         </field>
     </record>
@@ -30,6 +32,8 @@
                         <h1>
                             <field name="education_code" />
                         </h1>
+                        <label for="type" />
+                        <field name="type" />
                     </div>
                     <group name="description" string="Description">
                         <field name="description" nolabel="1" colspan="4" />
