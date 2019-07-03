@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="education_group_type_0001" model="education.group_type"
+            forcecreate="True">
+        <field name="education_code">0001</field>
+        <field name="description">OFICIAL</field>
+        <field name="description_eu">OFIZIALAK</field>
+        <field name="type">official</field>
+    </record>
+
+    <record id="education_group_type_0002" model="education.group_type"
+            forcecreate="True">
+        <field name="education_code">0002</field>
+        <field name="description">DE IMPARTICION</field>
+        <field name="description_eu">INPARTIZIOZ</field>
+        <field name="type">class</field>
+    </record>
+</odoo>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="education_subject_type_0001" model="education.subject.type">
+        <field name="education_code">0001</field>
+        <field name="description">OBLIGATORIA</field>
+        <field name="description_eu">DERRIGORREZKOA</field>
+    </record>
+
+    <record id="education_subject_type_0002" model="education.subject.type">
+        <field name="education_code">0002</field>
+        <field name="description">RELIGIÓN (OPCIONAL)</field>
+        <field name="description_eu">Religión (Opcional)</field>
+    </record>
+
+    <record id="education_subject_type_0004" model="education.subject.type">
+        <field name="education_code">0004</field>
+        <field name="description">COMÚN</field>
+        <field name="description_eu">Común</field>
+    </record>
+
+    <record id="education_subject_type_0005" model="education.subject.type">
+        <field name="education_code">0005</field>
+        <field name="description">MODALIDAD (BACH)</field>
+        <field name="description_eu">Modalidad (BACH)</field>
+    </record>
+
+    <record id="education_subject_type_0006" model="education.subject.type">
+        <field name="education_code">0006</field>
+        <field name="description">OPTATIVA</field>
+        <field name="description_eu">Optativa</field>
+    </record>
+
+    <record id="education_subject_type_0007" model="education.subject.type">
+        <field name="education_code">0007</field>
+        <field name="description">OPTATIVA (ESO)</field>
+        <field name="description_eu">Optativa (ESO)</field>
+    </record>
+
+    <record id="education_subject_type_0008" model="education.subject.type">
+        <field name="education_code">0008</field>
+        <field name="description">LIBRE ELECCIÓN</field>
+        <field name="description_eu">Libre elección</field>
+    </record>
+
+    <record id="education_subject_type_0009" model="education.subject.type">
+        <field name="education_code">0009</field>
+        <field name="description">ESPECÍFICA</field>
+        <field name="description_eu">Específica</field>
+    </record>
+
+    <record id="education_subject_type_0010" model="education.subject.type">
+        <field name="education_code">0010</field>
+        <field name="description">MODALIDAD</field>
+        <field name="description_eu">Modalidad</field>
+    </record>
+
+    <record id="education_subject_type_0014" model="education.subject.type">
+        <field name="education_code">0014</field>
+        <field name="description">OPTATIVA (ESO)</field>
+        <field name="description_eu">Optativa (ESO)</field>
+    </record>
+
+    <record id="education_subject_type_0015" model="education.subject.type">
+        <field name="education_code">0015</field>
+        <field name="description">OBLIGATORIA (ESO)</field>
+        <field name="description_eu">DERRIGORREZKOA (DBH)</field>
+    </record>
+
+    <record id="education_subject_type_0016" model="education.subject.type">
+        <field name="education_code">0016</field>
+        <field name="description">OBLIGATORIA (ESO)</field>
+        <field name="description_eu">DERRIGORREZKOA (DBH)</field>
+    </record>
+
+    <record id="education_subject_type_0017" model="education.subject.type">
+        <field name="education_code">0017</field>
+        <field name="description">OBLIGATORIA (ESO)</field>
+        <field name="description_eu">DERRIGORREZKOA (DBH)</field>
+    </record>
+
+<!--    <record id="education_subject_type_0019" model="education.subject.type">-->
+<!--        <field name="education_code">0019</field>-->
+<!--    </record>-->
+
+<!--    <record id="education_subject_type_0020" model="education.subject.type">-->
+<!--        <field name="education_code">0020</field>-->
+<!--    </record>-->
+
+<!--    <record id="education_subject_type_0021" model="education.subject.type">-->
+<!--        <field name="education_code">0021</field>-->
+<!--    </record>-->
+
+<!--    <record id="education_subject_type_0022" model="education.subject.type">-->
+<!--        <field name="education_code">0022</field>-->
+<!--    </record>-->
+
+<!--    <record id="education_subject_type_0023" model="education.subject.type">-->
+<!--        <field name="education_code">0023</field>-->
+<!--    </record>-->
+</odoo>
