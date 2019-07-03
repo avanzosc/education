@@ -6,8 +6,8 @@
         <field name="arch" type="xml">
             <field name="old_student" position="after">
                 <label for="alumni_center_id" string="Center And Promotion"
-                       attrs="{'invisible': [('old_student', '!=', True)]}" />
-                <div attrs="{'invisible': [('old_student', '!=', True)]}" >
+                       attrs="{'invisible': ['|',('old_student','!=',True),('educational_category','not in',('progenitor','guardian','other','related','otherrelative'))]}" />
+                <div attrs="{'invisible': ['|',('old_student','!=',True),('educational_category','not in',('progenitor','guardian','other','related','otherrelative'))]}" >
                     <field name="alumni_center_id" class="oe_inline"
                            options="{'no_create': True, 'no_open': True}" />
                     <field
@@ -17,7 +17,7 @@
                         context="{'active_test': False}" />
                 </div>
                 <field name="alumni_member"
-                       attrs="{'invisible': [('old_student', '!=', True)]}" />
+                       attrs="{'invisible': ['|',('old_student','!=',True),('educational_category','not in',('progenitor','guardian','other','related','otherrelative'))]}" />
             </field>
             <page name="sales_purchases" position="after">
                 <page name="course_changes" string="Courses"
@@ -43,6 +43,19 @@
                         </tree>
                     </field>
                 </page>
+                <page name="student_groups" string="Education Groups"
+                      attrs="{'invisible': [('educational_category', '!=', 'student')]}">
+                    <field name="student_group_ids">
+                        <tree>
+                            <field name="education_code" />
+                            <field name="description" />
+                            <field name="academic_year_id" />
+                            <field name="center_id" />
+                            <field name="course_id" />
+                            <field name="group_type_id" />
+                        </tree>
+                    </field>
+                </page>
             </page>
         </field>
     </record>
@@ -60,16 +73,4 @@
               action="action_res_partner_school"
               sequence="10" />
 
-    <record model="ir.actions.act_window" id="action_res_partner_faculty">
-        <field name="name">Faculty</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="domain">[('employee', '=', True)]</field>
-    </record>
-
-    <menuitem id="res_partner_faculty_menuitem"
-              parent="education.faculty_menuitem"
-              action="action_res_partner_faculty"
-              sequence="10" />
 </odoo>

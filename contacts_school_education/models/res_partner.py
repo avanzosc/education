@@ -19,3 +19,7 @@ class ResPartner(models.Model):
     alumni_academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Last Academic Year')
     alumni_member = fields.Boolean(string='Alumni Association Member')
+    student_group_ids = fields.Many2many(
+        comodel_name='education.group', relation='edu_group_student',
+        column1='student_id', column2='group_id', string='Education Groups',
+        readonly=True)
