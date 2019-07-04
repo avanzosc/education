@@ -45,6 +45,11 @@
                 </page>
                 <page name="student_groups" string="Education Groups"
                       attrs="{'invisible': [('educational_category', '!=', 'student')]}">
+                    <group>
+                        <field name="current_group_id" />
+                        <field name="current_center_id" />
+                        <field name="current_course_id" />
+                    </group>
                     <field name="student_group_ids">
                         <tree>
                             <field name="education_code" />
@@ -57,6 +62,19 @@
                     </field>
                 </page>
             </page>
+        </field>
+    </record>
+
+    <record id="res_partner_view_search" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <field name="current_center_id"
+                       string="Education Center (Student)"/>
+                <field name="current_course_id"
+                       string="Education Course (Student)" />
+            </field>
         </field>
     </record>
 
