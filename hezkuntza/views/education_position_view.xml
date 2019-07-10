@@ -4,6 +4,7 @@
         <field name="model">education.position</field>
         <field name="inherit_id"
                ref="education.education_position_view_tree" />
+        <field name="sequence">50</field>
         <field name="arch" type="xml">
             <tree position="attributes">
                 <attribute name="create">false</attribute>
@@ -21,6 +22,7 @@
         <field name="model">education.position</field>
         <field name="inherit_id"
                ref="education.education_position_view_search" />
+        <field name="sequence">50</field>
         <field name="arch" type="xml">
             <field name="description" position="after">
                 <field name="description_eu" groups="hezkuntza.education_basque" />
@@ -31,6 +33,7 @@
     <record id="education_position_view_form" model="ir.ui.view">
         <field name="model">education.position</field>
         <field name="inherit_id" ref="education.education_position_view_form" />
+        <field name="sequence">50</field>
         <field name="arch" type="xml">
             <form position="attributes">
                 <attribute name="create">false</attribute>
