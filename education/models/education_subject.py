@@ -12,6 +12,8 @@ class EducationSubject(models.Model):
     min_description = fields.Char(
         string='Min. Description')
     type = fields.Char(string='Type')
+    type_id = fields.Many2one(
+        comodel_name='education.subject.type', string='Type')
     level_field_ids = fields.One2many(
         comodel_name='education.level.field.subject',
         inverse_name='subject_id', string='Fields by Level')
@@ -47,6 +49,16 @@ class EducationSubject(models.Model):
     def _compute_course_ids(self):
         for record in self:
             record.course_ids = record.mapped('level_course_ids.course_id')
+
+    _sql_constraints = [
+        ('education_code_unique', 'unique(education_code)',
+         'Education code must be unique!'),
+    ]
+
+
+class EducationSubjectType(models.Model):
+    _name = 'education.subject.type'
+    _inherit = 'education.data'
 
     _sql_constraints = [
         ('education_code_unique', 'unique(education_code)',
