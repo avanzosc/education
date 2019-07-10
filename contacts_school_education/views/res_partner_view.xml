@@ -44,7 +44,7 @@
                     </field>
                 </page>
                 <page name="student_groups" string="Education Groups"
-                      attrs="{'invisible': [('educational_category', '!=', 'student')]}">
+                      attrs="{'invisible': [('student_group_ids', '=', [])]}">
                     <group>
                         <field name="current_group_id" />
                         <field name="current_center_id" />
