@@ -35,6 +35,16 @@ class ResPartner(models.Model):
         comodel_name='education.course', string='Current Course',
         compute='_compute_current_group_id',
         search='_search_current_course_id')
+    childs_current_center_ids = fields.Many2many(
+        comodel_name='res.partner',
+        string='Children\'s Current Education Centers',
+        compute='_compute_child_current_group_ids',
+        search='_search_parent_current_center_id')
+    childs_current_course_ids = fields.Many2many(
+        comodel_name='education.course',
+        string='Children\'s Current Courses',
+        compute='_compute_child_current_group_ids',
+        search='_search_parent_current_course_id')
 
     @api.depends('student_group_ids')
     def _compute_current_group_id(self):
@@ -70,11 +80,51 @@ class ResPartner(models.Model):
             courses = course_obj.browse(value)
         else:
             courses = course_obj.search([
-                (self._rec_name, operator, value),
+                (course_obj._rec_name, operator, value),
             ])
         groups = self._search_current_groups().filtered(
             lambda g: g.course_id in courses)
         return [('id', 'in', groups.mapped('student_ids').ids)]
+
+    @api.depends('child_ids', 'child_ids.current_group_id')
+    def _compute_child_current_group_ids(self):
+        # today = fields.Date.context_today(self)
+        # current_year = self.env['education.academic_year'].search([
+        #     ('date_start', '<=', today), ('date_end', '>=', today)])
+        for partner in self.filtered(
+                lambda p: p.educational_category == 'family'):
+            childs_groups = partner.mapped(
+                'child_ids.current_group_id')
+            partner.childs_current_center_ids = [
+                (6, 0, childs_groups.mapped('center_id').ids)]
+            partner.childs_current_course_ids = [
+                (6, 0, childs_groups.mapped('course_id').ids)]
+
+    @api.multi
+    def _search_parent_current_center_id(self, operator, value):
+        if operator == '=':
+            centers = self.browse(value)
+        else:
+            centers = self.search([
+                (self._rec_name, operator, value),
+                ('educational_category', '=', 'school'),
+            ])
+        groups = self._search_current_groups().filtered(
+            lambda g: g.center_id in centers)
+        return [('id', 'in', groups.mapped('student_ids.parent_id').ids)]
+
+    @api.multi
+    def _search_parent_current_course_id(self, operator, value):
+        course_obj = self.env['education.course']
+        if operator == '=':
+            courses = course_obj.browse(value)
+        else:
+            courses = course_obj.search([
+                (course_obj._rec_name, operator, value),
+            ])
+        groups = self._search_current_groups().filtered(
+            lambda g: g.course_id in courses)
+        return [('id', 'in', groups.mapped('student_ids.parent_id').ids)]
 
     @api.multi
     def _search_current_groups(self):
