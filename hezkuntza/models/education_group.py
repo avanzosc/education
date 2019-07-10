@@ -7,4 +7,7 @@ from odoo import fields, models
 class EducationGroup(models.Model):
     _inherit = 'education.group'
 
-    center_id = fields.Many2one(domain=[('educational_group', '=', 'school')])
+    center_id = fields.Many2one(
+        domain=[('educational_category', '=', 'school')])
+    student_ids = fields.Many2many(
+        domain=[('educational_category', '=', 'student')])

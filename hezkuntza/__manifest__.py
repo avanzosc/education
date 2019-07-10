@@ -1,9 +1,9 @@
-# Copyright 2019 Oihane Crucelaegui - AvanzOSC
+# Copyright 2019 Oihane Crucelaegui - AvanzOSC4
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Hezkuntza",
-    "version": "12.0.3.0.0",
+    "version": "12.0.4.0.0",
     "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -17,7 +17,9 @@
         "partner_second_lastname",
     ],
     "data": [
+        "data/education_group_type_data.xml",
         "data/education_plan_data.xml",
+        "data/education_subject_type_data.xml",
         "security/hezkuntza_groups.xml",
         "views/education_academic_year_view.xml",
         "views/education_activity_type_view.xml",
