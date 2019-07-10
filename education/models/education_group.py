@@ -12,7 +12,7 @@ class EducationGroup(models.Model):
 
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',
-        required=True)
+        required=True, copy=False)
     center_id = fields.Many2one(
         comodel_name='res.partner', string='Education Center',
         required=True)
