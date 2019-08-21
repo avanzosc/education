@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_college_educational_measure_view_tree" model="ir.ui.view">
+        <field name="model">school.college.educational.measure</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" />
+                <field name="school_id" />
+                <field name="severity_level_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="school_college_educational_measure_view_search" model="ir.ui.view">
+        <field name="model">school.college.educational.measure</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="company_id" />
+                <field name="school_id" />
+                <field name="severity_level_id" />
+                <group expand="0" string="Group By">
+                   <filter string="Company" name="group-company" domain="[]" context="{'group_by':'company_id'}"/>
+                   <filter string="School" name="group-school" domain="[]" context="{'group_by':'school_id'}"/>
+                   <filter string="Severity level" name="group-severity_level" domain="[]" context="{'group_by':'severity_level_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="school_college_educational_measure_view_form" model="ir.ui.view">
+        <field name="model">school.college.educational.measure</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="group1">
+                        <group>
+                            <field name="company_id" />
+                            <field name="school_id" />
+                            <field name="severity_level_id" />
+                        </group>
+                        <group/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_school_college_educational_measure">
+        <field name="name">Educational measures</field>
+        <field name="res_model">school.college.educational.measure</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="school_college_educational_measure_view_tree" />
+    </record>
+    <menuitem id="school_college_educational_measure_menuitem"
+              parent="issue_masters_menuitem"
+              action="action_school_college_educational_measure"
+              sequence="20" />
+</odoo>

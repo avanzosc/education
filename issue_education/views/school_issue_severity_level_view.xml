@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_issue_severity_level_view_tree" model="ir.ui.view">
+        <field name="model">school.issue.severity.level</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="gravity_scale" />
+                <field name="notify_personal_tutor" />
+                <field name="notify_group_tutor" />
+            </tree>
+        </field>
+    </record>
+    <record id="school_issue_severity_level_view_search" model="ir.ui.view">
+        <field name="model">school.issue.severity.level</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="gravity_scale" />
+                <field name="notify_personal_tutor" />
+                <field name="notify_group_tutor" />
+                <group expand="0" string="Group By">
+                   <filter string="Gravity level" name="group-gravity_scale" domain="[]" context="{'group_by':'gravity_scale'}"/>
+                   <filter string="Notify to personal tutor" name="group-notify_personal_tutor" domain="[]" context="{'group_by':'notify_personal_tutor'}"/>
+                   <filter string="Notify to group tutor" name="group-notify_group_tutor" domain="[]" context="{'group_by':'notify_group_tutor'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="school_issue_severity_level_view_form" model="ir.ui.view">
+        <field name="model">school.issue.severity.level</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="group1">
+                        <group>
+                            <field name="gravity_scale" required="1"/>
+                            <field name="notify_personal_tutor" />
+                            <field name="notify_group_tutor" />
+                        </group>
+                        <group />
+                    </group>
+                    <notebook>
+                        <page string="Other managers" name="other-managers">
+                            <field name="other_managers" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_school_issue_severity_level">
+        <field name="name">Issues severity level</field>
+        <field name="res_model">school.issue.severity.level</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="school_issue_severity_level_view_tree" />
+    </record>
+    <menuitem id="school_issue_severity_level_menuitem"
+              parent="issue_masters_menuitem"
+              action="action_school_issue_severity_level"
+              sequence="5" />
+</odoo>
