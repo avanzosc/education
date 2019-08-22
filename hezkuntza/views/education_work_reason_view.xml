@@ -4,7 +4,7 @@
         <field name="model">education.work_reason</field>
         <field name="inherit_id"
                ref="education.education_work_reason_view_tree" />
-        <field name="sequence">50</field>
+        <field name="priority">50</field>
         <field name="arch" type="xml">
             <tree position="attributes">
                 <attribute name="create">false</attribute>
@@ -22,7 +22,7 @@
         <field name="model">education.work_reason</field>
         <field name="inherit_id"
                ref="education.education_work_reason_view_search" />
-        <field name="sequence">50</field>
+        <field name="priority">50</field>
         <field name="arch" type="xml">
             <field name="short_description" position="after">
                 <field name="description_eu" groups="hezkuntza.education_basque" />
@@ -35,7 +35,7 @@
     <record id="education_work_reason_view_form" model="ir.ui.view">
         <field name="model">education.work_reason</field>
         <field name="inherit_id" ref="education.education_work_reason_view_form" />
-        <field name="sequence">50</field>
+        <field name="priority">50</field>
         <field name="arch" type="xml">
             <form position="attributes">
                 <attribute name="create">false</attribute>
