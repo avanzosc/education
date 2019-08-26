@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_issue_site_view_tree" model="ir.ui.view">
+        <field name="model">school.issue.site</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="requires_imparting_group" />
+            </tree>
+        </field>
+    </record>
+    <record id="school_issue_site_view_search" model="ir.ui.view">
+        <field name="model">school.issue.site</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="requires_imparting_group" />
+                <group expand="0" string="Group By">
+                   <filter string="Requires imparting group" name="group-requires_imparting_group" domain="[]" context="{'group_by':'requires_imparting_group'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="school_issue_site_view_form" model="ir.ui.view">
+        <field name="model">school.issue.site</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="group1">
+                        <group>
+                            <field name="requires_imparting_group" />
+                        </group>
+                        <group/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_school_issue_site">
+        <field name="name">Issues sites</field>
+        <field name="res_model">school.issue.site</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="school_issue_site_view_tree" />
+    </record>
+    <menuitem id="school_issue_site_menuitem"
+              parent="issue_masters_menuitem"
+              action="action_school_issue_site"
+              sequence="20" />
+</odoo>
