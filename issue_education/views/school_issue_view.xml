@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_issue_view_tree" model="ir.ui.view">
+        <field name="model">school.issue</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="school_issue_type_id" />
+                <field name="student_id" />
+                <field name="reported_id" />
+                <field name="site_id" />
+                <field name="impartation_group_id" />
+                <field name="issue_date" />
+                <field name="proof_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="school_issue_view_search" model="ir.ui.view">
+        <field name="model">school.issue</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="school_issue_type_id" />
+                <field name="student_id" />
+                <field name="reported_id" />
+                <field name="site_id" />
+                <field name="impartation_group_id" />
+                <field name="issue_date" />
+                <field name="proof_id" />
+                <separator></separator>
+                <filter string="Today issues" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                   <filter string="Issue type" name="group-issue_type" domain="[]" context="{'group_by':'school_issue_type_id'}"/>
+                   <filter string="Student" name="group-student" domain="[]" context="{'group_by':'student_id'}"/>
+                   <filter string="Reported by" name="group-reported" domain="[]" context="{'group_by':'reported_id'}"/>
+                   <filter string="Site" name="group-site" domain="[]" context="{'group_by':'site_id'}"/>
+                   <filter string="Impartation group" name="group-impartation_group" domain="[]" context="{'group_by':'impartation_group_id'}"/>
+                   <filter string="Date" name="group-issue_date" domain="[]" context="{'group_by':'issue_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="school_issue_view_form" model="ir.ui.view">
+        <field name="model">school.issue</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="group1" colspan="4">
+                        <group>
+                            <field name="school_issue_type_id" />
+                            <field name="issue_type_id" invisible="1"/>
+                            <field name="affect_to" invisible="1"/>
+                            <field name="student_id"
+                                attrs="{'invisible': [('affect_to', '!=', 'student')], 'required': [('affect_to', '=', 'student')]}"/>
+                            <field name="reported_id" />
+                            <field name="site_id" />
+                            <field name="requires_imparting_group" invisible="1"/>
+                            <field name="impartation_group_id"
+                                attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="issue_date" />
+                            <field name="requires_justification" invisible="1"/>
+                            <field name="proof_id"
+                                attrs="{'invisible': [('requires_justification', '=', False)], 'required': [('requires_justification', '=', True)]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_school_issue">
+        <field name="name">Issues</field>
+        <field name="res_model">school.issue</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="school_issue_view_tree" />
+    </record>
+    <menuitem id="school_issue_menuitem"
+              parent="issue_menuitem"
+              action="action_school_issue"
+              sequence="1" />
+</odoo>

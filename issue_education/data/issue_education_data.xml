@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo >
+    <record id="school_issue_severity_scale0" model="school.issue.severity.scale">
+        <field name="name">No evaluate</field>
+        <field name="gravity_scale">0</field>
+    </record>
+    <record id="school_issue_severity_scale-1" model="school.issue.severity.scale">
+        <field name="name">Slight</field>
+        <field name="gravity_scale">-1</field>
+    </record>
+    <record id="school_issue_severity_scale-2" model="school.issue.severity.scale">
+        <field name="name">Significant</field>
+        <field name="gravity_scale">-2</field>
+    </record>
+    <record id="school_issue_severity_scale-3" model="school.issue.severity.scale">
+        <field name="name">Serious</field>
+        <field name="gravity_scale">-3</field>
+    </record>
+    <record id="school_issue_severity_scale-4" model="school.issue.severity.scale">
+        <field name="name">Very serious</field>
+        <field name="gravity_scale">-4</field>
+    </record>
+    <record id="school_issue_severity_scale1" model="school.issue.severity.scale">
+        <field name="name">Positive</field>
+        <field name="gravity_scale">1</field>
+    </record>
+        <record id="school_issue_severity_scale2" model="school.issue.severity.scale">
+        <field name="name">Very positive</field>
+        <field name="gravity_scale">2</field>
+    </record>
+    <record id="schoolwork_issue_type_master" model="school.issue.type">
+        <field name="name">Schoolwork</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale0"/>
+    </record>
+    <record id="comes_late_issue_type_master" model="school.issue.type">
+        <field name="name">Comes late</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale0"/>
+    </record>
+    <record id="assistance_issue_type_master" model="school.issue.type">
+        <field name="name">Assistance</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale0"/>
+    </record>
+    <record id="uniformed_issue_type_master" model="school.issue.type">
+        <field name="name">Uniformed</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale0"/>
+    </record>
+    <record id="small_fault_issue_type_master" model="school.issue.type">
+        <field name="name">Small fault</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale0"/>
+    </record>
+    <record id="classroom_school_issue_site" model="school.issue.site">
+        <field name="name">Classroom</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale0"/>
+    </record>
+</odoo>
