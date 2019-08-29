@@ -1,0 +1,301 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* issue_education_kanban_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-13 08:23+0000\n"
+"PO-Revision-Date: 2019-09-13 08:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__affect_to
+msgid "Affect to"
+msgstr "Afecta a"
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_issue_view_kanban
+msgid "Avatar"
+msgstr ""
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_delete_issue_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_negative_issue_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_positive_issue_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__claim_id
+msgid "Claim"
+msgstr "Reclamación"
+
+#. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_education_schedule
+msgid "Class Schedule"
+msgstr "Horario de clases"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__college_issue_type_id
+msgid "College issue type"
+msgstr "Tipo incidencia colegio"
+
+#. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_count
+msgid "Count"
+msgstr "Contador"
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_negative_issue_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_positive_issue_view_form
+msgid "Create issue"
+msgstr "Crear incidencia"
+
+#. module: issue_education_kanban_view
+#: model:ir.actions.act_window,name:issue_education_kanban_view.act_wiz_create_negative_issue
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_negative_issue_view_form
+msgid "Create negative issue"
+msgstr "Crear incidencia negativa"
+
+#. module: issue_education_kanban_view
+#: model:ir.actions.act_window,name:issue_education_kanban_view.act_wiz_create_positive_issue
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_positive_issue_view_form
+msgid "Create positive issue"
+msgstr "Crear incidencia positiva"
+
+#. module: issue_education_kanban_view
+#: model:ir.actions.act_window,name:issue_education_kanban_view.act_wiz_create_delete_issue
+msgid "Create/Delete Issue"
+msgstr "Crear/Borrar incidencia"
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_delete_issue_view_form
+msgid "Create/Delete issue"
+msgstr "Crear/Borrar incidencia"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__create_uid
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__create_uid
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__create_date
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__create_date
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__issue_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__name
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__name
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__name
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_negative_issue_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_positive_issue_view_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__display_name
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__display_name
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.education_schedule_view_form
+msgid "Generate/View issues"
+msgstr "Generar/Ver incidencias"
+
+#. module: issue_education_kanban_view
+#: selection:wiz.create.issue,affect_to:0
+msgid "Group"
+msgstr "Grupo"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__id
+msgid "ID"
+msgstr ""
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__impartation_group_id
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.school_issue_view_search
+msgid "Impartation group"
+msgstr "Grupo impartición"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_type_id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__issue_type
+msgid "Issue type"
+msgstr "Tipo incidencia"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/models/education_schedule.py:29
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_partner__school_issue_ids
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_users__school_issue_ids
+#, python-format
+msgid "Issues"
+msgstr "Incidencias"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issues_on_day
+msgid "Issues on day"
+msgstr "Incidencias del día"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue____last_update
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue____last_update
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__write_uid
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__write_uid
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__write_date
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__write_date
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_issue_view_kanban
+msgid "Logo"
+msgstr ""
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__proof_id
+msgid "Proof"
+msgstr "Justificante"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__reported_id
+msgid "Reported by"
+msgstr "Reportado por"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__requires_justification
+msgid "Requires Justification"
+msgstr "Requiere justificación"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__requires_imparting_group
+msgid "Requires imparting group"
+msgstr "Requiere grupo impartición"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_school_issue__education_schedule_id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__education_schedule_id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__schedule_id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__education_schedule_id
+msgid "Schedule"
+msgstr "Planificacion"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__school_id
+msgid "School"
+msgstr "Colegio"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__school_issue_type_id
+msgid "School issue type"
+msgstr "Tipo incidencia colegio"
+
+#. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_school_issue
+msgid "School issues"
+msgstr "Incidencias colegio"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:78
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:65
+#, python-format
+msgid "School: {}, Education subject: {}, Session: {}"
+msgstr "Colegio: {}, Asignatura: {}, Sesión: {}"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:74
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:70
+#, python-format
+msgid "School: {}, Issue type: {}"
+msgstr "Colegio: {}, Tipo incidencia: {}"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__site_id
+msgid "Site"
+msgstr "Sitio"
+
+#. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__student_id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__student_id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__student_id
+#: selection:wiz.create.issue,affect_to:0
+msgid "Student"
+msgstr "Alumno"
+
+#. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_student_issue
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_partner__student_issue_ids
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_partner__student_issue_ids2
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_users__student_issue_ids
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_users__student_issue_ids2
+msgid "Student issues"
+msgstr "Incidencias alumno"
+
+#. module: issue_education_kanban_view
+#: model:ir.actions.act_window,name:issue_education_kanban_view.act_view_student_today_issues
+msgid "Student today issues"
+msgstr "Incidencias de hoy del alumno"
+
+#. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_wiz_create_issue
+msgid "Wizard for create issues"
+msgstr "Asistente para crear incidencias"
+
+#. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_wiz_create_delete_issue
+msgid "Wizard for create or delete issue on day"
+msgstr "Asistente para crear o borrar incidencia en el día"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:34
+#, python-format
+msgid "You are going to CREATE an issue"
+msgstr "Usted va a CREAR una incidencia"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:32
+#, python-format
+msgid "You are going to DELETE an issue"
+msgstr "Usted va a BORRAR una incidencia"
+

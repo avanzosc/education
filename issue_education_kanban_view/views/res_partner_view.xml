@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record model="ir.ui.view" id="res_partner_issue_view_kanban">
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="image_small"/>
+                    <field name="is_company"/>
+                    <field name="student_issue_ids2" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill" style="width: 540px;">
+                            <!-- 
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                            -->
+                                <t t-if="record.image_small.raw_value">
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_medium', record.id.raw_value)}')">
+                                        <img class="o_kanban_image_inner_pic" t-att-alt="record.value" t-att-src="kanban_image('res.partner', 'image_small', record.raw_value)"/>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <t t-if="record.is_company.raw_value === true">
+                                        <img class="o_kanban_image" alt="Logo" t-att-src='_s + "/base/static/img/company_image.png"'/>
+                                    </t>
+                                    <t t-if="record.is_company.raw_value === false">
+                                        <img class="o_kanban_image" alt="Avatar" t-att-src='_s + "/base/static/img/avatar.png"'/>
+                                    </t>
+                                </t>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
+                                    <table>
+                                        <tread>
+                                            <tr class="text-center">
+                                               <t t-foreach="record.student_issue_ids2.raw_value.slice(0,5)" t-as="inci">
+                                                    <th style="text-align: center;">
+                                                        <img t-att-src="kanban_image('student.issue', 'image', inci.raw_value)"
+                                                            t-att-title="inci.value" t-att-alt="inci.value" width="70" height="70"
+                                                            class="oe_kanban_avatar float-right" />
+                                                    </th>
+                                                    <th></th>
+                                                    <th></th>
+                                               </t>
+                                            </tr>
+                                        </tread>
+                                        <tbody>
+                                            <tr>
+                                               <t t-set="contador" t-value="0" />
+                                               <t t-foreach="record.student_issue_ids2.raw_value.slice(0,5)" t-as="inci2">
+                                                    <t t-set="contador" t-value="contador + 1" />
+                                                    <td style="text-align: center;">
+                                                       <a t-if="contador == 1" name="%(act_wiz_create_delete_issue)d" type="action" 
+                                                            context="{'issue_type': 1}"> 
+                                                           <img class="oe_kanban_avatar"  width="20" height="20"
+                                                            t-att-src='_s + "/issue_education_kanban_view/static/img/mas_menos.png"'/>
+                                                       </a>
+                                                       <a t-if="contador == 2" name="%(act_wiz_create_delete_issue)d" type="action" 
+                                                            context="{'issue_type': 2}"> 
+                                                           <img class="oe_kanban_avatar"  width="20" height="20"
+                                                            t-att-src='_s + "/issue_education_kanban_view/static/img/mas_menos.png"'/>
+                                                       </a>
+                                                       <a t-if="contador == 3" name="%(act_wiz_create_delete_issue)d" type="action" 
+                                                            context="{'issue_type': 3}"> 
+                                                           <img class="oe_kanban_avatar"  width="20" height="20"
+                                                            t-att-src='_s + "/issue_education_kanban_view/static/img/mas_menos.png"'/>
+                                                       </a>
+                                                       <a t-if="contador == 4" name="%(act_wiz_create_delete_issue)d" type="action" 
+                                                            context="{'issue_type': 4}"> 
+                                                           <img class="oe_kanban_avatar"  width="20" height="20"
+                                                            t-att-src='_s + "/issue_education_kanban_view/static/img/mas_menos.png"'/>
+                                                       </a>
+                                                       <a t-if="contador == 5" name="%(act_wiz_create_delete_issue)d" type="action" 
+                                                            context="{'issue_type': 5}"> 
+                                                           <img class="oe_kanban_avatar"  width="20" height="20"
+                                                            t-att-src='_s + "/issue_education_kanban_view/static/img/mas_menos.png"'/>
+                                                       </a>
+                                                       <br/>
+                                                        <t t-esc="inci2.name" />: 
+                                                        <t t-esc="inci2.issues_on_day" />
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                               </t>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <br/>
+                                    <a name="%(act_wiz_create_negative_issue)d" type="action" >
+                                        <img class="oe_kanban_avatar" width="50" height="50" t-att-src='_s + "/issue_education_kanban_view/static/img/red_button.png"'/>
+                                    </a>
+                                    <br/>
+                                    <a name="%(act_wiz_create_positive_issue)d" type="action" > 
+                                        <img class="oe_kanban_avatar" width="50" height="50" t-att-src='_s + "/issue_education_kanban_view/static/img/green_button.png"'/>
+                                    </a>
+                                    <br/>
+                                    <a name="%(act_view_student_today_issues)d" type="action" > 
+                                        <img class="oe_kanban_avatar" width="50" height="50" t-att-src='_s + "/issue_education_kanban_view/static/img/ojo.png"'/>
+                                    </a>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+</odoo>
