@@ -36,6 +36,12 @@ class EducationSchedule(models.Model):
     task_type_type = fields.Selection(
         selection='_get_selection_task_type_type', string='Task Type Type',
         related='task_type_id.type', store=True)
+    resource_calendar_id = fields.Many2one(
+        comodel_name='resource.calendar',
+        related='teacher_id.resource_calendar_id', store=True)
+    attendance_id = fields.Many2one(
+        comodel_name='resource.calendar.attendance',
+        domain="[('calendar_id', '=', resource_calendar_id)]")
     session_number = fields.Integer()
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week',

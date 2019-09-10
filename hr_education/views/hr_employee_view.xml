@@ -33,7 +33,7 @@
                         <tree>
                             <field name="education_code" />
                             <field name="description" />
-                            <field name="type" />
+                            <field name="type_id" />
                             <field name="level_ids" widget="many2many_tags"
                                    readonly="True" />
                             <field name="field_ids" widget="many2many_tags"

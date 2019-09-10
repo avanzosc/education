@@ -31,6 +31,10 @@
                             <field name="task_type_type" invisible="True" />
                         </group>
                         <group>
+                            <field name="resource_calendar_id"
+                                   invisible="True" />
+                            <field name="attendance_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
                             <field name="dayofweek" />
                             <field name="session_number" />
                             <field name="hour_from" widget="float_time" />
@@ -52,36 +56,37 @@
                         </group>
                     </group>
                     <group>
-                        <field name="group_ids">
-                            <tree decoration-muted="student_count == 0">
-                                <field name="education_code" />
-                                <field name="description" />
-                                <field name="level_id" />
-                                <field name="field_id" />
-                                <field name="course_id" />
-                                <field name="model_id" />
-                                <field name="group_type_id" />
-                                <field name="student_count"
-                                       sum="Total Student Count"/>
-                                <field name="active" invisible="True" />
-                            </tree>
-                        </field>
-                        <field name="schedule_group_ids">
-                            <tree>
-                                <field name="group_id" />
-                                <field name="group_type_id" />
-                                <field name="group_student_count"
-                                       sum="group student count"/>
-                                <field name="session_number" />
-                                <field name="student_count"
-                                       sum="student count"/>
-                                <field name="group_alias" />
-                                <field name="parent_group_id" />
-                                <field name="parent_group_type_id" />
-                                <field name="parent_group_student_count"
-                                       sum="parent group student count"/>
-                            </tree>
-                        </field>
+                        <field name="group_ids" widget="many2many_tags" />
+<!--                        <field name="group_ids">-->
+<!--                            <tree decoration-muted="student_count == 0">-->
+<!--                                <field name="education_code" />-->
+<!--                                <field name="description" />-->
+<!--                                <field name="level_id" />-->
+<!--                                <field name="field_id" />-->
+<!--                                <field name="course_id" />-->
+<!--                                <field name="model_id" />-->
+<!--                                <field name="group_type_id" />-->
+<!--                                <field name="student_count"-->
+<!--                                       sum="Total Student Count"/>-->
+<!--                                <field name="active" invisible="True" />-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                        <field name="schedule_group_ids">-->
+<!--                            <tree>-->
+<!--                                <field name="group_id" />-->
+<!--                                <field name="group_type_id" />-->
+<!--                                <field name="group_student_count"-->
+<!--                                       sum="group student count"/>-->
+<!--                                <field name="session_number" />-->
+<!--                                <field name="student_count"-->
+<!--                                       sum="student count"/>-->
+<!--                                <field name="group_alias" />-->
+<!--                                <field name="parent_group_id" />-->
+<!--                                <field name="parent_group_type_id" />-->
+<!--                                <field name="parent_group_student_count"-->
+<!--                                       sum="parent group student count"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
                     </group>
                     <group>
                         <field name="student_ids" mode="kanban"
@@ -89,6 +94,16 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="education_schedule_view_search" model="ir.ui.view">
+        <field name="model">education.schedule</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="group_teacher" string="Teacher"
+                        context="{'group_by': 'teacher_id'}" />
+            </search>
         </field>
     </record>
 

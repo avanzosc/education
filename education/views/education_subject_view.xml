@@ -6,7 +6,7 @@
             <tree>
                 <field name="education_code" />
                 <field name="description" />
-                <field name="type" />
+                <field name="type_id" />
                 <field name="level_ids" widget="many2many_tags"
                        readonly="True" />
                 <field name="field_ids" widget="many2many_tags"
@@ -25,13 +25,13 @@
                 <field name="description" />
                 <field name="min_description" />
                 <field name="short_description" />
-                <field name="type" />
+                <field name="type_id" />
                 <field name="level_ids" />
                 <field name="field_ids" />
                 <field name="course_ids" />
                 <group expand="0" string="Group By...">
                     <filter string="Type" name="group_type"
-                            context="{'group_by': 'type'}" />
+                            context="{'group_by': 'type_id'}" />
                 </group>
             </search>
         </field>
@@ -62,7 +62,7 @@
                         </group>
                     </group>
                     <group name="other">
-                        <field name="type" />
+                        <field name="type_id" />
                         <field name="level_ids" widget="many2many_tags" />
                         <field name="field_ids" widget="many2many_tags" />
                         <field name="course_ids" widget="many2many_tags" />
@@ -104,6 +104,7 @@
             <tree>
                 <field name="education_code" />
                 <field name="description" />
+                <field name="type" />
             </tree>
         </field>
     </record>
