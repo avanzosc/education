@@ -7,11 +7,37 @@
                 <field name="academic_year_id" />
                 <field name="center_id" />
                 <field name="teacher_id" />
+                <field name="classroom_id" />
                 <field name="session_number" />
                 <field name="dayofweek" />
                 <field name="hour_from" widget="float_time" />
                 <field name="hour_to" widget="float_time" />
                 <field name="task_type_type" invisible="True" />
+                <field name="group_ids" widget="many2many_tags"
+                       domain="[('academic_year_id', '=', academic_year_id),('center_id', '=', center_id)]"
+                       options="{'no_create': True}" />
+                <field name="student_count" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_schedule_view_tree2" model="ir.ui.view">
+        <field name="model">education.schedule</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="task_type_type != 'L'">
+                <field name="academic_year_id" invisible="True" />
+                <field name="center_id" invisible="True" />
+                <field name="teacher_id" />
+                <field name="classroom_id" />
+                <field name="task_type_id" />
+                <field name="task_type_type" invisible="True" />
+                <field name="subject_id" />
+                <field name="subject_type" />
+                <field name="language_id" />
+                <field name="group_ids" widget="many2many_tags"
+                       domain="[('academic_year_id', '=', academic_year_id),('center_id', '=', center_id)]"
+                       options="{'no_create': True}" />
+                <field name="student_count" />
             </tree>
         </field>
     </record>
@@ -52,11 +78,15 @@
                                attrs="{'invisible': [('task_type_type', '!=', 'N')]}">
                             <field name="activity_type_id" />
                             <field name="level_id" />
-                            <field name="plan_id" />
+                            <field name="plan_id"
+                                   options="{'no_create_edit': True}" />
                         </group>
                     </group>
                     <group>
-                        <field name="group_ids" widget="many2many_tags" />
+                        <field name="group_ids" widget="many2many_tags"
+                               domain="[('academic_year_id', '=', academic_year_id),('center_id', '=', center_id)]"
+                               options="{'no_create': True}"/>
+                        <field name="student_count" />
 <!--                        <field name="group_ids">-->
 <!--                            <tree decoration-muted="student_count == 0">-->
 <!--                                <field name="education_code" />-->
@@ -90,7 +120,8 @@
                     </group>
                     <group>
                         <field name="student_ids" mode="kanban"
-                               nolabel="True" readonly="True"/>
+                               nolabel="True" readonly="True"
+                               colspan="4" />
                     </group>
                 </sheet>
             </form>
@@ -101,8 +132,12 @@
         <field name="model">education.schedule</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="group_teacher" string="Teacher"
-                        context="{'group_by': 'teacher_id'}" />
+                <field name="teacher_id" />
+                <field name="group_ids" />
+                <group expand="0" string="Group By">
+                    <filter name="group_teacher" string="Teacher"
+                            context="{'group_by': 'teacher_id'}" />
+                </group>
             </search>
         </field>
     </record>
@@ -150,5 +185,13 @@
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="education_schedule_view_tree" />
+    </record>
+
+    <record model="ir.actions.act_window" id="action_education_schedule_from_group">
+        <field name="name">Schedule</field>
+        <field name="res_model">education.schedule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_schedule_view_tree2" />
     </record>
 </odoo>
