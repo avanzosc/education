@@ -12,6 +12,7 @@ class EducationGroup(models.Model):
     _inherit = 'education.data'
     _description = 'Education Group'
     _rec_name = 'description'
+    _order = 'academic_year_id, education_code'
 
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',
@@ -122,7 +123,7 @@ class EducationGroupTeacher(models.Model):
 class EducationGroupSession(models.Model):
     _name = 'education.group.session'
     _description = 'Education Group Sessions'
-    _order = 'group_id,dayofweek,session_number'
+    _order = 'group_id, dayofweek, session_number'
 
     @api.model
     def _get_selection_dayofweek(self):
