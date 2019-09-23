@@ -8,7 +8,6 @@
                 <field name="center_id" />
                 <field name="teacher_id" />
                 <field name="classroom_id" />
-                <field name="session_number" />
                 <field name="dayofweek" />
                 <field name="hour_from" widget="float_time" />
                 <field name="hour_to" widget="float_time" />

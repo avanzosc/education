@@ -66,8 +66,6 @@ class EducationSchedule(models.Model):
         comodel_name='education.group', string='Education Groups',
         relation='edu_schedule_group', column1='schedule_id',
         column2='group_id')
-        # domain="[('academic_year_id', '=', academic_year_id),"
-        #        "('center_id', '=', center_id)]")
     schedule_group_ids = fields.One2many(
         comodel_name='education.schedule.group', inverse_name='schedule_id',
         string='Groups')

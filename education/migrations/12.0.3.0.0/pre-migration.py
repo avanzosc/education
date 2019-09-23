@@ -19,6 +19,6 @@ def migrate(env, version):
                    (subject_type[0], subject_type[0]))
     cr.execute("""
         UPDATE education_subject AS s
-        SET type_id = (SELECT id FROM education_subject_type AS t WHERE 
+        SET type_id = (SELECT id FROM education_subject_type AS t WHERE
         t.education_code = s.type LIMIT 1);
     """)
