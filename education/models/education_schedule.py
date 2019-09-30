@@ -36,6 +36,12 @@ class EducationSchedule(models.Model):
     task_type_type = fields.Selection(
         selection='_get_selection_task_type_type', string='Task Type Type',
         related='task_type_id.type', store=True)
+    resource_calendar_id = fields.Many2one(
+        comodel_name='resource.calendar',
+        related='teacher_id.resource_calendar_id', store=True)
+    attendance_id = fields.Many2one(
+        comodel_name='resource.calendar.attendance',
+        domain="[('calendar_id', '=', resource_calendar_id)]")
     session_number = fields.Integer()
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week',
@@ -59,22 +65,23 @@ class EducationSchedule(models.Model):
     group_ids = fields.Many2many(
         comodel_name='education.group', string='Education Groups',
         relation='edu_schedule_group', column1='schedule_id',
-        column2='group_id',
-        domain="[('academic_year_id', '=', academic_year_id),"
-               "('center_id', '=', center_id)]")
+        column2='group_id')
     schedule_group_ids = fields.One2many(
         comodel_name='education.schedule.group', inverse_name='schedule_id',
         string='Groups')
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_schedule_student',
         column1='schedule_id', column2='student_id',
-        compute='_compute_student_ids')
+        compute='_compute_student_ids', string='Students')
+    student_count = fields.Integer(
+        string='Student Number', compute='_compute_student_ids')
 
     @api.depends('group_ids', 'group_ids.student_ids')
     def _compute_student_ids(self):
         for schedule in self:
             schedule.student_ids = schedule.mapped(
                 'group_ids.student_ids')
+            schedule.student_count = len(schedule.student_ids)
 
     @api.multi
     def name_get(self):

@@ -3,6 +3,10 @@
 
 from odoo import api, fields, models
 
+SUBJECT_TYPE = [('optional', 'Optional'),
+                ('compulsory', 'Compulsory'),
+                ('free', 'Free Choice')]
+
 
 class EducationSubject(models.Model):
     _name = 'education.subject'
@@ -11,9 +15,11 @@ class EducationSubject(models.Model):
 
     min_description = fields.Char(
         string='Min. Description')
-    type = fields.Char(string='Type')
     type_id = fields.Many2one(
         comodel_name='education.subject.type', string='Type')
+    subject_type = fields.Selection(
+        selection=SUBJECT_TYPE, string='Subject Type', related='type_id.type',
+        store=True)
     level_field_ids = fields.One2many(
         comodel_name='education.level.field.subject',
         inverse_name='subject_id', string='Fields by Level')
@@ -59,6 +65,10 @@ class EducationSubject(models.Model):
 class EducationSubjectType(models.Model):
     _name = 'education.subject.type'
     _inherit = 'education.data'
+
+    type = fields.Selection(
+        selection=SUBJECT_TYPE,
+        string='Type', default='optional', required=True)
 
     _sql_constraints = [
         ('education_code_unique', 'unique(education_code)',

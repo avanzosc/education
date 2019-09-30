@@ -3,12 +3,16 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.models import expression
+from odoo.tools.safe_eval import safe_eval
 
 
 class EducationGroup(models.Model):
     _name = 'education.group'
     _inherit = 'education.data'
     _description = 'Education Group'
+    _rec_name = 'description'
+    _order = 'academic_year_id, education_code'
 
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',
@@ -57,6 +61,12 @@ class EducationGroup(models.Model):
                "('center_id', '=', center_id),"
                "('course_id', '=', course_id),"
                "('group_type_id.type', '=', 'official')]")
+    schedule_ids = fields.Many2many(
+        comodel_name='education.schedule', string='Education Schedule',
+        relation='edu_schedule_group', column2='schedule_id',
+        column1='group_id', readonly=True)
+    schedule_count = fields.Integer(
+        compute='_compute_schedule_count', string='Schedule Number')
 
     _sql_constraints = [
         ('education_code_unique',
@@ -73,6 +83,23 @@ class EducationGroup(models.Model):
     def _compute_student_count(self):
         for record in self:
             record.student_count = len(record.student_ids)
+
+    @api.depends('schedule_ids')
+    def _compute_schedule_count(self):
+        for record in self:
+            record.schedule_count = len(record.schedule_ids)
+
+    @api.multi
+    def button_open_schedule(self):
+        action = self.env.ref('education.action_education_schedule_from_group')
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [('id', 'in', self.mapped('schedule_ids').ids)],
+            safe_eval(action.domain or '[]')])
+        action_dict.update({
+            'domain': domain,
+        })
+        return action_dict
 
 
 class EducationGroupTeacher(models.Model):
@@ -96,7 +123,7 @@ class EducationGroupTeacher(models.Model):
 class EducationGroupSession(models.Model):
     _name = 'education.group.session'
     _description = 'Education Group Sessions'
-    _order = 'group_id,dayofweek,session_number'
+    _order = 'group_id, dayofweek, session_number'
 
     @api.model
     def _get_selection_dayofweek(self):
