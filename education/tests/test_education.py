@@ -163,6 +163,9 @@ class TestEducation(common.SavepointCase):
         action_dict = self.edu_partner.button_open_education_groups()
         self.assertEquals(action_dict.get('domain'),
                           [('center_id', '=', self.edu_partner.id)])
+        action_dict = group.button_open_students()
+        self.assertEquals(action_dict.get('domain'),
+                          [('id', 'in', group.student_ids.ids)])
         schedule = self.schedule_model.create({
             'center_id': self.edu_partner.id,
             'academic_year_id': self.academic_year.id,
@@ -174,6 +177,10 @@ class TestEducation(common.SavepointCase):
             'hour_to': 13.0,
         })
         self.assertEquals(schedule.student_ids, group.student_ids)
+        self.assertEquals(group.schedule_count, len(group.schedule_ids))
+        action_dict = group.button_open_schedule()
+        self.assertEquals(action_dict.get('domain'),
+                          [('id', 'in', group.schedule_ids.ids)])
         self.assertEquals(
             schedule.display_name,
             '{} [{}]'.format(self.edu_subject.description,

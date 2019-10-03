@@ -101,6 +101,23 @@ class EducationGroup(models.Model):
         })
         return action_dict
 
+    @api.multi
+    def button_open_students(self):
+        action = self.env.ref('base.action_partner_form')
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [('id', 'in', self.mapped('student_ids').ids)],
+            safe_eval(action.domain or '[]')
+        ])
+        context = safe_eval(action.context or '[]')
+        context.pop('search_default_customer')
+        action_dict.update({
+            'display_name': _('Students'),
+            'domain': domain,
+            'context': context,
+        })
+        return action_dict
+
 
 class EducationGroupTeacher(models.Model):
     _name = 'education.group.teacher'
