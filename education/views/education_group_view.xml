@@ -55,6 +55,12 @@
             <form>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button name="button_open_students" type="object"
+                                class="oe_stat_button"
+                                icon="fa-users">
+                            <field name="student_count" string="Students"
+                                   widget="statinfo"/>
+                        </button>
                         <button name="button_open_schedule" type="object"
                                 class="oe_stat_button"
                                 icon="fa-calendar">
@@ -81,7 +87,6 @@
                                    options="{'no_create': True, 'no_open': True}" />
                             <field name="calendar_id"
                                    options="{'no_create': True, 'no_open': True}" />
-                            <field name="student_count" />
                         </group>
                         <group>
                             <field name="plan_id"
@@ -139,8 +144,7 @@
                             </group>
                         </page>
                         <page name="students" string="Students">
-                            <field name="student_ids" nolabel="1" colspan="4"
-                                   mode="kanban">
+                            <field name="student_ids" nolabel="1" colspan="4">
                                 <tree>
                                     <field name="education_code" />
                                     <field name="display_name" string="Name" />
