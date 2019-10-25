@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <menuitem id="issue_menuitem"
-              name="Issues"
-              parent="education.education_menuitem"
-              sequence="1" />
-    <menuitem id="issue_masters_menuitem"
-              name="Masters"
-              parent="issue_menuitem"
-              sequence="50" />
     <record id="school_issue_severity_scale_view_tree" model="ir.ui.view">
         <field name="model">school.issue.severity.scale</field>
         <field name="arch" type="xml">
@@ -17,6 +9,7 @@
             </tree>
         </field>
     </record>
+
     <record id="school_issue_severity_scale_view_search" model="ir.ui.view">
         <field name="model">school.issue.severity.scale</field>
         <field name="arch" type="xml">
@@ -29,13 +22,14 @@
             </search>
         </field>
     </record>
+
     <record id="school_issue_severity_scale_view_form" model="ir.ui.view">
         <field name="model">school.issue.severity.scale</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <div class="oe_title">
-                        <label for="name" />
+                        <label for="name" class="oe_edit_only" />
                         <h1>
                             <field name="name" />
                         </h1>
@@ -50,6 +44,7 @@
             </form>
         </field>
     </record>
+
     <record model="ir.actions.act_window" id="action_school_issue_severity_scale">
         <field name="name">Severity scales</field>
         <field name="res_model">school.issue.severity.scale</field>
@@ -57,8 +52,5 @@
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="school_issue_severity_scale_view_tree" />
     </record>
-    <menuitem id="school_issue_severity_scale_menuitem"
-              parent="issue_masters_menuitem"
-              action="action_school_issue_severity_scale"
-              sequence="10" />
+
 </odoo>

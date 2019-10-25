@@ -42,4 +42,12 @@
             </form>
         </field>
     </record>
+
+    <record model="ir.actions.act_window" id="action_school_issue_proof">
+        <field name="name">Issue Proof</field>
+        <field name="res_model">school.issue.proof</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="school_issue_proof_view_tree" />
+    </record>
 </odoo>

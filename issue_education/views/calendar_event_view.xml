@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="calendar_event_view_search" model="ir.ui.view">
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_search" />
+        <field name="arch" type="xml">
+            <group position="before">
+                <filter string="Disciplinary" name="disciplinary"
+                        domain="[('categ_ids', '=', %(issue_education.calendar_event_type_disciplinary)d)]" />
+                <separator />
+            </group>
+        </field>
+    </record>
+</odoo>

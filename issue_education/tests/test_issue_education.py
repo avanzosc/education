@@ -1,54 +1,99 @@
-# (c) 2019 Alfredo de la Fuente - AvanzOSC
+# Copyright 2019 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo.tests.common import TransactionCase
-from odoo.exceptions import Warning
+from .common import TestIssueEducationCommon
+from odoo.tests import common
+from odoo.exceptions import UserError
 from odoo import fields
 
 
-class TestIssueEducation(TransactionCase):
+@common.at_install(False)
+@common.post_install(True)
+class TestIssueEducation(TestIssueEducationCommon):
 
-    def setUp(self):
-        super(TestIssueEducation, self).setUp()
-        self.issue_obj = self.env['school.issue']
-        self.issue_type_obj = self.env['school.issue.type']
-        self.college_issue_type_obj = self.env['school.college.issue.type']
-        self.site = self.env['school.issue.site'].create({
-            'name': 'Site for test Issue education',
-            'requires_imparting_group': True})
-        vals = {'name': 'School issue type for test',
-                'affect_to': 'student',
-                'gravity_scale': '0'}
-        self.issue_type = self.issue_type_obj.create(vals)
-
-    def test_issue_education(self):
+    def test_system_issue_type_erase(self):
         issue_type_master = self.env.ref(
             "issue_education.schoolwork_issue_type_master")
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             issue_type_master.unlink()
+
+    def test_system_issue_site_erase(self):
         issue_site = self.env.ref(
             "issue_education.classroom_school_issue_site")
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             issue_site.unlink()
-        res = dict(self.issue_type.name_get())[self.issue_type.id]
-        self.assertEqual(res, 'School issue type for test   0(No evaluate)')
-        vals = {'name': 'aa'}
+
+    def test_system_issue_scale_erase(self):
+        scale_minor = self.env.ref(
+            "issue_education.school_issue_severity_scale_minor")
+        with self.assertRaises(UserError):
+            scale_minor.unlink()
+
+    def test_college_issue(self):
+        self.assertEquals(
+            self.issue_type.display_name,
+            '{}  ({})'.format(self.issue_type.name,
+                              self.issue_type.gravity_scale_id.name))
+        vals = {
+            'name': 'aa',
+            'issue_type_id': self.issue_type.id,
+            'school_id': self.edu_partner.id,
+        }
         college_issue_type = self.college_issue_type_obj.create(vals)
-        vals = {'issue_type_id': self.issue_type.id}
-        college_issue_type.write(vals)
         college_issue_type.onchange_issue_type_id()
-        self.assertEqual(college_issue_type.name,
-                         'School issue type for test')
-        self.issue_type.write({'requires_justification': True})
+
+        self.assertEquals(
+            college_issue_type.display_name,
+            '{}  ({})'.format(college_issue_type.name,
+                              college_issue_type.gravity_scale_id.name))
+        self.assertEquals(
+            college_issue_type.name,
+            'School issue type for test')
+
+    def test_issue_education(self):
         vals = {
             'name': 'School issue for test',
-            'issue_date': fields.Date.from_string(fields.Date.today()),
-            'school_issue_type_id': college_issue_type.id,
-            'site_id': self.site.id}
+            'student_id': self.student.id,
+            'issue_date': fields.Date.today(),
+            'school_issue_type_id': self.college_issue_type.id,
+            'school_id': self.college_issue_type.school_id.id,
+            'site_id': self.site.id,
+            'reported_id': self.env.user.id,
+        }
         issue = self.issue_obj.create(vals)
+        self.assertTrue(issue.claim_id)
+        self.assertEquals(issue.proof_state, 'optional')
+        self.assertIn(self.progenitor, issue.claim_id.message_partner_ids)
+        self.assertIn(self.measure, issue.claim_id.educational_measure_ids)
+        issue.issue_type_id.requires_justification = True
         issue.onchange_school_issue_type_id()
-        self.assertEqual(issue.requires_justification, True)
-        self.assertEqual(issue.issue_type_id.id,
-                         college_issue_type.issue_type_id.id)
-        self.assertEqual(issue.affect_to, 'student')
+        self.assertEquals(issue.requires_justification, True)
+        self.assertEquals(issue.proof_state, 'required')
+        self.assertEquals(issue.issue_type_id.id,
+                          self.college_issue_type.issue_type_id.id)
+        self.assertEquals(issue.affect_to, 'student')
+        issue.proof_id = self.proof
+        self.assertEquals(issue.proof_state, 'proved')
         issue.onchange_site_id()
-        self.assertEqual(issue.requires_imparting_group, True)
+        self.assertEquals(issue.requires_imparting_group, True)
+        self.assertFalse(issue.claim_id.calendar_event_count)
+        issue.claim_id.button_notified()
+        issue.claim_id.invalidate_cache()
+        self.assertEquals(issue.claim_id.state, 'notified')
+        self.assertEquals(issue.claim_id.calendar_event_count, 1)
+        issue.claim_id.button_confirmed()
+        self.assertEquals(issue.claim_id.state, 'confirmed')
+        issue.claim_id.button_fulfill()
+        self.assertEquals(issue.claim_id.state, 'fulfill')
+        issue.claim_id.button_closed()
+        self.assertEquals(issue.claim_id.state, 'closed')
+        action_dict = issue.claim_id.open_calendar_event()
+        self.assertIn(
+            ('res_id', '=', issue.claim_id.id), action_dict.get('domain'))
+        action_dict = self.student.button_open_school_issues()
+        self.assertIn(
+            ('student_id', 'in', self.student.ids), action_dict.get('domain'))
+        self.assertEquals(action_dict.get('res_model'), 'school.issue')
+        action_dict = self.student.button_open_school_claims()
+        self.assertIn(
+            ('student_id', 'in', self.student.ids), action_dict.get('domain'))
+        self.assertEquals(action_dict.get('res_model'), 'school.claim')

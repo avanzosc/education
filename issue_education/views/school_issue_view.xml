@@ -3,18 +3,22 @@
     <record id="school_issue_view_tree" model="ir.ui.view">
         <field name="model">school.issue</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-danger="proof_state == 'required'">
+                <field name="issue_date" />
                 <field name="name" />
+                <field name="school_id" invisible="True" />
                 <field name="school_issue_type_id" />
                 <field name="student_id" />
                 <field name="reported_id" />
                 <field name="site_id" />
-                <field name="impartation_group_id" />
-                <field name="issue_date" />
+                <field name="group_id" />
+                <field name="education_schedule_id" />
                 <field name="proof_id" />
+                <field name="proof_state" />
             </tree>
         </field>
     </record>
+
     <record id="school_issue_view_search" model="ir.ui.view">
         <field name="model">school.issue</field>
         <field name="arch" type="xml">
@@ -24,22 +28,39 @@
                 <field name="student_id" />
                 <field name="reported_id" />
                 <field name="site_id" />
-                <field name="impartation_group_id" />
+                <field name="group_id" />
                 <field name="issue_date" />
                 <field name="proof_id" />
-                <separator></separator>
-                <filter string="Today issues" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <field name="school_id" />
+                <field name="proof_state" />
+                <separator />
+                <filter string="Today" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <separator />
+                <filter string="Pending Proof" name="filter_pending_proof"
+                        domain="[('proof_state','=','required')]" />
                 <group expand="0" string="Group By">
-                   <filter string="Issue type" name="group-issue_type" domain="[]" context="{'group_by':'school_issue_type_id'}"/>
-                   <filter string="Student" name="group-student" domain="[]" context="{'group_by':'student_id'}"/>
-                   <filter string="Reported by" name="group-reported" domain="[]" context="{'group_by':'reported_id'}"/>
-                   <filter string="Site" name="group-site" domain="[]" context="{'group_by':'site_id'}"/>
-                   <filter string="Impartation group" name="group-impartation_group" domain="[]" context="{'group_by':'impartation_group_id'}"/>
-                   <filter string="Date" name="group-issue_date" domain="[]" context="{'group_by':'issue_date'}"/>
+                    <filter string="Issue type" name="group-issue_type"
+                            domain="[]" context="{'group_by':'school_issue_type_id'}"/>
+                    <filter string="Student" name="group-student"
+                            domain="[]" context="{'group_by':'student_id'}"/>
+                    <filter string="Reported by" name="group-reported"
+                            domain="[]" context="{'group_by':'reported_id'}"/>
+                    <filter string="Site" name="group-site" domain="[]"
+                            context="{'group_by':'site_id'}"/>
+                    <filter string="Education Group"
+                            name="group-education_group" domain="[]"
+                            context="{'group_by':'group_id'}"/>
+                    <filter string="Date" name="group-issue_date"
+                            domain="[]" context="{'group_by':'issue_date'}"/>
+                    <filter string="Education Center" name="school_group"
+                            context="{'group_by': 'school_id'}" />
+                    <filter string="Proving State" name="proof_state_group"
+                            context="{'group_by': 'proof_state'}" />
                 </group>
             </search>
         </field>
     </record>
+
     <record id="school_issue_view_form" model="ir.ui.view">
         <field name="model">school.issue</field>
         <field name="arch" type="xml">
@@ -53,37 +74,43 @@
                     </div>
                     <group name="group1" colspan="4">
                         <group>
-                            <field name="school_issue_type_id" />
+                            <field name="school_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="school_issue_type_id"
+                                   string="Issue Type"
+                                   domain="[('school_id','=',school_id)]" />
                             <field name="issue_type_id" invisible="1"/>
                             <field name="affect_to" invisible="1"/>
                             <field name="student_id"
-                                attrs="{'invisible': [('affect_to', '!=', 'student')], 'required': [('affect_to', '=', 'student')]}"/>
-                            <field name="reported_id" />
+                                   attrs="{'invisible': [('affect_to', '!=', 'student')], 'required': [('affect_to', '=', 'student')]}"/>
                             <field name="site_id" />
                             <field name="requires_imparting_group" invisible="1"/>
-                            <field name="impartation_group_id"
-                                attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
+                            <field name="group_id"
+                                   attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
+                            <field name="claim_id" />
                         </group>
                         <group>
                             <field name="issue_date" />
+                            <field name="reported_id" />
                             <field name="requires_justification" invisible="1"/>
+                            <field name="proof_state" readonly="True" />
                             <field name="proof_id"
                                 attrs="{'invisible': [('requires_justification', '=', False)], 'required': [('requires_justification', '=', True)]}"/>
                         </group>
                     </group>
+                    <field name="notes" />
                 </sheet>
             </form>
         </field>
     </record>
+
     <record model="ir.actions.act_window" id="action_school_issue">
         <field name="name">Issues</field>
         <field name="res_model">school.issue</field>
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="school_issue_view_tree" />
+        <field name="context">{"search_default_filter-today-issues":1}</field>
     </record>
-    <menuitem id="school_issue_menuitem"
-              parent="issue_menuitem"
-              action="action_school_issue"
-              sequence="1" />
+
 </odoo>

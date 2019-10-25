@@ -7,7 +7,7 @@
     "depends": [
         "education",
         "contacts_school",
-        "crm_claim"
+        "calendar_school",
     ],
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
@@ -15,6 +15,9 @@
     "data": [
         "security/ir.model.access.csv",
         "data/issue_education_data.xml",
+        "views/calendar_event_view.xml",
+        "views/res_partner_view.xml",
+        "views/school_claim_view.xml",
         "views/school_issue_severity_scale_view.xml",
         "views/school_issue_type_view.xml",
         "views/school_college_issue_type_view.xml",
@@ -22,6 +25,7 @@
         "views/school_issue_site_view.xml",
         "views/school_issue_proof_view.xml",
         "views/school_issue_view.xml",
+        "views/issue_education_menu_view.xml",
     ],
     "installable": True,
 }

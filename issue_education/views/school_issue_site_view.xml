@@ -49,8 +49,5 @@
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="school_issue_site_view_tree" />
     </record>
-    <menuitem id="school_issue_site_menuitem"
-              parent="issue_masters_menuitem"
-              action="action_school_issue_site"
-              sequence="20" />
+
 </odoo>

@@ -57,8 +57,5 @@
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="school_college_educational_measure_view_tree" />
     </record>
-    <menuitem id="school_college_educational_measure_menuitem"
-              parent="issue_masters_menuitem"
-              action="action_school_college_educational_measure"
-              sequence="40" />
+
 </odoo>

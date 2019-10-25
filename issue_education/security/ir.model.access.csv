@@ -13,3 +13,5 @@ access_school_issue_proof,school_issue_proof all,model_school_issue_proof,,1,1,1
 access_school_issue_proof_manager,school_issue_proof manager,model_school_issue_proof,education.education_responsible,1,1,1,1
 access_school_issue,school_issue all,model_school_issue,,1,1,1,1
 access_school_issue_manager,school_issue manager,model_school_issue,education.education_responsible,1,1,1,1
+access_school_claim,school_claim all,model_school_claim,,1,1,1,1
+access_school_claim_manager,school_claim manager,model_school_claim,education.education_responsible,1,1,1,1
