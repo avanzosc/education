@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="school_issue_view_tree" model="ir.ui.view">
-        <field name="inherit_id" ref="issue_education.school_issue_view_tree" />
-        <field name="model">school.issue</field>
-        <field name="arch" type="xml">
-            <field name="impartation_group_id" position="before">
-                <field name="education_schedule_id" />
-            </field>
-        </field>
-    </record>
-    <record id="school_issue_view_search" model="ir.ui.view">
-        <field name="inherit_id" ref="issue_education.school_issue_view_search" />
-        <field name="model">school.issue</field>
-        <field name="arch" type="xml">
-            <field name="impartation_group_id" position="before">
-                <field name="education_schedule_id" />
-            </field>
-            <filter name="group-impartation_group" position="before" >
-                <filter string="Impartation group" name="group-impartation_group" domain="[]" context="{'group_by':'impartation_group_id'}"/>
-            </filter>
-        </field>
-    </record>
-    <record id="school_issue_view_form" model="ir.ui.view">
-        <field name="inherit_id" ref="issue_education.school_issue_view_form" />
-        <field name="model">school.issue</field>
-        <field name="arch" type="xml">
-            <field name="impartation_group_id" position="before">
-                <field name="education_schedule_id" />
-            </field>
-        </field>
-    </record>
+<!--    <record id="school_issue_view_tree" model="ir.ui.view">-->
+<!--        <field name="inherit_id" ref="issue_education.school_issue_view_tree" />-->
+<!--        <field name="model">school.issue</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="impartation_group_id" position="before">-->
+<!--                <field name="education_schedule_id" />-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    <record id="school_issue_view_search" model="ir.ui.view">-->
+<!--        <field name="inherit_id" ref="issue_education.school_issue_view_search" />-->
+<!--        <field name="model">school.issue</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="impartation_group_id" position="before">-->
+<!--                <field name="education_schedule_id" />-->
+<!--            </field>-->
+<!--            <filter name="group-impartation_group" position="before" >-->
+<!--                <filter string="Impartation group" name="group-impartation_group" domain="[]" context="{'group_by':'impartation_group_id'}"/>-->
+<!--            </filter>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    <record id="school_issue_view_form" model="ir.ui.view">-->
+<!--        <field name="inherit_id" ref="issue_education.school_issue_view_form" />-->
+<!--        <field name="model">school.issue</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="impartation_group_id" position="before">-->
+<!--                <field name="education_schedule_id" />-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
     <record id="act_view_student_today_issues" model="ir.actions.act_window">
         <field name="name">Student today issues</field>
         <field name="res_model">school.issue</field>

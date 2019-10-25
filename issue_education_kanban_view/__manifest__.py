@@ -7,7 +7,7 @@
     "depends": [
         "calendar_school",
         "issue_education",
-        "web_one2many_kanban"
+        "web_one2many_kanban",
     ],
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
@@ -20,7 +20,6 @@
         "views/education_schedule_view.xml",
         "views/school_issue_view.xml",
         "views/res_partner_view.xml",
-        "views/school_claim_view.xml",
     ],
     "installable": True,
 }

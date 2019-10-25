@@ -8,7 +8,7 @@ class StudentIssue(models.Model):
     _description = 'Student issues'
 
     student_id = fields.Many2one(
-        string='Student', comodel_name='res.partner')
+        string='Student', comodel_name='res.partner', required=True)
     education_schedule_id = fields.Many2one(
         string='Schedule', comodel_name='education.schedule')
     college_issue_type_id = fields.Many2one(
@@ -18,8 +18,23 @@ class StudentIssue(models.Model):
     issue_type_id = fields.Many2one(
         string='Issue type', comodel_name='school.issue.type',
         related='college_issue_type_id.issue_type_id')
-    issue_count = fields.Integer(string='Count')
+    issue_count = fields.Integer(
+        string='Count', compute='_compute_issue_count')
     issues_on_day = fields.Integer(
-        string='Issues on day', default=0)
+        string='Issues on day', default=0, compute='_compute_issue_count')
     image = fields.Binary(
         string='Image', attachment=True)
+
+    def _compute_issue_count(self):
+        today = fields.Date.context_today(self)
+        issue_model = self.env['school.issue']
+        for student_issue in self:
+            school_issues = issue_model.search([
+                ('student_id', '=', student_issue.student_id.id),
+                ('school_issue_type_id', '=',
+                 student_issue.college_issue_type_id.id),
+            ])
+            student_issue.issue_count = len(
+                school_issues.filtered(lambda i: i.issue_date < today))
+            student_issue.issues_on_day = len(
+                school_issues.filtered(lambda i: i.issue_date == today))

@@ -27,3 +27,9 @@ Contributors
 * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
 
 Do not contact contributors directly about support or help with technical issues.
+
+Other Credits
+-------------
+
+Icons made by `Vectors Market <https://www.flaticon.com/authors/vectors-market>`_
+from `www.flaticon.com <http://www.flaticon.com>`_

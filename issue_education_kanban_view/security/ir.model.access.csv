@@ -1,6 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_student_issue,student_issue all,model_student_issue,,1,1,1,1
-access_student_issue_manager,student_issue manager,model_student_issue,education.education_responsible,1,1,1,1
-access_school_claim,school_claim all,model_school_claim,,1,1,1,1
-access_school_claim_manager,school_claim manager,model_school_claim,education.education_responsible,1,1,1,1
-
