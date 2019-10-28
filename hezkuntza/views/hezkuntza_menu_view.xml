@@ -129,7 +129,7 @@
 
     <menuitem name="Education Center"
               id="education_center_configuration_menuitem"
-              parent="education_configuration_menuitem"
+              parent="education.education_configuration_menuitem"
               sequence="5" />
 
     <menuitem id="upload_education_classroom_menuitem"
