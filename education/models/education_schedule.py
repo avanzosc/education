@@ -97,8 +97,10 @@ class EducationSchedule(models.Model):
         """
         result = []
         for record in self:
+            description = (record.subject_id.description or
+                           record.task_type_id.description)
             result.append((record.id, '{} [{}]'.format(
-                record.subject_id.description, record.teacher_id.name)))
+                description, record.teacher_id.name)))
         return result
 
     @api.multi

@@ -159,9 +159,6 @@ class TestEducation(common.SavepointCase):
             group.write({
                 'parent_id': group.id,
             })
-        action_dict = group.button_open_students()
-        self.assertIn(('id', 'in', group.mapped('student_ids').ids),
-                      action_dict.get('domain'))
         self.assertEquals(self.edu_partner.education_group_count, 1)
         action_dict = self.edu_partner.button_open_education_groups()
         self.assertEquals(action_dict.get('domain'),
@@ -184,6 +181,9 @@ class TestEducation(common.SavepointCase):
         action_dict = group.button_open_schedule()
         self.assertEquals(action_dict.get('domain'),
                           [('id', 'in', group.schedule_ids.ids)])
+        action_dict = schedule.button_open_students()
+        self.assertIn(('id', 'in', schedule.mapped('student_ids').ids),
+                      action_dict.get('domain'))
         self.assertEquals(
             schedule.display_name,
             '{} [{}]'.format(self.edu_subject.description,
