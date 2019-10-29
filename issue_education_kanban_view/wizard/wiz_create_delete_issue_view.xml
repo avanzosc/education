@@ -9,7 +9,7 @@
                     </p>
                     <field name="student_id" invisible="1"/>
                     <field name="schedule_id" invisible="1"/>
-                    <field name="issue_type" invisible="1"/>
+                    <field name="issue_type_id" readonly="True"/>
                     <footer>
                         <button string="Create/Delete issue" name="create_delete_issue"
                             type="object" default_focus="1" class="btn-primary"/>

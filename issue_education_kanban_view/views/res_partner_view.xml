@@ -2,7 +2,7 @@
 <odoo>
     <record model="ir.ui.view" id="res_partner_issue_view_kanban">
         <field name="model">res.partner</field>
-        <field name="priority">50</field>
+        <field name="priority">100</field>
         <field name="arch" type="xml">
             <kanban>
                 <field name="id"/>
@@ -80,30 +80,20 @@
         </field>
     </record>
 
-<!--    <record id="student_issue_res_partner_view_form"-->
-<!--            model="ir.ui.view">-->
-<!--        <field name="model">res.partner</field>-->
-<!--        <field name="inherit_id" ref="base.view_partner_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <notebook position="inside">-->
-<!--                <page string="Issues"-->
-<!--                      attrs="{'invisible': [('educational_category', '!=', 'student')]}">-->
-<!--                    <field name="student_issue_ids">-->
-<!--                        <tree>-->
-<!--                        <field name="name" />-->
-<!--                        <field name="issue_count" />-->
-<!--                        <field name="issues_on_day" />-->
-<!--                        </tree>-->
-<!--                    </field>-->
-<!--                    <field name="student_issue_ids2">-->
-<!--                        <tree>-->
-<!--                        <field name="name" />-->
-<!--                        <field name="issue_count" />-->
-<!--                        <field name="issues_on_day" />-->
-<!--                        </tree>-->
-<!--                    </field>-->
-<!--                </page>-->
-<!--            </notebook>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="res_partner_education_issue_action" model="ir.actions.act_window">
+        <field name="name">Partner Education Issues Kanban</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id"
+               ref="issue_education_kanban_view.res_partner_issue_view_kanban" />
+    </record>
+
+    <record id="res_partner_education_issue_action_view"
+            model="ir.actions.act_window.view">
+        <field name="action_id" ref="res_partner_education_issue_action" />
+        <field name="view_id" ref="res_partner_issue_view_kanban" />
+        <field name="view_mode">kanban</field>
+    </record>
+
 </odoo>

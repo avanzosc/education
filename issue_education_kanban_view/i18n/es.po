@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-13 08:23+0000\n"
-"PO-Revision-Date: 2019-09-13 08:23+0000\n"
+"POT-Creation-Date: 2019-10-29 11:01+0000\n"
+"PO-Revision-Date: 2019-10-29 11:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__affect_to
 msgid "Affect to"
 msgstr "Afecta a"
-
-#. module: issue_education_kanban_view
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_issue_view_kanban
-msgid "Avatar"
-msgstr ""
 
 #. module: issue_education_kanban_view
 #: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_delete_issue_view_form
@@ -41,6 +36,12 @@ msgstr "Reclamación"
 #: model:ir.model,name:issue_education_kanban_view.model_education_schedule
 msgid "Class Schedule"
 msgstr "Horario de clases"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/models/school.py:45
+#, python-format
+msgid "Closed"
+msgstr "Cerrado"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__college_issue_type_id
@@ -121,6 +122,12 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/models/school.py:43
+#, python-format
+msgid "Educational measure confirmed"
+msgstr "Medida educativa confirmada"
+
+#. module: issue_education_kanban_view
 #: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.education_schedule_view_form
 msgid "Generate/View issues"
 msgstr "Generar/Ver incidencias"
@@ -144,18 +151,17 @@ msgstr "Imagen"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__impartation_group_id
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.school_issue_view_search
 msgid "Impartation group"
-msgstr "Grupo impartición"
+msgstr "Grupo de impartición"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_type_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__issue_type
 msgid "Issue type"
-msgstr "Tipo incidencia"
+msgstr "Tipo de incidencia"
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/models/education_schedule.py:29
+#: code:addons/issue_education_kanban_view/models/education_schedule.py:27
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_partner__school_issue_ids
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_users__school_issue_ids
 #, python-format
@@ -189,14 +195,21 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: issue_education_kanban_view
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_issue_view_kanban
-msgid "Logo"
-msgstr ""
+#: code:addons/issue_education_kanban_view/models/school.py:42
+#, python-format
+msgid "Notified"
+msgstr "Notificado"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__proof_id
 msgid "Proof"
 msgstr "Justificante"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/models/school.py:41
+#, python-format
+msgid "Quotation"
+msgstr "Cotización"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__reported_id
@@ -211,10 +224,15 @@ msgstr "Requiere justificación"
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__requires_imparting_group
 msgid "Requires imparting group"
-msgstr "Requiere grupo impartición"
+msgstr "Requiere grupo de impartición"
 
 #. module: issue_education_kanban_view
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_school_issue__education_schedule_id
+#: code:addons/issue_education_kanban_view/models/school.py:44
+#, python-format
+msgid "Sanction fulfill"
+msgstr "Sanción a cumplir"
+
+#. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__education_schedule_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__schedule_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__education_schedule_id
@@ -227,6 +245,11 @@ msgid "School"
 msgstr "Colegio"
 
 #. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_school_claim
+msgid "School claims"
+msgstr ""
+
+#. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__school_issue_type_id
 msgid "School issue type"
 msgstr "Tipo incidencia colegio"
@@ -237,14 +260,14 @@ msgid "School issues"
 msgstr "Incidencias colegio"
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:78
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:86
 #: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:65
 #, python-format
 msgid "School: {}, Education subject: {}, Session: {}"
 msgstr "Colegio: {}, Asignatura: {}, Sesión: {}"
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:74
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:82
 #: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:70
 #, python-format
 msgid "School: {}, Issue type: {}"
@@ -266,9 +289,7 @@ msgstr "Alumno"
 #. module: issue_education_kanban_view
 #: model:ir.model,name:issue_education_kanban_view.model_student_issue
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_partner__student_issue_ids
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_partner__student_issue_ids2
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_users__student_issue_ids
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_users__student_issue_ids2
 msgid "Student issues"
 msgstr "Incidencias alumno"
 

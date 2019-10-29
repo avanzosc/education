@@ -12,15 +12,18 @@ class WizCreateDeleteIssue(models.TransientModel):
         string='Student', comodel_name='res.partner')
     schedule_id = fields.Many2one(
         string='Schedule', comodel_name='education.schedule')
-    issue_type = fields.Integer(string='Issue type')
+    issue_type_id = fields.Many2one(
+        string='Issue type', comodel_name='school.college.issue.type')
 
     @api.model
     def default_get(self, var_fields):
         res = super(WizCreateDeleteIssue, self).default_get(var_fields)
         student = self.env['res.partner'].browse(
             self.env.context.get('active_id'))
-        res.update({'student_id': student.id,
-                    'issue_type': self.env.context.get('issue_type')})
+        res.update({
+            'student_id': student.id,
+            'issue_type_id': self.env.context.get('issue_type'),
+        })
         schedule = False
         if self.env.context.get('education_schedule', False):
             schedule = self.env['education.schedule'].browse(
@@ -38,7 +41,7 @@ class WizCreateDeleteIssue(models.TransientModel):
     def _find_issue(self, issue_type_id, schedule, student):
         issue_obj = self.env['school.issue']
         type_obj = self.env['school.college.issue.type']
-        today = fields.Date.from_string(fields.Date.today())
+        today = fields.Date.from_string(fields.Date.context_today(self))
         # cond = [('sequence', '=', issue_type)]
         # if schedule:
         #     cond.append(('school_id', '=', schedule.center_id.id))
@@ -60,7 +63,7 @@ class WizCreateDeleteIssue(models.TransientModel):
     def create_delete_issue(self):
         issue_obj = self.env['school.issue']
         issue, school_issue_type = self._find_issue(
-            self.issue_type, self.schedule_id, self.student_id)
+            self.issue_type_id.id, self.schedule_id, self.student_id)
         if issue:
             issue.unlink()
         else:
@@ -78,7 +81,7 @@ class WizCreateDeleteIssue(models.TransientModel):
         }
 
     def prepare_vals_for_create_issue(self, school_issue_type):
-        today = fields.Date.from_string(fields.Date.today())
+        today = fields.Date.from_string(fields.Date.context_today(self))
         name = _('School: {}, Issue type: {}').format(
             self.student_id.current_center_id.name,
             school_issue_type.name)
