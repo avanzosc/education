@@ -181,6 +181,9 @@ class TestEducation(common.SavepointCase):
         action_dict = group.button_open_schedule()
         self.assertEquals(action_dict.get('domain'),
                           [('id', 'in', group.schedule_ids.ids)])
+        action_dict = schedule.button_open_students()
+        self.assertIn(('id', 'in', schedule.mapped('student_ids').ids),
+                      action_dict.get('domain'))
         self.assertEquals(
             schedule.display_name,
             '{} [{}]'.format(self.edu_subject.description,

@@ -1,7 +1,9 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.models import expression
+from odoo.tools.safe_eval import safe_eval
 
 
 class EducationSchedule(models.Model):
@@ -72,9 +74,9 @@ class EducationSchedule(models.Model):
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_schedule_student',
         column1='schedule_id', column2='student_id',
-        compute='_compute_student_ids', string='Students')
+        compute='_compute_student_ids', string='Students', store=True)
     student_count = fields.Integer(
-        string='Student Number', compute='_compute_student_ids')
+        string='Student Number', compute='_compute_student_ids', store=True)
 
     @api.depends('group_ids', 'group_ids.student_ids')
     def _compute_student_ids(self):
@@ -95,9 +97,28 @@ class EducationSchedule(models.Model):
         """
         result = []
         for record in self:
+            description = (record.subject_id.description or
+                           record.task_type_id.description)
             result.append((record.id, '{} [{}]'.format(
-                record.subject_id.description, record.teacher_id.name)))
+                description, record.teacher_id.name)))
         return result
+
+    @api.multi
+    def button_open_students(self):
+        action = self.env.ref('base.action_partner_form')
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [('id', 'in', self.mapped('student_ids').ids)],
+            safe_eval(action.domain or '[]')
+        ])
+        context = safe_eval(action.context or '[]')
+        context.pop('search_default_customer')
+        action_dict.update({
+            'display_name': _('Students'),
+            'domain': domain,
+            'context': context,
+        })
+        return action_dict
 
 
 class EducationScheduleGroup(models.Model):

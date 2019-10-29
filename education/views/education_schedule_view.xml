@@ -46,6 +46,14 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="button_open_students" type="object"
+                                class="oe_stat_button"
+                                icon="fa-users">
+                            <field name="student_count" string="Students"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
                     <group>
                         <group>
                             <field name="academic_year_id" />
@@ -83,44 +91,8 @@
                     </group>
                     <group>
                         <field name="group_ids" widget="many2many_tags"
-                               domain="[('academic_year_id', '=', academic_year_id),('center_id', '=', center_id)]"
+                               domain="[('academic_year_id','=',academic_year_id),('center_id','=',center_id)]"
                                options="{'no_create': True}"/>
-                        <field name="student_count" />
-<!--                        <field name="group_ids">-->
-<!--                            <tree decoration-muted="student_count == 0">-->
-<!--                                <field name="education_code" />-->
-<!--                                <field name="description" />-->
-<!--                                <field name="level_id" />-->
-<!--                                <field name="field_id" />-->
-<!--                                <field name="course_id" />-->
-<!--                                <field name="model_id" />-->
-<!--                                <field name="group_type_id" />-->
-<!--                                <field name="student_count"-->
-<!--                                       sum="Total Student Count"/>-->
-<!--                                <field name="active" invisible="True" />-->
-<!--                            </tree>-->
-<!--                        </field>-->
-<!--                        <field name="schedule_group_ids">-->
-<!--                            <tree>-->
-<!--                                <field name="group_id" />-->
-<!--                                <field name="group_type_id" />-->
-<!--                                <field name="group_student_count"-->
-<!--                                       sum="group student count"/>-->
-<!--                                <field name="session_number" />-->
-<!--                                <field name="student_count"-->
-<!--                                       sum="student count"/>-->
-<!--                                <field name="group_alias" />-->
-<!--                                <field name="parent_group_id" />-->
-<!--                                <field name="parent_group_type_id" />-->
-<!--                                <field name="parent_group_student_count"-->
-<!--                                       sum="parent group student count"/>-->
-<!--                            </tree>-->
-<!--                        </field>-->
-                    </group>
-                    <group>
-                        <field name="student_ids" mode="kanban"
-                               nolabel="True" readonly="True"
-                               colspan="4" />
                     </group>
                 </sheet>
             </form>

@@ -122,4 +122,10 @@
               parent="education_center_menuitem"
               action="action_education_section"
               sequence="2" />
+
+    <menuitem id="education_configuration_menuitem"
+              name="Configuration"
+              parent="education_menuitem"
+              sequence="50"
+              groups="education_responsible"/>
 </odoo>
