@@ -1,6 +1,6 @@
 # Copyright 2019 Alfredo de la fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 
 
 class WizCreateDeleteIssue(models.TransientModel):
@@ -35,19 +35,19 @@ class WizCreateDeleteIssue(models.TransientModel):
         return res
 
     @api.multi
-    def _find_issue(self, issue_type, schedule, student):
+    def _find_issue(self, issue_type_id, schedule, student):
         issue_obj = self.env['school.issue']
         type_obj = self.env['school.college.issue.type']
         today = fields.Date.from_string(fields.Date.today())
-        cond = [('sequence', '=', issue_type)]
-        if schedule:
-            cond.append(('school_id', '=', schedule.center_id.id))
-        else:
-            cond.append(('school_id', '=',
-                         student.current_center_id.id))
-        school_issue_type = type_obj.search(cond, limit=1)
+        # cond = [('sequence', '=', issue_type)]
+        # if schedule:
+        #     cond.append(('school_id', '=', schedule.center_id.id))
+        # else:
+        #     cond.append(('school_id', '=',
+        #                  student.current_center_id.id))
+        school_issue_type = type_obj.browse(issue_type_id)
         cond = [('student_id', '=', student.id),
-                ('school_issue_type_id', '=', school_issue_type.id),
+                ('school_issue_type_id', '=', issue_type_id),
                 ('issue_date', '=', today)]
         if schedule:
             cond.append(('education_schedule_id', '=',  schedule.id))
@@ -62,16 +62,20 @@ class WizCreateDeleteIssue(models.TransientModel):
         issue, school_issue_type = self._find_issue(
             self.issue_type, self.schedule_id, self.student_id)
         if issue:
-            if issue.claim_id:
-                issue.claim_id.unlink()
             issue.unlink()
         else:
             vals = self.prepare_vals_for_create_issue(school_issue_type)
             issue = issue_obj.create(vals)
             if issue.issue_type_id.generate_part:
                 issue._generate_part()
-        if self.schedule_id:
-            return self.schedule_id.button_generate_view_issues()
+        # Close wizard and reload view
+        return {
+            "type": "ir.actions.act_multi",
+            "actions": [
+                {"type": "ir.actions.act_window_close"},
+                {"type": "ir.actions.act_view_reload"},
+            ],
+        }
 
     def prepare_vals_for_create_issue(self, school_issue_type):
         today = fields.Date.from_string(fields.Date.today())
@@ -83,17 +87,17 @@ class WizCreateDeleteIssue(models.TransientModel):
                 self.schedule_id.center_id.name,
                 self.schedule_id.subject_id.description,
                 self.schedule_id.session_number)
-        vals = {'name': name,
-                'school_issue_type_id': school_issue_type.id,
-                'issue_type_id': school_issue_type.issue_type_id.id,
-                'requires_justification':
-                school_issue_type.issue_type_id.requires_justification,
-                'affect_to': school_issue_type.issue_type_id.affect_to,
-                'student_id': self.student_id.id,
-                'reported_id': self.env.user.id,
-                'issue_date': today}
-        if self.schedule_id:
-            vals['education_schedule_id'] = self.schedule_id.id
-        if school_issue_type.issue_type_id.site_id:
-            vals['site_id'] = school_issue_type.issue_type_id.site_id.id
+        vals = {
+            'name': name,
+            'school_issue_type_id': school_issue_type.id,
+            'issue_type_id': school_issue_type.issue_type_id.id,
+            'requires_justification':
+            school_issue_type.issue_type_id.requires_justification,
+            'affect_to': school_issue_type.issue_type_id.affect_to,
+            'student_id': self.student_id.id,
+            'reported_id': self.env.user.id,
+            'issue_date': today,
+            'education_schedule_id': self.schedule_id.id,
+            'site_id': school_issue_type.issue_type_id.site_id.id,
+        }
         return vals

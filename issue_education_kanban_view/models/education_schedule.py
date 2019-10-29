@@ -15,8 +15,12 @@ class EducationSchedule(models.Model):
         if issues:
             issues.unlink()
         context = self.env.context.copy()
-        context.update({'education_schedule': self.id,
-                        'school_id': self.center_id.id})
+        context.update({
+            'education_schedule': self.id,
+            'school_id': self.center_id.id,
+        })
+        if 'group_by' in context:
+            context.pop('group_by')
         compose_kanban = self.env.ref(
             'issue_education_kanban_view.res_partner_issue_view_kanban')
         return {

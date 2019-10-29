@@ -7,7 +7,8 @@
             <sheet position="before">
                 <header>
                     <button name="button_generate_view_issues" type="object"
-                            string="Generate/View issues" class="oe_highlight"/>
+                            string="Generate/View issues" class="oe_highlight"
+                            attrs="{'invisible': [('student_count', '=', 0)]}"/>
                 </header>
             </sheet>
         </field>

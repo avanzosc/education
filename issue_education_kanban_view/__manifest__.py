@@ -8,6 +8,8 @@
         "calendar_school",
         "issue_education",
         "web_one2many_kanban",
+        "web_ir_actions_act_multi",
+        "web_ir_actions_act_view_reload",
     ],
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",

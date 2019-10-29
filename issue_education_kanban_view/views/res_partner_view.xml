@@ -23,6 +23,7 @@
                             <div class="oe_kanban_details">
                                 <field name="name"/>
                                 <div class="row">
+                                    <div class="col-sm-1" />
                                     <t
                                            t-foreach="record.student_issue_ids.raw_value.slice(0,5)" t-as="issue">
                                         <t t-set="issue_type"
@@ -42,30 +43,34 @@
                                         /></b>
                                         </div>
                                     </t>
-
-                                    <div class="col-sm-2 float-right">
-                                        <a name="%(act_wiz_create_positive_issue)d" type="action" >
-                                            <img
-                                                    class="oe_kanban_avatar float-right" width="40"
-                                                 height="40" t-att-alt="add"
-                                                 t-att-src='_s + "/issue_education_kanban_view/static/img/052-plus.png"'/>
-                                        </a>
-                                        <br/>
-                                        <a name="%(act_wiz_create_negative_issue)d" type="action" >
-                                            <img
-                                                    class="oe_kanban_avatar float-right"
-                                                 width="40"
-                                                 height="40" t-att-alt="remove"
-                                                 t-att-src='_s + "/issue_education_kanban_view/static/img/047-minus_red.png"'/>
-                                        </a>
-                                        <br/>
-                                        <a name="%(act_view_student_today_issues)d" type="action" >
-                                            <img
-                                                    class="oe_kanban_avatar float-right" width="40"
-                                                 height="40" t-att-alt="watch"
-                                                 t-att-src='_s + "/issue_education_kanban_view/static/img/054-exclamation_blue.png"'/>
-                                        </a>
-                                    </div>
+                                    <div class="col-sm-1" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 text-center">
+                                    <a name="%(act_wiz_create_positive_issue)d" type="action" >
+                                        <img
+                                                class="oe_kanban_avatar" width="40"
+                                             height="40" t-att-alt="add"
+                                             t-att-src='_s + "/issue_education_kanban_view/static/img/052-plus.png"'/>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <a name="%(act_wiz_create_negative_issue)d" type="action" >
+                                        <img
+                                                class="oe_kanban_avatar"
+                                             width="40"
+                                             height="40" t-att-alt="remove"
+                                             t-att-src='_s + "/issue_education_kanban_view/static/img/047-minus_red.png"'/>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <a name="%(act_view_student_today_issues)d" type="action" >
+                                        <img
+                                                class="oe_kanban_avatar" width="40"
+                                             height="40" t-att-alt="watch"
+                                             t-att-src='_s + "/issue_education_kanban_view/static/img/054-exclamation_blue.png"'/>
+                                    </a>
                                 </div>
                             </div>
                         </div>

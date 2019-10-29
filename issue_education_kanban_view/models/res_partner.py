@@ -29,15 +29,11 @@ class ResPartner(models.Model):
                 issue = self.env['student.issue'].create(vals)
                 student_issues += issue
             if student_issues:
-                # student.student_issue_ids = [(6, 0, student_issues.ids)]
                 student.student_issue_ids = [(6, 0, student_issues.ids)]
 
     school_issue_ids = fields.One2many(
         string='Issues', comodel_name='school.issue',
         inverse_name='student_id')
-    # student_issue_ids = fields.Many2many(
-    #     string='Student issues', comodel_name='student.issue',
-    #     compute='_compute_student_issue_ids')
     student_issue_ids = fields.One2many(
         string='Student issues', comodel_name='student.issue',
         compute='_compute_student_issue_ids')
