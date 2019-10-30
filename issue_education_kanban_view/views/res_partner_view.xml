@@ -85,6 +85,7 @@
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban</field>
+        <field name="domain">[('educational_category', '=', 'student')]</field>
         <field name="view_id"
                ref="issue_education_kanban_view.res_partner_issue_view_kanban" />
     </record>

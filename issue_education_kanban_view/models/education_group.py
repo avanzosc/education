@@ -1,12 +1,13 @@
-# Copyright 2019 Alfredo de la Fuente - AvanzOSC
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2019 Oihane Crucelaegui - AvanzOSC
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
 from odoo import api, models
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
 
-class EducationSchedule(models.Model):
-    _inherit = 'education.schedule'
+class EducationGroup(models.Model):
+    _inherit = 'education.group'
 
     @api.multi
     def button_generate_view_issues(self):
@@ -17,7 +18,7 @@ class EducationSchedule(models.Model):
         action_dict['context'] = safe_eval(
             action_dict.get('context', '{}'))
         action_dict['context'].update({
-            'education_schedule_id': self.id,
+            'education_group_id': self.id,
             'school_id': self.center_id.id,
         })
         domain = expression.AND([

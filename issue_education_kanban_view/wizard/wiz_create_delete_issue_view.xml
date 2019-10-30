@@ -7,12 +7,16 @@
                     <p>
                         <field name="name" nolabel="1" readonly="1"/>
                     </p>
-                    <field name="student_id" invisible="1"/>
-                    <field name="schedule_id" invisible="1"/>
-                    <field name="issue_type_id" readonly="True"/>
+                    <group>
+                        <field name="student_id" readonly="True" />
+                        <field name="schedule_id" readonly="True" />
+                        <field name="group_id" readonly="True"/>
+                        <field name="issue_type_id" readonly="True"/>
+                        <field name="create_issue" readonly="True" />
+                    </group>
                     <footer>
                         <button string="Create/Delete issue" name="create_delete_issue"
-                            type="object" default_focus="1" class="btn-primary"/>
+                                type="object" default_focus="1" class="btn-primary"/>
                         <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>

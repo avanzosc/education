@@ -19,9 +19,11 @@
         "data/issue_education_kanban_view_data.xml",
         "wizard/wiz_create_delete_issue_view.xml",
         "wizard/wiz_create_issue_view.xml",
+        "views/education_group_view.xml",
         "views/education_schedule_view.xml",
         "views/school_issue_view.xml",
         "views/res_partner_view.xml",
+        "views/issue_education_kanban_view_menu.xml",
     ],
     "installable": True,
 }

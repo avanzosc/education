@@ -183,7 +183,7 @@ msgstr "Última actualización el"
 #. module: issue_education_kanban_view
 #: model:ir.actions.act_window,name:issue_education_kanban_view.res_partner_education_issue_action
 msgid "Partner Education Issues Kanban"
-msgstr ""
+msgstr "Kanban de incidencias"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__proof_id

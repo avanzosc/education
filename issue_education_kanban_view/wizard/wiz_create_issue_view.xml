@@ -7,18 +7,20 @@
                     <sheet>
                         <group name="group1" colspan="4">
                             <group>
-                                <field name="education_schedule_id"  invisible="1"/>
-                                <field name="school_id"  invisible="1"/>
                                 <field name="school_issue_type_id" required="1"
-                                     domain="[('issue_type_id.usual_issue','=',False),('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','in',('1','2'))]"/>
-                                <field name="affect_to"  invisible="1"/>
-                                <field name="student_id"  invisible="1"/>
+                                       domain="[('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','&gt;',0)]"
+                                       options="{'no_create': True, 'no_edit': True}"/>
+                                <field name="school_id" invisible="True" />
+                                <field name="education_schedule_id"
+                                       invisible="True"/>
+                                <field name="affect_to" invisible="True" />
+                                <field name="student_id" invisible="True" />
                                 <field name="reported_id" />
                                 <field name="site_id" />
-                                <field name="requires_imparting_group" invisible="1"/>
-                                <field name="impartation_group_id"
-                                    attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
-                                
+                                <field name="requires_imparting_group"
+                                       invisible="True"/>
+                                <field name="group_id"
+                                       attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
                             </group>
                             <group>
                                 <field name="issue_date" />
@@ -45,25 +47,26 @@
                     <sheet>
                         <group name="group1" colspan="4">
                             <group>
-                                <field name="education_schedule_id"  invisible="1"/>
-                                <field name="school_id"  invisible="1"/>
                                 <field name="school_issue_type_id" required="1"
-                                     domain="[('issue_type_id.usual_issue','=',False),('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','in',('0','-1','-2','-3','-4'))]"/>
-                                <field name="affect_to"  invisible="1"/>
-                                <field name="student_id"  invisible="1"/>
+                                       domain="[('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','&lt;',1)]"
+                                       options="{'no_create': True, 'no_edit': True}"/>
+                                <field name="school_id" invisible="True" />
+                                <field name="education_schedule_id"  invisible="1"/>
+                                <field name="affect_to" invisible="1"/>
+                                <field name="student_id" invisible="1"/>
                                 <field name="reported_id" />
                                 <field name="site_id" />
-                                <field name="requires_imparting_group" invisible="1"/>
-                                <field name="impartation_group_id"
-                                    attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
-                                
+                                <field name="requires_imparting_group"
+                                       invisible="True"/>
+                                <field name="group_id"
+                                       attrs="{'invisible':[('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
                             </group>
                             <group>
                                 <field name="issue_date" />
                                 <field name="claim_id" />
                                 <field name="requires_justification" invisible="1"/>
                                 <field name="proof_id"
-                                    attrs="{'invisible': [('requires_justification', '=', False)], 'required': [('requires_justification', '=', True)]}"/>
+                                       attrs="{'invisible': [('requires_justification', '=', False)], 'required': [('requires_justification', '=', True)]}"/>
                             </group>
                             <field name="name" colspan="4" string="Description"/>
                         </group>
@@ -76,6 +79,7 @@
                 </form>
             </field>
         </record>
+
         <record id="act_wiz_create_positive_issue" model="ir.actions.act_window">
             <field name="name">Create positive issue</field>
             <field name="res_model">wiz.create.issue</field>
@@ -84,6 +88,7 @@
             <field name="view_id" ref="wiz_create_positive_issue_view_form"/>
             <field name="target">new</field>
         </record>
+
         <record id="act_wiz_create_negative_issue" model="ir.actions.act_window">
             <field name="name">Create negative issue</field>
             <field name="res_model">wiz.create.issue</field>
