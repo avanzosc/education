@@ -91,7 +91,7 @@
 
     <record id="res_partner_education_issue_action_view"
             model="ir.actions.act_window.view">
-        <field name="action_id" ref="res_partner_education_issue_action" />
+        <field name="act_window_id" ref="res_partner_education_issue_action" />
         <field name="view_id" ref="res_partner_issue_view_kanban" />
         <field name="view_mode">kanban</field>
     </record>
