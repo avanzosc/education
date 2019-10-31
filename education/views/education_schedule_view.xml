@@ -8,9 +8,9 @@
                 <field name="center_id" />
                 <field name="teacher_id" />
                 <field name="classroom_id" />
-                <field name="dayofweek" />
-                <field name="hour_from" widget="float_time" />
-                <field name="hour_to" widget="float_time" />
+<!--                <field name="dayofweek" />-->
+<!--                <field name="hour_from" widget="float_time" />-->
+<!--                <field name="hour_to" widget="float_time" />-->
                 <field name="task_type_type" invisible="True" />
                 <field name="group_ids" widget="many2many_tags"
                        domain="[('academic_year_id', '=', academic_year_id),('center_id', '=', center_id)]"
@@ -66,12 +66,19 @@
                         <group>
                             <field name="resource_calendar_id"
                                    invisible="True" />
-                            <field name="attendance_id"
-                                   options="{'no_create': True, 'no_open': True}"/>
-                            <field name="dayofweek" />
-                            <field name="session_number" />
-                            <field name="hour_from" widget="float_time" />
-                            <field name="hour_to" widget="float_time" />
+<!--                            <field name="attendance_id"-->
+<!--                                   options="{'no_create': True, 'no_open': True}"/>-->
+                            <field name="timetable_ids">
+                                <tree editable="bottom">
+                                    <field name="dayofweek" />
+                                    <field name="hour_from" widget="float_time" />
+                                    <field name="hour_to" widget="float_time" />
+                                </tree>
+                            </field>
+<!--                            <field name="dayofweek" />-->
+<!--                            <field name="session_number" />-->
+<!--                            <field name="hour_from" widget="float_time" />-->
+<!--                            <field name="hour_to" widget="float_time" />-->
                         </group>
                     </group>
                     <group>
@@ -113,42 +120,42 @@
         </field>
     </record>
 
-    <record id="education_schedule_group_view_tree"
-            model="ir.ui.view">
-        <field name="model">education.schedule.group</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="group_id" />
-                <field name="group_type_id" />
-                <field name="session_number" />
-                <field name="student_count" />
-                <field name="group_alias" />
-                <field name="parent_group_id" />
-                <field name="parent_group_type_id" />
-            </tree>
-        </field>
-    </record>
+<!--    <record id="education_schedule_group_view_tree"-->
+<!--            model="ir.ui.view">-->
+<!--        <field name="model">education.schedule.group</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree>-->
+<!--                <field name="group_id" />-->
+<!--                <field name="group_type_id" />-->
+<!--                <field name="session_number" />-->
+<!--                <field name="student_count" />-->
+<!--                <field name="group_alias" />-->
+<!--                <field name="parent_group_id" />-->
+<!--                <field name="parent_group_type_id" />-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
 
-    <record id="education_schedule_group_view_form"
-            model="ir.ui.view">
-        <field name="model">education.schedule.group</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="group_id" />
-                            <field name="group_type_id" />
-                        </group>
-                        <group>
-                            <field name="parent_group_id" />
-                            <field name="parent_group_type_id" />
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+<!--    <record id="education_schedule_group_view_form"-->
+<!--            model="ir.ui.view">-->
+<!--        <field name="model">education.schedule.group</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="group_id" />-->
+<!--                            <field name="group_type_id" />-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="parent_group_id" />-->
+<!--                            <field name="parent_group_type_id" />-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
 
     <record model="ir.actions.act_window" id="action_education_schedule">
         <field name="name">Schedule</field>
