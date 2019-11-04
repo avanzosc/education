@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- TREE VIEW -->
+	<record id="education_notebook_line_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.notebook.line</field>
+		<field name="arch" type="xml">
+			<tree string="Evaluation notebook" create="true" delete="true">
+				<field name="planification_id" placeholder="Planification" />
+				<field name="teacher" placeholder="Teacher" />
+				<field name="a_year" placeholder="Academic year" />
+				<field name="education_center" placeholder="Education center" />
+				<field name="classroom" placeholder="Classroom" />
+				<field name="task_type" placeholder="Task type" />
+				<field name="competence" placeholder="Competence" />
+				<field name="description" placeholder="Description" />
+				<field name="eval_type" placeholder="Evaluation type" />
+				<field name="eval_percent"
+					placeholder="Evaluation mark percent" />
+				<field name="mark_exam" placeholder="Competence mark" />
+			</tree>
+		</field>
+	</record>
+	<!-- SEARCH VIEW -->
+	<record id="education_notebook_line_view_search"
+		model="ir.ui.view">
+		<field name="model">education.notebook.line</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="planification_id" placeholder="Planification" />
+				<field name="teacher" placeholder="Teacher" />
+				<field name="a_year" placeholder="Academic year" />
+				<field name="education_center" placeholder="Education center" />
+				<field name="classroom" placeholder="Classroom" />
+				<field name="task_type" placeholder="Task type" />
+				<field name="competence" placeholder="Competence" />
+				<field name="description" placeholder="Description" />
+				<field name="eval_type" placeholder="Evaluation type" />
+				<field name="eval_percent"
+					placeholder="Evaluation mark percent" />
+				<field name="mark_exam" placeholder="Competence mark" />
+				<group expand="1" string="Group By">
+					<filter name="groupby_evaluacion"
+						context="{'group_by' : 'eval_type'}" string="Evaluation" />
+					<filter name="groupby_competence"
+						context="{'group_by' : 'competence'}" string="Competence" />
+					<filter name="groupby_teacher"
+						context="{'group_by' : 'teacher'}" string="Teacher" />
+					<filter name="groupby_year"
+						context="{'group_by' : 'a_year'}" string="Year" />
+					<filter name="groupby_center"
+						context="{'group_by' : 'education_center'}"
+						string="Education center" />
+					<filter name="groupby_classroom"
+						context="{'group_by' : 'classroom'}" string="Classroom" />
+				</group>
+			</search>
+		</field>
+	</record>
+	<!-- FORM VIEW -->
+	<record id="education_notebook_line_view_form"
+		model="ir.ui.view">
+		<field name="model">education.notebook.line</field>
+		<field name="arch" type="xml">
+			<form string="Evaluation notebook">
+				<group string="Insert notebook line data">
+					<field name="planification_id" placeholder="Planification" />
+					<field name="teacher" placeholder="Teacher" />
+					<field name="a_year" placeholder="Academic year" />
+					<field name="education_center" placeholder="Education center" />
+					<field name="classroom" placeholder="Classroom" />
+					<field name="task_type" placeholder="Task type" />
+					<field name="competence" placeholder="Competence" />
+					<field name="description" placeholder="Description" />
+					<field name="eval_type" placeholder="Evaluation type" />
+					<field name="eval_percent"
+						placeholder="Evaluation mark percent" />
+					<field name="mark_exam" placeholder="Competence mark" />
+				</group>
+				<tree editable="bottom">
+					<field name='exam_ids' placeholder='Examen'
+						widget="many2one_tags" />
+				</tree>
+			</form>
+		</field>
+	</record>
+</odoo>

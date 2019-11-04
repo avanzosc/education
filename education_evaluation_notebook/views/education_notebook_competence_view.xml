@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- FORM COMPETENCIA -->
+	<record id="education_notebook_competence_view_form"
+		model="ir.ui.view">
+		<field name="model">education.competence</field>
+		<field name="arch" type="xml">
+			<form string="Competence">
+				<sheet>
+					<group string="Competence fields">
+						<field name="name" />
+						<field name="eval_mode" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- TREE COMPETENCIA -->
+	<record id="education_notebook_competence_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.competence</field>
+		<field name="arch" type="xml">
+			<tree string="Competences">
+				<field name="name" />
+				<field name="eval_mode" />
+			</tree>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<!-- FORM PLANIFICACIÓN -->
+	<record id="education_notebook_schedule_view_form"
+		model="ir.ui.view">
+		<field name="model">education.schedule</field>
+		<field name="inherit_id"
+			ref="education.education_schedule_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr='//div[@name="button_box"]' position='inside'>
+				<button class="oe_stat_button" type="object"
+					name="button_show_notebook_lines" icon="fa-table">
+					<field name="notebook_lines_count" widget="statinfo"
+						string="Notebook" class="mr4" />
+				</button>
+			</xpath>
+		</field>
+	</record>
+
+
+</odoo>

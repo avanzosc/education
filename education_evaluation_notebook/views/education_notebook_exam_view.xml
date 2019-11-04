@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- FORM EXAMEN -->
+	<record id="education_notebook_exam_view_form"
+		model="ir.ui.view">
+		<field name="model">education.exam</field>
+		<field name="arch" type="xml">
+			<form string="Exam">
+				<header>
+					<button name="action_generate_expedient"
+						string="Generate expedient" type="object" />
+					<field name="messages_ok" readonly="1" style="color:Green;"
+						string="" />
+					<field name="messages_error" readonly="1" style="color:Red;"
+						string="" />
+					<field name="state" widget="statusbar" />
+				</header>
+				<sheet>
+					<group string="Exam fields">
+						<field name="name" />
+						<field name="eval_type" invisible="True" />
+						<field name="exam_type" />
+						<field name="eval_percent" />
+						<field name="date" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- TREE EXAMEN -->
+	<record id="education_notebook_exam_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.exam</field>
+		<field name="arch" type="xml">
+			<tree string="Exams">
+				<field name="name" />
+				<field name="eval_type" />
+				<field name="exam_type" />
+				<field name="eval_percent" />
+				<field name="date" />
+			</tree>
+		</field>
+	</record>
+</odoo>

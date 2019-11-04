@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ACTIONS -->
+        <record id="education_notebook_stuff_behaviour_menu_act" model="ir.actions.act_window">
+            <field name="name">Behaviour marks</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.mark.behaviour</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="education_notebook_stuff_behaviour_view_tree"/>
+        </record>
+        <record id="education_notebook_stuff_numeric_menu_act" model="ir.actions.act_window">
+            <field name="name">Numeric marks</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.mark.numeric</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="education_notebook_stuff_numeric_view_tree"/>
+        </record>
+        <record id="education_notebook_stuff_exam_menu_act" model="ir.actions.act_window">
+            <field name="name">Exam types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.exam.type</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="education_notebook_stuff_exam_view_tree"/>
+        </record>
+        <record id="education_notebook_exam_menu_act" model="ir.actions.act_window">
+            <field name="name">Exams</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.exam</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="education_notebook_exam_view_tree"/>
+        </record>
+        <record id="education_notebook_competence_menu_act" model="ir.actions.act_window">
+            <field name="name">Competences</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.competence</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="education_notebook_competence_view_tree"/>
+        </record>
+        <record id="education_notebook_line_menu_act" model="ir.actions.act_window">
+            <field name="name">Evaluation notebook</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.notebook.line</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="education_notebook_line_view_tree"/>
+        </record>
+         <record id="education_notebook_expedient_menu_act" model="ir.actions.act_window">
+            <field name="name">Expedient</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.expedient</field>
+            <field name="view_mode">form,tree,kanban</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="education_notebook_expedient_view_tree"/>
+        </record>
+        <!-- MENUS -->
+        <menuitem id="education_evaluation_notebook_menu" 
+                  name="Evaluation notebook"
+                  parent="education.education_configuration_menuitem"
+                  sequence="1"
+                  />
+        <menuitem id="education_notebook_stuff_behaviour_menu" 
+                  name="Behaviour marks"
+                  parent="education_evaluation_notebook_menu"
+                  action="education_notebook_stuff_behaviour_menu_act"
+                  sequence="1"
+                  />
+        <menuitem id="education_notebook_stuff_numeric_menu" 
+                  name="Numeric marks"
+                  parent="education_evaluation_notebook_menu"
+                  action="education_notebook_stuff_numeric_menu_act"
+                  sequence="2"
+                  />
+        <menuitem id="education_notebook_stuff_exam_menu" 
+                  name="Exam types"
+                  parent="education_evaluation_notebook_menu"
+                  action="education_notebook_stuff_exam_menu_act"
+                  sequence="3"
+                  />
+        
+         <menuitem id="education_notebook_competence_menu" 
+                  name="Competences"
+                  parent="education_evaluation_notebook_menu"
+                  action="education_notebook_competence_menu_act"
+                  sequence="4"
+                  />
+         <menuitem id="education_notebook_exam_menu" 
+                  name="Exams"
+                  parent="education.faculty_menuitem"
+                  action="education_notebook_exam_menu_act"
+                  sequence="1"
+                  />
+         <menuitem id="education_notebook_line_menu" 
+                  name="Evaluation notebook"
+                  parent="education.faculty_menuitem"
+                  action="education_notebook_line_menu_act"
+                  sequence="2"
+                  />
+         <menuitem id="education_notebook_expedient_menu" 
+                  name="Expedient"
+                  parent="education.faculty_menuitem"
+                  action="education_notebook_expedient_menu_act"
+                  sequence="3"
+                  />
+</odoo>

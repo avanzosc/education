@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- FORM NOTAS COMPORTAMIENTO -->
+	<record id="education_notebook_stuff_behaviour_view_form"
+		model="ir.ui.view">
+		<field name="model">education.mark.behaviour</field>
+		<field name="arch" type="xml">
+			<form string="Behaviour mark">
+				<sheet>
+					<group string="Behaviour mark fields">
+						<field name="name" />
+						<field name="code" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- FORM NOTAS NUMERICAS -->
+	<record id="education_notebook_stuff_numeric_view_form"
+		model="ir.ui.view">
+		<field name="model">education.mark.numeric</field>
+		<field name="arch" type="xml">
+			<form string="Numeric mark">
+				<sheet>
+					<group string="Numeric mark fields">
+						<field name="name" />
+						<field name="reduced_name" />
+						<field name="initial_mark" />
+						<field name="final_mark" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- FORM TIPO EXAMEN -->
+	<record id="education_notebook_stuff_exam_view_form"
+		model="ir.ui.view">
+		<field name="model">education.exam.type</field>
+		<field name="arch" type="xml">
+			<form string="Exam type">
+				<sheet>
+					<group string="Exam type fields">
+						<field name="name" />
+						<field name="e_type" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- TREE NOTAS COMPORTAMIENTO -->
+	<record id="education_notebook_stuff_behaviour_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.mark.behaviour</field>
+		<field name="arch" type="xml">
+			<tree string="Behaviour marks">
+				<field name="name" />
+				<field name="code" />
+			</tree>
+		</field>
+	</record>
+	<!-- TREE NOTAS NUMERICAS -->
+	<record id="education_notebook_stuff_numeric_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.mark.numeric</field>
+		<field name="arch" type="xml">
+			<tree string="Numeric marks">
+				<field name="name" />
+				<field name="reduced_name" />
+				<field name="initial_mark" />
+				<field name="final_mark" />
+			</tree>
+		</field>
+	</record>
+	<!-- TREE TIPO EXAMEN -->
+	<record id="education_notebook_stuff_exam_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.exam.type</field>
+		<field name="arch" type="xml">
+			<tree string="Numeric marks">
+				<field name="name" />
+				<field name="e_type" />
+			</tree>
+		</field>
+	</record>
+</odoo>
