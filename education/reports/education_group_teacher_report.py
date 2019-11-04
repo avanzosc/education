@@ -3,6 +3,7 @@
 
 from odoo import tools
 from odoo import api, fields, models
+from psycopg2.extensions import AsIs
 
 
 class EducationGroupTeacherReport(models.Model):
@@ -26,8 +27,6 @@ class EducationGroupTeacherReport(models.Model):
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year')
 
-    # _order = 'date desc'
-    #
     _depends = {
         'education.schedule': [
             'subject_id', 'classroom_id', 'teacher_id', 'academic_year_id'
@@ -44,7 +43,7 @@ class EducationGroupTeacherReport(models.Model):
                 grp.center_id AS center_id,
                 grp.course_id AS course_id,
                 grp.id AS group_id,
-                sch.subject_id AS subject_id, 
+                sch.subject_id AS subject_id,
                 sch.classroom_id AS classroom_id,
                 sch.teacher_id AS teacher_id,
                 sch.academic_year_id AS academic_year_id
@@ -68,12 +67,12 @@ class EducationGroupTeacherReport(models.Model):
 
     @api.model_cr
     def init(self):
-        # self._table = account_invoice_report
+        # self._table = education_group_teacher_report
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
                 %s %s %s
-            )""" % (
-                self._table, self._select(), self._from(), self._group_by()))
-
+            )""", (
+                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
+                AsIs(self._group_by()),))

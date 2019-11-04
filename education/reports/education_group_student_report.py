@@ -3,6 +3,7 @@
 
 from odoo import tools
 from odoo import api, fields, models
+from psycopg2.extensions import AsIs
 
 
 class EducationGroupStudentReport(models.Model):
@@ -12,25 +13,9 @@ class EducationGroupStudentReport(models.Model):
     _auto = False
     _rec_name = 'student_id'
 
-    # center_id = fields.Many2one(
-    #     comodel_name='res.partner', string='Education Center')
-    # course_id = fields.Many2one(
-    #     comodel_name='education.course', string='Education Course')
-    # group_id = fields.Many2one(
-    #     comodel_name='education.group', string='Education Group')
-    # subject_id = fields.Many2one(
-    #     comodel_name='education.subject', string='Education Subject')
-    # teacher_id = fields.Many2one(
-    #     comodel_name='hr.employee', string='Teacher')
-    # classroom_id = fields.Many2one(
-    #     comodel_name='education.classroom', string='Classroom')
     student_id = fields.Many2one(
         comodel_name='res.partner', string='Student')
-    # academic_year_id = fields.Many2one(
-    #     comodel_name='education.academic_year', string='Academic Year')
 
-    # _order = 'date desc'
-    #
     _depends = {
         'education.schedule': [
             'subject_id', 'classroom_id', 'teacher_id', 'academic_year_id'
@@ -45,7 +30,6 @@ class EducationGroupStudentReport(models.Model):
                 , stu_group.student_id AS student_id
         """
         return super(EducationGroupStudentReport, self)._select() + select_str
-
 
     def _from(self):
         from_str = """
@@ -62,12 +46,12 @@ class EducationGroupStudentReport(models.Model):
 
     @api.model_cr
     def init(self):
-        # self._table = account_invoice_report
+        # self._table = education_group_student_report
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
                 %s %s %s
-            )""" % (
-                self._table, self._select(), self._from(), self._group_by()))
-
+            )""", (
+                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
+                AsIs(self._group_by()),))
