@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record id="education_group_report_view_tree" model="ir.ui.view">
+        <field name="model">education.group.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_id" />
+                <field name="group_id" />
+                <field name="group_type_id" />
+                <field name="course_id" />
+                <field name="center_id" />
+                <field name="academic_year_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_group_report_view_search" model="ir.ui.view">
+        <field name="model">education.group.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="student_id" />
+                <field name="group_id" />
+                <field name="group_type_id" />
+                <field name="course_id" />
+                <field name="center_id" />
+                <field name="academic_year_id" />
+                <separator />
+                <filter string="Official Groups" name="official_group"
+                        domain="[('group_type_id.type', '=', 'official')]" />
+                <group expand="1" string="Group By">
+                    <filter string="Student" name="student"
+                            context="{'group_by':'student_id'}"/>
+                    <filter string="Education Group" name="education_group"
+                            context="{'group_by':'group_id'}"/>
+                    <filter string="Educational Group Type" name="education_group_type"
+                            context="{'group_by':'group_type_id'}"/>
+                    <filter string="Course" name="course"
+                            context="{'group_by':'course_id'}"/>
+                    <filter string="Education Center" name="education_center"
+                            context="{'group_by':'center_id'}"/>
+                    <filter string="Academic year" name="academic_year"
+                            context="{'group_by':'academic_year_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_education_group_report" model="ir.actions.act_window">
+        <field name="name">Group List</field>
+        <field name="res_model">education.group.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id"
+               ref="education_group_report_view_search"/>
+        <field name="context">{'search_default_official_group': True}</field>
+    </record>
+</odoo>

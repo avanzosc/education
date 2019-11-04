@@ -65,6 +65,7 @@ class EducationSubject(models.Model):
 class EducationSubjectType(models.Model):
     _name = 'education.subject.type'
     _inherit = 'education.data'
+    _description = 'Education Subject Type'
 
     type = fields.Selection(
         selection=SUBJECT_TYPE,
