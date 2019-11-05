@@ -16,6 +16,9 @@
     "data": [
         "security/education_groups.xml",
         "security/ir.model.access.csv",
+        "reports/education_group_report_view.xml",
+        "reports/education_group_teacher_report_view.xml",
+        "reports/education_group_student_report_view.xml",
         "views/education_academic_year_view.xml",
         "views/education_activity_type_view.xml",
         "views/education_classroom_view.xml",

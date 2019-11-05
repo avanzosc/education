@@ -123,6 +123,24 @@
               action="action_education_section"
               sequence="2" />
 
+    <menuitem id="education_report_menuitem"
+              name="Reports"
+              parent="education_menuitem"
+              sequence="49" />
+
+    <menuitem id="education_group_teacher_report_menuitem"
+              parent="education_report_menuitem"
+              action="action_education_group_teacher_report"
+              sequence="1" />
+    <menuitem id="education_group_student_report_menuitem"
+              parent="education_report_menuitem"
+              action="action_education_group_student_report"
+              sequence="2" />
+    <menuitem id="education_group_report_menuitem"
+              parent="education_report_menuitem"
+              action="action_education_group_report"
+              sequence="3" />
+
     <menuitem id="education_configuration_menuitem"
               name="Configuration"
               parent="education_menuitem"

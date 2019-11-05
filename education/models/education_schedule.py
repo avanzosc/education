@@ -44,6 +44,9 @@ class EducationSchedule(models.Model):
     attendance_id = fields.Many2one(
         comodel_name='resource.calendar.attendance',
         domain="[('calendar_id', '=', resource_calendar_id)]")
+    timetable_ids = fields.One2many(
+        comodel_name='education.schedule.timetable', string='Timetable',
+        inverse_name='schedule_id')
     session_number = fields.Integer()
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week',
@@ -119,6 +122,30 @@ class EducationSchedule(models.Model):
             'context': context,
         })
         return action_dict
+
+
+class EducationScheduleTimetable(models.Model):
+    _name = 'education.schedule.timetable'
+    _description = 'Class Schedule Timetable'
+
+    @api.model
+    def _get_selection_dayofweek(self):
+        return self.env['resource.calendar.attendance'].fields_get(
+            allfields=['dayofweek'])['dayofweek']['selection']
+
+    def default_dayofweek(self):
+        default_dict = self.env['resource.calendar.attendance'].default_get([
+            'dayofweek'])
+        return default_dict.get('dayofweek')
+
+    schedule_id = fields.Many2one(
+        comodel_name='education.schedule', string='Schedule', required=True,
+        ondelete='cascade')
+    dayofweek = fields.Selection(
+        selection='_get_selection_dayofweek', string='Day of Week',
+        required=True, index=True, default=default_dayofweek)
+    hour_from = fields.Float(string='Work from', required=True, index=True)
+    hour_to = fields.Float(string='Work to', required=True)
 
 
 class EducationScheduleGroup(models.Model):

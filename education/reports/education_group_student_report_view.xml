@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_group_student_report_view_tree" model="ir.ui.view">
+        <field name="model">education.group.student.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="center_id" />
+                <field name="course_id" />
+                <field name="group_id" />
+                <field name="subject_id" />
+                <field name="teacher_id" />
+                <field name="classroom_id" />
+                <field name="student_id" />
+                <field name="academic_year_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_group_student_report_view_search" model="ir.ui.view">
+        <field name="model">education.group.student.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="center_id" />
+                <field name="course_id" />
+                <field name="group_id" />
+                <field name="subject_id" />
+                <field name="teacher_id" />
+                <field name="student_id" />
+                <field name="classroom_id" />
+                <field name="academic_year_id" />
+                <separator />
+                <filter string="Current Academic Year" name="current_academic_year"
+                        domain="[('academic_year_id.date_start','&lt;=',context_today().strftime('%Y-%m-%d')),('academic_year_id.date_end','&gt;=',context_today().strftime('%Y-%m-%d'))]" />
+                <group expand="1" string="Group By">
+                    <filter string="Education Center" name="education_center"
+                            context="{'group_by':'center_id'}"/>
+                    <filter string="Education Course" name="education_course"
+                            context="{'group_by':'course_id'}"/>
+                    <filter string="Education Group" name="education_group"
+                            context="{'group_by':'group_id'}"/>
+                    <filter string="Education Subject" name="education_subject"
+                            context="{'group_by':'subject_id'}"/>
+                    <filter string="Teacher" name="teacher"
+                            context="{'group_by':'teacher_id'}"/>
+                    <filter string="Student" name="student"
+                            context="{'group_by':'student_id'}"/>
+                    <filter string="Classroom" name="classroom"
+                            context="{'group_by':'classroom_id'}"/>
+                    <filter string="Academic year" name="academic_year"
+                            context="{'group_by':'academic_year_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_education_group_student_report" model="ir.actions.act_window">
+        <field name="name">Student Group List</field>
+        <field name="res_model">education.group.student.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id"
+               ref="education_group_student_report_view_search"/>
+        <field name="context">{'search_default_current_academic_year': True}</field>
+    </record>
+</odoo>
