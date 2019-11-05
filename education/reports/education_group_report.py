@@ -25,14 +25,12 @@ class EducationGroupReport(models.Model):
     course_id = fields.Many2one(
         comodel_name='education.course', string='Course')
 
-    # _depends = {
-    #     'education.schedule': [
-    #         'subject_id', 'classroom_id', 'teacher_id', 'academic_year_id'
-    #     ],
-    #     'education.group': [
-    #         'center_id', 'course_id'
-    #     ],
-    # }
+    _depends = {
+        'education.group': [
+            'center_id', 'course_id', 'group_type_id', 'academic_year_id',
+            'student_ids',
+        ],
+    }
 
     def _select(self):
         select_str = """

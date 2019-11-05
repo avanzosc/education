@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-04 13:18+0000\n"
-"PO-Revision-Date: 2019-11-04 13:18+0000\n"
+"POT-Creation-Date: 2019-11-05 12:02+0000\n"
+"PO-Revision-Date: 2019-11-05 12:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -270,6 +270,16 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:education.field_education_workday_type__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
+msgid "Current Academic Year"
+msgstr "Año académico actual"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
+msgid "Current Official Groups"
+msgstr "Grupos oficiales actuales"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_academic_year_view_form
@@ -546,6 +556,11 @@ msgstr "Sección"
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_report_view_search
 msgid "Education Subject"
 msgstr "Asignatura"
+
+#. module: education
+#: model:ir.model,name:education.model_education_subject_type
+msgid "Education Subject Type"
+msgstr "Tipo de asignatura"
 
 #. module: education
 #: model:ir.model,name:education.model_education_task_type
@@ -934,6 +949,11 @@ msgstr "Descripción mínima"
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 msgid "Name"
 msgstr "Nombre"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
+msgid "Non Official Groups"
+msgstr "Grupos no oficiales"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_form
@@ -1367,9 +1387,4 @@ msgstr "Horas laborales"
 #, python-format
 msgid "You cannot create recursive groups."
 msgstr "No puede crear grupos recursivos."
-
-#. module: education
-#: model:ir.model,name:education.model_education_subject_type
-msgid "education.subject.type"
-msgstr ""
 
