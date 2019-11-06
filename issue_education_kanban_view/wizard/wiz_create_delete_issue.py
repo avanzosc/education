@@ -9,14 +9,13 @@ class WizCreateDeleteIssue(models.TransientModel):
 
     name = fields.Char(string='Description')
     student_id = fields.Many2one(
-        string='Student', comodel_name='res.partner')
+        string='Student', comodel_name='res.partner', required=True)
     schedule_id = fields.Many2one(
         string='Schedule', comodel_name='education.schedule')
     group_id = fields.Many2one(
         string='Group', comodel_name='education.group')
     issue_type_id = fields.Many2one(
         string='Issue type', comodel_name='school.college.issue.type')
-    create_issue = fields.Boolean(compute='_compute_create')
 
     @api.model
     def default_get(self, var_fields):
@@ -25,51 +24,43 @@ class WizCreateDeleteIssue(models.TransientModel):
         student_id = context.get('active_id')
         issue_type_id = context.get('issue_type')
         group_id = context.get('education_group_id')
-        scheduled_id = context.get('education_schedule_id')
-        if not group_id and scheduled_id:
-            schedule = self.env['education.schedule'].browse(scheduled_id)
+        schedule_id = context.get('education_schedule_id')
+        if not group_id and schedule_id:
+            schedule = self.env['education.schedule'].browse(schedule_id)
             group_id = schedule.group_ids.filtered(
                 lambda g: student_id in g.student_ids.ids)[:1].id
         res.update({
             'student_id': student_id,
             'issue_type_id': issue_type_id,
-            'schedule_id': scheduled_id,
+            'schedule_id': schedule_id,
             'group_id': group_id,
         })
         issue = self._find_issue(
-            student_id, issue_type_id, group_id, scheduled_id)
+            student_id, issue_type_id, group_id, schedule_id)
+        issue_type = self.env['school.college.issue.type'].browse(
+            issue_type_id)
         if issue:
-            res.update({'name': _('You are going to DELETE an issue')})
+            res.update({
+                'name': _('You are going to DELETE an {} issue').format(
+                    issue_type.name.lower()),
+            })
         else:
-            res.update({'name': _('You are going to CREATE an issue')})
+            res.update({
+                'name': _('You are going to CREATE an {} issue').format(
+                    issue_type.name.lower()),
+            })
         return res
 
     @api.multi
-    @api.depends('student_id', 'issue_type_id', 'group_id', 'schedule_id')
-    def _compute_create(self):
-        for wiz in self:
-            wiz.create_issue = bool(wiz._find_issue(
-                wiz.student_id.id, wiz.issue_type_id.id, wiz.group_id.id,
-                wiz.schedule_id.id))
-
-    @api.multi
     def _find_issue(self, student_id, issue_type_id, group_id, schedule_id):
-        issue_obj = self.env['school.issue']
-        # type_obj = self.env['school.college.issue.type']
         today = fields.Date.context_today(self)
-        # school_issue_type = type_obj.browse(issue_type_id)
         cond = [
             ('issue_date', '=', today),
             ('student_id', '=', student_id),
             ('school_issue_type_id', '=', issue_type_id),
             ('group_id', '=', group_id),
             ('education_schedule_id', '=', schedule_id)]
-        # if schedule:
-        #     cond.append(('education_schedule_id', '=',  schedule.id))
-        # else:
-        #     cond.append(('education_schedule_id', '=',  False))
-        issue = issue_obj.search(cond, limit=1)
-        return issue  # , school_issue_type
+        return self.env['school.issue'].search(cond, limit=1)
 
     @api.multi
     def create_delete_issue(self):
@@ -92,17 +83,12 @@ class WizCreateDeleteIssue(models.TransientModel):
         }
 
     def prepare_vals_for_create_issue(self, school_issue_type):
-        today = fields.Date.from_string(fields.Date.context_today(self))
-        name = _('School: {}, Issue type: {}').format(
-            self.student_id.current_center_id.name,
-            school_issue_type.name)
-        if self.schedule_id:
-            name = _('School: {}, Education subject: {}, Session: {}').format(
-                self.schedule_id.center_id.name,
-                self.schedule_id.subject_id.description,
-                self.schedule_id.session_number)
+        today = fields.Date.context_today(self)
+        name = self.env['school.issue'].create_issue_name(
+            self.student_id, school_issue_type, self.schedule_id)
         vals = {
             'name': name,
+            'school_id': school_issue_type.school_id.id,
             'school_issue_type_id': school_issue_type.id,
             'issue_type_id': school_issue_type.issue_type_id.id,
             'requires_justification':

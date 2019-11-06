@@ -36,9 +36,7 @@
                                                 t-att-title="issue.name" t-att-alt="issue.name" width="40" height="40"
                                                 class="oe_kanban_avatar float-right" />
                                             </a>
-<!--                                            <br/>-->
-                                            <!--<t t-esc="issue.name" />:
-                                             --><b><t
+                                            <b><t
                                                 t-esc="issue.issues_on_day"
                                         /></b>
                                         </div>

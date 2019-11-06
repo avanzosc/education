@@ -3,3 +3,4 @@
 partner-contact
 avanzosc-addons https://github.com/avanzosc/odoo-addons.git
 JayVora-SerpentC https://github.com/JayVora-SerpentCS/SerpentCS_Contributions.git
+

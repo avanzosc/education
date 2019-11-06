@@ -1,11 +1,12 @@
 # Copyright 2019 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import models, fields
+from odoo import fields, models
 
 
 class StudentIssue(models.Model):
     _name = 'student.issue'
     _description = 'Student issues'
+    _order = 'sequence'
 
     student_id = fields.Many2one(
         string='Student', comodel_name='res.partner', required=True)
@@ -13,6 +14,8 @@ class StudentIssue(models.Model):
         string='Schedule', comodel_name='education.schedule')
     college_issue_type_id = fields.Many2one(
         string='College issue type', comodel_name='school.college.issue.type')
+    sequence = fields.Integer(
+        string='Sequence', related='college_issue_type_id.sequence')
     name = fields.Char(
         string='Description', related='college_issue_type_id.name')
     issue_type_id = fields.Many2one(
@@ -21,9 +24,7 @@ class StudentIssue(models.Model):
     issue_count = fields.Integer(
         string='Count', compute='_compute_issue_count')
     issues_on_day = fields.Integer(
-        string='Issues on day', default=0, compute='_compute_issue_count')
-    image = fields.Binary(
-        string='Image', attachment=True)
+        string='Issues on day', compute='_compute_issue_count')
 
     def _compute_issue_count(self):
         today = fields.Date.context_today(self)
@@ -34,6 +35,10 @@ class StudentIssue(models.Model):
                 ('school_issue_type_id', '=',
                  student_issue.college_issue_type_id.id),
             ])
+            if student_issue.education_schedule_id:
+                school_issues.filtered(
+                    lambda i: i.education_schedule_id ==
+                    student_issue.education_schedule_id)
             student_issue.issue_count = len(
                 school_issues.filtered(lambda i: i.issue_date < today))
             student_issue.issues_on_day = len(

@@ -1,33 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data>
-        <record id="wiz_create_delete_issue_view_form" model="ir.ui.view">
-            <field name="model">wiz.create.delete.issue</field>
-            <field name="arch" type="xml">
-                <form string="Create/Delete issue">
-                    <p>
-                        <field name="name" nolabel="1" readonly="1"/>
-                    </p>
-                    <group>
-                        <field name="student_id" readonly="True" />
-                        <field name="schedule_id" readonly="True" />
-                        <field name="group_id" readonly="True"/>
-                        <field name="issue_type_id" readonly="True"/>
-                        <field name="create_issue" readonly="True" />
-                    </group>
-                    <footer>
-                        <button string="Create/Delete issue" name="create_delete_issue"
-                                type="object" default_focus="1" class="btn-primary"/>
-                        <button string="Cancel" class="btn-secondary" special="cancel"/>
-                    </footer>
-                </form>
-            </field>
-        </record>
-        <record id="act_wiz_create_delete_issue" model="ir.actions.act_window">
-            <field name="name">Create/Delete Issue</field>
-            <field name="res_model">wiz.create.delete.issue</field>
-            <field name="view_mode">form</field>
-            <field name="view_type">form</field>
-            <field name="target">new</field>
-        </record>
-    </data>
+    <record id="wiz_create_delete_issue_view_form" model="ir.ui.view">
+        <field name="model">wiz.create.delete.issue</field>
+        <field name="arch" type="xml">
+            <form string="Create/Delete issue">
+                <p>
+                    <field name="name" nolabel="1" readonly="1"/>
+                </p>
+                <group>
+                    <field name="student_id" readonly="True"
+                           invisible="True"/>
+                    <field name="schedule_id" readonly="True"
+                           invisible="True" />
+                    <field name="group_id" readonly="True"
+                           invisible="True" />
+                    <field name="issue_type_id" readonly="True"
+                           invisible="True" />
+                </group>
+                <footer>
+                    <button string="Create/Delete issue" name="create_delete_issue"
+                            type="object" default_focus="1" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_wiz_create_delete_issue" model="ir.actions.act_window">
+        <field name="name">Create/Delete Issue</field>
+        <field name="res_model">wiz.create.delete.issue</field>
+        <field name="view_mode">form</field>
+        <field name="view_type">form</field>
+        <field name="target">new</field>
+    </record>
 </odoo>

@@ -1,22 +1,33 @@
 # Copyright 2019 Alfredo de la fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class WizCreateIssue(models.TransientModel):
     _name = "wiz.create.issue"
     _description = "Wizard for create issues"
 
+    @api.model
+    def _get_selection_affect_to(self):
+        return self.env['school.issue.type'].fields_get(
+            allfields=['affect_to'])['affect_to']['selection']
+
     name = fields.Char(string='Description', required=True)
-    requires_justification = fields.Boolean(
-        string='Requires Justification')
+    notes = fields.Text(string='Notes')
+    school_id = fields.Many2one(
+        string='School', comodel_name='res.partner', required=True)
     school_issue_type_id = fields.Many2one(
         string='School issue type', comodel_name='school.college.issue.type')
-    school_id = fields.Many2one(
-        string='School', comodel_name='res.partner')
+    issue_type_id = fields.Many2one(
+        string='Issue type', comodel_name='school.issue.type',
+        related='school_issue_type_id.issue_type_id')
+    requires_justification = fields.Boolean(
+        string='Requires Justification',
+        related='issue_type_id.requires_justification')
     affect_to = fields.Selection(
-        string='Affect to', selection=[('group', 'Group'),
-                                       ('student', 'Student')])
+        string='Affect to', selection=_get_selection_affect_to,
+        related='school_issue_type_id.affect_to')
     student_id = fields.Many2one(
         string='Student', comodel_name='res.partner',
         domain=[('educational_category', '=', 'student')])
@@ -24,7 +35,8 @@ class WizCreateIssue(models.TransientModel):
         string='Reported by', comodel_name='res.users',
         default=lambda self: self.env.user.id)
     site_id = fields.Many2one(
-        string='Site', comodel_name='school.issue.site')
+        string='Site', comodel_name='school.issue.site',
+        related='issue_type_id.site_id')
     requires_imparting_group = fields.Boolean(
         related='site_id.requires_imparting_group')
     group_id = fields.Many2one(
@@ -45,55 +57,43 @@ class WizCreateIssue(models.TransientModel):
         res = super(WizCreateIssue, self).default_get(var_fields)
         student_id = context.get('active_id')
         group_id = context.get('education_group_id')
-        scheduled_id = context.get('education_schedule_id')
+        schedule_id = context.get('education_schedule_id')
+        schedule = self.env['education.schedule'].browse(schedule_id)
         school_id = context.get('school_id')
-        if not group_id and scheduled_id:
-            schedule = self.env['education.schedule'].browse(scheduled_id)
+        if not group_id and schedule:
             group_id = schedule.group_ids.filtered(
                 lambda g: student_id in g.student_ids.ids)[:1].id
-        if not school_id and student_id:
-            student = self.env['res.partner'].browse(student_id)
-            school_id = student.current_center_id.id
+        if not school_id:
+            if schedule:
+                school_id = schedule.center_id.id
+            elif group_id:
+                school_id = self.env['education.group'].browse(
+                    group_id).center_id.id
+            elif student_id:
+                student = self.env['res.partner'].browse(student_id)
+                school_id = student.current_center_id.id
         res.update({
             'student_id': student_id,
-            'education_schedule_id': scheduled_id,
+            'education_schedule_id': schedule_id,
             'group_id': group_id,
             'school_id': school_id,
         })
         return res
 
-    # @api.onchange('school_issue_type_id')
-    # def onchange_school_issue_type_id(self):
-    #     for issue in self.filtered(lambda c: c.school_issue_type_id):
-    #         itype = issue.school_issue_type_id.issue_type_id
-    #         issue.requires_justification = itype.requires_justification
-    #         issue.affect_to = itype.affect_to
-    #         if issue.education_schedule_id:
-    #             n = _('School: {}, Education subject: {}, Session: {}').format(
-    #                 issue.education_schedule_id.center_id.name,
-    #                 issue.education_schedule_id.subject_id.description,
-    #                 issue.education_schedule_id.session_number)
-    #         else:
-    #             n = _('School: {}, Issue type: {}').format(
-    #                 self.school_id.name, self.school_issue_type_id.name)
-    #         issue.name = n
-    #         if itype.site_id:
-    #             issue.site_id = itype.site_id.id
-                # issue.requires_imparting_group = (
-                #     itype.site_id.requires_imparting_group)
-
-    # @api.onchange('site_id')
-    # def onchange_site_id(self):
-    #     for issue in self.filtered(lambda c: c.site_id):
-    #         issue.requires_imparting_group = (
-    #             issue.site_id.requires_imparting_group)
+    @api.onchange('school_issue_type_id')
+    def onchange_school_issue_type_id(self):
+        for wizard in self:
+            wizard.name = self.env['school.issue'].create_issue_name(
+                wizard.student_id, wizard.school_issue_type_id,
+                wizard.education_schedule_id)
 
     @api.multi
     def create_issue(self):
-        vals = self.prepare_vals_for_create_issue()
-        self.env['school.issue'].create(vals)
-        # if issue.issue_type_id.generate_part:
-        #     issue._generate_part()
+        self.ensure_one()
+        if not self.school_issue_type_id:
+            raise UserError(_('Please select an issue type!'))
+        values = self.prepare_vals_for_create_issue()
+        self.env['school.issue'].create(values)
         # Close wizard and reload view
         return {
             "type": "ir.actions.act_multi",
@@ -104,26 +104,25 @@ class WizCreateIssue(models.TransientModel):
         }
 
     def prepare_vals_for_create_issue(self):
+        name = self.env['school.issue'].create_issue_name(
+            self.student_id, self.school_issue_type_id,
+            self.education_schedule_id)
         vals = {
-            'name': self.name,
+            'name': name,
             'student_id': self.student_id.id,
+            'school_id': self.school_id.id,
+            'notes': self.notes or '',
             'school_issue_type_id': self.school_issue_type_id.id,
-            'issue_type_id': self.school_issue_type_id.issue_type_id.id,
+            'issue_type_id': self.issue_type_id.id,
             'requires_justification': self.requires_justification,
             'affect_to': self.affect_to,
             'reported_id': self.reported_id.id,
             'requires_imparting_group': self.requires_imparting_group,
             'issue_date': self.issue_date,
             'claim_id': self.claim_id.id,
+            'site_id': self.site_id.id,
+            'group_id': self.group_id.id,
+            'proof_id': self.proof_id.id,
+            'education_schedule_id': self.education_schedule_id.id,
         }
-        if self.site_id:
-            vals['site_id'] = self.site_id.id
-        if self.group_id:
-            vals['group_id'] = self.group_id.id
-        if self.claim_id:
-            vals['claim_id'] = self.claim_id.id
-        if self.proof_id:
-            vals['proof_id'] = self.proof_id.id
-        if self.education_schedule_id:
-            vals['education_schedule_id'] = self.education_schedule_id.id
         return vals

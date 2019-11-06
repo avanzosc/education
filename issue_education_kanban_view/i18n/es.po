@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-30 10:46+0000\n"
-"PO-Revision-Date: 2019-10-30 10:46+0000\n"
+"POT-Creation-Date: 2019-11-11 13:51+0000\n"
+"PO-Revision-Date: 2019-11-11 13:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -116,11 +116,19 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_education_group
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__group_id
+msgid "Education Group"
+msgstr "Grupo educativo"
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.education_group_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.education_schedule_view_form
 msgid "Generate/View issues"
 msgstr "Generar/Ver incidencias"
 
 #. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__group_id
 #: selection:wiz.create.issue,affect_to:0
 msgid "Group"
 msgstr "Grupo"
@@ -133,14 +141,9 @@ msgid "ID"
 msgstr ""
 
 #. module: issue_education_kanban_view
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__image
-msgid "Image"
-msgstr "Imagen"
-
-#. module: issue_education_kanban_view
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__impartation_group_id
-msgid "Impartation group"
-msgstr "Grupo de impartición"
+#: model:ir.model,name:issue_education_kanban_view.model_school_claim
+msgid "Issue Report"
+msgstr "Parte de incidencia"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_type_id
@@ -149,8 +152,7 @@ msgid "Issue type"
 msgstr "Tipo de incidencia"
 
 #. module: issue_education_kanban_view
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_partner__school_issue_ids
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_res_users__school_issue_ids
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_education_issue_view_form
 msgid "Issues"
 msgstr "Incidencias"
 
@@ -182,8 +184,15 @@ msgstr "Última actualización el"
 
 #. module: issue_education_kanban_view
 #: model:ir.actions.act_window,name:issue_education_kanban_view.res_partner_education_issue_action
+#: model:ir.ui.menu,name:issue_education_kanban_view.res_partner_issue_menuitem
 msgid "Partner Education Issues Kanban"
 msgstr "Kanban de incidencias"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:106
+#, python-format
+msgid "Please select an issue type!"
+msgstr "¡Por favor seleccione un tipo de incidencia!"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__proof_id
@@ -218,11 +227,6 @@ msgid "School"
 msgstr "Colegio"
 
 #. module: issue_education_kanban_view
-#: model:ir.model,name:issue_education_kanban_view.model_school_claim
-msgid "School claims"
-msgstr "Parte de incidencia"
-
-#. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__school_issue_type_id
 msgid "School issue type"
 msgstr "Tipo incidencia colegio"
@@ -233,18 +237,9 @@ msgid "School issues"
 msgstr "Incidencias colegio"
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:89
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:65
-#, python-format
-msgid "School: {}, Education subject: {}, Session: {}"
-msgstr "Colegio: {}, Asignatura: {}, Sesión: {}"
-
-#. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:85
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:70
-#, python-format
-msgid "School: {}, Issue type: {}"
-msgstr "Colegio: {}, Tipo incidencia: {}"
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__sequence
+msgid "Sequence"
+msgstr "Secuencia"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__site_id
@@ -272,6 +267,17 @@ msgid "Student today issues"
 msgstr "Incidencias de hoy del alumno"
 
 #. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/models/school_issue.py:14
+#, python-format
+msgid "Student: {}, Issue type: {}"
+msgstr "Alumno: {}, Tipo de incidencia: {}"
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_education_issue_view_form
+msgid "Total Issue Count"
+msgstr "Total de incidencias"
+
+#. module: issue_education_kanban_view
 #: model:ir.model,name:issue_education_kanban_view.model_wiz_create_issue
 msgid "Wizard for create issues"
 msgstr "Asistente para crear incidencias"
@@ -282,14 +288,24 @@ msgid "Wizard for create or delete issue on day"
 msgstr "Asistente para crear o borrar incidencia en el día"
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:37
+#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:53
+#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:119
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:49
 #, python-format
-msgid "You are going to CREATE an issue"
-msgstr "Usted va a CREAR una incidencia"
+msgid "You are going to CREATE an {} issue"
+msgstr "Va a CREAR un incidencia de tipo {}"
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:35
+#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:62
+#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:129
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:44
 #, python-format
-msgid "You are going to DELETE an issue"
-msgstr "Usted va a BORRAR una incidencia"
+msgid "You are going to DELETE an {} issue"
+msgstr "Va a ELIMINAR una incidencia de tipo {}"
+
+#. module: issue_education_kanban_view
+#: code:addons/issue_education_kanban_view/models/school_issue.py:17
+#, python-format
+msgid "{}, Education subject: {}"
+msgstr "{}, Asignatura: {}"
 
