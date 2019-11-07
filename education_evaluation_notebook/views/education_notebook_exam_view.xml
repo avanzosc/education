@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<!-- FORM EXAMEN -->
+	<record id="education_notebook_exam_view_form"
+		model="ir.ui.view">
+		<field name="model">education.exam</field>
+		<field name="arch" type="xml">
+			<form string="Exam">
+				<header>
+					<button name="action_revise_exam" string="Revised"
+						type="object" class="btn btn-success"
+						attrs="{'invisible': ['|', ('state', '==', 'generated'), ('state', '==', 'closed'), ('state', '==', 'revision in course'), ('date','==',False)]}" />
+					<button name="action_generate_record"
+						string="Generate academic records" type="object"
+						class="btn btn-warning"
+						attrs="{'invisible': ['|', ('state', '==', 'generated'), ('state', '==', 'closed'), ('date','==',False)]}" />
+					<button name="%(education_exam_check_wizard_view_action)d"
+						class="btn btn-danger" string="Close exam" type="action"
+						attrs="{'invisible': [('state','==','closed')]}" />
+					<field name="state" widget="statusbar" />
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button class="oe_stat_button" type="object"
+							name="button_show_academic_record_lines" icon="fa-table">
+							<field name="academic_record_lines_count" widget="statinfo"
+								string="Record" class="mr4" />
+						</button>
+					</div>
+					<group string="Exam fields">
+						<field name="name" />
+						<field name="description" />
+						<field name="n_line_id"
+							domain="[('teacher_id.user_id.id','=', uid)]" />
+						<field name="eval_type" invisible="True" />
+						<field name="exam_type_id" />
+						<field name="eval_percent" />
+						<field name="date" />
+						<field name="type_exam_name" invisible="True" />
+						<field name="mark_close_date" />
+						<field name="recovery_exam_to_id"
+							attrs="{'invisible': [('type_exam_name','!=','recuperation exam')]}"
+							domain="[('exam_type_id.e_type','!=','recuperation exam')]" />
+					</group>
+					<group>
+                    <field name='academic_record_ids' widget="many2one_tags">
+                        <tree editable="bottom" 
+                        decoration-success="master_competence_eval_check==True"
+                        decoration-info="master_competence_global_check==True">
+                            <field name="exam_id" />
+                            <field name="exam_type" />
+                            <field name="exam_eval_percent" />
+                            <field name="competence" />
+                            <field name="competence_father" />
+                            <field name="date" />
+                            <field name="subject_id" />
+                            <field name="teacher_id" />
+                            <field name="kid_id" />
+                            <field name="numeric_mark" />
+                            <field name="n_mark_name" />
+                            <field name="n_mark_reduced_name" />
+                            <field name="behaviour_mark_id" />
+                            <field name="master_competence_eval_check" invisible="True" />
+                            <field name="master_competence_global_check" invisible="True" />
+                            <field name="calculated_numeric_mark" />
+                        </tree>
+                    </field>
+                    </group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- TREE EXAMEN -->
+	<record id="education_notebook_exam_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.exam</field>
+		<field name="arch" type="xml">
+			<tree string="Exams">
+				<field name="name" />
+				<field name="description" />
+				<field name="n_line_id"
+					domain="[('teacher_id.user_id.id','=', uid)]" />
+				<field name="eval_type" invisible="True" />
+				<field name="exam_type_id" />
+				<field name="eval_percent" />
+				<field name="date" />
+				<field name="type_exam_name" />
+				<field name="mark_close_date" invisible="True" />
+				<field name="recovery_exam_to_id"
+					attrs="{'invisible': [('type_exam_name','!=','recuperation exam')]}"
+					domain="[('exam_type_id.e_type','!=','recuperation exam')]" />
+				<field name="state" />
+				<button name="action_generate_record" class="btn btn-success"
+					string="Generate academic records" type="object"
+					attrs="{'invisible': ['|', ('state', '==', 'generated'), ('state', '==', 'closed'), ('date','==',False)]}" />
+			</tree>
+		</field>
+	</record>
+</odoo>
+

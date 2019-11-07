@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<!-- FORM PLANIFICACIÓN -->
+	<record id="education_notebook_schedule_view_form"
+		model="ir.ui.view">
+		<field name="model">education.schedule</field>
+		<field name="inherit_id"
+			ref="education.education_schedule_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr='//div[@name="button_box"]' position='before'>
+				<header>
+					<button name="action_generate_master_competences"
+						string="Generate master competences" type="object"
+						class="btn btn-success" />
+					<button name="action_generate_evaluations_for_courses_and_schools"
+                        string="Generate Evaluations" type="object"
+                        class="btn btn-success" />
+				</header>
+			</xpath>
+			<xpath expr='//div[@name="button_box"]' position='inside'>
+				<button class="oe_stat_button" type="object"
+					name="button_show_notebook_lines" icon="fa-table">
+					<field name="notebook_lines_count" widget="statinfo"
+						string="Notebook lines" class="mr4" />
+				</button>
+				<button class="oe_stat_button" type="object"
+					name="button_show_master_generated_competences" icon="fa-clipboard">
+					<field name="master_competences_count" widget="statinfo"
+						string="Master competences" class="mr4" />
+				</button>
+				<button class="oe_stat_button" type="object"
+					name="button_show_son_generated_competences" icon="fa-clipboard">
+					<field name="son_competences_count" widget="statinfo"
+						string="Son competences" class="mr4" />
+				</button>
+				<button class="oe_stat_button" type="object"
+					name="button_show_notebook_exams" icon="fa-file">
+					<field name="notebook_exams_count" widget="statinfo"
+						string="Exams" class="mr4" />
+				</button>
+				<button class="oe_stat_button" type="object"
+					name="button_show_exams_academic_records" icon="fa-file-text-o">
+					<field name="exams_academic_record_count" widget="statinfo"
+						string="Academic records" class="mr4" />
+				</button>
+				<button class="oe_stat_button" type="object"
+                    name="button_show_homeworks" icon="fa-bookmark">
+                    <field name="homeworks_count" widget="statinfo"
+                        string="Homeworks" class="mr4" />
+                </button>
+			</xpath>
+		</field>
+	</record>
+</odoo>
+

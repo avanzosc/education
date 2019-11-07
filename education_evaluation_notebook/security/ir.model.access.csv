@@ -1,0 +1,25 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+education_notebook_line_manager,education_notebook_line manager,model_education_notebook_line,base.group_erp_manager,1,1,1,1
+education_notebook_line_user,education_notebook_line user,model_education_notebook_line,base.group_user,1,1,1,1
+education_mark_numeric_manager,education_mark_numeric manager,model_education_mark_numeric,base.group_erp_manager,1,1,1,1
+education_mark_numeric_user,education_mark_numeric user,model_education_mark_numeric,base.group_user,1,1,1,1
+education_mark_behaviour_manager,education_mark_behaviour manager,model_education_mark_behaviour,base.group_erp_manager,1,1,1,1
+education_mark_behaviour_user,education_mark_behaviour user,model_education_mark_behaviour,base.group_user,1,1,1,1
+education_exam_type_manager,education_exam_type manager,model_education_exam_type,base.group_erp_manager,1,1,1,1
+education_mark_behaviour_user,education_mark_behaviour user,model_education_mark_behaviour,base.group_user,1,1,1,1
+education_exam_manager,education_exam manager,model_education_exam,base.group_erp_manager,1,1,1,1
+education_exam_user,education_exam user,model_education_exam,base.group_user,1,1,1,1
+education_competence_manager,education_competence manager,model_education_competence,base.group_erp_manager,1,1,1,1
+education_competence_user,education_competence user,model_education_competence,base.group_user,1,1,1,1
+education_record_manager,education_record manager,model_education_record,base.group_erp_manager,1,1,1,1
+education_record_user,education_record user,model_education_record,base.group_user,1,1,1,1
+education_schedule_manager,education_schedule manager,model_education_schedule,base.group_erp_manager,1,1,1,1
+education_schedule_user,education_schedule user,model_education_schedule,base.group_user,1,1,1,1
+education_competence_type_manager,education_competence_type manager,model_education_competence_type,base.group_erp_manager,1,1,1,1
+education_competence_type_user,education_competence_type user,model_education_competence_type,base.group_user,1,1,1,1
+education_exam_check_manager,education_exam_check manager,model_education_exam_check,base.group_erp_manager,1,1,1,1
+education_exam_check_user,education_exam_check user,model_education_exam_check,base.group_user,1,1,1,1
+education_homework_manager,education_homework manager,model_education_homework,base.group_erp_manager,1,1,1,1
+education_homework_user,education_homework user,model_education_homework,base.group_user,1,1,1,1
+education_academic_year_evaluation_manager,education_academic_year_evaluation manager,model_education_academic_year_evaluation,base.group_erp_manager,1,1,1,1
+education_academic_year_evaluation_user,education_academic_year_evaluation user,model_education_academic_year_evaluation,base.group_user,1,1,1,1

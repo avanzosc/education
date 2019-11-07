@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<!-- FORM HOMEWORK -->
+	<record id="education_notebook_homework_view_form"
+		model="ir.ui.view">
+		<field name="model">education.homework</field>
+		<field name="arch" type="xml">
+			<form string="Homework">
+			    <header>
+                    <button name="action_generate_homework_competence"
+                        string="Generate homework competence" type="object"
+                        class="btn btn-success" />
+                </header>
+				<sheet>
+					<group string="Homework fields">
+						<field name="description" />
+						<field name="date" />
+						<field name="planification_id" />
+					</group>
+					<group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- TREE HOMEWORK -->
+	<record id="education_notebook_homework_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.homework</field>
+		<field name="arch" type="xml">
+			<tree string="Homeworks">
+				<field name="description" />
+				<field name="date" />
+			</tree>
+		</field>
+	</record>
+	<!-- CALENDAR HOMEWORK -->
+	<record id="education_notebook_homework_view_calendar"
+		model="ir.ui.view">
+		<field name="model">education.homework</field>
+		<field name="arch" type="xml">
+			<calendar string="Homeworks" color="planification_id"
+				date_start="date">
+				<field name="description" />
+			</calendar>
+		</field>
+	</record>
+</odoo>
+

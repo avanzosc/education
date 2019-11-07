@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<!-- SEARCH EXPEDIENTE -->
+	<record id="education_notebook_record_view_search"
+		model="ir.ui.view">
+		<field name="model">education.record</field>
+		<field name="arch" type="xml">
+			<search>
+			    <field name="numeric_mark" />
+                <field name="kid_id" />
+			    <field name="n_mark_name" />
+                <field name="n_mark_reduced_name" />
+                <field name="behaviour_mark_id" 
+                attrs="{'readonly':[('exam_id','=',False)]}" />
+                <field name="calculated_numeric_mark" 
+                attrs="{'readonly':[('exam_id','=',False)]}" />
+			    <field name="competence" />
+                <field name="competence_father" />
+				<field name="exam_id" />
+				<field name="exam_type" />
+				<field name="exam_eval_percent" />
+				<field name="date" />
+				<field name="subject_id" />
+				<field name="teacher_id" />
+				<field name="n_mark" invisible="True" />
+				<field name="father_record_id" invisible="True" />
+                <field name="competence_father_father" invisible="True" />
+                <field name="master_competence_eval_check" invisible="True" />
+                <field name="master_competence_global_check" invisible="True" />
+				<group expand="1" string="Group By">
+					<filter name="groupby_exam"
+						context="{'group_by' : 'exam_id'}" string="Exams" />
+					<filter name="groupby_subject"
+						context="{'group_by' : 'subject_id'}" string="Subjects" />
+					<filter name="groupby_teacher"
+						context="{'group_by' : 'teacher_id'}" string="Teachers" />
+					<filter name="groupby_date" context="{'group_by' : 'date'}"
+						string="Date" />
+					<filter name="groupby_kid" context="{'group_by' : 'kid_id'}"
+						string="Kids" />
+					<!-- 
+					<filter name="groupby_evaluation_marks"
+						context="{'group_by' : 'numeric_mark'}" string="Evaluation marks"
+						domain="[('exam_id.eval_type', 'in', ('first','second','third'))]" />
+					<filter name="groupby_global_marks"
+						context="{'group_by' : 'numeric_mark'}" string="Global marks"
+						domain="[('exam_id.eval_type', '=', 'final')]" /> -->
+                    <filter name="groupby_competencetype"
+                        context="{'group_by' : 'competence_type_check'}" string="Competence types" />
+					<filter name="groupby_competence"
+						context="{'group_by' : 'competence'}" string="Competences" />
+					<filter name="groupby_father_competence"
+						context="{'group_by' : 'father_record_id'}"
+						string="Father competences" />
+					<filter name="groupby_father_father_competence"
+                        context="{'group_by' : 'father_father_record_id'}"
+                        string="Fathers father competences" />
+				</group>
+			</search>
+		</field>
+	</record>
+	<!-- TREE EXPEDIENTE -->
+	<record id="education_notebook_record_view_tree"
+		model="ir.ui.view">
+		<field name="model">education.record</field>
+		<field name="arch" type="xml">
+			<tree string="Academic record" editable="bottom"
+				decoration-success="master_competence_eval_check==True"
+				decoration-info="master_competence_global_check==True">
+				<field name="numeric_mark" />
+                <field name="kid_id" />
+				<field name="n_mark_name" />
+                <field name="n_mark_reduced_name" />
+                <field name="behaviour_mark_id" 
+                attrs="{'readonly':[('exam_id','=',False)]}"/>
+                <field name="calculated_numeric_mark" 
+                attrs="{'readonly':[('exam_id','=',False)]}"/>
+                <field name="competence" />
+                <field name="competence_father" />
+				<field name="exam_id" />
+				<field name="exam_type" />
+				<field name="exam_eval_percent" />
+				<field name="date" />
+				<field name="subject_id" />
+				<field name="teacher_id" />
+				<field name="n_mark" invisible="True" />
+				<field name="master_competence_eval_check" invisible="True" />
+				<field name="master_competence_global_check" invisible="True" />
+				<field name="father_record_id" invisible="True" />
+				<field name="n_line_id" invisible="True" />
+			</tree>
+		</field>
+	</record>
+	<!-- KANBAN EXPEDIENTE -->
+	<record id="education_notebook_record_view_kanban"
+		model="ir.ui.view">
+		<field name="model">education.record</field>
+		<field name="arch" type="xml">
+			<kanban class="o_res_partner_kanban">
+				<field name="exam_id" />
+				<field name="date" />
+				<field name="subject_id" />
+				<field name="kid_id" />
+				<field name="numeric_mark" />
+				<templates>
+					<t t-name="kanban-box">
+						<div t-attf-class="oe_kanban_global_click">
+							<div class="o_kanban_image">
+								<img alt="Avatar"
+									t-att-src="kanban_image('res.partners', 'image_medium',record.kid_id.raw_value)" />
+							</div>
+							<div class="oe_kanban_details">
+								<strong class="o_kanban_record_title">
+									<field name="exam_id" />
+								</strong>
+								<div t-if="record.date.value">
+									[Date]
+									<t t-esc="record.date.value" />
+								</div>
+								<div t-if="record.subject_id.value">
+									<t t-esc="record.subject_id.value" />
+								</div>
+								<div t-if="record.kid_id.value">
+									[Kid]
+									<t t-esc="record.kid_id.value" />
+								</div>
+								<div t-if="record.numeric_mark.value">
+									[Mark]
+									<t t-esc="record.numeric_mark.value" />
+								</div>
+							</div>
+						</div>
+					</t>
+				</templates>
+			</kanban>
+		</field>
+	</record>
+	   <!-- FORM VIEW -->
+    <record id="education_notebook_record_view_form"
+        model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="arch" type="xml">
+        <form string="Child record">
+        <sheet>
+            <div class="oe_button_box" name="button_box">
+                <button class="oe_stat_button" type="object"
+                    name="button_show_child_academic_records" icon="fa-files-o">
+                    <field name="child_academic_records_count" widget="statinfo"
+                        string="Child academic records" class="mr4" />
+                </button>
+            </div>
+                <group string="Child record data">
+                    <field name="numeric_mark" />
+                    <field name="kid_id" />
+                    <field name="n_mark_name" />
+                    <field name="n_mark_reduced_name" />
+                    <field name="behaviour_mark_id" 
+                    attrs="{'readonly':[('exam_id','=',False)]}" />
+                    <field name="calculated_numeric_mark" 
+                    attrs="{'readonly':[('exam_id','=',False)]}" />
+                </group>
+                <group string="Competence and exam data">
+                    <field name="competence" />
+                    <field name="competence_father" />
+                    <field name="exam_id" />
+                    <field name="exam_type" />
+                    <field name="exam_eval_percent" />
+                    <field name="date" />
+                    <field name="subject_id" />
+                    <field name="teacher_id" />
+                    <field name="n_mark" invisible="True" />
+                    <field name="master_competence_eval_check" invisible="True" />
+                    <field name="master_competence_global_check" invisible="True" />
+                    <field name="father_record_id" invisible="True" />
+                    <field name="n_line_id" invisible="True" />
+                </group>
+                <group>
+                    <field name='child_record_ids' invisible="1"/>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
+
