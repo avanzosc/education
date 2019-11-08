@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_claim_view_tree" model="ir.ui.view">
+        <field name="model">school.claim</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="issue_date" />
+                <field name="name" />
+                <field name="school_issue_id" />
+                <field name="school_issue_type_id" />
+                <field name="education_schedule_id" />
+                <field name="reported_id" />
+                <field name="student_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="school_claim_view_search" model="ir.ui.view">
+        <field name="model">school.claim</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="issue_date" />
+                <field name="school_issue_id" />
+                <field name="school_issue_type_id" />
+                <field name="education_schedule_id" />
+                <field name="reported_id" />
+                <field name="student_id" />
+                <field name="state" />
+                <separator />
+                <filter string="Today" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                   <filter string="Issue date" name="group-issue_date" domain="[]" context="{'group_by':'issue_date'}"/>
+                   <filter string="Issue type" name="group-issue_type" domain="[]" context="{'group_by':'school_issue_type_id'}"/>
+                   <filter string="Education schedule" name="group-education-schedule" domain="[]" context="{'group_by':'education_schedule_id'}"/>
+                   <filter string="Reported by" name="group-reported" domain="[]" context="{'group_by':'reported_id'}"/>
+                   <filter string="Student" name="group-student" domain="[]" context="{'group_by':'student_id'}"/>
+                   <filter string="State" name="group-state" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="school_claim_view_form" model="ir.ui.view">
+        <field name="model">school.claim</field>
+        <field name="arch" type="xml">
+           <form>
+                <header>
+                    <button name="button_notified" string="Notified" type="object" states="draft" class="oe_highlight"/>
+                    <button name="button_confirmed" string="Educational measure confirmed" type="object" states="notified" class="oe_highlight"/>
+                    <button name="button_fulfill" string="Sanction fulfill" type="object" states="confirmed" class="oe_highlight"/>
+                    <button name="button_closed" string="Closed" type="object" states="fulfill" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,notified,confirmed,fulfill,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_calendar_event" type="object"
+                                class="oe_stat_button" icon="fa-calendar">
+                                <field name="calendar_event_count"
+                                       widget="statinfo"
+                                       string="Meetings" />
+                            </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="school_issue_id" />
+                            <field name="issue_date" />
+                            <field name="school_issue_type_id"
+                                   string="Issue Type"/>
+                        </group>
+                        <group>
+                            <field name="education_group_id" />
+                            <field name="education_schedule_id" />
+                            <field name="reported_id" />
+                            <field name="student_id" />
+                        </group>
+                    </group>
+                    <group string="Issues">
+                        <field name="school_issue_ids">
+                        </field>
+                    </group>
+                    <notebook>
+                        <page string="Description of the facts" name = "description-facts">
+                            <field name="description_facts" nolabel="1" />
+                        </page>
+                        <page string="Sanction specification" name = "sanction_specification">
+                            <field name="sanction_specification" nolabel="1" />
+                        </page>
+                        <page string="Educational measures" name = "educational_measures">
+                            <field name="educational_measure_ids" nolabel="1" />
+                            <separator string="Educational measure concretion" name="educational_measure_concretion" />
+                            <field name="educational_measure_concretion" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+           </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_claim">
+        <field name="name">Issue Reports</field>
+        <field name="res_model">school.claim</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="school_claim_view_tree" />
+        <field name="context">{"search_default_filter-today-issues":1}</field>
+    </record>
+
+</odoo>

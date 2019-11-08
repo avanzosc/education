@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_severity_scale,school_issue_severity_scale all,model_school_issue_severity_scale,,1,0,0,0
+access_school_issue_severity_scale,school_issue_severity_scale manager,model_school_issue_severity_scale,education.education_responsible,1,1,1,1
+access_school_issue_type,school_issue_type all,model_school_issue_type,,1,0,0,0
+access_school_issue_type_manager,school_issue_type manager,model_school_issue_type,education.education_responsible,1,1,1,1
+access_school_college_issue_type,school_college_issue_type all,model_school_college_issue_type,,1,0,0,0
+access_school_college_issue_type_manager,school_college_issue_type manager,model_school_college_issue_type,education.education_responsible,1,1,1,1
+access_school_college_educational_measure,school_college_educational_measure all,model_school_college_educational_measure,,1,0,0,0
+access_school_college_educational_measure_manager,school_college_educational_measure manager,model_school_college_educational_measure,education.education_responsible,1,1,1,1
+access_school_issue_site,school_issue_site all,model_school_issue_site,,1,0,0,0
+access_school_issue_site_manager,school_issue_site manager,model_school_issue_site,education.education_responsible,1,1,1,1
+access_school_issue_proof,school_issue_proof all,model_school_issue_proof,,1,1,1,1
+access_school_issue_proof_manager,school_issue_proof manager,model_school_issue_proof,education.education_responsible,1,1,1,1
+access_school_issue,school_issue all,model_school_issue,,1,1,1,1
+access_school_issue_manager,school_issue manager,model_school_issue,education.education_responsible,1,1,1,1
+access_school_claim,school_claim all,model_school_claim,,1,1,1,1
+access_school_claim_manager,school_claim manager,model_school_claim,education.education_responsible,1,1,1,1

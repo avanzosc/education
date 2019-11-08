@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="school_issue_severity_scale_neutral" model="school.issue.severity.scale"
+            forcecreate="True">
+        <field name="name">Neutral</field>
+        <field name="gravity_scale">0</field>
+    </record>
+    <record id="school_issue_severity_scale_minor" model="school.issue.severity.scale"
+            forcecreate="True">
+        <field name="name">Minor</field>
+        <field name="gravity_scale">-1</field>
+    </record>
+    <record id="school_issue_severity_scale_inappropriate" model="school.issue.severity.scale"
+            forcecreate="True">
+        <field name="name">Inappropriate</field>
+        <field name="gravity_scale">-2</field>
+    </record>
+    <record id="school_issue_severity_scale_no_coexistence" model="school.issue.severity.scale"
+            forcecreate="True">
+        <field name="name">Opposite to coexistence</field>
+        <field name="gravity_scale">-3</field>
+    </record>
+    <record id="school_issue_severity_scale_disruptive" model="school.issue.severity.scale"
+            forcecreate="True">
+        <field name="name">Seriosly disruptive</field>
+        <field name="gravity_scale">-4</field>
+    </record>
+    <record id="school_issue_severity_scale_positive" model="school.issue.severity.scale"
+            forcecreate="True">
+        <field name="name">Positive</field>
+        <field name="gravity_scale">1</field>
+    </record>
+    <record id="school_issue_severity_scale_remarkable" model="school.issue.severity.scale"
+            forcecreate="True">
+        <field name="name">Remarkable</field>
+        <field name="gravity_scale">2</field>
+    </record>
+
+    <record id="schoolwork_issue_type_master" model="school.issue.type"
+            forcecreate="True">
+        <field name="name">Schoolwork</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale_neutral"/>
+        <field name="image" type="base64"
+               file="issue_education/static/img/schoolwork.png"/>
+    </record>
+    <record id="comes_late_issue_type_master" model="school.issue.type"
+            forcecreate="True">
+        <field name="name">Comes late</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale_neutral"/>
+        <field name="image" type="base64"
+               file="issue_education/static/img/comes_late.png"/>
+    </record>
+    <record id="assistance_issue_type_master" model="school.issue.type"
+            forcecreate="True">
+        <field name="name">Assistance</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale_neutral"/>
+        <field name="image" type="base64"
+               file="issue_education/static/img/assistance.png"/>
+    </record>
+    <record id="uniformed_issue_type_master" model="school.issue.type"
+            forcecreate="True">
+        <field name="name">Uniformed</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale_neutral"/>
+        <field name="image" type="base64"
+               file="issue_education/static/img/uniform.png"/>
+    </record>
+    <record id="small_fault_issue_type_master" model="school.issue.type"
+            forcecreate="True">
+        <field name="name">Small fault</field>
+        <field name="affect_to">student</field>
+        <field name="gravity_scale_id" ref="school_issue_severity_scale_minor"/>
+    </record>
+
+    <record id="classroom_school_issue_site" model="school.issue.site"
+            forcecreate="True">
+        <field name="name">Classroom</field>
+    </record>
+
+    <record id="calendar_event_type_disciplinary" model="calendar.event.type"
+            forcecreate="True">
+        <field name="name">Disciplinary</field>
+    </record>
+</odoo>

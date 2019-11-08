@@ -1,0 +1,834 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* issue_education
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-08 11:47+0000\n"
+"PO-Revision-Date: 2019-11-08 11:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__affect_to
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__affect_to
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__affect_to
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+msgid "Affect to"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.type,name:issue_education.assistance_issue_type_master
+msgid "Assistance"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.site,name:issue_education.classroom_school_issue_site
+msgid "Classroom"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+#: selection:school.claim,state:0
+msgid "Closed"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.type,name:issue_education.comes_late_issue_type_master
+msgid "Comes late"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__company_id
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__company_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_educational_measure_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+msgid "Company"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model,name:issue_education.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__create_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__create_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__create_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__create_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__create_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__create_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__create_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__create_date
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__create_date
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__create_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__create_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__create_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__create_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__create_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__issue_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__issue_date
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Date"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__name
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__name
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__name
+msgid "Description"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__description_facts
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+msgid "Description of the facts"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.calendar_event_view_search
+msgid "Disciplinary"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__display_name
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__display_name
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__display_name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__display_name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__display_name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__display_name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__display_name
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: issue_education
+#: selection:school.claim,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__school_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__school_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Education Center"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__education_group_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Education Group"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model,name:issue_education.model_education_position
+msgid "Education Position"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__group_id
+msgid "Education group"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+msgid "Education schedule"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__educational_measure_concretion
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+msgid "Educational measure concretion"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+#: selection:school.claim,state:0
+msgid "Educational measure confirmed"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_college_educational_measure
+#: model:ir.model,name:issue_education.model_school_college_educational_measure
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__educational_measure_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__educational_measure_ids
+#: model:ir.ui.menu,name:issue_education.school_college_educational_measure_menuitem
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_form
+msgid "Educational measures"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__generate_part
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+msgid "Generate part"
+msgstr ""
+
+#. module: issue_education
+#: selection:school.issue,affect_to:0
+#: selection:school.issue.type,affect_to:0
+msgid "Group"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_educational_measure_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_severity_scale_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_site_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__id
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__id
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__id
+msgid "ID"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__image
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__image
+msgid "Image"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_inappropriate
+msgid "Inappropriate"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_id
+msgid "Issue"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_count
+msgid "Issue Count"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_issue_proof
+#: model:ir.model,name:issue_education.model_school_issue_proof
+#: model:ir.ui.menu,name:issue_education.school_proof_menuitem
+msgid "Issue Proof"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model,name:issue_education.model_school_claim
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__claim_id
+msgid "Issue Report"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_claim
+#: model:ir.ui.menu,name:issue_education.school_claim_menuitem
+msgid "Issue Reports"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_form
+msgid "Issue Type"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+msgid "Issue date"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_education_position__issue_level_id
+msgid "Issue severity level"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__issue_type_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__issue_type_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Issue type"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_issue
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_ids
+#: model:ir.ui.menu,name:issue_education.issue_menuitem
+#: model:ir.ui.menu,name:issue_education.school_issue_menuitem
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+msgid "Issues"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.ui.menu,name:issue_education.issues_configuration_menuitem
+msgid "Issues Configuration"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model,name:issue_education.model_school_issue_severity_scale
+msgid "Issues severity scales"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_issue_site
+#: model:ir.model,name:issue_education.model_school_issue_site
+#: model:ir.ui.menu,name:issue_education.school_issue_site_menuitem
+msgid "Issues sites"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_issue_type
+#: model:ir.ui.menu,name:issue_education.school_issue_type_menuitem
+msgid "Issues types"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim____last_update
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure____last_update
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type____last_update
+#: model:ir.model.fields,field_description:issue_education.field_school_issue____last_update
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof____last_update
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale____last_update
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site____last_update
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__write_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__write_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__write_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__write_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__write_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__write_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__write_uid
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__write_date
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__write_date
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__write_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__write_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__write_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__write_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__write_date
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__education_level_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+msgid "Level"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+msgid "Meetings"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__calendar_event_count
+msgid "Meetings Count"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_minor
+msgid "Minor"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_neutral
+msgid "Neutral"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: issue_education
+#: selection:school.issue,proof_state:0
+msgid "No Proof Required"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__notes
+msgid "Notes"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+#: selection:school.claim,state:0
+msgid "Notified"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__notify_ids
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_form
+msgid "Notify to"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__notify_group_tutor
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+msgid "Notify to group tutor"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__notify_personal_tutor
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+msgid "Notify to personal tutor"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_has_error_counter
+msgid "Number of error"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_no_coexistence
+msgid "Opposite to coexistence"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__other_managers
+msgid "Other managers"
+msgstr ""
+
+#. module: issue_education
+#: selection:school.claim,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Pending Proof"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__person_id
+msgid "Person"
+msgstr ""
+
+#. module: issue_education
+#: selection:school.claim,activity_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_positive
+msgid "Positive"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_search
+msgid "Progenitor/Tutor"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__proof_id
+msgid "Proof"
+msgstr ""
+
+#. module: issue_education
+#: selection:school.issue,proof_state:0
+msgid "Proof Added"
+msgstr ""
+
+#. module: issue_education
+#: selection:school.issue,proof_state:0
+msgid "Proof Required"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__proof_state
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Proving State"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_remarkable
+msgid "Remarkable"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__reported_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__reported_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Reported by"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__requires_justification
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__requires_justification
+msgid "Requires Justification"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__requires_imparting_group
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_site__requires_imparting_group
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_site_view_search
+msgid "Requires imparting group"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+msgid "Requires justification"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+#: selection:school.claim,state:0
+msgid "Sanction fulfill"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__sanction_specification
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+msgid "Sanction specification"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__education_schedule_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__education_schedule_id
+msgid "Schedule"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__school_id
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__school_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_educational_measure_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+msgid "School"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_res_partner__school_claim_count
+#: model:ir.model.fields,field_description:issue_education.field_res_users__school_claim_count
+msgid "School Claim Count"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_res_partner__school_claim_ids
+#: model:ir.model.fields,field_description:issue_education.field_res_users__school_claim_ids
+#: model_terms:ir.ui.view,arch_db:issue_education.res_partner_view_form
+msgid "School Claims"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_res_partner__school_issue_count
+#: model:ir.model.fields,field_description:issue_education.field_res_users__school_issue_count
+msgid "School Issue Count"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_res_partner__school_issue_ids
+#: model:ir.model.fields,field_description:issue_education.field_res_users__school_issue_ids
+#: model_terms:ir.ui.view,arch_db:issue_education.res_partner_view_form
+msgid "School Issues"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_type_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__school_issue_type_id
+msgid "School issue type"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model,name:issue_education.model_school_issue
+msgid "School issues"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.type,name:issue_education.schoolwork_issue_type_master
+msgid "Schoolwork"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__send_email
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+msgid "Send email"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_disruptive
+msgid "Seriosly disruptive"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__severity_level_id
+msgid "Severity Level"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_educational_measure_view_search
+msgid "Severity level"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__gravity_scale_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_severity_scale__gravity_scale
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__gravity_scale_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_severity_scale_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+msgid "Severity scale"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_issue_severity_scale
+#: model:ir.ui.menu,name:issue_education.school_issue_severity_scale_menuitem
+msgid "Severity scales"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__site_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__site_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Site"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.type,name:issue_education.small_fault_issue_type_master
+msgid "Small fault"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+msgid "State"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__state
+msgid "Status"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__student_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__student_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+#: selection:school.issue,affect_to:0
+#: selection:school.issue.type,affect_to:0
+msgid "Student"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+#: selection:school.claim,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model,name:issue_education.model_school_issue_type
+msgid "Types of issues"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.action_school_college_issue_type
+#: model:ir.model,name:issue_education.model_school_college_issue_type
+#: model:ir.ui.menu,name:issue_education.school_college_issue_type_menuitem
+msgid "Types of issues for colleges"
+msgstr ""
+
+#. module: issue_education
+#: model:school.issue.type,name:issue_education.uniformed_issue_type_master
+msgid "Uniformed"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_type__usual_issue
+msgid "Usual issue"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: issue_education
+#: code:addons/issue_education/models/school_issue_severity_scale.py:34
+#, python-format
+msgid "You cannot delete an issue scale created by the system."
+msgstr ""
+
+#. module: issue_education
+#: code:addons/issue_education/models/school_issue_site.py:19
+#, python-format
+msgid "You cannot delete an issue site created by the system."
+msgstr ""
+
+#. module: issue_education
+#: code:addons/issue_education/models/school_issue_type.py:51
+#, python-format
+msgid "You cannot delete an issue type created by the system."
+msgstr ""
+
