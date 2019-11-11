@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="res_partner_issue_menuitem"
+              parent="issue_education.issue_menuitem"
+              action="res_partner_education_issue_action"
+              sequence="100" />
+</odoo>

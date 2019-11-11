@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_schedule_view_form" model="ir.ui.view">
+        <field name="model">education.schedule</field>
+        <field name="inherit_id" ref="education.education_schedule_view_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <button name="button_generate_view_issues" type="object"
+                            string="Generate/View issues" class="oe_highlight"
+                            attrs="{'invisible': [('student_count', '=', 0)]}"/>
+                </header>
+            </sheet>
+        </field>
+    </record>
+</odoo>

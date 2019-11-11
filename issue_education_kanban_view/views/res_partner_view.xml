@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="res_partner_issue_view_kanban">
+        <field name="model">res.partner</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="color"/>
+                <field name="name"/>
+                <field name="title"/>
+                <field name="image_small"/>
+                <field name="display_name"/>
+                <field name="student_issue_ids" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                        <div
+                                t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'" style="width: 356px;">
+                            <div class="o_kanban_image">
+                                <img alt="" t-if="record.image_small.raw_value" t-att-src="kanban_image('res.partner', 'image_small', record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <field name="name"/>
+                                <div class="row">
+                                    <div class="col-sm-1" />
+                                    <t
+                                           t-foreach="record.student_issue_ids.raw_value.slice(0,5)" t-as="issue">
+                                        <t t-set="issue_type"
+                                           t-value="issue.college_issue_type_id" />
+                                        <div class="col-sm-2">
+                                            <a
+                                                name="%(act_wiz_create_delete_issue)d" type="action" t-attf-data-context="{'issue_type': #{issue_type[0]} }">
+                                            <img
+                                                t-att-src="kanban_image('school.college.issue.type', 'image', issue_type[0])"
+                                                t-att-title="issue.name" t-att-alt="issue.name" width="40" height="40"
+                                                class="oe_kanban_avatar float-right" />
+                                            </a>
+                                            <b><t
+                                                t-esc="issue.issues_on_day"
+                                        /></b>
+                                        </div>
+                                    </t>
+                                    <div class="col-sm-1" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 text-center">
+                                    <a name="%(act_wiz_create_positive_issue)d" type="action" >
+                                        <img
+                                                class="oe_kanban_avatar" width="40"
+                                             height="40" t-att-alt="add"
+                                             t-att-src='_s + "/issue_education_kanban_view/static/img/052-plus.png"'/>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <a name="%(act_wiz_create_negative_issue)d" type="action" >
+                                        <img
+                                                class="oe_kanban_avatar"
+                                             width="40"
+                                             height="40" t-att-alt="remove"
+                                             t-att-src='_s + "/issue_education_kanban_view/static/img/047-minus_red.png"'/>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <a name="%(act_view_student_today_issues)d" type="action" >
+                                        <img
+                                                class="oe_kanban_avatar" width="40"
+                                             height="40" t-att-alt="watch"
+                                             t-att-src='_s + "/issue_education_kanban_view/static/img/054-exclamation_blue.png"'/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="res_partner_education_issue_action" model="ir.actions.act_window">
+        <field name="name">Partner Education Issues Kanban</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban</field>
+        <field name="domain">[('educational_category', '=', 'student')]</field>
+        <field name="view_id"
+               ref="issue_education_kanban_view.res_partner_issue_view_kanban" />
+    </record>
+
+    <record id="res_partner_education_issue_action_view"
+            model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="res_partner_education_issue_action" />
+        <field name="view_id" ref="res_partner_issue_view_kanban" />
+        <field name="view_mode">kanban</field>
+    </record>
+
+</odoo>

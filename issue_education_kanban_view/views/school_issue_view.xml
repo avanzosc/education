@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="act_view_student_today_issues" model="ir.actions.act_window">
+        <field name="name">Student today issues</field>
+        <field name="res_model">school.issue</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="issue_education.school_issue_view_tree" />
+        <field name="context">{'search_default_filter-today-issues': 1, 'search_default_student_id': active_id}</field>
+    </record>
+</odoo>
