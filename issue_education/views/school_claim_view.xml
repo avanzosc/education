@@ -31,9 +31,10 @@
                 <separator />
                 <filter string="Today" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
                 <group expand="0" string="Group By">
-                   <filter string="Issue date" name="group-issue_date" domain="[]" context="{'group_by':'issue_date'}"/>
+                   <filter string="Date" name="group-issue_date" domain="[]"
+                           context="{'group_by':'issue_date'}"/>
                    <filter string="Issue type" name="group-issue_type" domain="[]" context="{'group_by':'school_issue_type_id'}"/>
-                   <filter string="Education schedule" name="group-education-schedule" domain="[]" context="{'group_by':'education_schedule_id'}"/>
+                   <filter string="Class Schedule" name="group-education-schedule" domain="[]" context="{'group_by':'education_schedule_id'}"/>
                    <filter string="Reported by" name="group-reported" domain="[]" context="{'group_by':'reported_id'}"/>
                    <filter string="Student" name="group-student" domain="[]" context="{'group_by':'student_id'}"/>
                    <filter string="State" name="group-state" domain="[]" context="{'group_by':'state'}"/>
@@ -69,30 +70,37 @@
                     </div>
                     <group>
                         <group>
-                            <field name="school_issue_id" />
+                            <field name="reported_id"
+                                   options="{'no_create': True}" />
                             <field name="issue_date" />
                             <field name="school_issue_type_id"
-                                   string="Issue Type"/>
+                                   string="Issue Type"
+                                   options="{'no_create': True}" />
                         </group>
                         <group>
-                            <field name="education_group_id" />
-                            <field name="education_schedule_id" />
-                            <field name="reported_id" />
-                            <field name="student_id" />
+                            <field name="school_id" invisible="True" />
+                            <field name="student_id"
+                                   options="{'no_create': True}"
+                                   domain="[('current_center_id','=',school_id)]"/>
+                            <field name="education_group_id"
+                                   options="{'no_create': True}"
+                                   domain="[('center_id','=',school_id)]" />
+                            <field name="education_schedule_id"
+                                   options="{'no_create': True}"
+                                   domain="[('center_id','=',school_id)]"/>
                         </group>
                     </group>
-                    <group string="Issues">
-                        <field name="school_issue_ids">
-                        </field>
-                    </group>
+                    <separator string="Issues" />
+                    <field name="school_issue_ids" widget="many2many"
+                           domain="[('school_issue_type_id','=',school_issue_type_id),('student_id','=',student_id),('education_schedule_id','=',education_schedule_id)]" />
                     <notebook>
-                        <page string="Description of the facts" name = "description-facts">
+                        <page string="Description of the facts" name="description-facts">
                             <field name="description_facts" nolabel="1" />
                         </page>
-                        <page string="Sanction specification" name = "sanction_specification">
+                        <page string="Sanction specification" name="sanction_specification">
                             <field name="sanction_specification" nolabel="1" />
                         </page>
-                        <page string="Educational measures" name = "educational_measures">
+                        <page string="Educational measures" name="educational_measures">
                             <field name="educational_measure_ids" nolabel="1" />
                             <separator string="Educational measure concretion" name="educational_measure_concretion" />
                             <field name="educational_measure_concretion" />

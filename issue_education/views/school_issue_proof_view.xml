@@ -5,7 +5,11 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="student_id" />
                 <field name="person_id" />
+                <field name="school_id" invisible="True" />
+                <field name="date_from" />
+                <field name="date_to" />
             </tree>
         </field>
     </record>
@@ -14,9 +18,13 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" />
+                <field name="student_id" />
                 <field name="person_id" />
                 <group expand="0" string="Group By">
-                   <filter string="Progenitor/Tutor" name="group-person_id" domain="[]" context="{'group_by':'person_id'}"/>
+                    <filter string="Student" name="group_student"
+                            domain="[]" context="{'group_by':'student_id'}"/>
+                    <filter string="Progenitor/Tutor" name="group-person_id"
+                            domain="[]" context="{'group_by':'person_id'}"/>
                 </group>
             </search>
         </field>
@@ -32,13 +40,44 @@
                             <field name="name" />
                         </h1>
                     </div>
-                    <group name="group1">
+                    <group name="main">
                         <group>
-                            <field name="person_id" />
+                            <field name="student_id"
+                                   options="{'no_create': True}"/>
+                            <field name="allowed_partner_ids"
+                                   invisible="True"/>
+                            <field name="college_issue_type_id"
+                                   options="{'no_create': True}"/>
+                            <field name="school_id" invisible="True" />
+                            <field name="person_id"
+                                   options="{'no_create': True}"
+                                   domain="[('id','in',allowed_partner_ids)]"/>
                         </group>
-                        <group/>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
                     </group>
+                    <separator string="Issues" />
+                    <field name="issue_ids" widget="many2many"
+                           domain="[('student_id','=',student_id),('school_issue_type_id','=',college_issue_type_id)]">
+                        <tree>
+                            <field name="issue_date" />
+                            <field name="name" />
+                            <field name="reported_id" />
+                            <field name="site_id" />
+                            <field name="group_id" />
+                            <field name="education_schedule_id" />
+                        </tree>
+                    </field>
+                    <separator string="Notes" />
+                    <field name="notes" />
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>

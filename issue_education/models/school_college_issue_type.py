@@ -10,8 +10,8 @@ class SchoolCollegeIssueType(models.Model):
 
     @api.model
     def _get_selection_affect_to(self):
-        return self.env['resource.calendar.attendance'].fields_get(
-            allfields=['dayofweek'])['dayofweek']['selection']
+        return self.env['school.issue.type'].fields_get(
+            allfields=['affect_to'])['affect_to']['selection']
 
     name = fields.Char(string='Description', required=True, translate=True)
     sequence = fields.Integer(string='Sequence', default=10)

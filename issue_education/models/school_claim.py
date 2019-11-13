@@ -8,31 +8,32 @@ from datetime import timedelta
 
 class SchoolClaim(models.Model):
     _name = 'school.claim'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['portal.mixin', 'mail.thread', 'mail.activity.mixin']
     _description = 'Issue Report'
 
     school_issue_id = fields.Many2one(
         string='Issue', comodel_name='school.issue')
-    school_id = fields.Many2one(
-        comodel_name='res.partner',
-        string='Education Center',
-        domain="[('educational_category', '=', 'school')]",
-        required=True)
     school_issue_ids = fields.One2many(
         comodel_name='school.issue', string='Issues', inverse_name='claim_id')
     school_issue_count = fields.Integer(
         string='Issue Count', compute='_compute_issue_count')
     name = fields.Char(string='Description', required=True)
-    issue_date = fields.Date(string='Date', required=True)
+    issue_date = fields.Date(
+        string='Date', required=True,
+        default=lambda self: fields.Date.context_today(self))
     school_issue_type_id = fields.Many2one(
         string='School issue type', comodel_name='school.college.issue.type',
         required=True)
+    school_id = fields.Many2one(
+        comodel_name='res.partner', name='Education Center',
+        related='school_issue_type_id.school_id', store=True)
     education_schedule_id = fields.Many2one(
-        string='Schedule', comodel_name='education.schedule')
+        string='Class Schedule', comodel_name='education.schedule')
     education_group_id = fields.Many2one(
         string='Education Group', comodel_name='education.group')
     reported_id = fields.Many2one(
-        string='Reported by', comodel_name='res.users', required=True)
+        string='Reported by', comodel_name='res.users', required=True,
+        default=lambda self: self.env.user)
     student_id = fields.Many2one(
         string='Student', comodel_name='res.partner')
     description_facts = fields.Text(string='Description of the facts')
@@ -122,10 +123,7 @@ class SchoolClaim(models.Model):
             lines = self.student_id.mapped(
                 'child2_ids').filtered(
                 lambda c: c.family_id.id == family.id)
-            responsibles = set(lines.mapped('responsible_id'))
-            progenitors = self.env['res.partner']
-            for p in responsibles:
-                progenitors += p
+            progenitors = lines.mapped('responsible_id')
             if progenitors:
                 self._create_calendar_event_for_progenitor(family, progenitors)
 

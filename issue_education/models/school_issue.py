@@ -8,20 +8,17 @@ class SchoolIssue(models.Model):
     _description = 'School issues'
 
     name = fields.Char(string='Description', required=True)
-    school_id = fields.Many2one(
-        comodel_name='res.partner',
-        string='Education Center',
-        domain="[('educational_category', '=', 'school')]",
-        required=True)
     school_issue_type_id = fields.Many2one(
         string='School issue type', comodel_name='school.college.issue.type',
         required=True)
+    school_id = fields.Many2one(
+        comodel_name='res.partner', name='Education Center',
+        related='school_issue_type_id.school_id', store=True)
     issue_type_id = fields.Many2one(
         string='Issue type', comodel_name='school.issue.type',
         related='school_issue_type_id.issue_type_id')
     requires_justification = fields.Boolean(
-        string='Requires Justification',
-        related='school_issue_type_id.issue_type_id.requires_justification')
+        string='Requires Justification')
     affect_to = fields.Selection(
         string='Affect to', selection=[('group', 'Group'),
                                        ('student', 'Student')])
@@ -43,7 +40,7 @@ class SchoolIssue(models.Model):
     proof_id = fields.Many2one(
         string='Proof', comodel_name='school.issue.proof')
     education_schedule_id = fields.Many2one(
-        string='Schedule', comodel_name='education.schedule')
+        string='Class Schedule', comodel_name='education.schedule')
     claim_id = fields.Many2one(
         string='Issue Report', comodel_name='school.claim')
     notes = fields.Text(string='Notes')
@@ -55,16 +52,13 @@ class SchoolIssue(models.Model):
         ], string='Proving State', compute='_compute_proof_state', store=True)
 
     @api.multi
-    @api.depends('proof_id', 'school_issue_type_id',
-                 'school_issue_type_id.issue_type_id',
-                 'school_issue_type_id.issue_type_id.requires_justification')
+    @api.depends('proof_id', 'requires_justification')
     def _compute_proof_state(self):
         for issue in self:
             if issue.proof_id:
                 issue.proof_state = 'proved'
             else:
-                issue_type = issue.school_issue_type_id.issue_type_id
-                if issue_type.requires_justification:
+                if issue.requires_justification:
                     issue.proof_state = 'required'
                 else:
                     issue.proof_state = 'optional'
@@ -74,6 +68,7 @@ class SchoolIssue(models.Model):
         for issue in self:
             itype = issue.school_issue_type_id.issue_type_id
             issue.affect_to = itype.affect_to
+            issue.requires_justification = itype.requires_justification
 
     @api.onchange('site_id')
     def onchange_site_id(self):
@@ -109,7 +104,6 @@ class SchoolIssue(models.Model):
         self.ensure_one()
         values = {
             'school_issue_id': self.id,
-            'school_id': self.school_id.id,
             'name': self.name,
             'issue_date': self.issue_date,
             'reported_id': self.reported_id.id,

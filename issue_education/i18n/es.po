@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-08 11:47+0000\n"
-"PO-Revision-Date: 2019-11-08 11:47+0000\n"
+"POT-Creation-Date: 2019-11-15 13:24+0000\n"
+"PO-Revision-Date: 2019-11-15 13:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,17 +16,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__access_warning
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__access_warning
+msgid "Access warning"
+msgstr "Alerta de acceso"
+
+#. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_needaction
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_needaction
 msgid "Action Needed"
 msgstr "Acción Necesaria"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_ids
 msgid "Activities"
 msgstr "Actividades"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_state
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_state
 msgid "Activity State"
 msgstr "Estado de la actividad"
 
@@ -39,14 +48,28 @@ msgid "Affect to"
 msgstr "Afecta a"
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__allowed_partner_ids
+msgid "Allowed Partner"
+msgstr "Personas autorizadas"
+
+#. module: issue_education
 #: model:school.issue.type,name:issue_education.assistance_issue_type_master
 msgid "Assistance"
 msgstr "Asistencia"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_attachment_count
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_attachment_count
 msgid "Attachment Count"
 msgstr "Conteo de archivos adjuntos"
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__education_schedule_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__education_schedule_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Class Schedule"
+msgstr "Horario de clases"
 
 #. module: issue_education
 #: model:school.issue.site,name:issue_education.classroom_school_issue_site
@@ -102,11 +125,28 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: issue_education
+#: model:ir.model.fields,help:issue_education.field_school_claim__access_url
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__access_url
+msgid "Customer Portal URL"
+msgstr "URL para portal"
+
+#. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__issue_date
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__issue_date
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Date"
 msgstr "Fecha"
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__date_from
+msgid "Date From"
+msgstr "Fecha inicio"
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__date_to
+msgid "Date To"
+msgstr "Fecha fin"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__name
@@ -149,8 +189,6 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: issue_education
-#: model:ir.model.fields,field_description:issue_education.field_school_claim__school_id
-#: model:ir.model.fields,field_description:issue_education.field_school_issue__school_id
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
@@ -170,11 +208,6 @@ msgstr "Cargo"
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__group_id
 msgid "Education group"
 msgstr "Grupo educativo"
-
-#. module: issue_education
-#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
-msgid "Education schedule"
-msgstr "Planificación"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__educational_measure_concretion
@@ -200,17 +233,26 @@ msgid "Educational measures"
 msgstr "Medidas educativas"
 
 #. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.disciplinary_calendar_event_action
+#: model:ir.ui.menu,name:issue_education.disciplinary_meeting_menuitem
+msgid "Extraordinary Meetings"
+msgstr "Reuniones extraordinarias"
+
+#. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_follower_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_channel_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canales)"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_partner_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
 
@@ -252,16 +294,19 @@ msgstr ""
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_unread
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_unread
 msgid "If checked new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_needaction
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_has_error
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -278,6 +323,7 @@ msgstr "Inadecuada"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_is_follower
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
 
@@ -311,15 +357,11 @@ msgid "Issue Reports"
 msgstr "Parte de incidencia"
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__college_issue_type_id
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_form
 msgid "Issue Type"
 msgstr "Tipo de incidencia"
-
-#. module: issue_education
-#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
-msgid "Issue date"
-msgstr "Fecha de la incidencia"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_education_position__issue_level_id
@@ -338,9 +380,11 @@ msgstr "Tipo de incidencia"
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__issue_ids
 #: model:ir.ui.menu,name:issue_education.issue_menuitem
 #: model:ir.ui.menu,name:issue_education.school_issue_menuitem
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_form
 msgid "Issues"
 msgstr "Incidencias"
 
@@ -352,7 +396,7 @@ msgstr "Configuración de incidencias"
 #. module: issue_education
 #: model:ir.model,name:issue_education.model_school_issue_severity_scale
 msgid "Issues severity scales"
-msgstr "Escalas de gravedad de incidencia"
+msgstr "Escala de gravedad de incidencias"
 
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue_site
@@ -411,6 +455,7 @@ msgstr "Nivel"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_main_attachment_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Adjuntos principales"
 
@@ -426,11 +471,13 @@ msgstr "Nº de reuniones"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_has_error
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_has_error
 msgid "Message Delivery error"
 msgstr "Error de Envío de Mensaje"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_ids
 msgid "Messages"
 msgstr "Mensajes"
 
@@ -446,16 +493,19 @@ msgstr "Neutra"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_date_deadline
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Siguiente plazo de actividad"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_summary
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_summary
 msgid "Next Activity Summary"
 msgstr "Resumen de la siguiente actividad"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_type_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_type_id
 msgid "Next Activity Type"
 msgstr "Siguiente tipo de actividad"
 
@@ -466,6 +516,9 @@ msgstr "No necesita justificación"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__notes
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__notes
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_form
 msgid "Notes"
 msgstr "Notas"
 
@@ -495,26 +548,31 @@ msgstr "Notificar al tutor personal"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_needaction_counter
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_has_error_counter
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_has_error_counter
 msgid "Number of error"
 msgstr "Número de error"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_needaction_counter
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Número de mensajes que requieren una acción"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_has_error_counter
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_unread_counter
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
 
@@ -530,6 +588,7 @@ msgstr "Otros encargados"
 
 #. module: issue_education
 #: selection:school.claim,activity_state:0
+#: selection:school.issue.proof,activity_state:0
 msgid "Overdue"
 msgstr "Vencimiento"
 
@@ -545,8 +604,15 @@ msgstr "Persona"
 
 #. module: issue_education
 #: selection:school.claim,activity_state:0
+#: selection:school.issue.proof,activity_state:0
 msgid "Planned"
 msgstr "Planificado"
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__access_url
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__access_url
+msgid "Portal Access URL"
+msgstr "URL de acceso al portal"
 
 #. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_positive
@@ -612,6 +678,7 @@ msgstr "Requiere justificación"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_user_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario responsable"
 
@@ -628,14 +695,11 @@ msgid "Sanction specification"
 msgstr "Especificación de la sanción"
 
 #. module: issue_education
-#: model:ir.model.fields,field_description:issue_education.field_school_claim__education_schedule_id
-#: model:ir.model.fields,field_description:issue_education.field_school_issue__education_schedule_id
-msgid "Schedule"
-msgstr "Planificacion"
-
-#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__school_id
 #: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__school_id
 #: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__school_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__school_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__school_id
 #: model_terms:ir.ui.view,arch_db:issue_education.school_college_educational_measure_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
 msgid "School"
@@ -684,6 +748,12 @@ msgid "Schoolwork"
 msgstr "Deberes"
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__access_token
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__access_token
+msgid "Security Token"
+msgstr "Token de seguridad"
+
+#. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__send_email
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
 msgid "Send email"
@@ -722,7 +792,7 @@ msgstr "Escala gravedad"
 #: model:ir.actions.act_window,name:issue_education.action_school_issue_severity_scale
 #: model:ir.ui.menu,name:issue_education.school_issue_severity_scale_menuitem
 msgid "Severity scales"
-msgstr "Escala de gravedad"
+msgstr "Escalas de gravedad"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__site_id
@@ -749,6 +819,7 @@ msgstr "Estado"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__activity_state
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__activity_state
 msgid "Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
@@ -761,7 +832,9 @@ msgstr "Estado basado en actividades\n"
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__student_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__student_id
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 #: selection:school.issue,affect_to:0
 #: selection:school.issue.type,affect_to:0
@@ -772,6 +845,7 @@ msgstr "Alumno"
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 #: selection:school.claim,activity_state:0
+#: selection:school.issue.proof,activity_state:0
 msgid "Today"
 msgstr "Hoy"
 
@@ -794,11 +868,13 @@ msgstr "Uniforme"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_unread
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_unread
 msgid "Unread Messages"
 msgstr "Mensajes por leer"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_unread_counter
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
 
@@ -809,11 +885,13 @@ msgstr "Incidencia habitutal"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__website_message_ids
+#: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__website_message_ids
 msgid "Website Messages"
 msgstr "Mensajes del sitio web"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__website_message_ids
+#: model:ir.model.fields,help:issue_education.field_school_issue_proof__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
 
