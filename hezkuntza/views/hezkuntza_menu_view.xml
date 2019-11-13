@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <menuitem id="hezkuntza_configuration_menuitem"
+              name="Hezkuntza"
+              parent="education.education_menuitem"
+              sequence="100"
+              groups="education.education_responsible" />
+
     <menuitem id="education_configuration_all_menuitem"
-              parent="education.education_configuration_menuitem"
+              parent="hezkuntza_configuration_menuitem"
               action="action_upload_education_all"
               sequence="0" />
 
     <menuitem id="faculty_configuration_menuitem"
               name="Faculty"
-              parent="education.education_configuration_menuitem"
+              parent="hezkuntza_configuration_menuitem"
               sequence="1" />
 
     <menuitem id="upload_workday_type_menuitem"
@@ -41,7 +47,7 @@
 
     <menuitem id="groups_configuration_menuitem"
               name="Groups"
-              parent="education.education_configuration_menuitem"
+              parent="hezkuntza_configuration_menuitem"
               sequence="2" />
 
     <menuitem id="upload_model_menuitem"
@@ -62,7 +68,7 @@
               sequence="4" />
 
     <menuitem name="Schedule Table" id="schedule_table_configuration_menuitem"
-              parent="education.education_configuration_menuitem"
+              parent="hezkuntza_configuration_menuitem"
               sequence="3" />
 
     <menuitem id="upload_subject_menuitem"
@@ -107,7 +113,7 @@
               sequence="9" />
 
     <menuitem name="Relations" id="relation_configuration_menuitem"
-              parent="education.education_configuration_menuitem"
+              parent="hezkuntza_configuration_menuitem"
               sequence="4" />
 
     <menuitem id="upload_level_task_type_menuitem"
@@ -129,7 +135,7 @@
 
     <menuitem name="Education Center"
               id="education_center_configuration_menuitem"
-              parent="education.education_configuration_menuitem"
+              parent="hezkuntza_configuration_menuitem"
               sequence="5" />
 
     <menuitem id="upload_education_classroom_menuitem"
