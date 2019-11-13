@@ -101,9 +101,18 @@
         <field name="model">education.schedule</field>
         <field name="arch" type="xml">
             <search>
+                <field name="academic_year_id" />
+                <field name="center_id" />
                 <field name="teacher_id" />
+                <field name="classroom_id" />
                 <field name="group_ids" />
-                <group expand="0" string="Group By">
+                <group expand="0" string="Group By" name="group_by">
+                    <filter name="group_academic_year" string="Academic Year"
+                            context="{'group_by': 'academic_year_id'}" />
+                    <filter name="group_center" string="Education Center"
+                            context="{'group_by': 'center_id'}" />
+                    <filter name="group_classroom" string="Classroom"
+                            context="{'group_by': 'classroom_id'}" />
                     <filter name="group_teacher" string="Teacher"
                             context="{'group_by': 'teacher_id'}" />
                 </group>
