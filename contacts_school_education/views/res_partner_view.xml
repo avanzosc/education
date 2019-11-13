@@ -61,7 +61,8 @@
                         </tree>
                     </field>
                 </page>
-                <page name="children_groups" string="Education Groups">
+                <page name="children_groups" string="Education Groups"
+                      attrs="{'invisible': ['&amp;', ('childs_current_center_ids', '=', []), ('childs_current_course_ids', '=', [])]}">
                     <field name="childs_current_center_ids" />
                     <field name="childs_current_course_ids" />
                 </page>
