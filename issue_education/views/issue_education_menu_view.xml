@@ -17,6 +17,10 @@
               parent="issue_menuitem"
               action="action_school_issue_proof"
               sequence="20" />
+    <menuitem id="disciplinary_meeting_menuitem"
+              parent="issue_menuitem"
+              action="disciplinary_calendar_event_action"
+              sequence="30" />
 
     <menuitem id="issues_configuration_menuitem"
               name="Issues Configuration"

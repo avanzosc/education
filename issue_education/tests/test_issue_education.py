@@ -10,23 +10,45 @@ from odoo import fields
 @common.post_install(True)
 class TestIssueEducation(TestIssueEducationCommon):
 
+    def test_affect_to(self):
+        issue_type_sel = self.env['school.issue.type'].fields_get(
+            allfields=['affect_to'])['affect_to']['selection']
+        school_issue_type_sel = self.env[
+            'school.college.issue.type']._get_selection_affect_to()
+        self.assertEquals(issue_type_sel, school_issue_type_sel)
+
     def test_system_issue_type_erase(self):
+        scale_neutral = self.env.ref(
+            "issue_education.school_issue_severity_scale_neutral")
+        issue_type = self.issue_type_obj.create({
+            'name': 'Test Type',
+            'gravity_scale_id': scale_neutral.id,
+        })
         issue_type_master = self.env.ref(
             "issue_education.schoolwork_issue_type_master")
         with self.assertRaises(UserError):
             issue_type_master.unlink()
+        issue_type.unlink()
 
     def test_system_issue_site_erase(self):
+        site = self.site_obj.create({
+            'name': 'Test Site',
+        })
         issue_site = self.env.ref(
             "issue_education.classroom_school_issue_site")
         with self.assertRaises(UserError):
             issue_site.unlink()
+        site.unlink()
 
     def test_system_issue_scale_erase(self):
+        scale = self.scale_obj.create({
+            'name': 'Test Scale',
+        })
         scale_minor = self.env.ref(
             "issue_education.school_issue_severity_scale_minor")
         with self.assertRaises(UserError):
             scale_minor.unlink()
+        scale.unlink()
 
     def test_college_issue(self):
         self.assertEquals(

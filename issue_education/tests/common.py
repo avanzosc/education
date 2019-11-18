@@ -15,6 +15,8 @@ class TestIssueEducationCommon(TestEducationCommon):
         cls.college_issue_type_obj = cls.env['school.college.issue.type']
         cls.proof_obj = cls.env['school.issue.proof']
         cls.measure_obj = cls.env['school.college.educational.measure']
+        cls.scale_obj = cls.env['school.issue.severity.scale']
+        cls.site_obj = cls.env['school.issue.site']
         cls.edu_partner.write({
             'educational_category': 'school',
         })
@@ -85,4 +87,5 @@ class TestIssueEducationCommon(TestEducationCommon):
         cls.proof = cls.proof_obj.create({
             'name': 'Test Proof',
             'person_id': cls.progenitor.id,
+            'student_id': cls.student.id,
         })

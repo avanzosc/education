@@ -29,6 +29,7 @@
                 <field name="reported_id" />
                 <field name="site_id" />
                 <field name="group_id" />
+                <field name="education_schedule_id" />
                 <field name="issue_date" />
                 <field name="proof_id" />
                 <field name="school_id" />
@@ -50,6 +51,9 @@
                     <filter string="Education Group"
                             name="group-education_group" domain="[]"
                             context="{'group_by':'group_id'}"/>
+                    <filter string="Class Schedule"
+                            name="group_education_schedule" domain="[]"
+                            context="{'group_by':'education_schedule_id'}"/>
                     <filter string="Date" name="group-issue_date"
                             domain="[]" context="{'group_by':'issue_date'}"/>
                     <filter string="Education Center" name="school_group"
@@ -95,9 +99,11 @@
                             <field name="requires_justification" invisible="1"/>
                             <field name="proof_state" readonly="True" />
                             <field name="proof_id"
-                                attrs="{'invisible': [('requires_justification', '=', False)], 'required': [('requires_justification', '=', True)]}"/>
+                                   domain="[('college_issue_type_id', '=', school_issue_type_id)]"
+                                   attrs="{'invisible': [('requires_justification', '=', False)]}"/>
                         </group>
                     </group>
+                    <separator string="Notes" />
                     <field name="notes" />
                 </sheet>
             </form>

@@ -11,4 +11,15 @@
             </group>
         </field>
     </record>
+
+    <record id="disciplinary_calendar_event_action" model="ir.actions.act_window">
+        <field name="name">Extraordinary Meetings</field>
+        <field name="res_model">calendar.event</field>
+        <field name="view_mode">tree,calendar,form</field>
+        <field name="view_id" ref="calendar.view_calendar_event_calendar"/>
+        <field name="search_view_id" ref="calendar.view_calendar_event_search"/>
+        <field name="context">{'search_default_disciplinary': True, 'search_default_pending': True}</field>
+        <field name="domain" eval="['|',('res_model_id','=',ref('issue_education.model_school_claim')),('categ_ids','=',ref('issue_education.calendar_event_type_disciplinary'))]" />
+    </record>
+
 </odoo>
