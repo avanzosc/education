@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_academic_year_evaluation_view_tree"
+            model="ir.ui.view">
+        <field name="model">education.academic_year.evaluation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="academic_year_id" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window"
+            id="action_education_academic_year_evaluation">
+        <field name="name">Educational Academic Year Evaluation</field>
+        <field name="res_model">education.academic_year.evaluation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_academic_year_evaluation_view_tree" />
+    </record>
+</odoo>

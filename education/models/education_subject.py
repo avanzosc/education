@@ -2,10 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
-
-SUBJECT_TYPE = [('optional', 'Optional'),
-                ('compulsory', 'Compulsory'),
-                ('free', 'Free Choice')]
+from .education_subject_type import SUBJECT_TYPE
 
 
 class EducationSubject(models.Model):
@@ -55,21 +52,6 @@ class EducationSubject(models.Model):
     def _compute_course_ids(self):
         for record in self:
             record.course_ids = record.mapped('level_course_ids.course_id')
-
-    _sql_constraints = [
-        ('education_code_unique', 'unique(education_code)',
-         'Education code must be unique!'),
-    ]
-
-
-class EducationSubjectType(models.Model):
-    _name = 'education.subject.type'
-    _inherit = 'education.data'
-    _description = 'Education Subject Type'
-
-    type = fields.Selection(
-        selection=SUBJECT_TYPE,
-        string='Type', default='optional', required=True)
 
     _sql_constraints = [
         ('education_code_unique', 'unique(education_code)',
