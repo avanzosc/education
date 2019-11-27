@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="faculty_contract_menuitem"
+              parent="education.faculty_menuitem"
+              action="hr_contract.action_hr_contract"
+              sequence="8" />
+</odoo>

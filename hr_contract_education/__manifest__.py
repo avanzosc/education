@@ -14,6 +14,7 @@
     ],
     "data": [
         "views/hr_contract_view.xml",
+        "views/hr_contract_education_menu_view.xml",
     ],
     "installable": True,
 }
