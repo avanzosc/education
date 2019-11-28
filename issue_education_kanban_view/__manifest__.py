@@ -6,6 +6,7 @@
     "license": "AGPL-3",
     "depends": [
         "calendar_school",
+        "crm_claim",
         "issue_education",
         "web_one2many_kanban",
         "web_ir_actions_act_multi",
