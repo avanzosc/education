@@ -50,7 +50,7 @@ class ResPartner(models.Model):
     def _compute_current_group_id(self):
         today = fields.Date.context_today(self)
         current_year = self.env['education.academic_year'].search([
-            ('date_start', '<=', today), ('date_end', '>=', today)])
+            ('date_start', '<=', today), ('date_end', '>=', today)], limit=1)
         for partner in self.filtered(
                 lambda p: p.educational_category == 'student'):
             groups = partner.student_group_ids.filtered(
@@ -88,9 +88,6 @@ class ResPartner(models.Model):
 
     @api.depends('child_ids', 'child_ids.current_group_id')
     def _compute_child_current_group_ids(self):
-        # today = fields.Date.context_today(self)
-        # current_year = self.env['education.academic_year'].search([
-        #     ('date_start', '<=', today), ('date_end', '>=', today)])
         for partner in self.filtered(
                 lambda p: p.educational_category == 'family'):
             childs_groups = partner.mapped(
@@ -130,7 +127,10 @@ class ResPartner(models.Model):
     def _search_current_groups(self):
         today = fields.Date.context_today(self)
         current_year = self.env['education.academic_year'].search([
-            ('date_start', '<=', today), ('date_end', '>=', today)])
+            ('date_start', '<=', today), ('date_end', '>=', today)], limit=1)
+        official_type = self.env['education.group_type'].search([
+            ('type', '=', 'official')])
         return self.env['education.group'].search([
             ('academic_year_id', '=', current_year.id),
+            ('group_type_id', 'in', official_type.ids)
         ])
