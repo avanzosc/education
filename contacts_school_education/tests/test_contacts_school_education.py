@@ -1,29 +1,32 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from .common import TestContactsSchoolEducationCommon
 from odoo.tests import common
 from odoo.exceptions import ValidationError
-from odoo.addons.education.tests.test_education import TestEducation
 
 
 @common.at_install(False)
 @common.post_install(True)
-class TestContactsSchoolEducation(TestEducation):
+class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
 
-    @classmethod
-    def setUpClass(cls):
-        super(TestContactsSchoolEducation, cls).setUpClass()
-        cls.change_model = cls.env['education.course.change']
-        cls.school = cls.env['res.partner'].create({
-            'name': 'School Test',
-            'educational_category': 'school',
-        })
-        cls.edu_course2 = cls.env['education.course'].create({
-            'education_code': 'TES2',
-            'description': 'Test Course 2',
-            'plan_id': cls.edu_plan.id,
-            'level_id': cls.edu_level.id,
-        })
+    def test_search(self):
+        self.assertEquals(self.student.current_group_id, self.group)
+        self.assertEquals(self.family, self.student.parent_id)
+        students = self.partner_model.search([
+            ('current_center_id', '=', self.school.id)])
+        self.assertIn(self.student, students)
+        students = self.partner_model.search([
+            ('current_course_id', '=', self.edu_course.id)])
+        self.assertIn(self.student, students)
+        parents = self.partner_model.search([
+            ('childs_current_center_ids', '=', self.school.id)])
+        self.assertIn(self.family, parents)
+        parents = self.partner_model.search([
+            ('childs_current_course_ids', '=', self.edu_course.id)])
+        self.assertIn(self.family, parents)
+        self.assertIn(self.school, self.family.childs_current_center_ids)
+        self.assertIn(self.edu_course, self.family.childs_current_course_ids)
 
     def test_course_change(self):
         with self.assertRaises(ValidationError):
@@ -39,23 +42,3 @@ class TestContactsSchoolEducation(TestEducation):
             'course_id': self.edu_course.id,
             'next_course_id': self.edu_course2.id,
         })
-
-    def test_education_academic_year(self):
-        """Don't repeat this test."""
-        pass
-
-    def test_education_plan(self):
-        """Don't repeat this test."""
-        pass
-
-    def test_education_level_course_subject(self):
-        """Don't repeat this test."""
-        pass
-
-    def test_education_subject(self):
-        """Don't repeat this test."""
-        pass
-
-    def test_education_level(self):
-        """Don't repeat this test."""
-        pass
