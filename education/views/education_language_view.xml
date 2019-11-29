@@ -6,6 +6,7 @@
             <tree>
                 <field name="education_code" />
                 <field name="description" />
+                <field name="lang_id" context="{'active_test': False}" />
             </tree>
         </field>
     </record>
@@ -34,11 +35,14 @@
                     </div>
                     <group name="description" string="Description">
                         <field name="description" nolabel="1" colspan="4" />
-
                     </group>
                     <group name="short_description"
                            string="Short Description">
                         <field name="short_description" />
+                    </group>
+                    <group name="system_language">
+                        <field name="lang_id" context="{'active_test': False}"
+                               options="{'no_create': True}"/>
                     </group>
                 </sheet>
             </form>

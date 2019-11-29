@@ -4,11 +4,19 @@
 from .common import TestEducationCommon
 from odoo.tests import common
 from odoo.exceptions import ValidationError
+from dateutil.relativedelta import relativedelta
 
 
 @common.at_install(False)
 @common.post_install(True)
 class TestEducation(TestEducationCommon):
+
+    def test_education_lang(self):
+        self.edu_lang.write({
+            'lang_id': self.lang.id,
+        })
+        self.assertEquals(self.env.user.lang, self.edu_lang.lang_id.code)
+        self.assertEquals(self.lang.edu_lang_id, self.edu_lang)
 
     def test_education_academic_year(self):
         self.assertTrue(self.academic_year.active)
@@ -22,6 +30,50 @@ class TestEducation(TestEducationCommon):
             self.academic_year.write({
                 'date_start': self.today,
                 'date_end': self.today,
+            })
+
+    def test_education_academic_year_evaluation(self):
+        with self.assertRaises(ValidationError):
+            self.evaluation_model.create({
+                'name': 'Start > End',
+                'academic_year_id': self.academic_year.id,
+                'date_start': self.date_end,
+                'date_end': self.date_start,
+            })
+        with self.assertRaises(ValidationError):
+            self.evaluation_model.create({
+                'name': 'Evaluation before Year',
+                'academic_year_id': self.academic_year.id,
+                'date_start': self.date_start - relativedelta(months=1),
+                'date_end': self.date_start - relativedelta(days=1),
+            })
+        with self.assertRaises(ValidationError):
+            self.evaluation_model.create({
+                'name': 'Evaluation after Year',
+                'academic_year_id': self.academic_year.id,
+                'date_start': self.date_end + relativedelta(days=1),
+                'date_end': self.date_end + relativedelta(months=1),
+            })
+        with self.assertRaises(ValidationError):
+            self.evaluation_model.create({
+                'name': 'Evaluation Start < Year Start',
+                'academic_year_id': self.academic_year.id,
+                'date_start': self.date_start - relativedelta(days=1),
+                'date_end': self.date_end,
+            })
+        with self.assertRaises(ValidationError):
+            self.evaluation_model.create({
+                'name': 'Evaluation End > Year End',
+                'academic_year_id': self.academic_year.id,
+                'date_start': self.date_start,
+                'date_end': self.date_end + relativedelta(days=1),
+            })
+        with self.assertRaises(ValidationError):
+            self.evaluation_model.create({
+                'name': 'Evaluation longer Year',
+                'academic_year_id': self.academic_year.id,
+                'date_start': self.date_start - relativedelta(months=1),
+                'date_end': self.date_end + relativedelta(months=1),
             })
 
     def test_education_plan(self):

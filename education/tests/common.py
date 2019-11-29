@@ -12,12 +12,19 @@ class TestEducationCommon(common.SavepointCase):
         super(TestEducationCommon, cls).setUpClass()
         cls.today = fields.Date.from_string(fields.Date.today())
         cls.academic_year_model = cls.env['education.academic_year']
+        cls.evaluation_model = cls.env['education.academic_year.evaluation']
         cls.group_model = cls.env['education.group']
         cls.group_session_model = cls.env['education.group.session']
         cls.schedule_model = cls.env['education.schedule']
         cls.attendance_model = cls.env['resource.calendar.attendance']
+        cls.date_start = cls.today.replace(
+            year=cls.today.year + 10, month=9, day=1)
+        cls.date_end = cls.date_start.replace(
+            year=cls.date_start.year + 1, month=6, day=30)
         cls.academic_year = cls.academic_year_model.create({
-            'name': '{}+{}'.format(cls.today.year + 10, cls.today.year + 11)
+            'name': '{}+{}'.format(cls.date_start.year, cls.date_end.year),
+            'date_start': cls.date_start,
+            'date_end': cls.date_end,
         })
         cls.plan_model = cls.env['education.plan']
         cls.edu_plan_code = 'TEST'
@@ -69,3 +76,8 @@ class TestEducationCommon(common.SavepointCase):
             'description': 'Test Task Type',
             'type': 'L',
         })
+        cls.edu_lang = cls.env['education.language'].create({
+            'education_code': '00',
+            'description': 'Test Language',
+        })
+        cls.lang = cls.env['res.lang']._lang_get(cls.env.user.lang)

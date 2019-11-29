@@ -13,6 +13,9 @@ class EducationAcademicYear(models.Model):
     name = fields.Char(string='Academic Year', required=True)
     date_start = fields.Date(string='Start Date')
     date_end = fields.Date(string='End Date')
+    evaluation_ids = fields.One2many(
+        comodel_name='education.academic_year.evaluation',
+        string='Evaluations', inverse_name='academic_year_id')
     active = fields.Boolean(string='Active', default=True)
 
     @api.constrains('name')
