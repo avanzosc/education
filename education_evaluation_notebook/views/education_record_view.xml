@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_record_view_search" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="student_id" />
+                <field name="exam_id" />
+                <field name="subject_id" />
+                <field name="teacher_id" />
+                <filter name="exam_record" string="Exam Record"
+                        domain="[('exam_id','!=',False)]" />
+                <group expand="0" string="Group By">
+                    <filter name="groupby_student" string="Student"
+                            context="{'group_by':'student_id'}" />
+                    <filter name="groupby_schedule" string="Class Schedule"
+                            context="{'group_by':'schedule_id'}" />
+                    <filter name="groupby_exam" string="Exam"
+                            context="{'group_by':'exam_id'}" />
+                    <filter name="groupby_exam_date" string="Exam Date"
+                            context="{'group_by':'date'}" />
+                    <filter name="groupby_mark" string="Numeric Mark"
+                            context="{'group_by':'mark_id'}"/>
+                    <filter name="groupby_subject" string="Education Subject"
+                            context="{'group_by':'subject_id'}" />
+                    <filter name="groupby_teacher" string="Teacher"
+                            context="{'group_by':'teacher_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_record_view_tree" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom"
+                  decoration-info="global_competence==True"
+                  decoration-success="evaluation_competence==True">
+                <field name="numeric_mark"
+                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour')]}"/>
+                <field name="behaviour_mark_id"
+                       options="{'no_create': True}"
+                       attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric')]}"/>
+                <field name="student_id" />
+<!--                <field name="calculated_numeric_mark" />-->
+                <field name="competence_id" />
+                <field name="competence_eval_mode" invisible="True" />
+                <field name="exam_id" invisible="True" />
+<!--                <field name="exam_type_id" />-->
+                <field name="exam_state" invisible="True" />
+<!--                <field name="date" />-->
+                <field name="exam_eval_percent" />
+                <field name="teacher_id" />
+                <field name="subject_id" />
+                <field name="parent_record_id" invisible="True" />
+                <field name="n_line_id" invisible="True" />
+                <field name="global_competence" invisible="True" />
+                <field name="evaluation_competence" invisible="True" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- KANBAN EXPEDIENTE -->
+    <!--<record id="education_notebook_record_view_kanban"-->
+        <!--model="ir.ui.view">-->
+        <!--<field name="model">education.record</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<kanban class="o_res_partner_kanban">-->
+                <!--<field name="exam_id" />-->
+                <!--<field name="date" />-->
+                <!--<field name="subject_id" />-->
+                <!--<field name="student_id" />-->
+                <!--<field name="numeric_mark" />-->
+                <!--<templates>-->
+                    <!--<t t-name="kanban-box">-->
+                        <!--<div t-attf-class="oe_kanban_global_click">-->
+                            <!--<div class="o_kanban_image">-->
+                                <!--<img alt="Avatar"-->
+                                    <!--t-att-src="kanban_image('res.partners', 'image_medium',record.student_id.raw_value)" />-->
+                            <!--</div>-->
+                            <!--<div class="oe_kanban_details">-->
+                                <!--<strong class="o_kanban_record_title">-->
+                                    <!--<field name="exam_id" />-->
+                                <!--</strong>-->
+                                <!--<div t-if="record.date.value">-->
+                                    <!--[Date]-->
+                                    <!--<t t-esc="record.date.value" />-->
+                                <!--</div>-->
+                                <!--<div t-if="record.subject_id.value">-->
+                                    <!--<t t-esc="record.subject_id.value" />-->
+                                <!--</div>-->
+                                <!--<div t-if="record.student_id.value">-->
+                                    <!--[Kid]-->
+                                    <!--<t t-esc="record.student_id.value" />-->
+                                <!--</div>-->
+                                <!--<div t-if="record.numeric_mark.value">-->
+                                    <!--[Mark]-->
+                                    <!--<t t-esc="record.numeric_mark.value" />-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</t>-->
+                <!--</templates>-->
+            <!--</kanban>-->
+        <!--</field>-->
+    <!--</record>-->
+
+    <record id="education_record_view_form" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="button_show_records" icon="fa-th"
+                                attrs="{'invisible':[('child_record_count','=',0)]}">
+                            <field name="child_record_count" widget="statinfo"
+                                   string="Academic Records" class="mr4" />
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="student_id" />
+                            <field name="numeric_mark"
+                                   attrs="{'readonly': [('competence_eval_mode','=','behaviour')], 'required': [('competence_eval_mode','!=','behaviour')]}" />
+                            <field name="mark_id" options="{'no_create': True}" />
+                            <field name="behaviour_mark_id"
+                                   options="{'no_create': True}"
+                                   attrs="{'readonly': [('competence_eval_mode','=','numeric')], 'required': [('competence_eval_mode','!=','numeric')]}"/>
+                            <field name="calculated_numeric_mark"
+                                   attrs="{'invisible': [('child_record_ids','=',[])]}" />
+                        </group>
+                        <group>
+                            <field name="n_line_id" />
+                            <field name="subject_id" />
+                            <field name="teacher_id" />
+                            <field name="competence_id" />
+                            <field name="competence_eval_mode" invisible="True" />
+                            <field name="exam_id" />
+                            <field name="exam_type_id" attrs="{'invisible': [('exam_id','=',False)]}" />
+                            <field name="exam_state" attrs="{'invisible': [('exam_id','=',False)]}" />
+                            <field name="date" attrs="{'invisible': [('exam_id','=',False)]}" />
+                        </group>
+                        <field name="child_record_ids"
+                               attrs="{'invisible': [('child_record_ids','=',[])]}" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_record_action" model="ir.actions.act_window">
+        <field name="name">Academic Record</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.record</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_record_view_tree"/>
+    </record>
+</odoo>
+

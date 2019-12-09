@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="True">
+
+    <record id="competence_global" model="education.competence"
+            forcecreate="True">
+        <field name="name">Global</field>
+        <field name="eval_mode">numeric</field>
+        <field name="global_check" eval="True" />
+    </record>
+    <record id="competence_evaluation" model="education.competence"
+            forcecreate="True">
+        <field name="name">Evaluation</field>
+        <field name="eval_mode">both</field>
+        <field name="evaluation_check" eval="True" />
+    </record>
+    <record id="competence_transversal" model="education.competence"
+            forcecreate="True">
+        <field name="name">Transversal</field>
+        <field name="eval_mode">numeric</field>
+    </record>
+    <record id="competence_specific" model="education.competence"
+            forcecreate="True">
+        <field name="name">Specific</field>
+        <field name="eval_mode">numeric</field>
+    </record>
+
+    <record id="competence_indicator" model="education.competence"
+            forcecreate="True">
+        <field name="name">Indicator</field>
+        <field name="eval_mode">behaviour</field>
+    </record>
+
+
+    <record id="numeric_mark_very_bad" model="education.mark.numeric"
+            forcecreate="True">
+        <field name="name">Very Bad</field>
+        <field name="reduced_name">F</field>
+        <field name="initial_mark">0.0</field>
+        <field name="final_mark">1.99</field>
+    </record>
+    <record id="numeric_mark_bad" model="education.mark.numeric"
+            forcecreate="True">
+        <field name="name">Bad</field>
+        <field name="reduced_name">E</field>
+        <field name="initial_mark">2.0</field>
+        <field name="final_mark">3.99</field>
+    </record>
+    <record id="numeric_mark_insufficient" model="education.mark.numeric"
+            forcecreate="True">
+        <field name="name">Insufficient</field>
+        <field name="reduced_name">D</field>
+        <field name="initial_mark">4.0</field>
+        <field name="final_mark">4.99</field>
+    </record>
+    <record id="numeric_mark_normal" model="education.mark.numeric"
+            forcecreate="True">
+        <field name="name">Normal</field>
+        <field name="reduced_name">C</field>
+        <field name="initial_mark">5.0</field>
+        <field name="final_mark">5.99</field>
+    </record>
+    <record id="numeric_mark_good" model="education.mark.numeric"
+            forcecreate="True">
+        <field name="name">Good</field>
+        <field name="reduced_name">B</field>
+        <field name="initial_mark">6.0</field>
+        <field name="final_mark">7.99</field>
+    </record>
+    <record id="numeric_mark_very_good" model="education.mark.numeric"
+            forcecreate="True">
+        <field name="name">Very Good</field>
+        <field name="reduced_name">A</field>
+        <field name="initial_mark">8.0</field>
+        <field name="final_mark">10.0</field>
+    </record>
+</odoo>

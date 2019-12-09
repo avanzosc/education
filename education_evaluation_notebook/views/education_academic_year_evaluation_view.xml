@@ -1,55 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <!-- FORM AÑO ACADEMICO -->
-        <record id="education_academic_year_evaluation_view_form"
-        model="ir.ui.view">
-        <field name="model">education.academic_year.evaluation</field>
+    <record id="education_academic_year_view_form" model="ir.ui.view">
+        <field name="model">education.academic_year</field>
+        <field name="inherit_id" ref="education.education_academic_year_view_form" />
         <field name="arch" type="xml">
-            <form string="Academic year evaluation">
-            <sheet>
-	                <group string="Insert evaluation data">
-	                    <field name="academic_year_id" />
-	                    <field name="name" />
-	                    <field name='school_id' />
-	                    <field name='course_id' />
-	                </group>
-                </sheet>
-            </form>
+            <xpath expr="//field[@name='evaluation_ids']/tree//field[@name='date_end']" position="after">
+                <field name="center_id" options="{'no_create': True}" />
+                <field name="course_id" options="{'no_create': True}" />
+                <field name="eval_type" />
+            </xpath>
         </field>
     </record>
-    <!-- SEARCH AÑO ACADEMICO -->
+
+    <record id="education_academic_year_evaluation_view_form"
+            model="ir.ui.view">
+        <field name="model">education.academic_year.evaluation</field>
+        <field name="inherit_id" ref="education.education_academic_year_evaluation_view_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="center_id" options="{'no_create': True}" />
+                <field name="course_id" options="{'no_create': True}" />
+            </field>
+            <field name="date_start" position="before">
+                <field name="eval_type" />
+            </field>
+        </field>
+    </record>
+
     <record id="education_academic_year_evaluation_view_search"
-        model="ir.ui.view">
+            model="ir.ui.view">
         <field name="model">education.academic_year.evaluation</field>
+        <field name="inherit_id" ref="education.education_academic_year_evaluation_view_search" />
         <field name="arch" type="xml">
-            <search>
-                <field name="sequence" widget="handle" />
-                <field name="academic_year_id" />
-                <field name="name" />
-                <field name='school_id' />
-                <field name='course_id' />
-                <group expand="1" string="Group By">
-                    <filter name="groupby_course"
-                       context="{'group_by' : 'course_id'}"
-                       string="Courses" />
-                    <filter name="groupby_school"
-                       context="{'group_by' : 'school_id'}"
-                       string="Schools" />
-                </group>
-            </search>
+            <field name="name" position="after">
+                <field name="center_id" options="{'no_create': True}" />
+                <field name="course_id" options="{'no_create': True}" />
+            </field>
+            <filter name="groupby_year" position="after">
+                <filter name="groupby_course" context="{'group_by':'course_id'}"
+                        string="Courses" />
+                <filter name="groupby_school" context="{'group_by':'center_id'}"
+                        string="Education Centers" />
+                <filter name="groupby_eval_type" context="{'group_by':'eval_type'}"
+                        string="Evaluation Seasons" />
+            </filter>
+
         </field>
     </record>
-    <!-- TREE AÑO ACADEMICO -->
+
     <record id="education_academic_year_evaluation_view_tree"
-        model="ir.ui.view">
+            model="ir.ui.view">
         <field name="model">education.academic_year.evaluation</field>
         <field name="inherit_id"
-            ref="education.education_academic_year_evaluation_view_tree" />
+               ref="education.education_academic_year_evaluation_view_tree" />
         <field name="arch" type="xml">
-          <xpath expr="//tree" position="inside">
-            <field name='school_id' />
-            <field name='course_id' />
-          </xpath>
+            <field name="name" position="after">
+                <field name="center_id" />
+                <field name="course_id" />
+                <field name="eval_type" />
+            </field>
         </field>
     </record>
 </odoo>

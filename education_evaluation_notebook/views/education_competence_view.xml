@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_notebook_competence_view_form"
+            model="ir.ui.view">
+        <field name="model">education.competence</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <group>
+                            <field name="eval_mode" />
+                        </group>
+                        <group>
+                            <field name="evaluation_check" />
+                            <field name="global_check" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_notebook_competence_view_tree"
+        model="ir.ui.view">
+        <field name="model">education.competence</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="eval_mode" />
+                <field name="evaluation_check" />
+                <field name="global_check" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_competence_view_search" model="ir.ui.view">
+        <field name="model">education.competence</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="eval_mode" />
+                <filter name="plain_competence" string="Plain"
+                        domain="[('global_check','!=',True),('evaluation_check','!=',True)]" />
+                <filter name="global_competence" string="Global"
+                        domain="[('global_check','=',True)]" />
+                <filter name="evaluation_competence" string="Evaluation"
+                        domain="[('evaluation_check','=',True)]" />
+            </search>
+        </field>
+    </record>
+
+    <record id="education_notebook_competence_menu_act" model="ir.actions.act_window">
+        <field name="name">Competences</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.competence</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_notebook_competence_view_tree"/>
+    </record>
+</odoo>
+

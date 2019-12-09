@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_mark_behaviour_view_tree" model="ir.ui.view">
+        <field name="model">education.mark.behaviour</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="code" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id="education_mark_behaviour_view_form" model="ir.ui.view">
+        <field name="model">education.mark.behaviour</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name" />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <field name="code" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="education_mark_behaviour_action" model="ir.actions.act_window">
+        <field name="name">Behaviour Marks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.mark.behaviour</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_mark_behaviour_view_tree"/>
+    </record>
+</odoo>

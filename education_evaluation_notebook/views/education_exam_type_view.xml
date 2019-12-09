@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_exam_type_view_form" model="ir.ui.view">
+        <field name="model">education.exam.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="e_type" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_exam_type_view_tree" model="ir.ui.view">
+        <field name="model">education.exam.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="e_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_exam_type_view_search" model="ir.ui.view">
+        <field name="model">education.exam.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="e_type" />
+                <group expand="0" string="Group By">
+                    <filter name="groupby_type" string="Type"
+                            context="{'group_by':'e_type'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_exam_type_action" model="ir.actions.act_window">
+        <field name="name">Exam Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.exam.type</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_exam_type_view_tree"/>
+    </record>
+
+</odoo>
+

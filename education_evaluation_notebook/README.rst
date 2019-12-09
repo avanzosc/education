@@ -20,6 +20,7 @@ Contributors
 ------------
 
 * Adrian Revilla <adrianrevilla@avanzosc.es>
+* Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 
 Do not contact contributors directly about support or help with technical issues.

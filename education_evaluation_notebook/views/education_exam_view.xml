@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_exam_view_form" model="ir.ui.view">
+        <field name="model">education.exam</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_record"
+                            string="Create Academic Records" type="object"
+                            states="draft,progress" />
+                    <button name="action_marking" string="Publish"
+                            type="object" states="draft" />
+                    <button name="action_graded" string="Mark Graded"
+                            type="object" states="progress" />
+                    <button name="action_close_exam" string="Close Exam"
+                            type="object" states="done"
+                            confirm="Are you sure you want to close the exam?" />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="button_show_records" icon="fa-th"
+                                attrs="{'invisible':[('record_count','=',0)]}">
+                            <field name="record_count" widget="statinfo"
+                                   string="Academic Records" />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="eval_type" invisible="True" />
+                            <field name="exam_type_id" options="{'no_create': True,'no_open':True}" />
+                            <field name="eval_percent" />
+                            <field name="date" />
+                            <field name="type_exam_name" invisible="True" />
+                            <!--<field name="recovery_exam_to_id"-->
+                                <!--attrs="{'invisible': [('type_exam_name','!=','recuperation exam')]}"-->
+                                <!--domain="[('exam_type_id.e_type','!=','recuperation exam')]" />-->
+                        </group>
+                        <group>
+                            <field name="n_line_id" />
+                            <field name="schedule_id" />
+                            <field name="teacher_id" />
+                            <field name="subject_id" />
+                            <field name="mark_close_date" readonly="True" states="closed"/>
+                        </group>
+                    </group>
+                    <separator string="Description" />
+                    <field name="description" />
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_exam_view_tree"
+            model="ir.ui.view">
+        <field name="model">education.exam</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state=='done'"
+                  decoration-muted="state=='closed'">
+                <field name="name" />
+                <field name="description" />
+                <field name="n_line_id" />
+                <field name="eval_type" invisible="True" />
+                <field name="exam_type_id" options="{'no_create': True,'no_open':True}" />
+                <field name="type_exam_name" invisible="True" />
+                <field name="eval_percent" />
+                <field name="teacher_id" />
+                <field name="subject_id" />
+                <field name="date" />
+                <field name="mark_close_date" invisible="True" />
+                <!--<field name="recovery_exam_to_id"-->
+                    <!--attrs="{'invisible': [('type_exam_name','!=','recuperation exam')]}"-->
+                    <!--domain="[('exam_type_id.e_type','!=','recuperation exam')]" />-->
+                <field name="state" readonly="True"/>
+                <button name="action_generate_record" icon="fa-book"
+                        string="Create Academic Records" type="object"
+                        states="draft,progress"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_exam_view_search" model="ir.ui.view">
+        <field name="model">education.exam</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="exam_type_id" />
+                <group expand="0" string="Group By">
+                    <filter name="groupby_line" string="Notebook Line"
+                            context="{'group_by':'n_line_id'}" />
+                    <filter name="groupby_exam_type" string="Exam Type"
+                            context="{'group_by':'exam_type_id'}" />
+                    <filter name="groupby_teacher" string="Teacher"
+                            context="{'group_by':'teacher_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_exam_action" model="ir.actions.act_window">
+        <field name="name">Exams</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.exam</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_exam_view_tree"/>
+    </record>
+</odoo>
+

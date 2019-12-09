@@ -1,209 +1,191 @@
 # Copyright 2019 Adrian Revilla - Avanzosc S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
+from odoo.models import expression
+from odoo.tools.safe_eval import safe_eval
 
 
 class EducationNotebookLine(models.Model):
-    _name = 'education.notebook.line'
-    _description = 'Education notebook line'
+    _name = "education.notebook.line"
+    _description = "Education Notebook Line"
+    _rec_name = "description"
 
-    planification_id = fields.Many2one(comodel_name='education.schedule',
-                                       string='Planification', required=True)
-    teacher_id = fields.Many2one(related='planification_id.teacher_id',
-                                 comodel_name='hr.employee', string='Teacher',
-                                 store=True)
-    a_year_id = fields.Many2one(related='planification_id.academic_year_id',
-                                comodel_name='education.academic_year',
-                                string='Academic year', store=True)
-    education_center_id = fields.Many2one(related='planification_id.center_id',
-                                          comodel_name='res.partner',
-                                          string='Education center',
-                                          store=True)
-    classroom_id = fields.Many2one(related='planification_id.classroom_id',
-                                   comodel_name='education.classroom',
-                                   string='Classroom', store=True)
-    task_type_id = fields.Many2one(related='planification_id.task_type_id',
-                                   comodel_name='education.task_type',
-                                   string='Task type', store=True)
-    competence_id = fields.Many2one(comodel_name='education.competence',
-                                    string='Competence', required=True)
-    description = fields.Char(string='Description', required=True)
-    eval_percent = fields.Integer(string='Evaluation percent (%)')
-    eval_type = fields.Selection(selection=[
-        ('first', 'First'),
-        ('second', 'Second'),
-        ('third', 'Third'),
-        ('final', 'Final')],
-        string='Evaluation season', default='final', required=True
-    )
-    exam_ids = fields.One2many(comodel_name='education.exam',
-                               inverse_name='n_line_id', string='Exams',
-                               editable=True)
-    num_exams = fields.Integer(compute='_compute_num_exams',
-                               string='Number of exams')
-    competence_type_id = fields.Many2one(comodel_name='education.competence.type',
-                                         string='Competence type')
-    father_competence_id = fields.Many2one(comodel_name='education.notebook.line',
-                                           string='Father competence (notebobok line)',
-                                           store=True)
-    exists_master = fields.Boolean(string='Is master', compute='_compute_master_competences',
-                                   default=False)
-    notebook_line_child_ids = fields.One2many(comodel_name='education.notebook.line',
-                                              inverse_name='father_competence_id',
-                                              string='Son competences (notebook lines)',
-                                              editable=True,
-                                              store=True)
-    comp_eval_check = fields.Boolean(string="Evaluation check for the competence",
-                                     related='competence_id.evaluation_check',
-                                     comodel_name='education.competence',
-                                     default=False,
-                                     store=True)
-    comp_global_check = fields.Boolean(string="Global check for the competence",
-                                       related='competence_id.global_check',
-                                       comodel_name='education.competence',
-                                       default=False,
-                                       store=True)
-    academic_record_ids = fields.One2many(comodel_name='education.record',
-                                          inverse_name='n_line_id',
-                                          string='Academic records',
-                                          editable=True,
-                                          store=True)
-    father_father_competence_id = fields.Many2one(comodel_name='education.notebook.line',
-                                                  string='Fathers father competence',
-                                                  related='father_competence_id.father_competence_id',
-                                                  store=True)
-    all_exams_academic_records_count = fields.Integer(compute='_compute_all_exams_academic_records_count',
-                                                      string='Academic records of all exams of the competence')
-    evaluation_academic_records_count = fields.Integer(compute='_compute_evaluation_academic_records_count',
-                                                       string='Evaluation records of notebook line')
-    line_academic_records_count = fields.Integer(compute='_compute_line_academic_records_count',
-                                                 string='Academic records of notebook line')
+    @api.model
+    def _get_selection_eval_type(self):
+        return self.env["education.academic_year.evaluation"].fields_get(
+            allfields=["eval_type"])["eval_type"]["selection"]
 
-    # MUESTRA LOS REGISTROS ACADEMICOS ASOCIADOS A TODOS LOS EXAMENES DE LA COMPETENCIA+ LOS DE LA LINEA
+    def default_eval_type(self):
+        default_dict = self.env[
+            "education.academic_year.evaluation"].default_get(["eval_type"])
+        return default_dict.get("eval_type")
+
+    schedule_id = fields.Many2one(
+        comodel_name="education.schedule", string="Class Schedule",
+        required=True)
+    teacher_id = fields.Many2one(
+        related="schedule_id.teacher_id", comodel_name="hr.employee",
+        string="Teacher", store=True)
+    a_year_id = fields.Many2one(
+        related="schedule_id.academic_year_id",
+        comodel_name="education.academic_year",
+        string="Academic year", store=True)
+    education_center_id = fields.Many2one(
+        related="schedule_id.center_id", comodel_name="res.partner",
+        string="Education Center", store=True)
+    classroom_id = fields.Many2one(
+        related="schedule_id.classroom_id", comodel_name="education.classroom",
+        string="Classroom", store=True)
+    task_type_id = fields.Many2one(
+        related="schedule_id.task_type_id", comodel_name="education.task_type",
+        string="Task Type", store=True)
+    subject_id = fields.Many2one(
+        related="schedule_id.subject_id", comodel_name="education.subject",
+        string="Education Subject", store=True)
+    competence_id = fields.Many2one(
+        comodel_name="education.competence", string="Competence",
+        required=True)
+    description = fields.Char(string="Description", required=True)
+    eval_percent = fields.Float(string="Percent (%)", default=100.0)
+    eval_type = fields.Selection(
+        selection="_get_selection_eval_type", string="Evaluation Season",
+        default=default_eval_type, required=True)
+    evaluation_id = fields.Many2one(
+        comodel_name="education.academic_year.evaluation", string="Evaluation")
+    exam_ids = fields.One2many(
+        comodel_name="education.exam", inverse_name="n_line_id",
+        tring="Exams", editable=True)
+    exam_count = fields.Integer(
+        compute="_compute_exam_count", string="# Exams")
+    competence_type_id = fields.Many2one(
+        comodel_name="education.competence.type", string="Competence Type")
+    parent_line_id = fields.Many2one(
+        comodel_name="education.notebook.line", string="Parent Line")
+    child_line_ids = fields.One2many(
+        comodel_name="education.notebook.line", inverse_name="parent_line_id",
+        string="Child Lines")
+    child_line_count = fields.Integer(
+        compute="_compute_child_line_count", string="# Child Lines")
+    parent_parent_line_id = fields.Many2one(
+        comodel_name="education.notebook.line", string="Parent Parent Line",
+        related="parent_line_id.parent_line_id", store=True)
+    exists_master = fields.Boolean(
+        string="Is master", compute="_compute_master_competences", store=True)
+    evaluation_competence = fields.Boolean(
+        related="competence_id.evaluation_check", store=True,
+        string="Evaluation Competence")
+    global_competence = fields.Boolean(
+        related="competence_id.global_check", store=True,
+        string="Global Competence")
+    record_ids = fields.One2many(
+        comodel_name="education.record", inverse_name="n_line_id",
+        string="Academic Records")
+    record_count = fields.Integer(
+        compute="_compute_record_count", string="# Academic Record",
+        store=True)
+
     @api.multi
-    def button_show_all_exams_academic_records(self):
-        academic_record_lines = self.env['education.record']
-        exam_ids = self.env['education.exam'].search([
-            ('n_line_id', '=', self.id)])
-        for exam in exam_ids:
-            academic_record_lines = academic_record_lines + exam.academic_record_ids
-        academic_record_lines = academic_record_lines + self.env['education.record'].search([
-            ('n_line_id', '=', self.id)])
+    def button_show_child_lines(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "education_evaluation_notebook.education_notebook_line_action")
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [("parent_line_id", "=", self.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict
 
-        context = dict(self.env.context or {})
-        context['search_default_groupby_father_competence'] = True
-
-        description = (self.planification_id.subject_id.description or
-                       self.planification_id.task_type_id.description)
-        return {
-            'name': _('Academic records for all exams of {} [{}]').format(
-                description, self.planification_id.teacher_id.name),
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'education.record',
-            'type': 'ir.actions.act_window',
-            'context': context,
-            'domain': [('id', 'in', academic_record_lines.ids)],
-        }
-
-    # MUESTRA LOS REGISTROS ACADEMICOS ASOCIADOS A TODOS LOS EXAMENES DE LA COMPETENCIA+ LOS DE LA LINEA
     @api.multi
-    def button_show_evaluation_academic_records(self):
-        academic_record_lines = self.env['education.record']
-        for eval_childs in self.notebook_line_child_ids:
-            academic_record_lines = academic_record_lines + self.env['education.record'].search([
-                ('n_line_id', '=', eval_childs.id)])
-        academic_record_lines = academic_record_lines + self.env['education.record'].search([
-            ('n_line_id', '=', self.id)])
+    def button_show_records(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "education_evaluation_notebook.education_record_action")
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [("n_line_id", "=", self.id),
+             ("exam_id", "=", False)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict
 
-        context = dict(self.env.context or {})
-        context['search_default_groupby_father_competence'] = True
-
-        description = (self.planification_id.subject_id.description or
-                       self.planification_id.task_type_id.description)
-        return {
-            'name': _('Academic records for evaluations of {} [{}]').format(
-                description, self.planification_id.teacher_id.name),
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'education.record',
-            'type': 'ir.actions.act_window',
-            'context': context,
-            'domain': [('id', 'in', academic_record_lines.ids)],
-        }
-
-    # MUESTRA LOS REGISTROS ACADEMICOS DE TODOS LOS EXAMENES DE LA LINEA
     @api.multi
-    def button_show_line_academic_records(self):
-        academic_record_lines = self.env['education.record']
-        academic_record_lines = academic_record_lines + self.env['education.record'].search([
-            ('n_line_id', '=', self.id)])
-
-        description = (self.planification_id.subject_id.description or
-                       self.planification_id.task_type_id.description)
-        return {
-            'name': _('Academic records for {} [{}]').format(
-                description, self.planification_id.teacher_id.name),
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'education.record',
-            'type': 'ir.actions.act_window',
-            'domain': [('id', 'in', academic_record_lines.ids)],
-        }
-
-    # CUENTA LOS REGISTROS ACADEMICOS ASOCIADOS A TODOS LOS EXAMENES DE LA COMPETENCIA + LOS DE LA LINEA
-    @api.multi
-    def _compute_all_exams_academic_records_count(self):
+    @api.depends("record_ids")
+    def _compute_record_count(self):
         for line in self:
-            count = 0
-            exam_ids = line.env['education.exam'].search([
-                ('n_line_id', '=', line.id)])
-            for exam in exam_ids:
-                count = count + exam.academic_record_lines_count
-            count = count + line.env['education.record'].search_count([
-                ('n_line_id', '=', line.id)])
-            line.all_exams_academic_records_count = count
+            line.record_count = len(line.record_ids)
 
-    # CUENTA LOS REGISTROS ACADEMICOS ASOCIADOS A LAS EVALUACIONES DE LA COMPETENCIA + LOS DE LA LINEA
-    @api.depends('notebook_line_child_ids')
     @api.multi
-    def _compute_evaluation_academic_records_count(self):
-        for line in self:
-            count = 0
-            for eval_childs in line.notebook_line_child_ids:
-                count = count + line.env['education.record'].search_count([
-                    ('n_line_id', '=', eval_childs.id)])
-            count = count + line.env['education.record'].search_count([
-                ('n_line_id', '=', line.id)])
-            line.evaluation_academic_records_count = count
-
-    # CUENTA LOS REGISTROS ACADEMICOS ASOCIADOS A LOS EXAMENES DE LA LINEA
-    @api.multi
-    def _compute_line_academic_records_count(self):
-        for line in self:
-            count = 0
-            count = count + line.env['education.record'].search_count([
-                ('n_line_id', '=', line.id)])
-            line.line_academic_records_count = count
-
-    # DEVUELVE TRUE SI LA LINEA CUADERNO TIENE UNA COMPETENCIA MASTER (TANTO LA COMPETENCIA COMO LA PADRE)
-    @api.depends('competence_id')
-    @api.multi
+    @api.depends("competence_id", "competence_id.evaluation_check",
+                 "competence_id.global_check")
     def _compute_master_competences(self):
         for line in self:
-            line.exists_master = line.competence_id.evaluation_check or line.competence_id.global_check or False
+            line.exists_master = (
+                line.competence_id.evaluation_check or
+                line.competence_id.global_check or False)
 
-    @api.depends('exam_ids')
     @api.multi
-    def _compute_num_exams(self):
+    @api.depends("exam_ids")
+    def _compute_exam_count(self):
         for record in self:
-            record.num_exams = len(record.exam_ids)
+            record.exam_count = len(record.exam_ids)
+
+    @api.onchange("competence_id")
+    def _onchange_competence_id(self):
+        for line in self:
+            line.description = line.competence_id.name or ""
+
+    @api.onchange("evaluation_id")
+    def _onchange_evaluation_id(self):
+        for line in self:
+            line.eval_type = line.evaluation_id.eval_type or "final"
+
+    @api.onchange("parent_line_id")
+    def _onchange_parent_line_id(self):
+        for line in self:
+            line.evaluation_id = line.parent_line_id.evaluation_id
+
+    @api.multi
+    def find_or_create_student_record(self, student, parent_record=False):
+        self.ensure_one()
+        record_obj = self.env["education.record"]
+        if self.parent_line_id:
+            parent_record = (
+                self.parent_line_id.find_or_create_student_record(student))
+        record = record_obj.search([
+            ("n_line_id", "=", self.id),
+            ("student_id", "=", student.id),
+            ("exam_id", "=", False),
+        ])
+        if not record:
+            record = record_obj.create({
+                "n_line_id": self.id,
+                "student_id": student.id,
+                "parent_record_id": parent_record and parent_record.id,
+            })
+        return record
+
+    @api.multi
+    def button_create_student_records(self):
+        for line in self:
+            for student in line.schedule_id.student_ids:
+                line.find_or_create_student_record(student)
+            line.exam_ids.action_generate_record()
 
     @api.multi
     def name_get(self):
+        """ name_get() -> [(id, name), ...]
+
+        Returns a textual representation for the records in ``self``.
+        By default this is the value of the ``display_name`` field.
+
+        :return: list of pairs ``(id, text_repr)`` for each records
+        :rtype: list(tuple)
+        """
         result = []
         for record in self:
-            result.append((record.id, '[Notebook line] for "{}" in "{}" with "{}" exams'.format(
-                record.teacher_id.name, record.competence_id.name, record.num_exams)))
+            result.append(
+                (record.id,
+                 "{} [{}]".format(record.description, record.eval_type)))
         return result
