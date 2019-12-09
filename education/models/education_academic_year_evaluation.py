@@ -8,8 +8,9 @@ from odoo.exceptions import ValidationError
 class EducationAcademicYearEvaluation(models.Model):
     _name = 'education.academic_year.evaluation'
     _description = 'Evaluations for an academic year'
+    _order = 'academic_year_id,sequence'
 
-    name = fields.Char(string='Evaluation Name', required=True)
+    name = fields.Char(string='Name', required=True)
     sequence = fields.Integer()
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',

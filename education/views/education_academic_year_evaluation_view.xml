@@ -8,7 +8,47 @@
                 <field name="sequence" widget="handle" />
                 <field name="academic_year_id" />
                 <field name="name" />
+                <field name="date_start" />
+                <field name="date_end" />
             </tree>
+        </field>
+    </record>
+
+    <record id="education_academic_year_evaluation_view_form"
+            model="ir.ui.view">
+        <field name="model">education.academic_year.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="Academic year evaluation">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="academic_year_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="date_start" />
+                            <field name="date_end" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_academic_year_evaluation_view_search"
+            model="ir.ui.view">
+        <field name="model">education.academic_year.evaluation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="academic_year_id" />
+                <field name="name" />
+                <group expand="0" string="Group By">
+                    <filter name="groupby_year"
+                            context="{'group_by' : 'academic_year_id'}"
+                            string="Academic Year" />
+                </group>
+            </search>
         </field>
     </record>
 

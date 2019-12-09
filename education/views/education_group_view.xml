@@ -53,6 +53,7 @@
         <field name="model">education.group</field>
         <field name="arch" type="xml">
             <form>
+                <header />
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="button_open_students" type="object"
