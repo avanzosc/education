@@ -87,12 +87,30 @@
         </field>
     </record>
 
+    <record id="education_center_res_partner_view_tree" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="education_code" />
+                <field name="display_name" />
+                <field name="street" />
+                <field name="zip" />
+                <field name="city" />
+                <field name="state_id" options="{'no_open':True}" />
+                <field name="phone" />
+                <field name="email" />
+                <field name="website" />
+            </tree>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_res_partner_school">
         <field name="name">Education Centers</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,form</field>
         <field name="domain">[('educational_category', '=', 'school')]</field>
+        <field name="view_id" ref="education_center_res_partner_view_tree" />
     </record>
 
     <menuitem id="res_partner_school_menuitem"
