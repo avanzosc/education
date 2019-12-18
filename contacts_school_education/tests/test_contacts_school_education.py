@@ -27,6 +27,9 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         self.assertIn(self.family, parents)
         self.assertIn(self.school, self.family.childs_current_center_ids)
         self.assertIn(self.edu_course, self.family.childs_current_course_ids)
+        action_dict = self.school.button_open_current_student()
+        self.assertIn(("current_center_id", "=", self.school.id),
+                      action_dict.get("domain"))
 
     def test_course_change(self):
         with self.assertRaises(ValidationError):
