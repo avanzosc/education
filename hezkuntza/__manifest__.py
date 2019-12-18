@@ -15,7 +15,6 @@
         "hr_contract_education",
         "contacts_school",
         "partner_second_lastname",
-        # "excel_import_export",
     ],
     "data": [
         "data/education_group_type_data.xml",

@@ -169,7 +169,10 @@ class UpdateEducationResPartnerLine(models.TransientModel):
     def button_update_vat(self):
         for line in self.filtered(
                 lambda l: l.partner_id and l.student_document):
-            line.partner_id.vat = line.student_document
+            try:
+                line.partner_id.vat = line.student_document
+            except Exception:
+                pass
         return True
 
     @api.multi

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 15:05+0000\n"
-"PO-Revision-Date: 2019-07-01 15:05+0000\n"
+"POT-Creation-Date: 2019-12-18 11:25+0000\n"
+"PO-Revision-Date: 2019-12-18 11:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__active
 msgid "Active"
-msgstr ""
+msgstr "Aktiboa"
 
 #. module: hezkuntza
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_activity_type_view_form
@@ -65,6 +65,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_education_position__description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_subject__description_eu
+#: model:ir.model.fields,field_description:hezkuntza.field_education_subject_type__description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__description_eu
@@ -94,10 +95,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_education_position__short_description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__short_description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_subject__short_description_eu
+#: model:ir.model.fields,field_description:hezkuntza.field_education_subject_type__short_description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_task_type__short_description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_work_reason__short_description_eu
 #: model:ir.model.fields,field_description:hezkuntza.field_education_workday_type__short_description_eu
 msgid "Basque Short Description"
+msgstr ""
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
+msgid "Both"
 msgstr ""
 
 #. module: hezkuntza
@@ -129,7 +137,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_work_reason_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_workday_type_view_form
 msgid "Cancel"
-msgstr "Ezeztatu"
+msgstr "Utzi"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_shift
@@ -148,14 +156,14 @@ msgid "Classrooms (T06)"
 msgstr ""
 
 #. module: hezkuntza
-#: model:ir.ui.menu,name:hezkuntza.education_configuration_menuitem
-msgid "Configuration"
-msgstr "Konfigurazioa"
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
+msgid "Code"
+msgstr "Kodea"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktua"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_hr_contract
@@ -181,6 +189,8 @@ msgstr ""
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__create_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__create_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__create_uid
@@ -213,6 +223,8 @@ msgstr "Nork sortua"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__create_date
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__create_date
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__create_date
@@ -241,7 +253,7 @@ msgstr "Nork sortua"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Noiz sortua"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__description
@@ -256,6 +268,8 @@ msgstr ""
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__display_name
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__display_name
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__display_name
@@ -287,9 +301,25 @@ msgid "Display Name"
 msgstr "Izena erakutsi"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__duplicated_partner
+msgid "Duplicated Partner"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__duplicated_partner_count
+msgid "Duplicated Partner Count"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__duplicated_partner_line_ids
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
+msgid "Duplicated Partner Lines"
+msgstr ""
+
+#. module: hezkuntza
 #: model:ir.module.category,name:hezkuntza.education_module_category
 msgid "Education"
-msgstr ""
+msgstr "Hezkuntza"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_group__center_id
@@ -303,6 +333,7 @@ msgstr ""
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__education_code
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
 msgid "Education Code"
 msgstr ""
 
@@ -486,10 +517,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_group__file
 #: model:ir.ui.menu,name:hezkuntza.groups_configuration_menuitem
 msgid "Groups"
+msgstr "Taldeak"
+
+#. module: hezkuntza
+#: model:ir.ui.menu,name:hezkuntza.hezkuntza_configuration_menuitem
+msgid "Hezkuntza"
 msgstr ""
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__id
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__id
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__id
@@ -521,6 +559,11 @@ msgid "ID"
 msgstr ""
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__student_document
+msgid "ID Document"
+msgstr ""
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_idtype
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_idtype__file
 msgid "ID Types File (V55T86)"
@@ -529,7 +572,7 @@ msgstr ""
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_language
 msgid "Language"
-msgstr ""
+msgstr "Hizkuntza"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_language
@@ -539,6 +582,8 @@ msgstr ""
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift____last_update
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner____last_update
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom____last_update
@@ -567,10 +612,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__write_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__write_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__write_uid
@@ -599,10 +646,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azkenengoz eguneratu zuena"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__write_date
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__write_date
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__write_date
@@ -631,7 +680,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneraketa noiz"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_level_course_subject
@@ -658,6 +707,27 @@ msgid "Levels File (V55T11)"
 msgstr ""
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__file_line_ids
+msgid "Lines"
+msgstr "Líneas"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__missing_partner
+msgid "Missing Partner"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__missing_partner_count
+msgid "Missing Partner Count"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__missing_partner_line_ids
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
+msgid "Missing Partner Lines"
+msgstr ""
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_activity_type__file
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_activity_type
 msgid "Other Activity Types File (T07)"
@@ -668,6 +738,38 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_position__file_other
 msgid "Other Positions file (T16)"
 msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__partner_id
+msgid "Partner"
+msgstr "Kidea"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__partner_count
+msgid "Partner Count"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__education_code
+msgid "Partner Education Code"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__partner_line_ids
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
+msgid "Partner Lines"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__vat
+msgid "Partner Tax ID"
+msgstr ""
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
+msgid "Partners"
+msgstr "Kideak"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_normal_position
@@ -688,7 +790,7 @@ msgstr ""
 #. module: hezkuntza
 #: model:res.groups,name:hezkuntza.education_responsible
 msgid "Responsible"
-msgstr ""
+msgstr "Arduraduna"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_schedule__file
@@ -732,6 +834,36 @@ msgid "Spanish"
 msgstr ""
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__student_education_code
+msgid "Student Education Code"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__student_name
+msgid "Student First Name"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__file
+msgid "Student Information File"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__student_lastname1
+msgid "Student Last Name"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__student_lastname2
+msgid "Student Second Last Name"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_education_group__student_ids
+msgid "Students"
+msgstr ""
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__file
 msgid "Students File (T27)"
 msgstr ""
@@ -766,6 +898,18 @@ msgid "Teachers (T06)"
 msgstr ""
 
 #. module: hezkuntza
+#: model:ir.model.fields,help:hezkuntza.field_update_education_partner_line__vat
+msgid "The Tax Identification Number. Complete it if the contact is subjected to government taxes. Used in some legal statements."
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.actions.act_window,name:hezkuntza.action_update_education_partner
+#: model:ir.ui.menu,name:hezkuntza.update_education_partner_menuitem
+msgid "Update Education Code on Partner"
+msgstr ""
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_activity_type_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_all_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_classroom_view_form
@@ -964,6 +1108,27 @@ msgid "User"
 msgstr "Erabiltzailea"
 
 #. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
+msgid "Vat"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__wizard_id
+msgid "Wizard"
+msgstr "Laguntzailea"
+
+#. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_update_education_partner_line
+msgid "Wizard Lines to Update Partner Education Code"
+msgstr ""
+
+#. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_update_education_partner
+msgid "Wizard to Update Partner Education Code"
+msgstr ""
+
+#. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_upload_education_shift
 msgid "Wizard to Upload Class Shift"
 msgstr ""
@@ -1139,5 +1304,5 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_work_reason_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_workday_type_view_form
 msgid "or"
-msgstr "o"
+msgstr "edo"
 
