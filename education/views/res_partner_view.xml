@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="res_partner_education_view_form"
-            model="ir.ui.view">
+    <record id="res_partner_education_view_form" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
@@ -9,7 +8,7 @@
                 <field name="edu_idtype_id"
                        options="{'no_create': True, 'no_open': True}"/>
             </field>
-            <field name="ref" position="after">
+            <field name="vat" position="after">
                 <field name="education_code" />
             </field>
             <button name="toggle_active" position="before">
@@ -21,6 +20,16 @@
                            widget="statinfo"/>
                 </button>
             </button>
+        </field>
+    </record>
+
+    <record id="res_partner_education_view_tree" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="arch" type="xml">
+            <field name="display_name" position="before">
+                <field name="education_code" />
+            </field>
         </field>
     </record>
 </odoo>
