@@ -54,12 +54,14 @@ class EducationAcademicYear(models.Model):
             if not record.date_end > record.date_start:
                 raise ValidationError(
                     _('End date must be after start date.'))
-            if record.date_start > min(
-                    record.mapped('evaluation_ids.date_start')):
+            if (record.mapped('evaluation_ids.date_start') and
+                    record.date_start > min(
+                    record.mapped('evaluation_ids.date_start'))):
                 raise ValidationError(
                     _('Start date must be before evaluations start dates.'))
-            if record.date_end < max(
-                    record.mapped('evaluation_ids.date_end')):
+            if (record.mapped('evaluation_ids.date_end') and
+                    record.date_end < max(
+                    record.mapped('evaluation_ids.date_end'))):
                 raise ValidationError(
                     _('End date must be after evaluations end dates.'))
 
