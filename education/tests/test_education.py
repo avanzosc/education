@@ -20,17 +20,54 @@ class TestEducation(TestEducationCommon):
 
     def test_education_academic_year(self):
         self.assertTrue(self.academic_year.active)
-        self.academic_year.toggle_active()
-        self.assertFalse(self.academic_year.active)
         with self.assertRaises(ValidationError):
             self.academic_year_model.create({
                 'name': 'TEST',
             })
+        self.evaluation_model.create({
+            'name': 'Evaluation',
+            'academic_year_id': self.academic_year.id,
+            'date_start': self.date_start,
+            'date_end': self.date_end,
+        })
         with self.assertRaises(ValidationError):
             self.academic_year.write({
                 'date_start': self.today,
                 'date_end': self.today,
             })
+        with self.assertRaises(ValidationError):
+            self.academic_year.write({
+                'date_start': self.date_start + relativedelta(days=1),
+                'date_end': self.date_end,
+            })
+        with self.assertRaises(ValidationError):
+            self.academic_year.write({
+                'date_start': self.date_start,
+                'date_end': self.date_end - relativedelta(days=1),
+            })
+        self.academic_year.toggle_active()
+        self.assertFalse(self.academic_year.active)
+
+    def test_education_academic_year_current(self):
+        date_start = self.today - relativedelta(months=1)
+        self.academic_year.write({
+            'date_start': date_start,
+            'date_end': date_start + relativedelta(months=1),
+        })
+        self.assertTrue(self.academic_year.current)
+        self.assertIn(
+            self.academic_year, self.academic_year_model.search([
+                ('current', '=', True)]))
+        date_start = self.today + relativedelta(months=1)
+        self.academic_year.write({
+            'date_start': date_start,
+            'date_end': date_start + relativedelta(months=1),
+        })
+        self.academic_year.invalidate_cache()
+        self.assertFalse(self.academic_year.current)
+        self.assertIn(
+            self.academic_year, self.academic_year_model.search([
+                ('current', '!=', True)]))
 
     def test_education_academic_year_evaluation(self):
         with self.assertRaises(ValidationError):
