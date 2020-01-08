@@ -153,16 +153,19 @@ class EducationScheduleGroup(models.Model):
     _description = 'Class Schedule Group'
 
     schedule_id = fields.Many2one(
-        comodel_name='education.schedule', string='Schedule')
+        comodel_name='education.schedule', string='Schedule', required=True,
+        ondelete='cascade')
     group_id = fields.Many2one(
-        comodel_name='education.group', string='Group', required=True)
+        comodel_name='education.group', string='Group', required=True,
+        ondelete='cascade')
     group_type_id = fields.Many2one(
         comodel_name='education.group_type', string='Group Type',
         related='group_id.group_type_id')
     group_student_count = fields.Integer(
         related='group_id.student_count')
     parent_group_id = fields.Many2one(
-        comodel_name='education.group', string='Parent Group', required=True)
+        comodel_name='education.group', string='Parent Group', required=True,
+        ondelete='cascade')
     parent_group_type_id = fields.Many2one(
         comodel_name='education.group_type', string='Parent Group Type',
         related='parent_group_id.group_type_id')
