@@ -1,8 +1,9 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.models import expression
+from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 import base64
 
@@ -60,24 +61,30 @@ class UpdateEducationResPartner(models.TransientModel):
             self.file_line_ids.unlink()
             book = base64.decodestring(self.file)
             reader = xlrd.open_workbook(file_contents=book)
-            sheet = (
-                reader.sheet_by_name("Modulos-Matricula-Alumno") or
-                reader.sheet_by_index(0))
-            line_obj = self.env["update.education.partner.line"]
-            # keys = [c.value for c in sheet.row(1)]
-            for counter in range(2, sheet.nrows-1):
-                rowValues = sheet.row_values(counter, 0, end_colx=sheet.ncols)
-                # values = dict(zip(keys, rowValues))
-                line_data = {
-                    "wizard_id": self.id,
-                    "student_education_code": rowValues[6].zfill(10),
-                                                             # COD_ALU,
-                    "student_document": rowValues[8],        # DOCU_IDENTI_ALU,
-                    "student_lastname1": rowValues[9],       # APELLIDO_1_ALU
-                    "student_lastname2": rowValues[10],      # APELLIDO_2_ALU
-                    "student_name": rowValues[11],           # NOMBRE_ALU
-                }
-                line_obj.find_or_create(line_data)
+            try:
+                sheet = reader.sheet_by_name("Modulos-Matricula-Alumno")
+                line_obj = self.env["update.education.partner.line"]
+                # keys = [c.value for c in sheet.row(1)]
+                for counter in range(2, sheet.nrows-1):
+                    rowValues = sheet.row_values(
+                        counter, 0, end_colx=sheet.ncols)
+                    # values = dict(zip(keys, rowValues))
+                    line_data = {
+                        "wizard_id": self.id,
+                        # COD_ALU
+                        "student_education_code": rowValues[6].zfill(10),
+                        # DOCU_IDENTI_ALU
+                        "student_document": rowValues[8],
+                        # APELLIDO_1_ALU
+                        "student_lastname1": rowValues[9],
+                        # APELLIDO_2_ALU
+                        "student_lastname2": rowValues[10],
+                        # NOMBRE_ALU
+                        "student_name": rowValues[11],
+                    }
+                    line_obj.find_or_create(line_data)
+            except Exception:
+                raise ValidationError(_('This is not a valid file.'))
 
     @api.multi
     def button_update_education_code(self):

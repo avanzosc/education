@@ -66,6 +66,8 @@ class UploadEducationContractType(models.TransientModel):
                             ('edu_idtype_id', '=', idtype.id),
                             ('identification_id', '=', doc),
                         ], limit=1)
+                        if not teacher:
+                            continue
                         session_number = int(_format_info(line[20:22]))
                         dayofweek = dayofweek_dict.get(
                             int(_format_info(line[22:23])))
@@ -156,7 +158,7 @@ class UploadEducationContractType(models.TransientModel):
                             ])
                             if group:
                                 group.write(vals)
-                            else:
-                                group_obj.create(vals)
+                            # else:
+                            #     group_obj.create(vals)
         action = self.env.ref('education.action_education_schedule')
         return action.read()[0]
