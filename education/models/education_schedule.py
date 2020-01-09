@@ -49,10 +49,10 @@ class EducationSchedule(models.Model):
         inverse_name='schedule_id')
     session_number = fields.Integer()
     dayofweek = fields.Selection(
-        selection='_get_selection_dayofweek', string='Day of Week',
-        required=True, index=True, default=default_dayofweek)
-    hour_from = fields.Float(string='Work from', required=True, index=True)
-    hour_to = fields.Float(string='Work to', required=True)
+        selection='_get_selection_dayofweek', string='Day of Week', index=True,
+        default=default_dayofweek)
+    hour_from = fields.Float(string='Work from', index=True)
+    hour_to = fields.Float(string='Work to')
     classroom_id = fields.Many2one(
         comodel_name='education.classroom', string='Classroom',
         domain="[('center_id', '=', center_id)]")
