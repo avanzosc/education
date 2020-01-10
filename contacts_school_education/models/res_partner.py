@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.models import expression
+from odoo.tools.safe_eval import safe_eval
 
 
 class ResPartner(models.Model):
@@ -29,8 +31,7 @@ class ResPartner(models.Model):
     current_center_id = fields.Many2one(
         comodel_name='res.partner', string='Current Education Center',
         compute='_compute_current_group_id',
-        search='_search_current_center_id',
-        domain="[('educational_category', '=', 'school')]")
+        search='_search_current_center_id')
     current_course_id = fields.Many2one(
         comodel_name='education.course', string='Current Course',
         compute='_compute_current_group_id',
@@ -134,3 +135,14 @@ class ResPartner(models.Model):
             ('academic_year_id', '=', current_year.id),
             ('group_type_id', 'in', official_type.ids)
         ])
+
+    @api.multi
+    def button_open_current_student(self):
+        self.ensure_one()
+        action = self.env.ref('contacts.action_contacts')
+        action_dict = action.read()[0]
+        domain = expression.AND([
+            [("current_center_id", "=", self.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict

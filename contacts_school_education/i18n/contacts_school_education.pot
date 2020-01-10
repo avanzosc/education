@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-28 11:27+0000\n"
-"PO-Revision-Date: 2019-06-28 11:27+0000\n"
+"POT-Creation-Date: 2019-12-18 11:10+0000\n"
+"PO-Revision-Date: 2019-12-18 11:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,18 @@ msgstr ""
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Center And Promotion"
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__childs_current_course_ids
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__childs_current_course_ids
+msgid "Children's Current Courses"
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__childs_current_center_ids
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__childs_current_center_ids
+msgid "Children's Current Education Centers"
 msgstr ""
 
 #. module: contacts_school_education
@@ -72,8 +84,26 @@ msgid "Created on"
 msgstr ""
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_course_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_course_id
+msgid "Current Course"
+msgstr ""
+
+#. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 msgid "Current Course and Center"
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_center_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_center_id
+msgid "Current Education Center"
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_group_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_group_id
+msgid "Current Group"
 msgstr ""
 
 #. module: contacts_school_education
@@ -88,15 +118,36 @@ msgid "Education Center"
 msgstr ""
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
+msgid "Education Center (Family)"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
+msgid "Education Center (Student)"
+msgstr ""
+
+#. module: contacts_school_education
 #: model:ir.actions.act_window,name:contacts_school_education.action_res_partner_school
 #: model:ir.ui.menu,name:contacts_school_education.res_partner_school_menuitem
 msgid "Education Centers"
 msgstr ""
 
 #. module: contacts_school_education
-#: model:ir.actions.act_window,name:contacts_school_education.action_res_partner_faculty
-#: model:ir.ui.menu,name:contacts_school_education.res_partner_faculty_menuitem
-msgid "Faculty"
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
+msgid "Education Course (Family)"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
+msgid "Education Course (Student)"
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__student_group_ids
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__student_group_ids
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
+msgid "Education Groups"
 msgstr ""
 
 #. module: contacts_school_education
@@ -173,5 +224,10 @@ msgstr ""
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Previous Education Center"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
+msgid "Students"
 msgstr ""
 
