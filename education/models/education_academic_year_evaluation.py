@@ -36,6 +36,11 @@ class EducationAcademicYearEvaluation(models.Model):
                 raise ValidationError(
                     _('Evaluation dates must be between academic year dates.'))
 
+    def copy_data(self, default=None):
+        name = _("{} (copy)").format(self.name)
+        default = dict(default or {}, name=name)
+        return super(EducationAcademicYearEvaluation, self).copy_data(default)
+
     _sql_constraints = [
         ('name_unique', 'unique(name, academic_year_id)',
          'Evaluation name must be unique!'),

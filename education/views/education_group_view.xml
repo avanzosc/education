@@ -40,6 +40,8 @@
                             context="{'group_by': 'plan_id'}" />
                     <filter string="Level" name="level"
                             context="{'group_by': 'level_id'}" />
+                    <filter string="Course" name="Course"
+                            context="{'group_by': 'course_id'}" />
                     <filter string="Study Field" name="study_field"
                             context="{'group_by': 'field_id'}" />
                     <filter string="Educational Group Type" name="group_type"

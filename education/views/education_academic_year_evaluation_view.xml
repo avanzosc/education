@@ -18,7 +18,7 @@
             model="ir.ui.view">
         <field name="model">education.academic_year.evaluation</field>
         <field name="arch" type="xml">
-            <form string="Academic year evaluation">
+            <form>
                 <sheet>
                     <group>
                         <group>
