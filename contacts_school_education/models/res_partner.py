@@ -139,10 +139,29 @@ class ResPartner(models.Model):
     @api.multi
     def button_open_current_student(self):
         self.ensure_one()
+        if self.educational_category != "school":
+            return
         action = self.env.ref('contacts.action_contacts')
-        action_dict = action.read()[0]
+        action_dict = action and action.read()[0]
         domain = expression.AND([
             [("current_center_id", "=", self.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict
+
+    @api.multi
+    def button_open_relative_student(self):
+        self.ensure_one()
+        if self.educational_category != "family":
+            return
+        action = self.env.ref("education.action_education_group_report")
+        students = self.mapped("family_ids.child2_id")
+        academic_year = self.env["education.academic_year"].search([
+            ("current", "=", True)])
+        action_dict = action and action.read()[0]
+        domain = expression.AND([
+            [("student_id", "in", students.ids),
+             ("academic_year_id", "in", academic_year.ids)],
             safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict

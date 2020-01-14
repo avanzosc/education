@@ -27,9 +27,17 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         self.assertIn(self.family, parents)
         self.assertIn(self.school, self.family.childs_current_center_ids)
         self.assertIn(self.edu_course, self.family.childs_current_course_ids)
-        action_dict = self.school.button_open_current_student()
+        action_dict = self.family.button_open_current_student()
+        self.assertFalse(action_dict)
+        school_action_dict = self.school.button_open_current_student()
         self.assertIn(("current_center_id", "=", self.school.id),
-                      action_dict.get("domain"))
+                      school_action_dict.get("domain"))
+        action_dict = self.school.button_open_relative_student()
+        self.assertFalse(action_dict)
+        family_action_dict = self.family.button_open_relative_student()
+        students = self.family.mapped("family_ids.child2_id")
+        self.assertIn(("student_id", "in", students.ids),
+                      family_action_dict.get("domain"))
 
     def test_course_change(self):
         with self.assertRaises(ValidationError):
