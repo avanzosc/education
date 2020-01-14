@@ -15,16 +15,6 @@ class EducationSchedule(models.Model):
         return self.env['education.task_type'].fields_get(
             allfields=['type'])['type']['selection']
 
-    @api.model
-    def _get_selection_dayofweek(self):
-        return self.env['resource.calendar.attendance'].fields_get(
-            allfields=['dayofweek'])['dayofweek']['selection']
-
-    def default_dayofweek(self):
-        default_dict = self.env['resource.calendar.attendance'].default_get([
-            'dayofweek'])
-        return default_dict.get('dayofweek')
-
     center_id = fields.Many2one(
         comodel_name='res.partner', string='Education Center', required=True)
     academic_year_id = fields.Many2one(
