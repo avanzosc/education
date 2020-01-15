@@ -8,6 +8,9 @@
                 <button name="button_open_current_student" string="Students"
                         type="object" class="oe_stat_button" icon="fa-users"
                         attrs="{'invisible': [('educational_category','!=','school')]}"/>
+                <button name="button_open_relative_student" string="Students"
+                        type="object" class="oe_stat_button" icon="fa-users"
+                        attrs="{'invisible': [('educational_category','!=','family')]}"/>
             </div>
             <field name="old_student" position="after">
                 <label for="alumni_center_id" string="Center And Promotion"
