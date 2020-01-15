@@ -114,6 +114,7 @@ class UploadEducationGroup(models.TransientModel):
                         }
                         group = group_obj.search([
                             ('education_code', '=', group_code),
+                            ('academic_year_id', '=', academic_year.id),
                             ('center_id', '=', partner.id)], limit=1)
                         if group:
                             group.write(vals)

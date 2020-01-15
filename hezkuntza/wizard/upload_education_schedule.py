@@ -19,6 +19,8 @@ class UploadEducationContractType(models.TransientModel):
         lines = _read_binary_file(self.file)
         schedule_obj = self.env[
             'education.schedule'].with_context(active_test=False)
+        timetable_obj = self.env[
+            'education.schedule.timetable'].with_context(active_test=False)
         partner_obj = self.env['res.partner'].with_context(active_test=False)
         academic_year_obj = self.env[
             'education.academic_year'].with_context(active_test=False)
@@ -85,20 +87,26 @@ class UploadEducationContractType(models.TransientModel):
                         schedule = schedule_obj.search([
                             ('center_id', '=', center.id),
                             ('academic_year_id', '=', academic_year.id),
-                            ('session_number', '=', session_number),
-                            ('dayofweek', '=', dayofweek),
+                            # ('session_number', '=', session_number),
+                            # ('dayofweek', '=', dayofweek),
                             ('teacher_id', '=', teacher.id),
                         ])
                         vals = {
                             'center_id': center.id,
                             'academic_year_id': academic_year.id,
-                            'session_number': session_number,
-                            'dayofweek': dayofweek,
+                            # 'session_number': session_number,
+                            # 'dayofweek': dayofweek,
                             'teacher_id': teacher.id,
-                            'hour_from': hour_from,
-                            'hour_to': hour_to,
+                            # 'hour_from': hour_from,
+                            # 'hour_to': hour_to,
                             'task_type_id': task_type.id,
                             'classroom_id': classroom.id,
+                        }
+                        timetable_vals = {
+                            'session_number': session_number,
+                            'dayofweek': dayofweek,
+                            'hour_from': hour_from,
+                            'hour_to': hour_to,
                         }
                         if task_type.type == 'L':
                             subject = subject_obj.search([
@@ -120,8 +128,20 @@ class UploadEducationContractType(models.TransientModel):
                         #     level = _format_info(line[48:52])
                         #     plan = _format_info(line[52:56])
                         if schedule:
+                            timetable = timetable_obj.search(
+                                [('schedule_id', '=', schedule.id),
+                                 ('dayofweek', '=', dayofweek),
+                                 ('hour_from', '=', hour_from),
+                                 ('hour_to', '=', hour_to)])
+                            if not timetable:
+                                vals.update({
+                                    'timetable_ids': [(0, 0, timetable_vals)]
+                                })
                             schedule.write(vals)
                         else:
+                            vals.update({
+                                'timetable_ids': [(0, 0, timetable_vals)]
+                            })
                             schedule = schedule_obj.create(vals)
                     if line_type == '3':
                         group_code = _format_info(line[1:9])

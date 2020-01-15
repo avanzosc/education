@@ -16,12 +16,16 @@ class UploadEducationSubject(models.TransientModel):
         lines = _read_binary_file(self.file)
         subject_obj = self.env[
             'education.subject'].with_context(active_test=False)
+        type_obj = self.env[
+            'education.subject.type'].with_context(active_test=False)
         if not lines:
             raise exceptions.Warning(_('Empty file.'))
         else:
             for line in lines:
                 if len(line) > 0:
                     education_code = _format_info(line[0:8])
+                    type = type_obj.search([
+                        ('education_code', '=', _format_info(line[256:260]))])
                     vals = {
                         'education_code': education_code,
                         'description': _format_info(line[8:108]),
@@ -30,7 +34,7 @@ class UploadEducationSubject(models.TransientModel):
                         'short_description_eu': _format_info(line[228:248]),
                         'min_description': _format_info(line[248:252]),
                         'min_description_eu': _format_info(line[252:256]),
-                        'type': _format_info(line[256:260]),
+                        'type_id': type.id,
                     }
                     subjects = subject_obj.search([
                         ('education_code', '=', education_code)])
