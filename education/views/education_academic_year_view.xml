@@ -19,6 +19,7 @@
                 <field name="name" />
                 <field name="date_start" />
                 <field name="date_end" />
+                <field name="current" />
                 <filter string="Archived" name="inactive"
                         domain="[('active','=',False)]" />
             </search>

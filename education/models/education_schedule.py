@@ -9,22 +9,11 @@ from odoo.tools.safe_eval import safe_eval
 class EducationSchedule(models.Model):
     _name = 'education.schedule'
     _description = 'Class Schedule'
-    _order = 'dayofweek,session_number'
 
     @api.model
     def _get_selection_task_type_type(self):
         return self.env['education.task_type'].fields_get(
             allfields=['type'])['type']['selection']
-
-    @api.model
-    def _get_selection_dayofweek(self):
-        return self.env['resource.calendar.attendance'].fields_get(
-            allfields=['dayofweek'])['dayofweek']['selection']
-
-    def default_dayofweek(self):
-        default_dict = self.env['resource.calendar.attendance'].default_get([
-            'dayofweek'])
-        return default_dict.get('dayofweek')
 
     center_id = fields.Many2one(
         comodel_name='res.partner', string='Education Center', required=True)
@@ -48,11 +37,6 @@ class EducationSchedule(models.Model):
         comodel_name='education.schedule.timetable', string='Timetable',
         inverse_name='schedule_id')
     session_number = fields.Integer()
-    dayofweek = fields.Selection(
-        selection='_get_selection_dayofweek', string='Day of Week',
-        required=True, index=True, default=default_dayofweek)
-    hour_from = fields.Float(string='Work from', required=True, index=True)
-    hour_to = fields.Float(string='Work to', required=True)
     classroom_id = fields.Many2one(
         comodel_name='education.classroom', string='Classroom',
         domain="[('center_id', '=', center_id)]")
@@ -71,9 +55,6 @@ class EducationSchedule(models.Model):
         comodel_name='education.group', string='Education Groups',
         relation='edu_schedule_group', column1='schedule_id',
         column2='group_id')
-    schedule_group_ids = fields.One2many(
-        comodel_name='education.schedule.group', inverse_name='schedule_id',
-        string='Groups')
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_schedule_student',
         column1='schedule_id', column2='student_id',
@@ -127,6 +108,7 @@ class EducationSchedule(models.Model):
 class EducationScheduleTimetable(models.Model):
     _name = 'education.schedule.timetable'
     _description = 'Class Schedule Timetable'
+    _order = 'dayofweek,session_number'
 
     @api.model
     def _get_selection_dayofweek(self):
@@ -146,6 +128,7 @@ class EducationScheduleTimetable(models.Model):
         required=True, index=True, default=default_dayofweek)
     hour_from = fields.Float(string='Work from', required=True, index=True)
     hour_to = fields.Float(string='Work to', required=True)
+    session_number = fields.Integer()
 
 
 class EducationScheduleGroup(models.Model):
@@ -153,16 +136,19 @@ class EducationScheduleGroup(models.Model):
     _description = 'Class Schedule Group'
 
     schedule_id = fields.Many2one(
-        comodel_name='education.schedule', string='Schedule')
+        comodel_name='education.schedule', string='Schedule', required=True,
+        ondelete='cascade')
     group_id = fields.Many2one(
-        comodel_name='education.group', string='Group', required=True)
+        comodel_name='education.group', string='Group', required=True,
+        ondelete='cascade')
     group_type_id = fields.Many2one(
         comodel_name='education.group_type', string='Group Type',
         related='group_id.group_type_id')
     group_student_count = fields.Integer(
         related='group_id.student_count')
     parent_group_id = fields.Many2one(
-        comodel_name='education.group', string='Parent Group', required=True)
+        comodel_name='education.group', string='Parent Group', required=True,
+        ondelete='cascade')
     parent_group_type_id = fields.Many2one(
         comodel_name='education.group_type', string='Parent Group Type',
         related='parent_group_id.group_type_id')

@@ -37,15 +37,15 @@ class TestEducationCommon(common.SavepointCase):
             'description': 'Test Level',
             'plan_id': cls.edu_plan.id,
         })
+        cls.edu_field = cls.env['education.field'].create({
+            'education_code': 'TEST',
+            'description': 'Test Field',
+        })
         cls.edu_course = cls.env['education.course'].create({
             'education_code': 'TEST',
             'description': 'Test Course',
             'plan_id': cls.edu_plan.id,
             'level_id': cls.edu_level.id,
-        })
-        cls.edu_field = cls.env['education.field'].create({
-            'education_code': 'TEST',
-            'description': 'Test Field',
         })
         cls.edu_subject = cls.env['education.subject'].create({
             'education_code': 'TESTTEST',

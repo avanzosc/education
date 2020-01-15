@@ -17,6 +17,27 @@ class EducationAcademicYear(models.Model):
         comodel_name='education.academic_year.evaluation',
         string='Evaluations', inverse_name='academic_year_id')
     active = fields.Boolean(string='Active', default=True)
+    current = fields.Boolean(
+        string="Current Academic Year",
+        compute="_compute_current_academic_year",
+        search="_search_current_academic_year")
+
+    @api.multi
+    def _compute_current_academic_year(self):
+        today = fields.Date.context_today(self)
+        for record in self:
+            record.current = (record.date_start <= today <= record.date_end)
+
+    @api.multi
+    def _search_current_academic_year(self, operator, value):
+        today = fields.Date.context_today(self)
+        years = self.search(
+            [('date_start', '<=', today),
+             ('date_end', '>=', today)])
+        if operator == '=' and value:
+            return [('id', 'in', years.ids)]
+        else:
+            return [('id', 'not in', years.ids)]
 
     @api.constrains('name')
     def _check_education_code(self):
@@ -33,6 +54,16 @@ class EducationAcademicYear(models.Model):
             if not record.date_end > record.date_start:
                 raise ValidationError(
                     _('End date must be after start date.'))
+            if (record.mapped('evaluation_ids.date_start') and
+                    record.date_start > min(
+                    record.mapped('evaluation_ids.date_start'))):
+                raise ValidationError(
+                    _('Start date must be before evaluations start dates.'))
+            if (record.mapped('evaluation_ids.date_end') and
+                    record.date_end < max(
+                    record.mapped('evaluation_ids.date_end'))):
+                raise ValidationError(
+                    _('End date must be after evaluations end dates.'))
 
     _sql_constraints = [
         ('name_unique', 'unique(name)', 'Academic year must be unique!'),
