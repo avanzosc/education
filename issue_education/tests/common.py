@@ -57,8 +57,6 @@ class TestIssueEducationCommon(TestEducationCommon):
             'task_type_id': cls.edu_task_type.id,
             'subject_id': cls.edu_subject.id,
             'group_ids': [(6, 0, cls.group.ids)],
-            'hour_from': 12.0,
-            'hour_to': 13.0,
         })
         cls.site = cls.env['school.issue.site'].create({
             'name': 'Site for test Issue education',
