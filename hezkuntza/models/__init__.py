@@ -1,6 +1,3 @@
-# Copyright 2019 Oihane Crucelaegui - AvanzOSC
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
 from . import education_data
 from . import education_activity_type
 from . import education_contract_type
@@ -15,6 +12,7 @@ from . import education_level
 from . import education_model
 from . import education_plan
 from . import education_position
+from . import education_schedule
 from . import education_shift
 from . import education_subject
 from . import education_task_type

@@ -142,4 +142,8 @@
               parent="education_center_configuration_menuitem"
               action="action_upload_education_classroom"
               sequence="1" />
+
+    <menuitem id="update_education_partner_menuitem"
+              parent="contacts.res_partner_menu_config"
+              action="action_update_education_partner" />
 </odoo>

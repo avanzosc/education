@@ -62,6 +62,10 @@ class UploadEducationTeacher(models.TransientModel):
                             ('edu_idtype_id', '=', id_type.id),
                             ('identification_id', '=', id_number),
                         ])
+                        partner = partner_obj.search([
+                            ('edu_idtype_id', '=', id_type.id),
+                            ('vat', 'ilike', id_number),
+                        ])
                         user = (
                             employee.user_id or
                             user_obj.search([
@@ -139,31 +143,41 @@ class UploadEducationTeacher(models.TransientModel):
                                 _format_info(line[594:599]))
                             vals = {
                                 'name': fullname,
-                                'department_id': department.id,
                             }
                             if not user:
-                                vals.update({
-                                    'login': id_number,
-                                    'vat': id_number,
+                                user_vals = {
+                                    'login': partner.email or id_number,
+                                    'vat': 'ES{}'.format(id_number),
                                     'edu_idtype_id': id_type.id,
                                     'lastname': lastname,
                                     'lastname2': lastname2,
                                     'firstname': firstname,
+                                    'partner_id': partner.id,
+                                    'school_ids': [(4, center.id)],
+                                }
+                                user_vals.update(vals)
+                                user = user_obj.create(user_vals)
+                            else:
+                                user.write({
+                                    'school_ids': [(4, center.id)],
                                 })
-                                user = user_obj.create(vals)
                             if not employee:
-                                vals.update({
+                                employee_vals = {
                                     'edu_idtype_id': id_type.id,
                                     'identification_id': id_number,
                                     'user_id': user.id,
                                     'gender': False,
                                     'marital': False,
-                                })
-                                employee = employee_obj.create(vals)
+                                    'address_home_id': user.partner_id.id,
+                                    'department_id': department.id,
+                                }
+                                employee_vals.update(vals)
+                                employee = employee_obj.create(employee_vals)
                             else:
                                 if not employee.user_id:
                                     vals.update({
-                                        'user_id': user.id
+                                        'user_id': user.id,
+                                        'address_home_id': user.partner_id.id,
                                     })
                                 employee.write(vals)
                             contract_vals = {

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="update_education_partner_view_form"
+            model="ir.ui.view">
+        <field name="model">update.education.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="upload_file" string="Upload"
+                                type="object" class="oe_highlight oe_read_only" />
+                    <button name="button_update_education_code" string="Education Code"
+                                type="object" class="oe_read_only" />
+                    <button name="button_update_vat" string="Vat"
+                                type="object" class="oe_read_only" />
+                    <button name="button_update_education_code_and_vat" string="Both"
+                                type="object" class="oe_read_only" />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="file" />
+                        </group>
+                        <group>
+                            <field name="partner_count" />
+                            <field name="missing_partner_count" />
+                            <field name="duplicated_partner_count" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="partner_lines" string="Partner Lines">
+                            <field name="partner_line_ids" />
+                        </page>
+                        <page name="missing_partner_lines" string="Missing Partner Lines"
+                              attrs="{'invisible': [('missing_partner_count','=',0)]}">
+                            <field name="missing_partner_line_ids">
+                                <tree>
+                                    <field name="student_education_code" />
+                                    <field name="student_document" />
+                                    <field name="student_lastname1" />
+                                    <field name="student_lastname2" />
+                                    <field name="student_name" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="duplicated_partner_lines" string="Duplicated Partner Lines"
+                              attrs="{'invisible': [('duplicated_partner_count','=',0)]}">
+                            <field name="duplicated_partner_line_ids">
+                                <tree>
+                                    <field name="student_education_code" />
+                                    <field name="student_document" />
+                                    <field name="student_lastname1" />
+                                    <field name="student_lastname2" />
+                                    <field name="student_name" />
+                                    <button name="button_show_partners"
+                                            type="object" string="Partners" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="update_education_partner_line_view_tree" model="ir.ui.view">
+        <field name="model">update.education.partner.line</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="missing_partner"
+                  decoration-danger="duplicated_partner">
+                <field name="wizard_id" invisible="True" />
+                <field name="student_education_code" />
+                <field name="student_document" />
+                <field name="student_lastname1" />
+                <field name="student_lastname2" />
+                <field name="student_name" />
+                <field name="partner_id" />
+                <field name="missing_partner" invisible="True" />
+                <field name="duplicated_partner" invisible="True" />
+                <field name="education_code" />
+                <field name="vat" />
+                <button name="button_update_education_code"
+                        type="object" string="Code" />
+                <button name="button_update_vat"
+                        type="object" string="Vat" />
+                <button name="button_update_education_code_and_vat"
+                        type="object" string="Both" />
+                <button name="button_show_partners"
+                        type="object" string="Partners"
+                        attrs="{'invisible': [('duplicated_partner','!=',True)]}" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="update_education_partner_line_view_form" model="ir.ui.view">
+        <field name="model">update.education.partner.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_update_education_code"
+                            type="object" string="Code" />
+                    <button name="button_update_vat"
+                            type="object" string="Vat" />
+                    <button name="button_update_education_code_and_vat"
+                            type="object" string="Both" />
+                    <button name="button_show_partners"
+                            type="object" string="Partners"
+                            attrs="{'invisible': [('duplicated_partner','!=',True)]}" />
+                </header>
+                <sheet>
+                    <field name="wizard_id" invisible="True" />
+                    <group>
+                        <group>
+                            <field name="student_education_code" />
+                            <field name="student_document" />
+                            <field name="student_lastname1" />
+                            <field name="student_lastname2" />
+                            <field name="student_name" />
+                        </group>
+                        <group>
+                            <field name="partner_id" />
+                            <field name="education_code" />
+                            <field name="vat" />
+                        </group>
+                        <field name="missing_partner" invisible="True" />
+                        <field name="duplicated_partner" invisible="True" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_update_education_partner" model="ir.actions.act_window">
+        <field name="name">Update Education Code on Partner</field>
+        <field name="res_model">update.education.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

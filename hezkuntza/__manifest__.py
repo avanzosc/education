@@ -39,6 +39,7 @@
         "views/education_task_type_view.xml",
         "views/education_work_reason_view.xml",
         "views/education_workday_type_view.xml",
+        "wizard/update_education_partner_view.xml",
         "wizard/upload_education_activity_type_view.xml",
         "wizard/upload_education_all_view.xml",
         "wizard/upload_education_classroom_view.xml",
