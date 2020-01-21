@@ -10,9 +10,9 @@ class EducationLevelFieldSubject(models.Model):
     _order = 'level_id,field_id,subject_id'
 
     level_id = fields.Many2one(
-        comodel_name='education.level', string='Level')
+        comodel_name='education.level', string='Education Level')
     plan_id = fields.Many2one(
-        comodel_name='education.plan', string='Plan')
+        comodel_name='education.plan', string='Education Plan')
     field_id = fields.Many2one(
         comodel_name='education.field', string='Study Field')
     subject_id = fields.Many2one(

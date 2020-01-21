@@ -40,8 +40,3 @@ class EducationAcademicYearEvaluation(models.Model):
         name = _("{} (copy)").format(self.name)
         default = dict(default or {}, name=name)
         return super(EducationAcademicYearEvaluation, self).copy_data(default)
-
-    _sql_constraints = [
-        ('name_unique', 'unique(name, academic_year_id)',
-         'Evaluation name must be unique!'),
-    ]

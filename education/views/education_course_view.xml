@@ -27,6 +27,16 @@
                 <field name="shift_id" />
                 <filter string="Archived" name="inactive"
                         domain="[('active','=',False)]" />
+                <group expand="0" string="Group By" name="groupby">
+                    <filter string="Level" name="level_group"
+                            context="{'group_by': 'level_id'}" />
+                    <filter string="Education Plan" name="plan_group"
+                            context="{'group_by': 'plan_id'}" />
+                    <filter string="Study Field" name="field_group"
+                            context="{'group_by': 'field_id'}" />
+                    <filter string="Shift" name="shift_group"
+                            context="{'group_by': 'shift_id'}" />
+                </group>
             </search>
         </field>
     </record>

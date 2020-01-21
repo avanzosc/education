@@ -10,12 +10,12 @@ class EducationCourse(models.Model):
     _description = 'Course'
 
     level_id = fields.Many2one(
-        comodel_name='education.level', string='Level', required=True,
-        ondelete='cascade')
+        comodel_name='education.level', string='Education Level',
+        required=True, ondelete='cascade')
     field_id = fields.Many2one(
         comodel_name='education.field', string='Study Field')
     plan_id = fields.Many2one(
-        comodel_name='education.plan', string='Plan')
+        comodel_name='education.plan', string='Education Plan')
     shift_id = fields.Many2one(
         comodel_name='education.shift', string='Shift')
     level_subject_ids = fields.One2many(

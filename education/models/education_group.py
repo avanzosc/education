@@ -23,7 +23,7 @@ class EducationGroup(models.Model):
     plan_id = fields.Many2one(
         comodel_name='education.plan', string='Plan')
     level_id = fields.Many2one(
-        comodel_name='education.level', string='Level',
+        comodel_name='education.level', string='Education Level',
         domain="[('plan_id', '=', plan_id)]", required=True)
     field_id = fields.Many2one(
         comodel_name='education.field', string='Study Field')
@@ -62,7 +62,7 @@ class EducationGroup(models.Model):
                "('course_id', '=', course_id),"
                "('group_type_id.type', '=', 'official')]")
     schedule_ids = fields.Many2many(
-        comodel_name='education.schedule', string='Education Schedule',
+        comodel_name='education.schedule', string='Class Schedule',
         relation='edu_schedule_group', column2='schedule_id',
         column1='group_id', readonly=True)
     schedule_count = fields.Integer(

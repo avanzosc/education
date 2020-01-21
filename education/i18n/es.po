@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-14 13:22+0000\n"
-"PO-Revision-Date: 2020-01-14 13:22+0000\n"
+"POT-Creation-Date: 2020-01-22 15:11+0000\n"
+"PO-Revision-Date: 2020-01-22 15:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,17 +50,11 @@ msgid "Academic year"
 msgstr "Año académico"
 
 #. module: education
-#: model_terms:ir.ui.view,arch_db:education.education_academic_year_evaluation_view_form
-msgid "Academic year evaluation"
-msgstr "Evaluación de año académico"
-
-#. module: education
 #: sql_constraint:education.academic_year:0
 msgid "Academic year must be unique!"
 msgstr "El año académico debe ser único"
 
 #. module: education
-#: code:addons/education/models/education_academic_year.py:27
 #: code:addons/education/models/education_academic_year.py:48
 #, python-format
 msgid "Academic year must be {} digits long!"
@@ -125,7 +119,13 @@ msgid "Class"
 msgstr "Impartición"
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_education_schedule
+#: model:ir.actions.act_window,name:education.action_education_schedule_from_group
 #: model:ir.model,name:education.model_education_schedule
+#: model:ir.model.fields,field_description:education.field_education_group__schedule_ids
+#: model:ir.model.fields,field_description:education.field_education_schedule_group__schedule_id
+#: model:ir.model.fields,field_description:education.field_education_schedule_timetable__schedule_id
+#: model:ir.ui.menu,name:education.schedule_schedule_menuitem
 msgid "Class Schedule"
 msgstr "Horario de clases"
 
@@ -192,6 +192,7 @@ msgstr "Tipos de contratos privados"
 #: model:ir.model.fields,field_description:education.field_education_group_report__course_id
 #: model:ir.model.fields,field_description:education.field_education_level_course_subject__course_id
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Course"
 msgstr "Curso"
 
@@ -535,6 +536,11 @@ msgstr "Idioma de educación"
 
 #. module: education
 #: model:ir.model,name:education.model_education_level
+#: model:ir.model.fields,field_description:education.field_education_course__level_id
+#: model:ir.model.fields,field_description:education.field_education_group__level_id
+#: model:ir.model.fields,field_description:education.field_education_level_course_subject__level_id
+#: model:ir.model.fields,field_description:education.field_education_level_field_subject__level_id
+#: model:ir.model.fields,field_description:education.field_education_level_workday_type__level_id
 msgid "Education Level"
 msgstr "Nivel"
 
@@ -554,13 +560,24 @@ msgid "Education Level, Field and Subject Relation"
 msgstr "Relación entre nivel, especialidad y asignatura"
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_plan__level_ids
+msgid "Education Levels"
+msgstr ""
+
+#. module: education
 #: model:ir.model,name:education.model_education_activity_type
 msgid "Education Other Activity Type"
 msgstr "Tipos de otras actividades"
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_education_plan
 #: model:ir.model,name:education.model_education_plan
+#: model:ir.model.fields,field_description:education.field_education_course__plan_id
+#: model:ir.model.fields,field_description:education.field_education_level_course_subject__plan_id
+#: model:ir.model.fields,field_description:education.field_education_level_field_subject__plan_id
 #: model:ir.model.fields,field_description:education.field_education_schedule__plan_id
+#: model:ir.ui.menu,name:education.schedule_plan_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_course_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Education Plan"
 msgstr "Plan educativo"
@@ -569,11 +586,6 @@ msgstr "Plan educativo"
 #: model:ir.model,name:education.model_education_position
 msgid "Education Position"
 msgstr "Cargo"
-
-#. module: education
-#: model:ir.model.fields,field_description:education.field_education_group__schedule_ids
-msgid "Education Schedule"
-msgstr "Planificación"
 
 #. module: education
 #: model:ir.model,name:education.model_education_section
@@ -706,12 +718,6 @@ msgid "Educational Models"
 msgstr "Modelos educativos"
 
 #. module: education
-#: model:ir.actions.act_window,name:education.action_education_plan
-#: model:ir.ui.menu,name:education.schedule_plan_menuitem
-msgid "Educational Plan"
-msgstr "Plan educativo"
-
-#. module: education
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__employee_id
 msgid "Employee"
 msgstr "Empleado"
@@ -733,7 +739,6 @@ msgid "End date must be after evaluations end dates."
 msgstr "La fecha final debe de ser posterir a la fecha final de las evaluaciones."
 
 #. module: education
-#: code:addons/education/models/education_academic_year.py:35
 #: code:addons/education/models/education_academic_year.py:56
 #: code:addons/education/models/education_academic_year_evaluation.py:26
 #, python-format
@@ -745,11 +750,6 @@ msgstr "La fecha final debe de ser posterior a la fecha inicial."
 #, python-format
 msgid "Evaluation dates must be between academic year dates."
 msgstr "Las fechas de la evaluación deben estar comprendidas entre las fechas del año académico."
-
-#. module: education
-#: sql_constraint:education.academic_year.evaluation:0
-msgid "Evaluation name must be unique!"
-msgstr "¡El nombre de la evaluación debe ser único!"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__evaluation_ids
@@ -792,6 +792,7 @@ msgstr "Grupo"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_academic_year_evaluation_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_course_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_student_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_report_view_search
@@ -1005,20 +1006,15 @@ msgstr "Última actualización el"
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_level
-#: model:ir.model.fields,field_description:education.field_education_course__level_id
-#: model:ir.model.fields,field_description:education.field_education_group__level_id
-#: model:ir.model.fields,field_description:education.field_education_level_course_subject__level_id
-#: model:ir.model.fields,field_description:education.field_education_level_field_subject__level_id
-#: model:ir.model.fields,field_description:education.field_education_level_workday_type__level_id
 #: model:ir.model.fields,field_description:education.field_education_schedule__level_id
 #: model:ir.model.fields,field_description:education.field_education_task_type__level
 #: model:ir.ui.menu,name:education.schedule_level_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_course_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Level"
 msgstr "Nivel"
 
 #. module: education
-#: model:ir.model.fields,field_description:education.field_education_plan__level_ids
 #: model:ir.model.fields,field_description:education.field_education_subject__level_ids
 #: model:ir.model.fields,field_description:education.field_education_task_type__level_ids
 msgid "Levels"
@@ -1116,11 +1112,8 @@ msgid "Parent Group Type"
 msgstr "Tipo de grupo padre"
 
 #. module: education
-#: model:ir.model.fields,field_description:education.field_education_course__plan_id
 #: model:ir.model.fields,field_description:education.field_education_group__plan_id
 #: model:ir.model.fields,field_description:education.field_education_level__plan_id
-#: model:ir.model.fields,field_description:education.field_education_level_course_subject__plan_id
-#: model:ir.model.fields,field_description:education.field_education_level_field_subject__plan_id
 msgid "Plan"
 msgstr "Plan educativo"
 
@@ -1151,11 +1144,6 @@ msgid "Responsible"
 msgstr "Responsable"
 
 #. module: education
-#: model:ir.actions.act_window,name:education.action_education_schedule
-#: model:ir.actions.act_window,name:education.action_education_schedule_from_group
-#: model:ir.model.fields,field_description:education.field_education_schedule_group__schedule_id
-#: model:ir.model.fields,field_description:education.field_education_schedule_timetable__schedule_id
-#: model:ir.ui.menu,name:education.schedule_schedule_menuitem
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 msgid "Schedule"
 msgstr "Planificacion"
@@ -1227,6 +1215,7 @@ msgstr "Sesiones"
 #: model:ir.model.fields,field_description:education.field_education_course__shift_id
 #: model:ir.model.fields,field_description:education.field_education_group__shift_id
 #: model:ir.ui.menu,name:education.schedule_shift_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_course_view_search
 msgid "Shift"
 msgstr "Turno"
 
@@ -1308,7 +1297,7 @@ msgstr "Nº de alumnos"
 
 #. module: education
 #: code:addons/education/models/education_group.py:115
-#: code:addons/education/models/education_schedule.py:120
+#: code:addons/education/models/education_schedule.py:101
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule__student_ids
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
@@ -1323,6 +1312,7 @@ msgstr "Alumnos"
 #: model:ir.model.fields,field_description:education.field_education_group__field_id
 #: model:ir.model.fields,field_description:education.field_education_level_field_subject__field_id
 #: model:ir.ui.menu,name:education.schedule_field_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_course_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Study Field"
 msgstr "Especialidad"
@@ -1349,13 +1339,17 @@ msgid "Subject Type"
 msgstr "Tipo de asignatura"
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_field__level_subject_ids
+msgid "Subjects by Education Levels"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_course__level_subject_ids
 #: model_terms:ir.ui.view,arch_db:education.education_course_view_form
 msgid "Subjects by Level"
 msgstr "Asignaturas por nivel"
 
 #. module: education
-#: model:ir.model.fields,field_description:education.field_education_field__level_subject_ids
 #: model_terms:ir.ui.view,arch_db:education.education_field_view_form
 msgid "Subjects by Levels"
 msgstr "Asignaturas por niveles"
@@ -1484,6 +1478,7 @@ msgstr "No puede crear grupos recursivos."
 
 #. module: education
 #: code:addons/education/models/education_academic_year_evaluation.py:40
+#: code:addons/education/tests/test_education.py:124
 #, python-format
 msgid "{} (copy)"
 msgstr "{} (copia)"

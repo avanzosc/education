@@ -121,8 +121,8 @@ class EducationScheduleTimetable(models.Model):
         return default_dict.get('dayofweek')
 
     schedule_id = fields.Many2one(
-        comodel_name='education.schedule', string='Schedule', required=True,
-        ondelete='cascade')
+        comodel_name='education.schedule', string='Class Schedule',
+        required=True, ondelete='cascade')
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week',
         required=True, index=True, default=default_dayofweek)
@@ -136,8 +136,8 @@ class EducationScheduleGroup(models.Model):
     _description = 'Class Schedule Group'
 
     schedule_id = fields.Many2one(
-        comodel_name='education.schedule', string='Schedule', required=True,
-        ondelete='cascade')
+        comodel_name='education.schedule', string='Class Schedule',
+        required=True, ondelete='cascade')
     group_id = fields.Many2one(
         comodel_name='education.group', string='Group', required=True,
         ondelete='cascade')

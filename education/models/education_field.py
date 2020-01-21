@@ -11,7 +11,7 @@ class EducationField(models.Model):
 
     level_subject_ids = fields.One2many(
         comodel_name='education.level.field.subject', inverse_name='field_id',
-        string='Subjects by Levels')
+        string='Subjects by Education Levels')
 
     _sql_constraints = [
         ('education_code_unique', 'unique(education_code)',

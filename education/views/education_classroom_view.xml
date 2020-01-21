@@ -48,7 +48,7 @@
                     </div>
                     <group>
                         <field name="capacity" />
-                        <field name="center_id" />
+                        <field name="center_id" options="{'no_create': True, 'no_edit': True}"/>
                     </group>
                     <group name="description" string="Description">
                         <field name="description" nolabel="1" colspan="4"/>

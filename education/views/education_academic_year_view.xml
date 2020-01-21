@@ -47,8 +47,9 @@
                         <field name="date_start" required="True" />
                         <field name="date_end" required="True" />
                     </group>
-                    <group name="evaluation" string="Evaluations">
-                        <field name="evaluation_ids" nolabel="True"
+                    <group name="evaluation" string="Evaluations"
+                           attrs="{'invisible': ['|',('date_start','=',False),('date_end','=',False)]}">
+                        <field name="evaluation_ids" nolabel="1"
                                context="{'default_academic_year_id':active_id}">
                             <tree editable="bottom">
                                 <field name="sequence" widget="handle" />
