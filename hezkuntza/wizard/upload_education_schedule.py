@@ -84,12 +84,15 @@ class UploadEducationContractType(models.TransientModel):
                             ('center_id', '=', center.id),
                             ('education_code', '=', _format_info(line[37:45]))
                         ])
+                        if not classroom:
+                            continue
                         schedule = schedule_obj.search([
                             ('center_id', '=', center.id),
                             ('academic_year_id', '=', academic_year.id),
                             # ('session_number', '=', session_number),
                             # ('dayofweek', '=', dayofweek),
                             ('teacher_id', '=', teacher.id),
+                            ('classroom_id', '=', classroom.id),
                         ])
                         vals = {
                             'center_id': center.id,
@@ -109,10 +112,12 @@ class UploadEducationContractType(models.TransientModel):
                             'hour_to': hour_to,
                         }
                         if task_type.type == 'L':
+                            subject_code = _format_info(line[45:53])
                             subject = subject_obj.search([
-                                ('education_code', '=',
-                                 _format_info(line[45:53])),
+                                ('education_code', '=', subject_code),
                             ])
+                            if not subject and not subject_code == '00000000':
+                                continue
                             subject_type = _format_info(line[53:54])
                             language = language_obj.search([
                                 ('education_code', '=',
@@ -123,6 +128,11 @@ class UploadEducationContractType(models.TransientModel):
                                 'subject_type': subject_type,
                                 'language_id': language.id,
                             })
+                            if schedule:
+                                schedule = schedule.filtered(
+                                    lambda s: s.subject_id == subject and
+                                    s.subject_type == subject_type and
+                                    s.language_id == language)
                         # elif task_type.type == 'N':
                         #     activity_type = _format_info(line[45:48])
                         #     level = _format_info(line[48:52])
