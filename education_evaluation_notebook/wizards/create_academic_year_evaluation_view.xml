@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="create_academic_year_evaluation_view_form" model="ir.ui.view">
+        <field name="model">create.academic_year.evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="main">
+                        <field name="evaluation_number" />
+                        <field name="academic_year_id" />
+                        <field name="course_change_ids" invisible="True" />
+                    </group>
+                    <footer>
+                        <button name="button_create_evaluation" string="Create Evaluations"
+                                type="object" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_create_academic_year_evaluation"
+                name="Create Evaluations"
+                src_model="education.course.change"
+                res_model="create.academic_year.evaluation"
+                view_type="form"
+                view_mode="form"
+                key2="client_action_multi"
+                target="new" />
+</odoo>
