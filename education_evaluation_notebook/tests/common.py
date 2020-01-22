@@ -34,16 +34,6 @@ class EducationNotebookCommon(TestEducationCommon):
             "group_type_id": cls.group_type.id,
             "student_ids": [(6, 0, cls.edu_student.ids)],
         })
-        # for i in range(0, 2):
-        #     cls.academic_year.write({
-        #         "evaluation_ids": [(0, 0, {
-        #             "name": "Evaluation {}".format(i),
-        #             "date_start": cls.academic_year.date_start,
-        #             "date_end": cls.academic_year.date_end,
-        #             "center_id": cls.edu_partner.id,
-        #             "course_id": cls.edu_course.id,
-        #         })],
-        #     })
         cls.schedule = cls.schedule_model.create({
             "center_id": cls.edu_partner.id,
             "academic_year_id": cls.academic_year.id,

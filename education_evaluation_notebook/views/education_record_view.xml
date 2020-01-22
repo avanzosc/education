@@ -35,7 +35,8 @@
         <field name="arch" type="xml">
             <tree editable="bottom"
                   decoration-info="global_competence==True"
-                  decoration-success="evaluation_competence==True">
+                  decoration-success="evaluation_competence==True"
+                  create="0">
                 <field name="numeric_mark"
                        attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour')]}"/>
                 <field name="behaviour_mark_id"

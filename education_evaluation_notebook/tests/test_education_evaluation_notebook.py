@@ -3,7 +3,7 @@
 
 from .common import EducationNotebookCommon
 from odoo import fields
-from odoo.exceptions import ValidationError
+from odoo.exceptions import RedirectWarning, ValidationError
 from odoo.tests import common
 
 
@@ -169,12 +169,17 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
 
     def create_evaluations(self):
         self.assertFalse(self.academic_year.evaluation_ids)
+        academic_year = self.academic_year.copy(default={
+            "name": "TEST_YEAR",
+            "date_start": False,
+            "date_end": False,
+        })
         create_eval_dict = self.create_eval_model.with_context(
             active_model=self.course_change._name,
             active_ids=self.course_change.ids).default_get(
             self.create_eval_model.fields_get_keys())
         create_eval_dict.update({
-            "academic_year_id": self.academic_year.id,
+            "academic_year_id": academic_year.id,
             "evaluation_number": 3,
             "final_evaluation": True,
         })
@@ -182,5 +187,12 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             [(6, 0, self.course_change.ids)],
             create_eval_dict.get("course_change_ids"))
         create_eval = self.create_eval_model.create(create_eval_dict)
+        with self.assertRaises(RedirectWarning):
+            create_eval.button_create_evaluation()
+        create_eval.academic_year_id = self.academic_year
         create_eval.button_create_evaluation()
         self.assertEquals(len(self.academic_year.evaluation_ids), 4)
+
+    def test_create_evaluations_without_wizard(self):
+        with self.assertRaises(RedirectWarning):
+            self.course_change.create_evaluations()

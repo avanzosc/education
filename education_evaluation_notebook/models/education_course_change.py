@@ -22,9 +22,8 @@ class EducationCourseChange(models.Model):
         evaluation_obj = self.env["education.academic_year.evaluation"]
         academic_year = (academic_year or
                          academic_year_obj.search([("current", "=", True)]))
-        if not academic_year:
-            return
-        if not academic_year.date_start or not academic_year.date_end:
+        if (not academic_year or not academic_year.date_start or
+                not academic_year.date_end):
             msg = _("Academic year must have defined start and end dates.")
             action = self.env.ref("education.action_education_academic_year")
             action_msg = _("Configure Academic Year")
@@ -51,4 +50,3 @@ class EducationCourseChange(models.Model):
                     "eval_type": "final",
                 })
                 evaluation_obj.find_or_create_evaluation(vals)
-
