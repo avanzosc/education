@@ -8,6 +8,7 @@
                     <group name="main">
                         <field name="evaluation_number" />
                         <field name="academic_year_id" />
+                        <field name="final_evaluation" />
                         <field name="course_change_ids" invisible="True" />
                     </group>
                     <footer>

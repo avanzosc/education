@@ -176,10 +176,11 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         create_eval_dict.update({
             "academic_year_id": self.academic_year.id,
             "evaluation_number": 3,
+            "final_evaluation": True,
         })
         self.assertEquals(
             [(6, 0, self.course_change.ids)],
             create_eval_dict.get("course_change_ids"))
         create_eval = self.create_eval_model.create(create_eval_dict)
         create_eval.button_create_evaluation()
-        self.assertEquals(len(self.academic_year.evaluation_ids), 3)
+        self.assertEquals(len(self.academic_year.evaluation_ids), 4)

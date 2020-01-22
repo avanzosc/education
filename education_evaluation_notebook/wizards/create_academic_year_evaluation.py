@@ -1,7 +1,10 @@
 # Copyright 2020 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models, fields
+from odoo import _, api, fields, models
+from odoo.exceptions import RedirectWarning
+from odoo.models import expression
+from odoo.tools.safe_eval import safe_eval
 
 
 class CreateAcademicYearEvaluation(models.TransientModel):
@@ -15,9 +18,10 @@ class CreateAcademicYearEvaluation(models.TransientModel):
     evaluation_number = fields.Selection(
         selection=[(1, "One"),
                    (2, "Two"),
-                   (3, "Three"),
-                   (4, "Four")],
+                   (3, "Three")],
         string="Evaluation Number", default=1, required=True)
+    final_evaluation = fields.Boolean(
+        string="Final Evaluation")
 
     @api.model
     def default_get(self, fields_list):
@@ -33,7 +37,24 @@ class CreateAcademicYearEvaluation(models.TransientModel):
     @api.multi
     def button_create_evaluation(self):
         self.ensure_one()
+        if (self.academic_year_id and (not self.academic_year_id.date_start or
+                                       not self.academic_year_id.date_end)):
+            msg = _("Academic year must have defined start and end dates.")
+            action = self.env.ref("education.action_education_academic_year")
+            action_msg = _("Configure Academic Year")
+            raise RedirectWarning(msg, action.id, action_msg)
         for course_change in self.course_change_ids:
             course_change.create_evaluations(
                 evaluation_number=self.evaluation_number,
-                academic_year=self.academic_year_id)
+                academic_year=self.academic_year_id,
+                final_evaluation=self.final_evaluation)
+        action = self.env.ref(
+            "education.action_education_academic_year_evaluation")
+        action_dict = action and action.read()[0] or {}
+        domain = expression.AND([
+            [("academic_year_id", "=", self.academic_year_id.id),
+             ("center_id", "in",
+              self.mapped("course_change_ids.school_id").ids)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict

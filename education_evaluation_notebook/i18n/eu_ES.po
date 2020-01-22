@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-21 11:55+0000\n"
-"PO-Revision-Date: 2020-01-21 11:55+0000\n"
+"POT-Creation-Date: 2020-01-22 15:32+0000\n"
+"PO-Revision-Date: 2020-01-22 15:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,13 @@ msgid "Academic year"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/models/education_course_change.py:28
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:42
+#, python-format
+msgid "Academic year must have defined start and end dates."
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__access_warning
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__access_warning
 msgid "Access warning"
@@ -128,7 +135,7 @@ msgstr ""
 #: selection:education.mark.behaviour,code:0
 #: model:education.mark.numeric,name:education_evaluation_notebook.numeric_mark_bad
 msgid "Bad"
-msgstr ""
+msgstr "Txarra"
 
 #. module: education_evaluation_notebook
 #: selection:education.competence,eval_mode:0
@@ -175,7 +182,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__schedule_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Class Schedule"
-msgstr ""
+msgstr "Ordutegia"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
@@ -196,7 +203,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: selection:education.exam,state:0
 msgid "Closed"
-msgstr ""
+msgstr "Itxita"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__mark_close_date
@@ -211,7 +218,6 @@ msgstr "Kodea"
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__competence_id
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Competence"
 msgstr ""
@@ -223,38 +229,32 @@ msgid "Competence Type"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_type_action
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_type_menu
+msgid "Competence Types"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Competence data"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
-msgid "Competence fields"
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education__competence_type_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Competence type"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education__competence_type_view_form
-msgid "Competence type fields"
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_type_action
-#: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_type_menu
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_type_view_tree
-msgid "Competence types"
-msgstr ""
-
-#. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_notebook_competence_menu_act
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_notebook_competence_menu
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_tree
 msgid "Competences"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/models/education_course_change.py:30
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:44
+#, python-format
+msgid "Configure Academic Year"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -270,7 +270,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__course_id
 msgid "Course"
-msgstr ""
+msgstr "Maila"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_course_change
@@ -403,6 +403,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__evaluation_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__evaluation_id
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_menuitem
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Evaluation"
 msgstr ""
@@ -522,6 +523,11 @@ msgid "Final"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__final_evaluation
+msgid "Final Evaluation"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__final_mark
 msgid "Final Mark"
 msgstr ""
@@ -529,7 +535,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: selection:education.academic_year.evaluation,eval_type:0
 msgid "First"
-msgstr ""
+msgstr "Lehena"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_follower_ids
@@ -547,11 +553,6 @@ msgstr "Jarraitzaileak (kanalak)"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_partner_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: selection:create.academic_year.evaluation,evaluation_number:0
-msgid "Four"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -576,8 +577,9 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:education.competence,name:education_evaluation_notebook.competence_global
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
 msgid "Global"
-msgstr ""
+msgstr "Orokorra"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__global_check
@@ -613,6 +615,7 @@ msgstr "Taldekatu"
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_homework_action
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__homework_ids
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_homework_menu
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_tree
@@ -776,7 +779,7 @@ msgstr "Izena"
 #. module: education_evaluation_notebook
 #: selection:education.exam,state:0
 msgid "New"
-msgstr ""
+msgstr "Berria"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_date_deadline
@@ -805,7 +808,7 @@ msgstr ""
 #: selection:education.mark.behaviour,code:0
 #: model:education.mark.numeric,name:education_evaluation_notebook.numeric_mark_normal
 msgid "Normal"
-msgstr ""
+msgstr "Arrunta"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__n_line_id
@@ -891,7 +894,7 @@ msgstr ""
 #: selection:education.exam,activity_state:0
 #: selection:education.record,activity_state:0
 msgid "Overdue"
-msgstr ""
+msgstr "Atzeratua"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__parent_line_id
@@ -916,6 +919,11 @@ msgid "Percent (%)"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
+msgid "Plain"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: selection:education.exam,activity_state:0
 #: selection:education.record,activity_state:0
 msgid "Planned"
@@ -930,12 +938,12 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: selection:education.exam.type,e_type:0
 msgid "Project"
-msgstr ""
+msgstr "Proiektua"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 msgid "Publish"
-msgstr ""
+msgstr "Argitaratu "
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__reduced_name
@@ -956,7 +964,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: selection:education.academic_year.evaluation,eval_type:0
 msgid "Second"
-msgstr ""
+msgstr "Bigarrena"
 
 #. module: education_evaluation_notebook
 #: selection:education.exam.type,e_type:0
@@ -978,6 +986,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__access_token
 msgid "Security Token"
 msgstr "Segurtasun Tokena "
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
+msgid "Show Child Lines"
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:education.competence,name:education_evaluation_notebook.competence_specific
@@ -1002,7 +1015,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__student_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Student"
-msgstr ""
+msgstr "Ikaslea "
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__task_type_id
@@ -1034,7 +1047,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: selection:education.academic_year.evaluation,eval_type:0
 msgid "Third"
-msgstr ""
+msgstr "Hirugarrena"
 
 #. module: education_evaluation_notebook
 #: selection:create.academic_year.evaluation,evaluation_number:0
@@ -1045,7 +1058,7 @@ msgstr ""
 #: selection:education.exam,activity_state:0
 #: selection:education.record,activity_state:0
 msgid "Today"
-msgstr ""
+msgstr "Gaur"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
