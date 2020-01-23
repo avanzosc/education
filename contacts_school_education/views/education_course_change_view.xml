@@ -5,10 +5,10 @@
         <field name="model">education.course.change</field>
         <field name="arch" type="xml">
             <tree editable="top">
-                <field name="school_id" />
-                <field name="course_id" />
-                <field name="next_school_id" />
-                <field name="next_course_id" />
+                <field name="school_id" options="{'no_create': True}" />
+                <field name="course_id" options="{'no_create': True}" />
+                <field name="next_school_id" options="{'no_create': True}" />
+                <field name="next_course_id" options="{'no_create': True}" />
                 <field name="gender" />
             </tree>
         </field>
@@ -18,20 +18,23 @@
         <field name="model">education.course.change</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <group string="Current Course and Center">
-                        <field name="school_id" />
-                        <field name="course_id" />
+                <sheet>
+                    <group>
+                        <group string="Current Course and Center">
+                            <field name="school_id" options="{'no_create': True}" />
+                            <field name="course_id" options="{'no_create': True}" />
+                        </group>
+                        <group string="Next Course and Center">
+                            <field name="next_school_id" options="{'no_create': True}"
+                                   string="Education Center"/>
+                            <field name="next_course_id" options="{'no_create': True}"
+                                   string="Course" />
+                        </group>
                     </group>
-                    <group string="Next Course and Center">
-                        <field name="next_school_id"
-                               string="Education Center"/>
-                        <field name="next_course_id" string="Course" />
+                    <group string="Additional Info">
+                        <field name="gender" />
                     </group>
-                </group>
-                <group string="Additional Info">
-                    <field name="gender" />
-                </group>
+                </sheet>
             </form>
         </field>
     </record>
