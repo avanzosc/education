@@ -47,7 +47,7 @@
     </record>
 
     <menuitem id="resource_calendar_education_menuitem"
-              parent="education.schedule_table_menuitem"
+              parent="education.configuration_schedule_table_menuitem"
               action="resource.action_resource_calendar_form"
               sequence="8" />
 </odoo>

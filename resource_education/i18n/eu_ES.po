@@ -18,7 +18,7 @@ msgstr ""
 #. module: resource_education
 #: model_terms:ir.ui.view,arch_db:resource_education.resource_calendar_attendance_view_tree
 msgid "Code"
-msgstr ""
+msgstr "Kodea"
 
 #. module: resource_education
 #: model:ir.model.fields,field_description:resource_education.field_resource_calendar__center_id
@@ -49,7 +49,7 @@ msgstr ""
 #. module: resource_education
 #: model:ir.model.fields,field_description:resource_education.field_resource_calendar_attendance__recess
 msgid "Recess"
-msgstr ""
+msgstr "Atsedena"
 
 #. module: resource_education
 #: model:ir.model,name:resource_education.model_resource_calendar
@@ -59,7 +59,7 @@ msgstr ""
 #. module: resource_education
 #: model:ir.model,name:resource_education.model_resource_calendar_attendance
 msgid "Work Detail"
-msgstr ""
+msgstr "Laneko xehetasunak"
 
 #. module: resource_education
 #: model:ir.ui.menu,name:resource_education.resource_calendar_education_menuitem
