@@ -16,6 +16,7 @@
     "website": "http://www.avanzosc.es",
     "data": [
         "security/ir.model.access.csv",
+        "security/education_evaluation_notebook_rules.xml",
         "data/education_evaluation_notebook_data.xml",
         "views/education_academic_year_evaluation_view.xml",
         "views/education_competence_type_view.xml",

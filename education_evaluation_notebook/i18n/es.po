@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-21 11:55+0000\n"
-"PO-Revision-Date: 2020-01-21 11:55+0000\n"
+"POT-Creation-Date: 2020-01-22 15:32+0000\n"
+"PO-Revision-Date: 2020-01-22 15:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__homework_count
 msgid "# Homework"
-msgstr ""
+msgstr "Núm. deberes"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__notebook_line_count
@@ -88,6 +88,13 @@ msgstr "Año académico"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__a_year_id
 msgid "Academic year"
 msgstr "Año académico"
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/models/education_course_change.py:28
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:42
+#, python-format
+msgid "Academic year must have defined start and end dates."
+msgstr "El año académico debe tener definidos la fecha de inicio y de fin."
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__access_warning
@@ -211,7 +218,6 @@ msgstr "Código"
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__competence_id
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Competence"
 msgstr "Competencia"
@@ -223,39 +229,33 @@ msgid "Competence Type"
 msgstr "Tipo de competencia"
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_type_action
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_type_menu
+msgid "Competence Types"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Competence data"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
-msgid "Competence fields"
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education__competence_type_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Competence type"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education__competence_type_view_form
-msgid "Competence type fields"
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_type_action
-#: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_type_menu
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_type_view_tree
-msgid "Competence types"
-msgstr "Tipos de competencias"
-
-#. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_notebook_competence_menu_act
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_notebook_competence_menu
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_tree
 msgid "Competences"
 msgstr "Competencias"
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/models/education_course_change.py:30
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:44
+#, python-format
+msgid "Configure Academic Year"
+msgstr "Configure el año académico"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_res_partner
@@ -295,7 +295,7 @@ msgstr "Crear registro academico"
 #: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.create_academic_year_evaluation_view_form
 msgid "Create Evaluations"
-msgstr ""
+msgstr "Crear evaluaciones"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__create_uid
@@ -388,7 +388,7 @@ msgstr "Deberes escolares"
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_notebook_line
 msgid "Education Notebook Line"
-msgstr ""
+msgstr "Línea de cuaderno de evaluación"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__subject_id
@@ -403,6 +403,7 @@ msgstr "Asignatura"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__evaluation_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__evaluation_id
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_menuitem
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Evaluation"
 msgstr "Evaluación"
@@ -423,12 +424,12 @@ msgstr "Modo de evaluación"
 #. module: education_evaluation_notebook
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_notebook_menu
 msgid "Evaluation Notebook"
-msgstr ""
+msgstr "Cuaderno de evaluación"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__evaluation_number
 msgid "Evaluation Number"
-msgstr ""
+msgstr "Número de evaluación"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__eval_type
@@ -522,6 +523,11 @@ msgid "Final"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__final_evaluation
+msgid "Final Evaluation"
+msgstr "Evaluación final"
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__final_mark
 msgid "Final Mark"
 msgstr "Nota máxima"
@@ -550,11 +556,6 @@ msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
 
 #. module: education_evaluation_notebook
-#: selection:create.academic_year.evaluation,evaluation_number:0
-msgid "Four"
-msgstr "Cuatro"
-
-#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__type_exam_name
 msgid "General Exam Type"
 msgstr "Tipo de examen genérico"
@@ -576,6 +577,7 @@ msgstr "Crear registros de alumnos"
 
 #. module: education_evaluation_notebook
 #: model:education.competence,name:education_evaluation_notebook.competence_global
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
 msgid "Global"
 msgstr ""
 
@@ -613,6 +615,7 @@ msgstr "Agrupar por"
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_homework_action
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__homework_ids
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_homework_menu
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_tree
@@ -644,7 +647,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__message_has_error
@@ -916,6 +919,11 @@ msgid "Percent (%)"
 msgstr "Porcentaje (%)"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
+msgid "Plain"
+msgstr "Base"
+
+#. module: education_evaluation_notebook
 #: selection:education.exam,activity_state:0
 #: selection:education.record,activity_state:0
 msgid "Planned"
@@ -980,9 +988,14 @@ msgid "Security Token"
 msgstr "Token de seguridad"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
+msgid "Show Child Lines"
+msgstr "Mostrar líneas hijas"
+
+#. module: education_evaluation_notebook
 #: model:education.competence,name:education_evaluation_notebook.competence_specific
 msgid "Specific"
-msgstr "Especifica"
+msgstr "Especifico"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__state

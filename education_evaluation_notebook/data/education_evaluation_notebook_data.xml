@@ -23,13 +23,11 @@
         <field name="name">Specific</field>
         <field name="eval_mode">numeric</field>
     </record>
-
     <record id="competence_indicator" model="education.competence"
             forcecreate="True">
         <field name="name">Indicator</field>
         <field name="eval_mode">behaviour</field>
     </record>
-
 
     <record id="numeric_mark_very_bad" model="education.mark.numeric"
             forcecreate="True">
