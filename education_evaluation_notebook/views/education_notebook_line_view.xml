@@ -19,10 +19,10 @@
                 <field name="parent_parent_line_id" invisible="True" />
                 <field name="competence_type_id" />
                 <field name="schedule_id" invisible="True" />
-                <field name="teacher_id" />
+                <field name="teacher_id" groups="education.education_responsible" />
                 <field name="subject_id" />
-                <field name="a_year_id" />
-                <field name="education_center_id" />
+                <field name="a_year_id" invisible="True" />
+                <field name="education_center_id" invisible="True" />
                 <field name="classroom_id" invisible="True" />
                 <field name="task_type_id" invisible="True" />
             </tree>
@@ -39,7 +39,7 @@
                 <field name="eval_percent"  />
                 <field name="competence_type_id" />
                 <field name="schedule_id" />
-                <field name="teacher_id" />
+                <field name="teacher_id" groups="education.education_responsible" />
                 <field name="a_year_id" />
                 <field name="education_center_id" />
                 <field name="classroom_id" />
@@ -49,6 +49,18 @@
                         domain="[('exists_master','=',True)]" />
                 <filter name="nonmaster_lines" string="Non Master Lines"
                         domain="[('exists_master','!=',True)]" />
+                <separator />
+                <filter name="first_eval" string="First Evaluation"
+                        domain="[('eval_type','=','first')]" />
+                <filter name="second_eval" string="Second Evaluation"
+                        domain="[('eval_type','=','second')]" />
+                <filter name="third_eval" string="Third Evaluation"
+                        domain="[('eval_type','=','third')]" />
+                <filter name="final_eval" string="Final Evaluation"
+                        domain="[('eval_type','=','final')]" />
+                <separator />
+                <filter name="current_academic_year" string="Current Academic Year"
+                        domain="[('a_year_id.current','=',True)]" />
                 <group expand="1" string="Group By">
                     <filter name="groupby_eval_type"
                         context="{'group_by':'eval_type'}" string="Evaluation" />
@@ -58,7 +70,8 @@
                         context="{'group_by':'competence_type_id'}"
                         string="Competence type" />
                     <filter name="groupby_teacher"
-                        context="{'group_by':'teacher_id'}" string="Teacher" />
+                        context="{'group_by':'teacher_id'}" string="Teacher"
+                        groups="education.education_responsible" />
                     <filter name="groupby_year"
                         context="{'group_by':'a_year_id'}" string="Academic Year" />
                     <filter name="groupby_center"
@@ -111,7 +124,7 @@
                         </group>
                         <group string="Class Schedule Info">
                             <field name="schedule_id" options="{'no_create': True, 'no_edit': True}" />
-                            <field name="teacher_id"  />
+                            <field name="teacher_id" groups="education.education_responsible" />
                             <field name="subject_id" />
                             <field name="education_center_id" />
                             <field name="classroom_id"  />
@@ -138,10 +151,11 @@
                                 </tree>
                             </field>
                         </page>
-                        <page name="child_lines" string="Notebook Lines"
+                        <page name="child_lines" string="Gradebook"
                               attrs="{'invisible': [('global_competence','!=',True),('evaluation_competence','!=',True)]}">
                             <field name="child_line_ids" context="{'default_parent_line_id': id, 'default_schedule_id': schedule_id}">ç
-                                <tree>
+                                <tree decoration-info="global_competence==True"
+                                      decoration-success="evaluation_competence==True">
                                     <field name="competence_id" />
                                     <field name="global_competence" invisible="True" />
                                     <field name="evaluation_competence" invisible="True" />
@@ -169,6 +183,9 @@
         <field name="res_model">education.notebook.line</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
+        <field name="context">{
+            "search_default_current_academic_year": True,
+        }</field>
         <field name="view_id" ref="education_notebook_line_view_tree"/>
     </record>
 </odoo>

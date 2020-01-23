@@ -93,8 +93,10 @@ class EducationExam(models.Model):
         action_dict = action.read()[0] if action else {}
         action_dict["context"] = safe_eval(
             action_dict.get("context", "{}"))
-        action_dict["context"].update(
-            {"default_exam_id": self.id})
+        action_dict["context"].update({
+            "default_exam_id": self.id,
+            "hide_calculated": True,
+        })
         domain = expression.AND([
             [("exam_id", "=", self.id)],
             safe_eval(action.domain or "[]")])
