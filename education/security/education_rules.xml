@@ -13,4 +13,60 @@
         <field name="domain_force">[(1,'=',1)]</field>
         <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
     </record>
+
+    <record id="education_group_teacher_report_rule" model="ir.rule">
+        <field name="name">Teacher groups report rule</field>
+        <field name="model_id" ref="education.model_education_group_teacher_report"/>
+        <field name="domain_force">[('teacher_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_group_teacher_report_manager_rule" model="ir.rule">
+        <field name="name">Teacher groups report manager rule</field>
+        <field name="model_id" ref="education.model_education_group_teacher_report"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
+
+    <record id="education_group_teacher_timetable_report_rule" model="ir.rule">
+        <field name="name">Teacher timetable report rule</field>
+        <field name="model_id" ref="education.model_education_group_teacher_timetable_report"/>
+        <field name="domain_force">[('teacher_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_group_teacher_timetable_report_manager_rule" model="ir.rule">
+        <field name="name">Teacher timetable report manager rule</field>
+        <field name="model_id" ref="education.model_education_group_teacher_timetable_report"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
+
+    <record id="education_group_student_report_rule" model="ir.rule">
+        <field name="name">Student groups report rule</field>
+        <field name="model_id" ref="education.model_education_group_student_report"/>
+        <field name="domain_force">[('teacher_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_group_student_report_manager_rule" model="ir.rule">
+        <field name="name">Student groups report manager rule</field>
+        <field name="model_id" ref="education.model_education_group_student_report"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
+
+    <record id="education_group_student_timetable_report_rule" model="ir.rule">
+        <field name="name">Student timetable report rule</field>
+        <field name="model_id" ref="education.model_education_group_student_timetable_report"/>
+        <field name="domain_force">[('teacher_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_group_student_timetable_report_manager_rule" model="ir.rule">
+        <field name="name">Student timetable report manager rule</field>
+        <field name="model_id" ref="education.model_education_group_student_timetable_report"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
 </odoo>

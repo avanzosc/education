@@ -8,7 +8,7 @@ from psycopg2.extensions import AsIs
 
 class EducationGroupTeacherReport(models.Model):
     _name = 'education.group.teacher.report'
-    _description = 'Teacher Groups Repor'
+    _description = 'Teacher Groups Report'
     _auto = False
     _rec_name = 'teacher_id'
 
