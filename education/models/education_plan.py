@@ -10,7 +10,7 @@ class EducationPlan(models.Model):
     _description = 'Education Plan'
 
     level_ids = fields.One2many(
-        comodel_name='education.level', string='Levels',
+        comodel_name='education.level', string='Education Levels',
         inverse_name='plan_id')
     course_ids = fields.One2many(
         comodel_name='education.course', string='Courses',

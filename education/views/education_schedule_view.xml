@@ -122,7 +122,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_education_schedule">
-        <field name="name">Schedule</field>
+        <field name="name">Class Schedule</field>
         <field name="res_model">education.schedule</field>
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
@@ -130,7 +130,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_education_schedule_from_group">
-        <field name="name">Schedule</field>
+        <field name="name">Class Schedule</field>
         <field name="res_model">education.schedule</field>
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>

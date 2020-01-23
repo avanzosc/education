@@ -9,9 +9,9 @@ class EducationLevelFieldSubject(models.Model):
     _description = 'Education Level, Course and Subject Relation'
 
     level_id = fields.Many2one(
-        comodel_name='education.level', string='Level')
+        comodel_name='education.level', string='Education Level')
     plan_id = fields.Many2one(
-        comodel_name='education.plan', string='Plan')
+        comodel_name='education.plan', string='Education Plan')
     course_id = fields.Many2one(
         comodel_name='education.course', string='Course')
     subject_id = fields.Many2one(

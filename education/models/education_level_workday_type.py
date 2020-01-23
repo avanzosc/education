@@ -15,6 +15,6 @@ class EducationLevelWorkdayType(models.Model):
     workday_type_id = fields.Many2one(
         comodel_name='education.workday_type', string='Workday Type')
     level_id = fields.Many2one(
-        comodel_name='education.level', string='Level')
+        comodel_name='education.level', string='Education Level')
     dedicated_working_day = fields.Char(string='Dedicated Working Day')
     school_working_day = fields.Char(string='School Working Day')
