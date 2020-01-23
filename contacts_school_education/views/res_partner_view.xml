@@ -124,6 +124,6 @@
     <menuitem id="res_partner_school_menuitem"
               parent="education.education_center_menuitem"
               action="action_res_partner_school"
-              sequence="10" />
+              sequence="0" />
 
 </odoo>

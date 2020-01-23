@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_classroom_rule" model="ir.rule">
+        <field name="name">Education classroom rule</field>
+        <field name="model_id" ref="education.model_education_classroom"/>
+        <field name="domain_force">[('center_id','in',user.school_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_classroom_manager_rule" model="ir.rule">
+        <field name="name">Education classroom manager rule</field>
+        <field name="model_id" ref="education.model_education_classroom"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
+
+    <record id="education_group_rule" model="ir.rule">
+        <field name="name">Education group rule</field>
+        <field name="model_id" ref="education.model_education_group"/>
+        <field name="domain_force">[('center_id','in',user.school_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_group_manager_rule" model="ir.rule">
+        <field name="name">Education group manager rule</field>
+        <field name="model_id" ref="education.model_education_group"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
+
+</odoo>
