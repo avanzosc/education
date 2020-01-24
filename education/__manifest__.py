@@ -20,6 +20,8 @@
         "reports/education_group_report_view.xml",
         "reports/education_group_teacher_report_view.xml",
         "reports/education_group_student_report_view.xml",
+        "reports/education_group_student_timetable_report_view.xml",
+        "reports/education_group_teacher_timetable_report_view.xml",
         "views/education_academic_year_view.xml",
         "views/education_academic_year_evaluation_view.xml",
         "views/education_activity_type_view.xml",
