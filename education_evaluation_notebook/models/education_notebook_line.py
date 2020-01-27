@@ -103,6 +103,12 @@ class EducationNotebookLine(models.Model):
         action = self.env.ref(
             "education_evaluation_notebook.education_record_action")
         action_dict = action.read()[0] if action else {}
+        action_dict["context"] = safe_eval(
+            action_dict.get("context", "{}"))
+        action_dict["context"].update({
+            "hide_numeric": self.competence_id.eval_mode == "behaviour",
+            "hide_behaviour": self.competence_id.eval_mode == "numeric",
+        })
         domain = expression.AND([
             [("n_line_id", "=", self.id),
              ("exam_id", "=", False)],
