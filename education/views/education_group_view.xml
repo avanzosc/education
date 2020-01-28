@@ -27,6 +27,8 @@
                 <field name="center_id" />
                 <field name="description" />
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
+                <separator />
+                <filter name="current_academic_year" string="Current Academic Year" domain="[('academic_year_id.current','=',True)]"/>
                 <group expand="0" string="Group By...">
                     <filter string="Academic Year" name="academic_year"
                             context="{'group_by': 'academic_year_id'}" />
@@ -168,6 +170,9 @@
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="education_group_view_tree" />
+        <field name="context">{
+            "search_default_current_academic_year": True,
+        }</field>
     </record>
 
 </odoo>
