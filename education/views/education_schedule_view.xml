@@ -29,7 +29,7 @@
                 <field name="task_type_type" invisible="True" />
                 <field name="subject_id" />
                 <field name="subject_type" />
-                <field name="language_id" />
+                <field name="language_id" options="{'no_create': True, 'no_open':True}"/>
                 <field name="group_ids" widget="many2many_tags"
                        domain="[('academic_year_id', '=', academic_year_id),('center_id', '=', center_id)]"
                        options="{'no_create': True}" />
@@ -107,6 +107,8 @@
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="group_ids" />
+                <separator />
+                <filter name="current_academic_year" string="Current Academic Year" domain="[('academic_year_id.current','=',True)]"/>
                 <group expand="0" string="Group By" name="group_by">
                     <filter name="group_academic_year" string="Academic Year"
                             context="{'group_by': 'academic_year_id'}" />
@@ -127,6 +129,9 @@
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="education_schedule_view_tree" />
+        <field name="context">{
+            "search_default_current_academic_year": True,
+        }</field>
     </record>
 
     <record model="ir.actions.act_window" id="action_education_schedule_from_group">
