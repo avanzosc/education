@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="True">
+    <record id="teaching_edu_type" model="hr.employee.edu_type" forcecreate="True">
+        <field name="name">Teaching Staff</field>
+    </record>
+
+    <record id="nonteaching_edu_type" model="hr.employee.edu_type" forcecreate="True">
+        <field name="name">Non-Teaching Staff</field>
+    </record>
+</odoo>

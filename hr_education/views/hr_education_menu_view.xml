@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="education.faculty_employee_menuitem"
+              parent="education.faculty_menuitem"
+              action="hr_employee_teacher_action" />
+
+    <menuitem id="hr_employee_edu_type_menuitem"
+              parent="education.configuration_faculty_menuitem"
+              action="hr_employee_edu_type_action"
+              sequence="10" />
+
+</odoo>
