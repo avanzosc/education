@@ -16,6 +16,9 @@ class UploadEducationTeacher(models.TransientModel):
 
     def button_upload(self):
         lines = _read_binary_file(self.file)
+        teaching_staff = self.env.ref("hr_education.teaching_edu_type")
+        company_obj = self.env["res.company"].sudo().with_context(
+            active_test=False)
         partner_obj = self.env['res.partner'].with_context(active_test=False)
         employee_obj = self.env['hr.employee'].with_context(active_test=False)
         hr_contract_obj = self.env['hr.contract'].with_context(
@@ -53,6 +56,14 @@ class UploadEducationTeacher(models.TransientModel):
                         academic_year = academic_year_obj.search([
                             ('name', 'ilike', '{}-'.format(year)),
                         ])
+                        company = company_obj.search([
+                            ('partner_id', '=',
+                             center.parent_id.id or center.id),
+                        ], limit=1)
+                        if not company:
+                            company = company_obj.search([
+                                ('parent_id', '=', False),
+                            ], limit=1)
                     if line_type == '2':
                         op_type = _format_info(line[1:2])
                         id_type = idtype_obj.search([
@@ -143,6 +154,8 @@ class UploadEducationTeacher(models.TransientModel):
                                 _format_info(line[594:599]))
                             vals = {
                                 'name': fullname,
+                                'edu_type_id': teaching_staff.id,
+                                'company_id': False,
                             }
                             if not user:
                                 user_vals = {
@@ -203,6 +216,7 @@ class UploadEducationTeacher(models.TransientModel):
                                 'ed_class_hours': class_hours,
                                 'notes': notes,
                                 'wage': 0.0,
+                                'company_id': company.id,
                             }
                             if not contract:
                                 hr_contract_obj.create(contract_vals)
