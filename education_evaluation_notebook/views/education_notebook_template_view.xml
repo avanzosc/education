@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- TREE VIEW -->
+    <record id="education_notebook_template_view_tree" model="ir.ui.view">
+        <field name="model">education.notebook.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="education_center_id" />
+                <field name="parent_center_id" />
+                <field name="course_id" />
+                <field name="subject_id" />
+                <field name="competence_id" />
+                <field name="competence_type_id" />
+                <field name="eval_type" />
+                <field name="eval_percent" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_notebook_template_view_search" model="ir.ui.view">
+        <field name="model">education.notebook.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="education_center_id" />
+                <field name="parent_center_id" />
+                <field name="course_id" />
+                <field name="subject_id" />
+                <field name="competence_id" />
+                <field name="competence_type_id" />
+                <field name="eval_type" />
+                <separator />
+                <filter name="first_eval" string="First Evaluation"
+                        domain="[('eval_type','=','first')]" />
+                <filter name="second_eval" string="Second Evaluation"
+                        domain="[('eval_type','=','second')]" />
+                <filter name="third_eval" string="Third Evaluation"
+                        domain="[('eval_type','=','third')]" />
+                <filter name="final_eval" string="Final Evaluation"
+                        domain="[('eval_type','=','final')]" />
+                <group expand="1" string="Group By">
+                    <filter name="groupby_center"
+                            context="{'group_by':'education_center_id'}"
+                            string="Education Center" />
+                    <filter name="groupby_parent_center"
+                            context="{'group_by':'parent_center_id'}"
+                            string="Related Company" />
+                    <filter name="groupby_course"
+                            context="{'group_by':'course_id'}"
+                            string="Course" />
+                    <filter name="groupby_subject"
+                            context="{'group_by':'subject_id'}"
+                            string="Education Subject" />
+                    <filter name="groupby_competence"
+                            context="{'group_by':'competence_id'}"
+                            string="Competence" />
+                    <filter name="groupby_competencetype"
+                            context="{'group_by':'competence_type_id'}"
+                            string="Competence Type" />
+                    <filter name="groupby_eval_type"
+                            context="{'group_by':'eval_type'}"
+                            string="Evaluation" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_notebook_template_view_form" model="ir.ui.view">
+        <field name="model">education.notebook.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title" name="title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <group>
+                            <field name="education_center_id" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="parent_center_id" />
+                            <field name="course_id"  options="{'no_create': True, 'no_edit': True}" />
+                            <field name="subject_id" options="{'no_create': True, 'no_edit': True}"
+                                   domain="[('course_ids','=',course_id)]" />
+                        </group>
+                        <group>
+                            <field name="eval_type" />
+                            <field name="eval_percent" />
+                            <field name="competence_id" options="{'no_create': True, 'no_edit': True}" />
+                            <field name="competence_type_id"  options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_notebook_template_action" model="ir.actions.act_window">
+        <field name="name">Evaluation Notebook Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.notebook.template</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_notebook_template_view_tree"/>
+    </record>
+</odoo>
+

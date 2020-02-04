@@ -7,7 +7,8 @@
         <field name="arch" type="xml">
             <tree create="0"
                   decoration-info="global_competence==True"
-                  decoration-success="evaluation_competence==True">
+                  decoration-success="evaluation_competence==True"
+                  decoration-muted="eval_percent==0">
                 <field name="competence_id" />
                 <field name="global_competence" invisible="True" />
                 <field name="evaluation_competence" invisible="True" />
@@ -153,9 +154,10 @@
                         </page>
                         <page name="child_lines" string="Gradebook"
                               attrs="{'invisible': [('global_competence','!=',True),('evaluation_competence','!=',True)]}">
-                            <field name="child_line_ids" context="{'default_parent_line_id': id, 'default_schedule_id': schedule_id}">ç
+                            <field name="child_line_ids" context="{'default_parent_line_id': id, 'default_schedule_id': schedule_id}">
                                 <tree decoration-info="global_competence==True"
-                                      decoration-success="evaluation_competence==True">
+                                      decoration-success="evaluation_competence==True"
+                                      decoration-muted="eval_percent==0">
                                     <field name="competence_id" />
                                     <field name="global_competence" invisible="True" />
                                     <field name="evaluation_competence" invisible="True" />

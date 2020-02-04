@@ -66,7 +66,8 @@
             model="ir.ui.view">
         <field name="model">education.exam</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state=='done'"
+            <tree decoration-bf="state=='progress'"
+                  decoration-success="state=='done'"
                   decoration-muted="state=='closed'">
                 <field name="name" />
                 <field name="description" />

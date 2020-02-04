@@ -3,7 +3,7 @@
     <record id="education_group_homework_report_view_tree" model="ir.ui.view">
         <field name="model">education.group.homework.report</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-danger="homework_deadline and (homework_deadline &lt; current_date)">
                 <field name="center_id" />
                 <field name="course_id" />
                 <field name="group_id" />
@@ -35,6 +35,14 @@
                 <separator />
                 <filter string="Current Academic Year" name="current_academic_year"
                         domain="[('academic_year_id.current','=',True)]" />
+                <separator />
+                <filter string="Late Homework" name="homework_overdue"
+                        domain="[('homework_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all records which has next action date is before today"/>
+                <filter string="Today Homework" name="homework_today"
+                        domain="[('homework_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Future Homework" name="homework_upcoming_all"
+                        domain="[('homework_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
                 <group expand="1" string="Group By">
                     <filter string="Education Center" name="education_center"
                             context="{'group_by':'center_id'}"/>
@@ -54,6 +62,8 @@
                             context="{'group_by':'academic_year_id'}"/>
                     <filter string="Homework" name="homework"
                             context="{'group_by':'homework_id'}" />
+                    <filter string="Deadline" name="homework_deadline"
+                            context="{'group_by':'homework_deadline'}" />
                 </group>
             </search>
         </field>

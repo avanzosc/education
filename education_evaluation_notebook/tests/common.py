@@ -45,6 +45,15 @@ class EducationNotebookCommon(TestEducationCommon):
         cls.exam_competence = cls.competence_model.create({
             "name": "Exam Competence",
         })
+        cls.notebook_template = cls.env["education.notebook.template"].create({
+            "education_center_id": cls.edu_partner.id,
+            "course_id": cls.edu_course.id,
+            "subject_id": cls.edu_subject.id,
+            "eval_type": "first",
+            "competence_id": cls.exam_competence.id,
+            "name": "Notebook Template",
+            "eval_percent": 50.0,
+        })
         cls.exam_type = cls.env["education.exam.type"].create({
             "name": "Test Control Type",
             "e_type": "control",

@@ -163,9 +163,11 @@ class EducationSchedule(models.Model):
     @api.multi
     def generate_evaluation_notebook_lines(self):
         evaluation_obj = self.env["education.academic_year.evaluation"]
+        template_obj = self.env["education.notebook.template"]
         evaluation_competences = self.env["education.competence"].search([
             ("evaluation_check", "=", True)])
         for schedule in self:
+            courses = schedule.subject_id.course_ids
             global_lines = schedule.notebook_line_ids.filtered(
                 lambda l: l.competence_id.global_check)
             evaluations = evaluation_obj.search([
@@ -174,7 +176,7 @@ class EducationSchedule(models.Model):
             ])
             if schedule.subject_id.course_ids:
                 evaluations = evaluations.filtered(
-                    lambda e: e.course_id in schedule.subject_id.course_ids)
+                    lambda e: e.course_id in courses)
             else:
                 evaluations = evaluations.filtered(
                     lambda e: not e.course_id)
@@ -182,8 +184,18 @@ class EducationSchedule(models.Model):
             for eval_competence in evaluation_competences:
                 for global_line in global_lines:
                     for evaluation in evaluations:
-                        schedule.find_or_create_notebook_line(
-                            eval_competence, global_line, percent, evaluation)
+                        evaluation_line = (
+                            schedule.find_or_create_notebook_line(
+                                eval_competence, global_line, percent,
+                                evaluation))
+                        for course in courses:
+                            templates = template_obj.find_template_line(
+                                center=schedule.center_id, course=course,
+                                subject=schedule.subject_id,
+                                eval_type=evaluation.eval_type)
+                            templates.create_notebook_line(
+                                schedule=schedule,
+                                parent_line=evaluation_line)
         return True
 
     @api.multi

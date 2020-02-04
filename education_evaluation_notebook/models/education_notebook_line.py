@@ -30,7 +30,7 @@ class EducationNotebookLine(models.Model):
     a_year_id = fields.Many2one(
         related="schedule_id.academic_year_id",
         comodel_name="education.academic_year",
-        string="Academic year", store=True)
+        string="Academic Year", store=True)
     education_center_id = fields.Many2one(
         related="schedule_id.center_id", comodel_name="res.partner",
         string="Education Center", store=True)
@@ -151,6 +151,7 @@ class EducationNotebookLine(models.Model):
     def _onchange_parent_line_id(self):
         for line in self:
             line.evaluation_id = line.parent_line_id.evaluation_id
+            line._onchange_evaluation_id()
 
     @api.multi
     def find_or_create_student_record(self, student, parent_record=False):
