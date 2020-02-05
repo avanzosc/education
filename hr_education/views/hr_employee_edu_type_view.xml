@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_employee_edu_type_view_tree" model="ir.ui.view">
+        <field name="model">hr.employee.edu_type</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_employee_edu_type_view_search" model="ir.ui.view">
+        <field name="model">hr.employee.edu_type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record id="hr_employee_edu_type_action" model="ir.actions.act_window">
+        <field name="name">Employee Education Type</field>
+        <field name="res_model">hr.employee.edu_type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="hr_employee_edu_type_view_search"/>
+    </record>
+
+</odoo>
