@@ -16,6 +16,23 @@ class EducationLevelFieldSubject(models.Model):
         comodel_name='education.course', string='Course')
     subject_id = fields.Many2one(
         comodel_name='education.subject', string='Subject')
+    active = fields.Boolean(compute="_compute_active", store=True)
+
+    @api.multi
+    @api.depends(
+        "level_id", "level_id.active", "plan_id", "plan_id.active",
+        "course_id", "course_id.active", "subject_id", "subject_id.active")
+    def _compute_active(self):
+        for record in self:
+            record.active = (
+                (not record.level_id or
+                 (record.level_id and record.level_id.active)) and
+                (not record.plan_id or
+                 (record.plan_id and record.plan_id.active)) and
+                (not record.course_id or
+                 (record.course_id and record.course_id.active)) and
+                (not record.subject_id or
+                 (record.subject_id and record.subject_id.active)))
 
     @api.multi
     def name_get(self):

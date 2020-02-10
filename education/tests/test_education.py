@@ -150,9 +150,19 @@ class TestEducation(TestEducationCommon):
                 relation.subject_id.education_code))
 
     def test_education_subject(self):
-        self.assertIn(self.edu_level, self.edu_subject.level_ids)
         self.assertIn(self.edu_course, self.edu_subject.course_ids)
+        self.assertEquals(
+            self.edu_subject.mapped('level_course_ids.course_id'),
+            self.edu_subject.course_ids)
+        self.assertEquals(
+            self.edu_subject.mapped('level_field_ids.field_id'),
+            self.edu_subject.field_ids)
         self.assertIn(self.edu_field, self.edu_subject.field_ids)
+        self.assertIn(self.edu_level, self.edu_subject.level_ids)
+        self.assertEquals(
+            (self.edu_subject.mapped('level_course_ids.level_id') |
+             self.edu_subject.mapped('level_field_ids.level_id')),
+            self.edu_subject.level_ids)
 
     def test_education_level(self):
         self.assertEquals(
