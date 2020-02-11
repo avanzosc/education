@@ -77,6 +77,8 @@
                             <tree>
                                 <field name="subject_id"
                                        options="{'no_create_edit': True, 'no_create': True}" />
+                                <field name="level_id"
+                                       options="{'no_create_edit': True, 'no_create': True}" />
                             </tree>
                         </field>
                     </group>

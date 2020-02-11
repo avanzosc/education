@@ -39,19 +39,24 @@ class EducationSubject(models.Model):
     @api.depends('level_field_ids', 'level_field_ids.field_id')
     def _compute_field_ids(self):
         for record in self:
-            record.field_ids = record.mapped('level_field_ids.field_id')
+            record.field_ids = record.with_context(active_test=False).mapped(
+                'level_field_ids.field_id')
 
     @api.depends('level_field_ids', 'level_field_ids.level_id',
                  'level_course_ids', 'level_course_ids.level_id')
     def _compute_level_ids(self):
         for record in self:
-            record.level_ids = (record.mapped('level_field_ids.level_id') |
-                                record.mapped('level_course_ids.level_id'))
+            record.level_ids = (
+                record.with_context(active_test=False).mapped(
+                    'level_field_ids.level_id') |
+                record.with_context(active_test=False).mapped(
+                    'level_course_ids.level_id'))
 
     @api.depends('level_course_ids', 'level_course_ids.course_id')
     def _compute_course_ids(self):
         for record in self:
-            record.course_ids = record.mapped('level_course_ids.course_id')
+            record.course_ids = record.with_context(active_test=False).mapped(
+                'level_course_ids.course_id')
 
     _sql_constraints = [
         ('education_code_unique', 'unique(education_code)',
