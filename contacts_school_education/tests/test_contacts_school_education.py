@@ -53,3 +53,10 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
             'course_id': self.edu_course.id,
             'next_course_id': self.edu_course2.id,
         })
+        with self.assertRaises(ValidationError):
+            self.change_model.create({
+                'school_id': self.school.id,
+                'next_school_id': self.school.id,
+                'course_id': self.edu_course.id,
+                'next_course_id': self.edu_course2.id,
+            })

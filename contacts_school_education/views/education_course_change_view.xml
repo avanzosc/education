@@ -39,6 +39,31 @@
         </field>
     </record>
 
+    <record id="education_course_change_view_search" model="ir.ui.view">
+        <field name="model">education.course.change</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="school_id" />
+                <field name="course_id" />
+                <field name="next_school_id" />
+                <field name="next_course_id" />
+                <field name="gender" />
+                <group expand="0" name="group_by" string="Group By">
+                     <filter name="school" string="Education Center"
+                             domain="[]" context="{'group_by' : 'school_id'}"/>
+                     <filter name="course" string="Course"
+                             domain="[]" context="{'group_by' : 'course_id'}"/>
+                     <filter name="next_school" string="Next Education Center"
+                             domain="[]" context="{'group_by' : 'next_school_id'}"/>
+                     <filter name="next_course" string="Next Course"
+                             domain="[]" context="{'group_by' : 'next_course_id'}"/>
+                     <filter name="gender" string="Gender"
+                             domain="[]" context="{'group_by' : 'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_education_course_change">
         <field name="name">Course Change</field>
         <field name="res_model">education.course.change</field>

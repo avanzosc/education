@@ -1,6 +1,6 @@
-================
-School Education
-================
+==============================
+Contacts for Education Centers
+==============================
 
 .. |badge1| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
@@ -8,7 +8,13 @@ School Education
 
 |badge1|
 
-Education
+Contacts for Education Centers
+
+* In **education centers** you can define relation between course/center to next
+  course/center, and if there gender separation.
+* In you can define alumni info: last education center, last student year, etc.
+* Student's groups list. Current course and education center for student.
+* For parent/tutors, list of related student groups, courses and centers.
 
 **Table of contents**
 
