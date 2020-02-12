@@ -73,21 +73,6 @@ class EducationRecord(models.Model):
     numeric_mark = fields.Float(string="Numeric Mark")
     behaviour_mark_id = fields.Many2one(
         comodel_name="education.mark.behaviour", string="Behaviour Mark")
-    # competence_parent = fields.Many2one(
-    #     related="n_line_id.parent_competence_id.competence_id",
-    #     comodel_name="education.competence",
-    #     store=True, string="parent competence")
-    # competence_parent_parent = fields.Many2one(
-    #     related="n_line_id.parent_competence_id.parent_competence_id."
-    #             "competence_id",
-    #     comodel_name="education.competence",
-    #     store=True, string="parents parent competence")
-    # master_competence_eval_check = fields.Boolean(
-    #     string="Evaluation check for the competence",
-    #     related="n_line_id.competence_id.evaluation_check")
-    # master_competence_global_check = fields.Boolean(
-    #     string="Global check for the competence",
-    #     related="n_line_id.competence_id.global_check")
     calculated_numeric_mark = fields.Float(
         compute="_compute_generate_marks", string="Calculated Numeric Mark",
         store=True)

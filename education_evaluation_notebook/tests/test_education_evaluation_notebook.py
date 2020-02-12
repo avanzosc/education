@@ -66,17 +66,23 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         self.schedule.action_generate_notebook_lines()
         self.schedule.action_generate_records()
         student_count = self.schedule.student_count
+        notebook_count = evaluation_count + 2
         self.assertEquals(
-            self.schedule.notebook_line_count, evaluation_count + 1)
+            self.schedule.notebook_line_count, notebook_count)
         line_act_dict = self.schedule.button_show_notebook_lines()
         self.assertIn(
             ("schedule_id", "=", self.schedule.id),
             line_act_dict.get("domain"))
+        global_line = self.schedule.notebook_line_ids.filtered(
+            "global_competence")
+        child_act_dict = global_line.button_show_child_lines()
+        self.assertIn(
+            ("parent_line_id", "=", global_line.id),
+            child_act_dict.get("domain"))
         self.assertEquals(
-            self.schedule.record_count, (evaluation_count + 1) * student_count)
+            self.schedule.record_count, notebook_count * student_count)
         self.assertEquals(
-            self.edu_student.academic_record_count,
-            (evaluation_count + 1) * student_count)
+            self.edu_student.academic_record_count, notebook_count)
         record_act_dict = self.edu_student.button_show_student_records()
         self.assertIn(
             ("student_id", "=", self.edu_student.id),
@@ -142,6 +148,11 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             exam_line.button_create_student_records()
             self.assertEquals(
                 exam_line.record_count, 2 * student_count)
+            exam_record = exam_line.record_ids[:1]
+            exam_record.numeric_mark = 5.5
+            self.assertEquals(
+                exam_record.mark_id, self.env.ref(
+                    "education_evaluation_notebook.numeric_mark_normal"))
             exam = exam_line.exam_ids[:1]
             self.assertEquals(
                 exam.record_count, student_count)

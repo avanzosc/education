@@ -48,6 +48,10 @@
               parent="education_evaluation_notebook_menu"
               action="education_notebook_competence_menu_act"
               sequence="5" />
+    <menuitem id="education_notebook_template_menu"
+              parent="education_evaluation_notebook_menu"
+              action="education_notebook_template_action"
+              sequence="10" />
 
     <menuitem id="education_group_homework_report_menuitem"
               parent="education.education_report_menuitem"

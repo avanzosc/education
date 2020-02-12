@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 10:56+0000\n"
-"PO-Revision-Date: 2020-02-03 10:56+0000\n"
+"POT-Creation-Date: 2020-02-06 10:36+0000\n"
+"PO-Revision-Date: 2020-02-06 10:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,13 +80,13 @@ msgstr "Registro academico"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__academic_year_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__academic_year_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__academic_year_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__a_year_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__academic_year_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Academic Year"
 msgstr "Año académico"
 
 #. module: education_evaluation_notebook
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__a_year_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 msgid "Academic year"
 msgstr "Año académico"
@@ -108,7 +108,7 @@ msgstr "Alerta de acceso"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
-msgstr "Acción requerida"
+msgstr "Acción Necesaria"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_ids
@@ -221,14 +221,18 @@ msgstr "Código"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__competence_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__competence_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Competence"
 msgstr "Competencia"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_competence_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_type_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__competence_type_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Competence Type"
 msgstr "Tipo de competencia"
 
@@ -273,6 +277,8 @@ msgstr "Examen de control"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__course_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__course_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Course"
 msgstr "Curso"
 
@@ -311,6 +317,7 @@ msgstr "Crear evaluaciones"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__create_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -325,6 +332,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__create_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__create_date
 msgid "Created on"
 msgstr "Creado el"
@@ -343,6 +351,7 @@ msgstr "URL del portal de cliente"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__date
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 msgid "Deadline"
 msgstr "Fecha límite"
 
@@ -350,6 +359,7 @@ msgstr "Fecha límite"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__description
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__description
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__name
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 msgid "Description"
 msgstr "Descripción"
@@ -365,6 +375,7 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__display_name
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
@@ -373,8 +384,10 @@ msgstr "Nombre mostrado"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__education_center_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__education_center_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
 
@@ -419,8 +432,10 @@ msgstr "Línea de cuaderno de evaluación"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__subject_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__subject_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__subject_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__subject_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__subject_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Education Subject"
 msgstr "Asignatura"
@@ -432,6 +447,7 @@ msgstr "Asignatura"
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_menuitem
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Evaluation"
 msgstr "Evaluación"
 
@@ -454,6 +470,13 @@ msgid "Evaluation Notebook"
 msgstr "Cuaderno de evaluación"
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_notebook_template_action
+#: model:ir.model,name:education_evaluation_notebook.model_education_notebook_template
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_notebook_template_menu
+msgid "Evaluation Notebook Template"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__evaluation_number
 msgid "Evaluation Number"
 msgstr "Número de evaluación"
@@ -462,6 +485,7 @@ msgstr "Número de evaluación"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__eval_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__eval_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__eval_type
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__eval_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__eval_type
 msgid "Evaluation Season"
 msgstr "Evaluación"
@@ -552,6 +576,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__final_evaluation
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Final Evaluation"
 msgstr "Evaluación final"
 
@@ -567,6 +592,7 @@ msgstr "Inicial"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "First Evaluation"
 msgstr "Primera evaluación"
 
@@ -587,6 +613,11 @@ msgstr "Seguidores (Canales)"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+msgid "Future Homework"
+msgstr "Deberes futuros"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__type_exam_name
@@ -647,6 +678,7 @@ msgstr "Corregido"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Group By"
 msgstr "Agrupar por"
@@ -696,6 +728,7 @@ msgstr "Listado de deberes"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__id
 msgid "ID"
 msgstr ""
@@ -756,6 +789,7 @@ msgstr "Es maestro"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line____last_update
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
@@ -770,6 +804,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__write_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -784,9 +819,15 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__write_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+msgid "Late Homework"
+msgstr "Deberes tardíos"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_main_attachment_id
@@ -977,6 +1018,7 @@ msgstr "Registro padre"
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__eval_percent
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__eval_percent
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__eval_percent
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__exam_eval_percent
 msgid "Percent (%)"
 msgstr "Porcentaje (%)"
@@ -1019,6 +1061,12 @@ msgid "Reduced Numeric Mark"
 msgstr "Nota abreviada"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__parent_center_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
+msgid "Related Company"
+msgstr "Empresa relacionada"
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_user_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__activity_user_id
 msgid "Responsible User"
@@ -1031,6 +1079,7 @@ msgstr "Segundo"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Second Evaluation"
 msgstr "Segunda evaluación"
 
@@ -1059,6 +1108,11 @@ msgstr "Token de seguridad"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
 msgid "Show Child Lines"
 msgstr "Mostrar líneas hijas"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+msgid "Show all records which has next action date is before today"
+msgstr "Mostrar todos los registros que tienen la próxima fecha de acción antes de hoy"
 
 #. module: education_evaluation_notebook
 #: model:education.competence,name:education_evaluation_notebook.competence_specific
@@ -1126,6 +1180,7 @@ msgstr "Tercero"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Third Evaluation"
 msgstr "Tercera evaluación"
 
@@ -1139,6 +1194,11 @@ msgstr "Tres"
 #: selection:education.record,activity_state:0
 msgid "Today"
 msgstr "Hoy"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+msgid "Today Homework"
+msgstr "Deberes de hoy"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
