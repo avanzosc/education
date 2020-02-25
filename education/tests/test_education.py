@@ -163,6 +163,9 @@ class TestEducation(TestEducationCommon):
             (self.edu_subject.mapped('level_course_ids.level_id') |
              self.edu_subject.mapped('level_field_ids.level_id')),
             self.edu_subject.level_ids)
+        action_dict = self.edu_subject.button_open_subject_center()
+        self.assertEquals(action_dict.get('domain'),
+                          [('subject_id', '=', self.edu_subject.id)])
 
     def test_education_level(self):
         self.assertEquals(

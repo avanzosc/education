@@ -71,7 +71,7 @@ class EducationSubject(models.Model):
         action = self.env.ref('education.action_education_subject_center')
         action_dict = action.read()[0] if action else {}
         domain = expression.AND([
-            [('subject_id', 'in', self.ids)],
+            [('subject_id', '=', self.id)],
             safe_eval(action.domain or '[]')
         ])
         context = safe_eval(action.context or '{}')
