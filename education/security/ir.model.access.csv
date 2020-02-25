@@ -63,6 +63,8 @@ access_education_shift,education_shift all,model_education_shift,,1,0,0,0
 access_education_shift_manager,education_shift manager,model_education_shift,education_responsible,1,1,1,1
 access_education_subject,education_subject all,model_education_subject,,1,0,0,0
 access_education_subject_manager,education_subject manager,model_education_subject,education_responsible,1,1,1,1
+access_education_subject_center,education_subject_center all,model_education_subject_center,,1,0,0,0
+access_education_subject_center_manager,education_subject_center manager,model_education_subject_center,education_responsible,1,1,1,1
 access_education_subject_type,education_subject_type all,model_education_subject_type,,1,0,0,0
 access_education_subject_type_manager,education_subject_type manager,model_education_subject_type,education_responsible,1,1,1,1
 access_education_task_type,education_task_type all,model_education_task_type,,1,0,0,0

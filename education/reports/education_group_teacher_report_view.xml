@@ -8,6 +8,7 @@
                 <field name="course_id" />
                 <field name="group_id" />
                 <field name="subject_id" />
+                <field name="subject_name" />
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
@@ -23,6 +24,7 @@
                 <field name="course_id" />
                 <field name="group_id" />
                 <field name="subject_id" />
+                <field name="subject_name" />
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />

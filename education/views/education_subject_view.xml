@@ -46,6 +46,8 @@
             <form>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button name="button_open_subject_center" type="object" class="oe_stat_button"
+                                icon="fa-edit" groups="education.education_responsible" string="Subject Names"/>
                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive"
                                 groups="education.education_responsible">
                             <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>

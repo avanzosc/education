@@ -8,12 +8,13 @@
                 <field name="course_id" />
                 <field name="group_id" />
                 <field name="subject_id" />
+                <field name="subject_name" />
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
                 <field name="dayofweek" />
-                <field name="hour_from" />
-                <field name="hour_to" />
+                <field name="hour_from" widget="float_time" />
+                <field name="hour_to" widget="float_time" />
             </tree>
         </field>
     </record>
@@ -26,6 +27,7 @@
                 <field name="course_id" />
                 <field name="group_id" />
                 <field name="subject_id" />
+                <field name="subject_name" />
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
