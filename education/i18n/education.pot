@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-24 10:21+0000\n"
-"PO-Revision-Date: 2020-01-24 10:21+0000\n"
+"POT-Creation-Date: 2020-02-25 12:03+0000\n"
+"PO-Revision-Date: 2020-02-25 12:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -78,6 +78,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_idtype__active
 #: model:ir.model.fields,field_description:education.field_education_language__active
 #: model:ir.model.fields,field_description:education.field_education_level__active
+#: model:ir.model.fields,field_description:education.field_education_level_course_subject__active
+#: model:ir.model.fields,field_description:education.field_education_level_field_subject__active
 #: model:ir.model.fields,field_description:education.field_education_model__active
 #: model:ir.model.fields,field_description:education.field_education_plan__active
 #: model:ir.model.fields,field_description:education.field_education_position__active
@@ -199,6 +201,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_group__course_id
 #: model:ir.model.fields,field_description:education.field_education_group_report__course_id
 #: model:ir.model.fields,field_description:education.field_education_level_course_subject__course_id
+#: model:ir.model.fields,field_description:education.field_education_subject_center__course_id
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Course"
@@ -250,6 +253,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_section__create_uid
 #: model:ir.model.fields,field_description:education.field_education_shift__create_uid
 #: model:ir.model.fields,field_description:education.field_education_subject__create_uid
+#: model:ir.model.fields,field_description:education.field_education_subject_center__create_uid
 #: model:ir.model.fields,field_description:education.field_education_subject_type__create_uid
 #: model:ir.model.fields,field_description:education.field_education_task_type__create_uid
 #: model:ir.model.fields,field_description:education.field_education_work_reason__create_uid
@@ -285,6 +289,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_section__create_date
 #: model:ir.model.fields,field_description:education.field_education_shift__create_date
 #: model:ir.model.fields,field_description:education.field_education_subject__create_date
+#: model:ir.model.fields,field_description:education.field_education_subject_center__create_date
 #: model:ir.model.fields,field_description:education.field_education_subject_type__create_date
 #: model:ir.model.fields,field_description:education.field_education_task_type__create_date
 #: model:ir.model.fields,field_description:education.field_education_work_reason__create_date
@@ -299,6 +304,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_group_student_timetable_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_timetable_report_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_schedule_view_search
 msgid "Current Academic Year"
 msgstr ""
 
@@ -431,6 +438,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_section__display_name
 #: model:ir.model.fields,field_description:education.field_education_shift__display_name
 #: model:ir.model.fields,field_description:education.field_education_subject__display_name
+#: model:ir.model.fields,field_description:education.field_education_subject_center__display_name
 #: model:ir.model.fields,field_description:education.field_education_subject_type__display_name
 #: model:ir.model.fields,field_description:education.field_education_task_type__display_name
 #: model:ir.model.fields,field_description:education.field_education_work_reason__display_name
@@ -453,6 +461,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_group_teacher_report__center_id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher_timetable_report__center_id
 #: model:ir.model.fields,field_description:education.field_education_schedule__center_id
+#: model:ir.model.fields,field_description:education.field_education_subject_center__center_id
 #: model:ir.ui.menu,name:education.education_center_menuitem
 #: model_terms:ir.ui.view,arch_db:education.education_classroom_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
@@ -631,10 +640,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_group_teacher_report__subject_id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher_timetable_report__subject_id
 #: model:ir.model.fields,field_description:education.field_education_schedule__subject_id
+#: model:ir.model.fields,field_description:education.field_education_subject_center__subject_id
 #: model_terms:ir.ui.view,arch_db:education.education_group_student_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_student_timetable_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_timetable_report_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 msgid "Education Subject"
 msgstr ""
 
@@ -759,11 +770,6 @@ msgid "Employee"
 msgstr ""
 
 #. module: education
-#: model:ir.ui.menu,name:education.faculty_employee_menuitem
-msgid "Employees"
-msgstr ""
-
-#. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_end
 msgid "End Date"
 msgstr ""
@@ -800,6 +806,7 @@ msgstr ""
 
 #. module: education
 #: model:ir.ui.menu,name:education.configuration_faculty_menuitem
+#: model:ir.ui.menu,name:education.faculty_employee_menuitem
 #: model:ir.ui.menu,name:education.faculty_menuitem
 msgid "Faculty"
 msgstr ""
@@ -842,6 +849,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_classroom_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_position_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_subject_view_search
 msgid "Group By..."
 msgstr ""
@@ -902,6 +910,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_section__id
 #: model:ir.model.fields,field_description:education.field_education_shift__id
 #: model:ir.model.fields,field_description:education.field_education_subject__id
+#: model:ir.model.fields,field_description:education.field_education_subject_center__id
 #: model:ir.model.fields,field_description:education.field_education_subject_type__id
 #: model:ir.model.fields,field_description:education.field_education_task_type__id
 #: model:ir.model.fields,field_description:education.field_education_work_reason__id
@@ -924,8 +933,13 @@ msgstr ""
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_language
 #: model:ir.model,name:education.model_education_language
+#: model:ir.model.fields,field_description:education.field_education_group_student_report__language_id
+#: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__language_id
+#: model:ir.model.fields,field_description:education.field_education_group_teacher_report__language_id
+#: model:ir.model.fields,field_description:education.field_education_group_teacher_timetable_report__language_id
 #: model:ir.model.fields,field_description:education.field_education_language__lang_id
 #: model:ir.model.fields,field_description:education.field_education_schedule__language_id
+#: model:ir.model.fields,field_description:education.field_education_subject_center__lang_id
 #: model:ir.ui.menu,name:education.schedule_language_menuitem
 msgid "Language"
 msgstr ""
@@ -969,6 +983,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_section____last_update
 #: model:ir.model.fields,field_description:education.field_education_shift____last_update
 #: model:ir.model.fields,field_description:education.field_education_subject____last_update
+#: model:ir.model.fields,field_description:education.field_education_subject_center____last_update
 #: model:ir.model.fields,field_description:education.field_education_subject_type____last_update
 #: model:ir.model.fields,field_description:education.field_education_task_type____last_update
 #: model:ir.model.fields,field_description:education.field_education_work_reason____last_update
@@ -1004,6 +1019,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_section__write_uid
 #: model:ir.model.fields,field_description:education.field_education_shift__write_uid
 #: model:ir.model.fields,field_description:education.field_education_subject__write_uid
+#: model:ir.model.fields,field_description:education.field_education_subject_center__write_uid
 #: model:ir.model.fields,field_description:education.field_education_subject_type__write_uid
 #: model:ir.model.fields,field_description:education.field_education_task_type__write_uid
 #: model:ir.model.fields,field_description:education.field_education_work_reason__write_uid
@@ -1039,6 +1055,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_section__write_date
 #: model:ir.model.fields,field_description:education.field_education_shift__write_date
 #: model:ir.model.fields,field_description:education.field_education_subject__write_date
+#: model:ir.model.fields,field_description:education.field_education_subject_center__write_date
 #: model:ir.model.fields,field_description:education.field_education_subject_type__write_date
 #: model:ir.model.fields,field_description:education.field_education_task_type__write_date
 #: model:ir.model.fields,field_description:education.field_education_work_reason__write_date
@@ -1386,11 +1403,44 @@ msgid "Subject"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_subject_center__name
+msgid "Subject Name"
+msgstr ""
+
+#. module: education
+#: model:ir.actions.act_window,name:education.action_education_subject_center
+msgid "Subject Name by Center"
+msgstr ""
+
+#. module: education
+#: model:ir.model,name:education.model_education_subject_center
+msgid "Subject Name by Center, Language and Course"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_student_report__subject_name
+#: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__subject_name
+#: model:ir.model.fields,field_description:education.field_education_group_teacher_report__subject_name
+#: model:ir.model.fields,field_description:education.field_education_group_teacher_timetable_report__subject_name
+msgid "Subject Name in Center"
+msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_subject_view_form
+msgid "Subject Names"
+msgstr ""
+
+#. module: education
 #: model:ir.actions.act_window,name:education.action_education_subject_type
 #: model:ir.model.fields,field_description:education.field_education_schedule__subject_type
 #: model:ir.model.fields,field_description:education.field_education_subject__subject_type
 #: model:ir.ui.menu,name:education.schedule_subject_type_menuitem
 msgid "Subject Type"
+msgstr ""
+
+#. module: education
+#: sql_constraint:education.subject.center:0
+msgid "Subject must be unique per subject, course, language and center!"
 msgstr ""
 
 #. module: education

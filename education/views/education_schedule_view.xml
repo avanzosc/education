@@ -51,6 +51,9 @@
                             <field name="student_count" string="Students"
                                    widget="statinfo"/>
                         </button>
+                        <button name="button_open_subject_center" type="object"
+                                class="oe_stat_button"
+                                icon="fa-users" />
                     </div>
                     <group>
                         <group>

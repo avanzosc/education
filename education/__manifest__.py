@@ -3,7 +3,7 @@
 
 {
     "name": "Education",
-    "version": "12.0.3.0.0",
+    "version": "12.0.4.0.0",
     "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -43,6 +43,7 @@
         "views/education_section_view.xml",
         "views/education_shift_view.xml",
         "views/education_subject_view.xml",
+        "views/education_subject_center_view.xml",
         "views/education_subject_type_view.xml",
         "views/education_task_type_view.xml",
         "views/education_work_reason_view.xml",

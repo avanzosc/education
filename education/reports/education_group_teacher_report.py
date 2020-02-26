@@ -26,6 +26,9 @@ class EducationGroupTeacherReport(models.Model):
         comodel_name='education.classroom', string='Classroom')
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year')
+    language_id = fields.Many2one(
+        comodel_name='education.language', string='Language')
+    subject_name = fields.Char(string="Subject Name in Center")
 
     _depends = {
         'education.schedule': [
@@ -46,7 +49,9 @@ class EducationGroupTeacherReport(models.Model):
                 sch.subject_id AS subject_id,
                 sch.classroom_id AS classroom_id,
                 sch.teacher_id AS teacher_id,
-                sch.academic_year_id AS academic_year_id
+                sch.academic_year_id AS academic_year_id,
+                sch.language_id AS language_id,
+                sub_center.name AS subject_name
         """
         return select_str
 
@@ -55,13 +60,18 @@ class EducationGroupTeacherReport(models.Model):
                 FROM edu_schedule_group sch_group
                 JOIN education_schedule sch ON sch_group.schedule_id = sch.id
                 JOIN education_group grp ON sch_group.group_id = grp.id
+                LEFT JOIN education_subject_center sub_center
+                  ON sub_center.subject_id = sch.subject_id
+                  AND sub_center.center_id = grp.center_id
+                  AND sub_center.lang_id = sch.language_id
         """
         return from_str
 
     def _group_by(self):
         group_by_str = """
                 GROUP BY grp.center_id, grp.course_id, grp.id, sch.subject_id,
-                sch.classroom_id, sch.teacher_id, sch.academic_year_id
+                sch.classroom_id, sch.teacher_id, sch.academic_year_id,
+                sch.language_id, sub_center.name
         """
         return group_by_str
 
