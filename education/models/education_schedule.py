@@ -129,6 +129,7 @@ class EducationScheduleTimetable(models.Model):
     hour_from = fields.Float(string='Work from', required=True, index=True)
     hour_to = fields.Float(string='Work to', required=True)
     session_number = fields.Integer()
+    subject_name = fields.Char(string="Subject Name")
 
 
 class EducationScheduleGroup(models.Model):

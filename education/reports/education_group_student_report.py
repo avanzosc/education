@@ -25,6 +25,9 @@ class EducationGroupStudentReport(models.Model):
         ],
     }
 
+    def _coalesce(self):
+        return super(EducationGroupStudentReport, self)._coalesce()
+
     def _select(self):
         select_str = """
                 , stu_group.student_id AS student_id
@@ -51,7 +54,8 @@ class EducationGroupStudentReport(models.Model):
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
-                %s %s %s
+                %s %s %s %s
             )""", (
-                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
+                AsIs(self._table), AsIs(self._select()),
+                AsIs(self._coalesce()), AsIs(self._from()),
                 AsIs(self._group_by()),))

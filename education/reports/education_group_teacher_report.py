@@ -28,7 +28,7 @@ class EducationGroupTeacherReport(models.Model):
         comodel_name='education.academic_year', string='Academic Year')
     language_id = fields.Many2one(
         comodel_name='education.language', string='Language')
-    subject_name = fields.Char(string="Subject Name in Center")
+    subject_name = fields.Char(string="Subject Name")
 
     _depends = {
         'education.schedule': [
@@ -38,6 +38,13 @@ class EducationGroupTeacherReport(models.Model):
             'center_id', 'course_id'
         ],
     }
+
+    def _coalesce(self):
+        coalesce_str = """
+            , COALESCE(sub_center.name, sbt.description, tt.description,
+                       'undefined') AS subject_name
+        """
+        return coalesce_str
 
     def _select(self):
         select_str = """
@@ -50,8 +57,7 @@ class EducationGroupTeacherReport(models.Model):
                 sch.classroom_id AS classroom_id,
                 sch.teacher_id AS teacher_id,
                 sch.academic_year_id AS academic_year_id,
-                sch.language_id AS language_id,
-                sub_center.name AS subject_name
+                sch.language_id AS language_id
         """
         return select_str
 
@@ -59,6 +65,8 @@ class EducationGroupTeacherReport(models.Model):
         from_str = """
                 FROM edu_schedule_group sch_group
                 JOIN education_schedule sch ON sch_group.schedule_id = sch.id
+                LEFT JOIN education_subject sbt ON sch.subject_id = sbt.id
+                LEFT JOIN education_task_type tt ON sch.task_type_id = tt.id
                 JOIN education_group grp ON sch_group.group_id = grp.id
                 LEFT JOIN education_subject_center sub_center
                   ON sub_center.subject_id = sch.subject_id
@@ -71,7 +79,8 @@ class EducationGroupTeacherReport(models.Model):
         group_by_str = """
                 GROUP BY grp.center_id, grp.course_id, grp.id, sch.subject_id,
                 sch.classroom_id, sch.teacher_id, sch.academic_year_id,
-                sch.language_id, sub_center.name
+                sch.language_id, sbt.description, tt.description,
+                sub_center.name
         """
         return group_by_str
 
@@ -82,7 +91,8 @@ class EducationGroupTeacherReport(models.Model):
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
-                %s %s %s
+                %s %s %s %s
             )""", (
-                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
+                AsIs(self._table), AsIs(self._select()),
+                AsIs(self._coalesce()), AsIs(self._from()),
                 AsIs(self._group_by()),))

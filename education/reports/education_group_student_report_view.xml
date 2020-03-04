@@ -32,7 +32,7 @@
                 <field name="academic_year_id" />
                 <separator />
                 <filter string="Current Academic Year" name="current_academic_year"
-                        domain="[('academic_year_id.date_start','&lt;=',context_today().strftime('%Y-%m-%d')),('academic_year_id.date_end','&gt;=',context_today().strftime('%Y-%m-%d'))]" />
+                        domain="[('academic_year_id.current','=',True)]" />
                 <group expand="1" string="Group By">
                     <filter string="Education Center" name="education_center"
                             context="{'group_by':'center_id'}"/>
