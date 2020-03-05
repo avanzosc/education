@@ -20,8 +20,8 @@ class EducationGroupTeacherTimetableReport(models.Model):
 
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week')
-    hour_from = fields.Float(string='Work from')
-    hour_to = fields.Float(string='Work to')
+    hour_from = fields.Float(string='Work from', group_operator="min")
+    hour_to = fields.Float(string='Work to', group_operator="max")
 
     _depends = {
         'education.schedule': [
