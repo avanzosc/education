@@ -27,6 +27,9 @@ class EducationGroupHomeworkReport(models.Model):
         ],
     }
 
+    def _coalesce(self):
+        return super(EducationGroupHomeworkReport, self)._coalesce()
+
     def _select(self):
         select_str = """
                 , edu_hw.id AS homework_id
@@ -55,7 +58,8 @@ class EducationGroupHomeworkReport(models.Model):
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
-                %s %s %s
+                %s %s %s %s
             )""", (
-                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
+                AsIs(self._table), AsIs(self._select()),
+                AsIs(self._coalesce()), AsIs(self._from()),
                 AsIs(self._group_by()),))

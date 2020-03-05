@@ -156,6 +156,16 @@
         </field>
     </record>
 
+<!--    <record id="education_record_view_pivot" model="ir.ui.view">-->
+<!--        <field name="model">education.record</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <pivot>-->
+<!--                <field name="student_id" type="row"/>-->
+<!--                <field name="numeric_mark" type="measure"/>-->
+<!--            </pivot>-->
+<!--        </field>-->
+<!--    </record>-->
+
     <record id="education_record_action" model="ir.actions.act_window">
         <field name="name">Academic Record</field>
         <field name="type">ir.actions.act_window</field>
