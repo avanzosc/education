@@ -35,7 +35,8 @@ class UploadEducationStudent(models.TransientModel):
                     ])
                     partner_code = _format_info(line[8:18])
                     student = partner_obj.search([
-                        ('education_code', '=', partner_code),
+                        '|', ('education_code', '=', partner_code),
+                        ('education_code', 'ilike', partner_code[1:]),
                         ('educational_category', '=', 'student'),
                     ], limit=1)
                     if group and student:

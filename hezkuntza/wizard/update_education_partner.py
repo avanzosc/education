@@ -64,22 +64,19 @@ class UpdateEducationResPartner(models.TransientModel):
             try:
                 sheet = reader.sheet_by_name("Modulos-Matricula-Alumno")
                 line_obj = self.env["update.education.partner.line"]
-                # keys = [c.value for c in sheet.row(1)]
+                keys = [c.value for c in sheet.row(1)]
                 for counter in range(2, sheet.nrows-1):
                     rowValues = sheet.row_values(
                         counter, 0, end_colx=sheet.ncols)
-                    # values = dict(zip(keys, rowValues))
+                    values = dict(zip(keys, rowValues))
                     line_data = {
                         "wizard_id": self.id,
-                        # COD_ALU
-                        "student_education_code": rowValues[6].zfill(10),
-                        # DOCU_IDENTI_ALU
-                        "student_document": rowValues[8],
-                        # APELLIDO_1_ALU
-                        "student_lastname1": rowValues[9],
-                        # APELLIDO_2_ALU
-                        "student_lastname2": rowValues[10],
-                        # NOMBRE_ALU
+                        "student_education_code":
+                            values.get("COD_ALU").zfill(10),
+                        "student_document": values.get("DOCU_IDENTI_ALU"),
+                        "student_lastname1": values.get("APELLIDO_1_ALU"),
+                        "student_lastname2": values.get("APELLIDO_2_ALU"),
+                        # There are 2 columns with key NOMBRE_ALU
                         "student_name": rowValues[11],
                     }
                     line_obj.find_or_create(line_data)
@@ -149,7 +146,8 @@ class UpdateEducationResPartnerLine(models.TransientModel):
         if not partners:
             partners = partner_obj.search([
                 ("lastname", "=ilike", self.student_lastname1.encode("utf-8")),
-                ("lastname2", "=ilike", self.student_lastname2.encode("utf-8")),
+                ("lastname2", "=ilike",
+                 self.student_lastname2.encode("utf-8")),
                 ("firstname", "=ilike", self.student_name.encode("utf-8")),
             ])
         return partners
