@@ -30,7 +30,17 @@ class EducationGroupTeacherTimetableReport(models.Model):
         'education.group': [
             'center_id', 'course_id'
         ],
+        'education.schedule.timetable': [
+            'dayofweek', 'hour_to', 'hour_from', 'subject_name'
+        ]
     }
+
+    def _coalesce(self):
+        coalesce_str = """
+            , COALESCE(sch_tt.subject_name, sub_center.name, sbt.description,
+                       tt.description, 'undefined') AS subject_name
+        """
+        return coalesce_str
 
     def _select(self):
         select_str = """
@@ -53,7 +63,8 @@ class EducationGroupTeacherTimetableReport(models.Model):
         group_by_str = """
                 , sch_tt.dayofweek,
                 sch_tt.hour_from,
-                sch_tt.hour_to
+                sch_tt.hour_to,
+                sch_tt.subject_name
         """
         return (super(EducationGroupTeacherTimetableReport, self)._group_by() +
                 group_by_str)
@@ -65,7 +76,8 @@ class EducationGroupTeacherTimetableReport(models.Model):
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
-                %s %s %s
+                %s %s %s %s
             )""", (
-                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
+                AsIs(self._table), AsIs(self._select()),
+                AsIs(self._coalesce()), AsIs(self._from()),
                 AsIs(self._group_by()),))
