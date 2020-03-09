@@ -81,7 +81,7 @@ class UpdateEducationResPartner(models.TransientModel):
                     }
                     line_obj.find_or_create(line_data)
             except Exception:
-                raise ValidationError(_('This is not a valid file.'))
+                raise ValidationError(_("This is not a valid file."))
 
     @api.multi
     def button_update_education_code(self):
@@ -149,6 +149,10 @@ class UpdateEducationResPartnerLine(models.TransientModel):
                 ("lastname2", "=ilike",
                  self.student_lastname2.encode("utf-8")),
                 ("firstname", "=ilike", self.student_name.encode("utf-8")),
+            ])
+        if not partners:
+            partners = partner_obj.search([
+                ("education_code", "ilike", self.student_education_code[:-1]),
             ])
         return partners
 
