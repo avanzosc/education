@@ -46,13 +46,14 @@ class EducationGroup(models.Model):
     comments = fields.Text(string='Comments')
     teacher_ids = fields.One2many(
         comodel_name='education.group.teacher',
-        inverse_name='group_id', string='Teachers')
+        inverse_name='group_id', string='Teachers', copy=True)
     session_ids = fields.One2many(
         comodel_name='education.group.session', inverse_name='group_id',
-        string='Sessions')
+        string='Sessions', copy=True)
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_group_student',
-        column1='group_id', column2='student_id', string='Students')
+        column1='group_id', column2='student_id', string='Students',
+        copy=False)
     student_count = fields.Integer(
         string='Student Number', compute='_compute_student_count', store=True)
     parent_id = fields.Many2one(
@@ -60,7 +61,7 @@ class EducationGroup(models.Model):
         domain="[('academic_year_id', '=', academic_year_id),"
                "('center_id', '=', center_id),"
                "('course_id', '=', course_id),"
-               "('group_type_id.type', '=', 'official')]")
+               "('group_type_id.type', '=', 'official')]", copy=False)
     schedule_ids = fields.Many2many(
         comodel_name='education.schedule', string='Class Schedule',
         relation='edu_schedule_group', column2='schedule_id',
@@ -117,6 +118,19 @@ class EducationGroup(models.Model):
             'context': context,
         })
         return action_dict
+
+    @api.multi
+    def create_next_academic_year(self):
+        for record in self:
+            next_year = record.academic_year_id._get_next()
+            if next_year:
+                try:
+                    record.copy(default={
+                        'academic_year_id': next_year.id,
+                        'education_code': record.education_code,
+                    })
+                except Exception:
+                    pass
 
 
 class EducationGroupTeacher(models.Model):

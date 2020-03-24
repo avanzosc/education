@@ -130,6 +130,8 @@ class EducationScheduleTimetable(models.Model):
     hour_to = fields.Float(string='Work to', required=True)
     session_number = fields.Integer()
     subject_name = fields.Char(string="Subject Name")
+    teacher_id = fields.Many2one(
+        comodel_name='hr.employee', string='Teacher')
 
 
 class EducationScheduleGroup(models.Model):

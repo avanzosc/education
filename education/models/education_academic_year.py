@@ -79,3 +79,9 @@ class EducationAcademicYear(models.Model):
             groups = group_obj.search([('academic_year_id', 'in', self.ids)])
             groups.write({'active': vals['active']})
         return res
+
+    @api.multi
+    def _get_next(self):
+        self.ensure_one()
+        return self.search([
+            ("date_start", ">=", self.date_end)], order="date_start", limit=1)

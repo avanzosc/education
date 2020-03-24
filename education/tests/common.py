@@ -26,6 +26,12 @@ class TestEducationCommon(common.SavepointCase):
             'date_start': cls.date_start,
             'date_end': cls.date_end,
         })
+        cls.next_academic_year = cls.academic_year_model.create({
+            'name': '{}+{}'.format(cls.date_start.year + 1,
+                                   cls.date_end.year + 1),
+            'date_start': cls.date_start.replace(year=cls.date_start.year + 1),
+            'date_end': cls.date_end.replace(year=cls.date_end.year + 1),
+        })
         cls.plan_model = cls.env['education.plan']
         cls.edu_plan_code = 'TEST'
         cls.edu_plan = cls.plan_model.create({
