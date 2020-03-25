@@ -9,7 +9,7 @@
                 <field name="group_id" />
                 <field name="subject_id" />
                 <field name="subject_name" />
-                <field name="teacher_id" />
+                <field name="professor_id" />
                 <field name="classroom_id" />
                 <field name="student_id" />
                 <field name="academic_year_id" />
@@ -28,7 +28,7 @@
                 <field name="course_id" />
                 <field name="group_id" />
                 <field name="subject_id" />
-                <field name="teacher_id" />
+                <field name="professor_id" />
                 <field name="student_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
@@ -45,7 +45,7 @@
                     <filter string="Education Subject" name="education_subject"
                             context="{'group_by':'subject_id'}"/>
                     <filter string="Teacher" name="teacher"
-                            context="{'group_by':'teacher_id'}"/>
+                            context="{'group_by':'professor_id'}"/>
                     <filter string="Student" name="student"
                             context="{'group_by':'student_id'}"/>
                     <filter string="Classroom" name="classroom"

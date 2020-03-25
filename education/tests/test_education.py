@@ -245,3 +245,10 @@ class TestEducation(TestEducationCommon):
             '{} [{}]'.format(self.edu_subject.description,
                              self.teacher.name))
         self.assertEquals(schedule.task_type_type, self.edu_task_type.type)
+        self.assertTrue(group.academic_year_id._get_next())
+        group.create_next_academic_year()
+        next_group = self.group_model.search([
+            ('education_code', '=', group.education_code),
+            ('academic_year_id', '=', group.academic_year_id._get_next().id)
+        ])
+        self.assertTrue(next_group)

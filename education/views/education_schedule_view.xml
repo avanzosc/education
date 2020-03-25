@@ -70,6 +70,7 @@
                                     <field name="hour_from" widget="float_time" />
                                     <field name="hour_to" widget="float_time" />
                                     <field name="subject_name" />
+                                    <field name="teacher_id" />
                                 </tree>
                             </field>
                         </group>

@@ -22,6 +22,8 @@ class EducationGroupTeacherTimetableReport(models.Model):
         selection='_get_selection_dayofweek', string='Day of Week')
     hour_from = fields.Float(string='Work from', group_operator="min")
     hour_to = fields.Float(string='Work to', group_operator="max")
+    professor_id = fields.Many2one(
+        comodel_name='hr.employee', string='Teacher')
 
     _depends = {
         'education.schedule': [
@@ -37,6 +39,7 @@ class EducationGroupTeacherTimetableReport(models.Model):
 
     def _coalesce(self):
         coalesce_str = """
+            , COALESCE(sch_tt.teacher_id, sch.teacher_id) AS professor_id
             , COALESCE(sch_tt.subject_name, sub_center.name, sbt.description,
                        tt.description, 'undefined') AS subject_name
         """
@@ -64,7 +67,8 @@ class EducationGroupTeacherTimetableReport(models.Model):
                 , sch_tt.dayofweek,
                 sch_tt.hour_from,
                 sch_tt.hour_to,
-                sch_tt.subject_name
+                sch_tt.subject_name,
+                sch_tt.teacher_id
         """
         return (super(EducationGroupTeacherTimetableReport, self)._group_by() +
                 group_by_str)
