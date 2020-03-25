@@ -12,3 +12,4 @@ class EducationHomework(models.Model):
     date = fields.Date(string="Deadline", required=True)
     schedule_id = fields.Many2one(
         comodel_name="education.schedule", string="Class Schedule")
+    html_link = fields.Char(string="HTML link")

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 10:36+0000\n"
-"PO-Revision-Date: 2020-02-06 10:36+0000\n"
+"POT-Creation-Date: 2020-03-25 11:47+0000\n"
+"PO-Revision-Date: 2020-03-25 11:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -689,6 +689,11 @@ msgid "Groups Homework Report"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__html_link
+msgid "HTML link"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_homework_action
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__homework_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__homework_ids
@@ -776,6 +781,11 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__exists_master
 msgid "Is master"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__language_id
+msgid "Language"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1139,6 +1149,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Student"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__subject_name
+msgid "Subject Name"
 msgstr ""
 
 #. module: education_evaluation_notebook
