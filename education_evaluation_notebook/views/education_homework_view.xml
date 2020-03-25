@@ -15,6 +15,7 @@
                         <field name="name" />
                         <field name="date" />
                         <field name="schedule_id" />
+                        <field name="html_link" widget="url" />
                     </group>
                 </sheet>
             </form>
@@ -28,6 +29,7 @@
             <tree string="Homework">
                 <field name="name" />
                 <field name="date" />
+                <field name="html_link" widget="url" />
             </tree>
         </field>
     </record>
