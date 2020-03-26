@@ -4,9 +4,9 @@
         <field name="model">school.college.issue.type</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="sequence" widget="handle" />
                 <field name="company_id" />
                 <field name="school_id" />
-                <field name="sequence" />
                 <field name="name" />
                 <field name="issue_type_id" />
                 <field name="education_level_id" />
