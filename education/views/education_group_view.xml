@@ -175,4 +175,15 @@
         }</field>
     </record>
 
+    <record model="ir.actions.server" id="action_create_next_academic_year_groups">
+        <field name="name">Create Next Academic Year Group</field>
+        <field name="model_id" ref="education.model_education_group"/>
+        <field name="binding_model_id" ref="education.model_education_group" />
+        <field name="state">code</field>
+        <field name="code">
+if records:
+    records.create_next_academic_year()
+        </field>
+    </record>
+
 </odoo>
