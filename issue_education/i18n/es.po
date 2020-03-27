@@ -859,7 +859,7 @@ msgstr "Tipos de incidencias"
 #: model:ir.model,name:issue_education.model_school_college_issue_type
 #: model:ir.ui.menu,name:issue_education.school_college_issue_type_menuitem
 msgid "Types of issues for colleges"
-msgstr "Tipo inciencias para colegios"
+msgstr "Tipo incidencias para colegios"
 
 #. module: issue_education
 #: model:school.issue.type,name:issue_education.uniformed_issue_type_master
