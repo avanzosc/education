@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-24 16:56+0000\n"
-"PO-Revision-Date: 2020-03-24 16:56+0000\n"
+"POT-Creation-Date: 2020-03-26 16:50+0000\n"
+"PO-Revision-Date: 2020-03-26 16:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -224,6 +224,11 @@ msgstr "Cursos por nivel"
 #: model_terms:ir.ui.view,arch_db:education.education_subject_view_form
 msgid "Courses by Levels"
 msgstr "Cursos por niveles"
+
+#. module: education
+#: model:ir.actions.server,name:education.action_create_next_academic_year_groups
+msgid "Create Next Academic Year Group"
+msgstr "Crear grupo para el próximo año académico"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__create_uid
@@ -1368,7 +1373,6 @@ msgid "Student Timetable Report"
 msgstr "Informe de horario de alumno"
 
 #. module: education
-#: code:addons/education/models/education_group.py:115
 #: code:addons/education/models/education_group.py:116
 #: code:addons/education/models/education_schedule.py:101
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1596,7 +1600,6 @@ msgid "Working Hours"
 msgstr "Horas laborales"
 
 #. module: education
-#: code:addons/education/models/education_group.py:80
 #: code:addons/education/models/education_group.py:81
 #, python-format
 msgid "You cannot create recursive groups."
