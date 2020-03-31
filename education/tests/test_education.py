@@ -53,7 +53,7 @@ class TestEducation(TestEducationCommon):
         date_start = self.today - relativedelta(months=1)
         self.academic_year.write({
             'date_start': date_start,
-            'date_end': date_start + relativedelta(months=1),
+            'date_end': date_start + relativedelta(months=2),
         })
         self.assertTrue(self.academic_year.current)
         self.assertIn(
@@ -62,7 +62,7 @@ class TestEducation(TestEducationCommon):
         date_start = self.today + relativedelta(months=1)
         self.academic_year.write({
             'date_start': date_start,
-            'date_end': date_start + relativedelta(months=1),
+            'date_end': date_start + relativedelta(months=2),
         })
         self.academic_year.invalidate_cache()
         self.assertFalse(self.academic_year.current)
