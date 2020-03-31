@@ -1,7 +1,8 @@
 # Copyright 2019 Adrian Revilla - Avanzosc S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -148,3 +149,13 @@ class EducationRecord(models.Model):
             record.calculated_numeric_mark = sum(
                 [x.numeric_mark * x.exam_eval_percent / 100
                  for x in record.child_record_ids])
+
+    @api.constrains("competence_id", "numeric_mark")
+    def _check_numeric_mark_range(self):
+        for record in self:
+            min_mark = record.competence_id.min_mark
+            max_mark = record.competence_id.max_mark
+            if not (min_mark <= record.numeric_mark <= max_mark):
+                raise ValidationError(
+                    _("Numeric mark must be between {} and {}").format(
+                        min_mark, max_mark))
