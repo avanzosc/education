@@ -15,6 +15,12 @@
                     <group name="main">
                         <group>
                             <field name="eval_mode" />
+                            <label for="min_mark" string="Notes Range"
+                                   attrs="{'invisible': [('eval_mode','=','behaviour')]}" />
+                            <div attrs="{'invisible': [('eval_mode','=','behaviour')]}">
+                                <field name="min_mark" class="oe_inline" /> -
+                                <field name="max_mark" class="oe_inline" />
+                            </div>
                         </group>
                         <group>
                             <field name="evaluation_check" />

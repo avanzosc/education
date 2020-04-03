@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 11:48+0000\n"
-"PO-Revision-Date: 2020-03-25 11:48+0000\n"
+"POT-Creation-Date: 2020-03-31 11:08+0000\n"
+"PO-Revision-Date: 2020-03-31 11:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Alerta de acceso"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
-msgstr "Es necesaria una acción"
+msgstr "Acción requerida"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_ids
@@ -866,16 +866,26 @@ msgid "Master Notebook Lines"
 msgstr "Líneas de cuaderno maestras"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__max_mark
+msgid "Max. Mark"
+msgstr "Nota máx."
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_has_error
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de entrega de mensaje"
+msgstr "Error de Envío de Mensaje"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_ids
 msgid "Messages"
 msgstr "Mensajes"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__min_mark
+msgid "Min. Mark"
+msgstr "Nota mín."
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__name
@@ -939,6 +949,11 @@ msgid "Notebook Lines"
 msgstr "Líneas de cuaderno"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
+msgid "Notes Range"
+msgstr "Rango de notas"
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction_counter
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction_counter
 msgid "Number of Actions"
@@ -992,6 +1007,12 @@ msgstr "Nota númerica (en texto)"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_mark_numeric_view_tree
 msgid "Numeric Marks"
 msgstr "Notas númericas"
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/models/education_record.py:160
+#, python-format
+msgid "Numeric mark must be between {} and {}"
+msgstr "La nota debe estar entre {} y {}"
 
 #. module: education_evaluation_notebook
 #: selection:create.academic_year.evaluation,evaluation_number:0
@@ -1132,7 +1153,7 @@ msgstr "Especifico"
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__state
 msgid "State"
-msgstr "Estado"
+msgstr "Provincia"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__activity_state
@@ -1178,12 +1199,14 @@ msgstr "Profesor"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:27
+#: code:addons/education_evaluation_notebook/models/education_competence.py:29
 #, python-format
 msgid "There can only be one evaluation competence."
 msgstr "Solo puede haber una competencia de evaluación."
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:34
+#: code:addons/education_evaluation_notebook/models/education_competence.py:36
 #, python-format
 msgid "There can only be one global competence."
 msgstr "Solo puede haber una competencia global."

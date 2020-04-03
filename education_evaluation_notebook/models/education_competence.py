@@ -18,6 +18,8 @@ class EducationCompetence(models.Model):
     evaluation_check = fields.Boolean(
         string="Evaluation Competence", copy=False)
     global_check = fields.Boolean(string="Global Competence", copy=False)
+    min_mark = fields.Float(string="Min. Mark", default=0.0, copy=False)
+    max_mark = fields.Float(string="Max. Mark", default=10.0, copy=False)
 
     @api.constrains("evaluation_check")
     def _check_evaluation_check(self):

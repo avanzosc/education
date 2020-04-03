@@ -149,6 +149,10 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.assertEquals(
                 exam_line.record_count, 2 * student_count)
             exam_record = exam_line.record_ids[:1]
+            with self.assertRaises(ValidationError):
+                exam_record.numeric_mark = 12.5
+            with self.assertRaises(ValidationError):
+                exam_record.numeric_mark = -1.5
             exam_record.numeric_mark = 5.5
             self.assertEquals(
                 exam_record.mark_id, self.env.ref(
