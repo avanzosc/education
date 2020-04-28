@@ -46,6 +46,12 @@ class ResPartner(models.Model):
         string='Children\'s Current Courses',
         compute='_compute_child_current_group_ids',
         search='_search_parent_current_course_id')
+    classroom_ids = fields.One2many(
+        comodel_name="education.classroom", inverse_name="center_id",
+        string="Classrooms")
+    classroom_count = fields.Integer(
+        string="Classroom Count", compute="_compute_classroom_count",
+        store=True)
 
     @api.depends('student_group_ids')
     def _compute_current_group_id(self):
@@ -137,6 +143,12 @@ class ResPartner(models.Model):
         ])
 
     @api.multi
+    @api.depends("classroom_ids")
+    def _compute_classroom_count(self):
+        for partner in self:
+            partner.classroom_count = len(partner.classroom_ids)
+
+    @api.multi
     def button_open_current_student(self):
         self.ensure_one()
         if self.educational_category != "school":
@@ -162,6 +174,19 @@ class ResPartner(models.Model):
         domain = expression.AND([
             [("student_id", "in", students.ids),
              ("academic_year_id", "in", academic_year.ids)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict
+
+    @api.multi
+    def button_open_classroom(self):
+        self.ensure_one()
+        if self.educational_category != "school":
+            return
+        action = self.env.ref("education.action_education_classroom")
+        action_dict = action and action.read()[0]
+        domain = expression.AND([
+            [("center_id", "in", self.ids)],
             safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict

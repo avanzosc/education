@@ -12,6 +12,7 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
         super(TestContactsSchoolEducationCommon, cls).setUpClass()
         cls.partner_model = cls.env["res.partner"]
         cls.group_model = cls.env["education.group"]
+        cls.classroom_model = cls.env["education.classroom"]
         cls.change_model = cls.env["education.course.change"]
         cls.school = cls.env["res.partner"].create({
             "name": "School Test",

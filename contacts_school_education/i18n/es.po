@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-12 11:22+0000\n"
-"PO-Revision-Date: 2020-02-12 11:22+0000\n"
+"POT-Creation-Date: 2020-04-28 21:40+0000\n"
+"PO-Revision-Date: 2020-04-28 21:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,19 @@ msgid "Children's Current Education Centers"
 msgstr "Centros actuales de los hijos"
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__classroom_count
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__classroom_count
+msgid "Classroom Count"
+msgstr "Num. aulas"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__classroom_ids
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__classroom_ids
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
+msgid "Classrooms"
+msgstr "Aulas"
+
+#. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
@@ -69,7 +82,6 @@ msgid "Courses"
 msgstr "Cursos"
 
 #. module: contacts_school_education
-#: code:addons/contacts_school_education/models/education_course_change.py:35
 #: code:addons/contacts_school_education/models/education_course_change.py:37
 #, python-format
 msgid "Courses must be different."
@@ -121,6 +133,7 @@ msgstr "¡Cambio de curso duplicado!"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__school_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_subject_center__center_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
 msgid "Education Center"
@@ -247,4 +260,9 @@ msgstr "Centro previo"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Students"
 msgstr "Alumnos"
+
+#. module: contacts_school_education
+#: model:ir.model,name:contacts_school_education.model_education_subject_center
+msgid "Subject Name by Center, Language and Course"
+msgstr "Nombre de la asignatura por centro, idioma y curso"
 

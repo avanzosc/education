@@ -5,6 +5,11 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
+                <button name="button_open_classroom"
+                        type="object" class="oe_stat_button" icon="fa-home"
+                        attrs="{'invisible': [('educational_category','!=','school')]}">
+                    <field string="Classrooms" name="classroom_count" widget="statinfo"/>
+                </button>
                 <button name="button_open_current_student" string="Students"
                         type="object" class="oe_stat_button" icon="fa-users"
                         attrs="{'invisible': [('educational_category','!=','school')]}"/>
@@ -108,6 +113,7 @@
                 <field name="phone" />
                 <field name="email" />
                 <field name="website" />
+                <field name="classroom_count" />
             </tree>
         </field>
     </record>
