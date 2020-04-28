@@ -41,7 +41,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             homework_dict.get("domain"))
 
     def test_manual_create_notebook(self):
-        self.create_evaluations()
+        self.create_evaluations_from_course_change()
         first_eval = self.academic_year.evaluation_ids[:1]
         self.assertEquals(first_eval.eval_type, "first")
         notebook = self.notebook_model.new({
@@ -59,7 +59,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             "{} [{}]".format(notebook.description, notebook.eval_type))
 
     def test_create_notebook(self):
-        self.create_evaluations()
+        self.create_evaluations_from_course_change()
         evaluation_count = len(self.academic_year.evaluation_ids)
         self.assertFalse(self.schedule.notebook_line_count)
         self.assertFalse(self.schedule.record_count)
@@ -182,7 +182,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.assertEquals(exam.state, "closed")
             self.assertEquals(exam.mark_close_date, today)
 
-    def create_evaluations(self):
+    def create_evaluations_from_course_change(self):
         self.assertFalse(self.academic_year.evaluation_ids)
         academic_year = self.academic_year.copy(default={
             "name": "TEST_YEAR",
@@ -198,16 +198,44 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             "evaluation_number": 3,
             "final_evaluation": True,
         })
-        self.assertEquals(
-            [(6, 0, self.course_change.ids)],
-            create_eval_dict.get("course_change_ids"))
+        self.assertEquals(len(create_eval_dict.get("line_ids")), 1)
         create_eval = self.create_eval_model.create(create_eval_dict)
         with self.assertRaises(RedirectWarning):
             create_eval.button_create_evaluation()
+        with self.assertRaises(RedirectWarning):
+            academic_year.create_evaluations(self.edu_partner, self.edu_course)
         create_eval.academic_year_id = self.academic_year
         create_eval.button_create_evaluation()
         self.assertEquals(len(self.academic_year.evaluation_ids), 4)
 
-    def test_create_evaluations_without_wizard(self):
-        with self.assertRaises(RedirectWarning):
-            self.course_change.create_evaluations()
+    def test_create_evaluations_from_education_center(self):
+        self.assertFalse(self.academic_year.evaluation_ids)
+        create_eval_dict = self.create_eval_model.with_context(
+            active_model=self.edu_partner._name,
+            active_ids=self.edu_partner.ids).default_get(
+            self.create_eval_model.fields_get_keys())
+        create_eval_dict.update({
+            "academic_year_id": self.academic_year.id,
+            "evaluation_number": 3,
+            "final_evaluation": True,
+        })
+        self.assertEquals(len(create_eval_dict.get("line_ids")), 2)
+        create_eval = self.create_eval_model.create(create_eval_dict)
+        create_eval.button_create_evaluation()
+        self.assertEquals(len(self.academic_year.evaluation_ids), 8)
+
+    def test_create_evaluations_from_education_course(self):
+        self.assertFalse(self.academic_year.evaluation_ids)
+        create_eval_dict = self.create_eval_model.with_context(
+            active_model=self.edu_course._name,
+            active_ids=self.edu_course.ids).default_get(
+            self.create_eval_model.fields_get_keys())
+        create_eval_dict.update({
+            "academic_year_id": self.academic_year.id,
+            "evaluation_number": 3,
+            "final_evaluation": True,
+        })
+        self.assertEquals(len(create_eval_dict.get("line_ids")), 1)
+        create_eval = self.create_eval_model.create(create_eval_dict)
+        create_eval.button_create_evaluation()
+        self.assertEquals(len(self.academic_year.evaluation_ids), 4)

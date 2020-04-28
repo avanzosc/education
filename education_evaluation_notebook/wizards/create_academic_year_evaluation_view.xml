@@ -9,12 +9,18 @@
                         <field name="evaluation_number" />
                         <field name="academic_year_id" />
                         <field name="final_evaluation" />
-                        <field name="course_change_ids" invisible="True" />
+                        <field name="show_lines" invisible="True" />
+                        <field name="line_ids" attrs="{'invisible': [('show_lines', '!=', True)]}">
+                            <tree editable="top">
+                                <field name="center_id" />
+                                <field name="course_id" />
+                            </tree>
+                        </field>
                     </group>
                     <footer>
-                        <button name="button_create_evaluation" string="Create Evaluations"
+                        <button name="button_create_evaluation"
+                                string="Create Evaluations"
                                 type="object" class="oe_highlight" />
-                        or
                         <button special="cancel" string="Cancel" class="oe_link" />
                     </footer>
                 </sheet>
@@ -22,9 +28,27 @@
         </field>
     </record>
 
-    <act_window id="action_create_academic_year_evaluation"
+    <act_window id="action_create_academic_year_evaluation_course_change"
                 name="Create Evaluations"
                 src_model="education.course.change"
+                res_model="create.academic_year.evaluation"
+                view_type="form"
+                view_mode="form"
+                key2="client_action_multi"
+                target="new" />
+
+    <act_window id="action_create_academic_year_evaluation_partner"
+                name="Create Evaluations"
+                src_model="res.partner"
+                res_model="create.academic_year.evaluation"
+                view_type="form"
+                view_mode="form"
+                key2="client_action_multi"
+                target="new" />
+
+    <act_window id="action_create_academic_year_evaluation_courser"
+                name="Create Evaluations"
+                src_model="education.course"
                 res_model="create.academic_year.evaluation"
                 view_type="form"
                 view_mode="form"
