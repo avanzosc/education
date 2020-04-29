@@ -17,16 +17,29 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
             ('current_center_id', '=', self.school.id)])
         self.assertIn(self.student, students)
         students = self.partner_model.search([
+            ('current_center_id', 'ilike', self.school.name)])
+        self.assertIn(self.student, students)
+        students = self.partner_model.search([
             ('current_course_id', '=', self.edu_course.id)])
+        self.assertIn(self.student, students)
+        students = self.partner_model.search([
+            ('current_course_id', 'ilike', self.edu_course.description)])
         self.assertIn(self.student, students)
         parents = self.partner_model.search([
             ('childs_current_center_ids', '=', self.school.id)])
+        self.assertIn(self.family, parents)
+        parents = self.partner_model.search([
+            ('childs_current_center_ids', 'ilike', self.school.name)])
         self.assertIn(self.family, parents)
         parents = self.partner_model.search([
             ('childs_current_course_ids', '=', self.edu_course.id)])
         self.assertIn(self.family, parents)
         self.assertIn(self.school, self.family.childs_current_center_ids)
         self.assertIn(self.edu_course, self.family.childs_current_course_ids)
+        parents = self.partner_model.search([
+            ('childs_current_course_ids', 'ilike',
+             self.edu_course.description)])
+        self.assertIn(self.family, parents)
         action_dict = self.family.button_open_current_student()
         self.assertFalse(action_dict)
         school_action_dict = self.school.button_open_current_student()
@@ -60,3 +73,17 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
                 'course_id': self.edu_course.id,
                 'next_course_id': self.edu_course2.id,
             })
+
+    def test_school_classroom(self):
+        self.assertFalse(self.school.classroom_ids)
+        self.assertEquals(self.school.classroom_count, 0)
+        new_classroom = self.classroom_model.create({
+            "center_id": self.school.id,
+            "education_code": "TEST",
+            "description": "Test Classroom",
+        })
+        self.assertIn(new_classroom, self.school.classroom_ids)
+        self.assertEquals(self.school.classroom_count, 1)
+        classroom_dict = self.school.button_open_classroom()
+        self.assertIn(
+            ("center_id", "in", self.school.ids), classroom_dict.get('domain'))
