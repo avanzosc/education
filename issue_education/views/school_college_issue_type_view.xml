@@ -3,7 +3,7 @@
     <record id="school_college_issue_type_view_tree" model="ir.ui.view">
         <field name="model">school.college.issue.type</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree duplicate="true">
                 <field name="sequence" widget="handle" />
                 <field name="company_id" />
                 <field name="school_id" />
