@@ -26,8 +26,23 @@
         </field>
     </record>
 
-    <record id="resource_calendar_attendance_view_tree"
-            model="ir.ui.view">
+    <record id="resource_calendar_view_search" model="ir.ui.view">
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_search" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="center_id" />
+            </field>
+            <search position="inside">
+                <group expand="0" name="group_by" string="Group By">
+                    <filter name="education_center" string="Education Center"
+                            domain="[]" context="{'group_by' : 'center_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="resource_calendar_attendance_view_tree" model="ir.ui.view">
         <field name="model">resource.calendar.attendance</field>
         <field name="inherit_id"
                ref="resource.view_resource_calendar_attendance_tree" />
