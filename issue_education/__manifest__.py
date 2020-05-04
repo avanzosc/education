@@ -8,6 +8,7 @@
         "education",
         "contacts_school",
         "calendar_school",
+        "web_tree_duplicate",
     ],
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
