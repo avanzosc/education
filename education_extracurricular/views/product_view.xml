@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+        <field name="categ_id" position="after">
+            <field name="product_course_ids"  widget="many2many_tags" />
+        </field>
+        </field>
+    </record>
+
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="product_course_ids" />
+            </field>
+        </field>
+    </record>
+    <record id="product_category_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.category.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+        <field name="parent_id" position="after">
+            <field name="is_extracurricular"/>
+        </field>
+        </field>
+    </record>
+    <record id="product_category_search_view" model="ir.ui.view">
+        <field name="name">product.category.search</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_search_view" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="is_extracurricular" />
+            <separator/>
+            <filter string="Extracurricular" name="filter_extra" domain="[('is_extracurricular','=',True)]"/>
+            </field>
+        </field>
+    </record>  
+</odoo>
