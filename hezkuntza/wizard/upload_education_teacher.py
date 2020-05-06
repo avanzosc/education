@@ -77,11 +77,15 @@ class UploadEducationTeacher(models.TransientModel):
                             ('edu_idtype_id', '=', id_type.id),
                             ('vat', 'ilike', id_number),
                         ])
-                        user = (
-                            employee.user_id or
-                            user_obj.search([
-                                ('vat', 'ilike', id_number),
-                                ('edu_idtype_id', '=', id_type.id)]))
+                        if len(partner) > 1:
+                            continue
+                        user = employee.user_id
+                        if not user and id_number:
+                            user = user_obj.search([
+                                    ('vat', 'ilike', id_number),
+                                    ('edu_idtype_id', '=', id_type.id)])
+                        if len(user) > 1:
+                            continue
                         contract = hr_contract_obj.search([
                             ('employee_id', '=', employee.id),
                             ('ed_center_id', '=', center.id),
@@ -130,8 +134,7 @@ class UploadEducationTeacher(models.TransientModel):
                             work_hours = _convert_time_str_to_float(
                                 _format_info(line[316:321]))
                             class_hours = _convert_time_str_to_float(
-                                _format_info(line[321:326])
-                            )
+                                _format_info(line[321:326]))
                             age = _format_info(line[326:327]) == '1'
                             health = _format_info(line[327:328]) == '1'
                             notes = _format_info(line[328:578])
@@ -167,12 +170,15 @@ class UploadEducationTeacher(models.TransientModel):
                                     'firstname': firstname,
                                     'partner_id': partner.id,
                                     'school_ids': [(4, center.id)],
+                                    'company_ids': [(4, center.company_id.id)],
                                 }
                                 user_vals.update(vals)
+                                user_vals["company_id"] = center.company_id.id
                                 user = user_obj.create(user_vals)
                             else:
                                 user.write({
                                     'school_ids': [(4, center.id)],
+                                    'company_ids': [(4, center.company_id.id)],
                                 })
                             if not employee:
                                 employee_vals = {
