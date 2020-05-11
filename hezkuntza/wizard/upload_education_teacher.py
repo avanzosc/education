@@ -174,7 +174,8 @@ class UploadEducationTeacher(models.TransientModel):
                                 }
                                 user_vals.update(vals)
                                 user_vals["company_id"] = center.company_id.id
-                                user = user_obj.create(user_vals)
+                                user = user_obj.with_context(
+                                    no_reset_password=True).create(user_vals)
                             else:
                                 user.write({
                                     'school_ids': [(4, center.id)],
