@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 21:40+0000\n"
-"PO-Revision-Date: 2020-04-28 21:40+0000\n"
+"POT-Creation-Date: 2020-05-12 13:40+0000\n"
+"PO-Revision-Date: 2020-05-12 13:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__academic_year_id
+msgid "Academic Year"
+msgstr "Año académico"
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Academic year"
+msgstr "Año académico"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
@@ -42,6 +52,12 @@ msgstr "Cursos actuales de los hijos"
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__childs_current_center_ids
 msgid "Children's Current Education Centers"
 msgstr "Centros actuales de los hijos"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__classroom_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Classroom"
+msgstr "Aula"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__classroom_count
@@ -98,6 +114,11 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Current Academic Year"
+msgstr "Año académico actual"
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_course_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_course_id
 msgid "Current Course"
@@ -122,6 +143,7 @@ msgstr "Grupo actual"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__display_name
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -133,9 +155,11 @@ msgstr "¡Cambio de curso duplicado!"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__school_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__center_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_subject_center__center_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
 
@@ -156,6 +180,12 @@ msgid "Education Centers"
 msgstr "Centros educativos"
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__course_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Education Course"
+msgstr "Curso"
+
+#. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
 msgid "Education Course (Family)"
 msgstr "Curso (familia)"
@@ -166,11 +196,23 @@ msgid "Education Course (Student)"
 msgstr "Curso (alumno)"
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__group_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Education Group"
+msgstr "Grupo educativo"
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__student_group_ids
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__student_group_ids
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Education Groups"
 msgstr "Grupos educativos"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__subject_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Education Subject"
+msgstr "Asignatura"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__gender
@@ -180,13 +222,25 @@ msgstr "Género"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Guardian"
+msgstr "Tutor legal"
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__id
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__id
 msgid "ID"
 msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__language_id
+msgid "Language"
+msgstr "Idioma"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__alumni_academic_year_id
@@ -202,6 +256,7 @@ msgstr "Último centro educativo"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change____last_update
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -240,6 +295,11 @@ msgid "Next Education Center"
 msgstr "Siguente centro"
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Other Relative"
+msgstr "Otro familiar"
+
+#. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Previous Course"
 msgstr "Curso previo"
@@ -257,12 +317,51 @@ msgid "Previous Education Center"
 msgstr "Centro previo"
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__progenitor_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Progenitor"
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model,name:contacts_school_education.model_education_group_student_progenitor_report
+msgid "Progenitor Student Groups Report"
+msgstr "Listado de progenitores"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__relation
+msgid "Relation"
+msgstr "Relación"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__student_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Student"
+msgstr "Alumno"
+
+#. module: contacts_school_education
+#: model:ir.actions.act_window,name:contacts_school_education.action_education_group_student_progenitor_report
+#: model:ir.ui.menu,name:contacts_school_education.education_group_student_progenitor_report_menuitem
+msgid "Student Progenitor Group List"
+msgstr "Listado de progenitores"
+
+#. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Students"
 msgstr "Alumnos"
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__subject_name
+msgid "Subject Name"
+msgstr "Nombre de la asignatura"
+
+#. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_education_subject_center
 msgid "Subject Name by Center, Language and Course"
 msgstr "Nombre de la asignatura por centro, idioma y curso"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__teacher_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+msgid "Teacher"
+msgstr "Profesor"
 
