@@ -4,14 +4,14 @@
         <field name="model">education.group.teacher.timetable.report</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="academic_year_id" />
                 <field name="center_id" />
+                <field name="classroom_id" />
                 <field name="course_id" />
                 <field name="group_id" />
-                <field name="subject_id" />
+                <field name="subject_id" invisible="True"/>
                 <field name="subject_name" />
                 <field name="professor_id" />
-                <field name="classroom_id" />
-                <field name="academic_year_id" />
                 <field name="dayofweek" />
                 <field name="hour_from" widget="float_time" />
                 <field name="hour_to" widget="float_time" />

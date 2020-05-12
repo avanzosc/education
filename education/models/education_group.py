@@ -65,7 +65,7 @@ class EducationGroup(models.Model):
     schedule_ids = fields.Many2many(
         comodel_name='education.schedule', string='Class Schedule',
         relation='edu_schedule_group', column2='schedule_id',
-        column1='group_id', readonly=True)
+        column1='group_id', readonly=True, copy=False)
     schedule_count = fields.Integer(
         compute='_compute_schedule_count', string='Schedule Number')
 
