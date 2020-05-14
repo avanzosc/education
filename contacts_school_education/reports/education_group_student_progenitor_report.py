@@ -9,7 +9,7 @@ from psycopg2.extensions import AsIs
 class EducationGroupStudentProgenitorReport(models.Model):
     _name = "education.group.student.progenitor.report"
     _inherit = "education.group.student.report"
-    _description = "Progenitor Student Groups Report"
+    _description = "Student Progenitor Group List"
     _auto = False
     _rec_name = "progenitor_id"
 

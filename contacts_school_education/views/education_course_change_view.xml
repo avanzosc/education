@@ -4,7 +4,7 @@
             model="ir.ui.view">
         <field name="model">education.course.change</field>
         <field name="arch" type="xml">
-            <tree editable="top">
+            <tree>
                 <field name="school_id" options="{'no_create': True}" />
                 <field name="course_id" options="{'no_create': True}" />
                 <field name="next_school_id" options="{'no_create': True}" />
@@ -19,18 +19,41 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_button_box" name="button_box" />
                     <group>
                         <group string="Current Course and Center">
                             <field name="school_id" options="{'no_create': True}" />
                             <field name="course_id" options="{'no_create': True}" />
+                            <field name="level_id" attrs="{'invisible': [('level_id', '=', False)]}" />
+                            <field name="field_id" attrs="{'invisible': [('field_id', '=', False)]}" />
+                            <field name="plan_id" attrs="{'invisible': [('plan_id', '=', False)]}"  />
                         </group>
                         <group string="Next Course and Center">
                             <field name="next_school_id" options="{'no_create': True}"
                                    string="Education Center"/>
                             <field name="next_course_id" options="{'no_create': True}"
                                    string="Course" />
+                            <field name="next_level_id" string="Education Level"
+                                   attrs="{'invisible': [('next_level_id', '=', False)]}" />
+                            <field name="next_field_id" string="Study Field"
+                                   attrs="{'invisible': [('next_field_id', '=', False)]}" />
+                            <field name="next_plan_id" string="Education Plan"
+                                   attrs="{'invisible': [('next_plan_id', '=', False)]}" />
                         </group>
                     </group>
+                    <separator string="Next Course Subjects" />
+                    <button name="button_add_subject_list" type="object" string="Add Subjects"/>
+                    <field name="next_subject_ids" nolabel="1" colspan="4"
+                           options="{'no_create': True}"
+                           domain="[('level_ids','=',next_level_id),('course_ids','=',next_course_id),'|',('field_ids','=',False),('field_ids','=',next_field_id)]">
+                        <tree decoration-bf="subject_type == 'compulsory'"
+                              decoration-muted="subject_type == 'free'">
+                            <field name="education_code"/>
+                            <field name="description"/>
+                            <field name="type_id"/>
+                            <field name="subject_type" invisible="1" />
+                        </tree>
+                    </field>
                     <group string="Additional Info">
                         <field name="gender" />
                     </group>
