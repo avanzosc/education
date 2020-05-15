@@ -60,18 +60,27 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
                 'course_id': self.edu_course.id,
                 'next_course_id': self.edu_course.id,
             })
-        self.change_model.create({
+        change_model = self.change_model.create({
             'school_id': self.school.id,
             'next_school_id': self.school.id,
-            'course_id': self.edu_course.id,
-            'next_course_id': self.edu_course2.id,
+            'course_id': self.edu_course2.id,
+            'next_course_id': self.edu_course.id,
         })
+        self.assertEquals(
+            change_model.display_name, '{} ({}) - {} ({})'.format(
+                change_model.course_id.description,
+                change_model.school_id.display_name,
+                change_model.next_course_id.description,
+                change_model.next_school_id.display_name))
+        self.assertFalse(change_model.next_subject_ids)
+        change_model.button_add_subject_list()
+        self.assertIn(self.edu_subject, change_model.next_subject_ids)
         with self.assertRaises(ValidationError):
             self.change_model.create({
                 'school_id': self.school.id,
                 'next_school_id': self.school.id,
-                'course_id': self.edu_course.id,
-                'next_course_id': self.edu_course2.id,
+                'course_id': self.edu_course2.id,
+                'next_course_id': self.edu_course.id,
             })
 
     def test_school_classroom(self):

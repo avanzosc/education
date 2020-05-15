@@ -18,6 +18,7 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
             "name": "School Test",
             "educational_category": "school",
         })
+        cls.edu_course.field_id = cls.edu_field
         cls.edu_course2 = cls.env["education.course"].create({
             "education_code": "CRS2",
             "description": "Test Course 2",
@@ -53,4 +54,12 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
             "course_id": cls.edu_course.id,
             "level_id": cls.edu_level.id,
             "student_ids": [(6, 0, cls.student.ids)],
+        })
+        cls.schedule = cls.schedule_model.create({
+            "center_id": cls.school.id,
+            "academic_year_id": cls.academic_year.id,
+            "teacher_id": cls.teacher.id,
+            "task_type_id": cls.edu_task_type.id,
+            "subject_id": cls.edu_subject.id,
+            "group_ids": [(6, 0, cls.group.ids)],
         })

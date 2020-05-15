@@ -16,6 +16,7 @@
     "data": [
         "security/ir.model.access.csv",
         "security/contacts_school_education_rules.xml",
+        "reports/education_group_student_progenitor_report_view.xml",
         "views/education_course_change_view.xml",
         "views/res_partner_view.xml",
     ],
