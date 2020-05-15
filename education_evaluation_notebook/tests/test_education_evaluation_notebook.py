@@ -239,3 +239,45 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         create_eval = self.create_eval_model.create(create_eval_dict)
         create_eval.button_create_evaluation()
         self.assertEquals(len(self.academic_year.evaluation_ids), 4)
+
+    def test_course_change(self):
+        self.assertFalse(self.course_change.eval_count)
+        self.assertFalse(self.course_change.next_eval_count)
+        current_year = self.academic_year_model.search([
+            ("current", "=", True)])
+        if not current_year:
+            current_year = self.academic_year_model.create({
+                "name": "TEST_YEAR",
+                "date_start": self.today.replace(month=1, day=1),
+                "date_end": self.today.replace(month=12, day=31),
+            })
+        self.assertTrue(current_year and current_year.current)
+        self.assertFalse(current_year.evaluation_ids)
+        current_year.create_evaluations(
+            self.course_change.next_school_id,
+            self.course_change.next_course_id,
+            evaluation_number=3,
+            final_evaluation=True)
+        self.assertEquals(len(current_year.evaluation_ids), 4)
+        self.course_change.invalidate_cache()
+        self.assertEquals(self.course_change.eval_count, 4)
+        self.assertEquals(self.course_change.next_eval_count, 0)
+        current, next = self.course_change._get_academic_years()
+        action_dict = self.course_change.button_open_current_evaluations()
+        self.assertIn(
+            ('academic_year_id', '=', current.id), action_dict.get('domain'))
+        self.assertIn(
+            ('center_id', '=', self.course_change.next_school_id.id),
+            action_dict.get('domain'))
+        self.assertIn(
+            ('course_id', '=', self.course_change.next_course_id.id),
+            action_dict.get('domain'))
+        action_dict = self.course_change.button_open_next_evaluations()
+        self.assertIn(
+            ('academic_year_id', '=', next.id), action_dict.get('domain'))
+        self.assertIn(
+            ('center_id', '=', self.course_change.next_school_id.id),
+            action_dict.get('domain'))
+        self.assertIn(
+            ('course_id', '=', self.course_change.next_course_id.id),
+            action_dict.get('domain'))

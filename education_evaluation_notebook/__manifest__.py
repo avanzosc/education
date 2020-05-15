@@ -22,6 +22,7 @@
         "views/education_academic_year_evaluation_view.xml",
         "views/education_competence_type_view.xml",
         "views/education_competence_view.xml",
+        "views/education_course_change_view.xml",
         "views/education_exam_type_view.xml",
         "views/education_exam_view.xml",
         "views/education_homework_view.xml",

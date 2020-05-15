@@ -62,7 +62,7 @@ class EducationNotebookCommon(TestEducationCommon):
             default={"education_code": "TES2"})
         cls.course_change = cls.env["education.course.change"].create({
             "school_id": cls.edu_partner.id,
-            "course_id": cls.edu_course.id,
+            "course_id": cls.new_course.id,
             "next_school_id": cls.edu_partner.id,
-            "next_course_id": cls.new_course.id,
+            "next_course_id": cls.edu_course.id,
         })
