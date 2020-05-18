@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 11:07+0000\n"
-"PO-Revision-Date: 2020-03-31 11:07+0000\n"
+"POT-Creation-Date: 2020-05-15 10:22+0000\n"
+"PO-Revision-Date: 2020-05-15 10:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -77,6 +77,7 @@ msgid "Academic Records"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model,name:education_evaluation_notebook.model_education_academic_year
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__academic_year_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__academic_year_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__academic_year_id
@@ -92,8 +93,8 @@ msgid "Academic year"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_course_change.py:27
-#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:42
+#: code:addons/education_evaluation_notebook/models/education_academic_year.py:19
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:86
 #, python-format
 msgid "Academic year must have defined start and end dates."
 msgstr ""
@@ -259,8 +260,8 @@ msgid "Competences"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_course_change.py:29
-#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:44
+#: code:addons/education_evaluation_notebook/models/education_academic_year.py:22
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:88
 #, python-format
 msgid "Configure Academic Year"
 msgstr ""
@@ -276,6 +277,7 @@ msgid "Control exam"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__course_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
@@ -284,7 +286,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_course_change
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__course_change_ids
 msgid "Course Change"
 msgstr ""
 
@@ -302,13 +303,16 @@ msgid "Create Academic Records"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation_course_change
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation_courser
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation_partner
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.create_academic_year_evaluation_view_form
 msgid "Create Evaluations"
 msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__create_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__create_uid
@@ -324,6 +328,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__create_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__create_date
@@ -341,6 +346,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Current Academic Year"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_course_change_view_form
+msgid "Current Year"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -366,6 +376,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__display_name
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__display_name
@@ -381,6 +392,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__education_center_id
@@ -389,6 +401,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Education Center"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__line_ids
+msgid "Education Center and Course relation"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -438,6 +455,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Education Subject"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_course_change__eval_count
+msgid "Eval Count"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -724,6 +746,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__id
@@ -790,6 +813,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation____last_update
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam____last_update
@@ -806,6 +830,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__write_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__write_uid
@@ -821,6 +846,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__write_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__write_date
@@ -922,6 +948,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_type_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__activity_type_id
 msgid "Next Activity Type"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_course_change__next_eval_count
+msgid "Next Eval Count"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_course_change_view_form
+msgid "Next Year"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1141,6 +1177,11 @@ msgid "Show Child Lines"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__show_lines
+msgid "Show Lines"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 msgid "Show all records which has next action date is before today"
 msgstr ""
@@ -1195,14 +1236,12 @@ msgid "Teacher"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_competence.py:27
 #: code:addons/education_evaluation_notebook/models/education_competence.py:29
 #, python-format
 msgid "There can only be one evaluation competence."
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_competence.py:34
 #: code:addons/education_evaluation_notebook/models/education_competence.py:36
 #, python-format
 msgid "There can only be one global competence."
@@ -1292,18 +1331,23 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model,name:education_evaluation_notebook.model_create_academic_year_evaluation_line
+msgid "Wizard lines to create evaluations"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_create_academic_year_evaluation
-msgid "Wizard to create evaluations from course change"
+msgid "Wizard to create evaluations"
 msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:111
 #, python-format
 msgid "You must set an exam date."
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.create_academic_year_evaluation_view_form
-msgid "or"
 msgstr ""
 

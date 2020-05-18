@@ -35,8 +35,8 @@ class CreateAcademicYearEvaluation(models.TransientModel):
                 self.env.context.get("active_ids"))
             res.update({
                 "line_ids": [
-                    (0, 0, {"center_id": c.school_id.id,
-                            "course_id": c.course_id.id},
+                    (0, 0, {"center_id": c.next_school_id.id,
+                            "course_id": c.next_course_id.id},
                      ) for c in course_changes],
                 "show_lines": False,
             })
@@ -61,9 +61,9 @@ class CreateAcademicYearEvaluation(models.TransientModel):
                 course_change_obj = self.env["education.course.change"]
                 centers = (
                     course_change_obj.search([
-                        ('course_id', '=', course_id)]).mapped("school_id") |
+                        ("course_id", "=", course_id)]).mapped("school_id") |
                     course_change_obj.search([
-                        ('next_course_id', '=', course_id)]).mapped(
+                        ("next_course_id", "=", course_id)]).mapped(
                         "next_school_id"))
                 line_ids += [(0, 0, {
                     "center_id": center.id,
