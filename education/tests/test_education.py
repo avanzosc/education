@@ -232,6 +232,9 @@ class TestEducation(TestEducationCommon):
             'subject_id': self.edu_subject.id,
             'group_ids': [(6, 0, group.ids)],
         })
+        action_dict = self.teacher.button_open_schedule()
+        self.assertIn(("professor_id", "=", self.teacher.id),
+                      action_dict.get('domain'))
         self.assertEquals(schedule.student_ids, group.student_ids)
         self.assertEquals(group.schedule_count, len(group.schedule_ids))
         action_dict = group.button_open_schedule()

@@ -27,5 +27,6 @@ from . import education_subject_type
 from . import education_task_type
 from . import education_work_reason
 from . import education_workday_type
+from . import hr_employee
 from . import res_lang
 from . import res_partner

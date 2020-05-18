@@ -48,6 +48,7 @@
         "views/education_task_type_view.xml",
         "views/education_work_reason_view.xml",
         "views/education_workday_type_view.xml",
+        "views/hr_employee_view.xml",
         "views/res_lang_view.xml",
         "views/res_partner_view.xml",
         "views/education_menu_view.xml",
