@@ -23,6 +23,13 @@ class ResPartner(models.Model):
                     'issue_education.classroom_school_issue_site')
                 cond = [('affect_to', '=', 'student'),
                         ('school_id', '=', school_id)]
+                level_id = student.current_course_id.level_id
+                level_cond = [("education_level_id", "=", False)]
+                if level_id:
+                    level_cond = expression.OR([
+                        [("education_level_id", "=", level_id.id)],
+                        level_cond])
+                cond = expression.AND([level_cond, cond])
                 if schedule_id and classroom_site:
                     cond = expression.AND([
                         [('issue_type_id.site_id', '=', classroom_site.id)],

@@ -14,8 +14,7 @@ class TestIssueEducationKanbanCommon(TestIssueEducationCommon):
         cls.classroom = cls.env.ref(
             'issue_education.classroom_school_issue_site')
         current_year = cls.env['education.academic_year'].search([
-            ('date_start', '<=', cls.today), ('date_end', '>=', cls.today)],
-            limit=1)
+            ('current', '=', True)])
         if not current_year:
             start = cls.today.replace(month=1, day=1)
             end = cls.today.replace(month=12, day=31)
