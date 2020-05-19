@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-11 13:51+0000\n"
-"PO-Revision-Date: 2019-11-11 13:51+0000\n"
+"POT-Creation-Date: 2020-05-19 10:59+0000\n"
+"PO-Revision-Date: 2020-05-19 10:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -103,8 +103,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__name
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__name
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__name
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_negative_issue_view_form
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_positive_issue_view_form
 msgid "Description"
 msgstr ""
 
@@ -122,6 +120,11 @@ msgid "Education Group"
 msgstr ""
 
 #. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__education_level_id
+msgid "Education Level"
+msgstr ""
+
+#. module: issue_education_kanban_view
 #: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.education_group_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.education_schedule_view_form
 msgid "Generate/View issues"
@@ -129,7 +132,6 @@ msgstr ""
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__group_id
-#: selection:wiz.create.issue,affect_to:0
 msgid "Group"
 msgstr ""
 
@@ -141,19 +143,10 @@ msgid "ID"
 msgstr ""
 
 #. module: issue_education_kanban_view
-#: model:ir.model,name:issue_education_kanban_view.model_school_claim
-msgid "Issue Report"
-msgstr ""
-
-#. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_type_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__issue_type_id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__issue_type_id
 msgid "Issue type"
-msgstr ""
-
-#. module: issue_education_kanban_view
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_education_issue_view_form
-msgid "Issues"
 msgstr ""
 
 #. module: issue_education_kanban_view
@@ -183,13 +176,19 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__notes
+msgid "Notes"
+msgstr ""
+
+#. module: issue_education_kanban_view
 #: model:ir.actions.act_window,name:issue_education_kanban_view.res_partner_education_issue_action
 #: model:ir.ui.menu,name:issue_education_kanban_view.res_partner_issue_menuitem
 msgid "Partner Education Issues Kanban"
 msgstr ""
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:106
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:94
+#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:101
 #, python-format
 msgid "Please select an issue type!"
 msgstr ""
@@ -250,7 +249,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__student_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__student_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__student_id
-#: selection:wiz.create.issue,affect_to:0
 msgid "Student"
 msgstr ""
 
@@ -270,11 +268,6 @@ msgstr ""
 #: code:addons/issue_education_kanban_view/models/school_issue.py:14
 #, python-format
 msgid "Student: {}, Issue type: {}"
-msgstr ""
-
-#. module: issue_education_kanban_view
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.res_partner_education_issue_view_form
-msgid "Total Issue Count"
 msgstr ""
 
 #. module: issue_education_kanban_view

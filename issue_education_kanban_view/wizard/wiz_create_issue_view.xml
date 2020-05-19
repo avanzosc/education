@@ -8,11 +8,12 @@
                     <group name="main" colspan="4">
                         <group>
                             <field name="school_issue_type_id" required="True"
-                                   domain="[('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','&gt;',0)]"
+                                   domain="[('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','&gt;',0),'|',('education_level_id','=',education_level_id),('education_level_id','=',False)]"
                                    options="{'no_create': True, 'no_edit': True}"/>
                             <field name="school_id" invisible="True" />
                             <field name="education_schedule_id"
                                    invisible="True"/>
+                            <field name="education_level_id" invisible="True" />
                             <field name="affect_to" invisible="True" />
                             <field name="student_id" invisible="True" />
                             <field name="reported_id" />
@@ -51,11 +52,12 @@
                     <group name="main" colspan="4">
                         <group>
                             <field name="school_issue_type_id" required="1"
-                                   domain="[('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','&lt;',1)]"
+                                   domain="[('school_id','=',school_id),('issue_type_id.gravity_scale_id.gravity_scale','&lt;',1),'|',('education_level_id','=',education_level_id),('education_level_id','=',False)]"
                                    options="{'no_create': True, 'no_edit': True}"/>
                                                         <field name="school_id" invisible="True" />
                             <field name="education_schedule_id"
                                    invisible="True"/>
+                            <field name="education_level_id" invisible="True" />
                             <field name="affect_to" invisible="True" />
                             <field name="student_id" invisible="True" />
                             <field name="reported_id" />

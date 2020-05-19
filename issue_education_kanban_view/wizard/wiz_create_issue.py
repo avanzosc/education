@@ -50,6 +50,8 @@ class WizCreateIssue(models.TransientModel):
         string='Proof', comodel_name='school.issue.proof')
     education_schedule_id = fields.Many2one(
         string='Schedule', comodel_name='education.schedule')
+    education_level_id = fields.Many2one(
+        comodel_name='education.level', string='Education Level')
 
     @api.model
     def default_get(self, var_fields):
@@ -57,24 +59,29 @@ class WizCreateIssue(models.TransientModel):
         res = super(WizCreateIssue, self).default_get(var_fields)
         student_id = context.get('active_id')
         group_id = context.get('education_group_id')
+        group = self.env['education.group'].browse(
+            group_id)
         schedule_id = context.get('education_schedule_id')
         schedule = self.env['education.schedule'].browse(schedule_id)
         school_id = context.get('school_id')
+        level_id = group.level_id.id
         if not group_id and schedule:
-            group_id = schedule.group_ids.filtered(
-                lambda g: student_id in g.student_ids.ids)[:1].id
+            group = schedule.group_ids.filtered(
+                lambda g: student_id in g.student_ids.ids)[:1]
+            group_id = group.id
+            level_id = group.level_id.id
         if not school_id:
             if schedule:
                 school_id = schedule.center_id.id
-            elif group_id:
-                school_id = self.env['education.group'].browse(
-                    group_id).center_id.id
+            elif group:
+                school_id = group.center_id.id
             elif student_id:
                 student = self.env['res.partner'].browse(student_id)
                 school_id = student.current_center_id.id
         res.update({
             'student_id': student_id,
             'education_schedule_id': schedule_id,
+            'education_level_id': level_id,
             'group_id': group_id,
             'school_id': school_id,
         })
