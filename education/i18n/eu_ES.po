@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-12 13:34+0000\n"
-"PO-Revision-Date: 2020-05-12 13:34+0000\n"
+"POT-Creation-Date: 2020-05-19 11:26+0000\n"
+"PO-Revision-Date: 2020-05-19 11:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1084,7 +1084,7 @@ msgstr "Hezkuntza-aldia"
 #: model:ir.model.fields,field_description:education.field_education_subject__level_ids
 #: model:ir.model.fields,field_description:education.field_education_task_type__level_ids
 msgid "Levels"
-msgstr "Mailak"
+msgstr "Hezkuntza-aldiak"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_subject__min_description
@@ -1337,7 +1337,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_group_student_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_student_timetable_report_view_search
 msgid "Student"
-msgstr "Ikaslea "
+msgstr "Ikaslea"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_schedule_group__student_count
@@ -1383,7 +1383,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_form
 #, python-format
 msgid "Students"
-msgstr ""
+msgstr "Ikasleak"
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_field
@@ -1394,7 +1394,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_course_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Study Field"
-msgstr ""
+msgstr "Ikasketa espezialitatea"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_subject__field_ids
@@ -1417,7 +1417,7 @@ msgstr "Gaia"
 #: model:ir.model.fields,field_description:education.field_education_schedule_timetable__subject_name
 #: model:ir.model.fields,field_description:education.field_education_subject_center__name
 msgid "Subject Name"
-msgstr ""
+msgstr "Irakasgaiaren izena"
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_subject_center
