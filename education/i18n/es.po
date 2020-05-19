@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-12 13:34+0000\n"
-"PO-Revision-Date: 2020-05-12 13:34+0000\n"
+"POT-Creation-Date: 2020-05-19 11:27+0000\n"
+"PO-Revision-Date: 2020-05-19 11:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -779,7 +779,7 @@ msgstr "Empleado"
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_end
 msgid "End Date"
-msgstr "Fecha finalización"
+msgstr "Fecha final"
 
 #. module: education
 #: code:addons/education/models/education_academic_year.py:66
