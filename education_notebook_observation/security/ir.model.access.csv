@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+education_notebook_observation_manager,education_notebook_observation manager,model_education_notebook_observation,education.education_responsible,1,1,1,1
+education_notebook_observation_user,education_notebook_observation user,model_education_notebook_observation,base.group_user,1,1,0,0
