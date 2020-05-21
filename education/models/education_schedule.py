@@ -35,7 +35,7 @@ class EducationSchedule(models.Model):
         domain="[('calendar_id', '=', resource_calendar_id)]")
     timetable_ids = fields.One2many(
         comodel_name='education.schedule.timetable', string='Timetable',
-        inverse_name='schedule_id')
+        inverse_name='schedule_id', copy=True)
     session_number = fields.Integer()
     classroom_id = fields.Many2one(
         comodel_name='education.classroom', string='Classroom',
@@ -129,9 +129,9 @@ class EducationScheduleTimetable(models.Model):
     hour_from = fields.Float(string='Work from', required=True, index=True)
     hour_to = fields.Float(string='Work to', required=True)
     session_number = fields.Integer()
-    subject_name = fields.Char(string="Subject Name")
+    subject_name = fields.Char(string="Subject Name", copy=False)
     teacher_id = fields.Many2one(
-        comodel_name='hr.employee', string='Teacher')
+        comodel_name='hr.employee', string='Teacher', copy=False)
 
 
 class EducationScheduleGroup(models.Model):

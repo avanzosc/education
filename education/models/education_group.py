@@ -55,7 +55,8 @@ class EducationGroup(models.Model):
         column1='group_id', column2='student_id', string='Students',
         copy=False)
     student_count = fields.Integer(
-        string='Student Number', compute='_compute_student_count', store=True)
+        string='Student Number', compute='_compute_student_count', store=True,
+        group_operator="avg")
     parent_id = fields.Many2one(
         comodel_name='education.group', string='Parent Group',
         domain="[('academic_year_id', '=', academic_year_id),"

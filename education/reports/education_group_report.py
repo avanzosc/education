@@ -11,9 +11,13 @@ class EducationGroupReport(models.Model):
     _description = 'Groups Report'
     _auto = False
     _rec_name = 'student_id'
+    _order = "academic_year_id,center_id,group_id,student_id"
 
     student_id = fields.Many2one(
         comodel_name='res.partner', string='Student')
+    student_firstname = fields.Char(string="Student's Firstname")
+    student_lastname = fields.Char(string="Student's First Lastname")
+    student_lastname2 = fields.Char(string="Student's Second Lastname")
     group_id = fields.Many2one(
         comodel_name='education.group', string='Education Group')
     academic_year_id = fields.Many2one(
@@ -37,6 +41,9 @@ class EducationGroupReport(models.Model):
             SELECT
                 row_number() OVER () as id,
                 stu.id AS student_id,
+                stu.lastname AS student_lastname,
+                stu.lastname2 AS student_lastname2,
+                stu.firstname AS student_firstname,
                 grp.id AS group_id,
                 grp.group_type_id AS group_type_id,
                 grp.academic_year_id AS academic_year_id,
@@ -56,7 +63,8 @@ class EducationGroupReport(models.Model):
     def _group_by(self):
         group_by_str = """
                 GROUP BY stu.id, grp.id, grp.group_type_id,
-                grp.academic_year_id, grp.center_id, grp.course_id
+                grp.academic_year_id, grp.center_id, grp.course_id,
+                stu.firstname, stu.lastname, stu.lastname2
         """
         return group_by_str
 

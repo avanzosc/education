@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+    _order = "lastname,lastname2,firstname,display_name"
 
     education_code = fields.Char(string='Education Code', copy=False)
     edu_idtype_id = fields.Many2one(

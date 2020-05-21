@@ -12,6 +12,8 @@
         "base",
         "resource",
         "hr",
+        "partner_firstname",
+        "partner_second_lastname",
     ],
     "data": [
         "security/education_groups.xml",
