@@ -7,10 +7,7 @@
                 <field name="center_id" />
                 <field name="course_id" />
                 <field name="group_id" />
-                <field name="subject_id" />
-                <field name="subject_name" />
-                <field name="teacher_id" />
-                <field name="classroom_id" />
+                <field name="group_type_id" invisible="True" />
                 <field name="student_id" />
                 <field name="progenitor_id" />
                 <field name="academic_year_id" />
@@ -22,19 +19,13 @@
         <field name="model">education.group.student.progenitor.report</field>
         <field name="arch" type="xml">
             <search>
-                <field name="center_id" />
-                <field name="course_id" />
-                <field name="group_id" />
-                <field name="subject_id" />
-                <field name="subject_name" />
-                <field name="teacher_id" />
                 <field name="student_id" />
                 <field name="progenitor_id" />
-                <field name="classroom_id" />
+                <field name="group_id" />
+                <field name="group_type_id" />
+                <field name="course_id" />
+                <field name="center_id" />
                 <field name="academic_year_id" />
-                <separator />
-                <filter string="Current Academic Year" name="current_academic_year"
-                        domain="[('academic_year_id.current','=',True)]" />
                 <separator />
                 <filter string="Progenitor" name="relation_progenitor"
                         domain="[('relation','=','progenitor')]" />
@@ -42,6 +33,17 @@
                         domain="[('relation','=','guardian')]" />
                 <filter string="Other Relative" name="relation_otherrelative"
                         domain="[('relation','=','otherrelative')]" />
+                <separator />
+                <filter string="Official Groups" name="official_group"
+                        domain="[('group_type_id.type','=','official')]" />
+                <filter string="Non Official Groups" name="non_official_group"
+                        domain="[('group_type_id.type','!=','official')]" />
+                <separator />
+                <filter string="Current Academic Year" name="current_academic_year"
+                        domain="[('academic_year_id.current','=',True)]" />
+                <separator />
+                <filter string="Current Official Groups" name="current_official_group"
+                        domain="[('group_type_id.type','=','official'),('academic_year_id.current','=',True)]" />
                 <group expand="1" string="Group By">
                     <filter string="Education Center" name="education_center"
                             context="{'group_by':'center_id'}"/>
@@ -49,16 +51,10 @@
                             context="{'group_by':'course_id'}"/>
                     <filter string="Education Group" name="education_group"
                             context="{'group_by':'group_id'}"/>
-                    <filter string="Education Subject" name="education_subject"
-                            context="{'group_by':'subject_id'}"/>
-                    <filter string="Teacher" name="teacher"
-                            context="{'group_by':'teacher_id'}"/>
                     <filter string="Student" name="student"
                             context="{'group_by':'student_id'}"/>
                     <filter string="Progenitor" name="progenitor"
                             context="{'group_by':'progenitor_id'}"/>
-                    <filter string="Classroom" name="classroom"
-                            context="{'group_by':'classroom_id'}"/>
                     <filter string="Academic year" name="academic_year"
                             context="{'group_by':'academic_year_id'}"/>
                 </group>
@@ -74,7 +70,7 @@
         <field name="search_view_id"
                ref="education_group_student_progenitor_report_view_search"/>
         <field name="context">{
-                'search_default_current_academic_year': True,
+                'search_default_current_official_group': True,
                 'search_default_relation_progenitor': True,
             }</field>
     </record>

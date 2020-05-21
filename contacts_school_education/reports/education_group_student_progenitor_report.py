@@ -8,10 +8,11 @@ from psycopg2.extensions import AsIs
 
 class EducationGroupStudentProgenitorReport(models.Model):
     _name = "education.group.student.progenitor.report"
-    _inherit = "education.group.student.report"
+    _inherit = "education.group.report"
     _description = "Student Progenitor Group List"
     _auto = False
     _rec_name = "progenitor_id"
+    _order = "student_id,progenitor_id"
 
     @api.model
     def _get_selection_relation(self):
@@ -24,9 +25,6 @@ class EducationGroupStudentProgenitorReport(models.Model):
         string="Relation",  selection=_get_selection_relation)
 
     _depends = {
-        "education.schedule": [
-            "subject_id", "classroom_id", "teacher_id", "academic_year_id"
-        ],
         "education.group": [
             "center_id", "course_id", "student_ids"
         ],
@@ -34,9 +32,6 @@ class EducationGroupStudentProgenitorReport(models.Model):
             "child2_id", "responsible_id", "relation"
         ]
     }
-
-    def _coalesce(self):
-        return super(EducationGroupStudentProgenitorReport, self)._coalesce()
 
     def _select(self):
         select_str = """
@@ -49,7 +44,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
     def _from(self):
         from_str = """
                 JOIN res_partner_family fam
-                  ON fam.child2_id = stu_group.student_id
+                  ON fam.child2_id = stu.id
         """
         return super(EducationGroupStudentProgenitorReport,
                      self)._from() + from_str
@@ -69,8 +64,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
-                %s %s %s %s
+                %s %s %s
             )""", (
-                AsIs(self._table), AsIs(self._select()),
-                AsIs(self._coalesce()), AsIs(self._from()),
+                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
                 AsIs(self._group_by()),))
