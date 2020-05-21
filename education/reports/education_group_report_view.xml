@@ -14,6 +14,22 @@
         </field>
     </record>
 
+    <record id="education_group_report_student_view_tree" model="ir.ui.view">
+        <field name="model">education.group.report</field>
+        <field name="inherit_id" ref="education.education_group_report_view_tree" />
+        <field name="groups_id" eval="[(4, ref('education_extended_report_group'))]" />
+        <field name="arch" type="xml">
+            <field name="student_id" position="after">
+                <field name="student_firstname" string="Firstname" />
+                <field name="student_lastname" string="Lastname" />
+                <field name="student_lastname2" string="Second Lastname" />
+            </field>
+            <field name="student_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+        </field>
+    </record>
+
     <record id="education_group_report_view_search" model="ir.ui.view">
         <field name="model">education.group.report</field>
         <field name="arch" type="xml">
