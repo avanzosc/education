@@ -11,7 +11,7 @@ education_mark_behaviour_user,education_mark_behaviour user,model_education_mark
 education_exam_type_manager,education_exam_type manager,model_education_exam_type,education.education_responsible,1,1,1,1
 education_exam_type_user,education_exam_type user,model_education_exam_type,base.group_user,1,0,0,0
 education_exam_type_portal,education_exam_type portal,model_education_exam_type,base.group_portal,1,0,0,0
-education_exam_manager,education_exam manager,model_education_exam,education.education_responsible,1,1,1,1
+education_exam_manager,education_exam manager,model_education_exam,education.education_user,1,1,1,1
 education_exam_user,education_exam user,model_education_exam,base.group_user,1,0,0,0
 education_exam_portal,education_exam portal,model_education_exam,base.group_portal,1,0,0,0
 education_competence_manager,education_competence manager,model_education_competence,education.education_responsible,1,1,1,1

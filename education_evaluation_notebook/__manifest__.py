@@ -4,6 +4,7 @@
 {
     "name": "Education Evaluation Notebook",
     "version": "12.0.2.0.0",
+    "category": "Education",
     "depends": [
         "education",
         "contacts_school",
