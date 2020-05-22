@@ -28,4 +28,31 @@
         <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
     </record>
 
+    <record id="education_group_report_rule" model="ir.rule">
+        <field name="name">Groups report rule</field>
+        <field name="model_id" ref="education.model_education_group_report"/>
+        <field name="domain_force">[('center_id','in',user.school_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_group_report_manager_rule" model="ir.rule">
+        <field name="name">Groups report manager rule</field>
+        <field name="model_id" ref="education.model_education_group_report"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
+
+    <record id="education_group_student_progenitor_report_rule" model="ir.rule">
+        <field name="name">Student's progenitor report rule</field>
+        <field name="model_id" ref="contacts_school_education.model_education_group_student_progenitor_report"/>
+        <field name="domain_force">[('center_id','in',user.school_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+
+    <record id="education_group_student_progenitor_report_manager_rule" model="ir.rule">
+        <field name="name">Student's progenitor report manager rule</field>
+        <field name="model_id" ref="contacts_school_education.model_education_group_student_progenitor_report"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
 </odoo>
