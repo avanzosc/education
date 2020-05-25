@@ -7,14 +7,12 @@ Education evaluation notebook
 =============================
 
 This module adds:
-- Custom process to save teachers different tasks, exams and expedients.
+
+* Custom process to save teachers different tasks, exams and records.
 
 
 Credits
 =======
-
-Images
-------
 
 Contributors
 ------------
