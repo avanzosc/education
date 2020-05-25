@@ -4,17 +4,13 @@
 from odoo import api, fields, models
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
+from .education_academic_year_evaluation import EVAL_TYPE
 
 
 class EducationNotebookLine(models.Model):
     _name = "education.notebook.line"
     _description = "Education Notebook Line"
     _rec_name = "description"
-
-    @api.model
-    def _get_selection_eval_type(self):
-        return self.env["education.academic_year.evaluation"].fields_get(
-            allfields=["eval_type"])["eval_type"]["selection"]
 
     def default_eval_type(self):
         default_dict = self.env[
@@ -49,7 +45,7 @@ class EducationNotebookLine(models.Model):
     description = fields.Char(string="Description", required=True)
     eval_percent = fields.Float(string="Percent (%)", default=100.0)
     eval_type = fields.Selection(
-        selection="_get_selection_eval_type", string="Evaluation Season",
+        selection=EVAL_TYPE, string="Evaluation Season",
         default=default_eval_type, required=True)
     evaluation_id = fields.Many2one(
         comodel_name="education.academic_year.evaluation", string="Evaluation")
@@ -84,6 +80,26 @@ class EducationNotebookLine(models.Model):
     record_count = fields.Integer(
         compute="_compute_record_count", string="# Academic Record",
         store=True)
+
+    @api.multi
+    def button_open_notebook_line_form(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "education_evaluation_notebook.education_notebook_line_action")
+        form_view = self.env.ref(
+            "education_evaluation_notebook.education_notebook_line_view_form")
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [("id", "=", self.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({
+            "domain": domain,
+            "view_id": form_view.id,
+            "view_mode": "form",
+            "res_id": self.id,
+            "views": [],
+        })
+        return action_dict
 
     @api.multi
     def button_show_child_lines(self):
@@ -192,7 +208,9 @@ class EducationNotebookLine(models.Model):
         """
         result = []
         for record in self:
+            field = record._fields["eval_type"]
+            eval_type = field.convert_to_export(record["eval_type"], record)
             result.append(
                 (record.id,
-                 "{} [{}]".format(record.description, record.eval_type)))
+                 "{} [{}]".format(record.description, eval_type)))
         return result

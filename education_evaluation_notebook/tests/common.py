@@ -31,6 +31,7 @@ class EducationNotebookCommon(TestEducationCommon):
             "center_id": cls.edu_partner.id,
             "academic_year_id": cls.academic_year.id,
             "level_id": cls.edu_level.id,
+            "course_id": cls.edu_course.id,
             "group_type_id": cls.group_type.id,
             "student_ids": [(6, 0, cls.edu_student.ids)],
         })

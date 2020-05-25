@@ -5,6 +5,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
+from .education_academic_year_evaluation import EVAL_TYPE
 
 
 class EducationRecord(models.Model):
@@ -16,11 +17,6 @@ class EducationRecord(models.Model):
     def _get_selection_exam_state(self):
         return self.env["education.exam"].fields_get(
             allfields=["state"])["state"]["selection"]
-
-    @api.model
-    def _get_selection_eval_type(self):
-        return self.env["education.academic_year.evaluation"].fields_get(
-            allfields=["eval_type"])["eval_type"]["selection"]
 
     exam_id = fields.Many2one(
         comodel_name="education.exam", string="Exam")
@@ -47,7 +43,7 @@ class EducationRecord(models.Model):
         related="n_line_id.competence_id.evaluation_check",
         string="Evaluation Competence", store=True)
     global_competence = fields.Boolean(
-        related="competence_id.global_check",
+        related="n_line_id.competence_id.global_check",
         string="Global Competence", store=True)
     schedule_id = fields.Many2one(
         comodel_name="education.schedule", related="n_line_id.schedule_id",
@@ -64,10 +60,9 @@ class EducationRecord(models.Model):
         string="Academic Year", store=True)
     evaluation_id = fields.Many2one(
         comodel_name="education.academic_year.evaluation",
-        related="n_line_id.evaluation_id", string="Evaluation", store=True)
+        compute="_compute_evaluation_id", string="Evaluation", store=True)
     eval_type = fields.Selection(
-        selection="_get_selection_eval_type",
-        related="n_line_id.eval_type",
+        selection=EVAL_TYPE, related="n_line_id.eval_type",
         string="Evaluation Season", store=True)
     student_id = fields.Many2one(
         comodel_name="res.partner", string="Student", required=True)
@@ -91,6 +86,24 @@ class EducationRecord(models.Model):
     child_record_count = fields.Integer(
         compute="_compute_child_record_count",
         string="# Child Records", store=True)
+
+    @api.multi
+    @api.depends("student_id", "eval_type", "n_line_id",
+                 "n_line_id.schedule_id", "n_line_id.schedule_id.group_ids",
+                 "n_line_id.schedule_id.group_ids.student_ids",
+                 "n_line_id.schedule_id.group_ids.course_id",
+                 "n_line_id.schedule_id.group_ids.center_id",
+                 "n_line_id.schedule_id.academic_year_id")
+    def _compute_evaluation_id(self):
+        for record in self:
+            schedule = record.n_line_id.schedule_id
+            group = schedule.group_ids.filtered(
+                lambda g: record.student_id in g.student_ids)
+            evaluations = schedule.academic_year_id.evaluation_ids
+            record.evaluation_id = evaluations.filtered(
+                lambda e: e.center_id == group.center_id and
+                e.course_id == group.course_id and
+                e.eval_type == record.eval_type)
 
     @api.multi
     @api.depends("child_record_ids")

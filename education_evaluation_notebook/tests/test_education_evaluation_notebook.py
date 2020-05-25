@@ -54,9 +54,11 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         self.assertNotEquals(notebook.eval_type, first_eval.eval_type)
         notebook._onchange_evaluation_id()
         self.assertEquals(notebook.eval_type, first_eval.eval_type)
+        field = notebook._fields["eval_type"]
+        eval_type = field.convert_to_export(notebook["eval_type"], notebook)
         self.assertEquals(
             notebook.display_name,
-            "{} [{}]".format(notebook.description, notebook.eval_type))
+            "{} [{}]".format(notebook.description, eval_type))
 
     def test_create_notebook(self):
         self.create_evaluations_from_course_change()
@@ -75,6 +77,12 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             line_act_dict.get("domain"))
         global_line = self.schedule.notebook_line_ids.filtered(
             "global_competence")
+        edit_action = global_line.button_open_notebook_line_form()
+        self.assertEquals(
+            "form", edit_action.get("view_mode"))
+        self.assertIn(
+            ("id", "=", global_line.id),
+            edit_action.get("domain"))
         child_act_dict = global_line.button_show_child_lines()
         self.assertIn(
             ("parent_line_id", "=", global_line.id),
@@ -262,7 +270,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         self.course_change.invalidate_cache()
         self.assertEquals(self.course_change.eval_count, 4)
         self.assertEquals(self.course_change.next_eval_count, 0)
-        current, next = self.course_change._get_academic_years()
+        current, next_year = self.course_change._get_academic_years()
         action_dict = self.course_change.button_open_current_evaluations()
         self.assertIn(
             ('academic_year_id', '=', current.id), action_dict.get('domain'))
@@ -274,7 +282,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             action_dict.get('domain'))
         action_dict = self.course_change.button_open_next_evaluations()
         self.assertIn(
-            ('academic_year_id', '=', next.id), action_dict.get('domain'))
+            ('academic_year_id', '=', next_year.id), action_dict.get('domain'))
         self.assertIn(
             ('center_id', '=', self.course_change.next_school_id.id),
             action_dict.get('domain'))

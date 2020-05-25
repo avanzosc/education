@@ -2,16 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from .education_academic_year_evaluation import EVAL_TYPE
 
 
 class EducationNotebookTemplate(models.Model):
     _name = "education.notebook.template"
     _description = "Evaluation Notebook Template"
-
-    @api.model
-    def _get_selection_eval_type(self):
-        return self.env["education.academic_year.evaluation"].fields_get(
-            allfields=["eval_type"])["eval_type"]["selection"]
 
     def default_eval_type(self):
         default_dict = self.env[
@@ -29,7 +25,7 @@ class EducationNotebookTemplate(models.Model):
     subject_id = fields.Many2one(
         comodel_name="education.subject", string="Education Subject")
     eval_type = fields.Selection(
-        selection="_get_selection_eval_type", string="Evaluation Season",
+        selection=EVAL_TYPE, string="Evaluation Season",
         default=default_eval_type, required=True)
     competence_id = fields.Many2one(
         comodel_name="education.competence", string="Competence",
@@ -62,6 +58,7 @@ class EducationNotebookTemplate(models.Model):
                 parent_line and parent_line.evaluation_id and
                 parent_line.evaluation_id.id,
             "eval_type": self.eval_type,
+            "competence_type_id": self.competence_type_id.id,
             "parent_line_id": parent_line and parent_line.id,
         }
         return vals

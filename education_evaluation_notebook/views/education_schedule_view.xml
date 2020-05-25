@@ -13,7 +13,8 @@
             </header>
             <div name="button_box" position='inside'>
                 <button class="oe_stat_button" type="object"
-                        name="button_show_notebook_lines" icon="fa-book">
+                        name="button_show_notebook_lines" icon="fa-book"
+                        groups="education.education_responsible">
                     <field name="notebook_line_count" widget="statinfo"
                            string="Notebook Lines" />
                 </button>
@@ -45,6 +46,8 @@
                         <field name="eval_type" />
                         <field name="eval_percent" />
                         <field name="competence_type_id" />
+                        <button name="button_open_notebook_line_form" icon="fa-edit"
+                                string="Open Line" type="object" />
                         <button name="button_show_child_lines" icon="fa-list"
                                 string="Show Child Lines" type="object" />
                         <button name="button_create_student_records" icon="fa-book"
