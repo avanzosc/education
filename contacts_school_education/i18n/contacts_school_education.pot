@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-21 15:42+0000\n"
-"PO-Revision-Date: 2020-05-21 15:42+0000\n"
+"POT-Creation-Date: 2020-06-02 07:37+0000\n"
+"PO-Revision-Date: 2020-06-02 07:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -208,6 +208,7 @@ msgstr ""
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__student_group_ids
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__student_group_ids
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Education Groups"
 msgstr ""
@@ -253,6 +254,11 @@ msgid "ID"
 msgstr ""
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
+msgid "Languages"
+msgstr ""
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__alumni_academic_year_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__alumni_academic_year_id
 msgid "Last Academic Year"
@@ -278,6 +284,11 @@ msgstr ""
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
+msgid "Mobile:"
 msgstr ""
 
 #. module: contacts_school_education
@@ -345,6 +356,16 @@ msgid "Other Relative"
 msgstr ""
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
+msgid "Permissions"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
+msgid "Phone:"
+msgstr ""
+
+#. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Previous Course"
 msgstr ""
@@ -376,6 +397,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__student_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 msgid "Student"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
+msgid "Student Characteristics"
 msgstr ""
 
 #. module: contacts_school_education
