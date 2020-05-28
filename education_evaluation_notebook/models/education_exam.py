@@ -96,6 +96,8 @@ class EducationExam(models.Model):
         action_dict["context"].update({
             "default_exam_id": self.id,
             "hide_calculated": True,
+            "hide_behaviour": True,
+            "hide_exam": False,
         })
         domain = expression.AND([
             [("exam_id", "=", self.id)],

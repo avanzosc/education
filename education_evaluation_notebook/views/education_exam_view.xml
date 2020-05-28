@@ -43,7 +43,7 @@
                                 <!--domain="[('exam_type_id.e_type','!=','recuperation exam')]" />-->
                         </group>
                         <group>
-                            <field name="n_line_id" />
+                            <field name="n_line_id" options="{'no_create': True, 'no_edit': True}" />
                             <field name="schedule_id" />
                             <field name="teacher_id" />
                             <field name="subject_id" />
@@ -84,9 +84,12 @@
                     <!--attrs="{'invisible': [('type_exam_name','!=','recuperation exam')]}"-->
                     <!--domain="[('exam_type_id.e_type','!=','recuperation exam')]" />-->
                 <field name="state" readonly="True"/>
+                <field name="academic_year_id"  invisible="True" />
                 <button name="action_generate_record" icon="fa-book"
                         string="Create Academic Records" type="object"
                         states="draft,progress"/>
+                <button name="button_show_records" icon="fa-th"
+                        string="Open Academic Records" type="object" />
             </tree>
         </field>
     </record>
@@ -97,6 +100,8 @@
             <search>
                 <field name="name" />
                 <field name="exam_type_id" />
+                <filter name="current_academic_year" string="Current Academic Year"
+                        domain="[('academic_year_id.current','=',True)]" />
                 <group expand="0" string="Group By">
                     <filter name="groupby_line" string="Notebook Line"
                             context="{'group_by':'n_line_id'}" />
@@ -115,6 +120,9 @@
         <field name="res_model">education.exam</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
+        <field name="context">{
+            "search_default_current_academic_year": True,
+        }</field>
         <field name="view_id" ref="education_exam_view_tree"/>
     </record>
 </odoo>

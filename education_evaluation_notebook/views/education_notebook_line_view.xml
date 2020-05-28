@@ -105,26 +105,25 @@
                     </div>
                     <group name="main">
                         <group string="Competence data">
-                            <field name="competence_id" options="{'no_create': True, 'no_edit': True}" />
-                            <field name="a_year_id" attrs="{'invisible': [('schedule_id', '=', False)]}"/>
-                            <field name="evaluation_id" options="{'no_create': True, 'no_edit': True}"
-                                   domain="[('academic_year_id','=',a_year_id),('center_id','=',education_center_id)]"
-                                   attrs="{'invisible': [('schedule_id', '=', False)], 'required': [('global_competence','=',False)]}"/>
-                            <field name="eval_type" attrs="{'invisible': [('schedule_id', '=', False)]}" />
+                            <field name="competence_id" options="{'no_create': True, 'no_edit': True}"
+                                   attrs="{'readonly': [('id','!=',False)]}" />
                             <field name="global_competence" invisible="True" />
                             <field name="evaluation_competence" invisible="True" />
+                            <field name="a_year_id" attrs="{'invisible': [('schedule_id','=',False)], 'readonly': [('id','!=',False)]}"/>
+                            <field name="eval_type" attrs="{'invisible': [('schedule_id','=',False)], 'readonly': [('id','!=',False)]}" />
                             <field name="exists_master" invisible="True" />
-                            <field name="description" />
-                            <field name="eval_percent" />
+                            <field name="description" attrs="{'readonly': [('id','!=',False)]}" />
+                            <field name="eval_percent" attrs="{'readonly': [('id','!=',False)]}" />
                             <field name="parent_line_id" domain="[('schedule_id','=',schedule_id)]"
                                    options="{'no_create': True, 'no_edit': True}"
-                                   attrs="{'required':[('global_competence','=',False)]}"/>
+                                   attrs="{'required':[('global_competence','=',False)], 'readonly': [('id','!=',False)]}"/>
                             <field name="parent_parent_line_id"
                                    attrs="{'invisible':[('parent_parent_line_id','=',False)]}" />
                             <field name="competence_type_id"  />
                         </group>
                         <group string="Class Schedule Info">
-                            <field name="schedule_id" options="{'no_create': True, 'no_edit': True}" />
+                            <field name="schedule_id" options="{'no_create': True, 'no_edit': True}"
+                                   attrs="{'readonly': [('id','!=',False)]}"/>
                             <field name="teacher_id" groups="education.education_responsible" />
                             <field name="subject_id" />
                             <field name="education_center_id" />
@@ -154,11 +153,14 @@
                         </page>
                         <page name="child_lines" string="Gradebook"
                               attrs="{'invisible': [('global_competence','!=',True),('evaluation_competence','!=',True)]}">
-                            <field name="child_line_ids" context="{'default_parent_line_id': id, 'default_schedule_id': schedule_id}">
-                                <tree decoration-info="global_competence==True"
+                            <field name="child_line_ids" context="{'default_parent_line_id': id, 'default_schedule_id': schedule_id, 'default_eval_type': eval_type}">
+                                <tree editable="bottom"
+                                      decoration-info="global_competence==True"
                                       decoration-success="evaluation_competence==True"
                                       decoration-muted="eval_percent==0">
-                                    <field name="competence_id" />
+                                    <field name="schedule_id" invisible="True" />
+                                    <field name="competence_id" options="{'no_create': True, 'no_edit': True}"
+                                           domain="[('evaluation_check','!=',True),('global_check','!=',True)]"/>
                                     <field name="global_competence" invisible="True" />
                                     <field name="evaluation_competence" invisible="True" />
                                     <field name="exists_master" invisible="True" />
@@ -166,6 +168,8 @@
                                     <field name="eval_type" />
                                     <field name="eval_percent" sum="Total Percent"/>
                                     <field name="competence_type_id" />
+                                    <button name="button_open_notebook_line_form" icon="fa-edit"
+                                            string="Open Line" type="object" />
                                     <button name="button_create_student_records" icon="fa-book"
                                             string="Create Academic Records" type="object" />
                                     <button name="button_show_records" icon="fa-th"

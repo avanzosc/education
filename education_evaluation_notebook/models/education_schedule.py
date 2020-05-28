@@ -125,9 +125,9 @@ class EducationSchedule(models.Model):
             "schedule_id": self.id,
             "competence_id": competence.id,
             "description": "{} [{}]".format(
-                self.subject_id.description, competence.name),
+                self.subject_id.description or self.task_type_id.description,
+                competence.name),
             "eval_percent": percent or 100.0,
-            "evaluation_id": evaluation and evaluation.id,
             "eval_type": evaluation and evaluation.eval_type or "final",
             "parent_line_id": parent_line and parent_line.id,
         }
@@ -142,7 +142,7 @@ class EducationSchedule(models.Model):
         record = notebook_line_obj.search([
             ("schedule_id", "=", self.id),
             ("competence_id", "=", competence.id),
-            ("evaluation_id", "=", evaluation and evaluation.id)
+            ("eval_type", "=", evaluation and evaluation.eval_type or "final"),
         ])
         if not record:
             notebook_vals = self.get_notebook_line_vals(
@@ -167,20 +167,21 @@ class EducationSchedule(models.Model):
         evaluation_competences = self.env["education.competence"].search([
             ("evaluation_check", "=", True)])
         for schedule in self:
-            courses = schedule.subject_id.course_ids
+            courses = schedule.mapped("group_ids.course_id")
             global_lines = schedule.notebook_line_ids.filtered(
                 lambda l: l.competence_id.global_check)
             evaluations = evaluation_obj.search([
                 ("academic_year_id", "=", schedule.academic_year_id.id),
                 ("center_id", "=", schedule.center_id.id),
             ])
-            if schedule.subject_id.course_ids:
+            if courses:
                 evaluations = evaluations.filtered(
                     lambda e: e.course_id in courses)
             else:
                 evaluations = evaluations.filtered(
                     lambda e: not e.course_id)
-            percent = 100 / (len(evaluations) or 1.0)
+            eval_number = list(dict.fromkeys(evaluations.mapped('eval_type')))
+            percent = 100 / (len(eval_number) or 1.0)
             for eval_competence in evaluation_competences:
                 for global_line in global_lines:
                     for evaluation in evaluations:

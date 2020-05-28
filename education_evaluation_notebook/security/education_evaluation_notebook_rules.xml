@@ -48,6 +48,22 @@
         <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
     </record>
 
+    <record id="education_homework_rule" model="ir.rule">
+        <field name="name">Homework rule</field>
+        <field name="model_id" ref="education_evaluation_notebook.model_education_homework"/>
+        <field name="domain_force">[('schedule_id.teacher_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+    </record>
+
+    <record id="education_homework_manager_rule" model="ir.rule">
+        <field name="name">Homework manager rule</field>
+        <field name="model_id" ref="education_evaluation_notebook.model_education_homework"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('education.education_responsible'))]"/>
+    </record>
+
     <record id="education_group_homework_rule" model="ir.rule">
         <field name="name">Homework report rule</field>
         <field name="model_id" ref="education_evaluation_notebook.model_education_group_homework_report"/>

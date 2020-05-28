@@ -3,6 +3,12 @@
 
 from odoo import api, fields, models
 
+EVAL_TYPE = [
+    ("first", "First"),
+    ("second", "Second"),
+    ("third", "Third"),
+    ("final", "Final")]
+
 
 class EducationAcademicYearEvaluation(models.Model):
     _inherit = "education.academic_year.evaluation"
@@ -12,12 +18,9 @@ class EducationAcademicYearEvaluation(models.Model):
         domain=[("educational_category", "=", "school")])
     course_id = fields.Many2one(
         comodel_name="education.course", string="Course")
-    eval_type = fields.Selection(selection=[
-        ("first", "First"),
-        ("second", "Second"),
-        ("third", "Third"),
-        ("final", "Final")],
-        string="Evaluation Season", default="final", required=True)
+    eval_type = fields.Selection(
+        selection=EVAL_TYPE, string="Evaluation Season", default="final",
+        required=True)
 
     @api.multi
     def find_or_create_evaluation(self, values):
