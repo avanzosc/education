@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-21 11:30+0000\n"
-"PO-Revision-Date: 2020-05-21 11:30+0000\n"
+"POT-Creation-Date: 2020-06-02 08:45+0000\n"
+"PO-Revision-Date: 2020-06-02 08:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,11 @@ msgid "Active"
 msgstr "Aktiboa"
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+msgid "Address"
+msgstr "Helbidea"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_schedule_group__group_alias
 msgid "Alias"
 msgstr ""
@@ -118,6 +123,11 @@ msgstr "Bertaraturikoak"
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Calendar"
 msgstr "Egutegia"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+msgid "City"
+msgstr "Herria"
 
 #. module: education
 #: selection:education.group_type,type:0
@@ -168,7 +178,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_search
 msgid "Classroom"
-msgstr ""
+msgstr "Ikasgela"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_group__comments
@@ -192,10 +202,21 @@ msgid "Contact"
 msgstr "Kontaktua"
 
 #. module: education
+#: model:ir.actions.act_window,name:education.res_partner_education_action
+#: model:ir.ui.menu,name:education.student_menuitem
+msgid "Contacts"
+msgstr "Kontaktuak"
+
+#. module: education
 #: model:ir.actions.act_window,name:education.action_education_contract_type
 #: model:ir.ui.menu,name:education.faculty_contract_type_menuitem
 msgid "Contract Type"
 msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+msgid "Country"
+msgstr "Herrialdea"
 
 #. module: education
 #: model:ir.model,name:education.model_education_course
@@ -1103,9 +1124,16 @@ msgid "Min. Description"
 msgstr ""
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_view_kanban
+msgid "Mobile:"
+msgstr "Mugikorra:"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year_evaluation__name
 #: model:ir.model.fields,field_description:education.field_education_section__name
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_tree_view
 msgid "Name"
 msgstr "Izena"
 
@@ -1186,6 +1214,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_schedule_group__parent_group_type_id
 msgid "Parent Group Type"
 msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_view_kanban
+msgid "Phone:"
+msgstr "Telefonoa:"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_group__plan_id
@@ -1345,6 +1378,21 @@ msgid "Start date must be before evaluations start dates."
 msgstr ""
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+msgid "State"
+msgstr "Egoera"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+msgid "Street 2..."
+msgstr "Kalea 2..."
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+msgid "Street..."
+msgstr "Kalea..."
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_group_report__student_id
 #: model:ir.model.fields,field_description:education.field_education_group_student_report__student_id
 #: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__student_id
@@ -1410,8 +1458,8 @@ msgid "Student's Second Lastname"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:116
-#: code:addons/education/models/education_schedule.py:101
+#: code:addons/education/models/education_group.py:118
+#: code:addons/education/models/education_schedule.py:116
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule__student_ids
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
@@ -1637,10 +1685,15 @@ msgid "Working Hours"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:81
+#: code:addons/education/models/education_group.py:82
 #, python-format
 msgid "You cannot create recursive groups."
 msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+msgid "ZIP"
+msgstr "Posta kodea"
 
 #. module: education
 #: code:addons/education/models/education_academic_year_evaluation.py:40
