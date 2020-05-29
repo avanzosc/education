@@ -10,6 +10,17 @@
                 <field name="teacher_id" groups="education.education_responsible" />
                 <filter name="exam_record" string="Exam Record"
                         domain="[('exam_id','!=',False)]" />
+                <filter name="pending" string="Pending Record"
+                        domain="[('state','=','not_evaluated')]" />
+                <separator />
+                <filter name="first_eval" string="First Evaluation"
+                        domain="[('eval_type','=','first')]" />
+                <filter name="second_eval" string="Second Evaluation"
+                        domain="[('eval_type','=','second')]" />
+                <filter name="third_eval" string="Third Evaluation"
+                        domain="[('eval_type','=','third')]" />
+                <filter name="final_eval" string="Final Evaluation"
+                        domain="[('eval_type','=','final')]" />
                 <separator />
                 <filter name="current_academic_year" string="Current Academic Year"
                         domain="[('academic_year_id.current','=',True)]" />
@@ -40,14 +51,17 @@
             <tree editable="bottom"
                   decoration-info="global_competence==True"
                   decoration-success="evaluation_competence==True"
+                  decoration-muted="state=='not_taken'"
+                  decoration-bf="state=='assessed'"
+                  decoration-it="state=='exempt'"
                   create="0">
                 <field name="numeric_mark"
                        invisible="context.get('hide_numeric',True)"
-                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour')]}"/>
+                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('state','!=','exempt')]}"/>
                 <field name="behaviour_mark_id"
                        invisible="context.get('hide_behaviour',True)"
                        options="{'no_create': True}"
-                       attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric')]}"/>
+                       attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric'),('state','!=','exempt')]}"/>
                 <field name="mark_id" options="{'no_open': True, 'no_edit': True}" />
                 <field name="n_mark_reduced_name" />
                 <field name="student_id" attrs="{'readonly': [('id','!=',False)]}" />
@@ -56,6 +70,7 @@
                        attrs="{'readonly': [('id','!=',False)]}"/>
                 <field name="exam_state" invisible="True" />
                 <field name="n_line_id" attrs="{'readonly': [('id','!=',False)]}"/>
+                <field name="eval_type" invisible="True" />
                 <field name="competence_id" />
                 <field name="competence_eval_mode" invisible="True" />
                 <field name="exam_eval_percent" />
@@ -65,6 +80,7 @@
                 <field name="global_competence" invisible="True" />
                 <field name="evaluation_competence" invisible="True" />
                 <field name="academic_year_id"  invisible="True" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -73,6 +89,9 @@
         <field name="model">education.record</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button" type="object"
@@ -96,6 +115,7 @@
                         </group>
                         <group>
                             <field name="n_line_id" />
+                            <field name="eval_type" />
                             <field name="subject_id" />
                             <field name="teacher_id" groups="education.education_responsible" />
                             <field name="competence_id" />
@@ -141,6 +161,18 @@
             "search_default_current_academic_year": True,
         }</field>
         <field name="view_id" ref="education_record_view_tree"/>
+    </record>
+
+    <record id="action_copy_calculated_mark" model="ir.actions.server">
+        <field name="name">Copy calculated mark</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    action = records.action_copy_calculated_mark()
+        </field>
     </record>
 </odoo>
 

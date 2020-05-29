@@ -4,6 +4,7 @@
     <menuitem id="education_evaluation_menuitem"
               name="Evaluation"
               parent="education.education_menuitem"
+              groups="education.education_responsible"
               sequence="5" />
 
     <menuitem id="education_notebook_line_menu"

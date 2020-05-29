@@ -3,7 +3,7 @@
 
 from .common import EducationNotebookCommon
 from odoo import fields
-from odoo.exceptions import RedirectWarning, ValidationError
+from odoo.exceptions import RedirectWarning, UserError, ValidationError
 from odoo.tests import common
 
 
@@ -155,16 +155,34 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.assertEquals(exam_line.exam_count, 1)
             exam_line.button_create_student_records()
             self.assertEquals(
-                exam_line.record_count, 2 * student_count)
-            exam_record = exam_line.record_ids[:1]
+                exam_line.record_count, student_count)
+            exam_line_record = exam_line.record_ids.filtered(
+                lambda r: not r.exam_id)[:1]
+            exam_record = exam_line.record_ids.filtered(
+                lambda r: r.exam_id)[:1]
             with self.assertRaises(ValidationError):
                 exam_record.numeric_mark = 12.5
             with self.assertRaises(ValidationError):
                 exam_record.numeric_mark = -1.5
             exam_record.numeric_mark = 5.5
+            self.assertEquals(exam_record.state, "not_evaluated")
+            exam_record._onchange_numeric_mark()
             self.assertEquals(
                 exam_record.mark_id, self.env.ref(
                     "education_evaluation_notebook.numeric_mark_normal"))
+            self.assertEquals(exam_record.state, "assessed")
+            self.assertNotEquals(
+                exam_line_record.calculated_numeric_mark,
+                exam_line_record.numeric_mark)
+            self.assertEquals(
+                exam_line_record.calculated_numeric_mark,
+                exam_record.numeric_mark * exam_record.exam_eval_percent / 100)
+            self.assertEquals(exam_line_record.state, "not_evaluated")
+            exam_line_record.action_copy_calculated_mark()
+            self.assertEquals(
+                exam_line_record.calculated_numeric_mark,
+                exam_line_record.numeric_mark)
+            self.assertEquals(exam_line_record.state, "assessed")
             exam = exam_line.exam_ids[:1]
             self.assertEquals(
                 exam.record_count, student_count)
@@ -189,6 +207,8 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             exam.action_close_exam()
             self.assertEquals(exam.state, "closed")
             self.assertEquals(exam.mark_close_date, today)
+            with self.assertRaises(UserError):
+                exam.unlink()
 
     def create_evaluations_from_course_change(self):
         self.assertFalse(self.academic_year.evaluation_ids)
