@@ -1,0 +1,1 @@
+from . import test_education_center_email_template
