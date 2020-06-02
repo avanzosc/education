@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <menuitem name="Education" id="education_menuitem"
-              web_icon="education,static/description/icon.png"/>
+              web_icon="education,static/description/icon.png"
+              groups="education_user"/>
 
     <menuitem id="education_center_menuitem"
               name="Education Center"
@@ -36,6 +37,10 @@
               parent="groups_menuitem"
               action="action_education_group"
               sequence="3" />
+    <menuitem id="student_menuitem"
+              parent="groups_menuitem"
+              action="res_partner_education_action"
+              sequence="5" />
 
     <menuitem id="schedule_table_menuitem"
               name="Schedule Table"
