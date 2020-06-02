@@ -9,7 +9,7 @@ class ResPartner(models.Model):
 
     student_issue_ids = fields.One2many(
         string='Student issues', comodel_name='student.issue',
-        compute='_compute_student_issue_ids')
+        compute='_compute_student_issue_ids', compute_sudo=True)
 
     def _compute_student_issue_ids(self):
         for student in self:
