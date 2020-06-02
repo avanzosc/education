@@ -69,7 +69,7 @@ class ResPartner(models.Model):
 
     @api.multi
     def _search_current_center_id(self, operator, value):
-        if operator == '=':
+        if operator in ('=', 'in'):
             centers = self.browse(value)
         else:
             centers = self.search([
@@ -83,7 +83,7 @@ class ResPartner(models.Model):
     @api.multi
     def _search_current_course_id(self, operator, value):
         course_obj = self.env['education.course']
-        if operator == '=':
+        if operator in ('=', 'in'):
             courses = course_obj.browse(value)
         else:
             courses = course_obj.search([
@@ -106,7 +106,7 @@ class ResPartner(models.Model):
 
     @api.multi
     def _search_parent_current_center_id(self, operator, value):
-        if operator == '=':
+        if operator in ('=', 'in'):
             centers = self.browse(value)
         else:
             centers = self.search([
@@ -120,7 +120,7 @@ class ResPartner(models.Model):
     @api.multi
     def _search_parent_current_course_id(self, operator, value):
         course_obj = self.env['education.course']
-        if operator == '=':
+        if operator in ('=', 'in'):
             courses = course_obj.browse(value)
         else:
             courses = course_obj.search([
@@ -132,13 +132,12 @@ class ResPartner(models.Model):
 
     @api.multi
     def _search_current_groups(self):
-        today = fields.Date.context_today(self)
         current_year = self.env['education.academic_year'].search([
-            ('date_start', '<=', today), ('date_end', '>=', today)], limit=1)
+            ('current', '=', True)])
         official_type = self.env['education.group_type'].search([
             ('type', '=', 'official')])
         return self.env['education.group'].search([
-            ('academic_year_id', '=', current_year.id),
+            ('academic_year_id', 'in', current_year.ids),
             ('group_type_id', 'in', official_type.ids)
         ])
 
