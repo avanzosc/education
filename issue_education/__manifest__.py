@@ -15,6 +15,7 @@
     "category": "Customer Relationship Management",
     "data": [
         "security/ir.model.access.csv",
+        "security/issue_education_rule.xml",
         "data/issue_education_data.xml",
         "views/calendar_event_view.xml",
         "views/res_partner_view.xml",

@@ -16,10 +16,10 @@ class ResPartner(models.Model):
         inverse_name='student_id')
     school_issue_count = fields.Integer(
         string='School Issue Count', compute='_compute_school_issue_count',
-        store=True)
+        compute_sudo=True, store=True)
     school_claim_count = fields.Integer(
         string='School Claim Count', compute='_compute_school_claim_count',
-        store=True)
+        compute_sudo=True, store=True)
 
     @api.multi
     @api.depends('school_issue_ids')
