@@ -219,11 +219,11 @@ class TestEducation(TestEducationCommon):
             })
         self.assertEquals(self.edu_partner.education_group_count, 1)
         action_dict = self.edu_partner.button_open_education_groups()
-        self.assertEquals(action_dict.get('domain'),
-                          [('center_id', '=', self.edu_partner.id)])
+        self.assertIn(
+            ('center_id', '=', self.edu_partner.id), action_dict.get('domain'))
         action_dict = group.button_open_students()
-        self.assertEquals(action_dict.get('domain'),
-                          [('id', 'in', group.student_ids.ids)])
+        self.assertIn(
+            ('id', 'in', group.student_ids.ids), action_dict.get('domain'))
         schedule = self.schedule_model.create({
             'center_id': self.edu_partner.id,
             'academic_year_id': self.academic_year.id,
@@ -238,8 +238,8 @@ class TestEducation(TestEducationCommon):
         self.assertEquals(schedule.student_ids, group.student_ids)
         self.assertEquals(group.schedule_count, len(group.schedule_ids))
         action_dict = group.button_open_schedule()
-        self.assertEquals(action_dict.get('domain'),
-                          [('id', 'in', group.schedule_ids.ids)])
+        self.assertIn(
+            ('id', 'in', group.schedule_ids.ids), action_dict.get('domain'))
         action_dict = schedule.button_open_students()
         self.assertIn(('id', 'in', schedule.mapped('student_ids').ids),
                       action_dict.get('domain'))
