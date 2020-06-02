@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="calendar_event_view_form" model="ir.ui.view">
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar_school.calendar_event_view_form" />
+        <field name="arch" type="xml">
+            <page name="agenda-page" position="after">
+                <page name="page-notebook-observations"
+                        string='Notebook observations'
+                        attrs="{'invisible': [('family_id','=',False)]}">
+                    <button name="%(action_wiz_generate_notebook_observation)d"
+                        string="Generate notebook observations"
+                        type="action"
+                        groups="education.education_responsible"/>
+                    <button name="%(action_wiz_send_notebook_observation_email)d"
+                        string="Send email to teachers requesting notebook observations"
+                        type="action"
+                        groups="education.education_responsible"/>
+                    <field name="calendar_event_notebook_observation_ids" nolabel="1" >
+                        <tree>
+                            <field name="observ_date" invisible="1"/>
+                            <field name="calendar_event_id" invisible="1" />
+                            <field name="e_notebook_line_id" readonly="1"/>
+                            <field name="education_center_id" invisible="1" />
+                            <field name="teacher_id" readonly="1"/>
+                            <field name="student_id" invisible="1" />
+                            <field name="observations" />
+                            <field name="state" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

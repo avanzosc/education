@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- TREE VIEW -->
+    <record id="education_notebook_observation_view_tree" model="ir.ui.view">
+        <field name="model">education.notebook.observation</field>
+        <field name="arch" type="xml">
+            <tree string="Notebook observations"
+                    editable="bottom" create="false" edit="true" delete="true">
+                <field name="observ_date" readonly="1"/>
+                <field name="e_notebook_line_id" readonly="1"/>
+                <field name="education_center_id" readonly="1" />
+                <field name="teacher_id" readonly="1"/>
+                <field name="student_id" readonly="1"/>
+                <field name="observations" />
+                <field name="state" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="education_notebook_observation_view_search" model="ir.ui.view">
+        <field name="model">education.notebook.observation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="observ_date" />
+                <field name="e_notebook_line_id" />
+                <field name="education_center_id" />
+                <field name="teacher_id" />
+                <field name="student_id" />
+                <filter name="pending-filter" string="Pending observations"
+                        domain="[('state','=','pending')]" />
+                <filter name="included-filter" string="Included observations"
+                        domain="[('state','=','included')]" />
+                <group expand="1" string="Group By">
+                    <filter name="groupby_observ_date"
+                        context="{'group_by':'observ_date'}" string="Date" />
+                    <filter name="groupby_e_notebook_line_id"
+                        context="{'group_by':'e_notebook_line_id'}" string="Education Notebook Line" />
+                    <filter name="groupby_education_center"
+                        context="{'group_by':'education_center_id'}" string="Education center" />
+                    <filter name="groupby_teacher"
+                        context="{'group_by':'teacher_id'}" string="Teacher" />
+                    <filter name="groupby_student"
+                        context="{'group_by':'student_id'}" string="Student" />
+                    <filter name="groupby_state"
+                        context="{'group_by':'state'}" string="State" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_notebook_observation_action" model="ir.actions.act_window">
+        <field name="name">Notebook observations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.notebook.observation</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="context">{
+            "hide_numeric": False,
+            "hide_behaviour": False,
+            "hide_calculated": False,
+        }</field>
+        <field name="view_id" ref="education_notebook_observation_view_tree"/>
+    </record>
+
+    <menuitem id="education_notebook_observation_menu"
+              parent="education_evaluation_notebook.education_evaluation_menuitem"
+              action="education_notebook_observation_action" />
+</odoo>
