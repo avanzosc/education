@@ -79,7 +79,7 @@
         <field name="name">Faculty</field>
         <field name="res_model">hr.employee</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="view_mode">kanban,tree</field>
         <field name="domain" eval="[('edu_type_id', '=', ref('hr_education.teaching_edu_type'))]" />
         <field name="context">{}</field>
         <field name="view_id" eval="False"/>
