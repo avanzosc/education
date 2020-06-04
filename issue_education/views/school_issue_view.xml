@@ -7,13 +7,13 @@
                 <field name="issue_date" />
                 <field name="name" />
                 <field name="school_id" invisible="True" />
-                <field name="school_issue_type_id" />
-                <field name="student_id" />
-                <field name="reported_id" />
-                <field name="site_id" />
-                <field name="group_id" />
-                <field name="education_schedule_id" />
-                <field name="proof_id" />
+                <field name="school_issue_type_id" options="{'no_open': True}" />
+                <field name="student_id" options="{'no_open': True}"/>
+                <field name="reported_id" options="{'no_open': True}" />
+                <field name="site_id" options="{'no_open': True}" />
+                <field name="group_id" options="{'no_open': True}" />
+                <field name="education_schedule_id" options="{'no_open': True}" />
+                <field name="proof_id" options="{'no_open': True}" />
                 <field name="proof_state" />
             </tree>
         </field>
@@ -82,20 +82,23 @@
                                    options="{'no_create': True, 'no_open': True}"/>
                             <field name="school_issue_type_id"
                                    string="Issue Type"
-                                   domain="[('school_id','=',school_id)]" />
+                                   domain="[('school_id','=',school_id)]"
+                                   options="{'no_open': True}" />
                             <field name="issue_type_id" invisible="1"/>
                             <field name="affect_to" invisible="1"/>
                             <field name="student_id"
-                                   attrs="{'invisible': [('affect_to', '!=', 'student')], 'required': [('affect_to', '=', 'student')]}"/>
-                            <field name="site_id" />
+                                   attrs="{'invisible': [('affect_to', '!=', 'student')], 'required': [('affect_to', '=', 'student')]}"
+                                   context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}"/>
+                            <field name="site_id" options="{'no_open': True}" />
                             <field name="requires_imparting_group" invisible="1"/>
                             <field name="group_id"
-                                   attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"/>
+                                   attrs="{'invisible': [('requires_imparting_group', '=', False)], 'required': [('requires_imparting_group', '=', True)]}"
+                                   options="{'no_open': True, 'no_create': True}"/>
                             <field name="claim_id" />
                         </group>
                         <group>
                             <field name="issue_date" />
-                            <field name="reported_id" />
+                            <field name="reported_id" options="{'no_open': True, 'no_create': True}"/>
                             <field name="requires_justification" invisible="1"/>
                             <field name="proof_state" readonly="True" />
                             <field name="proof_id"
