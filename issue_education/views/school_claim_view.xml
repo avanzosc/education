@@ -6,11 +6,11 @@
             <tree>
                 <field name="issue_date" />
                 <field name="name" />
-                <field name="school_issue_id" />
-                <field name="school_issue_type_id" />
-                <field name="education_schedule_id" />
-                <field name="reported_id" />
-                <field name="student_id" />
+                <field name="school_issue_id" options="{'no_open': True}" />
+                <field name="school_issue_type_id" options="{'no_open': True}" />
+                <field name="education_schedule_id" options="{'no_open': True}" />
+                <field name="reported_id" options="{'no_open': True}" />
+                <field name="student_id" options="{'no_open': True}"/>
                 <field name="state" />
             </tree>
         </field>
@@ -71,22 +71,23 @@
                     <group>
                         <group>
                             <field name="reported_id"
-                                   options="{'no_create': True}" />
+                                   options="{'no_create': True, 'no_open': True}" />
                             <field name="issue_date" />
                             <field name="school_issue_type_id"
                                    string="Issue Type"
-                                   options="{'no_create': True}" />
+                                   options="{'no_create': True, 'no_open': True}" />
                         </group>
                         <group>
                             <field name="school_id" invisible="True" />
                             <field name="student_id"
                                    options="{'no_create': True}"
-                                   domain="[('current_center_id','=',school_id)]"/>
+                                   domain="[('current_center_id','=',school_id)]"
+                                   context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}"/>
                             <field name="education_group_id"
-                                   options="{'no_create': True}"
+                                   options="{'no_create': True, 'no_open': True}"
                                    domain="[('center_id','=',school_id)]" />
                             <field name="education_schedule_id"
-                                   options="{'no_create': True}"
+                                   options="{'no_create': True, 'no_open': True}"
                                    domain="[('center_id','=',school_id)]"/>
                         </group>
                     </group>
