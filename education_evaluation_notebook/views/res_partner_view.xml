@@ -15,4 +15,19 @@
         </field>
     </record>
 
+    <record id="res_partner_education_minimal_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="education.res_partner_education_minimal_view_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="button_show_student_records"
+                        icon="fa-graduation-cap"
+                        attrs="{'invisible':[('academic_record_count','=',0)]}">
+                    <field name="academic_record_count" string="Academic Records" widget="statinfo" />
+                </button>
+            </div>
+        </field>
+    </record>
+
 </odoo>

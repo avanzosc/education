@@ -8,13 +8,17 @@
                     <button name="action_generate_record"
                             string="Create Academic Records" type="object"
                             states="draft,progress" />
-                    <button name="action_marking" string="Publish"
+                    <button name="action_marking" string="Publish Exam"
                             type="object" states="draft" />
                     <button name="action_graded" string="Mark Graded"
                             type="object" states="progress" />
+                    <button name="action_marking" string="Back To Marking"
+                            type="object" states="done" />
                     <button name="action_close_exam" string="Close Exam"
                             type="object" states="done"
                             confirm="Are you sure you want to close the exam?" />
+                    <button name="action_draft" string="Back To Draft"
+                            type="object" states="progress,done" />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>

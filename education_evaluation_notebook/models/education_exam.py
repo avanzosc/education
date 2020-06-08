@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -41,7 +41,7 @@ class EducationExam(models.Model):
                    ("progress", "Marking"),
                    ("done", "Graded"),
                    ("closed", "Closed"), ],
-        default="draft", track_visibility="onchange")
+        default="draft", track_visibility="onchange", string="State")
     second_chance_exam_id = fields.Many2one(
         comodel_name="education.exam", string="Second-chance Exam Of")
     second_chance_exam_ids = fields.One2many(
@@ -107,10 +107,12 @@ class EducationExam(models.Model):
 
     @api.multi
     def action_marking(self):
-        for exam in self.filtered(lambda e: e.state == "draft"):
-            if not exam.date:
-                raise ValidationError(
-                    _('You must set an exam date.'))
+        for exam in self.filtered(lambda e: e.state in ["draft", "done"]):
+            if exam.state == "draft":
+                if not exam.date:
+                    raise ValidationError(
+                        _('You must set an exam date.'))
+                exam.action_generate_record()
             exam.state = "progress"
 
     @api.multi
@@ -131,3 +133,11 @@ class EducationExam(models.Model):
     def action_draft(self):
         for exam in self.filtered(lambda e: e.state != "closed"):
             exam.state = "draft"
+
+    @api.multi
+    def unlink(self):
+        for exam in self:
+            if exam.state != "draft":
+                raise UserError(
+                    _("You can only delete an exam in draft state."))
+        return super(EducationExam, self).unlink()

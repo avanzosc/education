@@ -11,6 +11,7 @@ class EducationNotebookLine(models.Model):
     _name = "education.notebook.line"
     _description = "Education Notebook Line"
     _rec_name = "description"
+    _order = "schedule_id,eval_type"
 
     def default_eval_type(self):
         default_dict = self.env[
@@ -136,7 +137,8 @@ class EducationNotebookLine(models.Model):
     @api.depends("record_ids")
     def _compute_record_count(self):
         for line in self:
-            line.record_count = len(line.record_ids)
+            line.record_count = len(
+                line.record_ids.filtered(lambda r: not r.exam_id))
 
     @api.multi
     @api.depends("competence_id", "competence_id.evaluation_check",

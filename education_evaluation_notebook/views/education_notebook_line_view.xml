@@ -30,8 +30,7 @@
         </field>
     </record>
 
-    <record id="education_notebook_line_view_search"
-        model="ir.ui.view">
+    <record id="education_notebook_line_view_search" model="ir.ui.view">
         <field name="model">education.notebook.line</field>
         <field name="arch" type="xml">
             <search>
@@ -148,6 +147,19 @@
                                     <button name="action_generate_record" icon="fa-book"
                                             string="Create Academic Records" type="object"
                                             states="draft,progress"/>
+                                    <button name="button_show_records" icon="fa-th"
+                                            string="Open Academic Records" type="object" />
+                                    <button name="action_marking" icon="fa-arrow-circle-o-up"
+                                            string="Publish Exam" type="object" states="draft" />
+                                    <button name="action_graded" icon="fa-arrow-circle-right"
+                                            string="Mark Graded" type="object" states="progress" />
+                                    <button name="action_marking" icon="fa-arrow-circle-o-up"
+                                            string="Back To Marking" type="object" states="done" />
+                                    <button name="action_close_exam" icon="fa-close"
+                                            string="Close Exam" type="object" states="done"
+                                            confirm="Are you sure you want to close the exam?" />
+                                    <button name="action_draft" icon="fa-arrow-circle-left"
+                                            string="Back To Draft" type="object" states="closed" />
                                 </tree>
                             </field>
                         </page>

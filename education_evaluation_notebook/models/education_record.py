@@ -7,6 +7,13 @@ from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 from .education_academic_year_evaluation import EVAL_TYPE
 
+RECORD_STATE = [
+    ("not_evaluated", "Not Evaluated"),
+    ("exempt", "Exempt"),
+    ("not_taken", "Not Taken"),
+    ("assessed", "Assessed"),
+]
+
 
 class EducationRecord(models.Model):
     _name = "education.record"
@@ -66,7 +73,7 @@ class EducationRecord(models.Model):
         string="Evaluation Season", store=True)
     student_id = fields.Many2one(
         comodel_name="res.partner", string="Student", required=True)
-    numeric_mark = fields.Float(string="Numeric Mark")
+    numeric_mark = fields.Float(string="Official Mark")
     behaviour_mark_id = fields.Many2one(
         comodel_name="education.mark.behaviour", string="Behaviour Mark")
     calculated_numeric_mark = fields.Float(
@@ -86,6 +93,15 @@ class EducationRecord(models.Model):
     child_record_count = fields.Integer(
         compute="_compute_child_record_count",
         string="# Child Records", store=True)
+    state = fields.Selection(
+        selection=RECORD_STATE, string="Record State", default="not_evaluated")
+
+    @api.multi
+    @api.onchange("numeric_mark", "behaviour_mark_id")
+    def _onchange_numeric_mark(self):
+        for record in self:
+            if record.numeric_mark != 0.0 or record.behaviour_mark_id:
+                record.state = "assessed"
 
     @api.multi
     @api.depends("student_id", "eval_type", "n_line_id",
@@ -112,13 +128,16 @@ class EducationRecord(models.Model):
             record.child_record_count = len(record.child_record_ids)
 
     @api.multi
-    @api.depends("numeric_mark")
+    @api.depends("numeric_mark", "n_line_id", "n_line_id.competence_id",
+                 "n_line_id.competence_id.eval_mode", "state")
     def _compute_mark_id(self):
         mark_obj = self.env["education.mark.numeric"]
         for record in self:
-            record.mark_id = mark_obj.search([
-                ("initial_mark", "<=", record.numeric_mark),
-                ("final_mark", ">=", record.numeric_mark)], limit=1)
+            if (record.state != "exempt" and
+                    record.competence_eval_mode != "behaviour"):
+                record.mark_id = mark_obj.search([
+                    ("initial_mark", "<=", record.numeric_mark),
+                    ("final_mark", ">=", record.numeric_mark)], limit=1)
 
     @api.multi
     def button_show_records(self):
@@ -146,22 +165,15 @@ class EducationRecord(models.Model):
                 record.n_line_id.eval_percent)
 
     @api.multi
-    @api.depends("numeric_mark")
-    def _compute_mark_code(self):
-        mark_obj = self.env["education.mark.numeric"]
-        for record in self:
-            record.mark_id = mark_obj.search([
-                ("initial_mark", "<=", record.numeric_mark),
-                ("final_mark", ">=", record.numeric_mark)], limit=1)
-
-    @api.multi
     @api.depends("child_record_ids", "child_record_ids.numeric_mark",
-                 "child_record_ids.exam_eval_percent")
+                 "child_record_ids.exam_eval_percent",
+                 "child_record_ids.state")
     def _compute_generate_marks(self):
         for record in self:
             record.calculated_numeric_mark = sum(
                 [x.numeric_mark * x.exam_eval_percent / 100
-                 for x in record.child_record_ids])
+                 for x in record.child_record_ids.filtered(
+                     lambda r: r.state in ["assessed", "not_taken"])])
 
     @api.constrains("competence_id", "numeric_mark")
     def _check_numeric_mark_range(self):
@@ -172,3 +184,11 @@ class EducationRecord(models.Model):
                 raise ValidationError(
                     _("Numeric mark must be between {} and {}").format(
                         min_mark, max_mark))
+
+    @api.multi
+    def action_copy_calculated_mark(self):
+        for record in self.filtered(lambda r: r.state == "not_evaluated"):
+            record.write({
+                "numeric_mark": record.calculated_numeric_mark,
+                "state": "assessed",
+            })
