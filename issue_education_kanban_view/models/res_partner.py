@@ -12,8 +12,8 @@ class ResPartner(models.Model):
         compute='_compute_student_issue_ids', compute_sudo=True)
 
     def _compute_student_issue_ids(self):
+        context = self.env.context
         for student in self:
-            context = self.env.context
             cond = []
             school_id = context.get('school_id', student.current_center_id.id)
             schedule_id = context.get('education_schedule_id', False)

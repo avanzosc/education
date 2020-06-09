@@ -29,3 +29,4 @@ class TestIssueEducationKanbanCommon(TestIssueEducationCommon):
             cls.schedule.write({
                 'academic_year_id': current_year.id,
             })
+        cls.student.update_current_group_id()
