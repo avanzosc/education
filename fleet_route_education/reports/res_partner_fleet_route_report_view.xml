@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_fleet_route_report_view_tree" model="ir.ui.view">
+        <field name="model">res.partner.fleet.route.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_id" />
+                <field name="center_id" />
+                <field name="course_id" />
+                <field name="going_stop_id" />
+                <field name="coming_stop_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_fleet_route_report_view_search" model="ir.ui.view">
+        <field name="model">res.partner.fleet.route.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="student_id" />
+                <field name="center_id" />
+                <field name="course_id" />
+                <field name="going_stop_id" />
+                <field name="coming_stop_id" />
+                <group expand="0" string="Group By">
+                    <filter name="groupby_student" string="Student"
+                            context="{'group_by':'student_id'}" />
+                    <filter name="groupby_center" string="Education Center"
+                            context="{'group_by':'center_id'}" />
+                    <filter name="groupby_course" string="Course"
+                            context="{'group_by':'course_id'}" />
+                    <filter name="groupby_going_stop" string="Going Stop"
+                            context="{'group_by':'going_stop_id'}" />
+                    <filter name="groupby_coming_stop" string="Coming Stop"
+                            context="{'group_by':'coming_stop_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="res_partner_fleet_route_report_action" model="ir.actions.act_window">
+        <field name="name">Passenger List</field>
+        <field name="res_model">res.partner.fleet.route.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="res_partner_fleet_route_report_menuitem"
+              action="res_partner_fleet_route_report_action"
+              parent="fleet_route.fleet_route_base_menuitem"
+              sequence="1000" />
+</odoo>
