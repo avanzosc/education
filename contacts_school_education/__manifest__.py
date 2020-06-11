@@ -3,7 +3,7 @@
 
 {
     "name": "Contacts for Education Centers",
-    "version": "12.0.2.0.0",
+    "version": "12.0.3.0.0",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -22,5 +22,6 @@
         "views/education_course_change_view.xml",
         "views/res_partner_view.xml",
     ],
+    "post_init_hook": "post_init_hook",
     "installable": True,
 }

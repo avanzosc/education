@@ -26,16 +26,11 @@ class ResPartner(models.Model):
         column1='student_id', column2='group_id', string='Education Groups',
         readonly=True, domain="[('group_type_id.type', '=', 'official')]")
     current_group_id = fields.Many2one(
-        comodel_name='education.group', string='Current Group',
-        compute='_compute_current_group_id')
+        comodel_name='education.group', string='Current Group')
     current_center_id = fields.Many2one(
-        comodel_name='res.partner', string='Current Education Center',
-        compute='_compute_current_group_id',
-        search='_search_current_center_id')
+        comodel_name='res.partner', string='Current Education Center')
     current_course_id = fields.Many2one(
-        comodel_name='education.course', string='Current Course',
-        compute='_compute_current_group_id',
-        search='_search_current_course_id')
+        comodel_name='education.course', string='Current Course')
     childs_current_center_ids = fields.Many2many(
         comodel_name='res.partner',
         string='Children\'s Current Education Centers',
@@ -53,45 +48,20 @@ class ResPartner(models.Model):
         string="Classroom Count", compute="_compute_classroom_count",
         store=True)
 
-    @api.depends('student_group_ids')
-    def _compute_current_group_id(self):
-        today = fields.Date.context_today(self)
-        current_year = self.env['education.academic_year'].search([
-            ('date_start', '<=', today), ('date_end', '>=', today)], limit=1)
+    @api.multi
+    def update_current_group_id(self):
         for partner in self.filtered(
-                lambda p: p.educational_category == 'student'):
-            groups = partner.student_group_ids.filtered(
+                lambda p: p.educational_category == 'student' and
+                p.student_group_ids):
+            group = partner.student_group_ids.filtered(
                 lambda g: g.group_type_id.type == 'official' and
-                g.academic_year_id == current_year)
-            partner.current_group_id = groups[:1]
-            partner.current_center_id = partner.current_group_id.center_id
-            partner.current_course_id = partner.current_group_id.course_id
-
-    @api.multi
-    def _search_current_center_id(self, operator, value):
-        if operator in ('=', 'in'):
-            centers = self.browse(value)
-        else:
-            centers = self.search([
-                (self._rec_name, operator, value),
-                ('educational_category', '=', 'school'),
-            ])
-        groups = self._search_current_groups().filtered(
-            lambda g: g.center_id in centers)
-        return [('id', 'in', groups.mapped('student_ids').ids)]
-
-    @api.multi
-    def _search_current_course_id(self, operator, value):
-        course_obj = self.env['education.course']
-        if operator in ('=', 'in'):
-            courses = course_obj.browse(value)
-        else:
-            courses = course_obj.search([
-                (course_obj._rec_name, operator, value),
-            ])
-        groups = self._search_current_groups().filtered(
-            lambda g: g.course_id in courses)
-        return [('id', 'in', groups.mapped('student_ids').ids)]
+                g.academic_year_id.current)[:1]
+            if group:
+                partner.write({
+                    "current_group_id": group.id,
+                    "current_center_id": group.center_id.id,
+                    "current_course_id": group.course_id.id,
+                })
 
     @api.depends('child_ids', 'child_ids.current_group_id')
     def _compute_child_current_group_ids(self):

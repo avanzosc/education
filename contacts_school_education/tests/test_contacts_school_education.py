@@ -11,6 +11,7 @@ from odoo.exceptions import ValidationError
 class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
 
     def test_search(self):
+        self.student.update_current_group_id()
         self.assertEquals(self.student.current_group_id, self.group)
         self.assertEquals(self.family, self.student.parent_id)
         students = self.partner_model.search([
