@@ -305,3 +305,15 @@ msgstr ""
 msgid "lines of wizard for generate notebook observations"
 msgstr ""
 
+#. module: education_notebook_observation
+#: model:ir.actions.act_window,name:education_notebook_observation.education_notebook_observation_action
+#: model:ir.ui.menu,name:education_notebook_observation.education_notebook_observation_menu
+msgid "Requested notebook observations"
+msgstr ""
+
+#. module: education_notebook_observation
+#: model:ir.actions.act_window,name:education_notebook_observation.education_notebook_observation_action2
+#: model:ir.ui.menu,name:education_notebook_observation.education_notebook_observation_menu2
+msgid "Notebook observations to make"
+msgstr ""
+
