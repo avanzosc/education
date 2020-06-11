@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* fleet_route_education
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-11 10:47+0000\n"
+"PO-Revision-Date: 2020-06-11 10:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__bus_passenger
+msgid "Bus Passenger"
+msgstr "Usa autobus"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_stop_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming Stop"
+msgstr "Parada de vuelta"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Course"
+msgstr "Curso"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_course_id
+msgid "Current Course"
+msgstr "Curso actual"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_center_id
+msgid "Current Education Center"
+msgstr "Centro actual"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_group_id
+msgid "Current Group"
+msgstr "Grupo actual"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__center_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Education Center"
+msgstr "Centro educativo"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__course_id
+msgid "Education Course"
+msgstr "Curso"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_stop_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going Stop"
+msgstr "Parada de ida"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+msgid "Group"
+msgstr "Grupo"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__id
+msgid "ID"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_res_partner_fleet_route_report
+msgid "Partner Route Stops Report"
+msgstr "Informe de paradas"
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_fleet_route_stop_passenger
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__student_id
+msgid "Passenger"
+msgstr "Pasajero"
+
+#. module: fleet_route_education
+#: model:ir.actions.act_window,name:fleet_route_education.res_partner_fleet_route_report_action
+#: model:ir.ui.menu,name:fleet_route_education.res_partner_fleet_route_report_menuitem
+msgid "Passenger List"
+msgstr "Lista de pasajeros"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Student"
+msgstr "Alumno"
+
