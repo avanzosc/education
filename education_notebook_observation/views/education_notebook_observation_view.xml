@@ -49,20 +49,30 @@
     </record>
 
     <record id="education_notebook_observation_action" model="ir.actions.act_window">
-        <field name="name">Notebook observations</field>
+        <field name="name">Requested notebook observations</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">education.notebook.observation</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
-        <field name="context">{
-            "hide_numeric": False,
-            "hide_behaviour": False,
-            "hide_calculated": False,
-        }</field>
+        <field name="domain">[('state', '=', 'included')]</field>
         <field name="view_id" ref="education_notebook_observation_view_tree"/>
     </record>
 
     <menuitem id="education_notebook_observation_menu"
               parent="education_evaluation_notebook.education_evaluation_menuitem"
               action="education_notebook_observation_action" />
+
+    <record id="education_notebook_observation_action2" model="ir.actions.act_window">
+        <field name="name">Notebook observations to make</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.notebook.observation</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('state', '=', 'pending')]</field>
+        <field name="view_id" ref="education_notebook_observation_view_tree"/>
+    </record>
+
+    <menuitem id="education_notebook_observation_menu2"
+              parent="education_evaluation_notebook.education_evaluation_menuitem"
+              action="education_notebook_observation_action2" />
 </odoo>

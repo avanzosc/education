@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Education Notebook Observation",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.1.0",
     "depends": [
         "calendar_school",
         "contacts_school",

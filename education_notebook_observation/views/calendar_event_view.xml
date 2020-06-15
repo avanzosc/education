@@ -11,11 +11,11 @@
                     <button name="%(action_wiz_generate_notebook_observation)d"
                         string="Generate notebook observations"
                         type="action"
-                        groups="education.education_responsible"/>
+                        groups="education.education_user"/>
                     <button name="%(action_wiz_send_notebook_observation_email)d"
                         string="Send email to teachers requesting notebook observations"
                         type="action"
-                        groups="education.education_responsible"/>
+                        groups="education.education_user"/>
                     <field name="calendar_event_notebook_observation_ids" nolabel="1" >
                         <tree>
                             <field name="observ_date" invisible="1"/>
