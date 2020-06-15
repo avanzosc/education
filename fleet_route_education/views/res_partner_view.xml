@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_fleet_view_tree" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="fleet_route_school.res_partner_fleet_view_tree" />
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <field name="current_center_id" />
+                <field name="current_course_id" />
+            </field>
+        </field>
+    </record>
+</odoo>

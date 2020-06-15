@@ -14,8 +14,10 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/fleet_route_education_security.xml",
         "reports/res_partner_fleet_route_report_view.xml",
         "views/fleet_route_stop_view.xml",
+        "views/res_partner_view.xml",
     ],
     "installable": True,
 }
