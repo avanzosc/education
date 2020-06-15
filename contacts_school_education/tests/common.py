@@ -14,10 +14,21 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
         cls.group_model = cls.env["education.group"]
         cls.classroom_model = cls.env["education.classroom"]
         cls.change_model = cls.env["education.course.change"]
-        cls.school = cls.env["res.partner"].create({
-            "name": "School Test",
-            "educational_category": "school",
+        task_type_model = cls.env["education.task_type"]
+        task_type = task_type_model.search([
+            ("education_code", "=", "0120"),
+        ])
+        if not task_type:
+            task_type.create({
+                "education_code": "0120",
+                "description": "TEST",
+            })
+        cls.language = cls.env["education.language"].create({
+            "education_code": "TST_LANG",
+            "description": "Test Language",
         })
+        cls.edu_partner.educational_category = "school"
+        cls.edu_partner2 = cls.edu_partner.copy()
         cls.edu_course.field_id = cls.edu_field
         cls.edu_course2 = cls.env["education.course"].create({
             "education_code": "CRS2",
@@ -50,13 +61,13 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
             "description": "Test Group",
             "group_type_id": cls.group_type.id,
             "academic_year_id": cls.academic_year.id,
-            "center_id": cls.school.id,
+            "center_id": cls.edu_partner.id,
             "course_id": cls.edu_course.id,
             "level_id": cls.edu_level.id,
             "student_ids": [(6, 0, cls.student.ids)],
         })
         cls.schedule = cls.schedule_model.create({
-            "center_id": cls.school.id,
+            "center_id": cls.edu_partner.id,
             "academic_year_id": cls.academic_year.id,
             "teacher_id": cls.teacher.id,
             "task_type_id": cls.edu_task_type.id,

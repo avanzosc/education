@@ -3,7 +3,7 @@
 
 {
     "name": "Contacts for Education Centers",
-    "version": "12.0.3.0.0",
+    "version": "12.0.4.0.0",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -16,6 +16,7 @@
         "partner_language_skill",
     ],
     "data": [
+        "data/education_task_type_data.xml",
         "security/ir.model.access.csv",
         "security/contacts_school_education_rules.xml",
         "reports/education_group_student_progenitor_report_view.xml",

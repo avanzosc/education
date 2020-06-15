@@ -1,7 +1,8 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -49,13 +50,21 @@ class ResPartner(models.Model):
         store=True)
 
     @api.multi
+    def get_current_group(self):
+        self.ensure_one()
+        if self.educational_category != "student":
+            raise UserError(_("Only students can have education groups."))
+        group = self.student_group_ids.filtered(
+            lambda g: g.group_type_id.type == "official" and
+            g.academic_year_id.current)[:1]
+        return group
+
+    @api.multi
     def update_current_group_id(self):
         for partner in self.filtered(
-                lambda p: p.educational_category == 'student' and
+                lambda p: p.educational_category == "student" and
                 p.student_group_ids):
-            group = partner.student_group_ids.filtered(
-                lambda g: g.group_type_id.type == 'official' and
-                g.academic_year_id.current)[:1]
+            group = partner.get_current_group()
             if group:
                 partner.write({
                     "current_group_id": group.id,

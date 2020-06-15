@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="education_task_type_0120" model="education.task_type"
+            forcecreate="True">
+        <field name="education_code">0120</field>
+        <field name="description">Hora de impartición del currículo</field>
+        <field name="type">L</field>
+        <field name="tutoring">2</field>
+    </record>
+</odoo>
