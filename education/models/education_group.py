@@ -118,17 +118,33 @@ class EducationGroup(models.Model):
         return action_dict
 
     @api.multi
+    def _get_next_year_group(self, next_year):
+        groups = self.env["education.group"]
+        for group in self:
+            next_group = self.search([
+                ("education_code", "=", group.education_code),
+                ("center_id", "=", group.center_id.id),
+                ("academic_year_id", "=", next_year.id),
+            ])
+            if not next_group:
+                next_group = group.copy(default={
+                    'academic_year_id': next_year.id,
+                    'education_code': group.education_code,
+                })
+            groups |= next_group
+        return groups
+
+    @api.multi
     def create_next_academic_year(self):
+        next_groups = self.env["education.group"]
         for record in self:
             next_year = record.academic_year_id._get_next()
             if next_year:
                 try:
-                    record.copy(default={
-                        'academic_year_id': next_year.id,
-                        'education_code': record.education_code,
-                    })
+                    next_groups |= record._get_next_year_group(next_year)
                 except Exception:
                     pass
+        return next_groups
 
 
 class EducationGroupTeacher(models.Model):

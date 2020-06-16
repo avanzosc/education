@@ -19,6 +19,7 @@
         "security/education_groups.xml",
         "security/education_rules.xml",
         "security/ir.model.access.csv",
+        "data/education_employee_data.xml",
         "reports/education_group_report_view.xml",
         "reports/education_group_teacher_report_view.xml",
         "reports/education_group_student_report_view.xml",
