@@ -30,6 +30,30 @@
                     </field>
                 </page>
             </page>
+            <field name="center_id" position="before">
+                <field name="eval_type" />
+            </field>
+        </field>
+    </record>
+    <record id="calendar_event_view_tree" model="ir.ui.view">
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar_school.calendar_event_view_tree" />
+        <field name="arch" type="xml">
+            <field name="categ_ids" position="before">
+                <field name="eval_type" />
+            </field>
+        </field>
+    </record>
+    <record id="calendar_event_view_search" model="ir.ui.view">
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar_school.calendar_event_view_search" />
+        <field name="arch" type="xml">
+            <field name="center_id" position="before">
+                <field name="eval_type" />
+            </field>
+            <filter name="group_center" position="after">
+                <filter string="Evaluation Season" name="group_eval_type" domain="[]" context="{'group_by':'eval_type'}"/>
+            </filter>
         </field>
     </record>
 </odoo>
