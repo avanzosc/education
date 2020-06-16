@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="True">
+    <record id="hr_employee_anonymous" model="hr.employee"
+            forcecreate="True">
+        <field name="name">Anonymous Teacher</field>
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>
