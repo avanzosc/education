@@ -18,7 +18,7 @@ class TestEducationCommon(common.SavepointCase):
         cls.schedule_model = cls.env['education.schedule']
         cls.attendance_model = cls.env['resource.calendar.attendance']
         cls.date_start = cls.today.replace(
-            year=cls.today.year + 10, month=9, day=1)
+            year=cls.today.year - 1, month=9, day=1)
         cls.date_end = cls.date_start.replace(
             year=cls.date_start.year + 1, month=6, day=30)
         cls.academic_year = cls.academic_year_model.create({
@@ -81,6 +81,11 @@ class TestEducationCommon(common.SavepointCase):
             'education_code': 'TEST',
             'description': 'Test Task Type',
             'type': 'L',
+        })
+        cls.edu_group_type = cls.env['education.group_type'].create({
+            'education_code': 'TEST',
+            'description': 'Test Group Type',
+            'type': 'official',
         })
         cls.edu_lang = cls.env['education.language'].create({
             'education_code': '00',

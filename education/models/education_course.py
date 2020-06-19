@@ -8,6 +8,7 @@ class EducationCourse(models.Model):
     _name = 'education.course'
     _inherit = 'education.data'
     _description = 'Course'
+    _order = "plan_id,level_id,description"
 
     level_id = fields.Many2one(
         comodel_name='education.level', string='Education Level',
