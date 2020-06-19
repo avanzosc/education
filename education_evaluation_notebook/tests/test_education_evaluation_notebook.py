@@ -268,6 +268,20 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         create_eval.button_create_evaluation()
         self.assertEquals(len(self.academic_year.evaluation_ids), 4)
 
+    def test_create_evaluations(self):
+        self.assertFalse(self.academic_year.evaluation_ids)
+        create_eval_dict = self.create_eval_model.default_get(
+            self.create_eval_model.fields_get_keys())
+        create_eval_dict.update({
+            "academic_year_id": self.academic_year.id,
+            "evaluation_number": 3,
+            "final_evaluation": False,
+        })
+        self.assertEquals(len(create_eval_dict.get("line_ids")), 1)
+        create_eval = self.create_eval_model.create(create_eval_dict)
+        create_eval.button_create_evaluation()
+        self.assertEquals(len(self.academic_year.evaluation_ids), 3)
+
     def test_course_change(self):
         self.assertFalse(self.course_change.eval_count)
         self.assertFalse(self.course_change.next_eval_count)

@@ -72,6 +72,15 @@ class CreateAcademicYearEvaluation(models.TransientModel):
             res.update({
                 "line_ids": line_ids,
             })
+        if "active_model" not in self.env.context:
+            course_changes = self.env["education.course.change"].search([])
+            res.update({
+                "line_ids": [
+                    (0, 0, {"center_id": c.next_school_id.id,
+                            "course_id": c.next_course_id.id},
+                     ) for c in course_changes],
+                "show_lines": False,
+            })
         return res
 
     @api.multi
@@ -94,6 +103,12 @@ class CreateAcademicYearEvaluation(models.TransientModel):
         action = self.env.ref(
             "education.action_education_academic_year_evaluation")
         action_dict = action and action.read()[0] or {}
+        action_dict["context"] = safe_eval(
+            action_dict.get("context", "{}"))
+        action_dict["context"].update({
+            "default_academic_year_id": academic_year.id,
+            "search_default_groupby_eval_type": True,
+        })
         domain = expression.AND([
             [("academic_year_id", "=", academic_year.id),
              ("center_id", "in", self.mapped("line_ids.center_id").ids),

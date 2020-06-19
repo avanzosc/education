@@ -3,7 +3,7 @@
 
 {
     "name": "Education Evaluation Notebook",
-    "version": "12.0.2.0.0",
+    "version": "12.0.3.0.0",
     "category": "Education",
     "depends": [
         "education",
@@ -33,9 +33,9 @@
         "views/education_notebook_line_view.xml",
         "views/education_notebook_template_view.xml",
         "views/education_record_view.xml",
-        "views/education_notebook_menu_view.xml",
         "views/res_partner_view.xml",
         "wizards/create_academic_year_evaluation_view.xml",
+        "views/education_notebook_menu_view.xml",
     ],
     "installable": True,
 }

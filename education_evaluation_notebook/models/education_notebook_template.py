@@ -16,7 +16,7 @@ class EducationNotebookTemplate(models.Model):
 
     education_center_id = fields.Many2one(
         comodel_name="res.partner", string="Education Center",
-        domain="[('educational_category', '=', 'school')]")
+        domain="[('educational_category', '=', 'school')]", required=True)
     parent_center_id = fields.Many2one(
         comodel_name="res.partner", string="Related Company",
         related="education_center_id.parent_id", store=True)
@@ -24,6 +24,8 @@ class EducationNotebookTemplate(models.Model):
         comodel_name="education.course", string="Course")
     subject_id = fields.Many2one(
         comodel_name="education.subject", string="Education Subject")
+    task_type_id = fields.Many2one(
+        comodel_name="education.task_type", string="Task Type", required=True)
     eval_type = fields.Selection(
         selection=EVAL_TYPE, string="Evaluation Season",
         default=default_eval_type, required=True)
@@ -34,16 +36,18 @@ class EducationNotebookTemplate(models.Model):
     competence_type_id = fields.Many2one(
         comodel_name="education.competence.type", string="Competence Type")
     name = fields.Char(string="Description", required=True)
-    eval_percent = fields.Float(string="Percent (%)", default=100.0)
+    eval_percent = fields.Float(
+        string="Percent (%)", default=100.0, group_operator="max")
 
     def find_template_line(
-            self, center=False, course=False, subject=False, eval_type=False):
+            self, center, task_type, course=False, subject=False,
+            eval_type=False):
         return self.search([
-            '|', ('education_center_id', '=', center.id),
-            ('education_center_id', '=', False),
-            '|', ('course_id', '=', course.id), ('course_id', '=', False),
-            '|', ('subject_id', '=', subject.id), ('subject_id', '=', False),
-            ('eval_type', '=', eval_type)
+            ("education_center_id", "=", center.id),
+            ("task_type_id", "=", task_type.id),
+            "|", ("course_id", "=", course.id), ("course_id", "=", False),
+            "|", ("subject_id", "=", subject.id), ("subject_id", "=", False),
+            ("eval_type", "=", eval_type)
         ])
 
     @api.multi
