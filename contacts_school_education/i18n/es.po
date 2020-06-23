@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-02 07:38+0000\n"
-"PO-Revision-Date: 2020-06-02 07:38+0000\n"
+"POT-Creation-Date: 2020-06-23 17:05+0000\n"
+"PO-Revision-Date: 2020-06-23 17:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -82,6 +82,7 @@ msgstr "Contacto"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
 msgid "Course"
 msgstr "Curso"
 
@@ -134,6 +135,12 @@ msgstr "Curso y centro actual"
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_center_id
 msgid "Current Education Center"
 msgstr "Centro actual"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_level_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_level_id
+msgid "Current Education Level"
+msgstr "Nivel actual"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_group_id
@@ -200,6 +207,7 @@ msgid "Education Course (Student)"
 msgstr "Curso (alumno)"
 
 #. module: contacts_school_education
+#: model:ir.model,name:contacts_school_education.model_education_group
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__group_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 msgid "Education Group"
@@ -216,6 +224,7 @@ msgstr "Grupos educativos"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__level_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
 msgid "Education Level"
 msgstr "Nivel"
 
@@ -234,7 +243,7 @@ msgstr "Tipo de grupo"
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__gender
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
 msgid "Gender"
-msgstr "Género"
+msgstr "Sexo"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
@@ -349,6 +358,13 @@ msgstr "Grupos no oficiales"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 msgid "Official Groups"
 msgstr "Grupos oficiales"
+
+#. module: contacts_school_education
+#: code:addons/contacts_school_education/models/res_partner.py:56
+#: code:addons/contacts_school_education/models/res_partner.py:58
+#, python-format
+msgid "Only students can have education groups."
+msgstr "Solo los alumnos pueden tener grupo educativo."
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
