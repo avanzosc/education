@@ -53,4 +53,4 @@ class CalendarAttendee(models.Model):
     _inherit = 'calendar.attendee'
 
     center_id = fields.Many2one(
-        string='Educational center', related='event_id.center_id', store=True)
+        string='Education Center', related='event_id.center_id', store=True)
