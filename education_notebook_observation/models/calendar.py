@@ -2,6 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import models, fields
 
+from odoo.addons.education_evaluation_notebook.models.\
+    education_academic_year_evaluation import EVAL_TYPE
+
 
 class CalendarEvent(models.Model):
     _inherit = 'calendar.event'
@@ -9,6 +12,8 @@ class CalendarEvent(models.Model):
     calendar_event_notebook_observation_ids = fields.One2many(
         string='Notebook observations', inverse_name='calendar_event_id',
         comodel_name='education.notebook.observation')
+    eval_type = fields.Selection(
+        selection=EVAL_TYPE, string="Evaluation Season")
 
     def generate_notebook_observations(self, notebook_lines):
         observation_obj = self.env['education.notebook.observation']

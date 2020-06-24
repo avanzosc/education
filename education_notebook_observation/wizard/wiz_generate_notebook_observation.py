@@ -24,7 +24,9 @@ class WizGenerateNotebookObservation(models.TransientModel):
             cond = [('academic_year_id', '=', school_year_id.id),
                     ('student_id', '=', calendar.student_id.id),
                     ('n_line_id.competence_id', '!=', False)]
-            records = self.env['education.record'].search(cond)
+            if calendar.eval_type:
+                cond.append(('n_line_id.eval_type', '=', calendar.eval_type))
+            records = self.env['education.record'].sudo().search(cond)
             if records:
                 lines = records.mapped('n_line_id').filtered(
                     lambda x: x.competence_id.evaluation_check)
@@ -45,8 +47,9 @@ class WizGenerateNotebookObservation(models.TransientModel):
         active_id = context.get('active_id', []) or []
         calendar = self.env['calendar.event'].browse(active_id)
         if calendar and self.line_ids:
-            notebook_lines = self.line_ids.mapped('education_notebook_line_id')
-            calendar.generate_notebook_observations(notebook_lines)
+            notebook_lines = self.sudo().line_ids.mapped(
+                'education_notebook_line_id')
+            calendar.sudo().generate_notebook_observations(notebook_lines)
         return {'type': 'ir.actions.act_window_close'}
 
 

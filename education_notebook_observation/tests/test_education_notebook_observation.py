@@ -57,22 +57,26 @@ class TestEducationNotebookObservation(TestCalendarSchool):
             "name": "Exam Competence e-n-o"})
         cls.evaluation_model.create({
             'name': 'Evaluation',
-            'academic_year_id': cls.academic_year.id,
+            'academic_year_id': cls.tutor.school_year_id.id,
+            'center_id': cls.tutor.center_id.id,
+            'course_id': cls.tutor.course_id.id,
             'date_start': cls.academic_year.date_start,
-            'date_end': cls.academic_year.date_end})
+            'date_end': cls.academic_year.date_end,
+            'eval_type': 'third'})
         cls.exam_line = cls.notebook_model.create({
             "description": "Exam Line for test e-n-o",
             "teacher_id": cls.teacher.id,
             "a_year_id": cls.academic_year.id,
-            "eval_type": "final",
+            "eval_type": "third",
             "schedule_id": cls.schedule.id,
             "competence_id": cls.exam_competence.id,
             "evaluation_id": cls.academic_year.evaluation_ids[0].id})
-        cls.record = cls.record_model.create({
+        vals = {
             'academic_year_id': cls.academic_year.id,
             'n_line_id': cls.exam_line.id,
             'student_id': cls.student.id,
-            'teacher': cls.teacher.id})
+            'teacher': cls.teacher.id}
+        cls.record = cls.record_model.create(vals)
 
     def test_education_notebook_observation(self):
         self.assertEquals(self.student.student_count_meetings, 0)

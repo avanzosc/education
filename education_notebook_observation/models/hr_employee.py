@@ -38,3 +38,25 @@ class HrEmployee(models.Model):
             safe_eval(action.domain or '[]')])
         action_dict.update({'domain': domain})
         return action_dict
+
+
+class HrEmployeeSupervisedYear(models.Model):
+    _inherit = 'hr.employee.supervised.year'
+
+    def _catch_meeting_values(
+            self, date, hour, duration, meeting_type, family=False):
+        self.ensure_one()
+        values = super(HrEmployeeSupervisedYear, self)._catch_meeting_values(
+            date, hour, duration, meeting_type, family=family)
+        my_date = fields.Datetime.from_string(values.get('start'))
+        my_date = my_date.date()
+        cond = [('academic_year_id', '=', self.school_year_id.id),
+                ('center_id', '=', self.center_id.id),
+                ('course_id', '=', self.course_id.id),
+                ('date_start', '<=', my_date),
+                ('date_end', '>=', my_date)]
+        evaluation = self.env['education.academic_year.evaluation'].search(
+            cond, limit=1)
+        if evaluation:
+            values['eval_type'] = evaluation.eval_type
+        return values

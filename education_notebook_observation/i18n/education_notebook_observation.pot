@@ -317,3 +317,9 @@ msgstr ""
 msgid "Notebook observations to make"
 msgstr ""
 
+#. module: education_notebook_observation
+#: model:ir.model.fields,field_description:education_notebook_observation.field_calendar_event__eval_type
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.calendar_event_view_search
+msgid "Evaluation Season"
+msgstr ""
+
