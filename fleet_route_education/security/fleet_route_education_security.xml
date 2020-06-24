@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
+    <record id="fleet_route_school_rule" model="ir.rule">
+        <field name="name">Fleet Route by School</field>
+        <field name="model_id" ref="fleet_route.model_fleet_route" />
+        <field name="groups" eval="[(4, ref('fleet.fleet_group_user'))]" />
+        <field name="domain_force">[('center_id','in',user.school_ids.ids)]</field>
+    </record>
+
+    <record id="fleet_route_school_manager_rule" model="ir.rule">
+        <field name="name">Fleet Route by School for Manager</field>
+        <field name="model_id" ref="fleet_route.model_fleet_route" />
+        <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]" />
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
     <record id="res_partner_fleet_route_report_school_rule" model="ir.rule">
         <field name="name">Fleet Route Passenger by School</field>
         <field name="model_id" ref="model_res_partner_fleet_route_report"/>
@@ -10,7 +24,7 @@
     <record id="res_partner_fleet_route_report_school_manager_rule" model="ir.rule">
         <field name="name">Fleet Route Passenger for Manager</field>
         <field name="model_id" ref="model_res_partner_fleet_route_report" />
-        <field name="groups" eval="[(4, ref('education.education_responsible'))]" />
+        <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]" />
         <field name="domain_force">[(1,'=',1)]</field>
     </record>
 </odoo>
