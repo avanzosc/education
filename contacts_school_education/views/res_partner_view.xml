@@ -97,6 +97,15 @@
                 <field name="childs_current_course_ids"
                        string="Education Course (Family)" />
             </field>
+            <group name="group_by" position="inside">
+                <separator />
+                <filter name="group_edu_center" string="Education Center"
+                        context="{'group_by': 'current_center_id'}" />
+                <filter name="group_edu_level" string="Education Level"
+                        context="{'group_by': 'current_level_id'}" />
+                <filter name="group_edu_course" string="Course"
+                        context="{'group_by': 'current_course_id'}" />
+            </group>
         </field>
     </record>
 
