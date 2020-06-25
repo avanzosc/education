@@ -1,41 +1,39 @@
 # Copyright 2020 Alfredo de la Fuente - Avanzosc S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import models, fields, api, _
+from odoo import api, fields, models
 
 
 class EducationNotebookObservation(models.Model):
     _name = "education.notebook.observation"
     _description = "Education notebook observation"
-    _order = 'observ_date, e_notebook_line_id, teacher_id, student_id'
+    _order = "observ_date, e_notebook_line_id, teacher_id, student_id"
 
-    @api.depends('observations')
+    @api.depends("observations")
     def _compute_state(self):
         for observation in self:
-            if observation.observations:
-                observation.state = 'included'
-            else:
-                observation.state = 'pending'
+            observation.state = (
+                "included" if observation.observations else "pending")
 
     observ_date = fields.Date(
-        string='Date')
+        string="Date")
     e_notebook_line_id = fields.Many2one(
-        string='Education notebook line',
+        string="Education notebook line",
         comodel_name="education.notebook.line")
     teacher_id = fields.Many2one(
-        string='Teacher', comodel_name='hr.employee',
-        related='e_notebook_line_id.teacher_id', store=True)
+        string="Teacher", comodel_name="hr.employee",
+        related="e_notebook_line_id.teacher_id", store=True)
     student_id = fields.Many2one(
-        string='Student', comodel_name='res.partner',
-        domain=[('educational_category', '=', 'student')])
+        string="Student", comodel_name="res.partner",
+        domain=[("educational_category", "=", "student")])
     calendar_event_id = fields.Many2one(
-        string='Calendar event', comodel_name='calendar.event')
+        string="Meeting", comodel_name="calendar.event")
     education_center_id = fields.Many2one(
-        string='Education center', comodel_name='res.partner',
-        related='calendar_event_id.center_id', store=True)
+        string="Education Center", comodel_name="res.partner",
+        related="calendar_event_id.center_id", store=True)
     observations = fields.Text(
-        string='Observations')
+        string="Observations")
     state = fields.Selection(
-        selection=[('pending', _('Pending')),
-                   ('included', _('Included')), ],
-        default='pending', track_visibility='onchange',
-        compute='_compute_state', store=True)
+        selection=[("pending", "Pending"),
+                   ("included", "Included"), ],
+        default="pending", track_visibility="onchange",
+        compute="_compute_state", store=True)
