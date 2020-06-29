@@ -4,10 +4,14 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="fleet_route_school.res_partner_fleet_view_tree" />
         <field name="arch" type="xml">
-            <field name="email" position="after">
+            <field name="display_name" position="after">
                 <field name="current_center_id" />
+                <field name="current_level_id" invisible="True" />
                 <field name="current_course_id" />
             </field>
+            <tree position="attributes">
+                <attribute name="default_order">current_center_id,current_level_id,current_course_id,lastname,lastname2,firstname</attribute>
+            </tree>
         </field>
     </record>
 </odoo>

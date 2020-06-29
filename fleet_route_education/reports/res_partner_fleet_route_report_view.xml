@@ -6,6 +6,8 @@
             <tree>
                 <field name="student_id" options="{'no_open': True}" />
                 <field name="center_id" options="{'no_open': True}" />
+                <field name="level_id" invisible="True"
+                       options="{'no_open': True}" />
                 <field name="course_id" options="{'no_open': True}" />
                 <field name="going_stop_id" />
                 <field name="coming_stop_id" />
@@ -19,6 +21,7 @@
             <search>
                 <field name="student_id" />
                 <field name="center_id" />
+                <field name="level_id" />
                 <field name="course_id" />
                 <field name="going_stop_id" />
                 <field name="coming_stop_id" />
@@ -27,6 +30,8 @@
                             context="{'group_by':'student_id'}" />
                     <filter name="groupby_center" string="Education Center"
                             context="{'group_by':'center_id'}" />
+                    <filter name="groupby_level" string="Education Level"
+                            context="{'group_by':'level_id'}" />
                     <filter name="groupby_course" string="Course"
                             context="{'group_by':'course_id'}" />
                     <filter name="groupby_going_stop" string="Going Stop"

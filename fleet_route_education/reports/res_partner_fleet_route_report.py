@@ -10,7 +10,7 @@ class ResPartnerFleetRouteReport(models.Model):
     _name = "res.partner.fleet.route.report"
     _description = "Partner Route Stops Report"
     _auto = False
-    _order = "student_id"
+    _order = "center_id,level_id,course_id,student_id"
 
     student_id = fields.Many2one(
         comodel_name="res.partner", string="Passenger",
@@ -18,6 +18,8 @@ class ResPartnerFleetRouteReport(models.Model):
     center_id = fields.Many2one(
         comodel_name="res.partner", string="Education Center",
         domain="[('educational_category','=','school')]")
+    level_id = fields.Many2one(
+        comodel_name="education.level", string="Education Level")
     course_id = fields.Many2one(
         comodel_name="education.course", string="Education Course")
     bus_passenger = fields.Boolean()
@@ -32,6 +34,7 @@ class ResPartnerFleetRouteReport(models.Model):
                 row_number() OVER () as id,
                 stu.id AS student_id,
                 stu.current_center_id AS center_id,
+                stu.current_level_id AS level_id,
                 stu.current_course_id AS course_id,
                 stu.bus_passenger AS bus_passenger,
                 (SELECT stop_id FROM fleet_route_stop_passenger
@@ -65,7 +68,8 @@ class ResPartnerFleetRouteReport(models.Model):
 
     def _group_by(self):
         group_by_str = """
-                GROUP BY stu.id, stu.current_center_id,stu.current_course_id
+                GROUP BY stu.id, stu.current_center_id,
+                stu.current_level_id, stu.current_course_id, stu.bus_passenger
         """
         return group_by_str
 
