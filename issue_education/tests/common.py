@@ -36,11 +36,6 @@ class TestIssueEducationCommon(TestEducationCommon):
                 'family_id': cls.family.id,
             })],
         })
-        cls.group_type = cls.env['education.group_type'].create({
-            'education_code': 'TEST',
-            'description': 'TEST',
-            'type': 'official',
-        })
         cls.group = cls.group_model.create({
             'education_code': 'TEST',
             'description': 'Test Group',
@@ -48,7 +43,7 @@ class TestIssueEducationCommon(TestEducationCommon):
             'academic_year_id': cls.academic_year.id,
             'level_id': cls.edu_level.id,
             'course_id': cls.edu_course.id,
-            'group_type_id': cls.group_type.id,
+            'group_type_id': cls.edu_group_type.id,
             'student_ids': [(6, 0, cls.student.ids)],
         })
         cls.schedule = cls.schedule_model.create({

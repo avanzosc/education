@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-02 08:46+0000\n"
-"PO-Revision-Date: 2020-06-02 08:46+0000\n"
+"POT-Creation-Date: 2020-06-30 14:18+0000\n"
+"PO-Revision-Date: 2020-06-30 14:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -202,10 +202,9 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: education
-#: model:ir.actions.act_window,name:education.res_partner_education_action
-#: model:ir.ui.menu,name:education.student_menuitem
-msgid "Contacts"
-msgstr "Contactos"
+#: model:ir.actions.act_window,name:education.res_partner_photo_education_action
+msgid "Contacts [Edit photo]"
+msgstr "Contactos [Editar foto]"
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_contract_type
@@ -474,6 +473,11 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_form
+msgid "Edit Student Photos"
+msgstr "Editar fotos de los alumnos"
+
+#. module: education
 #: model:ir.module.category,name:education.education_module_category
 #: model:ir.ui.menu,name:education.education_menuitem
 msgid "Education"
@@ -500,6 +504,11 @@ msgstr "Educación"
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
+
+#. module: education
+#: model:res.groups,name:education.education_center_responsible
+msgid "Education Center Responsible"
+msgstr "Responsable centro educativo"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_activity_type__education_code
@@ -1132,6 +1141,7 @@ msgstr "Móvil:"
 #: model:ir.model.fields,field_description:education.field_education_academic_year_evaluation__name
 #: model:ir.model.fields,field_description:education.field_education_section__name
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_photo_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_tree_view
 msgid "Name"
@@ -1458,10 +1468,12 @@ msgid "Student's Second Lastname"
 msgstr "Segundo apellido de alumno"
 
 #. module: education
-#: code:addons/education/models/education_group.py:118
-#: code:addons/education/models/education_schedule.py:116
+#: code:addons/education/models/education_group.py:115
+#: code:addons/education/models/education_schedule.py:99
+#: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule__student_ids
+#: model:ir.ui.menu,name:education.student_menuitem
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_form
 #, python-format

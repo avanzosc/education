@@ -57,7 +57,10 @@
         <field name="model">education.group</field>
         <field name="arch" type="xml">
             <form>
-                <header />
+                <header>
+                     <button name="%(res_partner_photo_education_action)d" type="action"
+                             string="Edit Student Photos" class="oe_highlight" attrs="{'invisible': [('student_count','=',0),('group_type_id.type','=','official')]}"/>
+                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="button_open_students" type="object"
@@ -109,7 +112,8 @@
                             <field name="group_type_id"
                                    options="{'no_create': True, 'no_open': True}" />
                             <field name="parent_id"
-                                   options="{'no_create': True, 'no_open': True}" />
+                                   options="{'no_create': True, 'no_open': True}"
+                                   attrs="{'invisible': [('group_type_id','=',False)]}" />
                         </group>
                     </group>
                     <notebook>

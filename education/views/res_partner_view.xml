@@ -138,31 +138,80 @@
         </field>
     </record>
 
+    <record id="res_partner_education_minimal_edit_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="res_partner_education_minimal_view_form" />
+        <field name="groups_id" eval="[(4, ref('education.education_center_responsible'))]" />
+        <field name="arch" type="xml">
+            <form position="attributes">
+                <attribute name="edit" />
+            </form>
+        </field>
+    </record>
+
+    <record id="res_partner_education_minimal_photo_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name"/>
+                        </h1>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="res_partner_education_action" model="ir.actions.act_window">
-        <field name="name">Contacts</field>
+        <field name="name">Students</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+    </record>
+    <record id="res_partner_education_action_view1" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="res_partner_education_tree_view"/>
+        <field name="act_window_id" ref="res_partner_education_action"/>
+    </record>
+    <record id="res_partner_education_action_view2" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="res_partner_education_minimal_view_form"/>
+        <field name="act_window_id" ref="res_partner_education_action"/>
+    </record>
+
+    <record id="res_partner_photo_education_action" model="ir.actions.act_window">
+        <field name="name">Contacts [Edit photo]</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="search_view_id" ref="base.view_res_partner_filter"/>
     </record>
-    <record id="res_partner_education_action_view0" model="ir.actions.act_window.view">
+    <record id="res_partner_education_photo_action_view0" model="ir.actions.act_window.view">
         <field eval="0" name="sequence"/>
         <field name="view_mode">kanban</field>
         <field name="view_id" ref="res_partner_education_view_kanban"/>
-        <field name="act_window_id" ref="res_partner_education_action"/>
+        <field name="act_window_id" ref="res_partner_photo_education_action"/>
     </record>
-    <record id="res_partner_education_action_view1" model="ir.actions.act_window.view">
+    <record id="res_partner_education_photo_action_view1" model="ir.actions.act_window.view">
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="res_partner_education_tree_view"/>
-        <field name="act_window_id" ref="res_partner_education_action"/>
+        <field name="act_window_id" ref="res_partner_photo_education_action"/>
     </record>
-    <record id="res_partner_education_action_view2" model="ir.actions.act_window.view">
+    <record id="res_partner_education_photo_action_view2" model="ir.actions.act_window.view">
         <field eval="2" name="sequence"/>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="res_partner_education_minimal_view_form"/>
-        <field name="act_window_id" ref="res_partner_education_action"/>
+        <field name="view_id" ref="res_partner_education_minimal_photo_view_form"/>
+        <field name="act_window_id" ref="res_partner_photo_education_action"/>
     </record>
 
 </odoo>

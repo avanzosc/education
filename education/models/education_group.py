@@ -120,7 +120,9 @@ class EducationGroup(models.Model):
     @api.multi
     def _get_next_year_group(self, next_year):
         groups = self.env["education.group"]
-        for group in self:
+        for group in self.filtered(
+                lambda g: g.group_type_id.type == "official" and
+                g.academic_year_id.current):
             next_group = self.search([
                 ("education_code", "=", group.education_code),
                 ("center_id", "=", group.center_id.id),
@@ -137,7 +139,9 @@ class EducationGroup(models.Model):
     @api.multi
     def create_next_academic_year(self):
         next_groups = self.env["education.group"]
-        for record in self:
+        for record in self.filtered(
+                lambda g: g.group_type_id.type == "official" and
+                g.academic_year_id.current):
             next_year = record.academic_year_id._get_next()
             if next_year:
                 try:

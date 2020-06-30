@@ -211,6 +211,7 @@ class TestEducation(TestEducationCommon):
             'academic_year_id': self.academic_year.id,
             'level_id': self.edu_level.id,
             'student_ids': [(6, 0, self.edu_partner.ids)],
+            'group_type_id': self.edu_group_type.id,
         })
         self.assertEquals(group.student_count, len(group.student_ids))
         with self.assertRaises(ValidationError):
