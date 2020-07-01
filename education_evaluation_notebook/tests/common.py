@@ -44,6 +44,7 @@ class EducationNotebookCommon(TestEducationCommon):
         cls.notebook_template = cls.env["education.notebook.template"].create({
             "education_center_id": cls.edu_partner.id,
             "course_id": cls.edu_course.id,
+            "task_type_id": cls.edu_task_type.id,
             "subject_id": cls.edu_subject.id,
             "eval_type": "first",
             "competence_id": cls.exam_competence.id,

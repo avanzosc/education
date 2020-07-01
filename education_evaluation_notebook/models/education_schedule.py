@@ -191,8 +191,8 @@ class EducationSchedule(models.Model):
                                 evaluation))
                         for course in courses:
                             templates = template_obj.find_template_line(
-                                center=schedule.center_id, course=course,
-                                subject=schedule.subject_id,
+                                schedule.center_id, schedule.task_type_id,
+                                course=course, subject=schedule.subject_id,
                                 eval_type=evaluation.eval_type)
                             templates.create_notebook_line(
                                 schedule=schedule,
