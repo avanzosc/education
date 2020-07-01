@@ -24,3 +24,11 @@ def post_init_hook(cr, registry):
                     SET current_course_id = %s
                     WHERE id = %s
                 """, (official_group.course_id.id, partner.id,))
+    cr.execute(
+        """
+        UPDATE res_partner_permission AS p
+        SET center_id = (
+            SELECT current_center_id
+              FROM res_partner AS c
+             WHERE c.id = p.partner_id AND center_id IS NULL);
+        """)

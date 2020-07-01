@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="education_group_next_year_schedule_view_form" model="ir.ui.view">
+        <field name="model">education.group.next_year.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <p>
+                This will create a schedule for official groups for next academic year.
+                </p>
+                <footer>
+                    <button name="create_next_year_group_schedule" string="Create Schedule" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_education_group_next_year_schedule" model="ir.actions.act_window">
+        <field name="name">Create Schedule for Next Academic Year</field>
+        <field name="res_model">education.group.next_year.schedule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="education_group_next_year_schedule_menuitem"
+              parent="education.configuration_groups_menuitem"
+              action="action_education_group_next_year_schedule"
+              sequence="105" />
+</odoo>

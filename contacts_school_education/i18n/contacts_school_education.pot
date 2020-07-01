@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 14:37+0000\n"
-"PO-Revision-Date: 2020-06-30 14:37+0000\n"
+"POT-Creation-Date: 2020-07-01 23:50+0000\n"
+"PO-Revision-Date: 2020-07-01 23:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__alumni_member
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__alumni_member
 msgid "Alumni Association Member"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_next_year_schedule_view_form
+msgid "Cancel"
 msgstr ""
 
 #. module: contacts_school_education
@@ -77,6 +82,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: contacts_school_education
+#: model:ir.model,name:contacts_school_education.model_res_partner_permission
+msgid "Contact Permission"
+msgstr ""
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__course_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__course_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
@@ -106,12 +116,25 @@ msgid "Courses must be different."
 msgstr ""
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_next_year_schedule_view_form
+msgid "Create Schedule"
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.actions.act_window,name:contacts_school_education.action_education_group_next_year_schedule
+#: model:ir.ui.menu,name:contacts_school_education.education_group_next_year_schedule_menuitem
+msgid "Create Schedule for Next Academic Year"
+msgstr ""
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__create_uid
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__create_date
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule__create_date
 msgid "Created on"
 msgstr ""
 
@@ -156,6 +179,7 @@ msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__display_name
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule__display_name
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__display_name
 msgid "Display Name"
 msgstr ""
@@ -170,6 +194,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__school_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__center_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_subject_center__center_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_permission__center_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
@@ -263,6 +288,7 @@ msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__id
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule__id
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__id
 msgid "ID"
 msgstr ""
@@ -286,17 +312,20 @@ msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change____last_update
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule____last_update
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__write_uid
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__write_date
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -460,5 +489,15 @@ msgstr ""
 #. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_education_subject_center
 msgid "Subject Name by Center, Language and Course"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_next_year_schedule_view_form
+msgid "This will create a schedule for official groups for next academic year."
+msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model,name:contacts_school_education.model_education_group_next_year_schedule
+msgid "Wizard to create next academic year groups schedule"
 msgstr ""
 
