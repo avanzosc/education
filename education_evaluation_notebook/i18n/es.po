@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-04 12:14+0000\n"
-"PO-Revision-Date: 2020-06-04 12:14+0000\n"
+"POT-Creation-Date: 2020-07-01 14:12+0000\n"
+"PO-Revision-Date: 2020-07-01 14:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr "Año académico"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_academic_year.py:19
-#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:86
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:95
 #, python-format
 msgid "Academic year must have defined start and end dates."
 msgstr "El año académico debe tener definidos la fecha de inicio y de fin."
@@ -110,7 +110,7 @@ msgstr "Alerta de acceso"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción necesaria"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_ids
@@ -180,6 +180,11 @@ msgstr "Notas de comportamiento"
 #: selection:education.competence,eval_mode:0
 msgid "Both"
 msgstr "Ambos"
+
+#. module: education_evaluation_notebook
+#: model:education.competence,name:education_evaluation_notebook.competence_indicator
+msgid "COMPETENCIAS BÁSICAS TRANSVERSALES"
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__calculated_numeric_mark
@@ -281,7 +286,7 @@ msgstr "Competencias"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_academic_year.py:22
-#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:88
+#: code:addons/education_evaluation_notebook/wizards/create_academic_year_evaluation.py:97
 #, python-format
 msgid "Configure Academic Year"
 msgstr "Configurar año academico"
@@ -311,6 +316,8 @@ msgstr "Curso"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_course_change
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_course_change_menuitem
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_course_change_revision_menuitem
 msgid "Course Change"
 msgstr "Cambio de curso"
 
@@ -318,6 +325,11 @@ msgstr "Cambio de curso"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_academic_year_evaluation_view_search
 msgid "Courses"
 msgstr "Cursos"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.actions.act_window,help:education_evaluation_notebook.education_record_action
+msgid "Crear un nuevo documento"
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
@@ -328,12 +340,24 @@ msgid "Create Academic Records"
 msgstr "Crear registro academico"
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation_course
 #: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation_course_change
-#: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation_courser
 #: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluation_partner
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_create_academic_year_evaluations
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_create_menuitem
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.create_academic_year_evaluation_view_form
 msgid "Create Evaluations"
 msgstr "Crear evaluaciones"
+
+#. module: education_evaluation_notebook
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_group_next_year_menuitem
+msgid "Create Groups for Next Academic Year"
+msgstr "Crear grupos para el próximo año académico"
+
+#. module: education_evaluation_notebook
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_group_next_year_schedule_menuitem
+msgid "Create Schedule for Next Academic Year"
+msgstr "Crear horario para el próximo año académico"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__create_uid
@@ -384,7 +408,7 @@ msgstr "Año actual"
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__access_url
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__access_url
 msgid "Customer Portal URL"
-msgstr "URL para portal"
+msgstr "URL del portal de cliente"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__date
@@ -483,6 +507,11 @@ msgstr "Línea de cuaderno de evaluación"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Education Subject"
 msgstr "Asignatura"
+
+#. module: education_evaluation_notebook
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_academic_year_revision_menuitem
+msgid "Educational Academic Year"
+msgstr "Año academico"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_course_change__eval_count
@@ -818,11 +847,6 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: education_evaluation_notebook
-#: model:education.competence,name:education_evaluation_notebook.competence_indicator
-msgid "Indicator"
-msgstr "Indicador"
-
-#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__initial_mark
 msgid "Initial Mark"
 msgstr "Nota mínima"
@@ -1075,7 +1099,6 @@ msgstr "Numérico"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_mark_numeric
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__numeric_mark
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_mark_numeric_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Numeric Mark"
@@ -1094,11 +1117,15 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:173
-#: code:addons/education_evaluation_notebook/models/education_record.py:191
+#: code:addons/education_evaluation_notebook/models/education_record.py:185
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__numeric_mark
+msgid "Official Mark"
+msgstr "Nota oficial"
 
 #. module: education_evaluation_notebook
 #: selection:create.academic_year.evaluation,evaluation_number:0
@@ -1294,6 +1321,8 @@ msgstr "Nombre de la asignatura"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__task_type_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__task_type_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Task Type"
 msgstr "Tipo de tarea"
 
@@ -1375,7 +1404,7 @@ msgstr "Tipo"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_unread
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_unread
 msgid "Unread Messages"
-msgstr "Mensajes por leer"
+msgstr "Mensajes no leídos"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_unread_counter
@@ -1423,7 +1452,12 @@ msgid "Wizard to create evaluations"
 msgstr "Asistente para crear evaluaciones"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:113
+#: code:addons/education_evaluation_notebook/models/education_exam.py:142
+#, python-format
+msgid "You can only delete an exam in draft state."
+msgstr "Solo puedes eliminar un examen borrador."
+
+#. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:114
 #, python-format
 msgid "You must set an exam date."

@@ -77,6 +77,29 @@
               parent="education_course_change_menuitem"
               action="action_create_academic_year_evaluations"
               sequence="30" />
+    <menuitem id="education_group_next_year_menuitem"
+              parent="education_course_change_menuitem"
+              action="education.action_education_group_next_year"
+              sequence="40" />
+    <menuitem id="education_group_next_year_schedule_menuitem"
+              parent="education_course_change_menuitem"
+              action="contacts_school_education.action_education_group_next_year_schedule"
+              sequence="50" />
+    <menuitem id="education_discontinue_student_menuitem"
+              parent="education_course_change_menuitem"
+              action="education.res_partner_education_action"
+              string="Discontinue Enrollments"
+              sequence="60" />
+    <menuitem id="education_repeater_student_menuitem"
+              parent="education_course_change_menuitem"
+              action="education.res_partner_education_action"
+              string="Create Repeater Student's Enrollments"
+              sequence="70" />
+    <menuitem id="education_next_student_menuitem"
+              parent="education_course_change_menuitem"
+              action="education.res_partner_education_action"
+              string="Create Student's Enrollments"
+              sequence="80" />
 
 </odoo>
 
