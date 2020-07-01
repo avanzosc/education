@@ -58,8 +58,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                     <button name="%(res_partner_photo_education_action)d" type="action"
-                             string="Edit Student Photos" class="oe_highlight" attrs="{'invisible': [('student_count','=',0),('group_type_id.type','=','official')]}"/>
+                     <button name="button_edit_students" type="object"
+                             string="Edit Student Photos" class="oe_highlight"
+                             attrs="{'invisible': [('student_count','=',0)]}"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">

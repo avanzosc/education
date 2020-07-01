@@ -35,13 +35,16 @@ class EducationGroupTeacherReport(models.Model):
             'subject_id', 'classroom_id', 'teacher_id', 'academic_year_id'
         ],
         'education.group': [
-            'center_id', 'course_id'
+            'level_id', 'center_id', 'course_id'
         ],
+        'education.subject.center': [
+            'center_id', 'level_id', 'course_id', 'subject_id'
+        ]
     }
 
     def _coalesce(self):
         coalesce_str = """
-            , COALESCE(sub_center.name, sbt.description, tt.description,
+            , COALESCE(sub_name.name, sbt.description, tt.description,
                        'undefined') AS subject_name
         """
         return coalesce_str
@@ -70,9 +73,11 @@ class EducationGroupTeacherReport(models.Model):
                 JOIN education_group grp ON sch_group.group_id = grp.id
                 LEFT JOIN education_subject_center sub_center
                   ON sub_center.subject_id = sch.subject_id
+                  AND sub_center.level_id = grp.level_id
                   AND sub_center.center_id = grp.center_id
                   AND sub_center.course_id = grp.course_id
-                  AND sub_center.lang_id = sch.language_id
+                LEFT JOIN education_subject_center_name sub_name
+                  ON sub_center.id = sub_name.subject_center_id
         """
         return from_str
 
@@ -81,7 +86,7 @@ class EducationGroupTeacherReport(models.Model):
                 GROUP BY grp.center_id, grp.course_id, grp.id, sch.subject_id,
                 sch.classroom_id, sch.teacher_id, sch.academic_year_id,
                 sch.language_id, sbt.description, tt.description,
-                sub_center.name
+                sub_name.name
         """
         return group_by_str
 

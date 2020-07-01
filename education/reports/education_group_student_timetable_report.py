@@ -40,7 +40,7 @@ class EducationGroupStudentTimetableReport(models.Model):
     def _coalesce(self):
         coalesce_str = """
             , COALESCE(sch_tt.teacher_id, sch.teacher_id) AS professor_id
-            , COALESCE(sch_tt.subject_name, sub_center.name, sbt.description,
+            , COALESCE(sch_tt.subject_name, sub_name.name, sbt.description,
                        tt.description, 'undefined') AS subject_name
         """
         return coalesce_str

@@ -17,6 +17,7 @@ class TestEducationCommon(common.SavepointCase):
         cls.group_session_model = cls.env['education.group.session']
         cls.schedule_model = cls.env['education.schedule']
         cls.attendance_model = cls.env['resource.calendar.attendance']
+        cls.group_wizard = cls.env["education.group.next_year"].create({})
         cls.academic_year = cls.academic_year_model.search([
             ("current", "=", True)])
         if not cls.academic_year:
@@ -80,7 +81,7 @@ class TestEducationCommon(common.SavepointCase):
         })
         cls.teacher = cls.env['hr.employee'].create({
             'name': 'Test Teacher',
-            'user_id': cls.env.user.id,
+            'user_id': cls.env.ref("base.user_admin").id,
         })
         cls.edu_classroom = cls.env['education.classroom'].create({
             'education_code': 'TEST',

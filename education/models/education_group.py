@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -106,6 +106,19 @@ class EducationGroup(models.Model):
     @api.multi
     def button_open_students(self):
         action = self.env.ref('education.res_partner_education_action')
+        action_dict = self.open_students(action)
+        return action_dict
+
+    @api.multi
+    def button_edit_students(self):
+        if self.group_type_id.type != "official":
+            raise UserError(
+                _("You can only edit photos from official groups."))
+        action = self.env.ref('education.res_partner_photo_education_action')
+        action_dict = self.open_students(action)
+        return action_dict
+
+    def open_students(self, action):
         action_dict = action.read()[0] if action else {}
         domain = expression.AND([
             [('id', 'in', self.mapped('student_ids').ids)],
