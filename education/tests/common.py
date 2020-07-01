@@ -17,21 +17,30 @@ class TestEducationCommon(common.SavepointCase):
         cls.group_session_model = cls.env['education.group.session']
         cls.schedule_model = cls.env['education.schedule']
         cls.attendance_model = cls.env['resource.calendar.attendance']
-        cls.date_start = cls.today.replace(
-            year=cls.today.year - 1, month=9, day=1)
-        cls.date_end = cls.date_start.replace(
-            year=cls.date_start.year + 1, month=6, day=30)
-        cls.academic_year = cls.academic_year_model.create({
-            'name': '{}+{}'.format(cls.date_start.year, cls.date_end.year),
-            'date_start': cls.date_start,
-            'date_end': cls.date_end,
-        })
-        cls.next_academic_year = cls.academic_year_model.create({
-            'name': '{}+{}'.format(cls.date_start.year + 1,
-                                   cls.date_end.year + 1),
-            'date_start': cls.date_start.replace(year=cls.date_start.year + 1),
-            'date_end': cls.date_end.replace(year=cls.date_end.year + 1),
-        })
+        cls.academic_year = cls.academic_year_model.search([
+            ("current", "=", True)])
+        if not cls.academic_year:
+            cls.date_start = cls.today.replace(
+                year=cls.today.year - 1, month=9, day=1)
+            cls.date_end = cls.date_start.replace(
+                year=cls.date_start.year + 1, month=8, day=31)
+            cls.academic_year = cls.academic_year_model.create({
+                'name': '{}+{}'.format(cls.date_start.year, cls.date_end.year),
+                'date_start': cls.date_start,
+                'date_end': cls.date_end,
+            })
+        cls.next_academic_year = cls.academic_year._get_next()
+        if not cls.next_academic_year:
+            next_date_start = cls.academic_year.date_start.replace(
+                year=cls.academic_year.date_start.year + 1)
+            next_date_end = cls.academic_year.date_start.replace(
+                year=cls.academic_year.date_end.year + 1)
+            cls.next_academic_year = cls.academic_year_model.create({
+                'name': '{}+{}'.format(next_date_start.year,
+                                       next_date_end.year),
+                'date_start': next_date_start,
+                'date_end': next_date_end,
+            })
         cls.plan_model = cls.env['education.plan']
         cls.edu_plan_code = 'TEST'
         cls.edu_plan = cls.plan_model.create({
@@ -71,6 +80,7 @@ class TestEducationCommon(common.SavepointCase):
         })
         cls.teacher = cls.env['hr.employee'].create({
             'name': 'Test Teacher',
+            'user_id': cls.env.user.id,
         })
         cls.edu_classroom = cls.env['education.classroom'].create({
             'education_code': 'TEST',
