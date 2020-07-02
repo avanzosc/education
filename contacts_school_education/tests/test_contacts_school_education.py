@@ -86,14 +86,21 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
                 'course_id': self.edu_course2.id,
                 'next_course_id': self.edu_course.id,
             })
+
+    def test_create_group_schedule(self):
         group2 = self.group.copy(
             default={"academic_year_id": self.group.academic_year_id.id,
                      "education_code": "NXTGROUP"})
         self.assertFalse(group2.schedule_ids)
         group2.create_schedule()
         self.assertTrue(group2.schedule_ids)
+        subject_center = self.subject_center_model.search([
+            ("center_id", "=", group2.center_id.id),
+            ("level_id", "=", group2.level_id.id),
+            ("course_id", "=", group2.course_id.id),
+        ])
         self.assertEquals(
-            len(group2.schedule_ids), len(change_model.next_subject_ids))
+            len(group2.schedule_ids), len(subject_center.mapped("subject_id")))
 
     def test_school_classroom(self):
         self.assertFalse(self.edu_partner2.classroom_ids)
@@ -111,3 +118,18 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
             classroom_dict.get('domain'))
         classroom_dict = self.student.button_open_classroom()
         self.assertFalse(classroom_dict)
+
+    def test_create_schedule(self):
+        self.group_wizard.create_next_year_groups()
+        current_year = self.academic_year_model.search([
+            ("current", "=", True)])
+        next_year = current_year._get_next()
+        next_groups = self.group_model.search([
+            ("academic_year_id", "=", next_year.id),
+            ("group_type_id.type", "=", "official")])
+        self.assertTrue(next_groups)
+        next_schedule = next_groups.mapped("schedule_ids")
+        self.assertFalse(next_schedule)
+        self.schedule_wizard.create_next_year_group_schedule()
+        next_schedule = next_groups.mapped("schedule_ids")
+        self.assertTrue(next_schedule)

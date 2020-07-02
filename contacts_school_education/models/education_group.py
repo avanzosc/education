@@ -13,16 +13,17 @@ class EducationGroup(models.Model):
         task_type = self.env.ref(
             "contacts_school_education.education_task_type_0120")
         language = self.env["education.language"].search([], limit=1)
-        course_change_obj = self.env["education.course.change"]
+        subject_center_obj = self.env["education.subject.center"]
         schedule_obj = self.env["education.schedule"]
         for group in self.filtered(
                 lambda g: g.group_type_id.type == "official" and
                 g.course_id):
-            course_change = course_change_obj.search([
-                ("next_school_id", "=", group.center_id.id),
-                ("next_course_id", "=", group.course_id.id),
+            subject_center = subject_center_obj.search([
+                ("center_id", "=", group.center_id.id),
+                ("level_id", "=", group.level_id.id),
+                ("course_id", "=", group.course_id.id),
             ])
-            for subject in course_change.mapped("next_subject_ids"):
+            for subject in subject_center.mapped("subject_id"):
                 schedule_obj.create({
                     "center_id": group.center_id.id,
                     "teacher_id": teacher.id,

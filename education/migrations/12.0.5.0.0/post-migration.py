@@ -42,6 +42,3 @@ def migrate(env, version):
             n.name, n.lang_id, c.id
         ON CONFLICT DO NOTHING;
     """)
-    cr.execute("""
-        DROP TABLE education_subject_center_name2;
-    """)

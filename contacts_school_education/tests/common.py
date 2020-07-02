@@ -14,6 +14,7 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
         cls.group_model = cls.env["education.group"]
         cls.classroom_model = cls.env["education.classroom"]
         cls.change_model = cls.env["education.course.change"]
+        cls.subject_center_model = cls.env["education.subject.center"]
         task_type_model = cls.env["education.task_type"]
         task_type = task_type_model.search([
             ("education_code", "=", "0120"),
@@ -23,6 +24,8 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
                 "education_code": "0120",
                 "description": "TEST",
             })
+        cls.schedule_wizard = cls.env[
+            "education.group.next_year.schedule"].create({})
         cls.language = cls.env["education.language"].create({
             "education_code": "TST_LANG",
             "description": "Test Language",
@@ -73,4 +76,10 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
             "task_type_id": cls.edu_task_type.id,
             "subject_id": cls.edu_subject.id,
             "group_ids": [(6, 0, cls.group.ids)],
+        })
+        cls.subject_center = cls.subject_center_model.create({
+            "center_id": cls.edu_partner.id,
+            "level_id": cls.edu_level.id,
+            "course_id": cls.edu_course.id,
+            "subject_id": cls.edu_subject.id,
         })
