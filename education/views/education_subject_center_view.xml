@@ -8,6 +8,7 @@
                 <field name="center_id" options="{'no_create': True}" />
                 <field name="level_id" options="{'no_create': True}" />
                 <field name="course_id" options="{'no_create': True}" />
+                <field name="subject_type" />
                 <field name="name_ids" widget="many2many_tags" />
             </tree>
         </field>
@@ -21,9 +22,21 @@
                 <field name="center_id" />
                 <field name="level_id" />
                 <field name="course_id" />
+                <field name="subject_type" />
                 <group expand="0" string="Group By...">
+                    <filter string="Education Center" name="group_center"
+                            context="{'group_by': 'center_id'}" />
+                    <filter string="Education Level" name="group_level"
+                            context="{'group_by': 'level_id'}" />
+                    <filter string="Course" name="group_course"
+                            context="{'group_by': 'course_id'}" />
                     <filter string="Education Subject" name="group_subject"
                             context="{'group_by': 'subject_id'}" />
+                    <separator />
+                    <filter string="Subject Type" name="subject_type"
+                            context="{'group_by': 'subject_type'}" />
+                    <filter string="Educational Group Type" name="name_group_type"
+                            context="{'group_by': 'group_type_id'}" />
                 </group>
             </search>
         </field>
@@ -35,10 +48,16 @@
             <form>
                 <sheet>
                     <group name="main">
-                        <field name="subject_id" options="{'no_create': True}" />
-                        <field name="center_id" options="{'no_create': True}" />
-                        <field name="level_id" options="{'no_create': True}" />
-                        <field name="course_id" options="{'no_create': True}" />
+                        <group>
+                            <field name="center_id" options="{'no_create': True}" />
+                            <field name="level_id" options="{'no_create': True}" />
+                            <field name="course_id" options="{'no_create': True}" />
+                        </group>
+                        <group>
+                            <field name="subject_id" options="{'no_create': True}" />
+                            <field name="subject_type" />
+                            <field name="group_type_id" options="{'no_create': True}" />
+                        </group>
                     </group>
                     <notebook>
                         <page name="name_lang" string="Name">
@@ -51,7 +70,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_education_subject_center">
-        <field name="name">Subject Name by Center</field>
+        <field name="name">Subject by Center</field>
         <field name="res_model">education.subject.center</field>
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>

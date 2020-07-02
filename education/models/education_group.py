@@ -50,6 +50,10 @@ class EducationGroup(models.Model):
     session_ids = fields.One2many(
         comodel_name='education.group.session', inverse_name='group_id',
         string='Sessions', copy=True)
+    calendar_session_ids = fields.Many2many(
+        comodel_name='resource.calendar.attendance',
+        relation="education_group_attendance_rel", column1="group_id",
+        column2="attendance_id", compute="_compute_calendar_session")
     student_ids = fields.Many2many(
         comodel_name='res.partner', relation='edu_group_student',
         column1='group_id', column2='student_id', string='Students',
@@ -90,6 +94,12 @@ class EducationGroup(models.Model):
     def _compute_schedule_count(self):
         for record in self:
             record.schedule_count = len(record.schedule_ids)
+
+    @api.depends("calendar_id", "calendar_id.attendance_ids")
+    def _compute_calendar_session(self):
+        for record in self:
+            record.calendar_session_ids = [
+                (6, 0, record.calendar_id.attendance_ids.ids)]
 
     @api.multi
     def button_open_schedule(self):

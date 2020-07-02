@@ -13,7 +13,9 @@
         "education",
     ],
     "data": [
+        "views/education_group_view.xml",
         "views/resource_calendar_view.xml",
     ],
     "installable": True,
+    "auto_install": True,
 }

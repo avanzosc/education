@@ -140,15 +140,11 @@
                         </page>
                         <page name="sessions" string="Sessions">
                             <group name="sessions" string="Sessions">
-                                <field name="session_ids" nolabel="1" colspan="4"
-                                       context="{'default_group_id': active_id}">
-                                    <tree editable="bottom" decoration-muted="recess==True">
-                                        <field name="group_id" invisible="True" />
-                                        <field name="session_number" />
+                                <field name="calendar_session_ids" nolabel="1" colspan="4">
+                                    <tree>
                                         <field name="dayofweek" />
                                         <field name="hour_from" widget="float_time" />
                                         <field name="hour_to" widget="float_time" />
-                                        <field name="recess" />
                                     </tree>
                                 </field>
                             </group>
