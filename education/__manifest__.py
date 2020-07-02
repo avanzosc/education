@@ -3,7 +3,7 @@
 
 {
     "name": "Education",
-    "version": "12.0.4.0.0",
+    "version": "12.0.5.0.0",
     "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -54,6 +54,7 @@
         "views/education_workday_type_view.xml",
         "views/hr_employee_view.xml",
         "views/res_lang_view.xml",
+        "wizards/education_group_next_year_view.xml",
         "views/education_menu_view.xml",
     ],
     "installable": True,

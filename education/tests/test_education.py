@@ -4,7 +4,7 @@
 from .common import TestEducationCommon
 from odoo import _
 from odoo.tests import common
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from dateutil.relativedelta import relativedelta
 
 
@@ -241,6 +241,9 @@ class TestEducation(TestEducationCommon):
         action_dict = group.button_open_schedule()
         self.assertIn(
             ('id', 'in', group.schedule_ids.ids), action_dict.get('domain'))
+        action_dict = group.button_edit_students()
+        self.assertIn(
+            ('id', 'in', group.student_ids.ids), action_dict.get('domain'))
         action_dict = schedule.button_open_students()
         self.assertIn(('id', 'in', schedule.mapped('student_ids').ids),
                       action_dict.get('domain'))
@@ -256,3 +259,44 @@ class TestEducation(TestEducationCommon):
             ('academic_year_id', '=', group.academic_year_id._get_next().id)
         ])
         self.assertTrue(next_group)
+
+    def test_education_next_year_group(self):
+        self.assertEquals(self.edu_group_type.type, "official")
+        self.group_model.create({
+            'education_code': 'TEST',
+            'description': 'Test Group',
+            'center_id': self.edu_partner.id,
+            'academic_year_id': self.academic_year.id,
+            'level_id': self.edu_level.id,
+            'student_ids': [(6, 0, self.edu_partner.ids)],
+            'group_type_id': self.edu_group_type.id,
+        })
+        current_year = self.academic_year_model.search([
+            ("current", "=", True)])
+        current_groups = self.group_model.search([
+            ("academic_year_id.current", "=", True),
+            ("group_type_id.type", "=", "official")])
+        next_year = current_year._get_next()
+        next_groups = self.group_model.search([
+            ("academic_year_id", "=", next_year.id),
+            ("group_type_id.type", "=", "official")])
+        self.assertTrue(current_groups)
+        self.assertFalse(next_groups)
+        self.group_wizard.create_next_year_groups()
+        next_groups = self.group_model.search([
+            ("academic_year_id", "=", next_year.id),
+            ("group_type_id.type", "=", "official")])
+        self.assertTrue(next_groups)
+        self.assertEquals(len(current_groups), len(next_groups))
+
+    def test_education_group_student_edit(self):
+        group = self.group_model.create({
+            'education_code': 'TEST',
+            'description': 'Test Group',
+            'center_id': self.edu_partner.id,
+            'academic_year_id': self.academic_year.id,
+            'level_id': self.edu_level.id,
+            'student_ids': [(6, 0, self.edu_partner.ids)],
+        })
+        with self.assertRaises(UserError):
+            group.button_edit_students()

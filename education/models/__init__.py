@@ -23,6 +23,7 @@ from . import education_section
 from . import education_shift
 from . import education_subject
 from . import education_subject_center
+from . import education_subject_center_name
 from . import education_subject_type
 from . import education_task_type
 from . import education_work_reason
