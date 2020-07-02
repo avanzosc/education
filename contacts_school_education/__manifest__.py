@@ -14,6 +14,7 @@
         "contacts_school_permission",
         "partner_contact_gender",
         "partner_language_skill",
+        "res_partner_student_fields",
     ],
     "data": [
         "data/education_task_type_data.xml",

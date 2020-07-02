@@ -76,9 +76,21 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
                 change_model.school_id.display_name,
                 change_model.next_course_id.description,
                 change_model.next_school_id.display_name))
-        self.assertFalse(change_model.next_subject_ids)
-        change_model.button_add_subject_list()
         self.assertIn(self.edu_subject, change_model.next_subject_ids)
+        action_dict = change_model.button_open_subject_list()
+        self.assertIn(("center_id", "=", change_model.next_school_id.id),
+                      action_dict.get("domain"))
+        self.assertIn(("course_id", "=", change_model.next_course_id.id),
+                      action_dict.get("domain"))
+        self.assertIn(("level_id", "=", change_model.next_level_id.id),
+                      action_dict.get("domain"))
+        context = action_dict.get("context")
+        self.assertEquals(
+            change_model.next_school_id.id, context.get("default_center_id"))
+        self.assertEquals(
+            change_model.next_course_id.id, context.get("default_course_id"))
+        self.assertEquals(
+            change_model.next_level_id.id, context.get("default_level_id"))
         with self.assertRaises(ValidationError):
             self.change_model.create({
                 'school_id': self.edu_partner.id,
