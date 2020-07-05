@@ -6,11 +6,11 @@ from odoo import fields, models
 
 class EducationSubjectCenterName(models.Model):
     _name = "education.subject.center.name"
-    _description = ""
+    _description = "Subject Name per Center and Language"
 
     subject_center_id = fields.Many2one(
         comodel_name="education.subject.center",
-        string="Subject Center Relation", required=True)
+        string="Subject Center Relation", required=True, ondelete="cascade")
     name = fields.Char(string="Subject Name", required=True)
     lang_id = fields.Many2one(
         comodel_name="education.language", string="Language",

@@ -17,6 +17,10 @@
               parent="education_center_menuitem"
               action="action_education_section"
               sequence="2" />
+    <menuitem id="education_subject_center_menuitem"
+              parent="education_center_menuitem"
+              action="action_education_subject_center"
+              sequence="3" />
 
     <menuitem id="faculty_menuitem"
               name="Faculty"

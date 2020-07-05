@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 23:38+0000\n"
-"PO-Revision-Date: 2020-07-01 23:38+0000\n"
+"POT-Creation-Date: 2020-07-05 13:09+0000\n"
+"PO-Revision-Date: 2020-07-05 13:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -125,6 +125,11 @@ msgid "Calendar"
 msgstr "Calendario"
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_group__calendar_session_ids
+msgid "Calendar Session"
+msgstr "Sesiones de calendario"
+
+#. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_group_next_year_view_form
 msgid "Cancel"
 msgstr "Cancelar"
@@ -192,6 +197,7 @@ msgid "Comments"
 msgstr "Comentarios"
 
 #. module: education
+#: selection:education.subject.center,subject_type:0
 #: selection:education.subject.type,type:0
 msgid "Compulsory"
 msgstr "Obligatoria"
@@ -230,6 +236,7 @@ msgstr "País"
 #: model:ir.model.fields,field_description:education.field_education_subject_center__course_id
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 msgid "Course"
 msgstr "Curso"
 
@@ -524,6 +531,7 @@ msgstr "Educación"
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_timetable_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
 
@@ -641,6 +649,7 @@ msgstr "Idioma de educación"
 #: model:ir.model.fields,field_description:education.field_education_level_field_subject__level_id
 #: model:ir.model.fields,field_description:education.field_education_level_workday_type__level_id
 #: model:ir.model.fields,field_description:education.field_education_subject_center__level_id
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 msgid "Education Level"
 msgstr "Nivel"
 
@@ -789,8 +798,10 @@ msgstr "Evaluación"
 #: model:ir.model,name:education.model_education_group_type
 #: model:ir.model.fields,field_description:education.field_education_group__group_type_id
 #: model:ir.model.fields,field_description:education.field_education_group_report__group_type_id
+#: model:ir.model.fields,field_description:education.field_education_subject_center__group_type_id
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 msgid "Educational Group Type"
 msgstr "Tipo de grupo"
 
@@ -832,7 +843,7 @@ msgstr "Empleado"
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_end
 msgid "End Date"
-msgstr "Fecha final"
+msgstr "Fecha finalización"
 
 #. module: education
 #: code:addons/education/models/education_academic_year.py:66
@@ -887,6 +898,7 @@ msgid "Firstname"
 msgstr "Nombre de pila"
 
 #. module: education
+#: selection:education.subject.center,subject_type:0
 #: selection:education.subject.type,type:0
 msgid "Free Choice"
 msgstr "Libre elección"
@@ -1173,7 +1185,6 @@ msgstr "Móvil:"
 #: model:ir.model.fields,field_description:education.field_education_section__name
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 #: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_form
-#: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_photo_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_tree_view
 msgid "Name"
@@ -1220,6 +1231,7 @@ msgid "Official Groups"
 msgstr "Grupos oficiales"
 
 #. module: education
+#: selection:education.subject.center,subject_type:0
 #: selection:education.subject.type,type:0
 msgid "Optional"
 msgstr "Optativa"
@@ -1505,8 +1517,8 @@ msgid "Student's Second Lastname"
 msgstr "Segundo apellido de alumno"
 
 #. module: education
-#: code:addons/education/models/education_group.py:115
 #: code:addons/education/models/education_group.py:128
+#: code:addons/education/models/education_group.py:138
 #: code:addons/education/models/education_schedule.py:99
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1558,14 +1570,14 @@ msgid "Subject Name"
 msgstr "Nombre de la asignatura"
 
 #. module: education
-#: model:ir.actions.act_window,name:education.action_education_subject_center
-msgid "Subject Name by Center"
-msgstr "Nombre de asignatura por centro"
+#: model:ir.model,name:education.model_education_subject_center
+msgid "Subject by Center, Level and Course"
+msgstr "Asignatura por centro, nivel y curso"
 
 #. module: education
-#: model:ir.model,name:education.model_education_subject_center
-msgid "Subject Name by Center, Language and Course"
-msgstr "Nombre de la asignatura por centro, idioma y curso"
+#: model:ir.model,name:education.model_education_subject_center_name
+msgid "Subject Name per Center and Language"
+msgstr "Nombre de asignatura por centro e idioma"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_subject_view_form
@@ -1576,9 +1588,17 @@ msgstr "Nombres de asignatura"
 #: model:ir.actions.act_window,name:education.action_education_subject_type
 #: model:ir.model.fields,field_description:education.field_education_schedule__subject_type
 #: model:ir.model.fields,field_description:education.field_education_subject__subject_type
+#: model:ir.model.fields,field_description:education.field_education_subject_center__subject_type
 #: model:ir.ui.menu,name:education.schedule_subject_type_menuitem
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 msgid "Subject Type"
 msgstr "Tipo de asignatura"
+
+#. module: education
+#: model:ir.actions.act_window,name:education.action_education_subject_center
+#: model:ir.ui.menu,name:education.education_subject_center_menuitem
+msgid "Subject by Center"
+msgstr "Asignatura por centro"
 
 #. module: education
 #: sql_constraint:education.subject.center:0
@@ -1756,12 +1776,14 @@ msgstr "Horas laborales"
 
 #. module: education
 #: code:addons/education/models/education_group.py:116
+#: code:addons/education/models/education_group.py:126
 #, python-format
 msgid "You can only edit photos from official groups."
 msgstr "Solo puede editar las fotos de los grupos oficiales."
 
 #. module: education
 #: code:addons/education/models/education_group.py:82
+#: code:addons/education/models/education_group.py:86
 #, python-format
 msgid "You cannot create recursive groups."
 msgstr "No puede crear grupos recursivos."
@@ -1770,11 +1792,6 @@ msgstr "No puede crear grupos recursivos."
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
 msgid "ZIP"
 msgstr "C.P."
-
-#. module: education
-#: model:ir.model,name:education.model_education_subject_center_name
-msgid "education.subject.center.name"
-msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_academic_year_evaluation.py:40
