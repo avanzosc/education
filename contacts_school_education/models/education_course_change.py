@@ -10,6 +10,7 @@ from odoo.tools.safe_eval import safe_eval
 class EducationCourseChange(models.Model):
     _name = "education.course.change"
     _description = "Course Change"
+    _inherit = ['mail.thread']
     _order = "school_id,course_id,next_school_id,next_course_id,gender"
 
     @api.model

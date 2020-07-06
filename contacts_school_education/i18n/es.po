@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 23:50+0000\n"
-"PO-Revision-Date: 2020-07-01 23:50+0000\n"
+"POT-Creation-Date: 2020-07-06 13:17+0000\n"
+"PO-Revision-Date: 2020-07-06 13:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__next_subject_count
+msgid "# Subject"
+msgstr "Nº asignaturas"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__academic_year_id
@@ -26,9 +31,9 @@ msgid "Academic year"
 msgstr "Año académico"
 
 #. module: contacts_school_education
-#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
-msgid "Add Subjects"
-msgstr "Añadir asignaturas"
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
@@ -40,6 +45,11 @@ msgstr "Info adicional"
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__alumni_member
 msgid "Alumni Association Member"
 msgstr "Miembro asociación antiguos alumnos"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_next_year_schedule_view_form
@@ -110,7 +120,7 @@ msgid "Courses"
 msgstr "Cursos"
 
 #. module: contacts_school_education
-#: code:addons/contacts_school_education/models/education_course_change.py:55
+#: code:addons/contacts_school_education/models/education_course_change.py:79
 #, python-format
 msgid "Courses must be different."
 msgstr "Los cursos deben ser diferentes."
@@ -124,7 +134,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:contacts_school_education.action_education_group_next_year_schedule
 #: model:ir.ui.menu,name:contacts_school_education.education_group_next_year_schedule_menuitem
 msgid "Create Schedule for Next Academic Year"
-msgstr ""
+msgstr "Crear horario para el próximo año académico"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__create_uid
@@ -185,7 +195,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: contacts_school_education
-#: code:addons/contacts_school_education/models/education_course_change.py:70
+#: code:addons/contacts_school_education/models/education_course_change.py:94
 #, python-format
 msgid "Duplicated course change!"
 msgstr "¡Cambio de curso duplicado!"
@@ -270,10 +280,25 @@ msgid "Educational Group Type"
 msgstr "Tipo de grupo"
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__gender
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
 msgid "Gender"
-msgstr "Sexo"
+msgstr "Género"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
@@ -292,6 +317,26 @@ msgstr "Tutor legal"
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__id
 msgid "ID"
 msgstr ""
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_education_course_change__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_education_course_change__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_education_course_change__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
@@ -328,6 +373,21 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_next_year_schedule__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_ids
+msgid "Messages"
+msgstr "Mensajes"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
@@ -387,6 +447,31 @@ msgstr "Siguiente especialidad"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 msgid "Non Official Groups"
 msgstr "Grupos no oficiales"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_has_error_counter
+msgid "Number of error"
+msgstr "Número de error"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_education_course_change__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_education_course_change__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_education_course_change__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
@@ -488,16 +573,41 @@ msgstr "Especialidad"
 
 #. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_education_subject_center
-msgid "Subject Name by Center, Language and Course"
-msgstr "Nombre de la asignatura por centro, idioma y curso"
+msgid "Subject by Center, Level and Course"
+msgstr "Asignatura por centro, nivel y curso"
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
+msgid "Subjects"
+msgstr "Asignaturas"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_next_year_schedule_view_form
 msgid "This will create a schedule for official groups for next academic year."
-msgstr ""
+msgstr "Se creará una planificación para grupos oficiales para el próximo año académico."
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes por leer"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_education_course_change__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
 
 #. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_education_group_next_year_schedule
 msgid "Wizard to create next academic year groups schedule"
-msgstr ""
+msgstr "Asistente para crear planificación para el próximo año académico"
 

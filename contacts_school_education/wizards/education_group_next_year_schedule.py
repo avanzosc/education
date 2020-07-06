@@ -19,7 +19,7 @@ class EducationGroupNextYear(models.TransientModel):
             ("academic_year_id", "=", next_year.id),
             ("group_type_id.type", "=", "official"),
         ])
-        next_year_groups.create_schedule()
+        next_year_groups.sudo().create_schedule()
         action = self.env.ref("education.action_education_schedule")
         action_dict = action.read()[0] if action else {}
         action_dict["context"] = safe_eval(
