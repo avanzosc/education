@@ -49,23 +49,52 @@
                 <sheet>
                     <group name="main">
                         <group>
-                            <field name="center_id" options="{'no_create': True}" />
-                            <field name="level_id" options="{'no_create': True}" />
-                            <field name="course_id" options="{'no_create': True}" />
+                            <field name="center_id" options="{'no_create': True}"
+                                   readonly="True" />
+                            <field name="level_id" options="{'no_create': True}"
+                                   readonly="True" />
+                            <field name="course_id" options="{'no_create': True}"
+                                   readonly="True" />
                         </group>
                         <group>
-                            <field name="subject_id" options="{'no_create': True}" />
+                            <field name="subject_id" options="{'no_create': True}"
+                                   readonly="True" />
                             <field name="subject_type" />
                             <field name="group_type_id" options="{'no_create': True}" />
                         </group>
                     </group>
                     <notebook>
                         <page name="name_lang" string="Name">
-                            <field name="name_ids" />
+                            <field name="name_ids">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="lang_id" options="{'no_create': True, 'no_open': True}"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="education_subject_center_edit_view_form" model="ir.ui.view">
+        <field name="model">education.subject.center</field>
+        <field name="inherit_id" ref="education.education_subject_center_view_form" />
+        <field name="groups_id" eval="[(4, ref('education_responsible'))]" />
+        <field name="arch" type="xml">
+            <field name="center_id" position="attributes">
+                <attribute name="readonly" />
+            </field>
+            <field name="level_id" position="attributes">
+                <attribute name="readonly" />
+            </field>
+            <field name="course_id" position="attributes">
+                <attribute name="readonly" />
+            </field>
+            <field name="subject_id" position="attributes">
+                <attribute name="readonly" />
+            </field>
         </field>
     </record>
 
