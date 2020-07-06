@@ -26,6 +26,10 @@
                 <field name="education_center_id" />
                 <field name="teacher_id" />
                 <field name="student_id" />
+                <filter name="requested-filter" string="Requested observations"
+                        domain="[('create_uid','=', uid)]" />
+                <filter name="to-make-filter" string="To make observations"
+                        domain="[('teacher_id.user_id','=', uid)]" />
                 <filter name="pending-filter" string="Pending observations"
                         domain="[('state','=','pending')]" />
                 <filter name="included-filter" string="Included observations"
@@ -54,7 +58,9 @@
         <field name="res_model">education.notebook.observation</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
-        <field name="domain">[('state', '=', 'included')]</field>
+        <field name="context">{
+            'search_default_requested-filter': True,
+        }</field>
         <field name="view_id" ref="education_notebook_observation_view_tree"/>
     </record>
 
@@ -68,7 +74,9 @@
         <field name="res_model">education.notebook.observation</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
-        <field name="domain">[('state', '=', 'pending')]</field>
+        <field name="context">{
+            'search_default_to-make-filter': True,
+        }</field>
         <field name="view_id" ref="education_notebook_observation_view_tree"/>
     </record>
 
