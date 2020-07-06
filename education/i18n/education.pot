@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 13:09+0000\n"
-"PO-Revision-Date: 2020-07-05 13:09+0000\n"
+"POT-Creation-Date: 2020-07-06 12:36+0000\n"
+"PO-Revision-Date: 2020-07-06 12:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1517,7 +1517,6 @@ msgid "Student's Second Lastname"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:128
 #: code:addons/education/models/education_group.py:138
 #: code:addons/education/models/education_schedule.py:99
 #: model:ir.actions.act_window,name:education.res_partner_education_action
@@ -1570,11 +1569,6 @@ msgid "Subject Name"
 msgstr ""
 
 #. module: education
-#: model:ir.model,name:education.model_education_subject_center
-msgid "Subject Name by Center, Language and Course"
-msgstr ""
-
-#. module: education
 #: model:ir.model,name:education.model_education_subject_center_name
 msgid "Subject Name per Center and Language"
 msgstr ""
@@ -1598,6 +1592,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:education.action_education_subject_center
 #: model:ir.ui.menu,name:education.education_subject_center_menuitem
 msgid "Subject by Center"
+msgstr ""
+
+#. module: education
+#: model:ir.model,name:education.model_education_subject_center
+msgid "Subject by Center, Level and Course"
 msgstr ""
 
 #. module: education
@@ -1775,14 +1774,12 @@ msgid "Working Hours"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:116
 #: code:addons/education/models/education_group.py:126
 #, python-format
 msgid "You can only edit photos from official groups."
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:82
 #: code:addons/education/models/education_group.py:86
 #, python-format
 msgid "You cannot create recursive groups."

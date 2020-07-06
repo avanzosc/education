@@ -17,6 +17,6 @@ class EducationSubjectCenterName(models.Model):
         required=True, ondelete="cascade")
 
     _sql_constraints = [
-        ("name_unique", "unique(subject_center_id,lang_id)",
+        ("center_name_unique", "unique(subject_center_id,lang_id)",
          "Subject name must be unique per language and center!"),
     ]

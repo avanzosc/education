@@ -32,7 +32,8 @@ class EducationSubjectCenter(models.Model):
         selection=SUBJECT_TYPE, string="Subject Type")
 
     _sql_constraints = [
-        ("name_unique", "unique(subject_id,course_id,level_id,center_id)",
+        ("subject_center_unique",
+         "unique(subject_id,course_id,level_id,center_id)",
          "Subject must be unique per subject, course, level and center!"),
     ]
 
