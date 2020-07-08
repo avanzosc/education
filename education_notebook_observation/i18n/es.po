@@ -381,3 +381,13 @@ msgstr "Usted va a mandar un email a los proforesores solicitando las observacio
 msgid "lines of wizard for generate notebook observations"
 msgstr "Líneas del asistente para generar observaciones cuaderno"
 
+#. module: education_notebook_observation
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
+msgid "Requested observations"
+msgstr "Observaciones solicitadas"
+
+#. module: education_notebook_observation
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
+msgid "To make observations"
+msgstr "Observaciones a realizar"
+

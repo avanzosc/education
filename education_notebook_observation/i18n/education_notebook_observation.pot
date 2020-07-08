@@ -351,3 +351,13 @@ msgstr ""
 msgid "lines of wizard for generate notebook observations"
 msgstr ""
 
+#. module: education_notebook_observation
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
+msgid "Requested observations"
+msgstr ""
+
+#. module: education_notebook_observation
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
+msgid "To make observations"
+msgstr ""
+

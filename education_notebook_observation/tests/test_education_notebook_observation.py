@@ -118,8 +118,7 @@ class TestEducationNotebookObservation(TestCalendarSchool):
         observation = calendars[0].calendar_event_notebook_observation_ids[0]
         observation.write({'observations': 'aaaaaaaaaaaaaaaaa'})
         self.assertEqual(observation.state, 'included')
-        domain = ['&', ('teacher_id', 'in', [self.teacher.id]),
-                  ('state', '=', 'included')]
+        domain = [('teacher_id', 'in', [self.teacher.id])]
         res = self.teacher.button_show_notebook_observations()
         self.assertEqual(res.get('domain'), domain)
 
