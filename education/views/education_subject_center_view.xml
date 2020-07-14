@@ -9,6 +9,7 @@
                 <field name="level_id" options="{'no_create': True}" />
                 <field name="course_id" options="{'no_create': True}" />
                 <field name="subject_type" />
+                <field name="group_type_id" options="{'no_create': True}" />
                 <field name="name_ids" widget="many2many_tags" />
             </tree>
         </field>
