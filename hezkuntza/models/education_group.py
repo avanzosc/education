@@ -22,6 +22,6 @@ class EducationGroup(models.Model):
         ], order="education_code DESC").mapped("education_code")
         codes = [int(code) if code.isdigit() else 0 for code in group_codes]
         if values.get("education_code", "/") == "/":
-            code_num = max(codes) + 1
+            code_num = max(codes) + 1 if codes else 1
             values["education_code"] = str(code_num).rjust(8, "0")
         return super(EducationGroup, self).create(values)
