@@ -9,6 +9,7 @@
             </field>
             <field name="company_id" position="after">
                 <field name="center_id" />
+                <field name="academic_year_id" />
             </field>
         </field>
     </record>
@@ -17,11 +18,17 @@
         <field name="model">resource.calendar</field>
         <field name="inherit_id" ref="resource.resource_calendar_form" />
         <field name="arch" type="xml">
+            <div class="oe_button_box" name="button_box">
+                <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                    <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                </button>
+            </div>
             <field name="hours_per_day" position="before">
                 <field name="education_code" />
             </field>
             <field name="company_id" position="after">
                 <field name="center_id" />
+                <field name="academic_year_id" />
             </field>
         </field>
     </record>
@@ -32,6 +39,7 @@
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="center_id" />
+                <field name="academic_year_id" />
             </field>
             <search position="inside">
                 <group expand="0" name="group_by" string="Group By">
