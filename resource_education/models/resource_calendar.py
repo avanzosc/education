@@ -23,6 +23,9 @@ class ResourceCalendar(models.Model):
     center_id = fields.Many2one(
         comodel_name='res.partner', string='Education Center',
         domain=[('education_code', '!=', False)])
+    academic_year_id = fields.Many2one(
+        comodel_name="education.academic_year", string="Academic Year")
+    active = fields.Boolean(default=True)
 
     @api.constrains('education_code')
     def _check_education_code(self):
