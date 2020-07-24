@@ -129,6 +129,29 @@ class ResPartner(models.Model):
             partner.classroom_count = len(partner.classroom_ids)
 
     @api.multi
+    def assign_group(self, group, update=False):
+        official_group = (group.group_type_id.type == "official")
+        academic_year = group.academic_year_id
+        for student in self.filtered(
+                lambda p: p.educational_category in ("student", "otherchild")):
+            has_official_group = student.student_group_ids.filtered(
+                lambda g: g.academic_year_id == academic_year and
+                g.group_type_id.type == "official")
+            write_data = {}
+            if update and official_group:
+                write_data.update({
+                    "current_group_id": group.id,
+                    "current_center_id": group.center_id.id,
+                    "current_level_id": group.level_id.id,
+                    "current_course_id": group.course_id.id,
+                })
+            if not has_official_group:
+                write_data.update({
+                    "student_group_ids": [(4, group.id)],
+                })
+                student.write(write_data)
+
+    @api.multi
     def button_open_current_student(self):
         self.ensure_one()
         if self.educational_category != "school":

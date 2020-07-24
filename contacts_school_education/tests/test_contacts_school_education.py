@@ -145,3 +145,22 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         self.schedule_wizard.create_next_year_group_schedule()
         next_schedule = next_groups.mapped("schedule_ids")
         self.assertTrue(next_schedule)
+
+    def test_assign_group(self):
+        self.assertNotIn(self.group2, self.student.student_group_ids)
+        self.assertNotEquals(self.student.current_group_id, self.group2)
+        self.assertNotEquals(
+            self.student.current_center_id, self.group2.center_id)
+        self.assertNotEquals(
+            self.student.current_level_id, self.group2.level_id)
+        self.assertNotEquals(
+            self.student.current_course_id, self.group2.course_id)
+        self.student.assign_group(self.group2, update=True)
+        self.assertIn(self.group2, self.student.student_group_ids)
+        self.assertEquals(self.student.current_group_id, self.group2)
+        self.assertEquals(
+            self.student.current_center_id, self.group2.center_id)
+        self.assertEquals(
+            self.student.current_level_id, self.group2.level_id)
+        self.assertEquals(
+            self.student.current_course_id, self.group2.course_id)
