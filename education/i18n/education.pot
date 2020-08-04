@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 12:36+0000\n"
-"PO-Revision-Date: 2020-07-06 12:36+0000\n"
+"POT-Creation-Date: 2020-08-04 10:21+0000\n"
+"PO-Revision-Date: 2020-08-04 10:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_res_partner__education_group_count
 #: model:ir.model.fields,field_description:education.field_res_users__education_group_count
 msgid "# Education Groups"
+msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_education_group_document
+msgid "<span>Firstname</span>"
+msgstr ""
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_education_group_document
+msgid "<span>Surnames</span>"
 msgstr ""
 
 #. module: education
@@ -42,6 +52,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_search
 msgid "Academic Year"
+msgstr ""
+
+#. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:52
+#, python-format
+msgid "Academic Year:"
 msgstr ""
 
 #. module: education
@@ -116,6 +132,12 @@ msgstr ""
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_schedule__attendance_id
 msgid "Attendance"
+msgstr ""
+
+#. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:63
+#, python-format
+msgid "Birthdate"
 msgstr ""
 
 #. module: education
@@ -498,6 +520,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_task_type__display_name
 #: model:ir.model.fields,field_description:education.field_education_work_reason__display_name
 #: model:ir.model.fields,field_description:education.field_education_workday_type__display_name
+#: model:ir.model.fields,field_description:education.field_report_education_education_group_xlsx__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -541,6 +564,12 @@ msgid "Education Center Responsible"
 msgstr ""
 
 #. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:49
+#, python-format
+msgid "Education Center:"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_activity_type__education_code
 #: model:ir.model.fields,field_description:education.field_education_classroom__education_code
 #: model:ir.model.fields,field_description:education.field_education_contract_type__education_code
@@ -574,6 +603,7 @@ msgid "Education Contract Type"
 msgstr ""
 
 #. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:55
 #: model:ir.model.fields,field_description:education.field_education_group_student_report__course_id
 #: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__course_id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher_report__course_id
@@ -582,6 +612,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_group_student_timetable_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_report_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_group_teacher_timetable_report_view_search
+#, python-format
 msgid "Education Course"
 msgstr ""
 
@@ -623,6 +654,11 @@ msgstr ""
 #. module: education
 #: model:ir.model,name:education.model_education_group_teacher
 msgid "Education Group Teachers"
+msgstr ""
+
+#. module: education
+#: model:ir.actions.report,name:education.education_group_xlsx
+msgid "Education Group XLSX report"
 msgstr ""
 
 #. module: education
@@ -994,6 +1030,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_task_type__id
 #: model:ir.model.fields,field_description:education.field_education_work_reason__id
 #: model:ir.model.fields,field_description:education.field_education_workday_type__id
+#: model:ir.model.fields,field_description:education.field_report_education_education_group_xlsx__id
 msgid "ID"
 msgstr ""
 
@@ -1007,6 +1044,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:education.action_education_idtype
 #: model:ir.ui.menu,name:education.faculty_idtype_menuitem
 msgid "ID types"
+msgstr ""
+
+#. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:60
+#, python-format
+msgid "Index"
 msgstr ""
 
 #. module: education
@@ -1069,6 +1112,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education.field_education_task_type____last_update
 #: model:ir.model.fields,field_description:education.field_education_work_reason____last_update
 #: model:ir.model.fields,field_description:education.field_education_workday_type____last_update
+#: model:ir.model.fields,field_description:education.field_report_education_education_group_xlsx____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -1181,12 +1225,14 @@ msgid "Mobile:"
 msgstr ""
 
 #. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:62
 #: model:ir.model.fields,field_description:education.field_education_academic_year_evaluation__name
 #: model:ir.model.fields,field_description:education.field_education_section__name
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 #: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_tree_view
+#, python-format
 msgid "Name"
 msgstr ""
 
@@ -1309,6 +1355,12 @@ msgstr ""
 #. module: education
 #: model:res.groups,name:education.education_responsible
 msgid "Responsible"
+msgstr ""
+
+#. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:48
+#, python-format
+msgid "STUDENT LIST"
 msgstr ""
 
 #. module: education
@@ -1478,6 +1530,11 @@ msgid "Student Groups Report"
 msgstr ""
 
 #. module: education
+#: model:ir.actions.report,name:education.education_group_list
+msgid "Student List"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_group__student_count
 #: model:ir.model.fields,field_description:education.field_education_schedule__student_count
 #: model:ir.model.fields,field_description:education.field_education_schedule_group__group_student_count
@@ -1518,6 +1575,7 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:138
+#: code:addons/education/models/education_group.py:140
 #: code:addons/education/models/education_schedule.py:99
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1626,6 +1684,12 @@ msgid "Subjects by Levels"
 msgstr ""
 
 #. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:61
+#, python-format
+msgid "Surnames"
+msgstr ""
+
+#. module: education
 #: model:ir.actions.act_window,name:education.action_education_task_type
 #: model:ir.model.fields,field_description:education.field_education_schedule__task_type_id
 #: model:ir.ui.menu,name:education.schedule_task_type_menuitem
@@ -1731,6 +1795,12 @@ msgid "User"
 msgstr ""
 
 #. module: education
+#: code:addons/education/reports/education_group_xlsx_report.py:64
+#, python-format
+msgid "VAT"
+msgstr ""
+
+#. module: education
 #: model:ir.model,name:education.model_education_group_next_year
 msgid "Wizard to create next academic year official groups"
 msgstr ""
@@ -1775,12 +1845,14 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:126
+#: code:addons/education/models/education_group.py:128
 #, python-format
 msgid "You can only edit photos from official groups."
 msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:86
+#: code:addons/education/models/education_group.py:88
 #, python-format
 msgid "You cannot create recursive groups."
 msgstr ""
@@ -1788,6 +1860,16 @@ msgstr ""
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
 msgid "ZIP"
+msgstr ""
+
+#. module: education
+#: model:ir.model,name:education.model_report_education_education_group_xlsx
+msgid "report.education.education_group_xlsx"
+msgstr ""
+
+#. module: education
+#: model:ir.model,name:education.model_report_report_xlsx_partner_export_xlsx
+msgid "report.report_xlsx.partner_export_xlsx"
 msgstr ""
 
 #. module: education

@@ -1,6 +1,8 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+import re
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.models import expression
@@ -172,6 +174,11 @@ class EducationGroup(models.Model):
                 except Exception:
                     pass
         return next_groups
+
+    def get_report_file_name(self):
+        return "{}-{}-{}".format(
+            self.education_code, re.sub(r"[\W_]+", "", self.description),
+            re.sub(r"[\W_]+", "", self.center_id.display_name))
 
 
 class EducationGroupTeacher(models.Model):

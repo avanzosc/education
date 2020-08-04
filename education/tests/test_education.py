@@ -300,3 +300,22 @@ class TestEducation(TestEducationCommon):
         })
         with self.assertRaises(UserError):
             group.button_edit_students()
+
+    def test_education_group_xlsx(self):
+        group = self.group_model.create({
+            'education_code': 'TEST',
+            'description': 'Test Group',
+            'center_id': self.edu_partner.id,
+            'academic_year_id': self.academic_year.id,
+            'level_id': self.edu_level.id,
+            'student_ids': [(6, 0, self.edu_partner.ids)],
+        })
+        report_name = 'education.education_group_xlsx'
+        with self.assertRaises(UserError):
+            self.env.ref(report_name).render(group.ids)
+        group.write({
+            "group_type_id": self.edu_group_type.id,
+        })
+        report_xlsx = self.env.ref(report_name).render(group.ids)
+        self.assertGreaterEqual(len(report_xlsx[0]), 1)
+        self.assertEqual(report_xlsx[1], 'xlsx')

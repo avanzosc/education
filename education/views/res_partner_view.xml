@@ -129,6 +129,7 @@
                             <field name="phone" widget="phone"/>
                             <field name="mobile" widget="phone"/>
                             <field name="email"/>
+                            <field name="birthdate_date" />
                         </group>
                         <group name="main_right" />
                     </group>
