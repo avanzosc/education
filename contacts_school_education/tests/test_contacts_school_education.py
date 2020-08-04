@@ -136,6 +136,7 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         current_year = self.academic_year_model.search([
             ("current", "=", True)])
         next_year = current_year._get_next()
+        self.assertTrue(next_year)
         next_groups = self.group_model.search([
             ("academic_year_id", "=", next_year.id),
             ("group_type_id.type", "=", "official")])
