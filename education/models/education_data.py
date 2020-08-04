@@ -1,6 +1,8 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+import re
+
 from odoo import api, fields, models
 from odoo.osv import expression
 
@@ -54,3 +56,7 @@ class EducationData(models.AbstractModel):
         return super(EducationData, self)._search(
             args, offset=offset, limit=limit, order=order, count=count,
             access_rights_uid=access_rights_uid)
+
+    def get_report_file_name(self):
+        return '{}-{}'.format(
+            self.education_code, re.sub(r'[\W_]+', '', self.description))

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report id="education_group_xlsx"
+            string="Education Group XLSX report"
+            model="education.group"
+            report_type="xlsx"
+            menu="False"
+            name="education.education_group_xlsx"
+            file="education.education_group"
+            print_report_name="object.get_report_file_name()"
+    />
+
+</odoo>
