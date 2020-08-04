@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.addons.education.tests.common import TestEducationCommon
-from dateutil.relativedelta import relativedelta
 
 
 class TestContactsSchoolEducationCommon(TestEducationCommon):
@@ -49,10 +48,6 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
             "educational_category": "family",
             "is_company": True,
             "child_ids": [(6, 0, cls.student.ids)],
-        })
-        cls.academic_year.write({
-            "date_start": cls.today - relativedelta(months=1),
-            "date_end": cls.today + relativedelta(months=1),
         })
         cls.group_type = cls.env["education.group_type"].create({
             "education_code": "OFFI",
