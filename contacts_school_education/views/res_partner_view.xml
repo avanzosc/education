@@ -83,6 +83,17 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="personal_information">
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+               ref="partner_contact_personal_information_page.personal_information" />
+        <field name="arch" type="xml">
+            <group name="personal_information_group" position="inside">
+                <field name="child_number"/>
+            </group>
+        </field>
+    </record>
+
     <record id="res_partner_view_search" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_res_partner_filter" />

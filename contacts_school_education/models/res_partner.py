@@ -50,6 +50,10 @@ class ResPartner(models.Model):
     classroom_count = fields.Integer(
         string="Classroom Count", compute="_compute_classroom_count",
         store=True)
+    child_number = fields.Integer(
+        string="Child Number",
+        help="This field defines the child position over enrollees from the "
+             "same family")
 
     @api.multi
     def get_current_group(self):
