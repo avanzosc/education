@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
+<odoo noupdate="1">
     <record id="e_notebook_observation_user_rule" model="ir.rule">
         <field name="name">Notebook observation user rule</field>
         <field name="model_id" ref="education.model_education_schedule"/>
