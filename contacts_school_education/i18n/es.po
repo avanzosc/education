@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 13:17+0000\n"
-"PO-Revision-Date: 2020-07-06 13:17+0000\n"
+"POT-Creation-Date: 2020-08-14 13:50+0000\n"
+"PO-Revision-Date: 2020-08-14 13:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Año académico"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción requerida"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
@@ -60,6 +60,12 @@ msgstr "Cancelar"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Center And Promotion"
 msgstr "Centro y promoción"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__child_number
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_users__child_number
+msgid "Child Number"
+msgstr "Numero de niño"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__childs_current_course_ids
@@ -382,7 +388,7 @@ msgstr "Adjuntos principales"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de Envío de Mensaje"
+msgstr "Error de envío del mensaje"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_ids
@@ -480,6 +486,7 @@ msgstr "Grupos oficiales"
 
 #. module: contacts_school_education
 #: code:addons/contacts_school_education/models/res_partner.py:58
+#: code:addons/contacts_school_education/models/res_partner.py:62
 #, python-format
 msgid "Only students can have education groups."
 msgstr "Solo los alumnos pueden tener grupo educativo."
@@ -580,6 +587,12 @@ msgstr "Asignatura por centro, nivel y curso"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 msgid "Subjects"
 msgstr "Asignaturas"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,help:contacts_school_education.field_res_partner__child_number
+#: model:ir.model.fields,help:contacts_school_education.field_res_users__child_number
+msgid "This field defines the child position over enrollees from the same family"
+msgstr "Este campo define la posición del niño frente a los afiliados de la misma familia"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_next_year_schedule_view_form
