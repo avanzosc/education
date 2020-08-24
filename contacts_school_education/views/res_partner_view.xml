@@ -32,6 +32,10 @@
                 <field name="alumni_member"
                        attrs="{'invisible': ['|',('old_student','!=',True),('educational_category','not in',('progenitor','guardian','otherchild','related','otherrelative'))]}" />
             </field>
+            <field name="child_ids" position="before">
+                <label for="children_number" />
+                <field name="children_number" />
+            </field>
             <page name="sales_purchases" position="after">
                 <page name="course_changes" string="Courses"
                       attrs="{'invisible': [('educational_category','!=','school')]}">

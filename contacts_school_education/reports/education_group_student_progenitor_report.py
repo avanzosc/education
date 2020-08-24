@@ -21,6 +21,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
 
     progenitor_id = fields.Many2one(
         comodel_name="res.partner", string="Progenitor")
+    progenitor_email = fields.Char()
     relation = fields.Selection(
         string="Relation",  selection=_get_selection_relation)
 
@@ -36,6 +37,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
     def _select(self):
         select_str = """
                 , fam.responsible_id AS progenitor_id
+                , p.email AS progenitor_email
                 , fam.relation AS relation
         """
         return super(EducationGroupStudentProgenitorReport,
@@ -45,6 +47,8 @@ class EducationGroupStudentProgenitorReport(models.Model):
         from_str = """
                 JOIN res_partner_family fam
                   ON fam.child2_id = stu.id
+                JOIN res_partner p
+                  ON fam.responsible_id = p.id
         """
         return super(EducationGroupStudentProgenitorReport,
                      self)._from() + from_str
@@ -53,6 +57,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
         group_by_str = """
                 , fam.responsible_id
                 , fam.relation
+                , p.email
         """
         return super(EducationGroupStudentProgenitorReport,
                      self)._group_by() + group_by_str
