@@ -22,7 +22,9 @@ class ResPartnerFleetRouteReport(models.Model):
         comodel_name="education.level", string="Education Level")
     course_id = fields.Many2one(
         comodel_name="education.course", string="Education Course")
-    bus_passenger = fields.Boolean()
+    bus_passenger = fields.Selection(
+        selection=[("yes", "Yes"),
+                   ("no", "No")], string="Uses Bus")
     going_stop_id = fields.Many2one(
         comodel_name="fleet.route.stop", string="Going Stop")
     coming_stop_id = fields.Many2one(
