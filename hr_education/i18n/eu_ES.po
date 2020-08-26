@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-04 12:18+0000\n"
-"PO-Revision-Date: 2020-02-04 12:18+0000\n"
+"POT-Creation-Date: 2020-08-26 13:50+0000\n"
+"PO-Revision-Date: 2020-08-26 13:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,16 @@ msgid "Add a new employee"
 msgstr ""
 
 #. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__coach_id
+msgid "Coach"
+msgstr "Entrenatzailea "
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__country_of_birth
+msgid "Country of Birth"
+msgstr ""
+
+#. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee_edu_type__create_uid
 msgid "Created by"
 msgstr "Nork sortua"
@@ -31,9 +41,25 @@ msgid "Created on"
 msgstr "Noiz sortua"
 
 #. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__birthday
+msgid "Date of Birth"
+msgstr "Jaiotze data "
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__department_id
+msgid "Department"
+msgstr "Departamentua"
+
+#. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee_edu_type__display_name
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__display_name
 msgid "Display Name"
 msgstr "Izena erakutsi"
+
+#. module: hr_education
+#: selection:hr.employee.report,marital:0
+msgid "Divorced"
+msgstr ""
 
 #. module: hr_education
 #: model_terms:ir.ui.view,arch_db:hr_education.hr_employee_view_form
@@ -46,7 +72,18 @@ msgid "Education Subject"
 msgstr ""
 
 #. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__emergency_contact
+msgid "Emergency Contact"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__emergency_phone
+msgid "Emergency Phone"
+msgstr ""
+
+#. module: hr_education
 #: model:ir.model,name:hr_education.model_hr_employee
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__employee_id
 msgid "Employee"
 msgstr "Langilea"
 
@@ -54,8 +91,20 @@ msgstr "Langilea"
 #: model:ir.actions.act_window,name:hr_education.hr_employee_edu_type_action
 #: model:ir.model,name:hr_education.model_hr_employee_edu_type
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_type_id
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__edu_type_id
 #: model:ir.ui.menu,name:hr_education.hr_employee_edu_type_menuitem
 msgid "Employee Education Type"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.actions.act_window,name:hr_education.action_hr_employee_report
+#: model:ir.ui.menu,name:hr_education.hr_employee_report_menu
+msgid "Employee List"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model,name:hr_education.model_hr_employee_report
+msgid "Employee Report"
 msgstr ""
 
 #. module: hr_education
@@ -69,13 +118,40 @@ msgid "Faculty"
 msgstr ""
 
 #. module: hr_education
+#: selection:hr.employee.report,gender:0
+msgid "Female"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__gender
+msgid "Gender"
+msgstr "Generoa "
+
+#. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee_edu_type__id
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__id
 msgid "ID"
 msgstr ""
 
 #. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_idtype_id
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__edu_idtype_id
 msgid "ID Type"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__identification_id
+msgid "Identification No"
+msgstr "Identifikazio zenbakia "
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__job_id
+msgid "Job Position"
+msgstr "Lanpostua"
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__km_home_work
+msgid "Km home-work"
 msgstr ""
 
 #. module: hr_education
@@ -86,6 +162,7 @@ msgstr "Hizkuntzak"
 
 #. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee_edu_type____last_update
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report____last_update
 msgid "Last Modified on"
 msgstr "Azken aldaketa"
 
@@ -100,10 +177,35 @@ msgid "Last Updated on"
 msgstr "Azken eguneraketa noiz"
 
 #. module: hr_education
+#: selection:hr.employee.report,marital:0
+msgid "Legal Cohabitant"
+msgstr ""
+
+#. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_level_ids
 #: model_terms:ir.ui.view,arch_db:hr_education.hr_employee_view_form
 msgid "Levels"
-msgstr "Hezkuntza-aldiak"
+msgstr "Mailak"
+
+#. module: hr_education
+#: selection:hr.employee.report,gender:0
+msgid "Male"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__parent_id
+msgid "Manager"
+msgstr "Kudeatzailea"
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__marital
+msgid "Marital Status"
+msgstr "Egoera zibila "
+
+#. module: hr_education
+#: selection:hr.employee.report,marital:0
+msgid "Married"
+msgstr ""
 
 #. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee_edu_type__name
@@ -111,9 +213,59 @@ msgid "Name"
 msgstr "Izena"
 
 #. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__country_id
+msgid "Nationality (Country)"
+msgstr "Nazionalitatea (herrialdea)"
+
+#. module: hr_education
 #: model:hr.employee.edu_type,name:hr_education.nonteaching_edu_type
 msgid "Non-Teaching Staff"
 msgstr "Ez-irakasle"
+
+#. module: hr_education
+#: selection:hr.employee.report,gender:0
+msgid "Other"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__passport_id
+msgid "Passport No"
+msgstr "Pasaporte zenbakia "
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__place_of_birth
+msgid "Place of Birth"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__address_home_id
+msgid "Private Address"
+msgstr "Helbide pribatua"
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__sinid
+msgid "SIN No"
+msgstr "SIN zenbakia "
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__ssnid
+msgid "SSN No"
+msgstr "SSN zenbakia "
+
+#. module: hr_education
+#: selection:hr.employee.report,marital:0
+msgid "Single"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,help:hr_education.field_hr_employee_report__sinid
+msgid "Social Insurance Number"
+msgstr "Gizarte Segurantzako zenbakia"
+
+#. module: hr_education
+#: model:ir.model.fields,help:hr_education.field_hr_employee_report__ssnid
+msgid "Social Security Number"
+msgstr "Gizarte Segurantzako zenbakia"
 
 #. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee__edu_subject_ids
@@ -127,9 +279,59 @@ msgid "Teaching Staff"
 msgstr "Irakasle"
 
 #. module: hr_education
+#: model_terms:ir.ui.view,arch_db:hr_education.hr_employee_report_view_search
+msgid "Today Birthdays"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__visa_expire
+msgid "Visa Expire Date"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__visa_no
+msgid "Visa No"
+msgstr ""
+
+#. module: hr_education
+#: selection:hr.employee.report,marital:0
+msgid "Widower"
+msgstr ""
+
+#. module: hr_education
 #: model_terms:ir.actions.act_window,help:hr_education.hr_employee_teacher_action
 msgid "With just a quick glance on the Odoo employee screen, you\n"
 "            can easily find all the information you need for each person;\n"
 "            contact data, job position, availability, etc."
 msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__address_id
+msgid "Work Address"
+msgstr "Laneko helbidea"
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__work_email
+msgid "Work Email"
+msgstr "Laneko eposta"
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__work_location
+msgid "Work Location"
+msgstr "Laneko kokalekua "
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__mobile_phone
+msgid "Work Mobile"
+msgstr "Laneko mugikorra"
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__permit_no
+msgid "Work Permit No"
+msgstr ""
+
+#. module: hr_education
+#: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__work_phone
+msgid "Work Phone"
+msgstr "Laneko telefonoa "
 

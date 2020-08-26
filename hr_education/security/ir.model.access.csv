@@ -1,3 +1,4 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 hr_employee_edu_type_all,hr_employee_edu_type all,model_hr_employee_edu_type,base.group_user,1,0,0,0
 hr_employee_edu_type_manager,hr_employee_edu_type manager,model_hr_employee_edu_type,hr.group_hr_manager,1,1,1,1
+access_hr_employee_report,hr.employee.report all,hr_education.model_hr_employee_report,,1,0,0,0
