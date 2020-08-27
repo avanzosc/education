@@ -54,6 +54,9 @@ class ResPartner(models.Model):
         string="Child Number",
         help="This field defines the child position over enrollees from the "
              "same family")
+    children_number = fields.Integer(
+        string="Children Number", compute="_compute_children_number",
+        store=True)
 
     @api.multi
     def get_current_group(self):
@@ -131,6 +134,16 @@ class ResPartner(models.Model):
     def _compute_classroom_count(self):
         for partner in self:
             partner.classroom_count = len(partner.classroom_ids)
+
+    @api.multi
+    @api.depends("child_ids", "child_ids.educational_category",
+                 "educational_category")
+    def _compute_children_number(self):
+        for partner in self.filtered(
+                lambda p: p.educational_category == "family" and p.child_ids):
+            partner.children_number = len(partner.child_ids.filtered(
+                                          lambda p: p.educational_category in
+                                          ["student", "otherchild"]))
 
     @api.multi
     def assign_group(self, group, update=False):

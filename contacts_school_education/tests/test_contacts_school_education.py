@@ -14,6 +14,7 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         self.student.update_current_group_id()
         self.assertEquals(self.student.current_group_id, self.group)
         self.assertEquals(self.family, self.student.parent_id)
+        self.assertEquals(self.family.children_number, 1)
         students = self.partner_model.search([
             ('current_center_id', '=', self.edu_partner.id)])
         self.assertIn(self.student, students)

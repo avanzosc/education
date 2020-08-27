@@ -10,6 +10,7 @@
                 <field name="group_type_id" invisible="True" />
                 <field name="student_id" />
                 <field name="progenitor_id" />
+                <field name="progenitor_email" />
                 <field name="academic_year_id" />
             </tree>
         </field>
@@ -21,6 +22,7 @@
             <search>
                 <field name="student_id" />
                 <field name="progenitor_id" />
+                <field name="progenitor_email" />
                 <field name="group_id" />
                 <field name="group_type_id" />
                 <field name="course_id" />
