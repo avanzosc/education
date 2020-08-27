@@ -18,6 +18,7 @@
         "views/hr_employee_view.xml",
         "views/hr_employee_edu_type_view.xml",
         "views/hr_education_menu_view.xml",
+        "reports/hr_employee_report_view.xml",
     ],
     "installable": True,
 }
