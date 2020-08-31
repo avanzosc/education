@@ -141,9 +141,10 @@ class ResPartner(models.Model):
     def _compute_children_number(self):
         for partner in self.filtered(
                 lambda p: p.educational_category == "family" and p.child_ids):
-            partner.children_number = len(partner.child_ids.filtered(
-                                          lambda p: p.educational_category in
-                                          ["student", "otherchild"]))
+            partner.children_number = len(
+                partner.child_ids.filtered(
+                    lambda p: p.educational_category == "student" and
+                    not p.old_student))
 
     @api.multi
     def assign_group(self, group, update=False):
