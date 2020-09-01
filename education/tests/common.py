@@ -21,8 +21,11 @@ class TestEducationCommon(common.SavepointCase):
         cls.academic_year = cls.academic_year_model.search([
             ("current", "=", True)])
         if not cls.academic_year:
+            start_year = cls.today.year
+            if cls.today.month < 9:
+                start_year -= 1
             cls.date_start = cls.today.replace(
-                year=cls.today.year - 1, month=9, day=1)
+                year=start_year, month=9, day=1)
             cls.date_end = cls.date_start.replace(
                 year=cls.date_start.year + 1, month=8, day=31)
             cls.academic_year = cls.academic_year_model.create({
