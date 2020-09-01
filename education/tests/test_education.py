@@ -212,6 +212,7 @@ class TestEducation(TestEducationCommon):
             'level_id': self.edu_level.id,
             'student_ids': [(6, 0, self.edu_partner.ids)],
             'group_type_id': self.edu_group_type.id,
+            'calendar_id': self.calendar.id,
         })
         self.assertEquals(group.student_count, len(group.student_ids))
         with self.assertRaises(ValidationError):
@@ -233,6 +234,19 @@ class TestEducation(TestEducationCommon):
             'subject_id': self.edu_subject.id,
             'group_ids': [(6, 0, group.ids)],
         })
+        self.assertEquals(schedule.calendar_id, group.calendar_id)
+        attendance = schedule.calendar_id.attendance_ids[:1]
+        timetable = self.timetable_model.new({
+            "schedule_id": schedule.id,
+            "calendar_id": schedule.calendar_id.id,
+            "dayofweek": attendance.dayofweek,
+            "attendance_id": attendance.id,
+        })
+        self.assertFalse(timetable.hour_from)
+        self.assertFalse(timetable.hour_to)
+        timetable._onchange_attendance_id()
+        self.assertEquals(timetable.hour_from, attendance.hour_from)
+        self.assertEquals(timetable.hour_to, attendance.hour_to)
         action_dict = self.teacher.button_open_schedule()
         self.assertIn(("professor_id", "=", self.teacher.id),
                       action_dict.get('domain'))
@@ -319,3 +333,13 @@ class TestEducation(TestEducationCommon):
         report_xlsx = self.env.ref(report_name).render(group.ids)
         self.assertGreaterEqual(len(report_xlsx[0]), 1)
         self.assertEqual(report_xlsx[1], 'xlsx')
+
+    def test_subject_center_onchange(self):
+        new_subject_center = self.subject_center_model.new({
+            "center_id": self.edu_partner.id,
+            "subject_id": self.edu_subject.id,
+        })
+        self.assertFalse(new_subject_center.subject_type)
+        new_subject_center._onchange_subject()
+        self.assertEquals(
+            self.edu_subject.subject_type, new_subject_center.subject_type)

@@ -64,9 +64,17 @@
                         <group>
                             <field name="resource_calendar_id"
                                    invisible="True" />
-                            <field name="timetable_ids">
+                            <field name="calendar_id"
+                                   options="{'no_open': True}" />
+                            <field name="timetable_ids"
+                                   context="{'default_calendar_id': calendar_id}"
+                                   attrs="{'invisible': [('calendar_id','=',False)]}">
                                 <tree editable="bottom">
+                                    <field name="calendar_id" invisible="True" />
                                     <field name="dayofweek" />
+                                    <field name="attendance_id"
+                                           domain="[('calendar_id','=',calendar_id),('dayofweek','=',dayofweek)]"
+                                           options="{'no_create': True, 'no_open': True}" />
                                     <field name="hour_from" widget="float_time" />
                                     <field name="hour_to" widget="float_time" />
                                     <field name="subject_name" />
@@ -92,7 +100,7 @@
                     </group>
                     <group>
                         <field name="group_ids" widget="many2many_tags"
-                               domain="[('academic_year_id','=',academic_year_id),('center_id','=',center_id)]"
+                               domain="[('academic_year_id','=',academic_year_id),('center_id','=',center_id),('calendar_id','=',calendar_id)]"
                                options="{'no_create': True}"/>
                     </group>
                 </sheet>

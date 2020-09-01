@@ -45,6 +45,8 @@ class EducationGroup(models.Model):
     calendar_id = fields.Many2one(
         comodel_name='resource.calendar', string='Calendar',
         domain="[('center_id', '=', center_id)]")
+    section_id = fields.Many2one(
+        comodel_name='education.section', string='Section')
     comments = fields.Text(string='Comments')
     teacher_ids = fields.One2many(
         comodel_name='education.group.teacher',

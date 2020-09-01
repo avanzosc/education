@@ -16,6 +16,8 @@ class TestEducationCommon(common.SavepointCase):
         cls.group_model = cls.env['education.group']
         cls.group_session_model = cls.env['education.group.session']
         cls.schedule_model = cls.env['education.schedule']
+        cls.timetable_model = cls.env["education.schedule.timetable"]
+        cls.subject_center_model = cls.env['education.subject.center']
         cls.attendance_model = cls.env['resource.calendar.attendance']
         cls.group_wizard = cls.env["education.group.next_year"].create({})
         cls.academic_year = cls.academic_year_model.search([
@@ -106,3 +108,12 @@ class TestEducationCommon(common.SavepointCase):
             'description': 'Test Language',
         })
         cls.lang = cls.env['res.lang']._lang_get(cls.env.user.lang)
+        cls.calendar = cls.env["resource.calendar"].create({
+            "name": "Test Calendar",
+            "attendance_ids": [(0, 0, {
+                "name": "Monday from 9 to 10.30",
+                "dayofweek": '0',
+                "hour_from": 9.0,  # 09:00 AM
+                "hour_to": 10.5,   # 10:30 AM
+            })]
+        })

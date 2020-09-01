@@ -51,6 +51,9 @@ class EducationSchedule(models.Model):
         comodel_name='education.level', string='Level')
     plan_id = fields.Many2one(
         comodel_name='education.plan', string='Education Plan')
+    calendar_id = fields.Many2one(
+        comodel_name='resource.calendar', string='Calendar',
+        compute='_compute_calendar_id', store=True)
     group_ids = fields.Many2many(
         comodel_name='education.group', string='Education Groups',
         relation='edu_schedule_group', column1='schedule_id',
@@ -68,6 +71,11 @@ class EducationSchedule(models.Model):
             schedule.student_ids = schedule.mapped(
                 'group_ids.student_ids')
             schedule.student_count = len(schedule.student_ids)
+
+    @api.depends('group_ids', 'group_ids.calendar_id')
+    def _compute_calendar_id(self):
+        for schedule in self:
+            schedule.calendar_id = schedule.mapped('group_ids.calendar_id')[:1]
 
     @api.multi
     def name_get(self):
@@ -120,6 +128,10 @@ class EducationScheduleTimetable(models.Model):
     schedule_id = fields.Many2one(
         comodel_name='education.schedule', string='Class Schedule',
         required=True, ondelete='cascade')
+    calendar_id = fields.Many2one(
+        comodel_name='resource.calendar', string='Calendar')
+    attendance_id = fields.Many2one(
+        comodel_name='resource.calendar.attendance', string='Timetable')
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week',
         required=True, index=True, default=default_dayofweek)
@@ -129,6 +141,13 @@ class EducationScheduleTimetable(models.Model):
     subject_name = fields.Char(string="Subject Name", copy=False)
     teacher_id = fields.Many2one(
         comodel_name='hr.employee', string='Teacher', copy=False)
+
+    @api.multi
+    @api.onchange("attendance_id")
+    def _onchange_attendance_id(self):
+        for record in self:
+            record.hour_from = record.attendance_id.hour_from
+            record.hour_to = record.attendance_id.hour_to
 
 
 class EducationScheduleGroup(models.Model):
