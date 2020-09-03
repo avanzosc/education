@@ -3,7 +3,7 @@
 
 {
     "name": "Education",
-    "version": "12.0.6.0.0",
+    "version": "12.0.7.0.0",
     "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -58,6 +58,7 @@
         "views/hr_employee_view.xml",
         "views/res_lang_view.xml",
         "views/report_education_group.xml",
+        "views/report_education_schedule.xml",
         "wizards/education_group_next_year_view.xml",
         "views/education_menu_view.xml",
     ],

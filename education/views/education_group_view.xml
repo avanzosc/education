@@ -6,6 +6,7 @@
             <tree decoration-muted="student_count == 0">
                 <field name="education_code" />
                 <field name="description" />
+                <field name="section_id" />
                 <field name="center_id" />
                 <field name="level_id" />
                 <field name="course_id" />
@@ -26,18 +27,22 @@
                 <field name="academic_year_id" />
                 <field name="center_id" />
                 <field name="description" />
+                <field name="section_id" />
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
                 <separator />
                 <filter name="current_academic_year" string="Current Academic Year" domain="[('academic_year_id.current','=',True)]"/>
                 <group expand="0" string="Group By...">
                     <filter string="Academic Year" name="academic_year"
                             context="{'group_by': 'academic_year_id'}" />
+                    <filter string="Section" name="education_section"
+                            context="{'group_by': 'section_id'}" />
                     <filter string="Education Center" name="center"
                             context="{'group_by': 'center_id'}"/>
                     <filter string="Classroom" name="classroom"
                             context="{'group_by': 'classroom_id'}" />
                     <filter string="Calendar" name="calendar"
                             context="{'group_by': 'calendar_id'}" />
+                    <separator />
                     <filter string="Education Plan" name="plan"
                             context="{'group_by': 'plan_id'}" />
                     <filter string="Level" name="level"
@@ -46,6 +51,7 @@
                             context="{'group_by': 'course_id'}" />
                     <filter string="Study Field" name="study_field"
                             context="{'group_by': 'field_id'}" />
+                    <separator />
                     <filter string="Educational Group Type" name="group_type"
                             context="{'group_by': 'group_type_id'}" />
                 </group>
@@ -93,6 +99,8 @@
                             <field name="academic_year_id"
                                    options="{'no_create': True, 'no_open': True}" />
                             <field name="classroom_id"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="section_id"
                                    options="{'no_create': True, 'no_open': True}" />
                             <field name="calendar_id"
                                    options="{'no_create': True, 'no_open': True}" />

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-04 10:22+0000\n"
-"PO-Revision-Date: 2020-08-04 10:22+0000\n"
+"POT-Creation-Date: 2020-09-03 12:19+0000\n"
+"PO-Revision-Date: 2020-09-03 12:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,14 +22,31 @@ msgid "# Education Groups"
 msgstr "Nº grupos educativos"
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_education_schedule_document
+msgid "<span>Birthdate</span>"
+msgstr "<span>Fecha de nacimiento</span>"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_education_schedule_document
+msgid "<span>Email</span>"
+msgstr ""
+
+#. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_education_group_document
+#: model_terms:ir.ui.view,arch_db:education.report_education_schedule_document
 msgid "<span>Firstname</span>"
 msgstr "<span>Nombre</span>"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_education_group_document
+#: model_terms:ir.ui.view,arch_db:education.report_education_schedule_document
 msgid "<span>Surnames</span>"
 msgstr "<span>Apellidos</span>"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_education_schedule_document
+msgid "<span>VAT Number</span>"
+msgstr "<span>DNI</span>"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_form
@@ -55,7 +72,7 @@ msgid "Academic Year"
 msgstr "Año académico"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:52
+#: code:addons/education/reports/education_group_xlsx_report.py:55
 #, python-format
 msgid "Academic Year:"
 msgstr "Año académico"
@@ -135,13 +152,15 @@ msgid "Attendance"
 msgstr "Asistencia"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:63
+#: code:addons/education/reports/education_group_xlsx_report.py:66
 #, python-format
 msgid "Birthdate"
 msgstr "Fecha de nacimiento"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_group__calendar_id
+#: model:ir.model.fields,field_description:education.field_education_schedule__calendar_id
+#: model:ir.model.fields,field_description:education.field_education_schedule_timetable__calendar_id
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 msgid "Calendar"
 msgstr "Calendario"
@@ -564,7 +583,7 @@ msgid "Education Center Responsible"
 msgstr "Responsable centro educativo"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:49
+#: code:addons/education/reports/education_group_xlsx_report.py:52
 #, python-format
 msgid "Education Center:"
 msgstr "Centro educativo:"
@@ -603,7 +622,7 @@ msgid "Education Contract Type"
 msgstr "Tipos de contratos privados"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:55
+#: code:addons/education/reports/education_group_xlsx_report.py:58
 #: model:ir.model.fields,field_description:education.field_education_group_student_report__course_id
 #: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__course_id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher_report__course_id
@@ -879,7 +898,7 @@ msgstr "Empleado"
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_end
 msgid "End Date"
-msgstr "Fecha final"
+msgstr "Fecha finalización"
 
 #. module: education
 #: code:addons/education/models/education_academic_year.py:66
@@ -1047,7 +1066,7 @@ msgid "ID types"
 msgstr "Tipos de documento"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:60
+#: code:addons/education/reports/education_group_xlsx_report.py:63
 #, python-format
 msgid "Index"
 msgstr "Indice"
@@ -1225,7 +1244,7 @@ msgid "Mobile:"
 msgstr "Móvil:"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:62
+#: code:addons/education/reports/education_group_xlsx_report.py:65
 #: model:ir.model.fields,field_description:education.field_education_academic_year_evaluation__name
 #: model:ir.model.fields,field_description:education.field_education_section__name
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
@@ -1358,7 +1377,7 @@ msgid "Responsible"
 msgstr "Responsable"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:48
+#: code:addons/education/reports/education_group_xlsx_report.py:51
 #, python-format
 msgid "STUDENT LIST"
 msgstr "LISTADO DE ALUMNOS"
@@ -1393,6 +1412,12 @@ msgstr "Aforo"
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_student_view_tree
 msgid "Second Lastname"
 msgstr "Segundo apellido"
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group__section_id
+#: model_terms:ir.ui.view,arch_db:education.education_group_view_search
+msgid "Section"
+msgstr "Sección"
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_section
@@ -1531,6 +1556,7 @@ msgstr "Informe de alumnos por grupos"
 
 #. module: education
 #: model:ir.actions.report,name:education.education_group_list
+#: model:ir.actions.report,name:education.education_schedule_list
 msgid "Student List"
 msgstr "Listado de clase"
 
@@ -1574,9 +1600,10 @@ msgid "Student's Second Lastname"
 msgstr "Segundo apellido de alumno"
 
 #. module: education
-#: code:addons/education/models/education_group.py:138
 #: code:addons/education/models/education_group.py:140
+#: code:addons/education/models/education_group.py:142
 #: code:addons/education/models/education_schedule.py:99
+#: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule__student_ids
@@ -1684,7 +1711,7 @@ msgid "Subjects by Levels"
 msgstr "Asignaturas por niveles"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:61
+#: code:addons/education/reports/education_group_xlsx_report.py:64
 #, python-format
 msgid "Surnames"
 msgstr "Apellidos"
@@ -1764,6 +1791,7 @@ msgstr "Esto creará una copia de los grupos oficiales para el siguiente año ac
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_schedule__timetable_ids
+#: model:ir.model.fields,field_description:education.field_education_schedule_timetable__attendance_id
 msgid "Timetable"
 msgstr "Horario"
 
@@ -1795,10 +1823,10 @@ msgid "User"
 msgstr "Usuario"
 
 #. module: education
-#: code:addons/education/reports/education_group_xlsx_report.py:64
+#: code:addons/education/reports/education_group_xlsx_report.py:67
 #, python-format
-msgid "VAT"
-msgstr "IVA"
+msgid "VAT Number"
+msgstr "DNI"
 
 #. module: education
 #: model:ir.model,name:education.model_education_group_next_year
@@ -1844,15 +1872,22 @@ msgid "Working Hours"
 msgstr "Horas laborales"
 
 #. module: education
-#: code:addons/education/models/education_group.py:126
 #: code:addons/education/models/education_group.py:128
+#: code:addons/education/models/education_group.py:130
 #, python-format
 msgid "You can only edit photos from official groups."
 msgstr "Solo puede editar las fotos de los grupos oficiales."
 
 #. module: education
-#: code:addons/education/models/education_group.py:86
+#: code:addons/education/reports/education_group_xlsx_report.py:89
+#: code:addons/education/reports/education_group_xlsx_report.py:90
+#, python-format
+msgid "You can only get xlsx report of official groups"
+msgstr "Solo puede obtener el informe xlsx de grupos oficiales"
+
+#. module: education
 #: code:addons/education/models/education_group.py:88
+#: code:addons/education/models/education_group.py:90
 #, python-format
 msgid "You cannot create recursive groups."
 msgstr "No puede crear grupos recursivos."

@@ -64,7 +64,7 @@ class EducationGroupXlsx(models.AbstractModel):
         sheet.write("B7", _("Surnames"), subheader_format)
         sheet.write("C7", _("Name"), subheader_format)
         sheet.write("D7", _("Birthdate"), subheader_format)
-        sheet.write("E7", _("VAT"), subheader_format)
+        sheet.write("E7", _("VAT Number"), subheader_format)
 
         sheet.set_column("A:A", 8)
         sheet.set_column("B:C", 40)
@@ -84,13 +84,13 @@ class EducationGroupXlsx(models.AbstractModel):
     def generate_xlsx_report(self, workbook, data, objects):
         objects = objects.filtered(
             lambda g: g.group_type_id.type == "official")
-        group = objects[:1]
-        if not group:
+        if not objects:
             raise UserError(
                 _("You can only get xlsx report of official groups"))
-        group_sheet = self.create_group_sheet(workbook, group)
-        row = 8
-        for student in group.student_ids:
-            self.fill_student_row_data(
-                group_sheet, row, student, group.academic_year_id)
-            row += 1
+        for group in objects:
+            group_sheet = self.create_group_sheet(workbook, group)
+            row = 8
+            for student in group.student_ids:
+                self.fill_student_row_data(
+                    group_sheet, row, student, group.academic_year_id)
+                row += 1
