@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template t-name="report_education_bus_group_document">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <div class="page">
+                    <h2>
+                        <span t-field="o.description"/>
+                    </h2>
+                    <h4 class="text-right"><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>  </h4>
+                    <table class="table table-sm o_main_table" name="education_group_student_list">
+                        <thead>
+                            <tr>
+                                <th name="student_number_header" class="text-center"><span>#</span></th>
+                                <th name="student_surname_header" class="text-left"><span>Surnames</span></th>
+                                <th name="student_name_header" class="text-left"><span>Firstname</span></th>
+                                <th name="bus_stop" class="text-left" colspan="2"><span>Bus Route</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="student_list_tbody">
+                            <t t-set="number" t-value="0"/>
+                            <t t-foreach="o.student_ids" t-as="student">
+                                <t t-set="bus_stop" t-value="student.current_bus_stop('coming')" />
+                                <t t-set="bus_issues" t-value="student.current_bus_issues('coming')" />
+                                <t t-set="number" t-value="number+1"/>
+                                <tr>
+                                    <td class="text-center" name="student_number"><t t-esc="number"/></td>
+                                    <td name="student_surname" class="text-left"><span t-esc="student.lastname and student.lastname.upper()"/> <span t-esc="student.lastname2 and student.lastname2.upper()"/> </td>
+                                    <td name="student_name" class="text-left"><span t-esc="student.firstname and student.firstname.upper() or student.display_name"/></td>
+                                    <td name="bus_route" class="text-left"><span t-esc="bus_stop and bus_stop.route_id.name_id.display_name" /> </td>
+                                    <td name="bus_route_color"><span t-esc="bus_stop and bus_stop.route_id.colour" /> </td>
+                                </tr>
+                                <t t-foreach="bus_issues" t-as="issue">
+                                    <tr class="text-danger">
+                                        <td><span t-field="issue.type" /></td>
+                                        <t t-if="issue.type in ('high', 'change')">
+                                            <td><span t-esc="issue.high_stop_id.route_id.name_id.display_name" /></td>
+                                            <td><span t-esc="issue.high_stop_id.route_id.colour" /></td>
+                                            <td colspan="2" />
+                                        </t>
+                                        <t t-elif="issue.type == 'low'">
+                                            <td><span t-field="issue.low_type" /></td>
+                                            <td colspan="3" />
+                                        </t>
+                                        <t t-else="">
+                                            <td colspan="4" />
+                                        </t>
+                                    </tr>
+                                    <tr class="text-danger" t-if="issue.notes">
+                                        <td colspan="5"><span t-field="issue.notes" /> </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_education_bus_group">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="user.lang"/>
+                    <t t-call="fleet_route_education.report_education_bus_group_document" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+
+        <report id="education_bus_group_list"
+                model="education.group"
+                string="Bus List"
+                report_type="qweb-pdf"
+                name="fleet_route_education.report_education_bus_group"
+                file="fleet_route_education.report_education_bus_group"
+        />
+
+    </data>
+</odoo>
