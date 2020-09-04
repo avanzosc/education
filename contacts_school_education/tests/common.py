@@ -14,6 +14,10 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
         cls.classroom_model = cls.env["education.classroom"]
         cls.change_model = cls.env["education.course.change"]
         cls.subject_center_model = cls.env["education.subject.center"]
+        cls.permission_wiz_model = cls.env["res.partner.permission.create"]
+        cls.permission_type = cls.env['res.partner.permission.type'].create({
+            'name': 'Test Type',
+        })
         task_type_model = cls.env["education.task_type"]
         task_type = task_type_model.search([
             ("education_code", "=", "0120"),

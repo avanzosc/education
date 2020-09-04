@@ -166,3 +166,20 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
             self.student.current_level_id, self.group2.level_id)
         self.assertEquals(
             self.student.current_course_id, self.group2.course_id)
+
+    def test_permission_wizard(self):
+        self.student.update_current_group_id()
+        partners = self.student | self.family
+        self.assertFalse(partners.mapped('permission_ids').filtered(
+            lambda p: p.type_id == self.permission_type))
+        wiz = self.permission_wiz_model.with_context(
+            active_model=partners._name,
+            active_ids=partners.ids).create({
+                'type_id': self.permission_type.id,
+            })
+        self.assertNotEquals(wiz.student_ids, partners)
+        self.assertEquals(wiz.student_ids, partners.filtered(
+            lambda p: p.educational_category in ['student', 'otherchild']))
+        wiz.create_permissions()
+        self.assertTrue(partners.mapped('permission_ids').filtered(
+            lambda p: p.type_id == self.permission_type))
