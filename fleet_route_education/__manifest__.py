@@ -10,6 +10,7 @@
     "website": "http://www.avanzosc.es",
     "depends": [
         "fleet_route_school",
+        "fleet_route_support",
         "contacts_school_education",
     ],
     "data": [
@@ -18,6 +19,7 @@
         "reports/res_partner_fleet_route_report_view.xml",
         "views/fleet_route_stop_view.xml",
         "views/res_partner_view.xml",
+        "views/education_group_template.xml",
     ],
     "installable": True,
 }
