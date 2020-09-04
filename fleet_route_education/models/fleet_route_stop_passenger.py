@@ -6,8 +6,8 @@ from odoo import fields, models
 
 class FleetRouteStopPassenger(models.Model):
     _inherit = "fleet.route.stop.passenger"
-    _order = ("stop_id,partner_id,partner_center_id,partner_level_id,"
-              "partner_course_id")
+    _order = ("stop_id,partner_center_id,partner_level_id,partner_course_id,"
+              "partner_group_section_id,partner_id")
 
     partner_group_id = fields.Many2one(
         comodel_name="education.group", string="Current Group",
@@ -21,3 +21,6 @@ class FleetRouteStopPassenger(models.Model):
     partner_course_id = fields.Many2one(
         comodel_name="education.course", string="Current Course",
         related="partner_id.current_course_id", store=True)
+    partner_group_section_id = fields.Many2one(
+        comodel_name="education.section", string="Section",
+        related="partner_id.current_group_id.section_id", store=True)
