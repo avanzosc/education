@@ -11,7 +11,9 @@ from odoo.exceptions import UserError, ValidationError
 class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
 
     def test_search(self):
-        self.student.update_current_group_id()
+        self.group.write({
+            "student_ids": [(6, 0, self.student.ids)],
+        })
         self.assertEquals(self.student.current_group_id, self.group)
         self.assertEquals(self.family, self.student.parent_id)
         self.assertEquals(self.family.children_number, 1)
@@ -168,7 +170,9 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
             self.student.current_course_id, self.group2.course_id)
 
     def test_permission_wizard(self):
-        self.student.update_current_group_id()
+        self.group.write({
+            "student_ids": [(6, 0, self.student.ids)],
+        })
         partners = self.student | self.family
         self.assertFalse(partners.mapped('permission_ids').filtered(
             lambda p: p.type_id == self.permission_type))
