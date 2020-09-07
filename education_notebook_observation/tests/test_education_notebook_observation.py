@@ -1,9 +1,12 @@
 # Copyright 2020 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+from odoo.tests import common
 from odoo.addons.calendar_school.tests.\
     test_calendar_school import TestCalendarSchool
 
 
+@common.at_install(False)
+@common.post_install(True)
 class TestEducationNotebookObservation(TestCalendarSchool):
 
     @classmethod
