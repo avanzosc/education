@@ -56,7 +56,10 @@ class ResPartner(models.Model):
              "same family")
     children_number = fields.Integer(
         string="Children Number", compute="_compute_children_number",
-        store=True)
+        store=True, compute_sudo=True)
+    family_child_number = fields.Integer(
+        string="Child Number in Family", compute="_compute_child_number",
+        store=True, compute_sudo=True)
 
     @api.multi
     def get_current_group(self):
@@ -137,14 +140,34 @@ class ResPartner(models.Model):
 
     @api.multi
     @api.depends("child_ids", "child_ids.educational_category",
-                 "educational_category")
+                 "educational_category", "child_ids.old_student")
     def _compute_children_number(self):
         for partner in self.filtered(
                 lambda p: p.educational_category == "family" and p.child_ids):
-            partner.children_number = len(
-                partner.child_ids.filtered(
+            children = partner.child_ids.filtered(
+                lambda p: p.educational_category == "student" and
+                not p.old_student)
+            children_number = len(children)
+            partner.children_number = children_number
+            for child in children:
+                child.children_number = children_number
+
+    @api.multi
+    @api.depends("parent_id", "parent_id.child_ids", "educational_category",
+                 "parent_id.child_ids.educational_category", "old_student",
+                 "parent_id.child_ids.old_student")
+    def _compute_child_number(self):
+        for partner in self.filtered(
+                lambda p: p.educational_category == "student" and
+                not p.old_student):
+            num = 0
+            for child in partner.parent_id.child_ids.filtered(
                     lambda p: p.educational_category == "student" and
-                    not p.old_student))
+                    not p.old_student).sorted("birthdate_date"):
+                num += 1
+                partner.family_child_number = num
+                if partner == child:
+                    break
 
     @api.multi
     def assign_group(self, group, update=False):

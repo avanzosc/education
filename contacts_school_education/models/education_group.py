@@ -7,6 +7,26 @@ from odoo import api, models
 class EducationGroup(models.Model):
     _inherit = "education.group"
 
+    @api.model
+    def create(self, values):
+        group = super(EducationGroup, self).create(values)
+        if group.student_ids:
+            group.update_student_current_group_id()
+        return group
+
+    @api.multi
+    def write(self, values):
+        result = super(EducationGroup, self).write(values)
+        if "student_ids" in values:
+            self.update_student_current_group_id()
+        return result
+
+    @api.multi
+    def update_student_current_group_id(self):
+        official_groups = self.filtered(
+            lambda g: g.group_type_id.type == "official")
+        official_groups.mapped("student_ids").update_current_group_id()
+
     @api.multi
     def create_schedule(self):
         teacher = self.env.ref("education.hr_employee_anonymous")
