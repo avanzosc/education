@@ -100,7 +100,7 @@
                     </group>
                     <group>
                         <field name="group_ids" widget="many2many_tags"
-                               domain="[('academic_year_id','=',academic_year_id),('center_id','=',center_id),('calendar_id','=',calendar_id)]"
+                               domain="[('academic_year_id','=',academic_year_id),('center_id','=',center_id)]"
                                options="{'no_create': True}"/>
                     </group>
                 </sheet>
