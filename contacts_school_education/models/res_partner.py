@@ -77,12 +77,12 @@ class ResPartner(models.Model):
                 lambda p: p.educational_category == "student" and
                 p.student_group_ids):
             group = partner.get_current_group()
-            if group:
-                partner.write({
-                    "current_group_id": group.id,
-                    "current_center_id": group.center_id.id,
-                    "current_course_id": group.course_id.id,
-                })
+            partner.write({
+                "current_group_id": group and group.id,
+                "current_center_id": group and group.center_id.id,
+                "current_level_id": group and group.level_id.id,
+                "current_course_id": group and group.course_id.id,
+            })
 
     @api.depends('child_ids', 'child_ids.current_group_id')
     def _compute_child_current_group_ids(self):
