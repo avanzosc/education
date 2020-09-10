@@ -74,8 +74,7 @@ class ResPartner(models.Model):
     @api.multi
     def update_current_group_id(self):
         for partner in self.filtered(
-                lambda p: p.educational_category == "student" and
-                p.student_group_ids):
+                lambda p: p.educational_category == "student"):
             group = partner.get_current_group()
             partner.write({
                 "current_group_id": group and group.id,
@@ -149,13 +148,14 @@ class ResPartner(models.Model):
                 not p.old_student)
             children_number = len(children)
             partner.children_number = children_number
-            for child in children:
+            for child in partner.child_ids:
                 child.children_number = children_number
 
     @api.multi
     @api.depends("parent_id", "parent_id.child_ids", "educational_category",
-                 "parent_id.child_ids.educational_category", "old_student",
-                 "parent_id.child_ids.old_student")
+                 "parent_id.child_ids.educational_category",
+                 "old_student", "parent_id.child_ids.old_student",
+                 "birthdate_date", "parent_id.child_ids.birthdate_date")
     def _compute_child_number(self):
         for partner in self.filtered(
                 lambda p: p.educational_category == "student" and
@@ -163,11 +163,12 @@ class ResPartner(models.Model):
             num = 0
             for child in partner.parent_id.child_ids.filtered(
                     lambda p: p.educational_category == "student" and
-                    not p.old_student).sorted("birthdate_date"):
+                    not p.old_student and
+                    p.birthdate_date).sorted("birthdate_date"):
                 num += 1
-                partner.family_child_number = num
                 if partner == child:
                     break
+            partner.family_child_number = num
 
     @api.multi
     def assign_group(self, group, update=False):
