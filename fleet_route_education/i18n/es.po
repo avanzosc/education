@@ -159,3 +159,49 @@ msgstr "Usa autobus"
 msgid "Yes"
 msgstr "Si"
 
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_complete_product_id
+msgid "Route complete product"
+msgstr "Producto ruta completa"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_half_product_id
+msgid "Route half product"
+msgstr "Producto media ruta"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_stop_route_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route"
+msgstr "Ruta ida"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_stop_route_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route"
+msgstr "Ruta vuelta"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_complete_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route complete product"
+msgstr "Producto ruta completa ida"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_half_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route half product"
+msgstr "Producto media ruta ida"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_complete_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route complete product"
+msgstr "Producto ruta completa vuelta"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_half_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route half product"
+msgstr "Producto media ruta vuelta"
+

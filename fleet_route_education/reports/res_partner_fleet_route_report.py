@@ -29,6 +29,18 @@ class ResPartnerFleetRouteReport(models.Model):
         comodel_name="fleet.route.stop", string="Going Stop")
     coming_stop_id = fields.Many2one(
         comodel_name="fleet.route.stop", string="Coming Stop")
+    going_stop_route_id = fields.Many2one(
+        comodel_name="fleet.route", string="Going route")
+    coming_stop_route_id = fields.Many2one(
+        comodel_name="fleet.route", string="Coming route")
+    going_route_complete_product_id = fields.Many2one(
+        comodel_name='product.product', string='Going route complete product')
+    going_route_half_product_id = fields.Many2one(
+        comodel_name='product.product', string='Going route half product')
+    coming_route_complete_product_id = fields.Many2one(
+        comodel_name='product.product', string='Coming route complete product')
+    coming_route_half_product_id = fields.Many2one(
+        comodel_name='product.product', string='Coming route half product')
 
     def _select(self):
         select_str = """
@@ -52,7 +64,53 @@ class ResPartnerFleetRouteReport(models.Model):
                   (SELECT id FROM fleet_route_stop
                    WHERE route_id IN
                    (SELECT id FROM fleet_route WHERE direction = 'coming'))
-                 LIMIT 1) AS coming_stop_id
+                 LIMIT 1) AS coming_stop_id,
+                (SELECT route_id FROM fleet_route_stop_passenger
+                 WHERE partner_id = stu.id
+                  AND stop_id IN
+                  (SELECT id FROM fleet_route_stop
+                   WHERE route_id IN
+                   (SELECT id FROM fleet_route WHERE direction = 'going'))
+                 LIMIT 1) AS going_stop_route_id,
+                (SELECT route_complete_product_id
+                 FROM fleet_route_stop_passenger
+                 WHERE partner_id = stu.id
+                  AND stop_id IN
+                  (SELECT id FROM fleet_route_stop
+                   WHERE route_id IN
+                   (SELECT id FROM fleet_route WHERE direction = 'going'))
+                 LIMIT 1) AS going_route_complete_product_id,
+                (SELECT route_half_product_id
+                 FROM fleet_route_stop_passenger
+                 WHERE partner_id = stu.id
+                  AND stop_id IN
+                  (SELECT id FROM fleet_route_stop
+                   WHERE route_id IN
+                   (SELECT id FROM fleet_route WHERE direction = 'going'))
+                 LIMIT 1) AS going_route_half_product_id,
+                (SELECT route_id FROM fleet_route_stop_passenger
+                 WHERE partner_id = stu.id
+                  AND stop_id IN
+                  (SELECT id FROM fleet_route_stop
+                   WHERE route_id IN
+                   (SELECT id FROM fleet_route WHERE direction = 'coming'))
+                 LIMIT 1) AS coming_stop_route_id,
+                (SELECT route_complete_product_id
+                 FROM fleet_route_stop_passenger
+                 WHERE partner_id = stu.id
+                  AND stop_id IN
+                  (SELECT id FROM fleet_route_stop
+                   WHERE route_id IN
+                   (SELECT id FROM fleet_route WHERE direction = 'coming'))
+                 LIMIT 1) AS coming_route_complete_product_id,
+                (SELECT route_half_product_id
+                 FROM fleet_route_stop_passenger
+                 WHERE partner_id = stu.id
+                  AND stop_id IN
+                  (SELECT id FROM fleet_route_stop
+                   WHERE route_id IN
+                   (SELECT id FROM fleet_route WHERE direction = 'coming'))
+                 LIMIT 1) AS coming_route_half_product_id
         """
         return select_str
 

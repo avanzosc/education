@@ -159,3 +159,48 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_complete_product_id
+msgid "Route complete product"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_half_product_id
+msgid "Route half product"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_stop_route_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_stop_route_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_complete_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route complete product"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_half_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route half product"
+msgstr ""
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_complete_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route complete product"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_half_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route half product"
+msgstr ""
+
