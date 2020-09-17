@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* fleet_route_contract_education
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-17 18:10+0000\n"
+"PO-Revision-Date: 2020-09-17 18:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fleet_route_contract_education
+#: model:ir.actions.act_window,name:fleet_route_contract_education.action_contract_line_create
+msgid "Add new product to contract"
+msgstr ""
+
+#. module: fleet_route_contract_education
+#: model:ir.model,name:fleet_route_contract_education.model_contract_line_create
+msgid "Contract Line Creation Wizard"
+msgstr ""
+

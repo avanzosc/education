@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <act_window id="action_contract_line_create"
+                key2="client_action_multi"
+                name="Add new product to contract"
+                res_model="contract.line.create"
+                src_model="res.partner.fleet.route.report"
+                view_mode="form"
+                target="new"
+                view_type="form"
+                groups="fleet.fleet_group_manager"/>
+</odoo>
