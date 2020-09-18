@@ -10,7 +10,13 @@
                        options="{'no_open': True}" />
                 <field name="course_id" options="{'no_open': True}" />
                 <field name="going_stop_id" />
+                <field name="going_stop_route_id" />
+                <field name="going_route_complete_product_id" />
+                <field name="going_route_half_product_id" />
                 <field name="coming_stop_id" />
+                <field name="coming_stop_route_id" />
+                <field name="coming_route_complete_product_id" />
+                <field name="coming_route_half_product_id" />
             </tree>
         </field>
     </record>
@@ -24,7 +30,13 @@
                 <field name="level_id" />
                 <field name="course_id" />
                 <field name="going_stop_id" />
+                <field name="going_stop_route_id" />
+                <field name="going_route_complete_product_id" />
+                <field name="going_route_half_product_id" />
                 <field name="coming_stop_id" />
+                <field name="coming_stop_route_id" />
+                <field name="coming_route_complete_product_id" />
+                <field name="coming_route_half_product_id" />
                 <group expand="0" string="Group By">
                     <filter name="groupby_student" string="Student"
                             context="{'group_by':'student_id'}" />
@@ -36,8 +48,26 @@
                             context="{'group_by':'course_id'}" />
                     <filter name="groupby_going_stop" string="Going Stop"
                             context="{'group_by':'going_stop_id'}" />
+                    <filter name="groupby_going_stop_route_id"
+                            string="Going route"
+                            context="{'group_by':'going_stop_route_id'}" />
+                    <filter name="groupby_going_route_complete_product_id"
+                            string="Going route complete product"
+                            context="{'group_by':'going_route_complete_product_id'}" />
+                    <filter name="groupby_going_route_half_product_id"
+                            string="Going route half product"
+                            context="{'group_by':'going_route_half_product_id'}" />
                     <filter name="groupby_coming_stop" string="Coming Stop"
                             context="{'group_by':'coming_stop_id'}" />
+                    <filter name="groupby_coming_stop_route_id"
+                            string="Coming route"
+                            context="{'group_by':'coming_stop_route_id'}" />
+                    <filter name="groupby_coming_route_complete_product_id"
+                            string="Coming route complete product"
+                            context="{'group_by':'coming_route_complete_product_id'}" />
+                    <filter name="groupby_coming_route_half_product_id"
+                            string="Coming route half product"
+                            context="{'group_by':'coming_route_half_product_id'}" />
                 </group>
             </search>
         </field>
