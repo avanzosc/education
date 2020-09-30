@@ -6,8 +6,9 @@
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <filter name="late" position="after">
-                <filter string="Validated OK" name="filter_validate_ok" domain="[('validate_OK','=', 'True')]" />
-                <filter string="Validated NOK" name="filter_validate_nok" domain="[('validate_OK','=', 'False')]" />
+                <separator/>
+                <filter string="Validated OK" name="check_value" domain="[('validate_OK','=', True)]" />
+                <filter string="Validated NOK" name="check_value" domain="[('validate_OK','=', False)]" />
             </filter>
         </field>
     </record>

@@ -6,16 +6,11 @@ from odoo import fields, models, api
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    validate_OK = fields.Boolean(compute='check_value', string='Validate OK')
+    validate_OK = fields.Boolean(compute='check_value', string='Validate OK',
+                                 store=True, compute_sudo=True)
 
     @api.one
+    @api.depends("invoice_line_ids.validate_OK")
     def check_value(self):
         self.validate_OK = all(self.invoice_line_ids.mapped("validate_OK"))
 
-    @api.multi
-    def filter_validate_ok(self):
-        self.validate_OK = not (self.validate_OK)
-
-    @api.multi
-    def filter_validate_nok(self):
-        self.validate_OK = not (self.validate_OK)
