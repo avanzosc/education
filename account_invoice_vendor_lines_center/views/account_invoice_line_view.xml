@@ -8,6 +8,7 @@
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='currency_id']" position="after">
                 <field name="validate_OK" string="Validate OK" active="True"/>
                 <button type="object" name="change_value_btn" string="OK/NOK" class="btn-primary"/>
+                      <!--  attrs="{'invisible': [('state','in',['draft'])]}"-->
             </xpath>
         </field>
     </record>
