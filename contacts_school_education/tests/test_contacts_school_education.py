@@ -187,3 +187,16 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         wiz.create_permissions()
         self.assertTrue(partners.mapped('permission_ids').filtered(
             lambda p: p.type_id == self.permission_type))
+
+    def test_partner_insurance_report_xlsx(self):
+        report_name = (
+            "contacts_school_education.partner_insurance_report_xlsx")
+        with self.assertRaises(UserError):
+            self.env.ref(report_name).render(self.student.ids)
+        self.student.has_insurance = True  # needed to print on xlsx
+        self.student.assign_group(self.group, update=True)
+        self.assertEquals(
+            self.student.current_center_id, self.edu_partner)
+        report_xlsx = self.env.ref(report_name).render(self.edu_partner.ids)
+        self.assertGreaterEqual(len(report_xlsx[0]), 1)
+        self.assertEqual(report_xlsx[1], 'xlsx')
