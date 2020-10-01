@@ -162,6 +162,11 @@
                             <field name="name" readonly="True" />
                         </h1>
                     </div>
+                    <group name="main">
+                        <field name="phone" widget="phone"/>
+                        <field name="mobile" widget="phone"/>
+                        <field name="email"/>
+                    </group>
                 </sheet>
             </form>
         </field>
