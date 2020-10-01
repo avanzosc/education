@@ -1,4 +1,4 @@
-# Copyright 2019 Oihane Crucelaegui - AvanzOSC
+# Copyright 2020 Leire Martinez de Santos - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -12,9 +12,8 @@
         "account",
     ],
     "data": [
-        "views/account_invoice_view.xml",
         "views/account_invoice_line_view.xml",
-        "views/account_invoice_filter.xml"
+        "views/account_invoice_view.xml",
     ],
     "installable": True,
 }
