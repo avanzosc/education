@@ -62,6 +62,10 @@
               parent="groups_configuration_menuitem"
               action="action_upload_education_group"
               sequence="3" />
+    <menuitem id="download_group_menuitem"
+              parent="groups_configuration_menuitem"
+              action="action_download_education_group"
+              sequence="3" />
     <menuitem id="upload_student_menuitem"
               parent="groups_configuration_menuitem"
               action="action_upload_education_student"
@@ -112,6 +116,15 @@
               action="action_upload_education_schedule"
               sequence="9" />
 
+    <menuitem id="download_resource_menuitem"
+              parent="schedule_table_configuration_menuitem"
+              action="action_download_education_resource"
+              sequence="10" />
+    <menuitem id="download_schedule_menuitem"
+              parent="schedule_table_configuration_menuitem"
+              action="action_download_education_schedule"
+              sequence="11" />
+
     <menuitem name="Relations" id="relation_configuration_menuitem"
               parent="hezkuntza_configuration_menuitem"
               sequence="4" />
@@ -138,10 +151,14 @@
               parent="hezkuntza_configuration_menuitem"
               sequence="5" />
 
+    <menuitem id="download_education_classroom_menuitem"
+              parent="education_center_configuration_menuitem"
+              action="action_download_education_classroom"
+              sequence="1" />
     <menuitem id="upload_education_classroom_menuitem"
               parent="education_center_configuration_menuitem"
               action="action_upload_education_classroom"
-              sequence="1" />
+              sequence="2" />
 
     <menuitem id="update_education_partner_menuitem"
               parent="contacts.res_partner_menu_config"

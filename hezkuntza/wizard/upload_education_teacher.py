@@ -82,8 +82,8 @@ class UploadEducationTeacher(models.TransientModel):
                         user = employee.user_id
                         if not user and id_number:
                             user = user_obj.search([
-                                    ('vat', 'ilike', id_number),
-                                    ('edu_idtype_id', '=', id_type.id)])
+                                ('vat', 'ilike', id_number),
+                                ('edu_idtype_id', '=', id_type.id)])
                         if len(user) > 1:
                             continue
                         contract = hr_contract_obj.search([
