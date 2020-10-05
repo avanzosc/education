@@ -67,6 +67,7 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
             "center_id": cls.edu_partner.id,
             "course_id": cls.edu_course.id,
             "level_id": cls.edu_level.id,
+            "plan_id": cls.edu_plan.id,
         })
         cls.group2 = cls.group.copy(default={
             "education_code": "GRPT2",
