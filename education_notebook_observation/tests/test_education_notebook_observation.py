@@ -1,13 +1,12 @@
 # Copyright 2020 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo.tests import common
-from odoo.addons.calendar_school.tests.\
-    test_calendar_school import TestCalendarSchool
+from odoo.addons.calendar_school.tests.common import TestCalendarSchoolCommon
 
 
 @common.at_install(False)
 @common.post_install(True)
-class TestEducationNotebookObservation(TestCalendarSchool):
+class TestEducationNotebookObservation(TestCalendarSchoolCommon):
 
     @classmethod
     def setUpClass(cls):
@@ -21,41 +20,6 @@ class TestEducationNotebookObservation(TestCalendarSchool):
         cls.record_model = cls.env['education.record']
         cls.message_model = cls.env['mail.message']
         cls.mail_model = cls.env['mail.mail']
-        cls.edu_partner = cls.env['res.partner'].create({
-            'name': 'Center for test e-n-o'})
-        cls.edu_task_type = cls.env['education.task_type'].create({
-            'education_code': 'TEST e-n-o',
-            'description': 'Test Task Type e-n-o'})
-        cls.edu_plan = cls.env['education.plan'].create({
-            'education_code': 'TEST e-n-o',
-            'description': 'Test Plan e-n-o'})
-        cls.edu_level = cls.env['education.level'].create({
-            'education_code': 'TEST e-n-o',
-            'description': 'Test Level e-n-o',
-            'plan_id': cls.edu_plan.id})
-        cls.edu_field = cls.env['education.field'].create({
-            'education_code': 'TEST e-n-o',
-            'description': 'Test Field e-n-o'})
-        cls.edu_subject = cls.env['education.subject'].create({
-            'education_code': 'TESTTEST',
-            'description': 'Test Subject',
-            'level_field_ids': [(0, 0, {
-                'level_id': cls.edu_level.id,
-                'field_id': cls.edu_field.id,
-            })],
-            'level_course_ids': [(0, 0, {
-                'course_id': cls.edu_course.id,
-                'level_id': cls.edu_level.id,
-                'plan_id': cls.edu_plan.id,
-            })],
-        })
-        cls.schedule = cls.schedule_model.create({
-            "center_id": cls.edu_partner.id,
-            "academic_year_id": cls.academic_year.id,
-            "teacher_id": cls.teacher.id,
-            "task_type_id": cls.edu_task_type.id,
-            "subject_id": cls.edu_subject.id,
-            "group_ids": [(6, 0, cls.group.ids)]})
         cls.exam_competence = cls.competence_model.create({
             "name": "Exam Competence e-n-o"})
         cls.evaluation_model.create({
@@ -77,8 +41,8 @@ class TestEducationNotebookObservation(TestCalendarSchool):
         vals = {
             'academic_year_id': cls.academic_year.id,
             'n_line_id': cls.exam_line.id,
-            'student_id': cls.student.id,
-            'teacher': cls.teacher.id}
+            'student_id': cls.student.id
+        }
         cls.record = cls.record_model.create(vals)
 
     def test_education_notebook_observation(self):
@@ -124,11 +88,3 @@ class TestEducationNotebookObservation(TestCalendarSchool):
         domain = [('teacher_id', 'in', [self.teacher.id])]
         res = self.teacher.button_show_notebook_observations()
         self.assertEqual(res.get('domain'), domain)
-
-    def test_calendar_school(self):
-        """Don't repeat this test."""
-        pass
-
-    def test_calendar_school_wizard(self):
-        """Don't repeat this test."""
-        pass
