@@ -47,11 +47,12 @@ class TestContactsSchoolEducationCommon(TestEducationCommon):
             "educational_category": "student",
             "is_company": False,
         })
+        cls.student2 = cls.student.copy()
         cls.family = cls.partner_model.create({
             "name": "Test Family",
             "educational_category": "family",
             "is_company": True,
-            "child_ids": [(6, 0, cls.student.ids)],
+            "child_ids": [(6, 0, (cls.student | cls.student2).ids)],
         })
         cls.group_type = cls.env["education.group_type"].create({
             "education_code": "OFFI",

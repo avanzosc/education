@@ -36,14 +36,14 @@ class ResPartner(models.Model):
         comodel_name='education.course', string='Current Course')
     childs_current_center_ids = fields.Many2many(
         comodel_name='res.partner',
-        string='Children\'s Current Education Centers',
-        compute='_compute_child_current_group_ids',
-        search='_search_parent_current_center_id')
+        string='Children\'s Current Education Centers', compute_sudo=True,
+        compute='_compute_child_current_group_ids', store=True,
+        relation="rel_family_center", column1="family_id", column2="center_id")
     childs_current_course_ids = fields.Many2many(
         comodel_name='education.course',
-        string='Children\'s Current Courses',
-        compute='_compute_child_current_group_ids',
-        search='_search_parent_current_course_id')
+        string='Children\'s Current Courses', compute_sudo=True,
+        compute='_compute_child_current_group_ids', store=True,
+        relation="rel_family_course", column1="family_id", column2="course_id")
     classroom_ids = fields.One2many(
         comodel_name="education.classroom", inverse_name="center_id",
         string="Classrooms")
@@ -83,53 +83,18 @@ class ResPartner(models.Model):
                 "current_course_id": group and group.course_id.id,
             })
 
-    @api.depends('child_ids', 'child_ids.current_group_id')
+    @api.depends("child_ids", "educational_category",
+                 "child_ids.educational_category",
+                 "child_ids.current_center_id", "child_ids.current_course_id")
     def _compute_child_current_group_ids(self):
         for partner in self.filtered(
                 lambda p: p.educational_category == 'family'):
-            childs_groups = partner.mapped(
-                'child_ids.current_group_id')
+            children = partner.child_ids.filtered(
+                lambda c: c.educational_category == "student")
             partner.childs_current_center_ids = [
-                (6, 0, childs_groups.mapped('center_id').ids)]
+                (6, 0, children.mapped("current_center_id").ids)]
             partner.childs_current_course_ids = [
-                (6, 0, childs_groups.mapped('course_id').ids)]
-
-    @api.multi
-    def _search_parent_current_center_id(self, operator, value):
-        if operator in ('=', 'in'):
-            centers = self.browse(value)
-        else:
-            centers = self.search([
-                (self._rec_name, operator, value),
-                ('educational_category', '=', 'school'),
-            ])
-        groups = self._search_current_groups().filtered(
-            lambda g: g.center_id in centers)
-        return [('id', 'in', groups.mapped('student_ids.parent_id').ids)]
-
-    @api.multi
-    def _search_parent_current_course_id(self, operator, value):
-        course_obj = self.env['education.course']
-        if operator in ('=', 'in'):
-            courses = course_obj.browse(value)
-        else:
-            courses = course_obj.search([
-                (course_obj._rec_name, operator, value),
-            ])
-        groups = self._search_current_groups().filtered(
-            lambda g: g.course_id in courses)
-        return [('id', 'in', groups.mapped('student_ids.parent_id').ids)]
-
-    @api.multi
-    def _search_current_groups(self):
-        current_year = self.env['education.academic_year'].search([
-            ('current', '=', True)])
-        official_type = self.env['education.group_type'].search([
-            ('type', '=', 'official')])
-        return self.env['education.group'].search([
-            ('academic_year_id', 'in', current_year.ids),
-            ('group_type_id', 'in', official_type.ids)
-        ])
+                (6, 0, children.mapped("current_course_id").ids)]
 
     @api.multi
     @api.depends("classroom_ids")
