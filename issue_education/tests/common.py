@@ -41,6 +41,7 @@ class TestIssueEducationCommon(TestEducationCommon):
             'description': 'Test Group',
             'center_id': cls.edu_partner.id,
             'academic_year_id': cls.academic_year.id,
+            'plan_id': cls.edu_plan.id,
             'level_id': cls.edu_level.id,
             'course_id': cls.edu_course.id,
             'group_type_id': cls.edu_group_type.id,
