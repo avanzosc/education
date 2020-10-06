@@ -213,6 +213,7 @@ class TestEducation(TestEducationCommon):
             'student_ids': [(6, 0, self.edu_partner.ids)],
             'group_type_id': self.edu_group_type.id,
             'calendar_id': self.calendar.id,
+            'plan_id': self.edu_plan.id,
         })
         self.assertEquals(group.student_count, len(group.student_ids))
         with self.assertRaises(ValidationError):
@@ -281,6 +282,7 @@ class TestEducation(TestEducationCommon):
             'description': 'Test Group',
             'center_id': self.edu_partner.id,
             'academic_year_id': self.academic_year.id,
+            'plan_id': self.edu_plan.id,
             'level_id': self.edu_level.id,
             'student_ids': [(6, 0, self.edu_partner.ids)],
             'group_type_id': self.edu_group_type.id,
@@ -309,6 +311,7 @@ class TestEducation(TestEducationCommon):
             'description': 'Test Group',
             'center_id': self.edu_partner.id,
             'academic_year_id': self.academic_year.id,
+            'plan_id': self.edu_plan.id,
             'level_id': self.edu_level.id,
             'student_ids': [(6, 0, self.edu_partner.ids)],
         })
@@ -321,6 +324,7 @@ class TestEducation(TestEducationCommon):
             'description': 'Test Group',
             'center_id': self.edu_partner.id,
             'academic_year_id': self.academic_year.id,
+            'plan_id': self.edu_plan.id,
             'level_id': self.edu_level.id,
             'student_ids': [(6, 0, self.edu_partner.ids)],
         })

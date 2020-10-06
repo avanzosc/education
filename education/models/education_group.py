@@ -23,7 +23,7 @@ class EducationGroup(models.Model):
         comodel_name='res.partner', string='Education Center',
         required=True)
     plan_id = fields.Many2one(
-        comodel_name='education.plan', string='Plan')
+        comodel_name='education.plan', string='Plan', required=True)
     level_id = fields.Many2one(
         comodel_name='education.level', string='Education Level',
         domain="[('plan_id', '=', plan_id)]", required=True)
