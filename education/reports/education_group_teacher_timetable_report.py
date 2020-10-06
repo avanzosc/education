@@ -20,6 +20,7 @@ class EducationGroupTeacherTimetableReport(models.Model):
 
     dayofweek = fields.Selection(
         selection='_get_selection_dayofweek', string='Day of Week')
+    daily_hour = fields.Integer(string="Hour in Day")
     hour_from = fields.Float(string='Work from', group_operator="min")
     hour_to = fields.Float(string='Work to', group_operator="max")
     professor_id = fields.Many2one(
@@ -33,7 +34,8 @@ class EducationGroupTeacherTimetableReport(models.Model):
             'center_id', 'course_id'
         ],
         'education.schedule.timetable': [
-            'dayofweek', 'hour_to', 'hour_from', 'subject_name'
+            'dayofweek', 'session_number', 'hour_to', 'hour_from',
+            'subject_name'
         ]
     }
 
@@ -48,6 +50,7 @@ class EducationGroupTeacherTimetableReport(models.Model):
     def _select(self):
         select_str = """
                 , sch_tt.dayofweek AS dayofweek,
+                sch_tt.session_number AS daily_hour,
                 sch_tt.hour_from AS hour_from,
                 sch_tt.hour_to AS hour_to
         """
@@ -65,6 +68,7 @@ class EducationGroupTeacherTimetableReport(models.Model):
     def _group_by(self):
         group_by_str = """
                 , sch_tt.dayofweek,
+                sch_tt.session_number,
                 sch_tt.hour_from,
                 sch_tt.hour_to,
                 sch_tt.subject_name,
