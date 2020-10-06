@@ -33,3 +33,7 @@ def _convert_time_str_to_float(time_str):
     except Exception:
         hour = time_str.split(':')
         return float(hour[0]) + (float(hour[1]) / 60.0)
+
+
+def _convert_time_float_to_string(time_float):
+    return '{0:02.0f}:{1:02.0f}'.format(*divmod(float(time_float) * 60, 60))

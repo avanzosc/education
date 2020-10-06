@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="download_education_group_view_form" model="ir.ui.view">
+        <field name="model">download.education.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field invisible="1" name="state"/>
+                    <field name="name" invisible="1"/>
+                    <field name="name_student" invisible="1"/>
+                    <group states="open">
+                        <field name="center_id" options="{'no_create': True, 'no_open': True}" />
+                        <field name="academic_year_id" options="{'no_create': True, 'no_open': True}" />
+                    </group>
+                    <div states="get">
+                        <h2>Export completed</h2>
+                        <p attrs="{'invisible': [('warning_msg','!=','')]}">Here's the group's file: <field name="data" readonly="1" filename="name"/></p>
+                        <p attrs="{'invisible': [('warning_msg','!=','')]}">Here's the student's file: <field name="data_student" readonly="1" filename="name_student"/></p>
+                        <p attrs="{'invisible': [('warning_msg','=','')]}"><field name="warning_msg" readonly="1"/></p>
+                    </div>
+                    <footer states="open">
+                        <button name="button_download_file" string="Export" type="object" class="oe_highlight" />
+                        <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Close" type="object"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_download_education_group" model="ir.actions.act_window">
+        <field name="name">Download Education Groups</field>
+        <field name="res_model">download.education.group</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
