@@ -24,4 +24,5 @@ class AccountInvoice(models.Model):
         line_obj = self.env['account.invoice.lines']
         for record in self:
             record.validate_ok =\
-                all(line_obj.search("invoice_line_ids.validate_ok", "=", False))
+                all(line_obj.search("invoice_line_ids.validate_ok",
+                                    "=", False))
