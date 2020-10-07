@@ -17,12 +17,3 @@ class AccountInvoice(models.Model):
         for record in self:
             record.validate_ok =\
                 all(record.mapped("invoice_line_ids.validate_ok"))
-
-    @api.multi
-    @api.depends("invoice_line_ids", "invoice_line_ids.validate_ok")
-    def _compute_validate_nok(self):
-        line_obj = self.env['account.invoice.lines']
-        for record in self:
-            record.validate_ok =\
-                all(line_obj.search("invoice_line_ids.validate_ok",
-                                    "=", False))
