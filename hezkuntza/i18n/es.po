@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-18 11:26+0000\n"
-"PO-Revision-Date: 2019-12-18 11:26+0000\n"
+"POT-Creation-Date: 2020-10-05 15:52+0000\n"
+"PO-Revision-Date: 2020-10-05 15:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,50 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_group.py:51
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:50
+#, python-format
+msgid "<dd>Must have defined a classroom.</dd>\n"
+""
+msgstr "<dd>Debe tener definido un aula.</dd>\n"
+""
+
+#. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_group.py:55
+#, python-format
+msgid "<dd>Must have defined a course.</dd>\n"
+""
+msgstr "<dd>Debe tener definido un curso.</dd>\n"
+""
+
+#. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_group.py:53
+#, python-format
+msgid "<dd>Must have defined a shift.</dd>\n"
+""
+msgstr "<dd>Debe tener definido un turno.</dd>\n"
+""
+
+#. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_group.py:76
+#, python-format
+msgid "<dd>Must have defined a teacher with sequence 1.</dd>\n"
+""
+msgstr "<dd>Debe tener definido al menos un profesor con secuencia 1.</dd>\n"
+""
+
+#. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_group.py:57
+#, python-format
+msgid "<dd>Must have defined an educational model.</dd>\n"
+""
+msgstr "<dd>Debe de tener definido un modelo educativo.</dd>\n"
+""
+
+#. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_academic_year
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__academic_year_id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__academic_year_id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__academic_year_id
 msgid "Academic Year"
 msgstr "Año académico"
@@ -103,12 +146,17 @@ msgid "Basque Short Description"
 msgstr "Descripción abreviada euskera"
 
 #. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
 msgid "Both"
 msgstr "Ambos"
 
 #. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_classroom_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_resource_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_schedule_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_activity_type_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_all_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_classroom_view_form
@@ -140,6 +188,11 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_education_schedule
+msgid "Class Schedule"
+msgstr "Horario de clases"
+
+#. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_shift
 msgid "Class Shift"
 msgstr "Turno"
@@ -151,11 +204,25 @@ msgid "Class Shifts File (V55T32)"
 msgstr "Fichero de turnos (V55T32)"
 
 #. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_education_classroom
+msgid "Classroom"
+msgstr "Aula"
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__file
 msgid "Classrooms (T06)"
 msgstr "Aulas (T06)"
 
 #. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_classroom_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_resource_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_schedule_view_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
 msgid "Code"
 msgstr "Código"
@@ -188,6 +255,10 @@ msgid "Courses File (V55T12)"
 msgstr "Fichero de cursos (V55T12)"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__create_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__create_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__create_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__create_uid
@@ -222,6 +293,10 @@ msgid "Created by"
 msgstr "Creado por"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__create_date
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__create_date
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__create_date
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__create_date
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__create_date
@@ -267,6 +342,10 @@ msgid "Designation Levels File (061)"
 msgstr "Fichero de niveles de nombramiento (061)"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__display_name
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__display_name
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__display_name
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__display_name
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__display_name
@@ -301,6 +380,30 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: hezkuntza
+#: model:ir.actions.act_window,name:hezkuntza.action_download_education_classroom
+#: model:ir.ui.menu,name:hezkuntza.download_education_classroom_menuitem
+msgid "Download Classrooms"
+msgstr "Descargar aulas"
+
+#. module: hezkuntza
+#: model:ir.actions.act_window,name:hezkuntza.action_download_education_group
+#: model:ir.ui.menu,name:hezkuntza.download_group_menuitem
+msgid "Download Education Groups"
+msgstr "Descargar grupos educativos"
+
+#. module: hezkuntza
+#: model:ir.actions.act_window,name:hezkuntza.action_download_education_schedule
+#: model:ir.ui.menu,name:hezkuntza.download_schedule_menuitem
+msgid "Download Education Schedule"
+msgstr "Descargar cuadro horario"
+
+#. module: hezkuntza
+#: model:ir.actions.act_window,name:hezkuntza.action_download_education_resource
+#: model:ir.ui.menu,name:hezkuntza.download_resource_menuitem
+msgid "Download Resources"
+msgstr "Descargar plantillas"
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__duplicated_partner
 msgid "Duplicated Partner"
 msgstr "Contactos duplicados"
@@ -322,7 +425,13 @@ msgid "Education"
 msgstr "Educación"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__center_id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__center_id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__center_id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__center_id
+#: model:ir.model.fields,field_description:hezkuntza.field_education_classroom__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_group__center_id
+#: model:ir.model.fields,field_description:hezkuntza.field_education_schedule__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_hr_contract__ed_center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_resource__center_id
@@ -332,6 +441,14 @@ msgid "Education Center"
 msgstr "Centro educativo"
 
 #. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_group.py:38
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:38
+#, python-format
+msgid "Education Center must have Education Code defined"
+msgstr "El centro educativo debe tener un código educativo definido"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_education_group__education_code
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__education_code
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
 msgid "Education Code"
@@ -496,12 +613,12 @@ msgstr "Fichero de modelos educativos (V55T35)"
 #: code:addons/hezkuntza/wizard/upload_education_model.py:19
 #: code:addons/hezkuntza/wizard/upload_education_position.py:23
 #: code:addons/hezkuntza/wizard/upload_education_resource.py:27
-#: code:addons/hezkuntza/wizard/upload_education_schedule.py:42
+#: code:addons/hezkuntza/wizard/upload_education_schedule.py:44
 #: code:addons/hezkuntza/wizard/upload_education_shift.py:20
 #: code:addons/hezkuntza/wizard/upload_education_student.py:26
-#: code:addons/hezkuntza/wizard/upload_education_subject.py:20
+#: code:addons/hezkuntza/wizard/upload_education_subject.py:22
 #: code:addons/hezkuntza/wizard/upload_education_task_type.py:20
-#: code:addons/hezkuntza/wizard/upload_education_teacher.py:41
+#: code:addons/hezkuntza/wizard/upload_education_teacher.py:44
 #: code:addons/hezkuntza/wizard/upload_education_work_reason.py:20
 #: code:addons/hezkuntza/wizard/upload_education_workday_type.py:20
 #, python-format
@@ -509,9 +626,45 @@ msgid "Empty file."
 msgstr "Fichero vacío"
 
 #. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_classroom_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_resource_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_schedule_view_form
+msgid "Export"
+msgstr "Exportar"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_classroom_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_resource_view_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_schedule_view_form
+msgid "Export completed"
+msgstr "Exportación completada"
+
+#. module: hezkuntza
 #: model:ir.ui.menu,name:hezkuntza.faculty_configuration_menuitem
 msgid "Faculty"
 msgstr "Profesorado"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__data
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__data
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__data_student
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__data
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__data
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__data_student
+msgid "File"
+msgstr "Archivo"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__name
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__name
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__name_student
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__name
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__name
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__name_student
+msgid "File name"
+msgstr "Nombre del archivo"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_group__file
@@ -520,11 +673,40 @@ msgid "Groups"
 msgstr "Grupos"
 
 #. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_classroom_view_form
+msgid "Here's the classroom's file:"
+msgstr "Aquí está el fichero de aulas:"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_resource_view_form
+msgid "Here's the file:"
+msgstr "Aquí está el fichero:"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
+msgid "Here's the group's file:"
+msgstr "Aquí está el fichero de grupos:"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_schedule_view_form
+msgid "Here's the schedule file:"
+msgstr "Aquí está el fichero del cuadro horario:"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
+msgid "Here's the student's file:"
+msgstr "Aquí está el fichero de alumnado:"
+
+#. module: hezkuntza
 #: model:ir.ui.menu,name:hezkuntza.hezkuntza_configuration_menuitem
 msgid "Hezkuntza"
 msgstr ""
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__id
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__id
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__id
@@ -581,6 +763,10 @@ msgid "Languages File (T55)"
 msgstr "Fichero de idiomas (T55)"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom____last_update
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group____last_update
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource____last_update
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner____last_update
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line____last_update
@@ -615,6 +801,10 @@ msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__write_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__write_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__write_uid
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__write_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__write_uid
@@ -649,6 +839,10 @@ msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__write_date
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__write_date
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__write_date
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner__write_date
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__write_date
@@ -766,6 +960,7 @@ msgid "Partner Tax ID"
 msgstr "NIF del contacto"
 
 #. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
 msgid "Partners"
@@ -786,11 +981,6 @@ msgstr "Relaciones"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_resource__file
 msgid "Resources"
 msgstr "Recursos"
-
-#. module: hezkuntza
-#: model:res.groups,name:hezkuntza.education_responsible
-msgid "Responsible"
-msgstr "Responsable"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_schedule__file
@@ -832,6 +1022,14 @@ msgstr "Mostrar descripciones en Euskera"
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_workday_type_view_form
 msgid "Spanish"
 msgstr "Castellano"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__state
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__state
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__state
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__state
+msgid "State"
+msgstr "Provincia"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__student_education_code
@@ -893,6 +1091,14 @@ msgid "Task Types File (T13)"
 msgstr "Fichero de tipos de tarea (T13)"
 
 #. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:87
+#, python-format
+msgid "Teacher {} must have identification type and number.<br/>\n"
+""
+msgstr "El profesor {} debe tener tipo de identificación y número.<br/>\n"
+""
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__file
 msgid "Teachers (T06)"
 msgstr "Profesorado (T06)"
@@ -901,6 +1107,12 @@ msgstr "Profesorado (T06)"
 #: model:ir.model.fields,help:hezkuntza.field_update_education_partner_line__vat
 msgid "The Tax Identification Number. Complete it if the contact is subjected to government taxes. Used in some legal statements."
 msgstr "El número de identificación de impuesto. Complételo si el contacto está sujeto a los impuestos del gobierno. Utilizado en algunas declaraciones legales."
+
+#. module: hezkuntza
+#: code:addons/hezkuntza/wizard/update_education_partner.py:84
+#, python-format
+msgid "This is not a valid file."
+msgstr "Este no es un fichero valido."
 
 #. module: hezkuntza
 #: model:ir.actions.act_window,name:hezkuntza.action_update_education_partner
@@ -1103,15 +1315,17 @@ msgid "Upload Work Reasons"
 msgstr "Cargar causas de alta privados"
 
 #. module: hezkuntza
-#: model:res.groups,name:hezkuntza.education_user
-msgid "User"
-msgstr "Usuario"
-
-#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_line_view_tree
 #: model_terms:ir.ui.view,arch_db:hezkuntza.update_education_partner_view_form
 msgid "Vat"
 msgstr "NIF"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__warning_msg
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__warning_msg
+msgid "Warning"
+msgstr "Aviso"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__wizard_id
@@ -1124,9 +1338,29 @@ msgid "Wizard Lines to Update Partner Education Code"
 msgstr "Líneas de asistente para actualizar los códigos de educación"
 
 #. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_download_education_classroom
+msgid "Wizard to Download Classroom"
+msgstr "Asistente para descargar aulas"
+
+#. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_download_education_group
+msgid "Wizard to Download Groups"
+msgstr "Asistente para descargar grupos"
+
+#. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_download_education_resource
+msgid "Wizard to Download Resources"
+msgstr "Asistente para descargar planificaciones"
+
+#. module: hezkuntza
+#: model:ir.model,name:hezkuntza.model_download_education_schedule
+msgid "Wizard to Download Schedule"
+msgstr "Asistente para descargar cuadro horario"
+
+#. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_update_education_partner
 msgid "Wizard to Update Partner Education Code"
-msgstr "Asistente para actualizar los códigos de educación""
+msgstr "Asistente para actualizar los códigos de educación"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_upload_education_shift
@@ -1276,7 +1510,22 @@ msgid "Workday Types File (T30)"
 msgstr "Fichero de tipos de jornada (T30)"
 
 #. module: hezkuntza
-#: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_activity_type_view_form
+#: selection:download.education.classroom,state:0
+#: selection:download.education.group,state:0
+#: selection:download.education.resource,state:0
+#: selection:download.education.schedule,state:0
+msgid "get"
+msgstr "obtener"
+
+#. module: hezkuntza
+#: selection:download.education.classroom,state:0
+#: selection:download.education.group,state:0
+#: selection:download.education.resource,state:0
+#: selection:download.education.schedule,state:0
+msgid "open"
+msgstr "abierto"
+
+#. module: hezkuntza
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_all_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_classroom_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_contract_type_view_form
@@ -1287,12 +1536,10 @@ msgstr "Fichero de tipos de jornada (T30)"
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_group_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_idtype_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_language_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_level_course_subject_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_level_field_subject_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_level_task_type_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_level_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_level_workday_type_view_form
-#: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_model_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_position_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_resource_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_schedule_view_form
@@ -1305,4 +1552,12 @@ msgstr "Fichero de tipos de jornada (T30)"
 #: model_terms:ir.ui.view,arch_db:hezkuntza.upload_education_workday_type_view_form
 msgid "or"
 msgstr "o"
+
+#. module: hezkuntza
+#: code:addons/hezkuntza/wizard/download_education_group.py:103
+#, python-format
+msgid "{} missing education code<br/>\n"
+""
+msgstr "{} no tiene código de educación<br/>\n"
+""
 
