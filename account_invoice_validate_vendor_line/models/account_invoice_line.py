@@ -7,9 +7,10 @@ from odoo import api, fields, models
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
-    validate_ok = fields.Boolean(string='Validate OK',
-                                 default=False, required=True)
+    validate_ok = fields.Boolean(string='Validated',
+                                 default=False)
 
     @api.multi
     def toggle_validate_ok(self):
-        self.validate_ok = not self.validate_ok
+        for record in self:
+            record.validate_ok = not record.validate_ok
