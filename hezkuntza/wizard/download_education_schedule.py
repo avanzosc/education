@@ -5,6 +5,7 @@ import base64
 from ._common import _convert_time_float_to_string
 from odoo import _, fields, models
 from odoo.exceptions import ValidationError
+from odoo.models import expression
 
 
 class DownloadEducationClassroom(models.TransientModel):
@@ -19,6 +20,13 @@ class DownloadEducationClassroom(models.TransientModel):
         default=lambda self: self.env[
             "education.academic_year"].search([("current", "=", True)]),
         required=True)
+    level_id = fields.Many2one(
+        comodel_name="education.level", string="Education Level",
+        required=True)
+    course_ids = fields.Many2many(
+        comodel_name="education.course", string="Course")
+    teacher_id = fields.Many2one(
+        comodel_name="hr.employee", string="Teacher")
     name = fields.Char(string="File name", readonly=True)
     data = fields.Binary(string="File", readonly=True)
     name_student = fields.Char(string="File name", readonly=True)
@@ -40,11 +48,28 @@ class DownloadEducationClassroom(models.TransientModel):
             self.center_id.education_code, self.academic_year_id.name[:4])
         warning_msg = ""
         errored_teacher = self.env["hr.employee"]
-        for schedule in self.env["education.schedule"].search([
+        group_domain = [
+                ("center_id", "=", self.center_id.id),
+                ("academic_year_id", "=", self.academic_year_id.id),
+                ("level_id", "=", self.level_id.id),
+                ("student_count", "!=", 0),
+                ("group_type_id.type", "in", ["official", "class"]),
+        ]
+        if self.course_ids:
+            group_domain = expression.AND(
+                [group_domain, [("course_id", "in", self.course_ids.ids)]])
+        groups = self.env["education.group"].search(group_domain)
+        schedule_domain = [
                 ("center_id", "=", self.center_id.id),
                 ("academic_year_id", "=", self.academic_year_id.id),
                 ("teacher_id", "!=", anonymus_teacher.id),
-                ("timetable_ids", "!=", False)]):
+                ("timetable_ids", "!=", False),
+                ("group_ids", "=", groups.ids),
+        ]
+        if self.teacher_id:
+            schedule_domain = expression.AND(
+                [schedule_domain, [("teacher_id", "=", self.teacher_id.id)]])
+        for schedule in self.env["education.schedule"].search(schedule_domain):
             schedule_msg = ""
             if not schedule.classroom_id:
                 schedule_msg += _("<dd>Must have defined a classroom.</dd>\n")
@@ -79,7 +104,8 @@ class DownloadEducationClassroom(models.TransientModel):
                     parent = group.parent_id or group
                     encode_string += "3{:0>8}0000{:0>4}{:<50}{:0>8}\r".format(
                         group.education_code, group.student_count,
-                        group.description, parent.education_code)
+                        group.description.replace("\n", " "),
+                        parent.education_code)
             if schedule_msg:
                 warning_msg += "<dl><dt>{}</dt>\n{}</dl>".format(
                     schedule.display_name, schedule_msg)
@@ -87,7 +113,7 @@ class DownloadEducationClassroom(models.TransientModel):
             warning_msg += _(
                 "Teacher {} must have identification type and number."
                 "<br/>\n").format(teacher.display_name)
-        encode_string = encode_string.encode()
+        encode_string = encode_string.encode("ascii", "ignore")
         schedule_file_bin = base64.encodebytes(encode_string)
         self.write({
             "state": "get",

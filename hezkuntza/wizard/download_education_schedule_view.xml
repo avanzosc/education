@@ -10,6 +10,12 @@
                     <group states="open">
                         <field name="center_id" options="{'no_create': True, 'no_open': True}" />
                         <field name="academic_year_id" options="{'no_create': True, 'no_open': True}" />
+                        <field name="level_id" options="{'no_create': True, 'no_open': True}" />
+                        <field name="course_ids" options="{'no_create': True, 'no_open': True}"
+                               domain="[('level_id', '=', level_id)]"
+                               widget="many2many_tags" />
+                        <field name="teacher_id" options="{'no_create': True, 'no_open': True}"
+                               domain="[('center_ids', '=', center_id)]" />
                     </group>
                     <div states="get">
                         <h2>Export completed</h2>
