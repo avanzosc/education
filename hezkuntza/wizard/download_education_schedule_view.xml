@@ -13,6 +13,7 @@
                         <field name="level_id" options="{'no_create': True, 'no_open': True}" />
                         <field name="course_ids" options="{'no_create': True, 'no_open': True}"
                                domain="[('level_id', '=', level_id)]"
+                               attrs="{'invisible': [('level_id','=',False)]}"
                                widget="many2many_tags" />
                         <field name="teacher_id" options="{'no_create': True, 'no_open': True}"
                                domain="[('center_ids', '=', center_id)]" />
