@@ -4,14 +4,14 @@
         <field name="model">education.group.student.progenitor.report</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="center_id" />
-                <field name="course_id" />
                 <field name="group_id" />
-                <field name="group_type_id" invisible="True" />
                 <field name="student_id" />
                 <field name="progenitor_id" />
                 <field name="progenitor_email" />
+                <field name="course_id" />
+                <field name="center_id" />
                 <field name="academic_year_id" />
+                <field name="group_type_id" invisible="True" />
             </tree>
         </field>
     </record>

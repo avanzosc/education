@@ -277,7 +277,7 @@ msgstr "Curso (alumno)"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_current_view_tree
 msgid "Education Group"
-msgstr "Grupo educativo"
+msgstr "Descripción de curso"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__student_group_ids
