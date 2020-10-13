@@ -19,6 +19,11 @@ class DownloadEducationClassroom(models.TransientModel):
         default=lambda self: self.env[
             "education.academic_year"].search([("current", "=", True)]),
         required=True)
+    level_id = fields.Many2one(
+        comodel_name="education.level", string="Education Level",
+        required=True)
+    course_id = fields.Many2one(
+        comodel_name="education.course", string="Course", required=True)
     name = fields.Char(string="File name", readonly=True)
     data = fields.Binary(string="File", readonly=True)
     name_student = fields.Char(string="File name", readonly=True)
@@ -31,6 +36,7 @@ class DownloadEducationClassroom(models.TransientModel):
         ], string="State", default="open")
 
     def button_download_file(self):
+        self.ensure_one()
         fname_group = "grupos.txt"
         fname_student = "T27.txt"
         if not self.center_id.education_code:
@@ -44,8 +50,10 @@ class DownloadEducationClassroom(models.TransientModel):
         for group in self.env["education.group"].search([
                 ("center_id", "=", self.center_id.id),
                 ("academic_year_id", "=", self.academic_year_id.id),
+                ("level_id", "=", self.level_id.id),
+                ("course_id", "=", self.course_id.id),
                 ("student_count", "!=", 0),
-                ("group_type_id.type", "in", ['official', 'class'])]):
+                ("group_type_id.type", "in", ["official", "class"])]):
             group_msg = ""
             if not group.classroom_id:
                 group_msg += _("<dd>Must have defined a classroom.</dd>\n")
@@ -83,7 +91,7 @@ class DownloadEducationClassroom(models.TransientModel):
                 group.student_count, group.comments,
                 group.classroom_id.education_code)
             for attendance in group.calendar_session_ids.sorted(
-                    key=lambda a: (a.daily_hour, a.dayofweek_education)):
+                    key=lambda a: (a.dayofweek_education, a.daily_hour)):
                 encode_string += "3{:0>8}{:0>2}{}{}{}{}\r".format(
                     group.education_code, attendance.daily_hour,
                     attendance.dayofweek_education,
