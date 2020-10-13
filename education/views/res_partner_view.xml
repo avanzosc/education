@@ -86,11 +86,11 @@
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <tree create="false" delete="false" edit="false">
-                <field name="education_code" />
                 <field name="display_name" string="Name"/>
-                <field name="function" invisible="1"/>
-                <field name="phone" class="o_force_ltr"/>
                 <field name="email"/>
+                <field name="phone" class="o_force_ltr"/>
+                <field name="education_code" />
+                <field name="function" invisible="1"/>
                 <field name="user_id" invisible="1"/>
                 <field name="is_company" invisible="1"/>
                 <field name="country_id" invisible="1"/>
