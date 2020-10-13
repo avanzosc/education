@@ -143,6 +143,14 @@ class EducationScheduleTimetable(models.Model):
         comodel_name='hr.employee', string='Teacher', copy=False)
 
     @api.multi
+    @api.onchange("dayofweek")
+    def _onchange_dayofweek(self):
+        for record in self:
+            if (record.attendance_id and
+                    record.attendance_id.dayofweek != record.dayofweek):
+                record.attendance_id = False
+
+    @api.multi
     @api.onchange("attendance_id")
     def _onchange_attendance_id(self):
         for record in self:

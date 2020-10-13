@@ -248,6 +248,13 @@ class TestEducation(TestEducationCommon):
         timetable._onchange_attendance_id()
         self.assertEquals(timetable.hour_from, attendance.hour_from)
         self.assertEquals(timetable.hour_to, attendance.hour_to)
+        new_dayofweek = "1"
+        self.assertNotEquals(attendance.dayofweek, new_dayofweek)
+        timetable.write({
+            "dayofweek": new_dayofweek
+        })
+        timetable._onchange_dayofweek()
+        self.assertFalse(timetable.attendance_id)
         action_dict = self.teacher.button_open_schedule()
         self.assertIn(("professor_id", "=", self.teacher.id),
                       action_dict.get('domain'))
