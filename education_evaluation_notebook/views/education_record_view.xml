@@ -58,29 +58,29 @@
                 <field name="numeric_mark"
                        invisible="context.get('hide_numeric',True)"
                        attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('state','!=','exempt')]}"/>
+                <field name="n_mark_reduced_name" />
+                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}" />
+                <field name="calculated_numeric_mark" invisible="context.get('hide_calculated',True)"/>
+                <field name="n_line_id" attrs="{'readonly': [('id','!=',False)]}"/>
+                <field name="exam_eval_percent" />
+                <field name="state" />
+                <field name="mark_id" options="{'no_open': True, 'no_edit': True}" />
+                <field name="competence_id" />
+                <field name="teacher_id" groups="education.education_responsible" />
+                <field name="subject_id" />
                 <field name="behaviour_mark_id"
                        invisible="context.get('hide_behaviour',True)"
                        options="{'no_create': True}"
                        attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric'),('state','!=','exempt')]}"/>
-                <field name="mark_id" options="{'no_open': True, 'no_edit': True}" />
-                <field name="n_mark_reduced_name" />
-                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}" />
-                <field name="calculated_numeric_mark" invisible="context.get('hide_calculated',True)"/>
                 <field name="exam_id" invisible="context.get('hide_exam',True)"
                        attrs="{'readonly': [('id','!=',False)]}"/>
                 <field name="exam_state" invisible="True" />
-                <field name="n_line_id" attrs="{'readonly': [('id','!=',False)]}"/>
                 <field name="eval_type" invisible="True" />
-                <field name="competence_id" />
                 <field name="competence_eval_mode" invisible="True" />
-                <field name="exam_eval_percent" />
-                <field name="teacher_id" groups="education.education_responsible" />
-                <field name="subject_id" />
                 <field name="parent_record_id" invisible="True" />
                 <field name="global_competence" invisible="True" />
                 <field name="evaluation_competence" invisible="True" />
                 <field name="academic_year_id"  invisible="True" />
-                <field name="state" />
             </tree>
         </field>
     </record>
