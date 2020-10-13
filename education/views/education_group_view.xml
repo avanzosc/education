@@ -4,16 +4,16 @@
         <field name="model">education.group</field>
         <field name="arch" type="xml">
             <tree decoration-muted="student_count == 0">
-                <field name="education_code" />
                 <field name="description" />
-                <field name="section_id" />
-                <field name="center_id" />
+                <field name="student_count" />
                 <field name="level_id" />
                 <field name="course_id" />
                 <field name="model_id" />
                 <field name="group_type_id" />
                 <field name="classroom_id" />
-                <field name="student_count" />
+                <field name="section_id" />
+                <field name="center_id" />
+                <field name="education_code" />
                 <field name="active" invisible="True" />
             </tree>
         </field>
