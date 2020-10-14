@@ -5,6 +5,8 @@ import base64
 import chardet
 import time
 
+HEZKUNTZA_ENCODING = 'windows-1252'
+
 
 def _read_binary_file(file):
     if not file:
@@ -19,7 +21,8 @@ def _read_binary_file(file):
 
 def _format_info(info):
     encoding_dict = chardet.detect(info)
-    return info.decode(encoding_dict.get('encoding') or 'windows-1252').strip()
+    return info.decode(
+        encoding_dict.get('encoding') or HEZKUNTZA_ENCODING).strip()
 
 
 def _convert_time_str_to_float(time_str):
