@@ -4,8 +4,9 @@
         <field name="model">account.invoice.line</field>
         <field name="inherit_id" ref="account.view_invoice_line_form" />
         <field name="arch" type="xml">
-            <field name="invoice_line_tax_ids" position="after">
-               <field name="validate_ok"/>
+            <field name="discount" position="after">
+                <field name="validate_ok"/>
+                <field name="school_id" />
             </field>
         </field>
     </record>
