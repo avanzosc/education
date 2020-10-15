@@ -13,19 +13,9 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form" />
         <field name="arch" type="xml">
-            <field name="vendor_bill_id" position="after">
-                <field name="payment_mode_id" />
-            </field>
-            <field name="date_invoice" position="before">
-                <field name="date" />
-            </field>
             <field name="date_due" position="after">
-                <field name="line_school_ids" widget="many2many_tags" />
                 <field name="validate_ok" widget="checkbox"/>
             </field>
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
-                <field name="product_center_id"  widget="res_partner_many2one" />
-            </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='currency_id']" position="after">
                 <field name="validate_ok" />
                 <button type="object" name="toggle_validate_ok" string="OK/NOK" class="btn-primary"/>

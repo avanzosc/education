@@ -9,15 +9,7 @@
     "website": "http://www.avanzosc.es",
     "category": "Tools",
     "depends": [
-        "account",
-        "account_payment_order",
-        "base",
-        "contacts_school",
-        "contacts_school_education",
-        "contract",
-        "contract_payment_mode",
-        "contract_school",
-        "education",
+        "account"
     ],
     "data": [
         "views/account_invoice_line_view.xml",
