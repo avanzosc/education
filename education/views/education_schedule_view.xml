@@ -4,15 +4,15 @@
         <field name="model">education.schedule</field>
         <field name="arch" type="xml">
             <tree decoration-muted="task_type_type != 'L'">
-                <field name="academic_year_id" />
-                <field name="center_id" />
-                <field name="teacher_id" />
-                <field name="classroom_id" />
-                <field name="task_type_type" invisible="True" />
                 <field name="group_ids" widget="many2many_tags"
                        domain="[('academic_year_id', '=', academic_year_id),('center_id', '=', center_id)]"
                        options="{'no_create': True}" />
                 <field name="student_count" />
+                <field name="classroom_id" />
+                <field name="academic_year_id" />
+                <field name="center_id" />
+                <field name="teacher_id" />
+                <field name="task_type_type" invisible="True" />
             </tree>
         </field>
     </record>
