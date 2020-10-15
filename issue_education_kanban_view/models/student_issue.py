@@ -9,7 +9,8 @@ class StudentIssue(models.Model):
     _order = 'sequence'
 
     student_id = fields.Many2one(
-        string='Student', comodel_name='res.partner', required=True)
+        string='Student', comodel_name='res.partner', required=True,
+        ondelete='cascade')
     education_schedule_id = fields.Many2one(
         string='Schedule', comodel_name='education.schedule')
     college_issue_type_id = fields.Many2one(
