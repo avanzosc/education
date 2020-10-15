@@ -23,11 +23,12 @@
                 <field name="line_school_ids" widget="many2many_tags" />
                 <field name="validate_ok" widget="checkbox"/>
             </field>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+                <field name="product_center_id"  widget="res_partner_many2one" />
+            </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='currency_id']" position="after">
                 <field name="validate_ok" />
                 <button type="object" name="toggle_validate_ok" string="OK/NOK" class="btn-primary"/>
-                <!--field name="invoice_line_ids.school_id"  widget="res_partner_many2one"
-                       domain="[('invoice_line_ids.school_id', '!=', False)]"/-->
             </xpath>
         </field>
     </record>

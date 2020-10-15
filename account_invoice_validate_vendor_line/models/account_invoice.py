@@ -10,10 +10,11 @@ class AccountInvoice(models.Model):
     validate_ok = fields.Boolean(compute='_compute_validate_ok',
                                  string='Validated',
                                  store=True, compute_sudo=True)
-
     line_school_ids = fields.Many2many(
         comodel_name='res.partner', string='Schools',
-        computed='_compute_school_ids', store=True)
+        relation='account_invoice_school',
+        column1='invoice_id', column2='school_id',
+        compute='_compute_school_ids', store=True)
 
     @api.multi
     @api.depends("invoice_line_ids", "invoice_line_ids.validate_ok")
@@ -23,9 +24,8 @@ class AccountInvoice(models.Model):
                 all(record.mapped("invoice_line_ids.validate_ok"))
 
     @api.multi
-    @api.depends('invoice_lines', 'invoice_lines.school_id')
+    @api.depends('invoice_line_ids', 'invoice_line_ids.product_center_id')
     def _compute_school_ids(self):
         for invoice in self:
-            lines = invoice.invoice_lines.filtered(lambda x: x.school_id and x.invoice_id == self.id)
-            schools = lines.mapped('school_id')
-            invoice.line_school_ids = [(6, 0, schools.ids)]
+            invoice.line_school_ids = invoice.mapped(
+                'invoice_line_ids.product_center_id')

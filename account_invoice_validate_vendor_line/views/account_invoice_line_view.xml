@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <field name="discount" position="after">
                 <field name="validate_ok"/>
-                <field name="school_id" />
+                <field name="product_center_id"  widget="res_partner_many2one" />
             </field>
         </field>
     </record>

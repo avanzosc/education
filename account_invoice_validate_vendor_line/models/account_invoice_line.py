@@ -9,6 +9,9 @@ class AccountInvoiceLine(models.Model):
 
     validate_ok = fields.Boolean(string='Validated',
                                  default=False)
+    product_center_id = fields.Many2one(
+        comodel_name='res.partner', string='Education Center',
+        related="product_id.center_id", store=True)
 
     @api.multi
     def toggle_validate_ok(self):
