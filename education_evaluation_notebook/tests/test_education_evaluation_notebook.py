@@ -71,6 +71,9 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         notebook_count = evaluation_count + 2
         self.assertEquals(
             self.schedule.notebook_line_count, notebook_count)
+        self.schedule.action_generate_notebook_lines()
+        self.assertEquals(
+            self.schedule.notebook_line_count, notebook_count)
         line_act_dict = self.schedule.button_show_notebook_lines()
         self.assertIn(
             ("schedule_id", "=", self.schedule.id),
