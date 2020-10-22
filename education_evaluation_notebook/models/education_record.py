@@ -95,6 +95,14 @@ class EducationRecord(models.Model):
         string="# Child Records", store=True)
     state = fields.Selection(
         selection=RECORD_STATE, string="Record State", default="not_evaluated")
+    line_parent_id = fields.Many2one(
+        comodel_name="education.notebook.line",
+        related="n_line_id.parent_line_id",
+        string="Evaluation Notebook Line", store=True)
+    line_parent_parent_id = fields.Many2one(
+        comodel_name="education.notebook.line",
+        related="n_line_id.parent_parent_line_id",
+        string="Global Notebook Line", store=True)
 
     @api.multi
     @api.onchange("numeric_mark", "behaviour_mark_id")
