@@ -22,6 +22,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
     progenitor_id = fields.Many2one(
         comodel_name="res.partner", string="Progenitor")
     progenitor_email = fields.Char()
+    progenitor_phone = fields.Char()
     relation = fields.Selection(
         string="Relation",  selection=_get_selection_relation)
 
@@ -38,6 +39,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
         select_str = """
                 , fam.responsible_id AS progenitor_id
                 , p.email AS progenitor_email
+                , p.phone AS progenitor_phone
                 , fam.relation AS relation
         """
         return super(EducationGroupStudentProgenitorReport,
@@ -58,6 +60,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
                 , fam.responsible_id
                 , fam.relation
                 , p.email
+                , p.phone
         """
         return super(EducationGroupStudentProgenitorReport,
                      self)._group_by() + group_by_str
