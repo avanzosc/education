@@ -13,6 +13,7 @@
         "resource_education",
         "hr_education",
         "hr_contract_education",
+        "hr_school",
         "contacts_school",
         "partner_second_lastname",
     ],

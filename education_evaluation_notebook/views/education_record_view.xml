@@ -13,6 +13,13 @@
                 <filter name="pending" string="Pending Record"
                         domain="[('state','=','not_evaluated')]" />
                 <separator />
+                <filter string="Global Competences" name="global_competence"
+                        domain="[('competence_id.global_check','=',True)]" />
+                <filter string="Evaluation Competences" name="evaluation_competence"
+                        domain="[('competence_id.evaluation_check','=',True)]" />
+                <filter string="Plain Competences" name="plain_competence"
+                        domain="[('competence_id.evaluation_check','=',False),('competence_id.global_check','=',False)]" />
+                <separator />
                 <filter name="first_eval" string="First Evaluation"
                         domain="[('eval_type','=','first')]" />
                 <filter name="second_eval" string="Second Evaluation"
@@ -59,7 +66,8 @@
                        invisible="context.get('hide_numeric',True)"
                        attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('state','!=','exempt')]}"/>
                 <field name="n_mark_reduced_name" />
-                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}" />
+                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}"
+                       options="{'no_open': True}" />
                 <field name="calculated_numeric_mark" invisible="context.get('hide_calculated',True)"/>
                 <field name="n_line_id" attrs="{'readonly': [('id','!=',False)]}"/>
                 <field name="exam_eval_percent" />
@@ -103,7 +111,8 @@
                     </div>
                     <group>
                         <group>
-                            <field name="student_id" />
+                            <field name="student_id"
+                                   context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}"/>
                             <field name="numeric_mark"
                                    attrs="{'readonly': [('competence_eval_mode','=','behaviour')], 'required': [('competence_eval_mode','!=','behaviour')]}" />
                             <field name="mark_id" options="{'no_create': True}" />
@@ -138,15 +147,17 @@
         </field>
     </record>
 
-<!--    <record id="education_record_view_pivot" model="ir.ui.view">-->
-<!--        <field name="model">education.record</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <pivot>-->
-<!--                <field name="student_id" type="row"/>-->
-<!--                <field name="numeric_mark" type="measure"/>-->
-<!--            </pivot>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="education_record_view_pivot" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="student_id" type="row" />
+                <field name="subject_id" type="col" />
+                <field name="competence_id" type="col" />
+                <field name="numeric_mark" type="measure" />
+            </pivot>
+        </field>
+    </record>
 
     <record id="education_record_action" model="ir.actions.act_window">
         <field name="name">Academic Record</field>

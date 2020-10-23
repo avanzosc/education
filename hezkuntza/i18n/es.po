@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 15:52+0000\n"
-"PO-Revision-Date: 2020-10-05 15:52+0000\n"
+"POT-Creation-Date: 2020-10-13 12:11+0000\n"
+"PO-Revision-Date: 2020-10-13 12:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,9 @@ msgstr ""
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_group.py:51
+#: code:addons/hezkuntza/wizard/download_education_group.py:59
 #: code:addons/hezkuntza/wizard/download_education_schedule.py:50
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:75
 #, python-format
 msgid "<dd>Must have defined a classroom.</dd>\n"
 ""
@@ -26,6 +28,7 @@ msgstr "<dd>Debe tener definido un aula.</dd>\n"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_group.py:55
+#: code:addons/hezkuntza/wizard/download_education_group.py:63
 #, python-format
 msgid "<dd>Must have defined a course.</dd>\n"
 ""
@@ -34,6 +37,7 @@ msgstr "<dd>Debe tener definido un curso.</dd>\n"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_group.py:53
+#: code:addons/hezkuntza/wizard/download_education_group.py:61
 #, python-format
 msgid "<dd>Must have defined a shift.</dd>\n"
 ""
@@ -42,6 +46,7 @@ msgstr "<dd>Debe tener definido un turno.</dd>\n"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_group.py:76
+#: code:addons/hezkuntza/wizard/download_education_group.py:84
 #, python-format
 msgid "<dd>Must have defined a teacher with sequence 1.</dd>\n"
 ""
@@ -50,6 +55,7 @@ msgstr "<dd>Debe tener definido al menos un profesor con secuencia 1.</dd>\n"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_group.py:57
+#: code:addons/hezkuntza/wizard/download_education_group.py:65
 #, python-format
 msgid "<dd>Must have defined an educational model.</dd>\n"
 ""
@@ -245,6 +251,8 @@ msgstr "Fichero de tipo de contratos privados (T31)"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_course
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__course_id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__course_ids
 msgid "Course"
 msgstr "Curso"
 
@@ -442,7 +450,9 @@ msgstr "Centro educativo"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_group.py:38
+#: code:addons/hezkuntza/wizard/download_education_group.py:44
 #: code:addons/hezkuntza/wizard/download_education_schedule.py:38
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:46
 #, python-format
 msgid "Education Center must have Education Code defined"
 msgstr "El centro educativo debe tener un código educativo definido"
@@ -508,6 +518,8 @@ msgstr "Tipos de documento"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_level
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__level_id
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__level_id
 msgid "Education Level"
 msgstr "Nivel"
 
@@ -1091,7 +1103,13 @@ msgid "Task Types File (T13)"
 msgstr "Fichero de tipos de tarea (T13)"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__teacher_id
+msgid "Teacher"
+msgstr "Profesor"
+
+#. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_schedule.py:87
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:113
 #, python-format
 msgid "Teacher {} must have identification type and number.<br/>\n"
 ""
@@ -1555,6 +1573,7 @@ msgstr "o"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/download_education_group.py:103
+#: code:addons/hezkuntza/wizard/download_education_group.py:111
 #, python-format
 msgid "{} missing education code<br/>\n"
 ""

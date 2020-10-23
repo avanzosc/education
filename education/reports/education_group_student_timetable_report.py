@@ -49,10 +49,10 @@ class EducationGroupStudentTimetableReport(models.Model):
 
     def _select(self):
         select_str = """
-                , sch_tt.dayofweek AS dayofweek,
+                , cal_att.dayofweek AS dayofweek,
                 sch_tt.session_number AS daily_hour,
-                sch_tt.hour_from AS hour_from,
-                sch_tt.hour_to AS hour_to
+                cal_att.hour_from AS hour_from,
+                cal_att.hour_to AS hour_to
         """
         return (super(EducationGroupStudentTimetableReport, self)._select() +
                 select_str)
@@ -61,16 +61,18 @@ class EducationGroupStudentTimetableReport(models.Model):
         from_str = """
                 JOIN education_schedule_timetable sch_tt
                   ON sch.id = sch_tt.schedule_id
+                JOIN resource_calendar_attendance cal_att
+                  ON sch_tt.attendance_id = cal_att.id
         """
         return (super(EducationGroupStudentTimetableReport, self)._from() +
                 from_str)
 
     def _group_by(self):
         group_by_str = """
-                , sch_tt.dayofweek,
+                , cal_att.dayofweek,
                 sch_tt.session_number,
-                sch_tt.hour_from,
-                sch_tt.hour_to,
+                cal_att.hour_from,
+                cal_att.hour_to,
                 sch_tt.subject_name,
                 sch_tt.teacher_id
         """

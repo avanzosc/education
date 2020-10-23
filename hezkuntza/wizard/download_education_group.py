@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
-from ._common import _convert_time_float_to_string
+from ._common import _convert_time_float_to_string, HEZKUNTZA_ENCODING
 from odoo import _, fields, models
 from odoo.exceptions import ValidationError
 
@@ -68,7 +68,7 @@ class DownloadEducationClassroom(models.TransientModel):
                 "2{:0>8}{:<50}{:0>4}{:0>4}{:0>4}{:0>4}{:0>4}{:0>4}{:0>4}"
                 "{:0>8}".format(
                     group.education_code,
-                    group.description,
+                    group.description.replace("\n", " "),
                     group.plan_id.education_code,
                     group.level_id.education_code,
                     group.field_id.education_code,
@@ -110,7 +110,7 @@ class DownloadEducationClassroom(models.TransientModel):
         for student_missing in code_missing:
             warning_msg += _("{} missing education code<br/>\n").format(
                 student_missing.display_name)
-        encode_string = encode_string.encode()
+        encode_string = encode_string.encode(HEZKUNTZA_ENCODING, "replace")
         group_file_bin = base64.encodebytes(encode_string)
         student_string = student_string.encode()
         student_file_bin = base64.encodebytes(student_string)

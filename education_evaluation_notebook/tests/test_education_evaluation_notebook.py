@@ -71,6 +71,9 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         notebook_count = evaluation_count + 2
         self.assertEquals(
             self.schedule.notebook_line_count, notebook_count)
+        self.schedule.action_generate_notebook_lines()
+        self.assertEquals(
+            self.schedule.notebook_line_count, notebook_count)
         line_act_dict = self.schedule.button_show_notebook_lines()
         self.assertIn(
             ("schedule_id", "=", self.schedule.id),
@@ -91,6 +94,13 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.schedule.record_count, notebook_count * student_count)
         self.assertEquals(
             self.edu_student.academic_record_count, notebook_count)
+        self.assertEquals(
+            self.group.record_count,
+            sum(self.group.mapped("student_ids.academic_record_count")))
+        action_dict = self.group.button_show_records()
+        self.assertIn(
+            ("student_id", "in", self.group.student_ids.ids),
+            action_dict.get("domain"))
         record_act_dict = self.edu_student.button_show_student_records()
         self.assertIn(
             ("student_id", "=", self.edu_student.id),

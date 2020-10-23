@@ -269,10 +269,12 @@
         <field name="inherit_id" ref="education.res_partner_education_tree_view" />
         <field name="arch" type="xml">
             <field name="email" position="after">
-                <field name="current_center_id" string="Education Center"/>
-                <field name="current_level_id" string="Education Level" invisible="True" />
                 <field name="current_course_id" string="Course"/>
                 <field name="current_group_id" string="Education Group"/>
+            </field>
+            <field name="phone" position="after">
+                <field name="current_center_id" string="Education Center"/>
+                <field name="current_level_id" string="Education Level" invisible="True" />
             </field>
         </field>
     </record>

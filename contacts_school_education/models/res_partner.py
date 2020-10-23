@@ -25,7 +25,7 @@ class ResPartner(models.Model):
     student_group_ids = fields.Many2many(
         comodel_name='education.group', relation='edu_group_student',
         column1='student_id', column2='group_id', string='Education Groups',
-        readonly=True, domain="[('group_type_id.type', '=', 'official')]")
+        readonly=True)
     current_group_id = fields.Many2one(
         comodel_name='education.group', string='Current Group')
     current_center_id = fields.Many2one(
