@@ -47,6 +47,13 @@
                     <filter name="groupby_teacher" string="Teacher"
                             context="{'group_by':'teacher_id'}"
                             groups="education.education_responsible" />
+                    <separator />
+                    <filter name="groupby_global" string="Global Notebook Line"
+                            context="{'group_by':'line_parent_parent_id'}"/>
+                    <filter name="groupby_eval" string="Evaluation Notebook Line"
+                            context="{'group_by':'line_parent_id'}"/>
+                    <filter name="groupby_line" string="Notebook Line"
+                            context="{'group_by':'n_line_id'}"/>
                 </group>
             </search>
         </field>
