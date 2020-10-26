@@ -26,7 +26,7 @@ class EducationRecord(models.Model):
             allfields=["state"])["state"]["selection"]
 
     exam_id = fields.Many2one(
-        comodel_name="education.exam", string="Exam")
+        comodel_name="education.exam", string="Exam", ondelete="cascade")
     exam_type_id = fields.Many2one(
         comodel_name="education.exam.type", related="exam_id.exam_type_id",
         string="Exam Type", store=True)
@@ -72,12 +72,16 @@ class EducationRecord(models.Model):
         selection=EVAL_TYPE, related="n_line_id.eval_type",
         string="Evaluation Season", store=True)
     student_id = fields.Many2one(
-        comodel_name="res.partner", string="Student", required=True)
+        comodel_name="res.partner", string="Student", required=True,
+        ondelete="cascade")
     numeric_mark = fields.Float(string="Official Mark")
     behaviour_mark_id = fields.Many2one(
         comodel_name="education.mark.behaviour", string="Behaviour Mark")
     calculated_numeric_mark = fields.Float(
         compute="_compute_generate_marks", string="Calculated Numeric Mark",
+        store=True)
+    calculated_partial_mark = fields.Float(
+        compute="_compute_generate_marks", string="Calculated Partial Mark",
         store=True)
     mark_id = fields.Many2one(
         comodel_name="education.mark.numeric", string="Numeric Mark (Text)",
@@ -98,18 +102,11 @@ class EducationRecord(models.Model):
     line_parent_id = fields.Many2one(
         comodel_name="education.notebook.line",
         related="n_line_id.parent_line_id",
-        string="Evaluation Notebook Line", store=True)
+        string="Parent Notebook Line", store=True)
     line_parent_parent_id = fields.Many2one(
         comodel_name="education.notebook.line",
         related="n_line_id.parent_parent_line_id",
-        string="Global Notebook Line", store=True)
-
-    @api.multi
-    @api.onchange("numeric_mark", "behaviour_mark_id")
-    def _onchange_numeric_mark(self):
-        for record in self:
-            if record.numeric_mark != 0.0 or record.behaviour_mark_id:
-                record.state = "assessed"
+        string="Parent Parent Notebook Line", store=True)
 
     @api.multi
     @api.depends("student_id", "eval_type", "n_line_id",
@@ -148,6 +145,30 @@ class EducationRecord(models.Model):
                     ("final_mark", ">=", record.numeric_mark)], limit=1)
 
     @api.multi
+    def button_set_draft(self):
+        self.filtered(lambda r: r.state != "not_evaluated").write({
+            "state": "not_evaluated",
+        })
+
+    @api.multi
+    def button_set_assessed(self):
+        self.filtered(lambda r: r.state == "not_evaluated").write({
+            "state": "assessed",
+        })
+
+    @api.multi
+    def button_set_exempt(self):
+        self.filtered(lambda r: r.state == "not_evaluated").write({
+            "state": "exempt",
+        })
+
+    @api.multi
+    def button_set_not_taken(self):
+        self.filtered(lambda r: r.state == "not_evaluated").write({
+            "state": "not_taken",
+        })
+
+    @api.multi
     def button_show_records(self):
         self.ensure_one()
         action = self.env.ref(
@@ -178,10 +199,16 @@ class EducationRecord(models.Model):
                  "child_record_ids.state")
     def _compute_generate_marks(self):
         for record in self:
-            record.calculated_numeric_mark = sum(
-                [x.numeric_mark * x.exam_eval_percent / 100
-                 for x in record.child_record_ids.filtered(
-                     lambda r: r.state in ["assessed", "not_taken"])])
+            mark_records = record.child_record_ids.filtered(
+                lambda r: r.state in ["assessed", "not_taken"])
+            if mark_records:
+                record.calculated_numeric_mark = sum(
+                    [x.numeric_mark * x.exam_eval_percent / 100
+                     for x in mark_records])
+                record.calculated_partial_mark = sum(
+                    [(x.numeric_mark * x.exam_eval_percent /
+                      (sum(mark_records.mapped("exam_eval_percent")) or 1.0))
+                     for x in mark_records])
 
     @api.constrains("competence_id", "numeric_mark")
     def _check_numeric_mark_range(self):

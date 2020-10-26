@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 08:31+0000\n"
-"PO-Revision-Date: 2020-10-23 08:31+0000\n"
+"POT-Creation-Date: 2020-10-26 15:55+0000\n"
+"PO-Revision-Date: 2020-10-26 15:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Núm. registros academicos"
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group__record_count
 msgid "# Academic Records"
-msgstr ""
+msgstr "Núm. registros academicos"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__child_line_count
@@ -81,7 +81,7 @@ msgstr "Registro academico"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_record_view_added
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_view_form
 msgid "Academic Records"
-msgstr "Registro academico"
+msgstr "Registros academico"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_academic_year
@@ -144,8 +144,14 @@ msgstr "¿Está seguro de querer cerrar el examen?"
 
 #. module: education_evaluation_notebook
 #: selection:education.record,state:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Assessed"
 msgstr "Evaluado"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Assessed Record"
+msgstr "Nota evaluada"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_attachment_count
@@ -164,6 +170,11 @@ msgstr "Reabrir"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Back To Marking"
 msgstr "Re-evaluar"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+msgid "Back to draft"
+msgstr "Nota no evaluada"
 
 #. module: education_evaluation_notebook
 #: selection:education.mark.behaviour,code:0
@@ -200,14 +211,14 @@ msgid "Both"
 msgstr "Ambos"
 
 #. module: education_evaluation_notebook
-#: model:education.competence,name:education_evaluation_notebook.competence_indicator
-msgid "COMPETENCIAS BÁSICAS TRANSVERSALES"
-msgstr ""
-
-#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__calculated_numeric_mark
 msgid "Calculated Numeric Mark"
 msgstr "Nota calculada"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__calculated_partial_mark
+msgid "Calculated Partial Mark"
+msgstr "Nota parcial calculada"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.create_academic_year_evaluation_view_form
@@ -343,11 +354,6 @@ msgstr "Cambio de curso"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_academic_year_evaluation_view_search
 msgid "Courses"
 msgstr "Cursos"
-
-#. module: education_evaluation_notebook
-#: model_terms:ir.actions.act_window,help:education_evaluation_notebook.education_record_action
-msgid "Crear un nuevo documento"
-msgstr ""
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
@@ -517,7 +523,7 @@ msgstr "Grupo educativo"
 #. module: education_evaluation_notebook
 #: model:ir.actions.report,name:education_evaluation_notebook.education_group_record_xlsx
 msgid "Education Group Report XLSX report"
-msgstr ""
+msgstr "Informe XLSX de notas del grupo"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_homework
@@ -584,12 +590,6 @@ msgstr "Modo de evaluación"
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_notebook_menu
 msgid "Evaluation Notebook"
 msgstr "Cuaderno de evaluación"
-
-#. module: education_evaluation_notebook
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__line_parent_id
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
-msgid "Evaluation Notebook Line"
-msgstr "Línea de evaluación"
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_notebook_template_action
@@ -698,8 +698,14 @@ msgstr "Examenes"
 
 #. module: education_evaluation_notebook
 #: selection:education.record,state:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Exempt"
 msgstr "Exento"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Exempt Record"
+msgstr "Nota exenta"
 
 #. module: education_evaluation_notebook
 #: selection:education.academic_year.evaluation,eval_type:0
@@ -795,12 +801,6 @@ msgstr "Competencia global"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Global Competences"
 msgstr "Competencias globales"
-
-#. module: education_evaluation_notebook
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__line_parent_parent_id
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
-msgid "Global Notebook Line"
-msgstr "Línea global"
 
 #. module: education_evaluation_notebook
 #: selection:education.exam.type,e_type:0
@@ -913,6 +913,11 @@ msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 #, python-format
 msgid "Index"
 msgstr "Índice"
+
+#. module: education_evaluation_notebook
+#: model:education.competence,name:education_evaluation_notebook.competence_indicator
+msgid "Indicator"
+msgstr "COMPETENCIAS BÁSICAS TRANSVERSALES"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__initial_mark
@@ -1110,8 +1115,14 @@ msgstr "No evaluado"
 
 #. module: education_evaluation_notebook
 #: selection:education.record,state:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Not Taken"
 msgstr "No presentado"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Not Taken Record"
+msgstr "Nota no presentada"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__n_line_id
@@ -1187,8 +1198,8 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:185
 #: code:addons/education_evaluation_notebook/models/education_record.py:193
+#: code:addons/education_evaluation_notebook/models/education_record.py:220
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -1228,8 +1239,20 @@ msgid "Parent Line"
 msgstr "Línea padre"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__line_parent_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Parent Notebook Line"
+msgstr "Línea padre"
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__parent_parent_line_id
 msgid "Parent Parent Line"
+msgstr "Línea padre del padre"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__line_parent_parent_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Parent Parent Notebook Line"
 msgstr "Línea padre del padre"
 
 #. module: education_evaluation_notebook
@@ -1350,6 +1373,26 @@ msgstr "Examenes de recuperación"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__access_token
 msgid "Security Token"
 msgstr "Token de seguridad"
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_draft
+msgid "Set assessed records as not evaluated"
+msgstr "Marcar como no evaluados"
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_assessed
+msgid "Set pending records as assessed"
+msgstr "Marcar como evaluados"
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_exempt
+msgid "Set pending records as exempt"
+msgstr "Marcar como exentos"
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_not_taken
+msgid "Set pending records as not taken"
+msgstr "Marcar como no presentado"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
