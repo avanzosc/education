@@ -135,7 +135,8 @@ class SchoolClaim(models.Model):
             'res_model': self._name,
             'res_model_id': self.env['ir.model']._get_id(self._name),
         })
-        self.env['calendar.event'].create(vals)
+        self.env['calendar.event'].with_context(
+            no_mail_to_attendees=True).create(vals)
 
     def _catch_values_for_progenitor(self, family, progenitors):
         today = fields.Datetime.context_timestamp(
