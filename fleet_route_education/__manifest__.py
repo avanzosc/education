@@ -20,6 +20,7 @@
         "views/fleet_route_stop_view.xml",
         "views/res_partner_view.xml",
         "views/education_group_template.xml",
+        "views/fleet_route_passenger_list_report_view.xml",
     ],
     "installable": True,
 }
