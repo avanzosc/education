@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="fleet_route_passenger_report_qweb_template">
+        <t t-name="fleet_route_passenger_report_qweb_template">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h1>Distribution of students per bus<br />Recruitment data</h1>
+                    <div class="row">
+                        <div class="col-6">
+                            <b>Route:</b> <span t-field="doc.name_id.name" /> (<span t-field="doc.direction" />)<br />
+                            <t t-if="doc.timetable">
+                                <b>Shift:</b> <span t-field="doc.timetable.name" /><br />
+                            </t>
+                            <b>Bus:</b> <span t-field="doc.vehicle_id.name" /><br />
+                            <b>Driver:</b> <span t-field="doc.driver_id.name" /><br />
+                            <b>Mobile phone:</b> <span t-field="doc.driver_id.mobile" /><br />
+                        </div>
+                        <div class="col-5 offset-1">
+                            <b>Passenger capacity:</b> <span t-field="doc.seats" /><br />
+                            <b>Bus registered passengers:</b> <span t-field="doc.passenger_count" /><br />
+                            <b>Manager:</b> <span t-field="doc.manager_id.name" /><br />
+                            <b>Mobile phone:</b> <span t-field="doc.manager_phone_mobile" /><br />
+                        </div>
+                    </div>
+                    <t t-foreach="doc.stop_ids" t-as="stop">
+                        <h2>
+                            <span>
+                                <b>
+                                    <t t-esc="stop.city" />
+                                    -
+                                    <t t-esc="stop.name" />
+                                </b>
+                            </span>
+                        </h2>
+                        <div class="row">
+                            <t t-if="stop.passenger_ids">
+                            <table class="table table-md o_main_table">
+                                <tbody>
+                                    <t t-set="index" t-value="1" />
+                                    <t t-foreach="stop.passenger_ids" t-as="passenger">
+                                        <tr>
+                                            <td class="text-left">
+                                                <span>
+                                                    <t t-esc="index" />
+                                                    .
+                                                    <t t-esc="passenger.partner_id.display_name" />
+                                                </span>
+                                            </td>
+                                            <td class="text-left">
+                                                <span>
+                                                    <t t-esc="passenger.partner_id.current_course_id.description" />
+                                                </span>
+                                            </td>
+                                            <td class="text-left">
+                                                <t t-set="break_condition" t-value="False" />
+                                                <t t-foreach="passenger.partner_id.student_progenitor_ids"
+                                                    t-as="progenitor">
+                                                    <t t-if="break_condition == False">
+                                                        <t t-if="progenitor.mobile">
+                                                            <span>
+                                                                <t t-esc="progenitor.mobile" />
+                                                            </span>
+                                                            <t t-set="break_condition" t-value="True" />
+                                                        </t>
+                                                        <t t-elif="progenitor.phone">
+                                                            <span>
+                                                                <t t-esc="progenitor.phone" />
+                                                            </span>
+                                                            <t t-set="break_condition" t-value="True" />
+                                                        </t>
+                                                    </t>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <t t-set="index" t-value="index+1" />
+                                    </t>
+                                </tbody>
+                            </table>
+                            </t>
+                            <t t-else="">
+                                <div class="col-12">
+                                    <h4>There are not passengers in this stop</h4>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="fleet_route_passenger_report_qweb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="fleet_route_education.fleet_route_passenger_report_qweb_template"
+                   t-lang="doc.company_id.partner_id.sudo().lang" />
+            </t>
+        </t>
+    </template>
+
+    <report id="fleet_route_passenger_report"
+            string="Fleet Route Passenger Report"
+            model="fleet.route"
+            report_type="qweb-pdf"
+            name="fleet_route_education.fleet_route_passenger_report_qweb"
+            file="fleet_route_education.fleet_route_passenger_report_qweb"
+            print_report_name="(object._get_report_base_filename())" />
+
+</odoo>
