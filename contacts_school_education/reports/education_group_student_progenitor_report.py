@@ -23,6 +23,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
         comodel_name="res.partner", string="Progenitor")
     progenitor_email = fields.Char()
     progenitor_phone = fields.Char()
+    progenitor_mobile = fields.Char()
     relation = fields.Selection(
         string="Relation",  selection=_get_selection_relation)
 
@@ -40,6 +41,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
                 , fam.responsible_id AS progenitor_id
                 , p.email AS progenitor_email
                 , p.phone AS progenitor_phone
+                , p.mobile AS progenitor_mobile
                 , fam.relation AS relation
         """
         return super(EducationGroupStudentProgenitorReport,
@@ -61,6 +63,7 @@ class EducationGroupStudentProgenitorReport(models.Model):
                 , fam.relation
                 , p.email
                 , p.phone
+                , p.mobile
         """
         return super(EducationGroupStudentProgenitorReport,
                      self)._group_by() + group_by_str
