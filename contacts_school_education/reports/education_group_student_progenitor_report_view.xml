@@ -9,6 +9,7 @@
                 <field name="progenitor_id" />
                 <field name="progenitor_email" />
                 <field name="progenitor_phone" />
+                <field name="progenitor_mobile" />
                 <field name="course_id" />
                 <field name="center_id" />
                 <field name="academic_year_id" />
@@ -25,6 +26,7 @@
                 <field name="progenitor_id" />
                 <field name="progenitor_email" />
                 <field name="progenitor_phone" />
+                <field name="progenitor_mobile" />
                 <field name="group_id" />
                 <field name="group_type_id" />
                 <field name="course_id" />
