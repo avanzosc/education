@@ -172,8 +172,10 @@
         <field name="arch" type="xml">
             <pivot>
                 <field name="student_id" type="row" />
-                <field name="subject_id" type="col" />
-                <field name="competence_id" type="col" />
+                <field name="line_parent_parent_id" type="col" />
+                <field name="line_parent_id" type="col" />
+                <field name="n_line_id" type="col" />
+                <field name="exam_id" type="col" />
                 <field name="numeric_mark" type="measure" />
             </pivot>
         </field>
