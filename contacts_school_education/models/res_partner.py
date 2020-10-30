@@ -200,3 +200,19 @@ class ResPartner(models.Model):
             safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict
+
+    @api.multi
+    def get_formview_id(self, access_uid=None):
+        """ Return an view id to open the document ``self`` with. This method
+            is meant to be overridden in addons that want to give specific view
+            ids for example.
+
+            Optional access_uid holds the user that would access the form view
+            id different from the current environment user.
+        """
+        if self.educational_category == "student":
+            view_id = self.env.ref(
+                "education.res_partner_education_minimal_view_form").id
+        else:
+            view_id = super(ResPartner, self).get_formview_id()
+        return view_id
