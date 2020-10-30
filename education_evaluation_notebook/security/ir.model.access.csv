@@ -8,6 +8,7 @@ education_mark_numeric_manager,education_mark_numeric manager,model_education_ma
 education_mark_numeric_user,education_mark_numeric user,model_education_mark_numeric,base.group_user,1,0,0,0
 education_mark_behaviour_manager,education_mark_behaviour manager,model_education_mark_behaviour,education.education_responsible,1,1,1,1
 education_mark_behaviour_user,education_mark_behaviour user,model_education_mark_behaviour,base.group_user,1,0,0,0
+education_mark_behaviour_portal,education_mark_behaviour portal,model_education_mark_behaviour,base.group_portal,1,0,0,0
 education_exam_type_manager,education_exam_type manager,model_education_exam_type,education.education_responsible,1,1,1,1
 education_exam_type_user,education_exam_type user,model_education_exam_type,base.group_user,1,0,0,0
 education_exam_type_portal,education_exam_type portal,model_education_exam_type,base.group_portal,1,0,0,0
