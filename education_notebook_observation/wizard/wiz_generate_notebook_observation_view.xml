@@ -16,15 +16,17 @@
                     </group>
                     <footer>
                         <button string="Generate" name="button_generate_notebook_observations"
-                            type="object" default_focus="1" class="btn-primary"/>
+                                type="object" default_focus="1" class="btn-primary"/>
                         <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
             </field>
         </record>
         <act_window id="action_wiz_generate_notebook_observation"
-            name="Generate notebook observations"
-            res_model="wiz.generate.notebook.observation"
-            view_mode="form" target="new" view_type="form"/>
+                    name="Generate notebook observations"
+                    res_model="wiz.generate.notebook.observation"
+                    view_mode="form"
+                    target="new"
+                    view_type="form"/>
     </data>
 </odoo>

@@ -3,7 +3,7 @@
     <record id="notebook_observation_teacher" model="mail.template">
         <field name="name">Email with notebook observation to teacher</field>
         <field name="email_from">${user.company_id.email or ''}</field>
-        <field name="subject">Request for observations for student: ${object.student_id.name}, evaluation: ${object.e_notebook_line_id.evaluation_id.name} - ${object.e_notebook_line_id.description}.</field>
+        <field name="subject">Request for observations for student: ${object.student_id.name}, evaluation: ${object.get_eval_type()} - ${object.e_notebook_line_id.description}.</field>
         <field name="partner_to">${object.teacher_id.user_id.partner_id.id}</field>
         <field name="model_id" ref="model_education_notebook_observation"/>
         <field name="auto_delete" eval="True"/>
@@ -13,7 +13,7 @@
 % set my_date = format_tz(object.calendar_event_id.start_datetime, tz='UTC', format='%d-%m-%Y')
     <p>Hello ${object.teacher_id.user_id.partner_id.name or ''},</p>
     <p>Please complete the observations of the child: <strong>${object.student_id.name}</strong>, for the tutoring meeting with their parents the day: <strong>${my_date}</strong>.</p>
-    <p>Evaluation: <strong>${object.e_notebook_line_id.evaluation_id.name}</strong>.</p>
+    <p>Evaluation: <strong>${object.get_eval_type()}</strong>.</p>
     <p>Description: <strong>${object.e_notebook_line_id.description}</strong>.</p>
     <p>Thank you very much and good day.</p>
 

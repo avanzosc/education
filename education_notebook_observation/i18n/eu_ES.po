@@ -64,12 +64,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.wiz_generate_notebook_observation_view_form
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.wiz_send_notebook_observation_email_view_form
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 #. module: education_notebook_observation
 #: model:ir.model,name:education_notebook_observation.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktua"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__create_uid
@@ -77,7 +77,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__create_uid
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_send_notebook_observation_email__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Nork sortua"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__create_date
@@ -85,13 +85,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__create_date
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_send_notebook_observation_email__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Noiz sortua"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__observ_date
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__display_name
@@ -99,14 +99,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__display_name
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_send_notebook_observation_email__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Izena erakutsi"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_calendar_attendee__center_id
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__education_center_id
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "Education Center"
-msgstr ""
+msgstr " "
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__education_notebook_line_id
@@ -127,7 +127,7 @@ msgstr ""
 #. module: education_notebook_observation
 #: model:ir.model,name:education_notebook_observation.model_hr_employee
 msgid "Employee"
-msgstr ""
+msgstr "Langilea"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_calendar_event__eval_type
@@ -138,7 +138,7 @@ msgstr ""
 #. module: education_notebook_observation
 #: model:ir.model,name:education_notebook_observation.model_calendar_event
 msgid "Event"
-msgstr ""
+msgstr "Gertakizuna"
 
 #. module: education_notebook_observation
 #: selection:calendar.event,eval_type:0
@@ -148,7 +148,7 @@ msgstr ""
 #. module: education_notebook_observation
 #: selection:calendar.event,eval_type:0
 msgid "First"
-msgstr ""
+msgstr "Lehena"
 
 #. module: education_notebook_observation
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
@@ -170,7 +170,7 @@ msgstr ""
 #. module: education_notebook_observation
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Taldekatu"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__id
@@ -191,7 +191,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line____last_update
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_send_notebook_observation_email____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__write_uid
@@ -199,7 +199,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__write_uid
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_send_notebook_observation_email__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azkenengoz eguneratu zuena"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__write_date
@@ -207,17 +207,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__write_date
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_send_notebook_observation_email__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneraketa noiz"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation__line_ids
 msgid "Lines"
-msgstr ""
+msgstr "Líneas"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__calendar_event_id
 msgid "Meeting"
-msgstr ""
+msgstr "Bilera"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__event_teacher_id
@@ -266,7 +266,7 @@ msgstr ""
 #. module: education_notebook_observation
 #: selection:education.notebook.observation,state:0
 msgid "Pending"
-msgstr ""
+msgstr "Zain"
 
 #. module: education_notebook_observation
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
@@ -281,7 +281,7 @@ msgstr ""
 #. module: education_notebook_observation
 #: selection:calendar.event,eval_type:0
 msgid "Second"
-msgstr ""
+msgstr "Bigarrena"
 
 #. module: education_notebook_observation
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.wiz_send_notebook_observation_email_view_form
@@ -303,25 +303,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__state
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "State"
-msgstr ""
+msgstr "Egoera"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__student_id
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "Student"
-msgstr ""
+msgstr "Ikaslea"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__teacher_id
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__teacher_id
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "Teacher"
-msgstr ""
+msgstr "Irakaslea"
 
 #. module: education_notebook_observation
 #: selection:calendar.event,eval_type:0
 msgid "Third"
-msgstr ""
+msgstr "Hirugarrena"
 
 #. module: education_notebook_observation
 #: model:ir.model,name:education_notebook_observation.model_hr_employee_supervised_year
@@ -331,7 +331,7 @@ msgstr ""
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__wiz_id
 msgid "Wizard"
-msgstr ""
+msgstr "Laguntzailea"
 
 #. module: education_notebook_observation
 #: model:ir.model,name:education_notebook_observation.model_wiz_generate_notebook_observation

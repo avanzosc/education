@@ -9,15 +9,17 @@
                     </group>
                     <footer>
                         <button string="Send email" name="button_send_email"
-                            type="object" default_focus="1" class="btn-primary"/>
+                                type="object" default_focus="1" class="btn-primary"/>
                         <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
             </field>
         </record>
         <act_window id="action_wiz_send_notebook_observation_email"
-            name="Send email to teachers requesting notebook observations"
-            res_model="wiz.send.notebook.observation.email"
-            view_mode="form" target="new" view_type="form"/>
+                    name="Send email to teachers requesting notebook observations"
+                    res_model="wiz.send.notebook.observation.email"
+                    view_mode="form"
+                    target="new"
+                    view_type="form"/>
     </data>
 </odoo>

@@ -37,3 +37,14 @@ class EducationNotebookObservation(models.Model):
                    ("included", "Included"), ],
         default="pending", track_visibility="onchange",
         compute="_compute_state", store=True)
+    event_teacher_id = fields.Many2one(
+        comodel_name="hr.employee", string="Meeting Teacher",
+        related="calendar_event_id.teacher_id")
+
+    @api.multi
+    def get_eval_type(self):
+        self.ensure_one()
+        line = self.e_notebook_line_id
+        field = line._fields["eval_type"]
+        eval_type = field.convert_to_export(line["eval_type"], line)
+        return eval_type
