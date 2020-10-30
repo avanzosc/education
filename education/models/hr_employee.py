@@ -1,13 +1,33 @@
 # Copyright 2020 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import api, fields, models
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
 
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
+
+    timetable_ids = fields.One2many(
+        comodel_name="education.group.teacher.timetable.report",
+        inverse_name="professor_id")
+
+    @api.multi
+    def get_timetable_max_daily_hour(self):
+        self.ensure_one()
+        reports = self.timetable_ids.filtered(
+            lambda r: r.academic_year_id.current)
+        return max(reports.mapped("daily_hour")) if reports else False
+
+    @api.multi
+    def get_timetable_info(self, dayofweek, daily_hour):
+        self.ensure_one()
+        reports = self.timetable_ids.filtered(
+            lambda r: r.academic_year_id.current)
+        return reports.filtered(
+            lambda r: r.dayofweek == str(dayofweek) and
+            r.daily_hour == daily_hour)
 
     @api.multi
     def button_open_schedule(self):

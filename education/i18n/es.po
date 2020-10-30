@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 12:19+0000\n"
-"PO-Revision-Date: 2020-09-03 12:19+0000\n"
+"POT-Creation-Date: 2020-11-10 10:47+0000\n"
+"PO-Revision-Date: 2020-11-10 10:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "Año académico"
 #: code:addons/education/reports/education_group_xlsx_report.py:55
 #, python-format
 msgid "Academic Year:"
-msgstr "Año académico"
+msgstr "Año académico:"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_group_report_view_search
@@ -155,7 +155,7 @@ msgstr "Asistencia"
 #: code:addons/education/reports/education_group_xlsx_report.py:66
 #, python-format
 msgid "Birthdate"
-msgstr "Fecha de nacimiento"
+msgstr ""
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_group__calendar_id
@@ -586,7 +586,7 @@ msgstr "Responsable centro educativo"
 #: code:addons/education/reports/education_group_xlsx_report.py:52
 #, python-format
 msgid "Education Center:"
-msgstr "Centro educativo:"
+msgstr ""
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_activity_type__education_code
@@ -896,9 +896,14 @@ msgid "Employee"
 msgstr "Empleado"
 
 #. module: education
+#: model:ir.actions.report,name:education.education_employee_timetable
+msgid "Employee Timetable"
+msgstr "Horario de clases"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_end
 msgid "End Date"
-msgstr "Fecha finalización"
+msgstr "Fecha final"
 
 #. module: education
 #: code:addons/education/models/education_academic_year.py:66
@@ -959,6 +964,11 @@ msgid "Free Choice"
 msgstr "Libre elección"
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Friday"
+msgstr "Viernes"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_group_session__group_id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__group_id
 #: model:ir.model.fields,field_description:education.field_education_schedule_group__group_id
@@ -1007,6 +1017,12 @@ msgstr "Grupos"
 #: model:ir.model,name:education.model_education_group_report
 msgid "Groups Report"
 msgstr "Informe de grupos"
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__daily_hour
+#: model:ir.model.fields,field_description:education.field_education_group_teacher_timetable_report__daily_hour
+msgid "Hour in Day"
+msgstr "Hora en el día"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__id
@@ -1069,7 +1085,7 @@ msgstr "Tipos de documento"
 #: code:addons/education/reports/education_group_xlsx_report.py:63
 #, python-format
 msgid "Index"
-msgstr "Indice"
+msgstr ""
 
 #. module: education
 #: model:ir.actions.act_window,name:education.action_education_language
@@ -1244,6 +1260,11 @@ msgid "Mobile:"
 msgstr "Móvil:"
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Monday"
+msgstr "Lunes"
+
+#. module: education
 #: code:addons/education/reports/education_group_xlsx_report.py:65
 #: model:ir.model.fields,field_description:education.field_education_academic_year_evaluation__name
 #: model:ir.model.fields,field_description:education.field_education_section__name
@@ -1380,7 +1401,7 @@ msgstr "Responsable"
 #: code:addons/education/reports/education_group_xlsx_report.py:51
 #, python-format
 msgid "STUDENT LIST"
-msgstr "LISTADO DE ALUMNOS"
+msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
@@ -1505,7 +1526,7 @@ msgstr "Descripción abreviada"
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_start
 msgid "Start Date"
-msgstr "Fecha de inicio"
+msgstr "Fecha inicio"
 
 #. module: education
 #: code:addons/education/models/education_academic_year.py:61
@@ -1600,9 +1621,7 @@ msgid "Student's Second Lastname"
 msgstr "Segundo apellido de alumno"
 
 #. module: education
-#: code:addons/education/models/education_group.py:140
 #: code:addons/education/models/education_group.py:142
-#: code:addons/education/models/education_schedule.py:99
 #: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1785,15 +1804,31 @@ msgid "Teaching"
 msgstr "Lectiva"
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "There is no timetable for current academic year."
+msgstr "No tiene horario de clases en el año académico actual."
+
+#. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_group_next_year_view_form
 msgid "This will create a copy of official groups for next academic year."
 msgstr "Esto creará una copia de los grupos oficiales para el siguiente año académico."
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Thursday"
+msgstr "Jueves"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_schedule__timetable_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule_timetable__attendance_id
+#: model:ir.model.fields,field_description:education.field_hr_employee__timetable_ids
 msgid "Timetable"
 msgstr "Horario"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Tuesday"
+msgstr "Martes"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_task_type__tutoring
@@ -1826,7 +1861,12 @@ msgstr "Usuario"
 #: code:addons/education/reports/education_group_xlsx_report.py:67
 #, python-format
 msgid "VAT Number"
-msgstr "DNI"
+msgstr "NIF"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Wednesday"
+msgstr "Miércoles"
 
 #. module: education
 #: model:ir.model,name:education.model_education_group_next_year
@@ -1872,7 +1912,6 @@ msgid "Working Hours"
 msgstr "Horas laborales"
 
 #. module: education
-#: code:addons/education/models/education_group.py:128
 #: code:addons/education/models/education_group.py:130
 #, python-format
 msgid "You can only edit photos from official groups."
@@ -1880,13 +1919,11 @@ msgstr "Solo puede editar las fotos de los grupos oficiales."
 
 #. module: education
 #: code:addons/education/reports/education_group_xlsx_report.py:89
-#: code:addons/education/reports/education_group_xlsx_report.py:90
 #, python-format
 msgid "You can only get xlsx report of official groups"
-msgstr "Solo puede obtener el informe xlsx de grupos oficiales"
+msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:88
 #: code:addons/education/models/education_group.py:90
 #, python-format
 msgid "You cannot create recursive groups."
@@ -1900,11 +1937,6 @@ msgstr "C.P."
 #. module: education
 #: model:ir.model,name:education.model_report_education_education_group_xlsx
 msgid "report.education.education_group_xlsx"
-msgstr ""
-
-#. module: education
-#: model:ir.model,name:education.model_report_report_xlsx_partner_export_xlsx
-msgid "report.report_xlsx.partner_export_xlsx"
 msgstr ""
 
 #. module: education

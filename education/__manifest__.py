@@ -59,6 +59,7 @@
         "views/res_lang_view.xml",
         "views/report_education_group.xml",
         "views/report_education_schedule.xml",
+        "views/report_employee_timetable.xml",
         "wizards/education_group_next_year_view.xml",
         "views/education_menu_view.xml",
     ],
