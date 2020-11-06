@@ -211,7 +211,8 @@ class EducationRecord(models.Model):
         self.ensure_one()
         if self.child_record_ids:
             return any(x.is_partial_assessed() for x in self.child_record_ids)
-        elif self.state in ["assessed", "not_taken"] or self.numeric_mark != 0:
+        elif self.state in ["assessed", "not_taken"] or (
+                not self.exam_id and self.numeric_mark != 0):
             return True
         return False
 
@@ -251,5 +252,11 @@ class EducationRecord(models.Model):
         for record in self.filtered(lambda r: r.state == "not_evaluated"):
             record.write({
                 "numeric_mark": record.calculated_numeric_mark,
-                "state": "assessed",
+            })
+
+    @api.multi
+    def action_copy_partial_calculated_mark(self):
+        for record in self.filtered(lambda r: r.state == "not_evaluated"):
+            record.write({
+                "numeric_mark": record.calculated_partial_mark,
             })
