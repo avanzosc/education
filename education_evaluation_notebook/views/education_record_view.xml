@@ -4,7 +4,7 @@
         <field name="model">education.record</field>
         <field name="arch" type="xml">
             <search>
-                <field name="student_id" />
+                <field name="student_id" domain="[('educational_category','=','student')]" />
                 <field name="exam_id" />
                 <field name="subject_id" />
                 <field name="teacher_id" groups="education.education_responsible" />
@@ -205,6 +205,18 @@
         <field name="code">
 if records:
     action = records.action_copy_calculated_mark()
+        </field>
+    </record>
+
+    <record id="action_copy_partial_calculated_mark" model="ir.actions.server">
+        <field name="name">Copy partial calculated mark</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    action = records.action_copy_partial_calculated_mark()
         </field>
     </record>
 

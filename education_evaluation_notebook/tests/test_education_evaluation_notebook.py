@@ -182,12 +182,22 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             exam_record.button_set_assessed()
             self.assertEquals(exam_record.state, "assessed")
             self.assertNotEquals(
+                exam_line_record.calculated_partial_mark,
+                exam_line_record.numeric_mark)
+            self.assertEquals(
+                exam_line_record.calculated_numeric_mark,
+                exam_record.numeric_mark)
+            self.assertNotEquals(
                 exam_line_record.calculated_numeric_mark,
                 exam_line_record.numeric_mark)
             self.assertEquals(
                 exam_line_record.calculated_numeric_mark,
                 exam_record.numeric_mark * exam_record.exam_eval_percent / 100)
             self.assertEquals(exam_line_record.state, "not_evaluated")
+            exam_line_record.action_copy_partial_calculated_mark()
+            self.assertEquals(
+                exam_line_record.calculated_partial_mark,
+                exam_line_record.numeric_mark)
             exam_line_record.action_copy_calculated_mark()
             self.assertEquals(
                 exam_line_record.calculated_numeric_mark,

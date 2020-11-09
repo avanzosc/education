@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-26 15:55+0000\n"
-"PO-Revision-Date: 2020-10-26 15:55+0000\n"
+"POT-Creation-Date: 2020-11-06 14:45+0000\n"
+"PO-Revision-Date: 2020-11-06 14:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "Registro academico"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_record_view_added
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_view_form
 msgid "Academic Records"
-msgstr "Registros academico"
+msgstr "Registros academicos"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_academic_year
@@ -122,7 +122,7 @@ msgstr "Alerta de acceso"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción requerida"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_ids
@@ -157,13 +157,13 @@ msgstr "Nota evaluada"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_attachment_count
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_attachment_count
 msgid "Attachment Count"
-msgstr "Conteo de archivos adjuntos"
+msgstr "Nº de archivos adjuntos"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Back To Draft"
-msgstr "Reabrir"
+msgstr "Pasar a borrador"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
@@ -191,7 +191,7 @@ msgstr "Comportamiento"
 #: model:ir.model,name:education_evaluation_notebook.model_education_mark_behaviour
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__behaviour_mark_id
 msgid "Behaviour Mark"
-msgstr "Nota de comportamiento"
+msgstr "Actitud"
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_mark_behaviour_action
@@ -218,7 +218,7 @@ msgstr "Nota calculada"
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__calculated_partial_mark
 msgid "Calculated Partial Mark"
-msgstr "Nota parcial calculada"
+msgstr "Nota provisional"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.create_academic_year_evaluation_view_form
@@ -336,6 +336,11 @@ msgid "Copy calculated mark"
 msgstr "Copiar la nota calculada a la oficial"
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_copy_partial_calculated_mark
+msgid "Copy partial calculated mark"
+msgstr "Copiar la nota provisional a la oficial"
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__course_id
@@ -432,7 +437,7 @@ msgstr "Año actual"
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__access_url
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__access_url
 msgid "Customer Portal URL"
-msgstr "URL para portal"
+msgstr "URL del portal de cliente"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__date
@@ -821,7 +826,7 @@ msgstr "Cuaderno de notas"
 #. module: education_evaluation_notebook
 #: selection:education.exam,state:0
 msgid "Graded"
-msgstr "Corregido"
+msgstr "Evaluado"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_type_view_search
@@ -1037,7 +1042,7 @@ msgstr "Nota máx."
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_has_error
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de Envío de Mensaje"
+msgstr "Mensaje de Error de entrega"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_ids
@@ -1198,8 +1203,8 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:193
-#: code:addons/education_evaluation_notebook/models/education_record.py:220
+#: code:addons/education_evaluation_notebook/models/education_record.py:246
+#: code:addons/education_evaluation_notebook/models/education_record.py:247
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -1593,6 +1598,7 @@ msgstr "Asistente para crear evaluaciones"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:142
+#: code:addons/education_evaluation_notebook/models/education_exam.py:145
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr "Solo puedes eliminar un examen borrador."

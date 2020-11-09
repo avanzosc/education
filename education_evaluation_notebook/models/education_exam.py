@@ -119,6 +119,9 @@ class EducationExam(models.Model):
     def action_graded(self):
         for exam in self.filtered(lambda e: e.state == "progress"):
             exam.state = "done"
+            exam.record_ids.write({
+                "state": "assessed",
+            })
 
     @api.multi
     def action_close_exam(self):
