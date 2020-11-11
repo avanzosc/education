@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 12:19+0000\n"
-"PO-Revision-Date: 2020-09-03 12:19+0000\n"
+"POT-Creation-Date: 2020-11-10 10:47+0000\n"
+"PO-Revision-Date: 2020-11-10 10:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -575,7 +575,7 @@ msgstr "Hezkuntza"
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_search
 msgid "Education Center"
-msgstr ""
+msgstr " "
 
 #. module: education
 #: model:res.groups,name:education.education_center_responsible
@@ -896,6 +896,11 @@ msgid "Employee"
 msgstr "Langilea"
 
 #. module: education
+#: model:ir.actions.report,name:education.education_employee_timetable
+msgid "Employee Timetable"
+msgstr "Klaseen ordutegia"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_end
 msgid "End Date"
 msgstr "Amaiera Data"
@@ -959,6 +964,11 @@ msgid "Free Choice"
 msgstr ""
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Friday"
+msgstr "Ostirala"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_group_session__group_id
 #: model:ir.model.fields,field_description:education.field_education_group_teacher__group_id
 #: model:ir.model.fields,field_description:education.field_education_schedule_group__group_id
@@ -1006,6 +1016,12 @@ msgstr "Taldeak"
 #. module: education
 #: model:ir.model,name:education.model_education_group_report
 msgid "Groups Report"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__daily_hour
+#: model:ir.model.fields,field_description:education.field_education_group_teacher_timetable_report__daily_hour
+msgid "Hour in Day"
 msgstr ""
 
 #. module: education
@@ -1242,6 +1258,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_view_kanban
 msgid "Mobile:"
 msgstr "Mugikorra:"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Monday"
+msgstr "Astelehena"
 
 #. module: education
 #: code:addons/education/reports/education_group_xlsx_report.py:65
@@ -1600,9 +1621,7 @@ msgid "Student's Second Lastname"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:140
 #: code:addons/education/models/education_group.py:142
-#: code:addons/education/models/education_schedule.py:99
 #: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1785,15 +1804,31 @@ msgid "Teaching"
 msgstr ""
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "There is no timetable for current academic year."
+msgstr "Ez du ordutegirik aurten."
+
+#. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_group_next_year_view_form
 msgid "This will create a copy of official groups for next academic year."
 msgstr ""
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Thursday"
+msgstr "Osteguna"
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_schedule__timetable_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule_timetable__attendance_id
+#: model:ir.model.fields,field_description:education.field_hr_employee__timetable_ids
 msgid "Timetable"
-msgstr ""
+msgstr "Ordutegia"
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Tuesday"
+msgstr "Asteartea"
 
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_task_type__tutoring
@@ -1826,7 +1861,12 @@ msgstr "Erabiltzailea"
 #: code:addons/education/reports/education_group_xlsx_report.py:67
 #, python-format
 msgid "VAT Number"
-msgstr ""
+msgstr "BEZ zenbakia "
+
+#. module: education
+#: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+msgid "Wednesday"
+msgstr "Asteazkena"
 
 #. module: education
 #: model:ir.model,name:education.model_education_group_next_year
@@ -1872,7 +1912,6 @@ msgid "Working Hours"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:128
 #: code:addons/education/models/education_group.py:130
 #, python-format
 msgid "You can only edit photos from official groups."
@@ -1880,13 +1919,11 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/reports/education_group_xlsx_report.py:89
-#: code:addons/education/reports/education_group_xlsx_report.py:90
 #, python-format
 msgid "You can only get xlsx report of official groups"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:88
 #: code:addons/education/models/education_group.py:90
 #, python-format
 msgid "You cannot create recursive groups."
@@ -1900,11 +1937,6 @@ msgstr "Posta kodea"
 #. module: education
 #: model:ir.model,name:education.model_report_education_education_group_xlsx
 msgid "report.education.education_group_xlsx"
-msgstr ""
-
-#. module: education
-#: model:ir.model,name:education.model_report_report_xlsx_partner_export_xlsx
-msgid "report.report_xlsx.partner_export_xlsx"
 msgstr ""
 
 #. module: education

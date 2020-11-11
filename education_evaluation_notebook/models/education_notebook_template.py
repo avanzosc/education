@@ -60,10 +60,10 @@ class EducationNotebookTemplate(models.Model):
             "eval_percent": self.eval_percent,
             "evaluation_id":
                 parent_line and parent_line.evaluation_id and
-                parent_line.evaluation_id.id,
+                parent_line.evaluation_id.id or False,
             "eval_type": self.eval_type,
             "competence_type_id": self.competence_type_id.id,
-            "parent_line_id": parent_line and parent_line.id,
+            "parent_line_id": parent_line and parent_line.id or False,
         }
         return vals
 
@@ -73,4 +73,12 @@ class EducationNotebookTemplate(models.Model):
         for template in self:
             notebook_vals = template.get_notebook_line_vals(
                 schedule, parent_line=parent_line)
-            notebook_obj.create(notebook_vals)
+            notebook_line = notebook_obj.search([
+                ("description", "=", notebook_vals.get("description")),
+                ("parent_line_id", "=", notebook_vals.get("parent_line_id")),
+                ("schedule_id", "=", notebook_vals.get("schedule_id")),
+                ("evaluation_id", "=", notebook_vals.get("evaluation_id")),
+                ("competence_id", "=", notebook_vals.get("competence_id")),
+            ])
+            if not notebook_line:
+                notebook_obj.create(notebook_vals)

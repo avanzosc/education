@@ -3,7 +3,7 @@
 
 {
     "name": "Education Evaluation Notebook",
-    "version": "12.0.3.0.0",
+    "version": "12.0.4.0.0",
     "category": "Education",
     "depends": [
         "education",
@@ -20,12 +20,14 @@
         "security/education_evaluation_notebook_rules.xml",
         "data/education_evaluation_notebook_data.xml",
         "reports/education_group_homework_report_view.xml",
+        "reports/education_record_xlsx_report_view.xml",
         "views/education_academic_year_evaluation_view.xml",
         "views/education_competence_type_view.xml",
         "views/education_competence_view.xml",
         "views/education_course_change_view.xml",
         "views/education_exam_type_view.xml",
         "views/education_exam_view.xml",
+        "views/education_group_view.xml",
         "views/education_homework_view.xml",
         "views/education_mark_behaviour_view.xml",
         "views/education_mark_numeric_view.xml",

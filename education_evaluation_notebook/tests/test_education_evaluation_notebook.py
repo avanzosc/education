@@ -71,6 +71,9 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         notebook_count = evaluation_count + 2
         self.assertEquals(
             self.schedule.notebook_line_count, notebook_count)
+        self.schedule.action_generate_notebook_lines()
+        self.assertEquals(
+            self.schedule.notebook_line_count, notebook_count)
         line_act_dict = self.schedule.button_show_notebook_lines()
         self.assertIn(
             ("schedule_id", "=", self.schedule.id),
@@ -91,6 +94,13 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.schedule.record_count, notebook_count * student_count)
         self.assertEquals(
             self.edu_student.academic_record_count, notebook_count)
+        self.assertEquals(
+            self.group.record_count,
+            sum(self.group.mapped("student_ids.academic_record_count")))
+        action_dict = self.group.button_show_records()
+        self.assertIn(
+            ("student_id", "in", self.group.student_ids.ids),
+            action_dict.get("domain"))
         record_act_dict = self.edu_student.button_show_student_records()
         self.assertIn(
             ("student_id", "=", self.edu_student.id),
@@ -166,11 +176,17 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
                 exam_record.numeric_mark = -1.5
             exam_record.numeric_mark = 5.5
             self.assertEquals(exam_record.state, "not_evaluated")
-            exam_record._onchange_numeric_mark()
             self.assertEquals(
                 exam_record.mark_id, self.env.ref(
                     "education_evaluation_notebook.numeric_mark_normal"))
+            exam_record.button_set_assessed()
             self.assertEquals(exam_record.state, "assessed")
+            self.assertNotEquals(
+                exam_line_record.calculated_partial_mark,
+                exam_line_record.numeric_mark)
+            self.assertEquals(
+                exam_line_record.calculated_numeric_mark,
+                exam_record.numeric_mark)
             self.assertNotEquals(
                 exam_line_record.calculated_numeric_mark,
                 exam_line_record.numeric_mark)
@@ -178,11 +194,14 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
                 exam_line_record.calculated_numeric_mark,
                 exam_record.numeric_mark * exam_record.exam_eval_percent / 100)
             self.assertEquals(exam_line_record.state, "not_evaluated")
+            exam_line_record.action_copy_partial_calculated_mark()
+            self.assertEquals(
+                exam_line_record.calculated_partial_mark,
+                exam_line_record.numeric_mark)
             exam_line_record.action_copy_calculated_mark()
             self.assertEquals(
                 exam_line_record.calculated_numeric_mark,
                 exam_line_record.numeric_mark)
-            self.assertEquals(exam_line_record.state, "assessed")
             exam = exam_line.exam_ids[:1]
             self.assertEquals(
                 exam.record_count, student_count)
@@ -209,6 +228,16 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.assertEquals(exam.mark_close_date, today)
             with self.assertRaises(UserError):
                 exam.unlink()
+            exam_record.button_set_draft()
+            self.assertEquals(exam_record.state, "not_evaluated")
+            exam_record.button_set_exempt()
+            self.assertEquals(exam_record.state, "exempt")
+            exam_record.button_set_not_taken()
+            self.assertEquals(exam_record.state, "exempt")
+            exam_record.button_set_draft()
+            self.assertEquals(exam_record.state, "not_evaluated")
+            exam_record.button_set_not_taken()
+            self.assertEquals(exam_record.state, "not_taken")
 
     def create_evaluations_from_course_change(self):
         self.assertFalse(self.academic_year.evaluation_ids)

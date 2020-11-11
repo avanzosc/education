@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-30 09:31+0000\n"
-"PO-Revision-Date: 2020-09-30 09:31+0000\n"
+"POT-Creation-Date: 2020-10-29 14:28+0000\n"
+"PO-Revision-Date: 2020-10-29 14:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Año académico"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_needaction
 msgid "Action Needed"
-msgstr "Acción necesaria"
+msgstr "Acción requerida"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
@@ -49,7 +49,7 @@ msgstr "Miembro asociación antiguos alumnos"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_attachment_count
 msgid "Attachment Count"
-msgstr "Conteo de archivos adjuntos"
+msgstr "# Adjuntos"
 
 #. module: contacts_school_education
 #: code:addons/contacts_school_education/reports/partner_insurance_xlsx_report.py:53
@@ -71,7 +71,7 @@ msgstr "Centro y promoción"
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__child_number
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__child_number
 msgid "Child Number"
-msgstr "Numero de niño"
+msgstr "Nº de niño"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__family_child_number
@@ -277,7 +277,7 @@ msgstr "Curso (alumno)"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_current_view_tree
 msgid "Education Group"
-msgstr "Descripción de curso"
+msgstr "Grupo educativo"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__student_group_ids
@@ -423,12 +423,12 @@ msgstr "Última actualización el"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Adjuntos principales"
+msgstr "Adjunto Principal"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de Envío de Mensaje"
+msgstr "Error de envío del mensaje"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_ids
@@ -446,7 +446,7 @@ msgstr "Móvil:"
 #: code:addons/contacts_school_education/reports/partner_insurance_xlsx_report.py:62
 #, python-format
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__next_course_id
@@ -594,6 +594,16 @@ msgid "Progenitor Email"
 msgstr "Email de progenitor"
 
 #. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__progenitor_mobile
+msgid "Progenitor Mobile"
+msgstr "Móvil del progenitor"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__progenitor_phone
+msgid "Progenitor Phone"
+msgstr "Teléfono del progenitor"
+
+#. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__relation
 msgid "Relation"
 msgstr "Relación"
@@ -684,7 +694,7 @@ msgstr "Se creará una planificación para grupos oficiales para el próximo añ
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_unread
 msgid "Unread Messages"
-msgstr "Mensajes no leídos"
+msgstr "Mensajes por leer"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_unread_counter
@@ -727,10 +737,5 @@ msgstr "de"
 #. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_report_contacts_school_education_partner_insurance_report_xlsx
 msgid "report.contacts_school_education.partner_insurance_report_xlsx"
-msgstr ""
-
-#. module: contacts_school_education
-#: model:ir.model,name:contacts_school_education.model_report_partner_insurance
-msgid "report.partner.insurance"
 msgstr ""
 

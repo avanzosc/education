@@ -5,6 +5,7 @@ from . import education_competence_type
 from . import education_course_change
 from . import education_exam
 from . import education_exam_type
+from . import education_group
 from . import education_homework
 from . import education_mark_behaviour
 from . import education_mark_numeric

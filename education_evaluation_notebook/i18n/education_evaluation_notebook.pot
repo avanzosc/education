@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 14:12+0000\n"
-"PO-Revision-Date: 2020-07-01 14:12+0000\n"
+"POT-Creation-Date: 2020-11-06 14:45+0000\n"
+"PO-Revision-Date: 2020-11-06 14:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_res_partner__academic_record_count
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_res_users__academic_record_count
 msgid "# Academic Record"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group__record_count
+msgid "# Academic Records"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -73,6 +78,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_record_view_added
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_view_form
 msgid "Academic Records"
 msgstr ""
@@ -86,6 +92,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__academic_year_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 msgid "Academic Year"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:54
+#, python-format
+msgid "Academic Year:"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -132,7 +144,13 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: selection:education.record,state:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Assessed"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Assessed Record"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -151,6 +169,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Back To Marking"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+msgid "Back to draft"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -177,18 +200,24 @@ msgid "Behaviour Marks"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:65
+#, python-format
+msgid "Birthdate"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: selection:education.competence,eval_mode:0
 msgid "Both"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: model:education.competence,name:education_evaluation_notebook.competence_indicator
-msgid "COMPETENCIAS BÁSICAS TRANSVERSALES"
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__calculated_numeric_mark
+msgid "Calculated Numeric Mark"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__calculated_numeric_mark
-msgid "Calculated Numeric Mark"
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__calculated_partial_mark
+msgid "Calculated Partial Mark"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -307,6 +336,11 @@ msgid "Copy calculated mark"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_copy_partial_calculated_mark
+msgid "Copy partial calculated mark"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__course_id
@@ -324,11 +358,6 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_academic_year_evaluation_view_search
 msgid "Courses"
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: model_terms:ir.actions.act_window,help:education_evaluation_notebook.education_record_action
-msgid "Crear un nuevo documento"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -439,6 +468,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__display_name
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_report_education_education_record_xlsx__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -460,6 +490,12 @@ msgid "Education Center and Course relation"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:51
+#, python-format
+msgid "Education Center:"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_academic_year_evaluation_view_search
 msgid "Education Centers"
 msgstr ""
@@ -470,8 +506,10 @@ msgid "Education Competence"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:58
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__course_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+#, python-format
 msgid "Education Course"
 msgstr ""
 
@@ -481,9 +519,15 @@ msgid "Education Exam"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model,name:education_evaluation_notebook.model_education_group
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__group_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 msgid "Education Group"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.report,name:education_evaluation_notebook.education_group_record_xlsx
+msgid "Education Group Report XLSX report"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -537,6 +581,11 @@ msgid "Evaluation Competence"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Evaluation Competences"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__eval_mode
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__competence_eval_mode
 msgid "Evaluation Mode"
@@ -587,6 +636,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_notebook_line_action
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_notebook_line_menu
 msgid "Evaluation notebook"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:57
+#, python-format
+msgid "Evaluation:"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -648,7 +703,13 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: selection:education.record,state:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Exempt"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Exempt Record"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -742,6 +803,11 @@ msgid "Global Competence"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Global Competences"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: selection:education.exam.type,e_type:0
 msgid "Global exam"
 msgstr ""
@@ -825,6 +891,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_report_education_education_record_xlsx__id
 msgid "ID"
 msgstr ""
 
@@ -844,6 +911,17 @@ msgstr ""
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__message_has_error
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__message_has_error
 msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:63
+#, python-format
+msgid "Index"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:education.competence,name:education_evaluation_notebook.competence_indicator
+msgid "Indicator"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -887,6 +965,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record____last_update
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_report_education_education_record_xlsx____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -1041,13 +1120,20 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: selection:education.record,state:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Not Taken"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Not Taken Record"
 msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__n_line_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__n_line_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Notebook Line"
 msgstr ""
 
@@ -1117,7 +1203,8 @@ msgid "Numeric Marks"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:185
+#: code:addons/education_evaluation_notebook/models/education_record.py:246
+#: code:addons/education_evaluation_notebook/models/education_record.py:247
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr ""
@@ -1157,8 +1244,20 @@ msgid "Parent Line"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__line_parent_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Parent Notebook Line"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__parent_parent_line_id
 msgid "Parent Parent Line"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__line_parent_parent_id
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Parent Parent Notebook Line"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1182,6 +1281,11 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
 msgid "Plain"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Plain Competences"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1235,6 +1339,12 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:50
+#, python-format
+msgid "STUDENT LIST"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: selection:education.academic_year.evaluation,eval_type:0
 #: selection:education.notebook.line,eval_type:0
 #: selection:education.notebook.template,eval_type:0
@@ -1267,6 +1377,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__access_token
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__access_token
 msgid "Security Token"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_draft
+msgid "Set assessed records as not evaluated"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_assessed
+msgid "Set pending records as assessed"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_exempt
+msgid "Set pending records as exempt"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_set_not_taken
+msgid "Set pending records as not taken"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1304,11 +1434,20 @@ msgid "Status based on activities\n"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:64
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__student_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+#, python-format
 msgid "Student"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_discontinue_student_menuitem
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_next_student_menuitem
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_repeater_student_menuitem
+msgid "Students"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1410,6 +1549,12 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:66
+#, python-format
+msgid "VAT Number"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: selection:education.mark.behaviour,code:0
 #: model:education.mark.numeric,name:education_evaluation_notebook.numeric_mark_very_bad
 msgid "Very Bad"
@@ -1450,13 +1595,25 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:142
+#: code:addons/education_evaluation_notebook/models/education_exam.py:145
 #, python-format
 msgid "You can only delete an exam in draft state."
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:110
+#, python-format
+msgid "You can only get xlsx report of official groups"
 msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:114
 #, python-format
 msgid "You must set an exam date."
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model,name:education_evaluation_notebook.model_report_education_education_record_xlsx
+msgid "report.education.education_record_xlsx"
 msgstr ""
 

@@ -78,6 +78,7 @@ class EducationGroupTeacherReport(models.Model):
                   AND sub_center.course_id = grp.course_id
                 LEFT JOIN education_subject_center_name sub_name
                   ON sub_center.id = sub_name.subject_center_id
+                  AND sch.language_id = sub_name.lang_id
         """
         return from_str
 

@@ -4,14 +4,29 @@
         <field name="model">education.record</field>
         <field name="arch" type="xml">
             <search>
-                <field name="student_id" />
+                <field name="student_id" domain="[('educational_category','=','student')]" />
                 <field name="exam_id" />
                 <field name="subject_id" />
                 <field name="teacher_id" groups="education.education_responsible" />
                 <filter name="exam_record" string="Exam Record"
                         domain="[('exam_id','!=',False)]" />
+                <separator />
                 <filter name="pending" string="Pending Record"
                         domain="[('state','=','not_evaluated')]" />
+                <filter name="assessed" string="Assessed Record"
+                        domain="[('state','!=','not_evaluated')]" />
+                <separator />
+                <filter name="exempt" string="Exempt Record"
+                        domain="[('state','=','exempt')]" />
+                <filter name="exempt" string="Not Taken Record"
+                        domain="[('state','=','not_taken')]" />
+                <separator />
+                <filter string="Global Competences" name="global_competence"
+                        domain="[('competence_id.global_check','=',True)]" />
+                <filter string="Evaluation Competences" name="evaluation_competence"
+                        domain="[('competence_id.evaluation_check','=',True)]" />
+                <filter string="Plain Competences" name="plain_competence"
+                        domain="[('competence_id.evaluation_check','=',False),('competence_id.global_check','=',False)]" />
                 <separator />
                 <filter name="first_eval" string="First Evaluation"
                         domain="[('eval_type','=','first')]" />
@@ -40,6 +55,13 @@
                     <filter name="groupby_teacher" string="Teacher"
                             context="{'group_by':'teacher_id'}"
                             groups="education.education_responsible" />
+                    <separator />
+                    <filter name="groupby_global" string="Parent Parent Notebook Line"
+                            context="{'group_by':'line_parent_parent_id'}"/>
+                    <filter name="groupby_eval" string="Parent Notebook Line"
+                            context="{'group_by':'line_parent_id'}"/>
+                    <filter name="groupby_line" string="Notebook Line"
+                            context="{'group_by':'n_line_id'}"/>
                 </group>
             </search>
         </field>
@@ -59,8 +81,10 @@
                        invisible="context.get('hide_numeric',True)"
                        attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('state','!=','exempt')]}"/>
                 <field name="n_mark_reduced_name" />
-                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}" />
+                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}"
+                       options="{'no_open': True}" />
                 <field name="calculated_numeric_mark" invisible="context.get('hide_calculated',True)"/>
+                <field name="calculated_partial_mark" invisible="context.get('hide_calculated',True)"/>
                 <field name="n_line_id" attrs="{'readonly': [('id','!=',False)]}"/>
                 <field name="exam_eval_percent" />
                 <field name="state" />
@@ -90,6 +114,10 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="button_set_assessed" type="object" string="Assessed" class="oe_highlight" states="not_evaluated" />
+                    <button name="button_set_exempt" type="object" string="Exempt" states="not_evaluated" />
+                    <button name="button_set_not_taken" type="object" string="Not Taken" states="not_evaluated" />
+                    <button name="button_set_draft" type="object" string="Back to draft" attrs="{'invisible': [('state','=','not_evaluated')]}"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -103,7 +131,8 @@
                     </div>
                     <group>
                         <group>
-                            <field name="student_id" />
+                            <field name="student_id"
+                                   context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}"/>
                             <field name="numeric_mark"
                                    attrs="{'readonly': [('competence_eval_mode','=','behaviour')], 'required': [('competence_eval_mode','!=','behaviour')]}" />
                             <field name="mark_id" options="{'no_create': True}" />
@@ -138,15 +167,19 @@
         </field>
     </record>
 
-<!--    <record id="education_record_view_pivot" model="ir.ui.view">-->
-<!--        <field name="model">education.record</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <pivot>-->
-<!--                <field name="student_id" type="row"/>-->
-<!--                <field name="numeric_mark" type="measure"/>-->
-<!--            </pivot>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="education_record_view_pivot" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="student_id" type="row" />
+                <field name="line_parent_parent_id" type="col" />
+                <field name="line_parent_id" type="col" />
+                <field name="n_line_id" type="col" />
+                <field name="exam_id" type="col" />
+                <field name="numeric_mark" type="measure" />
+            </pivot>
+        </field>
+    </record>
 
     <record id="education_record_action" model="ir.actions.act_window">
         <field name="name">Academic Record</field>
@@ -172,6 +205,66 @@
         <field name="code">
 if records:
     action = records.action_copy_calculated_mark()
+        </field>
+    </record>
+
+    <record id="action_copy_partial_calculated_mark" model="ir.actions.server">
+        <field name="name">Copy partial calculated mark</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    action = records.action_copy_partial_calculated_mark()
+        </field>
+    </record>
+
+    <record id="action_set_draft" model="ir.actions.server">
+        <field name="name">Set assessed records as not evaluated</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    action = records.button_set_draft()
+        </field>
+    </record>
+
+    <record id="action_set_assessed" model="ir.actions.server">
+        <field name="name">Set pending records as assessed</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    action = records.button_set_assessed()
+        </field>
+    </record>
+
+    <record id="action_set_exempt" model="ir.actions.server">
+        <field name="name">Set pending records as exempt</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    action = records.button_set_exempt()
+        </field>
+    </record>
+
+    <record id="action_set_not_taken" model="ir.actions.server">
+        <field name="name">Set pending records as not taken</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    action = records.button_set_not_taken()
         </field>
     </record>
 </odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template t-name="report_employee_timetable_document">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <div class="page">
+                    <h2>
+                        <span t-field="o.display_name"/>
+                    </h2>
+                    <t t-set="max_hour" t-value="o.get_timetable_max_daily_hour()" />
+                    <t t-if="max_hour">
+                    <table class="table table-sm o_main_table" name="timetable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                            </tr>
+                        </thead>
+                        <tbody class="timetable_tbody">
+                            <t t-set="number" t-value="0" />
+                            <tr t-foreach="range(1, max_hour+1)" t-as="daily_hour">
+                                <td><t t-esc="daily_hour"/></td>
+                                <td><t t-set="mon" t-value="o.get_timetable_info(0, daily_hour)" />
+                                    <t t-foreach="mon" t-as="mon_data">
+                                        <span t-field="mon_data.hour_from" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" />-<span t-field="mon_data.hour_to" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" /> <br />
+                                        <span t-field="mon_data.subject_name" /> <br />
+                                        <span t-field="mon_data.classroom_id.display_name"/> <br />
+                                    </t></td>
+                                <td><t t-set="tue" t-value="o.get_timetable_info(1, daily_hour)" />
+                                    <t t-foreach="tue" t-as="tue_data">
+                                        <span t-field="tue_data.hour_from" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" />-<span t-field="tue_data.hour_to" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" /> <br />
+                                        <span t-field="tue_data.subject_name" /> <br />
+                                        <span t-field="tue_data.classroom_id.display_name"/> <br />
+                                    </t></td>
+                                <td><t t-set="wed" t-value="o.get_timetable_info(2, daily_hour)" />
+                                    <t t-foreach="wed" t-as="wed_data">
+                                        <span t-field="wed_data.hour_from" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" />-<span t-field="wed_data.hour_to" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" /> <br />
+                                        <span t-field="wed_data.subject_name" /> <br />
+                                        <span t-field="wed_data.classroom_id.display_name"/> <br />
+                                    </t></td>
+                                <td><t t-set="thu" t-value="o.get_timetable_info(3, daily_hour)" />
+                                    <t t-foreach="thu" t-as="thu_data">
+                                        <span t-field="thu_data.hour_from" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" />-<span t-field="thu_data.hour_to" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" /> <br />
+                                        <span t-field="thu_data.subject_name" /> <br />
+                                        <span t-field="thu_data.classroom_id.display_name"/> <br />
+                                    </t></td>
+                                <td><t t-set="fri" t-value="o.get_timetable_info(4, daily_hour)" />
+                                    <t t-foreach="fri" t-as="fri_data">
+                                        <span t-field="fri_data.hour_from" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" />-<span t-field="fri_data.hour_to" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" /> <br />
+                                        <span t-field="fri_data.subject_name" /> <br />
+                                        <span t-field="fri_data.classroom_id.display_name"/> <br />
+                                    </t></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </t>
+                    <t t-else="not max_hour">
+                        <h4>There is no timetable for current academic year.</h4>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_employee_timetable">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="user.lang"/>
+                    <t t-call="education.report_employee_timetable_document" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+
+        <report id="education_employee_timetable"
+                model="hr.employee"
+                string="Employee Timetable"
+                report_type="qweb-pdf"
+                name="education.report_employee_timetable"
+                file="education.report_employee_timetable"
+                print_report_name="(object.display_name)"
+        />
+
+    </data>
+</odoo>
