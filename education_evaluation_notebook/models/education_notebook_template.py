@@ -58,9 +58,6 @@ class EducationNotebookTemplate(models.Model):
             "competence_id": self.competence_id.id,
             "description": self.name,
             "eval_percent": self.eval_percent,
-            "evaluation_id":
-                parent_line and parent_line.evaluation_id and
-                parent_line.evaluation_id.id or False,
             "eval_type": self.eval_type,
             "competence_type_id": self.competence_type_id.id,
             "parent_line_id": parent_line and parent_line.id or False,
@@ -77,7 +74,7 @@ class EducationNotebookTemplate(models.Model):
                 ("description", "=", notebook_vals.get("description")),
                 ("parent_line_id", "=", notebook_vals.get("parent_line_id")),
                 ("schedule_id", "=", notebook_vals.get("schedule_id")),
-                ("evaluation_id", "=", notebook_vals.get("evaluation_id")),
+                ("eval_type", "=", notebook_vals.get("eval_type")),
                 ("competence_id", "=", notebook_vals.get("competence_id")),
             ])
             if not notebook_line:

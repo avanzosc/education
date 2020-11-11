@@ -48,8 +48,6 @@ class EducationNotebookLine(models.Model):
     eval_type = fields.Selection(
         selection=EVAL_TYPE, string="Evaluation Season",
         default=default_eval_type, required=True)
-    evaluation_id = fields.Many2one(
-        comodel_name="education.academic_year.evaluation", string="Evaluation")
     exam_ids = fields.One2many(
         comodel_name="education.exam", inverse_name="n_line_id",
         tring="Exams", editable=True)
@@ -160,16 +158,10 @@ class EducationNotebookLine(models.Model):
         for line in self:
             line.description = line.competence_id.name or ""
 
-    @api.onchange("evaluation_id")
-    def _onchange_evaluation_id(self):
-        for line in self:
-            line.eval_type = line.evaluation_id.eval_type or "final"
-
     @api.onchange("parent_line_id")
     def _onchange_parent_line_id(self):
         for line in self:
-            line.evaluation_id = line.parent_line_id.evaluation_id
-            line._onchange_evaluation_id()
+            line.eval_type = line.parent_line_id.eval_type
 
     @api.multi
     def find_or_create_student_record(self, student, parent_record=False):
