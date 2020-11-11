@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-06 14:45+0000\n"
-"PO-Revision-Date: 2020-11-06 14:45+0000\n"
+"POT-Creation-Date: 2020-11-11 10:46+0000\n"
+"PO-Revision-Date: 2020-11-11 10:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -564,7 +564,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:education.competence,name:education_evaluation_notebook.competence_evaluation
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__evaluation_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__evaluation_id
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_menuitem
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
@@ -1203,7 +1202,6 @@ msgid "Numeric Marks"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:246
 #: code:addons/education_evaluation_notebook/models/education_record.py:247
 #, python-format
 msgid "Numeric mark must be between {} and {}"
@@ -1594,7 +1592,6 @@ msgid "Wizard to create evaluations"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:142
 #: code:addons/education_evaluation_notebook/models/education_exam.py:145
 #, python-format
 msgid "You can only delete an exam in draft state."

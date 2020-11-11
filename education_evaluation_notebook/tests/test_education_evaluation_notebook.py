@@ -42,18 +42,12 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
 
     def test_manual_create_notebook(self):
         self.create_evaluations_from_course_change()
-        first_eval = self.academic_year.evaluation_ids[:1]
-        self.assertEquals(first_eval.eval_type, "first")
         notebook = self.notebook_model.new({
             "competence_id": self.exam_competence.id,
-            "evaluation_id": self.academic_year.evaluation_ids[:1],
         })
         self.assertNotEquals(notebook.description, self.exam_competence.name)
         notebook._onchange_competence_id()
         self.assertEquals(notebook.description, self.exam_competence.name)
-        self.assertNotEquals(notebook.eval_type, first_eval.eval_type)
-        notebook._onchange_evaluation_id()
-        self.assertEquals(notebook.eval_type, first_eval.eval_type)
         field = notebook._fields["eval_type"]
         eval_type = field.convert_to_export(notebook["eval_type"], notebook)
         self.assertEquals(
@@ -61,7 +55,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             "{} [{}]".format(notebook.description, eval_type))
 
     def test_create_notebook(self):
-        self.create_evaluations_from_course_change()
+        self.create_evaluations_from_course_change(final_eval=False)
         evaluation_count = len(self.academic_year.evaluation_ids)
         self.assertFalse(self.schedule.notebook_line_count)
         self.assertFalse(self.schedule.record_count)
@@ -144,10 +138,11 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
                 "parent_line_id": evaluation_line.id,
                 "competence_id": self.exam_competence.id,
             })
-            self.assertFalse(exam_line.evaluation_id)
+            self.assertNotEquals(exam_line.eval_type,
+                                 exam_line.parent_line_id.eval_type)
             exam_line._onchange_parent_line_id()
-            self.assertEquals(exam_line.evaluation_id,
-                              exam_line.parent_line_id.evaluation_id)
+            self.assertEquals(exam_line.eval_type,
+                              exam_line.parent_line_id.eval_type)
             exam_line.button_create_student_records()
             self.assertFalse(exam_line.exam_count)
             self.assertEquals(exam_line.record_count, student_count)
@@ -239,7 +234,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             exam_record.button_set_not_taken()
             self.assertEquals(exam_record.state, "not_taken")
 
-    def create_evaluations_from_course_change(self):
+    def create_evaluations_from_course_change(self, final_eval=True):
         self.assertFalse(self.academic_year.evaluation_ids)
         academic_year = self.academic_year.copy(default={
             "name": "TEST_YEAR",
@@ -253,7 +248,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         create_eval_dict.update({
             "academic_year_id": academic_year.id,
             "evaluation_number": 3,
-            "final_evaluation": True,
+            "final_evaluation": final_eval,
         })
         self.assertEquals(len(create_eval_dict.get("line_ids")), 1)
         create_eval = self.create_eval_model.create(create_eval_dict)
@@ -263,7 +258,10 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             academic_year.create_evaluations(self.edu_partner, self.edu_course)
         create_eval.academic_year_id = self.academic_year
         create_eval.button_create_evaluation()
-        self.assertEquals(len(self.academic_year.evaluation_ids), 4)
+        if final_eval:
+            self.assertEquals(len(self.academic_year.evaluation_ids), 4)
+        else:
+            self.assertEquals(len(self.academic_year.evaluation_ids), 3)
 
     def test_create_evaluations_from_education_center(self):
         self.assertFalse(self.academic_year.evaluation_ids)
