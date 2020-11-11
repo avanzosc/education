@@ -5,7 +5,7 @@
         <field name="model">education.notebook.observation</field>
         <field name="arch" type="xml">
             <tree string="Notebook observations"
-                    editable="bottom" create="false" edit="true" delete="true">
+                  editable="bottom" create="false" edit="true" delete="true">
                 <field name="observ_date" readonly="1"/>
                 <field name="e_notebook_line_id" readonly="1"/>
                 <field name="education_center_id" readonly="1" />
@@ -13,6 +13,7 @@
                 <field name="student_id" readonly="1"/>
                 <field name="observations" />
                 <field name="state" readonly="1"/>
+                <field name="event_teacher_id" invisible="True" readonly="True" />
             </tree>
         </field>
     </record>
@@ -26,40 +27,41 @@
                 <field name="education_center_id" />
                 <field name="teacher_id" />
                 <field name="student_id" />
-                <filter name="requested-filter" string="Requested observations"
-                        domain="[('create_uid','=', uid)]" />
-                <filter name="to-make-filter" string="To make observations"
-                        domain="[('teacher_id.user_id','=', uid)]" />
-                <filter name="pending-filter" string="Pending observations"
+                <separator />
+                <filter string="My Requests" name="my_request"
+                        domain="[('event_teacher_id.user_id', '=', uid)]"/>
+                <separator />
+                <filter name="pending" string="Pending observations"
                         domain="[('state','=','pending')]" />
-                <filter name="included-filter" string="Included observations"
+                <filter name="included" string="Fulfilled observations"
                         domain="[('state','=','included')]" />
                 <group expand="1" string="Group By">
                     <filter name="groupby_observ_date"
-                        context="{'group_by':'observ_date'}" string="Date" />
+                            context="{'group_by':'observ_date'}" string="Date" />
                     <filter name="groupby_e_notebook_line_id"
-                        context="{'group_by':'e_notebook_line_id'}" string="Education Notebook Line" />
+                            context="{'group_by':'e_notebook_line_id'}" string="Education Notebook Line" />
                     <filter name="groupby_education_center"
-                        context="{'group_by':'education_center_id'}" string="Education center" />
+                            context="{'group_by':'education_center_id'}" string="Education Center" />
                     <filter name="groupby_teacher"
-                        context="{'group_by':'teacher_id'}" string="Teacher" />
+                            context="{'group_by':'teacher_id'}" string="Teacher" />
                     <filter name="groupby_student"
-                        context="{'group_by':'student_id'}" string="Student" />
+                            context="{'group_by':'student_id'}" string="Student" />
                     <filter name="groupby_state"
-                        context="{'group_by':'state'}" string="State" />
+                            context="{'group_by':'state'}" string="State" />
                 </group>
             </search>
         </field>
     </record>
 
     <record id="education_notebook_observation_action" model="ir.actions.act_window">
-        <field name="name">Requested notebook observations</field>
+        <field name="name">Notebook Observations</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">education.notebook.observation</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
         <field name="context">{
-            'search_default_requested-filter': True,
+            'search_default_my_request': True,
+            'search_default_pending': True,
         }</field>
         <field name="view_id" ref="education_notebook_observation_view_tree"/>
     </record>
@@ -74,8 +76,9 @@
         <field name="res_model">education.notebook.observation</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
+        <field name="domain">[('teacher_id.user_id','=',uid)]</field>
         <field name="context">{
-            'search_default_to-make-filter': True,
+            'search_default_pending': True,
         }</field>
         <field name="view_id" ref="education_notebook_observation_view_tree"/>
     </record>

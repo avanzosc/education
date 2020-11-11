@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-24 17:16+0000\n"
-"PO-Revision-Date: 2020-06-24 17:16+0000\n"
+"POT-Creation-Date: 2020-11-11 10:39+0000\n"
+"PO-Revision-Date: 2020-11-11 10:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "\n"
 "% set my_date = format_tz(object.calendar_event_id.start_datetime, tz='UTC', format='%d-%m-%Y')\n"
 "    <p>Hello ${object.teacher_id.user_id.partner_id.name or ''},</p>\n"
 "    <p>Please complete the observations of the child: <strong>${object.student_id.name}</strong>, for the tutoring meeting with their parents the day: <strong>${my_date}</strong>.</p>\n"
-"    <p>Evaluation: <strong>${object.e_notebook_line_id.evaluation_id.name}</strong>.</p>\n"
+"    <p>Evaluation: <strong>${object.get_eval_type()}</strong>.</p>\n"
 "    <p>Description: <strong>${object.e_notebook_line_id.description}</strong>.</p>\n"
 "    <p>Thank you very much and good day.</p>\n"
 "\n"
@@ -53,7 +53,7 @@ msgstr "\n"
 "% set my_date = format_tz(object.calendar_event_id.start_datetime, tz='UTC', format='%d-%m-%Y')\n"
 "    <p>Hola ${object.teacher_id.user_id.partner_id.name or ''},</p>\n"
 "    <p>Por favor completa las observaciones del/de la estudiante: <strong>${object.student_id.name}</strong>, para la reunión de tutoría con sus padres el día: <strong>${my_date}</strong>.</p>\n"
-"    <p>Evaluación: <strong>${object.e_notebook_line_id.evaluation_id.name}</strong>.</p>\n"
+"    <p>Evaluación: <strong>${object.get_eval_type()}</strong>.</p>\n"
 "    <p>Descripción: <strong>${object.e_notebook_line_id.description}</strong>.</p>\n"
 "    <p>Muchas gracias, y que pases un buen dia.</p>\n"
 "\n"
@@ -134,6 +134,7 @@ msgstr "Nombre mostrado"
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_calendar_attendee__center_id
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__education_center_id
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
 
@@ -142,11 +143,6 @@ msgstr "Centro educativo"
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
 msgid "Education Notebook Line"
 msgstr "Línea de cuaderno de evaluación"
-
-#. module: education_notebook_observation
-#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
-msgid "Education center"
-msgstr "Centro educativo"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__e_notebook_line_id
@@ -185,6 +181,11 @@ msgid "First"
 msgstr "Primera"
 
 #. module: education_notebook_observation
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
+msgid "Fulfilled observations"
+msgstr "Observaciones completadas"
+
+#. module: education_notebook_observation
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.wiz_generate_notebook_observation_view_form
 msgid "Generate"
 msgstr "Generar"
@@ -210,16 +211,9 @@ msgid "ID"
 msgstr ""
 
 #. module: education_notebook_observation
-#: code:addons/education_notebook_observation/models/education_notebook_observation.py:39
 #: selection:education.notebook.observation,state:0
-#, python-format
 msgid "Included"
 msgstr "Incluido"
-
-#. module: education_notebook_observation
-#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
-msgid "Included observations"
-msgstr "Observaciones incluidas"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation____last_update
@@ -256,6 +250,22 @@ msgid "Meeting"
 msgstr "Reunión"
 
 #. module: education_notebook_observation
+#: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__event_teacher_id
+msgid "Meeting Teacher"
+msgstr "Profesor / Tutor"
+
+#. module: education_notebook_observation
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
+msgid "My Requests"
+msgstr "Mis peticiones"
+
+#. module: education_notebook_observation
+#: model:ir.actions.act_window,name:education_notebook_observation.education_notebook_observation_action
+#: model:ir.ui.menu,name:education_notebook_observation.education_notebook_observation_menu
+msgid "Notebook Observations"
+msgstr "Observaciones de cuaderno"
+
+#. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_calendar_event__calendar_event_notebook_observation_ids
 #: model:ir.model.fields,field_description:education_notebook_observation.field_hr_employee__notebook_observation_ids
 #: model:ir.model.fields,field_description:education_notebook_observation.field_res_partner__student_notebook_observation_ids
@@ -284,9 +294,7 @@ msgid "Observations"
 msgstr "Observaciones"
 
 #. module: education_notebook_observation
-#: code:addons/education_notebook_observation/models/education_notebook_observation.py:38
 #: selection:education.notebook.observation,state:0
-#, python-format
 msgid "Pending"
 msgstr "Pendiente"
 
@@ -297,14 +305,8 @@ msgstr "Observaciones pendientes"
 
 #. module: education_notebook_observation
 #: model:mail.template,subject:education_notebook_observation.notebook_observation_teacher
-msgid "Request for observations for student: ${object.student_id.name}, evaluation: ${object.e_notebook_line_id.evaluation_id.name} - ${object.e_notebook_line_id.description}."
-msgstr "Solicitud de observaciones para el/la estudiante: ${object.student_id.name}, evaluación: ${object.e_notebook_line_id.evaluation_id.name} - ${object.e_notebook_line_id.description}."
-
-#. module: education_notebook_observation
-#: model:ir.actions.act_window,name:education_notebook_observation.education_notebook_observation_action
-#: model:ir.ui.menu,name:education_notebook_observation.education_notebook_observation_menu
-msgid "Requested notebook observations"
-msgstr "Observaciones de cuaderno solicitadas"
+msgid "Request for observations for student: ${object.student_id.name}, evaluation: ${object.get_eval_type()} - ${object.e_notebook_line_id.description}."
+msgstr "Solicitud de observaciones para el/la estudiante: ${object.student_id.name}, evaluación: ${object.get_eval_type()} - ${object.e_notebook_line_id.description}."
 
 #. module: education_notebook_observation
 #: selection:calendar.event,eval_type:0
@@ -380,14 +382,4 @@ msgstr "Usted va a mandar un email a los proforesores solicitando las observacio
 #: model:ir.model,name:education_notebook_observation.model_wiz_generate_notebook_observation_line
 msgid "lines of wizard for generate notebook observations"
 msgstr "Líneas del asistente para generar observaciones cuaderno"
-
-#. module: education_notebook_observation
-#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
-msgid "Requested observations"
-msgstr "Observaciones solicitadas"
-
-#. module: education_notebook_observation
-#: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
-msgid "To make observations"
-msgstr "Observaciones a realizar"
 

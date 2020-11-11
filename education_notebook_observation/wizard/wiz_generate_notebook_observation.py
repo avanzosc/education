@@ -15,9 +15,9 @@ class WizGenerateNotebookObservation(models.TransientModel):
     def default_get(self, fields):
         result = super(
             WizGenerateNotebookObservation, self).default_get(fields)
-        if self._context.get('active_id'):
+        if self.env.context.get('active_id'):
             calendar = self.env['calendar.event'].browse(
-                self._context['active_id'])
+                self.env.context.get('active_id'))
             observations = []
             observation_ids = calendar.calendar_event_notebook_observation_ids
             school_year_id = calendar.supervised_year_id.school_year_id
@@ -49,7 +49,7 @@ class WizGenerateNotebookObservation(models.TransientModel):
         if calendar and self.line_ids:
             notebook_lines = self.sudo().line_ids.mapped(
                 'education_notebook_line_id')
-            calendar.sudo().generate_notebook_observations(notebook_lines)
+            calendar.generate_notebook_observations(notebook_lines)
         return {'type': 'ir.actions.act_window_close'}
 
 
