@@ -122,6 +122,7 @@ class EducationNotebookLine(models.Model):
             action_dict.get("context", "{}"))
         action_dict["context"].update({
             "hide_numeric": self.competence_id.eval_mode == "behaviour",
+            "hide_calculated": self.competence_id.eval_mode == "behaviour",
             "hide_behaviour": self.competence_id.eval_mode == "numeric",
         })
         domain = expression.AND([
