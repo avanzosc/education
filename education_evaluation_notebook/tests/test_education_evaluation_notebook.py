@@ -27,6 +27,14 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
                 "global_check": True,
             })
 
+    def test_education_competence_code_length(self):
+        with self.assertRaises(ValidationError):
+            self.competence_model.create({
+                "code": "TEST",
+                "name": "Competence",
+                "eval_mode": "both",
+            })
+
     def test_schedule_homework(self):
         self.assertFalse(self.schedule.homework_count)
         self.homework_model.create({
@@ -170,7 +178,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             with self.assertRaises(ValidationError):
                 exam_record.numeric_mark = -1.5
             exam_record.numeric_mark = 5.5
-            self.assertEquals(exam_record.state, "not_evaluated")
+            self.assertEquals(exam_record.state, "initial")
             self.assertEquals(
                 exam_record.mark_id, self.env.ref(
                     "education_evaluation_notebook.numeric_mark_normal"))
@@ -188,7 +196,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.assertEquals(
                 exam_line_record.calculated_numeric_mark,
                 exam_record.numeric_mark * exam_record.exam_eval_percent / 100)
-            self.assertEquals(exam_line_record.state, "not_evaluated")
+            self.assertEquals(exam_line_record.state, "initial")
             exam_line_record.action_copy_partial_calculated_mark()
             self.assertEquals(
                 exam_line_record.calculated_partial_mark,
@@ -224,15 +232,24 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             with self.assertRaises(UserError):
                 exam.unlink()
             exam_record.button_set_draft()
-            self.assertEquals(exam_record.state, "not_evaluated")
+            self.assertEquals(exam_record.state, "initial")
             exam_record.button_set_exempt()
-            self.assertEquals(exam_record.state, "exempt")
+            self.assertEquals(exam_record.exceptionality, "exempt")
+            exam_record.button_set_assessed()
             exam_record.button_set_not_taken()
-            self.assertEquals(exam_record.state, "exempt")
+            self.assertEquals(exam_record.exceptionality, "exempt")
             exam_record.button_set_draft()
-            self.assertEquals(exam_record.state, "not_evaluated")
+            self.assertEquals(exam_record.state, "initial")
             exam_record.button_set_not_taken()
-            self.assertEquals(exam_record.state, "not_taken")
+            self.assertEquals(exam_record.exceptionality, "not_taken")
+            exam_record.button_set_not_evaluated()
+            self.assertEquals(exam_record.exceptionality, "not_evaluated")
+            exam_record.button_set_adaptation()
+            self.assertEquals(exam_record.exceptionality, "adaptation")
+            exam_record.button_set_reinforcement()
+            self.assertEquals(exam_record.exceptionality, "reinforcement")
+            exam_record.button_remove_exceptionality()
+            self.assertFalse(exam_record.exceptionality)
 
     def create_evaluations_from_course_change(self, final_eval=True):
         self.assertFalse(self.academic_year.evaluation_ids)
