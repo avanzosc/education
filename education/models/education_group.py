@@ -89,6 +89,22 @@ class EducationGroup(models.Model):
         if not self._check_recursion():
             raise ValidationError(_('You cannot create recursive groups.'))
 
+    @api.constrains("student_ids", "group_type_id")
+    def _check_unique_official_group_per_year(self):
+        for group in self.filtered(
+                lambda g: g.group_type_id.type == "official"):
+            for student in group.student_ids:
+                groups = self.search([
+                    ("student_ids", "in", student.ids),
+                    ("group_type_id.type", "=", "official"),
+                    ("academic_year_id", "=", group.academic_year_id.id),
+                    ("id", "!=", group.id),
+                ])
+                if groups:
+                    raise ValidationError(
+                        _("{} is already in one official group").format(
+                            student.display_name))
+
     @api.depends('student_ids')
     def _compute_student_count(self):
         for record in self:
