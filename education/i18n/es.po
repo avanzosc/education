@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 10:47+0000\n"
-"PO-Revision-Date: 2020-11-10 10:47+0000\n"
+"POT-Creation-Date: 2020-11-19 10:15+0000\n"
+"PO-Revision-Date: 2020-11-19 10:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1622,6 +1622,7 @@ msgstr "Segundo apellido de alumno"
 
 #. module: education
 #: code:addons/education/models/education_group.py:142
+#: code:addons/education/models/education_group.py:158
 #: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1913,6 +1914,7 @@ msgstr "Horas laborales"
 
 #. module: education
 #: code:addons/education/models/education_group.py:130
+#: code:addons/education/models/education_group.py:146
 #, python-format
 msgid "You can only edit photos from official groups."
 msgstr "Solo puede editar las fotos de los grupos oficiales."
@@ -1945,4 +1947,10 @@ msgstr ""
 #, python-format
 msgid "{} (copy)"
 msgstr "{} (copia)"
+
+#. module: education
+#: code:addons/education/models/education_group.py:105
+#, python-format
+msgid "{} is already in one official group"
+msgstr "{} ya se encuentra en un grupo oficial"
 

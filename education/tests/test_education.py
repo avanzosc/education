@@ -216,11 +216,18 @@ class TestEducation(TestEducationCommon):
             'plan_id': self.edu_plan.id,
         })
         self.assertEquals(group.student_count, len(group.student_ids))
+        self.assertEquals(group.group_type_id.type, 'official')
         with self.assertRaises(ValidationError):
             group.write({
                 'parent_id': group.id,
             })
         self.assertEquals(self.edu_partner.education_group_count, 1)
+        group2 = group.copy(default={'education_code': 'COPY'})
+        self.assertEquals(group2.group_type_id.type, 'official')
+        with self.assertRaises(ValidationError):
+            group2.write({
+                'student_ids': [(6, 0, self.edu_partner.ids)],
+            })
         action_dict = self.edu_partner.button_open_education_groups()
         self.assertIn(
             ('center_id', '=', self.edu_partner.id), action_dict.get('domain'))
