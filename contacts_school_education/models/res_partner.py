@@ -62,13 +62,17 @@ class ResPartner(models.Model):
         store=True, compute_sudo=True)
 
     @api.multi
-    def get_current_group(self):
+    def get_current_group(self, academic_year=False):
         self.ensure_one()
         if self.educational_category != "student":
             raise UserError(_("Only students can have education groups."))
+        if not academic_year:
+            academic_year = self.env["education.academic_year"].search([
+                ("current", "=", True),
+            ])
         group = self.student_group_ids.filtered(
             lambda g: g.group_type_id.type == "official" and
-            g.academic_year_id.current)[:1]
+            g.academic_year_id == academic_year)[:1]
         return group
 
     @api.multi
