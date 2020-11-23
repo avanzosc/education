@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 10:46+0000\n"
-"PO-Revision-Date: 2020-11-11 10:46+0000\n"
+"POT-Creation-Date: 2020-11-23 16:04+0000\n"
+"PO-Revision-Date: 2020-11-23 16:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -60,6 +60,39 @@ msgid "# Records"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__exceptionality
+msgid "* Exempt: When the student does not have any record or exam.\n"
+"* Not Taken: When the student did not take the .\n"
+"* Not Evaluated: When the student was not able to take .\n"
+"* ICA: Individual Curriculum Adaptation.\n"
+"* IERP: Individual Educational Reinforcement Plan."
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "<b>Student:</b>"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "<br/>\n"
+"                        <b>Date:</b>"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "<br/>\n"
+"                        <b>Education Course:</b>"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "<br/>\n"
+"                        <b>Period:</b> EVALUACIÓN SELECCIONADA<br/>\n"
+"                        <b>Tutor:</b>"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_record_action
 #: model:ir.model,name:education_evaluation_notebook.model_education_record
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_record_menu
@@ -96,6 +129,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:54
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:59
 #, python-format
 msgid "Academic Year:"
 msgstr ""
@@ -270,8 +304,15 @@ msgid "Closing Date"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__code
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__code
 msgid "Code"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/models/education_competence.py:32
+#, python-format
+msgid "Code must have a length of 3 characters "
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -295,6 +336,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_type_action
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_type_menu
 msgid "Competence Types"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,help:education_evaluation_notebook.field_education_competence__code
+msgid "Competence code is used for academic record report"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -491,6 +537,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:51
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:55
 #, python-format
 msgid "Education Center:"
 msgstr ""
@@ -507,6 +554,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:58
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:68
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__course_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #, python-format
@@ -519,9 +567,11 @@ msgid "Education Exam"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:72
 #: model:ir.model,name:education_evaluation_notebook.model_education_group
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__group_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+#, python-format
 msgid "Education Group"
 msgstr ""
 
@@ -639,6 +689,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:57
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:62
 #, python-format
 msgid "Evaluation:"
 msgstr ""
@@ -701,8 +752,22 @@ msgid "Exams"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: selection:education.record,state:0
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_tree
+msgid "Exception"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__exceptionality
+msgid "Exceptionality"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:123
+#: selection:education.record,exceptionality:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+#, python-format
 msgid "Exempt"
 msgstr ""
 
@@ -877,6 +942,17 @@ msgid "Homework List"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: selection:education.record,exceptionality:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+msgid "ICA"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "ICA Record"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__id
@@ -892,6 +968,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_report_education_education_record_xlsx__id
 msgid "ID"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: selection:education.record,exceptionality:0
+msgid "IERP"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -921,6 +1002,11 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:education.competence,name:education_evaluation_notebook.competence_indicator
 msgid "Indicator"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: selection:education.record,state:0
+msgid "Initial"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1113,13 +1199,21 @@ msgid "Normal"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: selection:education.record,state:0
+#: selection:education.record,exceptionality:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Not Evaluated"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: selection:education.record,state:0
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
+msgid "Not Evaluated Record"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:124
+#: selection:education.record,exceptionality:0
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+#, python-format
 msgid "Not Taken"
 msgstr ""
 
@@ -1203,6 +1297,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_record.py:247
+#: code:addons/education_evaluation_notebook/models/education_record.py:284
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr ""
@@ -1311,6 +1406,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__state
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Record State"
 msgstr ""
 
@@ -1331,6 +1427,17 @@ msgid "Related Company"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+msgid "Remove Exception"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.report,name:education_evaluation_notebook.education_partner_record
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "Report Card"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_user_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__activity_user_id
 msgid "Responsible User"
@@ -1338,6 +1445,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:50
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:53
 #, python-format
 msgid "STUDENT LIST"
 msgstr ""
@@ -1433,6 +1541,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:64
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:76
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__student_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
@@ -1474,12 +1583,14 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:29
+#: code:addons/education_evaluation_notebook/models/education_competence.py:39
 #, python-format
 msgid "There can only be one evaluation competence."
 msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:36
+#: code:addons/education_evaluation_notebook/models/education_competence.py:46
 #, python-format
 msgid "There can only be one global competence."
 msgstr ""
@@ -1532,6 +1643,12 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_type_view_search
 msgid "Type"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:120
+#, python-format
+msgid "UN"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1599,6 +1716,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:110
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:163
 #, python-format
 msgid "You can only get xlsx report of official groups"
 msgstr ""

@@ -36,8 +36,7 @@ class TestEducationNotebookObservation(TestCalendarSchoolCommon):
             "a_year_id": cls.academic_year.id,
             "eval_type": "third",
             "schedule_id": cls.schedule.id,
-            "competence_id": cls.exam_competence.id,
-            "evaluation_id": cls.academic_year.evaluation_ids[0].id})
+            "competence_id": cls.exam_competence.id})
         vals = {
             'academic_year_id': cls.academic_year.id,
             'n_line_id': cls.exam_line.id,

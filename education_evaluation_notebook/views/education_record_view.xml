@@ -12,14 +12,18 @@
                         domain="[('exam_id','!=',False)]" />
                 <separator />
                 <filter name="pending" string="Pending Record"
-                        domain="[('state','=','not_evaluated')]" />
+                        domain="[('state','!=','assessed')]" />
                 <filter name="assessed" string="Assessed Record"
-                        domain="[('state','!=','not_evaluated')]" />
+                        domain="[('state','=','assessed')]" />
                 <separator />
                 <filter name="exempt" string="Exempt Record"
-                        domain="[('state','=','exempt')]" />
-                <filter name="exempt" string="Not Taken Record"
-                        domain="[('state','=','not_taken')]" />
+                        domain="[('exceptionality','=','exempt')]" />
+                <filter name="not_taken" string="Not Taken Record"
+                        domain="[('exceptionality','=','not_taken')]" />
+                <filter name="not_evaluated" string="Not Evaluated Record"
+                        domain="[('exceptionality','=','not_evaluated')]" />
+                <filter name="adaptation" string="ICA Record"
+                        domain="[('exceptionality','=','adaptation')]" />
                 <separator />
                 <filter string="Global Competences" name="global_competence"
                         domain="[('competence_id.global_check','=',True)]" />
@@ -62,6 +66,12 @@
                             context="{'group_by':'line_parent_id'}"/>
                     <filter name="groupby_line" string="Notebook Line"
                             context="{'group_by':'n_line_id'}"/>
+                    <separator />
+                    <filter name="groupby_state" string="Record State"
+                            context="{'group_by':'state'}"/>
+                    <filter name="groupby_exceptionality" string="Exception"
+                            domain="[('exceptionality','!=',False)]"
+                            context="{'group_by':'exceptionality'}"/>
                 </group>
             </search>
         </field>
@@ -73,21 +83,25 @@
             <tree editable="bottom"
                   decoration-info="global_competence==True"
                   decoration-success="evaluation_competence==True"
-                  decoration-muted="state=='not_taken'"
+                  decoration-muted="exceptionality=='not_taken'"
+                  decoration-it="exceptionality=='exempt'"
                   decoration-bf="state=='assessed'"
-                  decoration-it="state=='exempt'"
                   create="0">
                 <field name="numeric_mark"
                        invisible="context.get('hide_numeric',True)"
-                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('state','!=','exempt')]}"/>
+                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
                 <field name="n_mark_reduced_name"
                        invisible="context.get('hide_numeric',True)" />
                 <field name="student_id" attrs="{'readonly': [('id','!=',False)]}"
                        options="{'no_open': True}" />
-                <field name="calculated_numeric_mark" invisible="context.get('hide_calculated',True)"/>
+                <field name="behaviour_mark_id"
+                       invisible="context.get('hide_behaviour',True)"
+                       options="{'no_create': True}"
+                       attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric'),('exceptionality','!=','exempt')]}"/>
                 <field name="calculated_partial_mark" invisible="context.get('hide_calculated',True)"/>
                 <field name="n_line_id" attrs="{'readonly': [('id','!=',False)]}"/>
-                <field name="exam_eval_percent" />
+                <field name="exam_eval_percent" invisible="context.get('hide_numeric',True)" />
+                <field name="exceptionality" string="Exception" />
                 <field name="state" />
                 <field name="mark_id"
                        invisible="context.get('hide_numeric',True)"
@@ -95,10 +109,7 @@
                 <field name="competence_id" />
                 <field name="teacher_id" groups="education.education_responsible" />
                 <field name="subject_id" />
-                <field name="behaviour_mark_id"
-                       invisible="context.get('hide_behaviour',True)"
-                       options="{'no_create': True}"
-                       attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric'),('state','!=','exempt')]}"/>
+                <field name="calculated_numeric_mark" invisible="context.get('hide_calculated',True)"/>
                 <field name="exam_id" invisible="context.get('hide_exam',True)"
                        attrs="{'readonly': [('id','!=',False)]}"/>
                 <field name="exam_state" invisible="True" />
@@ -117,10 +128,14 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="button_set_assessed" type="object" string="Assessed" class="oe_highlight" states="not_evaluated" />
-                    <button name="button_set_exempt" type="object" string="Exempt" states="not_evaluated" />
-                    <button name="button_set_not_taken" type="object" string="Not Taken" states="not_evaluated" />
-                    <button name="button_set_draft" type="object" string="Back to draft" attrs="{'invisible': [('state','=','not_evaluated')]}"/>
+                    <button name="button_set_assessed" type="object" string="Assessed" class="oe_highlight" states="initial" />
+                    <button name="button_set_draft" type="object" string="Back to draft" states="assessed"/>
+                    <button name="button_set_exempt" type="object" string="Exempt" states="initial" />
+                    <button name="button_set_not_taken" type="object" string="Not Taken" states="initial" />
+                    <button name="button_set_not_evaluated" type="object" string="Not Evaluated" states="initial" />
+                    <button name="button_set_adaptation" type="object" string="ICA" states="initial" />
+                    <button name="button_remove_exceptionality" type="object" string="Remove Exception"
+                            attrs="{'invisible':['|',('exceptionality','=',False),('state','!=','initial')]}" />
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -144,6 +159,8 @@
                                    attrs="{'readonly': [('competence_eval_mode','=','numeric')], 'required': [('competence_eval_mode','!=','numeric')]}"/>
                             <field name="calculated_numeric_mark"
                                    attrs="{'invisible': [('child_record_ids','=',[])]}" />
+                            <field name="exceptionality" string="Exception"
+                                   attrs="{'invisible': [('exceptionality','=',False)]}" readonly="True" />
                         </group>
                         <group>
                             <field name="n_line_id" />

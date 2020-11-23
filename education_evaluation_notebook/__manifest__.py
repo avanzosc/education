@@ -3,7 +3,7 @@
 
 {
     "name": "Education Evaluation Notebook",
-    "version": "12.0.4.0.0",
+    "version": "12.0.5.0.0",
     "category": "Education",
     "depends": [
         "education",
@@ -11,6 +11,7 @@
         "contacts_school_education",
         "mail",
         "portal",
+        "hr_school",
     ],
     "author":  "AvanzoSC",
     "license": "AGPL-3",
@@ -38,6 +39,7 @@
         "views/res_partner_view.xml",
         "wizards/create_academic_year_evaluation_view.xml",
         "views/education_notebook_menu_view.xml",
+        "views/report_partner_record_template.xml",
     ],
     "installable": True,
 }

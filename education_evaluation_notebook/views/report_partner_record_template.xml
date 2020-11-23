@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template t-name="report_partner_record_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context(lang=lang)"/>
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2 class="text-center font-weight-bold mt-n1">Report Card</h2>
+                <div class="row mt32 mb32">
+                    <div class="col-6">
+                        <b>Student:</b> <span t-field="o.display_name"/><br/>
+                        <b>Education Course:</b> <span t-field="o.current_course_id"/><br/>
+                        <b>Period:</b> EVALUACIÓN SELECCIONADA<br/>
+                        <b>Tutor:</b> <t t-if="o.current_year_tutor_ids"><span t-esc="o.current_year_tutor_ids[:1].display_name" /></t><br/>
+                        <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A, %Y-%m-%d')"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_partner_record">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="user.lang"/>
+                <t t-call="education_evaluation_notebook.report_partner_record_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <report id="education_partner_record"
+            model="res.partner"
+            string="Report Card"
+            report_type="qweb-pdf"
+            name="education_evaluation_notebook.report_partner_record"
+            file="education_evaluation_notebook.report_partner_record"
+            print_report_name="(object.display_name)"
+    />
+
+</odoo>

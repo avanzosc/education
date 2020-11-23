@@ -8,10 +8,16 @@ from odoo.tools.safe_eval import safe_eval
 from .education_academic_year_evaluation import EVAL_TYPE
 
 RECORD_STATE = [
-    ("not_evaluated", "Not Evaluated"),
+    ("initial", "Initial"),
+    ("assessed", "Assessed"),
+]
+
+RECORD_EXCEPTIONALITY = [
     ("exempt", "Exempt"),
     ("not_taken", "Not Taken"),
-    ("assessed", "Assessed"),
+    ("not_evaluated", "Not Evaluated"),
+    ("adaptation", "ICA"),
+    ("reinforcement", "IERP")
 ]
 
 
@@ -98,7 +104,14 @@ class EducationRecord(models.Model):
         compute="_compute_child_record_count",
         string="# Child Records", store=True)
     state = fields.Selection(
-        selection=RECORD_STATE, string="Record State", default="not_evaluated")
+        selection=RECORD_STATE, string="Record State", default="initial")
+    exceptionality = fields.Selection(
+        selection=RECORD_EXCEPTIONALITY, string="Exceptionality",
+        help="* Exempt: When the student does not have any record or exam.\n"
+             "* Not Taken: When the student did not take the .\n"
+             "* Not Evaluated: When the student was not able to take .\n"
+             "* ICA: Individual Curriculum Adaptation.\n"
+             "* IERP: Individual Educational Reinforcement Plan.")
     line_parent_id = fields.Many2one(
         comodel_name="education.notebook.line",
         related="n_line_id.parent_line_id",
@@ -134,11 +147,11 @@ class EducationRecord(models.Model):
 
     @api.multi
     @api.depends("numeric_mark", "n_line_id", "n_line_id.competence_id",
-                 "n_line_id.competence_id.eval_mode", "state")
+                 "n_line_id.competence_id.eval_mode", "exceptionality")
     def _compute_mark_id(self):
         mark_obj = self.env["education.mark.numeric"]
         for record in self:
-            if (record.state != "exempt" and
+            if (record.exceptionality != "exempt" and
                     record.competence_eval_mode != "behaviour"):
                 record.mark_id = mark_obj.search([
                     ("initial_mark", "<=", record.numeric_mark),
@@ -146,26 +159,50 @@ class EducationRecord(models.Model):
 
     @api.multi
     def button_set_draft(self):
-        self.filtered(lambda r: r.state != "not_evaluated").write({
-            "state": "not_evaluated",
+        self.filtered(lambda r: r.state == "assessed").write({
+            "state": "initial",
         })
 
     @api.multi
     def button_set_assessed(self):
-        self.filtered(lambda r: r.state == "not_evaluated").write({
+        self.filtered(lambda r: r.state == "initial").write({
             "state": "assessed",
         })
 
     @api.multi
     def button_set_exempt(self):
-        self.filtered(lambda r: r.state == "not_evaluated").write({
-            "state": "exempt",
+        self.filtered(lambda r: r.state == "initial").write({
+            "exceptionality": "exempt",
         })
 
     @api.multi
     def button_set_not_taken(self):
-        self.filtered(lambda r: r.state == "not_evaluated").write({
-            "state": "not_taken",
+        self.filtered(lambda r: r.state == "initial").write({
+            "exceptionality": "not_taken",
+        })
+
+    @api.multi
+    def button_set_not_evaluated(self):
+        self.filtered(lambda r: r.state == "initial").write({
+            "exceptionality": "not_evaluated",
+        })
+
+    @api.multi
+    def button_set_adaptation(self):
+        self.filtered(lambda r: r.state == "initial").write({
+            "exceptionality": "adaptation",
+        })
+
+    @api.multi
+    def button_set_reinforcement(self):
+        self.filtered(lambda r: r.state == "initial").write({
+            "exceptionality": "reinforcement",
+        })
+
+    @api.multi
+    def button_remove_exceptionality(self):
+        self.filtered(lambda r: r.state == "initial").write({
+            "exceptionality": False,
         })
 
     @api.multi
@@ -200,7 +237,7 @@ class EducationRecord(models.Model):
     def _compute_generate_marks(self):
         for record in self:
             mark_records = record.child_record_ids.filtered(
-                lambda r: r.state in ["assessed", "not_taken"])
+                lambda r: r.state == "assessed")
             if mark_records:
                 record.calculated_numeric_mark = sum(
                     [x.numeric_mark * x.exam_eval_percent / 100
@@ -211,7 +248,7 @@ class EducationRecord(models.Model):
         self.ensure_one()
         if self.child_record_ids:
             return any(x.is_partial_assessed() for x in self.child_record_ids)
-        elif self.state in ["assessed", "not_taken"] or (
+        elif self.state == "assessed" or (
                 not self.exam_id and self.numeric_mark != 0):
             return True
         return False
@@ -249,14 +286,14 @@ class EducationRecord(models.Model):
 
     @api.multi
     def action_copy_calculated_mark(self):
-        for record in self.filtered(lambda r: r.state == "not_evaluated"):
+        for record in self.filtered(lambda r: r.state == "initial"):
             record.write({
                 "numeric_mark": record.calculated_numeric_mark,
             })
 
     @api.multi
     def action_copy_partial_calculated_mark(self):
-        for record in self.filtered(lambda r: r.state == "not_evaluated"):
+        for record in self.filtered(lambda r: r.state == "initial"):
             record.write({
                 "numeric_mark": record.calculated_partial_mark,
             })
