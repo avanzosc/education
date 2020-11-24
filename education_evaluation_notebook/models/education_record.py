@@ -64,6 +64,8 @@ class EducationRecord(models.Model):
     subject_id = fields.Many2one(
         comodel_name="education.subject", string="Education Subject",
         related="n_line_id.schedule_id.subject_id", store=True)
+    subject_name = fields.Char(
+        string="Subject Name", compute="_compute_subject_name")
     teacher_id = fields.Many2one(
         comodel_name="hr.employee", related="n_line_id.schedule_id.teacher_id",
         string="Teacher", store=True)
@@ -156,6 +158,16 @@ class EducationRecord(models.Model):
                 record.mark_id = mark_obj.search([
                     ("initial_mark", "<=", record.numeric_mark),
                     ("final_mark", ">=", record.numeric_mark)], limit=1)
+
+    @api.multi
+    @api.depends("student_id", "academic_year_id", "subject_id")
+    def _compute_subject_name(self):
+        for record in self:
+            student_group = record.student_id.get_current_group(
+                academic_year=record.academic_year_id)
+            record.subject_name = self.subject_id.get_subject_name(
+                student_group.center_id, student_group.level_id,
+                student_group.course_id, record.schedule_id.language_id)
 
     @api.multi
     def button_set_draft(self):
