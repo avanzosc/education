@@ -367,3 +367,12 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         self.assertIn(
             ('course_id', '=', self.course_change.next_course_id.id),
             action_dict.get('domain'))
+
+    def test_education_group_record_report_xlsx(self):
+        report_name = (
+            "education_evaluation_notebook.education_group_record_xlsx")
+        self.schedule.action_generate_notebook_lines()
+        self.schedule.action_generate_records()
+        report_xlsx = self.env.ref(report_name).render(self.group.ids)
+        self.assertGreaterEqual(len(report_xlsx[0]), 1)
+        self.assertEqual(report_xlsx[1], 'xlsx')
