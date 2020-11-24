@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
-from datetime import datetime
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
@@ -25,26 +24,23 @@ class EducationGroupXlsx(models.AbstractModel):
         self.row_pos = None
 
         # Formats
+        self.format_border = None
+        self.format_border_not_passed = None
+        self.format_bold = None
+        self.format_bold_not_passed = None
         self.format_right = None
         self.format_left = None
+        self.format_center_bold = None
         self.format_right_bold_italic = None
-        self.format_bold = None
         self.format_header_left = None
         self.format_header_center = None
         self.format_header_right = None
         self.format_header_amount = None
         self.format_amount = None
-        self.format_percent_bold_italic = None
-
-    def _format_date(self, date):
-        # format date following user language
-        if not date:
-            return False
-        lang_model = self.env["res.lang"]
-        lang = lang_model._lang_get(self.env.user.lang)
-        date_format = lang.date_format
-        return datetime.strftime(
-            fields.Date.from_string(date), date_format)
+        self.format_amount_not_passed = None
+        self.format_amount_not_evaluated = None
+        self.format_amount_bold = None
+        self.format_amount_bold_not_passed = None
 
     def create_group_sheet(self, workbook, group, current_eval):
         sheet = workbook.add_worksheet(group.description)
@@ -118,10 +114,10 @@ class EducationGroupXlsx(models.AbstractModel):
                 num_mark = record.numeric_mark
                 num_mark_name = record.n_mark_reduced_name
                 behaviour = record.behaviour_mark_id.display_name or _("UN")
-                if record.exceptionality in ["exempt", "not_taken"]:
-                    text = (
-                        _("Exempt") if record.exceptionality == "exempt" else
-                        _("Not Taken"))
+                if record.exceptionality:
+                    field = record._fields['exceptionality']
+                    text = field.convert_to_export(
+                        record.exceptionality, record)
                     sheet.merge_range(
                         row_num, column_num, row_num, column_num + 2,
                         text, self.format_center_bold)
