@@ -122,6 +122,13 @@ class TestEducation(TestEducationCommon):
         new_evaluation = evaluation.copy()
         self.assertEquals(
             _('{} (copy)').format(evaluation.name), new_evaluation.name)
+        self.assertTrue(evaluation.current)
+        self.assertIn(
+            evaluation, self.evaluation_model.search([
+                ('current', '=', True)]))
+        self.assertNotIn(
+            evaluation, self.evaluation_model.search([
+                ('current', '!=', True)]))
 
     def test_education_plan(self):
         self.assertTrue(self.edu_plan.active)
@@ -361,3 +368,23 @@ class TestEducation(TestEducationCommon):
         new_subject_center._onchange_subject()
         self.assertEquals(
             self.edu_subject.subject_type, new_subject_center.subject_type)
+
+    def test_subject_name(self):
+        get_subject_name = self.edu_subject.get_subject_name(
+            self.edu_partner, self.edu_level, self.edu_course, self.edu_lang)
+        subject_name = "New Subject Name"
+        self.assertEquals(self.edu_subject.description, get_subject_name)
+        self.assertNotEquals(self.edu_subject.description, subject_name)
+        self.subject_center_model.create({
+            "center_id": self.edu_partner.id,
+            "subject_id": self.edu_subject.id,
+            "level_id": self.edu_level.id,
+            "course_id": self.edu_course.id,
+            "name_ids": [(0, 0, {
+                "name": subject_name,
+                "lang_id": self.edu_lang.id,
+            })]
+        })
+        get_subject_name = self.edu_subject.get_subject_name(
+            self.edu_partner, self.edu_level, self.edu_course, self.edu_lang)
+        self.assertEquals(get_subject_name, subject_name)

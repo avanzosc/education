@@ -66,6 +66,19 @@ class EducationSubject(models.Model):
     ]
 
     @api.multi
+    def get_subject_name(self, center, level, course, language):
+        self.ensure_one()
+        subject_name_obj = self.env["education.subject.center.name"]
+        subject_names = subject_name_obj.search([
+            ("subject_center_id.subject_id", "=", self.id),
+            ("subject_center_id.center_id", "=", center.id),
+            ("subject_center_id.level_id", "=", level.id),
+            ("subject_center_id.course_id", "=", course.id),
+            ("lang_id", "=", language.id),
+        ])
+        return subject_names[:1].name if subject_names else self.description
+
+    @api.multi
     def button_open_subject_center(self):
         self.ensure_one()
         action = self.env.ref('education.action_education_subject_center')

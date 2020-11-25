@@ -17,6 +17,28 @@ class EducationAcademicYearEvaluation(models.Model):
         ondelete='cascade', required=True)
     date_start = fields.Date(string='Date Start', required=True)
     date_end = fields.Date(string='Date End', required=True)
+    current = fields.Boolean(
+        string="Current Evaluation",
+        compute="_compute_current_evaluation",
+        search="_search_current_evaluation")
+
+    @api.multi
+    def _compute_current_evaluation(self):
+        today = fields.Date.context_today(self)
+        for record in self:
+            record.current = (record.date_start <= today <= record.date_end)
+
+    @api.multi
+    def _search_current_evaluation(self, operator, value):
+        today = fields.Date.context_today(self)
+        evaluations = self.search(
+            [('date_start', '<=', today),
+             ('date_end', '>=', today),
+             ('academic_year_id.current', '=', value)])
+        if operator == '=' and value:
+            return [('id', 'in', evaluations.ids)]
+        else:
+            return [('id', 'not in', evaluations.ids)]
 
     @api.constrains('academic_year_id', 'date_start', 'date_end')
     def _check_dates(self):
