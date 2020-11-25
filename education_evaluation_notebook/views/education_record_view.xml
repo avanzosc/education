@@ -134,6 +134,7 @@
                     <button name="button_set_not_taken" type="object" string="Not Taken" states="initial" />
                     <button name="button_set_not_evaluated" type="object" string="Not Evaluated" states="initial" />
                     <button name="button_set_adaptation" type="object" string="ICA" states="initial" />
+                    <button name="button_set_reinforcement" type="object" string="IERP" states="initial" />
                     <button name="button_remove_exceptionality" type="object" string="Remove Exception"
                             attrs="{'invisible':['|',('exceptionality','=',False),('state','!=','initial')]}" />
                     <field name="state" widget="statusbar"/>
@@ -166,6 +167,7 @@
                             <field name="n_line_id" />
                             <field name="eval_type" />
                             <field name="subject_id" />
+                            <field name="subject_name" />
                             <field name="teacher_id" groups="education.education_responsible" />
                             <field name="competence_id" />
                             <field name="competence_eval_mode" invisible="True" />
@@ -241,7 +243,7 @@ if records:
     </record>
 
     <record id="action_set_draft" model="ir.actions.server">
-        <field name="name">Set assessed records as not evaluated</field>
+        <field name="name">Set assessed records as initial</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
         <field name="model_id" ref="model_education_record" />
@@ -264,28 +266,5 @@ if records:
         </field>
     </record>
 
-    <record id="action_set_exempt" model="ir.actions.server">
-        <field name="name">Set pending records as exempt</field>
-        <field name="type">ir.actions.server</field>
-        <field name="state">code</field>
-        <field name="model_id" ref="model_education_record" />
-        <field name="binding_model_id" ref="model_education_record" />
-        <field name="code">
-if records:
-    action = records.button_set_exempt()
-        </field>
-    </record>
-
-    <record id="action_set_not_taken" model="ir.actions.server">
-        <field name="name">Set pending records as not taken</field>
-        <field name="type">ir.actions.server</field>
-        <field name="state">code</field>
-        <field name="model_id" ref="model_education_record" />
-        <field name="binding_model_id" ref="model_education_record" />
-        <field name="code">
-if records:
-    action = records.button_set_not_taken()
-        </field>
-    </record>
 </odoo>
 
