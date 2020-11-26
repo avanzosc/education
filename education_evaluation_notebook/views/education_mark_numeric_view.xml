@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="education_mark_numeric_view_tree"
-            model="ir.ui.view">
+    <record id="education_mark_numeric_view_tree" model="ir.ui.view">
         <field name="model">education.mark.numeric</field>
         <field name="arch" type="xml">
             <tree string="Numeric Marks">
@@ -13,8 +12,7 @@
         </field>
     </record>
 
-    <record id="education_mark_numeric_view_form"
-            model="ir.ui.view">
+    <record id="education_mark_numeric_view_form" model="ir.ui.view">
         <field name="model">education.mark.numeric</field>
         <field name="arch" type="xml">
             <form string="Numeric Mark">

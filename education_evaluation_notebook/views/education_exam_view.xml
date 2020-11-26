@@ -19,6 +19,8 @@
                             confirm="Are you sure you want to close the exam?" />
                     <button name="action_draft" string="Back To Draft"
                             type="object" states="progress,done" />
+                    <button name="retake_exam" string="Retake"
+                            type="object" states="done,closed" />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -28,6 +30,12 @@
                                 attrs="{'invisible':[('record_count','=',0)]}">
                             <field name="record_count" widget="statinfo"
                                    string="Academic Records" />
+                        </button>
+                        <button class="oe_stat_button" type="object"
+                                name="button_show_retakes" icon="fa-th"
+                                attrs="{'invisible':[('retake_count','=',0)]}">
+                            <field name="retake_count" widget="statinfo"
+                                   string="Exam Retakes" />
                         </button>
                     </div>
                     <div class="oe_title">
@@ -39,12 +47,13 @@
                         <group>
                             <field name="eval_type" invisible="True" />
                             <field name="exam_type_id" options="{'no_create': True,'no_open':True}" />
+                            <field name="exam_etype" invisible="True"/>
                             <field name="eval_percent" />
                             <field name="date" />
-                            <field name="type_exam_name" invisible="True" />
-                            <!--<field name="recovery_exam_to_id"-->
-                                <!--attrs="{'invisible': [('type_exam_name','!=','recuperation exam')]}"-->
-                                <!--domain="[('exam_type_id.e_type','!=','recuperation exam')]" />-->
+                            <field name="recovered_exam_id"
+                                   options="{'no_create': True}"
+                                   attrs="{'invisible':[('exam_etype','!=','secondchance'),('recovered_exam_id','=',False)],'required':[('exam_etype','=','secondchance')]}"
+                                   domain="[('exam_type_id.e_type','!=','secondchance')]" />
                         </group>
                         <group>
                             <field name="n_line_id" options="{'no_create': True, 'no_edit': True}" />
@@ -78,15 +87,13 @@
                 <field name="n_line_id" />
                 <field name="eval_type" invisible="True" />
                 <field name="exam_type_id" options="{'no_create': True,'no_open':True}" />
-                <field name="type_exam_name" invisible="True" />
                 <field name="eval_percent" />
                 <field name="teacher_id" />
                 <field name="subject_id" />
                 <field name="date" />
                 <field name="mark_close_date" invisible="True" />
-                <!--<field name="recovery_exam_to_id"-->
-                    <!--attrs="{'invisible': [('type_exam_name','!=','recuperation exam')]}"-->
-                    <!--domain="[('exam_type_id.e_type','!=','recuperation exam')]" />-->
+                <field name="recovered_exam_id" options="{'no_create': True,'no_open':True}"
+                       domain="[('exam_type_id.e_type','!=','secondchance')]" />
                 <field name="state" readonly="True"/>
                 <field name="academic_year_id"  invisible="True" />
                 <button name="action_generate_record" icon="fa-book"
@@ -106,6 +113,15 @@
                 <field name="exam_type_id" />
                 <filter name="current_academic_year" string="Current Academic Year"
                         domain="[('academic_year_id.current','=',True)]" />
+                <separator />
+                <filter name="draft_exam" string="New Exam"
+                        domain="[('state','=','draft')]" />
+                <filter name="progress_exam" string="Marking Exam"
+                        domain="[('state','=','progress')]" />
+                <filter name="done_exam" string="Graded Exam"
+                        domain="[('state','=','done')]" />
+                <filter name="closed_exam" string="Closed Exam"
+                        domain="[('state','=','closed')]" />
                 <group expand="0" string="Group By">
                     <filter name="groupby_line" string="Notebook Line"
                             context="{'group_by':'n_line_id'}" />
@@ -113,6 +129,9 @@
                             context="{'group_by':'exam_type_id'}" />
                     <filter name="groupby_teacher" string="Teacher"
                             context="{'group_by':'teacher_id'}" />
+                    <separator />
+                    <filter name="groupby_state" string="Exam State"
+                            context="{'group_by':'state'}" />
                 </group>
             </search>
         </field>

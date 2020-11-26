@@ -10,8 +10,7 @@ class EducationCompetence(models.Model):
     _description = "Education Competence"
 
     code = fields.Char(
-        string="Code",
-        help="Competence code is used for academic record report")
+        string="Code", help="This code is used for academic record report")
     name = fields.Char(string="Name", required=True, translate=True)
     eval_mode = fields.Selection(selection=[
         ("numeric", "Numeric"),
@@ -23,11 +22,13 @@ class EducationCompetence(models.Model):
     global_check = fields.Boolean(string="Global Competence", copy=False)
     min_mark = fields.Float(string="Min. Mark", default=0.0, copy=False)
     max_mark = fields.Float(string="Max. Mark", default=10.0, copy=False)
+    passed_mark = fields.Float(
+        string="Min. Mark to Pass", default=5.0, copy=False)
 
     @api.constrains("code")
     def _check_code_length(self):
         for competence in self.filtered("code"):
-            if len(competence.code) >= 3:
+            if len(competence.code) > 3:
                 raise ValidationError(
                     _("Code must have a length of 3 characters "))
 

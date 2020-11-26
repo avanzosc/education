@@ -15,6 +15,8 @@ class EducationNotebookCommon(TestEducationCommon):
         cls.homework_model = cls.env["education.homework"]
         cls.mark_model = cls.env["education.mark.numeric"]
         cls.create_eval_model = cls.env["create.academic_year.evaluation"]
+        cls.report_wizard_model = cls.env[
+            "report.education.education_record_xlsx.export"]
         cls.edu_partner.educational_category = "school"
         cls.edu_student = cls.env["res.partner"].create({
             "name": "Test Student",
@@ -43,6 +45,7 @@ class EducationNotebookCommon(TestEducationCommon):
             "name": "Exam Competence",
         })
         cls.notebook_template = cls.env["education.notebook.template"].create({
+            "code": "TMP",
             "education_center_id": cls.edu_partner.id,
             "course_id": cls.edu_course.id,
             "task_type_id": cls.edu_task_type.id,

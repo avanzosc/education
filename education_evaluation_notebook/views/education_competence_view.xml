@@ -11,6 +11,10 @@
                         <h1>
                             <field name="name" />
                         </h1>
+                        <div class="o_row">
+                            <label for="code" class="oe_edit_only" />
+                            <field name="code" />
+                        </div>
                     </div>
                     <group name="main">
                         <group>
@@ -21,6 +25,7 @@
                                 <field name="min_mark" class="oe_inline" /> -
                                 <field name="max_mark" class="oe_inline" />
                             </div>
+                            <field name="passed_mark" />
                         </group>
                         <group>
                             <field name="evaluation_check" />
@@ -38,6 +43,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="code" />
                 <field name="eval_mode" />
                 <field name="evaluation_check" />
                 <field name="global_check" />
@@ -49,7 +55,8 @@
         <field name="model">education.competence</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" />
+                <field name="name" filter_domain="['|',('name','ilike',self),('code','ilike',self)]" />
+                <field name="code" />
                 <field name="eval_mode" />
                 <filter name="plain_competence" string="Plain"
                         domain="[('global_check','!=',True),('evaluation_check','!=',True)]" />

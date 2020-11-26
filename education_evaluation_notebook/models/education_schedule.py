@@ -124,9 +124,8 @@ class EducationSchedule(models.Model):
         vals = {
             "schedule_id": self.id,
             "competence_id": competence.id,
-            "description": "{} [{}]".format(
-                self.subject_id.description or self.task_type_id.description,
-                competence.name),
+            "description": (self.subject_id.description or
+                            self.task_type_id.description),
             "eval_percent": percent or 100.0,
             "eval_type": evaluation and evaluation.eval_type or "final",
             "parent_line_id": parent_line and parent_line.id,

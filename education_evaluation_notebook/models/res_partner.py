@@ -32,3 +32,17 @@ class ResPartner(models.Model):
             safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict
+
+    @api.multi
+    def get_academic_records(self, eval_type=False):
+        self.ensure_one()
+        if not eval_type:
+            eval_obj = self.env["education.academic_year.evaluation"]
+            evaluation = eval_obj.search([
+                ("current", "=", True),
+                ("center_id", "=", self.current_center_id.id),
+                ("course_id", "=", self.current_course_id.id),
+            ], limit=1)
+            eval_type = evaluation.eval_type or "final"
+        return self.academic_record_ids.filtered(
+            lambda r: r.eval_type == eval_type and r.evaluation_competence)

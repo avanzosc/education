@@ -42,7 +42,7 @@ class EducationGroupXlsx(models.AbstractModel):
         self.format_amount_bold = None
         self.format_amount_bold_not_passed = None
 
-    def create_group_sheet(self, workbook, group, current_eval):
+    def create_group_sheet(self, workbook, group, eval_type):
         sheet = workbook.add_worksheet(group.description)
 
         sheet.merge_range(
@@ -56,10 +56,11 @@ class EducationGroupXlsx(models.AbstractModel):
         sheet.merge_range(
             "C3:D3", group.academic_year_id.display_name, self.format_left)
         sheet.merge_range("A4:B4", _("Evaluation:"), self.format_header_right)
-        field = current_eval._fields["eval_type"]
-        eval_type = field.convert_to_export(
-            current_eval["eval_type"], current_eval)
-        sheet.merge_range("C4:D4", eval_type, self.format_left)
+        evaluation_obj = self.env["education.academic_year.evaluation"]
+        field = evaluation_obj._fields["eval_type"]
+        eval_type_text = field.convert_to_export(
+            eval_type, evaluation_obj)
+        sheet.merge_range("C4:D4", _(eval_type_text), self.format_left)
         sheet.merge_range(
             "A5:B5", _("Education Course"), self.format_header_right)
         sheet.merge_range(
@@ -158,23 +159,24 @@ class EducationGroupXlsx(models.AbstractModel):
             raise UserError(
                 _("You can only get xlsx report of official groups"))
         for group in objects:
-            current_eval = group.academic_year_id.evaluation_ids.filtered(
-                lambda e: e.date_start <= today <= e.date_end and
-                e.center_id == group.center_id and
-                e.course_id == group.course_id)
-            group_sheet = self.create_group_sheet(
-                workbook, group, current_eval)
+            eval_type = data and data.get("eval_type", False)
+            if not eval_type:
+                current_eval = group.academic_year_id.evaluation_ids.filtered(
+                    lambda e: e.date_start <= today <= e.date_end and
+                    e.center_id == group.center_id and
+                    e.course_id == group.course_id)[:1]
+                eval_type = current_eval.eval_type
+            group_sheet = self.create_group_sheet(workbook, group, eval_type)
             row = 8
             group_records = record_obj.search([
                 ("student_id", "in", group.student_ids.ids),
-                ("eval_type", "=", current_eval[:1].eval_type),
+                ("eval_type", "=", eval_type),
             ])
             subject_lists = group_records.mapped("subject_id")
             self.add_subject_list(group_sheet, subject_lists)
             for student in group.student_ids:
                 self.fill_student_row_data(
-                    group_sheet, row, student, current_eval.eval_type,
-                    subject_lists)
+                    group_sheet, row, student, eval_type, subject_lists)
                 row += 1
 
     def _define_formats(self, workbook):

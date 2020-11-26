@@ -5,6 +5,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="code" />
                 <field name="education_center_id" />
                 <field name="parent_center_id" />
                 <field name="course_id" />
@@ -22,7 +23,8 @@
         <field name="model">education.notebook.template</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" />
+                <field name="name" filter_domain="['|',('name','ilike',self),('code','ilike',self)]" />
+                <field name="code" />
                 <field name="education_center_id" />
                 <field name="parent_center_id" />
                 <field name="course_id" />
@@ -80,6 +82,10 @@
                         <h1>
                             <field name="name"/>
                         </h1>
+                        <div class="o_row">
+                            <label for="code" />
+                            <field name="code" />
+                        </div>
                     </div>
                     <group name="main">
                         <group>

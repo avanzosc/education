@@ -15,6 +15,52 @@
                         <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A, %Y-%m-%d')"/>
                     </div>
                 </div>
+                <t t-set="records" t-value="o.get_academic_records()" />
+                <t t-if="records">
+                    <table class="table table-sm o_main_table borderless smallfont">
+                        <tbody>
+                            <t t-foreach="records" t-as="record">
+                                <tr class="table-active">
+                                    <td class="text-left">
+                                        <span t-field="record.subject_id" />
+                                    </td>
+                                    <t t-if="record.exceptionality">
+                                        <td class="text-left">
+                                            <span t-field="record.exceptionality" />
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td class="text-left">
+                                            <span t-field="record.n_mark_reduced_name" />
+                                        </td>
+                                    </t>
+                                </tr>
+                                <tr t-if="record.behaviour_mark_id">
+                                    <td class="text-left">BEHAVIOUR</td>
+                                    <td class="text-left"><span t-field="record.behaviour_mark_id" /></td>
+                                </tr>
+                                <t t-foreach="record.child_record_ids" t-as="child_record">
+                                    <tr>
+                                        <td class="text-left">
+                                            <span t-field="child_record.n_line_id.description" />
+                                        </td>
+                                        <t t-if="child_record.exceptionality">
+                                            <td class="text-left">
+                                                <span t-field="child_record.exceptionality" />
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td class="text-left">
+                                                <span t-field="child_record.n_mark_reduced_name" />
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+
             </div>
         </t>
     </template>
