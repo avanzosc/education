@@ -12,6 +12,9 @@
                     </div>
                     <group>
                         <field name="e_type" />
+                        <field name="retake_type_id"
+                               domain="[('e_type','=','secondchance')]"
+                               attrs="{'invisible': [('e_type','=','secondchance')]}" />
                     </group>
                 </sheet>
             </form>

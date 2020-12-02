@@ -17,7 +17,8 @@ RECORD_EXCEPTIONALITY = [
     ("not_taken", "Not Taken"),
     ("not_evaluated", "Not Evaluated"),
     ("adaptation", "ICA"),
-    ("reinforcement", "IERP")
+    ("reinforcement", "IERP"),
+    ("pending", "Pending to Pass")
 ]
 
 
@@ -84,7 +85,8 @@ class EducationRecord(models.Model):
         ondelete="cascade")
     numeric_mark = fields.Float(string="Official Mark")
     behaviour_mark_id = fields.Many2one(
-        comodel_name="education.mark.behaviour", string="Behaviour Mark")
+        comodel_name="education.mark.behaviour", string="Behaviour Mark",
+        copy=False)
     calculated_numeric_mark = fields.Float(
         compute="_compute_generate_marks", string="Calculated Numeric Mark",
         store=True)
@@ -110,10 +112,11 @@ class EducationRecord(models.Model):
     exceptionality = fields.Selection(
         selection=RECORD_EXCEPTIONALITY, string="Exceptionality",
         help="* Exempt: When the student does not have any record or exam.\n"
-             "* Not Taken: When the student did not take the .\n"
-             "* Not Evaluated: When the student was not able to take .\n"
+             "* Not Taken: When the student did not do the expected.\n"
+             "* Not Evaluated: When the student was not able.\n"
              "* ICA: Individual Curriculum Adaptation.\n"
-             "* IERP: Individual Educational Reinforcement Plan.")
+             "* IERP: Individual Educational Reinforcement Plan.\n"
+             "* Pending to Pass: subject from previous course.", copy=False)
     line_parent_id = fields.Many2one(
         comodel_name="education.notebook.line",
         related="n_line_id.parent_line_id",
@@ -122,6 +125,27 @@ class EducationRecord(models.Model):
         comodel_name="education.notebook.line",
         related="n_line_id.parent_parent_line_id",
         string="Parent Parent Notebook Line", store=True)
+    pass_mark = fields.Selection(
+        selection=[('pass', 'Pass'),
+                   ('fail', 'Fail')],
+        string="Passed Mark", compute="_compute_pass_mark", store=True)
+    recovered_record_id = fields.Many2one(
+        comodel_name="education.record", string="Recovering Record")
+    retake_record_ids = fields.One2many(
+        comodel_name="education.record", inverse_name="recovered_record_id",
+        string="Retake Records")
+    retake_record_count = fields.Integer(
+        compute="_compute_retake_record_count",
+        string="# Retake Records", store=True)
+
+    @api.multi
+    @api.depends("numeric_mark", "n_line_id", "n_line_id.competence_id",
+                 "n_line_id.competence_id.passed_mark")
+    def _compute_pass_mark(self):
+        for record in self:
+            record.pass_mark = (
+                'fail' if record.numeric_mark <
+                record.n_line_id.competence_id.passed_mark else 'pass')
 
     @api.multi
     @api.depends("student_id", "eval_type", "n_line_id",
@@ -148,6 +172,12 @@ class EducationRecord(models.Model):
             record.child_record_count = len(record.child_record_ids)
 
     @api.multi
+    @api.depends("retake_record_ids")
+    def _compute_retake_record_count(self):
+        for record in self:
+            record.retake_record_count = len(record.retake_record_ids)
+
+    @api.multi
     @api.depends("numeric_mark", "n_line_id", "n_line_id.competence_id",
                  "n_line_id.competence_id.eval_mode", "exceptionality")
     def _compute_mark_id(self):
@@ -160,9 +190,9 @@ class EducationRecord(models.Model):
                     ("final_mark", ">=", record.numeric_mark)], limit=1)
 
     @api.multi
-    @api.depends("student_id", "academic_year_id", "subject_id")
+    @api.depends("student_id", "academic_year_id", "subject_id", "schedule_id")
     def _compute_subject_name(self):
-        for record in self:
+        for record in self.filtered("subject_id"):
             student_group = record.student_id.get_current_group(
                 academic_year=record.academic_year_id)
             record.subject_name = self.subject_id.get_subject_name(
@@ -212,6 +242,12 @@ class EducationRecord(models.Model):
         })
 
     @api.multi
+    def button_set_pending(self):
+        self.filtered(lambda r: r.state == "initial").write({
+            "exceptionality": "pending",
+        })
+
+    @api.multi
     def button_remove_exceptionality(self):
         self.filtered(lambda r: r.state == "initial").write({
             "exceptionality": False,
@@ -220,6 +256,9 @@ class EducationRecord(models.Model):
     @api.multi
     def button_show_records(self):
         self.ensure_one()
+        records = self.child_record_ids
+        if self.env.context.get("retake", False):
+            records = self.retake_record_ids
         action = self.env.ref(
             "education_evaluation_notebook.education_record_action")
         action_dict = action.read()[0] if action else {}
@@ -228,8 +267,7 @@ class EducationRecord(models.Model):
         action_dict["context"].update(
             {"default_parent_record_id": self.id})
         domain = expression.AND([
-            [("id", "in", self.child_record_ids.ids)],
-            safe_eval(action.domain or "[]")])
+            [("id", "in", records.ids)], safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict
 
@@ -275,7 +313,8 @@ class EducationRecord(models.Model):
         for record in self:
             mark_records = record.child_record_ids
             partial_mark = eval_percent = 0.0
-            for mark_record in mark_records:
+            for mark_record in mark_records.filtered(
+                    lambda r: r.exceptionality not in ["not_evaluated"]):
                 if mark_record.is_partial_assessed():
                     eval_percent += mark_record.exam_eval_percent
                     partial_mark += (
@@ -309,3 +348,49 @@ class EducationRecord(models.Model):
             record.write({
                 "numeric_mark": record.calculated_partial_mark,
             })
+
+    @api.multi
+    def action_retake(self):
+        new_records = self.env["education.record"]
+        for record in self.filtered(
+                lambda r: r.state == "assessed" and not r.exam_id):
+            new_records |= record.copy(default={
+                "recovered_record_id": record.id,
+            })
+        return new_records
+
+    @api.multi
+    def button_retake(self):
+        self.ensure_one()
+        records = self.action_retake()
+        if not records:
+            return False
+        action = self.env.ref(
+            "education_evaluation_notebook.education_record_action")
+        action_dict = action.read()[0] if action else {}
+        action_dict.update({
+            "res_id": records and records[:1].id,
+            "views": [
+                (self.env.ref("education_evaluation_notebook."
+                              "education_record_view_form").id, 'form')]
+        })
+        return action_dict
+
+    @api.multi
+    def name_get(self):
+        """ name_get() -> [(id, name), ...]
+
+        Returns a textual representation for the records in ``self``.
+        By default this is the value of the ``display_name`` field.
+
+        :return: list of pairs ``(id, text_repr)`` for each records
+        :rtype: list(tuple)
+        """
+        result = []
+        for record in self:
+            name = _("{} - {}").format(record.n_line_id.display_name,
+                                       record.student_id.display_name)
+            if record.recovered_record_id:
+                name = _("[RETAKE] {}").format(name)
+            result.append((record.id, name))
+        return result

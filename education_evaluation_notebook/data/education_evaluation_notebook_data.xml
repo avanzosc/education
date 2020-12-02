@@ -52,17 +52,20 @@
         <field name="reduced_name">C</field>
         <field name="initial_mark">5.0</field>
         <field name="final_mark">5.99</field>
+        <field name="passed">True</field>
     </record>
     <record id="numeric_mark_good" model="education.mark.numeric">
         <field name="name">Good</field>
         <field name="reduced_name">B</field>
         <field name="initial_mark">6.0</field>
         <field name="final_mark">7.99</field>
+        <field name="passed">True</field>
     </record>
     <record id="numeric_mark_very_good" model="education.mark.numeric">
         <field name="name">Very Good</field>
         <field name="reduced_name">A</field>
         <field name="initial_mark">8.0</field>
         <field name="final_mark">10.0</field>
+        <field name="passed">True</field>
     </record>
 </odoo>

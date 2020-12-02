@@ -13,3 +13,7 @@ class EducationNumericMark(models.Model):
     reduced_name = fields.Char(string="Reduced Name")
     initial_mark = fields.Float(string="Initial Mark", required=True)
     final_mark = fields.Float(string="Final Mark", required=True)
+    passed = fields.Boolean(
+        string="Passed", default=False,
+        help="This field will determine if it the record is considered as"
+             " passed or failed.")

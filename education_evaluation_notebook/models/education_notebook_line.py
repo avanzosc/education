@@ -1,7 +1,8 @@
 # Copyright 2019 Adrian Revilla - Avanzosc S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 from .education_academic_year_evaluation import EVAL_TYPE
@@ -18,6 +19,8 @@ class EducationNotebookLine(models.Model):
             "education.academic_year.evaluation"].default_get(["eval_type"])
         return default_dict.get("eval_type")
 
+    code = fields.Char(
+        string="Code", help="This code is used for academic record report")
     schedule_id = fields.Many2one(
         comodel_name="education.schedule", string="Class Schedule",
         required=True)
@@ -79,6 +82,13 @@ class EducationNotebookLine(models.Model):
     record_count = fields.Integer(
         compute="_compute_record_count", string="# Academic Record",
         store=True)
+
+    @api.constrains("code")
+    def _check_code_length(self):
+        for competence in self.filtered("code"):
+            if len(competence.code) > 3:
+                raise ValidationError(
+                    _("Code must have a length of 3 characters "))
 
     @api.multi
     def button_open_notebook_line_form(self):

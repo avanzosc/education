@@ -16,6 +16,11 @@
                 <filter name="assessed" string="Assessed Record"
                         domain="[('state','=','assessed')]" />
                 <separator />
+                <filter name="passed" string="Passed Record"
+                        domain="[('pass_mark','=','pass')]" />
+                <filter name="failed" string="Failed Record"
+                        domain="[('pass_mark','=','fail')]" />
+                <separator />
                 <filter name="exempt" string="Exempt Record"
                         domain="[('exceptionality','=','exempt')]" />
                 <filter name="not_taken" string="Not Taken Record"
@@ -24,6 +29,10 @@
                         domain="[('exceptionality','=','not_evaluated')]" />
                 <filter name="adaptation" string="ICA Record"
                         domain="[('exceptionality','=','adaptation')]" />
+                <filter name="reinforcement" string="IERP Record"
+                        domain="[('exceptionality','=','reinforcement')]" />
+                <filter name="pending_record" string="Pending to Approve Record"
+                        domain="[('exceptionality','=','pending')]" />
                 <separator />
                 <filter string="Global Competences" name="global_competence"
                         domain="[('competence_id.global_check','=',True)]" />
@@ -72,6 +81,9 @@
                     <filter name="groupby_exceptionality" string="Exception"
                             domain="[('exceptionality','!=',False)]"
                             context="{'group_by':'exceptionality'}"/>
+                    <separator />
+                    <filter name="groupby_pass_mark" string="Pass Mark"
+                            context="{'group_by': 'pass_mark'}" />
                 </group>
             </search>
         </field>
@@ -90,6 +102,7 @@
                 <field name="numeric_mark"
                        invisible="context.get('hide_numeric',True)"
                        attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
+                <field name="pass_mark" invisible="True" />
                 <field name="n_mark_reduced_name"
                        invisible="context.get('hide_numeric',True)" />
                 <field name="student_id" attrs="{'readonly': [('id','!=',False)]}"
@@ -135,8 +148,11 @@
                     <button name="button_set_not_evaluated" type="object" string="Not Evaluated" states="initial" />
                     <button name="button_set_adaptation" type="object" string="ICA" states="initial" />
                     <button name="button_set_reinforcement" type="object" string="IERP" states="initial" />
+                    <button name="button_set_pending" type="object" string="Pending to Pass" states="initial" />
                     <button name="button_remove_exceptionality" type="object" string="Remove Exception"
                             attrs="{'invisible':['|',('exceptionality','=',False),('state','!=','initial')]}" />
+                    <button name="button_retake" type="object" string="Retake"
+                            attrs="{'invisible':['|',('exam_id','!=',False),('state','!=','assessed')]}" />
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -145,7 +161,14 @@
                                 name="button_show_records" icon="fa-th"
                                 attrs="{'invisible':[('child_record_count','=',0)]}">
                             <field name="child_record_count" widget="statinfo"
-                                   string="Academic Records" class="mr4" />
+                                   string="Academic Records" />
+                        </button>
+                        <button class="oe_stat_button" type="object"
+                                name="button_show_records" icon="fa-th"
+                                context="{'retake': True}"
+                                attrs="{'invisible':[('retake_record_count','=',0)]}">
+                            <field name="retake_record_count" widget="statinfo"
+                                   string="Retake Academic Records" />
                         </button>
                     </div>
                     <group>
@@ -267,4 +290,3 @@ if records:
     </record>
 
 </odoo>
-

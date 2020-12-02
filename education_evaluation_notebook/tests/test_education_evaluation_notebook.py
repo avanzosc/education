@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from .common import EducationNotebookCommon
-from odoo import fields
+from odoo import _, fields
 from odoo.exceptions import RedirectWarning, UserError, ValidationError
 from odoo.tests import common
 
@@ -35,6 +35,34 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
                 "eval_mode": "both",
             })
 
+    def test_education_notebook_template_code_length(self):
+        with self.assertRaises(ValidationError):
+            self.env["education.notebook.template"].create({
+                "code": "CODE",
+                "education_center_id": self.edu_partner.id,
+                "course_id": self.edu_course.id,
+                "task_type_id": self.edu_task_type.id,
+                "subject_id": self.edu_subject.id,
+                "eval_type": "first",
+                "competence_id": self.exam_competence.id,
+                "name": "Notebook Template",
+                "eval_percent": 50.0,
+            })
+
+    def test_education_notebook_line_code_length(self):
+        with self.assertRaises(ValidationError):
+            self.notebook_model.create({
+                "code": "CODE",
+                "description": "Notebook Line",
+                "education_center_id": self.edu_partner.id,
+                "task_type_id": self.edu_task_type.id,
+                "subject_id": self.edu_subject.id,
+                "eval_type": "first",
+                "competence_id": self.exam_competence.id,
+                "eval_percent": 50.0,
+                "schedule_id": self.schedule.id,
+            })
+
     def test_schedule_homework(self):
         self.assertFalse(self.schedule.homework_count)
         self.homework_model.create({
@@ -61,6 +89,41 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
         self.assertEquals(
             notebook.display_name,
             "{} [{}]".format(notebook.description, eval_type))
+
+    def test_get_evaluation_records(self):
+        self.create_evaluations_from_course_change(final_eval=False)
+        evaluation_count = len(self.academic_year.evaluation_ids)
+        self.schedule.action_generate_notebook_lines()
+        self.schedule.action_generate_records()
+        student_count = self.schedule.student_count
+        notebook_count = evaluation_count + 2
+        self.assertEquals(
+            self.schedule.notebook_line_count, notebook_count)
+        eval_records = self.schedule.record_ids.filtered(
+            "evaluation_competence")
+        self.assertEquals(len(eval_records), evaluation_count * student_count)
+        for student in self.schedule.student_ids:
+            student_eval_records = eval_records.filtered(
+                lambda r: r.student_id == student)
+            self.assertEquals(len(student_eval_records), evaluation_count)
+            records = student.get_academic_records()
+            self.assertIn(records, student_eval_records)
+        for eval_record in eval_records:
+            eval_record.button_set_assessed()
+            retake_eval_dict = eval_record.button_retake()
+            self.assertIn(retake_eval_dict.get("res_id"),
+                          eval_record.retake_record_ids.ids)
+            for retake_record in eval_record.retake_record_ids:
+                self.assertEquals(
+                    "[RETAKE] {} - {}".format(
+                        retake_record.n_line_id.display_name,
+                        retake_record.student_id.display_name),
+                    retake_record.display_name)
+            show_retake_dict = eval_record.with_context(
+                retake=True).button_show_records()
+            self.assertIn(
+                ("id", "in", eval_record.retake_record_ids.ids),
+                show_retake_dict.get("domain"))
 
     def test_create_notebook(self):
         self.create_evaluations_from_course_change(final_eval=False)
@@ -146,6 +209,7 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
                 "parent_line_id": evaluation_line.id,
                 "competence_id": self.exam_competence.id,
             })
+
             self.assertNotEquals(exam_line.eval_type,
                                  exam_line.parent_line_id.eval_type)
             exam_line._onchange_parent_line_id()
@@ -173,12 +237,15 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
                 lambda r: not r.exam_id)[:1]
             exam_record = exam_line.record_ids.filtered(
                 lambda r: r.exam_id)[:1]
+            self.assertEquals(
+                exam_record.subject_name, exam_record.subject_id.description)
             with self.assertRaises(ValidationError):
                 exam_record.numeric_mark = 12.5
             with self.assertRaises(ValidationError):
                 exam_record.numeric_mark = -1.5
             exam_record.numeric_mark = 5.5
             self.assertEquals(exam_record.state, "initial")
+            self.assertEquals(exam_record.pass_mark, "pass")
             self.assertEquals(
                 exam_record.mark_id, self.env.ref(
                     "education_evaluation_notebook.numeric_mark_normal"))
@@ -229,6 +296,23 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             exam.action_close_exam()
             self.assertEquals(exam.state, "closed")
             self.assertEquals(exam.mark_close_date, today)
+            retake_action = exam.retake_exam()
+            self.assertIn(retake_action.get("res_id"), exam.retake_ids.ids)
+            self.assertEquals(exam.retake_count, 1)
+            show_retake_action = exam.button_show_retakes()
+            self.assertIn(
+                ("recovered_exam_id", "=", exam.id),
+                show_retake_action.get("domain"))
+            retake_exam = exam.retake_ids[:1]
+            self.assertEquals(
+                retake_exam.display_name,
+                _("[RETAKE] {}").format(retake_exam.name))
+            new_retake_exam = self.exam_model.new({
+                "recovered_exam_id": exam.id,
+            })
+            self.assertFalse(new_retake_exam.n_line_id)
+            new_retake_exam._onchange_recovered_exam()
+            self.assertEquals(new_retake_exam.n_line_id, exam.n_line_id)
             with self.assertRaises(UserError):
                 exam.unlink()
             exam_record.button_set_draft()
@@ -250,6 +334,8 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             self.assertEquals(exam_record.exceptionality, "reinforcement")
             exam_record.button_remove_exceptionality()
             self.assertFalse(exam_record.exceptionality)
+            exam_record.button_set_pending()
+            self.assertEquals(exam_record.exceptionality, "pending")
 
     def create_evaluations_from_course_change(self, final_eval=True):
         self.assertFalse(self.academic_year.evaluation_ids)
@@ -369,10 +455,23 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             action_dict.get('domain'))
 
     def test_education_group_record_report_xlsx(self):
+        self.create_evaluations_from_course_change(final_eval=False)
         report_name = (
             "education_evaluation_notebook.education_group_record_xlsx")
         self.schedule.action_generate_notebook_lines()
         self.schedule.action_generate_records()
-        report_xlsx = self.env.ref(report_name).render(self.group.ids)
+        report_xlsx = self.env.ref(report_name).render(
+            self.schedule.group_ids.ids)
         self.assertGreaterEqual(len(report_xlsx[0]), 1)
-        self.assertEqual(report_xlsx[1], 'xlsx')
+        self.assertEqual(report_xlsx[1], "xlsx")
+
+    def test_education_group_record_report_xlsx_wizard(self):
+        self.create_evaluations_from_course_change(final_eval=False)
+        self.schedule.action_generate_notebook_lines()
+        self.schedule.action_generate_records()
+        wizard = self.report_wizard_model.with_context(
+            active_ids=self.schedule.group_ids.ids).create({
+                "eval_type": "first",
+            })
+        wizard_return = wizard.export_xls()
+        self.assertEqual(wizard_return["report_type"], "xlsx")
