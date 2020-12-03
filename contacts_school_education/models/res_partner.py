@@ -31,7 +31,7 @@ class ResPartner(models.Model):
     current_center_id = fields.Many2one(
         comodel_name='res.partner', string='Current Education Center')
     current_level_id = fields.Many2one(
-        comodel_name="education.level", string='Current Education Level',)
+        comodel_name="education.level", string='Current Education Level')
     current_course_id = fields.Many2one(
         comodel_name='education.course', string='Current Course')
     childs_current_center_ids = fields.Many2many(

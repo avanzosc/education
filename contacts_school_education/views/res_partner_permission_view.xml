@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_permission_view_search" model="ir.ui.view">
+        <field name="model">res.partner.permission</field>
+        <field name="inherit_id" ref="contacts_school_permission.res_partner_permission_view_search" />
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="current_center_id" domain="[('educational_category','=','school')]" />
+                <field name="current_level_id" />
+                <field name="current_course_id" />
+                <field name="current_group_id" domain="[('group_type_id.type','=','official'),('academic_year_id.current','=',True)]"/>
+            </field>
+            <filter name="state" position="after">
+                <separator />
+                <filter name="current_center" string="Student Current Education Center" context="{'group_by': 'current_center_id'}"/>
+                <filter name="current_level" string="Student Current Education Level" context="{'group_by': 'current_level_id'}"/>
+                <filter name="current_course" string="Student Current Course" context="{'group_by': 'current_course_id'}"/>
+                <filter name="current_group" string="Student Current Group" context="{'group_by': 'current_group_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

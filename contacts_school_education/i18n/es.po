@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-29 14:28+0000\n"
-"PO-Revision-Date: 2020-10-29 14:28+0000\n"
+"POT-Creation-Date: 2020-12-03 11:09+0000\n"
+"PO-Revision-Date: 2020-12-03 11:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -620,6 +620,30 @@ msgstr "Alumno"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
 msgid "Student Characteristics"
 msgstr "Características estudiante"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_permission__current_course_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_permission_view_search
+msgid "Student Current Course"
+msgstr "Curso actual del alumno"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_permission__current_center_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_permission_view_search
+msgid "Student Current Education Center"
+msgstr "Centro actual del alumno"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_permission__current_level_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_permission_view_search
+msgid "Student Current Education Level"
+msgstr "Nivel actual del alumno"
+
+#. module: contacts_school_education
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_permission__current_group_id
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_permission_view_search
+msgid "Student Current Group"
+msgstr "Grupo actual del alumno"
 
 #. module: contacts_school_education
 #: model:ir.actions.act_window,name:contacts_school_education.action_education_group_student_progenitor_report
