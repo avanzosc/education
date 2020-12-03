@@ -289,4 +289,16 @@ if records:
         </field>
     </record>
 
+    <record id="action_retake" model="ir.actions.server">
+        <field name="name">Retake records (only assessed without exam)</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    records.action_retake()
+        </field>
+    </record>
+
 </odoo>

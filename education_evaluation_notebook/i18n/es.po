@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-02 13:14+0000\n"
-"PO-Revision-Date: 2020-12-02 13:14+0000\n"
+"POT-Creation-Date: 2020-12-03 13:27+0000\n"
+"PO-Revision-Date: 2020-12-03 13:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -269,7 +269,6 @@ msgstr "Nota provisional"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.create_academic_year_evaluation_view_form
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.export_education_records_xlsx_report_view_form
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -302,6 +301,11 @@ msgid "Classroom"
 msgstr "Aula"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.export_education_records_xlsx_report_view_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Close Exam"
@@ -331,7 +335,6 @@ msgid "Code"
 msgstr "Código"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_competence.py:32
 #: code:addons/education_evaluation_notebook/models/education_competence.py:33
 #: code:addons/education_evaluation_notebook/models/education_notebook_line.py:91
 #: code:addons/education_evaluation_notebook/models/education_notebook_template.py:50
@@ -574,7 +577,6 @@ msgid "Education Competence"
 msgstr "Competencia"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:64
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:65
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__course_id
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
@@ -588,7 +590,6 @@ msgid "Education Exam"
 msgstr "Examen"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:68
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:69
 #: model:ir.model,name:education_evaluation_notebook.model_education_group
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__group_id
@@ -1357,7 +1358,6 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:296
 #: code:addons/education_evaluation_notebook/models/education_record.py:335
 #, python-format
 msgid "Numeric mark must be between {} and {}"
@@ -1582,6 +1582,11 @@ msgid "Retake Records"
 msgstr "Notas de recuperación"
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.server,name:education_evaluation_notebook.action_retake
+msgid "Retake records (only assessed without exam)"
+msgstr "Recuperar notas (solo evaluadas sin examen)"
+
+#. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:49
 #, python-format
 msgid "STUDENT LIST"
@@ -1661,7 +1666,6 @@ msgstr "Estado basado en actividades\n"
 "Planificada: futuras actividades."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:72
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:73
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__student_id
@@ -1704,14 +1708,12 @@ msgid "Teacher"
 msgstr "Profesor"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_competence.py:39
 #: code:addons/education_evaluation_notebook/models/education_competence.py:40
 #, python-format
 msgid "There can only be one evaluation competence."
 msgstr "Solo puede haber una competencia de evaluación."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_competence.py:46
 #: code:addons/education_evaluation_notebook/models/education_competence.py:47
 #, python-format
 msgid "There can only be one global competence."
@@ -1782,7 +1784,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:116
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:117
 #, python-format
 msgid "UN"
@@ -1840,21 +1841,23 @@ msgid "Wizard to create evaluations"
 msgstr "Asistente para crear evaluaciones"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:145
+#: model:ir.model,name:education_evaluation_notebook.model_report_education_education_record_xlsx_export
+msgid "Wizard to export education records in xlsx"
+msgstr "Asistente para exportar actas"
+
+#. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:213
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr "Solo puedes eliminar un examen borrador."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:159
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:160
 #, python-format
 msgid "You can only get xlsx report of official groups"
 msgstr "Solo puede obtener el informe xlsx de grupos oficiales"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:114
 #: code:addons/education_evaluation_notebook/models/education_exam.py:163
 #, python-format
 msgid "You must set an exam date."
@@ -1871,10 +1874,5 @@ msgstr "[REC] {}"
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_report_education_education_record_xlsx
 msgid "report.education.education_record_xlsx"
-msgstr ""
-
-#. module: education_evaluation_notebook
-#: model:ir.model,name:education_evaluation_notebook.model_report_education_education_record_xlsx_export
-msgid "report.education.education_record_xlsx.export"
 msgstr ""
 
