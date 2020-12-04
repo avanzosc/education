@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-03 13:27+0000\n"
-"PO-Revision-Date: 2020-12-03 13:27+0000\n"
+"POT-Creation-Date: 2020-12-04 14:21+0000\n"
+"PO-Revision-Date: 2020-12-04 14:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1547,7 +1547,7 @@ msgstr "Eliminar excepción"
 #: model:ir.actions.report,name:education_evaluation_notebook.education_partner_record
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
 msgid "Report Card"
-msgstr "Boletin de notas"
+msgstr "Boletín de notas"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__activity_user_id

@@ -7,7 +7,7 @@
                 <div class="oe_structure"/>
                 <h2 class="text-center font-weight-bold mt-n1">Report Card</h2>
                 <div class="row mt32 mb32">
-                    <div class="col-6">
+                    <div class="col-12">
                         <b>Student:</b> <span t-field="o.display_name"/><br/>
                         <b>Education Course:</b> <span t-field="o.current_course_id"/><br/>
                         <b>Period:</b> EVALUACIÓN SELECCIONADA<br/>
@@ -20,28 +20,28 @@
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
                             <t t-foreach="records" t-as="record">
-                                <tr class="table-active">
-                                    <td class="text-left">
+                                <tr>
+                                    <th class="text-left">
                                         <span t-field="record.subject_id" />
-                                    </td>
+                                    </th>
                                     <t t-if="record.exceptionality">
-                                        <td class="text-left">
+                                        <th class="text-left">
                                             <span t-field="record.exceptionality" />
-                                        </td>
+                                        </th>
                                     </t>
                                     <t t-else="">
-                                        <td class="text-left">
-                                            <span t-field="record.n_mark_reduced_name" />
-                                        </td>
+                                        <th class="text-left">
+                                            <span t-field="record.numeric_mark" t-options="{'precision': 2}"/> - <span t-field="record.n_mark_reduced_name" />
+                                        </th>
                                     </t>
                                 </tr>
                                 <tr t-if="record.behaviour_mark_id">
-                                    <td class="text-left">BEHAVIOUR</td>
+                                    <td class="text-left pl-3">BEHAVIOUR</td>
                                     <td class="text-left"><span t-field="record.behaviour_mark_id" /></td>
                                 </tr>
-                                <t t-foreach="record.child_record_ids" t-as="child_record">
+                                <t t-foreach="record.child_record_ids.filtered('n_line_id.code')" t-as="child_record">
                                     <tr>
-                                        <td class="text-left">
+                                        <td class="text-left pl-5">
                                             <span t-field="child_record.n_line_id.description" />
                                         </td>
                                         <t t-if="child_record.exceptionality">

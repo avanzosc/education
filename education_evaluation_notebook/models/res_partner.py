@@ -45,4 +45,5 @@ class ResPartner(models.Model):
             ], limit=1)
             eval_type = evaluation.eval_type or "final"
         return self.academic_record_ids.filtered(
-            lambda r: r.eval_type == eval_type and r.evaluation_competence)
+            lambda r: r.eval_type == eval_type and r.evaluation_competence and
+            r.n_line_id.schedule_id.task_type_id.education_code == "0120")
