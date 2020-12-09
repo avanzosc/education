@@ -33,11 +33,15 @@ class EducationNotebookCommon(TestEducationCommon):
             "group_type_id": cls.edu_group_type.id,
             "student_ids": [(6, 0, cls.edu_student.ids)],
         })
+        task_type = cls.env['education.task_type'].search([
+            ("education_code", "=", "0120")]) or cls.edu_task_type
+        if task_type.education_code != "0120":
+            task_type.education_code == "0120"
         cls.schedule = cls.schedule_model.create({
             "center_id": cls.edu_partner.id,
             "academic_year_id": cls.academic_year.id,
             "teacher_id": cls.teacher.id,
-            "task_type_id": cls.edu_task_type.id,
+            "task_type_id": task_type.id,
             "subject_id": cls.edu_subject.id,
             "group_ids": [(6, 0, cls.group.ids)],
         })
@@ -46,10 +50,10 @@ class EducationNotebookCommon(TestEducationCommon):
         })
         cls.notebook_template = cls.env["education.notebook.template"].create({
             "code": "TMP",
-            "education_center_id": cls.edu_partner.id,
+            "education_center_id": cls.schedule.center_id.id,
             "course_id": cls.edu_course.id,
-            "task_type_id": cls.edu_task_type.id,
-            "subject_id": cls.edu_subject.id,
+            "task_type_id": cls.schedule.task_type_id.id,
+            "subject_id": cls.schedule.subject_id.id,
             "eval_type": "first",
             "competence_id": cls.exam_competence.id,
             "name": "Notebook Template",

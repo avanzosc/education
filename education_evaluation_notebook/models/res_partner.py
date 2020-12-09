@@ -45,5 +45,28 @@ class ResPartner(models.Model):
             ], limit=1)
             eval_type = evaluation.eval_type or "final"
         return self.academic_record_ids.filtered(
-            lambda r: r.eval_type == eval_type and r.evaluation_competence and
+            lambda r: r.eval_type == eval_type and r.evaluation_competence)
+
+    @api.multi
+    def get_academic_records_curricular(self, eval_type=False):
+        self.ensure_one()
+        academic_records = self.get_academic_records(eval_type=eval_type)
+        return academic_records.filtered(
+            lambda r:
             r.n_line_id.schedule_id.task_type_id.education_code == "0120")
+
+    @api.multi
+    def get_academic_records_teaching(self, eval_type=False):
+        self.ensure_one()
+        academic_records = self.get_academic_records(eval_type=eval_type)
+        return academic_records.filtered(
+            lambda r:
+            r.n_line_id.schedule_id.task_type_id.education_code == "0105")
+
+    @api.multi
+    def get_academic_records_non_curricular(self, eval_type=False):
+        self.ensure_one()
+        academic_records = self.get_academic_records(eval_type=eval_type)
+        return academic_records.filtered(
+            lambda r:
+            r.n_line_id.schedule_id.task_type_id.education_code == "0123")

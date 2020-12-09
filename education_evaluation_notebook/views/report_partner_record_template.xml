@@ -15,7 +15,7 @@
                         <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A, %Y-%m-%d')"/>
                     </div>
                 </div>
-                <t t-set="records" t-value="o.get_academic_records()" />
+                <t t-set="records" t-value="o.get_academic_records_curricular()" />
                 <t t-if="records">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
@@ -54,6 +54,66 @@
                                                 <span t-field="child_record.n_mark_reduced_name" />
                                             </td>
                                         </t>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+                <t t-set="teaching_records" t-value="o.get_academic_records_teaching()" />
+                <t t-if="teaching_records">
+                    <table class="table table-sm o_main_table borderless smallfont">
+                        <tbody>
+                            <t t-foreach="teaching_records" t-as="record">
+                                <t t-foreach="record.child_record_ids" t-as="child_record">
+                                    <tr>
+                                        <td class="text-left pl-5">
+                                            <span t-field="child_record.n_line_id.description"/>
+                                        </td>
+                                        <td class="text-left pl-5">
+                                            <span t-field="child_record.n_line_id.competence_id"/>
+                                        </td>
+                                        <td class="text-left pl-5">
+                                            <span t-field="child_record.n_line_id.competence_type_id"/>
+                                        </td>
+                                        <td class="text-left">
+                                          <t t-if="child_record.state == 'assessed'">
+                                            <t t-if="child_record.n_line_id.competence_id.eval_mode != 'numeric'">
+                                              <span t-field="child_record.behaviour_mark_id" />
+                                            </t>
+                                            <t t-if="child_record.n_line_id.competence_id.eval_mode != 'behaviour'">
+                                              <span t-field="child_record.numeric_mark" />
+                                            </t>
+                                          </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+
+                <t t-set="non_curricular_records" t-value="o.get_academic_records_non_curricular()" />
+                <t t-if="non_curricular_records">
+                    <h4 class="text-center">Further Qualifications</h4>
+                    <table class="table table-sm o_main_table borderless smallfont">
+                        <tbody>
+                            <t t-foreach="non_curricular_records" t-as="record">
+                                <t t-foreach="record.child_record_ids" t-as="child_record">
+                                    <tr>
+                                        <td class="text-left pl-5">
+                                            <span t-field="child_record.n_line_id.description"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <t t-if="child_record.state == 'assessed'">
+                                                <t t-if="child_record.n_line_id.competence_id.eval_mode != 'numeric'">
+                                                    <span t-field="child_record.behaviour_mark_id" />
+                                                </t>
+                                                <t t-if="child_record.n_line_id.competence_id.eval_mode != 'behaviour'">
+                                                    <span t-field="child_record.numeric_mark" />
+                                                </t>
+                                            </t>
+                                        </td>
                                     </tr>
                                 </t>
                             </t>
