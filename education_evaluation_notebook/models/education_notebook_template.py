@@ -9,6 +9,7 @@ from .education_academic_year_evaluation import EVAL_TYPE
 class EducationNotebookTemplate(models.Model):
     _name = "education.notebook.template"
     _description = "Evaluation Notebook Template"
+    _order = "education_center_id,course_id,subject_id,sequence"
 
     def default_eval_type(self):
         default_dict = self.env[
@@ -17,6 +18,7 @@ class EducationNotebookTemplate(models.Model):
 
     code = fields.Char(
         string="Code", help="This code is used for academic record report")
+    sequence = fields.Integer(string="Sequence", default=10)
     education_center_id = fields.Many2one(
         comodel_name="res.partner", string="Education Center",
         domain="[('educational_category', '=', 'school')]", required=True)
@@ -65,6 +67,7 @@ class EducationNotebookTemplate(models.Model):
         self.ensure_one()
         vals = {
             "code": self.code or self.competence_id.code,
+            "sequence": self.sequence,
             "schedule_id": schedule.id,
             "competence_id": self.competence_id.id,
             "description": self.name,

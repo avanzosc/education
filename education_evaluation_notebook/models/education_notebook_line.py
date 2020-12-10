@@ -12,7 +12,7 @@ class EducationNotebookLine(models.Model):
     _name = "education.notebook.line"
     _description = "Education Notebook Line"
     _rec_name = "description"
-    _order = "schedule_id,eval_type"
+    _order = "schedule_id,eval_type,sequence"
 
     def default_eval_type(self):
         default_dict = self.env[
@@ -21,6 +21,7 @@ class EducationNotebookLine(models.Model):
 
     code = fields.Char(
         string="Code", help="This code is used for academic record report")
+    sequence = fields.Integer(string="Sequence", default=1)
     schedule_id = fields.Many2one(
         comodel_name="education.schedule", string="Class Schedule",
         required=True)

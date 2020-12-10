@@ -64,29 +64,59 @@
                 <t t-if="teaching_records">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
-                            <t t-foreach="teaching_records" t-as="record">
-                                <t t-foreach="record.child_record_ids" t-as="child_record">
+                            <t t-foreach="teaching_records" t-as="teaching_record">
+                                <t t-set="competences" t-value="teaching_record.child_record_ids.mapped('n_line_id.competence_id')" />
+                                <t t-foreach="competences" t-as="competence">
                                     <tr>
-                                        <td class="text-left pl-5">
-                                            <span t-field="child_record.n_line_id.description"/>
-                                        </td>
-                                        <td class="text-left pl-5">
-                                            <span t-field="child_record.n_line_id.competence_id"/>
-                                        </td>
-                                        <td class="text-left pl-5">
-                                            <span t-field="child_record.n_line_id.competence_type_id"/>
-                                        </td>
-                                        <td class="text-left">
-                                          <t t-if="child_record.state == 'assessed'">
-                                            <t t-if="child_record.n_line_id.competence_id.eval_mode != 'numeric'">
-                                              <span t-field="child_record.behaviour_mark_id" />
-                                            </t>
-                                            <t t-if="child_record.n_line_id.competence_id.eval_mode != 'behaviour'">
-                                              <span t-field="child_record.numeric_mark" />
-                                            </t>
-                                          </t>
-                                        </td>
+                                        <th class="text-left" colspan="2">
+                                            <span t-field="competence.display_name"/>
+                                        </th>
                                     </tr>
+                                    <t t-set="child_records" t-value="teaching_record.child_record_ids.filtered(lambda r: r.n_line_id.competence_id == competence)" />
+                                    <t t-set="competence_types" t-value="child_records.mapped('n_line_id.competence_type_id')" />
+                                    <t t-set="no_type_child_records" t-value="child_records.filtered(lambda r: not r.n_line_id.competence_type_id)" />
+                                    <t t-foreach="no_type_child_records" t-as="no_type_child_record">
+                                        <tr>
+                                            <td class="text-left pl-3">
+                                                <span t-field="no_type_child_record.n_line_id.description"/>
+                                            </td>
+                                            <td class="text-left">
+                                              <t t-if="no_type_child_record.state == 'assessed'">
+                                                <t t-if="no_type_child_record.n_line_id.competence_id.eval_mode != 'numeric'">
+                                                  <span t-field="no_type_child_record.behaviour_mark_id" />
+                                                </t>
+                                                <t t-if="no_type_child_record.n_line_id.competence_id.eval_mode != 'behaviour'">
+                                                  <span t-field="no_type_child_record.numeric_mark" />
+                                                </t>
+                                              </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="competence_types" t-as="competence_type">
+                                        <tr>
+                                            <td class="text-left pl-3" colspan="2">
+                                                <span t-field="competence_type.display_name" />
+                                            </td>
+                                        </tr>
+                                        <t t-set="type_child_records" t-value="child_records.filtered(lambda r: r.n_line_id.competence_type_id == competence_type)" />
+                                        <t t-foreach="type_child_records" t-as="type_child_record">
+                                            <tr>
+                                                <td class="text-left pl-6">
+                                                    <span t-field="type_child_record.n_line_id.description"/>
+                                                </td>
+                                                <td class="text-left">
+                                                  <t t-if="type_child_record.state == 'assessed'">
+                                                    <t t-if="type_child_record.n_line_id.competence_id.eval_mode != 'numeric'">
+                                                      <span t-field="type_child_record.behaviour_mark_id" />
+                                                    </t>
+                                                    <t t-if="type_child_record.n_line_id.competence_id.eval_mode != 'behaviour'">
+                                                      <span t-field="type_child_record.numeric_mark" />
+                                                    </t>
+                                                  </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
                                 </t>
                             </t>
                         </tbody>

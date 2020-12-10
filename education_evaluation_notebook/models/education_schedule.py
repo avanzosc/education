@@ -121,6 +121,18 @@ class EducationSchedule(models.Model):
             self, competence, parent_line=False, percent=False,
             evaluation=False):
         self.ensure_one()
+        sequence = 10
+        if competence.global_check:
+            sequence = 0
+        elif competence.evaluation_check:
+            if evaluation.eval_type == "first":
+                sequence = 1
+            elif evaluation.eval_type == "second":
+                sequence = 2
+            elif evaluation.eval_type == "third":
+                sequence = 3
+            else:
+                sequence = 4
         vals = {
             "schedule_id": self.id,
             "competence_id": competence.id,
@@ -129,6 +141,7 @@ class EducationSchedule(models.Model):
             "eval_percent": percent or 100.0,
             "eval_type": evaluation and evaluation.eval_type or "final",
             "parent_line_id": parent_line and parent_line.id,
+            "sequence": sequence,
         }
         return vals
 

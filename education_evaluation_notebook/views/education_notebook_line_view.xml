@@ -127,6 +127,7 @@
                             <field name="parent_parent_line_id"
                                    attrs="{'invisible':[('parent_parent_line_id','=',False)]}" />
                             <field name="competence_type_id"  />
+                            <field name="sequence" attrs="{'invisible': ['|',('global_competence','=',True),('evaluation_competence','=',True)]}" />
                         </group>
                         <group string="Class Schedule Info">
                             <field name="schedule_id" options="{'no_create': True, 'no_edit': True}"
@@ -178,6 +179,7 @@
                                       decoration-info="global_competence==True"
                                       decoration-success="evaluation_competence==True"
                                       decoration-muted="eval_percent==0">
+                                    <field name="sequence" widget="handle" />
                                     <field name="schedule_id" invisible="True" />
                                     <field name="competence_id" options="{'no_create': True, 'no_edit': True}"
                                            domain="[('evaluation_check','!=',True),('global_check','!=',True)]"/>
@@ -185,6 +187,7 @@
                                     <field name="evaluation_competence" invisible="True" />
                                     <field name="exists_master" invisible="True" />
                                     <field name="description" />
+                                    <field name="code" />
                                     <field name="eval_type" />
                                     <field name="eval_percent" sum="Total Percent"/>
                                     <field name="competence_type_id" />
