@@ -93,6 +93,7 @@
         <field name="model">education.record</field>
         <field name="arch" type="xml">
             <tree editable="bottom"
+                  decoration-danger="recovered_record_id"
                   decoration-info="global_competence==True"
                   decoration-success="evaluation_competence==True"
                   decoration-muted="exceptionality=='not_taken'"
@@ -132,6 +133,7 @@
                 <field name="global_competence" invisible="True" />
                 <field name="evaluation_competence" invisible="True" />
                 <field name="academic_year_id"  invisible="True" />
+                <field name="recovered_record_id" invisible="True" />
             </tree>
         </field>
     </record>

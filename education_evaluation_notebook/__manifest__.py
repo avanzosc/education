@@ -3,7 +3,7 @@
 
 {
     "name": "Education Evaluation Notebook",
-    "version": "12.0.5.0.0",
+    "version": "12.0.6.0.0",
     "category": "Education",
     "depends": [
         "education",

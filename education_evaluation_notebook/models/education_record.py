@@ -26,6 +26,7 @@ class EducationRecord(models.Model):
     _name = "education.record"
     _description = "Academic Record"
     _inherit = ["portal.mixin", "mail.thread", "mail.activity.mixin"]
+    _order = "n_line_id,student_id"
 
     @api.model
     def _get_selection_exam_state(self):
