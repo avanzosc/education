@@ -34,19 +34,9 @@ class CalendarEvent(models.Model):
             False)
         if template:
             for observation in self.calendar_event_notebook_observation_ids:
-                wizard = self.env['mail.compose.message'].with_context(
-                    default_composition_mode='mass_mail',
-                    default_template_id=template and template.id or False,
-                    default_use_template=True,
-                    active_id=observation.id,
-                    active_ids=observation.ids,
-                    active_model='education.notebook.observation',
-                    default_model='education.notebook.observation',
-                    default_res_id=observation.id,
-                    force_send=True
-                ).create({'subject': template.subject,
-                          'body': template.body_html})
-                wizard.send_mail()
+                template.with_context(
+                    lang=observation.teacher_id.user_id.lang).send_mail(
+                        observation.id, force_send=True, raise_exception=True)
 
 
 class CalendarAttendee(models.Model):
