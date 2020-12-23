@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-10 14:40+0000\n"
-"PO-Revision-Date: 2020-12-10 14:40+0000\n"
+"POT-Creation-Date: 2020-12-23 09:34+0000\n"
+"PO-Revision-Date: 2020-12-23 09:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -336,8 +336,8 @@ msgstr "Kodea"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:33
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:91
-#: code:addons/education_evaluation_notebook/models/education_notebook_template.py:50
+#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:93
+#: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
 #, python-format
 msgid "Code must have a length of 3 characters "
 msgstr ""
@@ -643,7 +643,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Evaluation"
-msgstr ""
+msgstr "Ebaluazioa"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__evaluation_check
@@ -1305,6 +1305,12 @@ msgid "Notebook Lines"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__notes
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
+msgid "Notes"
+msgstr "Oharrak"
+
+#. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
 msgid "Notes Range"
 msgstr ""
@@ -1364,7 +1370,7 @@ msgid "Numeric Marks"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:335
+#: code:addons/education_evaluation_notebook/models/education_record.py:336
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr ""
@@ -1626,6 +1632,12 @@ msgid "Security Token"
 msgstr "Segurtasun Tokena "
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__sequence
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__sequence
+msgid "Sequence"
+msgstr "Sekuentzia"
+
+#. module: education_evaluation_notebook
 #: model:ir.actions.server,name:education_evaluation_notebook.action_set_draft
 msgid "Set assessed records as initial"
 msgstr ""
@@ -1869,7 +1881,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:231
-#: code:addons/education_evaluation_notebook/models/education_record.py:394
+#: code:addons/education_evaluation_notebook/models/education_record.py:395
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"

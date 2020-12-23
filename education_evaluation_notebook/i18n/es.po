@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-10 14:40+0000\n"
-"PO-Revision-Date: 2020-12-10 14:40+0000\n"
+"POT-Creation-Date: 2020-12-23 09:34+0000\n"
+"PO-Revision-Date: 2020-12-23 09:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -340,8 +340,8 @@ msgstr "Código"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:33
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:91
-#: code:addons/education_evaluation_notebook/models/education_notebook_template.py:50
+#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:93
+#: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
 #, python-format
 msgid "Code must have a length of 3 characters "
 msgstr "El código debe tener 3 carácteres"
@@ -1309,6 +1309,12 @@ msgid "Notebook Lines"
 msgstr "Líneas de cuaderno"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__notes
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
 msgid "Notes Range"
 msgstr "Rango de notas"
@@ -1368,7 +1374,7 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:335
+#: code:addons/education_evaluation_notebook/models/education_record.py:336
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -1630,6 +1636,12 @@ msgid "Security Token"
 msgstr "Token de seguridad"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__sequence
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: education_evaluation_notebook
 #: model:ir.actions.server,name:education_evaluation_notebook.action_set_draft
 msgid "Set assessed records as initial"
 msgstr "Pasar la nota a estado ABIERTO"
@@ -1876,7 +1888,7 @@ msgstr "Debe seleccionar una fecha de examen."
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:231
-#: code:addons/education_evaluation_notebook/models/education_record.py:394
+#: code:addons/education_evaluation_notebook/models/education_record.py:395
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"

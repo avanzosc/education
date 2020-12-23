@@ -200,6 +200,9 @@
                                 </tree>
                             </field>
                         </page>
+                        <page name="competence_notes" string="Notes" >
+                            <field name="notes" widget="html" />
+                        </page>
                     </notebook>
                 </sheet>
             </form>

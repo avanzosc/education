@@ -83,6 +83,7 @@ class EducationNotebookLine(models.Model):
     record_count = fields.Integer(
         compute="_compute_record_count", string="# Academic Record",
         store=True)
+    notes = fields.Html(string="Notes")
 
     @api.constrains("code")
     def _check_code_length(self):
