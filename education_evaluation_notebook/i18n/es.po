@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-23 09:34+0000\n"
-"PO-Revision-Date: 2020-12-23 09:34+0000\n"
+"POT-Creation-Date: 2021-01-12 13:15+0000\n"
+"PO-Revision-Date: 2021-01-12 13:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -101,11 +101,15 @@ msgstr "<br/>\n"
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
 msgid "<br/>\n"
-"                        <b>Period:</b> EVALUACIÓN SELECCIONADA<br/>\n"
-"                        <b>Tutor:</b>"
+"                        <b>Period:</b>"
 msgstr "<br/>\n"
-"                        <b>Evaluación:</b> EVALUACIÓN SELECCIONADA<br/>\n"
+"                        <b>Evaluación:</b>"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "<br/>\n"
 "                        <b>Tutor:</b>"
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_record_action
@@ -340,6 +344,7 @@ msgstr "Código"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:33
+#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:92
 #: code:addons/education_evaluation_notebook/models/education_notebook_line.py:93
 #: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
 #, python-format
@@ -1375,6 +1380,7 @@ msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_record.py:336
+#: code:addons/education_evaluation_notebook/models/education_record.py:341
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -1889,6 +1895,7 @@ msgstr "Debe seleccionar una fecha de examen."
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:231
 #: code:addons/education_evaluation_notebook/models/education_record.py:395
+#: code:addons/education_evaluation_notebook/models/education_record.py:400
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"
