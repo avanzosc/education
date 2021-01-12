@@ -6,16 +6,21 @@
             <div class="page">
                 <div class="oe_structure"/>
                 <h2 class="text-center font-weight-bold mt-n1">Report Card</h2>
+                <t t-set="evaluations" t-value="request.env['education.academic_year.evaluation'].search([('academic_year_id.current','=',True),('center_id','=',o.current_center_id.id),('course_id', '=', o.current_course_id.id)])" />
+                <t t-set="evaluation" t-value="evaluations.filtered(lambda e: e.eval_type == eval_type)" />
+                <t t-if="not evaluation">
+                    <t t-set="evaluation" t-value="evaluations.filtered('current')" />
+                </t>
                 <div class="row mt32 mb32">
                     <div class="col-12">
                         <b>Student:</b> <span t-field="o.display_name"/><br/>
                         <b>Education Course:</b> <span t-field="o.current_course_id"/><br/>
-                        <b>Period:</b> EVALUACIÓN SELECCIONADA<br/>
+                        <b>Period:</b> <span t-field="evaluation[:1].eval_type" /><br/>
                         <b>Tutor:</b> <t t-if="o.current_year_tutor_ids"><span t-esc="o.current_year_tutor_ids[:1].display_name" /></t><br/>
                         <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A, %Y-%m-%d')"/>
                     </div>
                 </div>
-                <t t-set="records" t-value="o.get_academic_records_curricular()" />
+                <t t-set="records" t-value="o.get_academic_records_curricular(eval_type=eval_type)" />
                 <t t-if="records">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
@@ -60,7 +65,7 @@
                         </tbody>
                     </table>
                 </t>
-                <t t-set="teaching_records" t-value="o.get_academic_records_teaching()" />
+                <t t-set="teaching_records" t-value="o.get_academic_records_teaching(eval_type=eval_type)" />
                 <t t-if="teaching_records">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
@@ -123,7 +128,7 @@
                     </table>
                 </t>
 
-                <t t-set="non_curricular_records" t-value="o.get_academic_records_non_curricular()" />
+                <t t-set="non_curricular_records" t-value="o.get_academic_records_non_curricular(eval_type=eval_type)" />
                 <t t-if="non_curricular_records">
                     <h4 class="text-center">Further Qualifications</h4>
                     <table class="table table-sm o_main_table borderless smallfont">

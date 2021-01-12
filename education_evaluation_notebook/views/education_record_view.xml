@@ -185,6 +185,8 @@
                                    attrs="{'readonly': [('competence_eval_mode','=','numeric')], 'required': [('competence_eval_mode','!=','numeric')]}"/>
                             <field name="calculated_numeric_mark"
                                    attrs="{'invisible': [('child_record_ids','=',[])]}" />
+                            <field name="calculated_partial_mark"
+                                   attrs="{'invisible': [('child_record_ids','=',[])]}" />
                             <field name="exceptionality" string="Exception"
                                    attrs="{'invisible': [('exceptionality','=',False)]}" readonly="True" />
                         </group>
