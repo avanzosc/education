@@ -21,8 +21,21 @@
                     </div>
                 </div>
                 <t t-set="records" t-value="o.get_academic_records_curricular(eval_type=eval_type)" />
+                <t t-set="retaken" t-value="any(records.mapped('retake_record_ids'))" />
                 <t t-if="records">
                     <table class="table table-sm o_main_table borderless smallfont">
+                        <thead>
+                            <tr>
+                                <td />
+                                <t t-if="retaken">
+                                    <th>Ordinary</th>
+                                    <th>Extraordinary</th>
+                                </t>
+                                <t t-else="">
+                                    <th>Ordinary</th>
+                                </t>
+                            </tr>
+                        </thead>
                         <tbody>
                             <t t-foreach="records" t-as="record">
                                 <tr>
@@ -39,10 +52,29 @@
                                             <span t-field="record.numeric_mark" t-options="{'precision': 2}"/> - <span t-field="record.n_mark_reduced_name" />
                                         </th>
                                     </t>
+                                    <t t-if="record.retake_record_ids">
+                                        <t t-set="retake_record" t-value="record.retake_record_ids[:1]" />
+                                        <t t-if="retake_record.exceptionality">
+                                            <th class="text-left">
+                                                <span t-field="retake_record.exceptionality" />
+                                            </th>
+                                        </t>
+                                        <t t-else="">
+                                            <th class="text-left">
+                                                <span t-field="retake_record.numeric_mark" t-options="{'precision': 2}"/> - <span t-field="retake_record.n_mark_reduced_name" />
+                                            </th>
+                                        </t>
+                                    </t>
+                                    <t t-else="">
+                                        <th />
+                                    </t>
                                 </tr>
                                 <tr t-if="record.behaviour_mark_id">
                                     <td class="text-left pl-3">BEHAVIOUR</td>
                                     <td class="text-left"><span t-field="record.behaviour_mark_id" /></td>
+                                    <t t-if="retaken">
+                                        <td />
+                                    </t>
                                 </tr>
                                 <t t-foreach="record.child_record_ids.filtered('n_line_id.code')" t-as="child_record">
                                     <tr>
