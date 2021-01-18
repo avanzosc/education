@@ -344,7 +344,6 @@ msgstr "Código"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:33
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:92
 #: code:addons/education_evaluation_notebook/models/education_notebook_line.py:93
 #: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
 #, python-format
@@ -817,6 +816,11 @@ msgstr "Nota exenta"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.export_education_records_xlsx_report_view_form
 msgid "Export Education Records"
 msgstr "Exportar actas excel"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "Extraordinary"
+msgstr "Extraordinario"
 
 #. module: education_evaluation_notebook
 #: selection:education.record,pass_mark:0
@@ -1379,7 +1383,6 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:336
 #: code:addons/education_evaluation_notebook/models/education_record.py:341
 #, python-format
 msgid "Numeric mark must be between {} and {}"
@@ -1407,6 +1410,11 @@ msgstr "Abrir registros académicos"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
 msgid "Open Line"
 msgstr "Abrir línea de cuaderno"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "Ordinary"
+msgstr "Ordinario"
 
 #. module: education_evaluation_notebook
 #: selection:education.exam,activity_state:0
@@ -1894,8 +1902,8 @@ msgstr "Debe seleccionar una fecha de examen."
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:231
-#: code:addons/education_evaluation_notebook/models/education_record.py:395
 #: code:addons/education_evaluation_notebook/models/education_record.py:400
+#: code:addons/education_evaluation_notebook/models/education_record.py:401
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"

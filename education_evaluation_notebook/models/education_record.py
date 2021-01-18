@@ -362,6 +362,7 @@ class EducationRecord(models.Model):
                 lambda r: r.state == "assessed" and not r.exam_id):
             new_records |= record.copy(default={
                 "recovered_record_id": record.id,
+                "behaviour_mark_id": record.behaviour_mark_id.id,
             })
         return new_records
 

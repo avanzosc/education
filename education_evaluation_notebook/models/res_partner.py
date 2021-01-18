@@ -53,7 +53,8 @@ class ResPartner(models.Model):
         academic_records = self.get_academic_records(eval_type=eval_type)
         return academic_records.filtered(
             lambda r:
-            r.n_line_id.schedule_id.task_type_id.education_code == "0120")
+            r.n_line_id.schedule_id.task_type_id.education_code == "0120" and
+            not r.recovered_record_id)
 
     @api.multi
     def get_academic_records_teaching(self, eval_type=False):
