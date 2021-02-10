@@ -7,6 +7,7 @@
                 <sheet>
                     <group name="main">
                         <field name="eval_type" />
+                        <field name="partial_mark" />
                     </group>
                     <footer>
                         <button name="export_xls" string="Export Education Records"

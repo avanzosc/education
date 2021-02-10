@@ -76,7 +76,7 @@ class EducationGroupXlsx(models.AbstractModel):
         sheet.set_column("B:D", 15)
         return sheet
 
-    def add_subject_list(self, sheet, subject_lists):
+    def add_subject_list(self, sheet, group, subject_lists):
         col = 4
         for subject in subject_lists:
             sheet.merge_range(
@@ -85,7 +85,8 @@ class EducationGroupXlsx(models.AbstractModel):
             col += 3
 
     def fill_student_row_data(
-            self, sheet, row, student, eval_type, subject_lists):
+            self, sheet, row, student, eval_type, subject_lists,
+            partial_mark=False):
         not_passed = [
             self.env.ref(
                 "education_evaluation_notebook.numeric_mark_insufficient"),
@@ -112,7 +113,8 @@ class EducationGroupXlsx(models.AbstractModel):
                 sheet.write(row_num, column_num + 2, "XX", self.format_border)
             else:
                 record = records[:1]
-                num_mark = record.numeric_mark
+                num_mark = (record.numeric_mark if not partial_mark else
+                            record.calculated_partial_mark)
                 num_mark_name = record.n_mark_reduced_name
                 behaviour = record.behaviour_mark_id.display_name or _("UN")
                 if record.exceptionality:
@@ -146,7 +148,6 @@ class EducationGroupXlsx(models.AbstractModel):
                         row_num, column_num + 1, num_mark_name, format_mark)
                     sheet.write(
                         row_num, column_num + 2, behaviour, format_behaviour)
-
             column_num += 3
 
     def generate_xlsx_report(self, workbook, data, objects):
@@ -160,6 +161,7 @@ class EducationGroupXlsx(models.AbstractModel):
                 _("You can only get xlsx report of official groups"))
         for group in objects:
             eval_type = data and data.get("eval_type", False)
+            partial_mark = data and data.get("partial_mark", False)
             if not eval_type:
                 current_eval = group.academic_year_id.evaluation_ids.filtered(
                     lambda e: e.date_start <= today <= e.date_end and
@@ -173,10 +175,11 @@ class EducationGroupXlsx(models.AbstractModel):
                 ("eval_type", "=", eval_type),
             ])
             subject_lists = group_records.mapped("subject_id")
-            self.add_subject_list(group_sheet, subject_lists)
+            self.add_subject_list(group_sheet, group, subject_lists)
             for student in group.student_ids:
                 self.fill_student_row_data(
-                    group_sheet, row, student, eval_type, subject_lists)
+                    group_sheet, row, student, eval_type, subject_lists,
+                    partial_mark=partial_mark)
                 row += 1
 
     def _define_formats(self, workbook):
