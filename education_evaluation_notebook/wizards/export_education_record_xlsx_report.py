@@ -12,6 +12,8 @@ class ExportEducationRecordReport(models.TransientModel):
     eval_type = fields.Selection(
         selection=EVAL_TYPE, string="Evaluation Season", default="final",
         required=True)
+    partial_mark = fields.Boolean(
+        string="Partial Marks", default=False)
 
     @api.multi
     def export_xls(self):
@@ -23,6 +25,7 @@ class ExportEducationRecordReport(models.TransientModel):
             "context": dict(self.env.context, report_file="group_records"),
             "data": {
                 "eval_type": self.eval_type,
+                "partial_mark": self.partial_mark,
             },
         }
         return report
