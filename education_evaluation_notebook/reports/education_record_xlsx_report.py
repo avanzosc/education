@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
+from statistics import mean
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
@@ -77,12 +78,14 @@ class EducationGroupXlsx(models.AbstractModel):
         return sheet
 
     def add_subject_list(self, sheet, group, subject_lists):
-        col = 4
+        sheet.write(6, 4, _("Not Passed"), self.format_header_center)
+        col = 5
         for subject in subject_lists:
             sheet.merge_range(
                 6, col, 6, col + 2, subject.description,
                 self.format_header_center)
             col += 3
+        sheet.write(6, col, _("Average Score"), self.format_header_center)
 
     def fill_student_row_data(
             self, sheet, row, student, eval_type, subject_lists,
@@ -97,8 +100,10 @@ class EducationGroupXlsx(models.AbstractModel):
         sheet.write("B" + str(row), student.lastname, self.format_border)
         sheet.write("C" + str(row), student.lastname2, self.format_border)
         sheet.write("D" + str(row), student.firstname, self.format_border)
-        column_num = 4
+        column_num = 5
         row_num = row - 1
+        mark_list = []
+        not_passed_count = 0
         for subject in subject_lists:
             records = record_obj.search([
                 ("student_id", "=", student.id),
@@ -113,9 +118,16 @@ class EducationGroupXlsx(models.AbstractModel):
                 sheet.write(row_num, column_num + 2, "XX", self.format_border)
             else:
                 record = records[:1]
-                num_mark = (record.numeric_mark if not partial_mark else
-                            record.calculated_partial_mark)
-                num_mark_name = record.n_mark_reduced_name
+                if partial_mark:
+                    num_mark = record.calculated_partial_mark
+                    mark_name = self.env[
+                        "education.mark.numeric"]._get_mark(num_mark)
+                    num_mark_name = mark_name.reduced_name if mark_name else ""
+                else:
+                    num_mark = record.numeric_mark
+                    mark_name = record.mark_id
+                    num_mark_name = record.n_mark_reduced_name
+                mark_list.append(num_mark)
                 behaviour = record.behaviour_mark_id.display_name or _("UN")
                 if record.exceptionality:
                     field = record._fields['exceptionality']
@@ -131,13 +143,15 @@ class EducationGroupXlsx(models.AbstractModel):
                     if record.state == "assessed":
                         format_amount = self.format_amount_bold
                         format_mark = self.format_bold
-                        if record.mark_id in not_passed:
+                        if mark_name in not_passed:
+                            not_passed_count += 1
                             format_amount = self.format_amount_bold_not_passed
                             format_mark = self.format_bold_not_passed
                         if (record.behaviour_mark_id.code not in
                                 ('A', 'B', 'C')):
                             format_behaviour = self.format_bold_not_passed
-                    elif record.mark_id in not_passed:
+                    elif mark_name in not_passed:
+                        not_passed_count += 1
                         format_amount = self.format_amount_not_passed
                         format_mark = self.format_border_not_passed
                     if record.behaviour_mark_id.code not in ('A', 'B', 'C'):
@@ -149,6 +163,15 @@ class EducationGroupXlsx(models.AbstractModel):
                     sheet.write(
                         row_num, column_num + 2, behaviour, format_behaviour)
             column_num += 3
+        sheet.write(
+            row_num, 4, not_passed_count, self.format_integer)
+        avg_mark = mean(mark_list)
+        avg_mark_name = self.env[
+            "education.mark.numeric"]._get_mark(avg_mark)
+        sheet.write(
+            row_num, column_num, avg_mark,
+            self.format_amount_not_passed if avg_mark_name in not_passed else
+            self.format_amount)
 
     def generate_xlsx_report(self, workbook, data, objects):
         self._define_formats(workbook)
@@ -221,3 +244,5 @@ class EducationGroupXlsx(models.AbstractModel):
         self.format_amount_bold_not_passed = workbook.add_format({
             'bold': True, 'color': '#FF0000'})
         self.format_amount_bold_not_passed.set_num_format('#,##0.' + '00')
+        self.format_integer = workbook.add_format({'border': True})
+        self.format_integer.set_num_format(1)

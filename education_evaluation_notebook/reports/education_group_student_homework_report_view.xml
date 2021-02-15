@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="education_group_homework_report_view_tree" model="ir.ui.view">
-        <field name="model">education.group.homework.report</field>
+    <record id="education_group_student_homework_report_view_tree" model="ir.ui.view">
+        <field name="model">education.group.student.homework.report</field>
         <field name="arch" type="xml">
             <tree decoration-danger="homework_deadline and (homework_deadline &lt; current_date)">
                 <field name="center_id" />
@@ -11,6 +11,7 @@
                 <field name="subject_name" />
                 <field name="teacher_id" />
                 <field name="classroom_id" />
+                <field name="student_id" />
                 <field name="academic_year_id" />
                 <field name="homework_description" />
                 <field name="homework_deadline" />
@@ -18,8 +19,8 @@
         </field>
     </record>
 
-    <record id="education_group_homework_report_view_calendar" model="ir.ui.view">
-        <field name="model">education.group.homework.report</field>
+    <record id="education_group_student_homework_report_view_calendar" model="ir.ui.view">
+        <field name="model">education.group.student.homework.report</field>
         <field name="arch" type="xml">
             <calendar string="Exams" date_start="homework_deadline" mode="month" color="group_id">
                 <field name="homework_description"/>
@@ -29,8 +30,8 @@
         </field>
     </record>
 
-    <record id="education_group_homework_report_view_search" model="ir.ui.view">
-        <field name="model">education.group.homework.report</field>
+    <record id="education_group_student_homework_report_view_search" model="ir.ui.view">
+        <field name="model">education.group.student.homework.report</field>
         <field name="arch" type="xml">
             <search>
                 <field name="center_id" />
@@ -38,6 +39,7 @@
                 <field name="group_id" />
                 <field name="subject_id" />
                 <field name="teacher_id" />
+                <field name="student_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
                 <field name="homework_description" />
@@ -64,6 +66,8 @@
                             context="{'group_by':'subject_id'}"/>
                     <filter string="Teacher" name="teacher"
                             context="{'group_by':'teacher_id'}"/>
+                    <filter string="Student" name="student"
+                            context="{'group_by':'student_id'}"/>
                     <filter string="Classroom" name="classroom"
                             context="{'group_by':'classroom_id'}"/>
                     <filter string="Academic year" name="academic_year"
@@ -77,13 +81,13 @@
         </field>
     </record>
 
-    <record id="action_education_group_homework_report" model="ir.actions.act_window">
-        <field name="name">Homework List</field>
-        <field name="res_model">education.group.homework.report</field>
+    <record id="action_education_group_student_homework_report" model="ir.actions.act_window">
+        <field name="name">Homework List for Student</field>
+        <field name="res_model">education.group.student.homework.report</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,calendar</field>
         <field name="search_view_id"
-               ref="education_group_homework_report_view_search"/>
+               ref="education_group_student_homework_report_view_search"/>
         <field name="context">{'search_default_current_academic_year': True}</field>
     </record>
 </odoo>

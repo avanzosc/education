@@ -6,12 +6,12 @@ from odoo import api, fields, models
 from psycopg2.extensions import AsIs
 
 
-class EducationGroupHomeworkReport(models.Model):
-    _name = "education.group.homework.report"
-    _inherit = "education.group.teacher.report"
-    _description = "Groups Homework Report"
+class EducationGroupStudentHomeworkReport(models.Model):
+    _name = "education.group.student.homework.report"
+    _inherit = "education.group.student.report"
+    _description = "Groups Homework Report for Student"
     _auto = False
-    _rec_name = "teacher_id"
+    _rec_name = "student_id"
 
     homework_id = fields.Many2one(
         comodel_name="education.homework", string="Homework")
@@ -23,12 +23,12 @@ class EducationGroupHomeworkReport(models.Model):
             "subject_id", "classroom_id", "teacher_id", "academic_year_id"
         ],
         "education.group": [
-            "center_id", "course_id"
+            "center_id", "course_id", "student_ids"
         ],
     }
 
     def _coalesce(self):
-        return super(EducationGroupHomeworkReport, self)._coalesce()
+        return super(EducationGroupStudentHomeworkReport, self)._coalesce()
 
     def _select(self):
         select_str = """
@@ -36,19 +36,21 @@ class EducationGroupHomeworkReport(models.Model):
                 , edu_hw.name AS homework_description
                 , edu_hw.date AS homework_deadline
         """
-        return super(EducationGroupHomeworkReport, self)._select() + select_str
+        return (super(EducationGroupStudentHomeworkReport, self)._select() +
+                select_str)
 
     def _from(self):
         from_str = """
                 JOIN education_homework edu_hw ON edu_hw.schedule_id = sch.id
         """
-        return super(EducationGroupHomeworkReport, self)._from() + from_str
+        return (super(EducationGroupStudentHomeworkReport, self)._from() +
+                from_str)
 
     def _group_by(self):
         group_by_str = """
                 , edu_hw.id, edu_hw.name, edu_hw.date
         """
-        return (super(EducationGroupHomeworkReport, self)._group_by() +
+        return (super(EducationGroupStudentHomeworkReport, self)._group_by() +
                 group_by_str)
 
     @api.model_cr
