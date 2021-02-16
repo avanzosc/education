@@ -32,7 +32,8 @@ class ResPartner(models.Model):
                 cond = expression.AND([level_cond, cond])
                 if schedule_id and classroom_site:
                     cond = expression.AND([
-                        [('issue_type_id.site_id', '=', classroom_site.id)],
+                        ["|", ("issue_type_id.site_id", "=", False),
+                         ("issue_type_id.site_id", '=', classroom_site.id)],
                         cond])
             issue_types = self.env['school.college.issue.type']
             if cond:
