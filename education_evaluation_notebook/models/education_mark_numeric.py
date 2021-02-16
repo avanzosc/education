@@ -17,3 +17,10 @@ class EducationNumericMark(models.Model):
         string="Passed", default=False,
         help="This field will determine if it the record is considered as"
              " passed or failed.")
+
+    def _get_mark(self, numeric_value=False):
+        if not numeric_value:
+            return False
+        return self.env["education.mark.numeric"].search([
+            ("initial_mark", "<=", numeric_value),
+            ("final_mark", ">=", numeric_value)], limit=1)

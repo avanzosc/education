@@ -186,9 +186,7 @@ class EducationRecord(models.Model):
         for record in self:
             if (record.exceptionality != "exempt" and
                     record.competence_eval_mode != "behaviour"):
-                record.mark_id = mark_obj.search([
-                    ("initial_mark", "<=", record.numeric_mark),
-                    ("final_mark", ">=", record.numeric_mark)], limit=1)
+                record.mark_id = mark_obj._get_mark(record.numeric_mark)
 
     @api.multi
     @api.depends("student_id", "academic_year_id", "subject_id", "schedule_id")

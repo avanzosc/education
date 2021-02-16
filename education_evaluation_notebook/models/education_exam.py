@@ -6,6 +6,13 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
+EXAM_STATES = [
+    ("draft", "New"),
+    ("progress", "Marking"),
+    ("done", "Graded"),
+    ("closed", "Closed"),
+]
+
 
 class EducationExam(models.Model):
     _name = "education.exam"
@@ -39,11 +46,8 @@ class EducationExam(models.Model):
     date = fields.Date(string="Exam date", copy=False)
     eval_percent = fields.Float(string="Percent (%)", required=True)
     state = fields.Selection(
-        selection=[("draft", "New"),
-                   ("progress", "Marking"),
-                   ("done", "Graded"),
-                   ("closed", "Closed"), ],
-        default="draft", track_visibility="onchange", string="State",
+        selection=EXAM_STATES,
+        default="draft", track_visibility="onchange", string="Status",
         copy=False)
     recovered_exam_id = fields.Many2one(
         comodel_name="education.exam", string="Recovered Exam")

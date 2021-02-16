@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="education_group_homework_report_view_tree" model="ir.ui.view">
-        <field name="model">education.group.homework.report</field>
+    <record id="education_group_student_exam_report_view_tree" model="ir.ui.view">
+        <field name="model">education.group.student.exam.report</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="homework_deadline and (homework_deadline &lt; current_date)">
+            <tree decoration-danger="exam_date and (exam_date &lt; current_date)">
                 <field name="center_id" />
                 <field name="course_id" />
                 <field name="group_id" />
                 <field name="subject_id" />
                 <field name="subject_name" />
                 <field name="teacher_id" />
+                <field name="student_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
-                <field name="homework_description" />
-                <field name="homework_deadline" />
+                <field name="exam_description" />
+                <field name="exam_date" />
             </tree>
         </field>
     </record>
 
-    <record id="education_group_homework_report_view_calendar" model="ir.ui.view">
-        <field name="model">education.group.homework.report</field>
+    <record id="education_group_student_exam_report_view_calendar" model="ir.ui.view">
+        <field name="model">education.group.student.exam.report</field>
         <field name="arch" type="xml">
-            <calendar string="Exams" date_start="homework_deadline" mode="month" color="group_id">
-                <field name="homework_description"/>
+            <calendar string="Exams" date_start="exam_date" mode="month" color="group_id">
+                <field name="exam_description"/>
                 <field name="teacher_id"/>
                 <field name="subject_id"/>
             </calendar>
         </field>
     </record>
 
-    <record id="education_group_homework_report_view_search" model="ir.ui.view">
-        <field name="model">education.group.homework.report</field>
+    <record id="education_group_student_exam_report_view_search" model="ir.ui.view">
+        <field name="model">education.group.student.exam.report</field>
         <field name="arch" type="xml">
             <search>
                 <field name="center_id" />
@@ -40,19 +41,19 @@
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
-                <field name="homework_description" />
-                <field name="homework_deadline" />
+                <field name="exam_description" />
+                <field name="exam_date" />
                 <separator />
                 <filter string="Current Academic Year" name="current_academic_year"
                         domain="[('academic_year_id.current','=',True)]" />
                 <separator />
-                <filter string="Late Homework" name="homework_overdue"
-                        domain="[('homework_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                <filter string="Late Exam" name="exam_overdue"
+                        domain="[('exam_date', '&lt;', context_today().strftime('%Y-%m-%d'))]"
                         help="Show all records which has next action date is before today"/>
-                <filter string="Today Homework" name="homework_today"
-                        domain="[('homework_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
-                <filter string="Future Homework" name="homework_upcoming_all"
-                        domain="[('homework_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Today Exam" name="exam_today"
+                        domain="[('exam_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Future Exam" name="exam_upcoming_all"
+                        domain="[('exam_date', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
                 <group expand="1" string="Group By">
                     <filter string="Education Center" name="education_center"
                             context="{'group_by':'center_id'}"/>
@@ -68,22 +69,22 @@
                             context="{'group_by':'classroom_id'}"/>
                     <filter string="Academic year" name="academic_year"
                             context="{'group_by':'academic_year_id'}"/>
-                    <filter string="Homework" name="homework"
-                            context="{'group_by':'homework_id'}" />
-                    <filter string="Deadline" name="homework_deadline"
-                            context="{'group_by':'homework_deadline'}" />
+                    <filter string="Exam" name="exam"
+                            context="{'group_by':'exam_id'}" />
+                    <filter string="Exam Date" name="exam_date"
+                            context="{'group_by':'exam_date'}" />
                 </group>
             </search>
         </field>
     </record>
 
-    <record id="action_education_group_homework_report" model="ir.actions.act_window">
-        <field name="name">Homework List</field>
-        <field name="res_model">education.group.homework.report</field>
+    <record id="action_education_group_student_exam_report" model="ir.actions.act_window">
+        <field name="name">Exam List for Student</field>
+        <field name="res_model">education.group.student.exam.report</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,calendar</field>
         <field name="search_view_id"
-               ref="education_group_homework_report_view_search"/>
+               ref="education_group_student_exam_report_view_search"/>
         <field name="context">{'search_default_current_academic_year': True}</field>
     </record>
 </odoo>
