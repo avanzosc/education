@@ -73,6 +73,9 @@
                                 </tree>
                             </field>
                         </page>
+                        <page name="programme" string="Programme of Study">
+                            <field name="programme" readonly="True"/>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -94,6 +97,9 @@
                 <attribute name="readonly" />
             </field>
             <field name="subject_id" position="attributes">
+                <attribute name="readonly" />
+            </field>
+            <field name="programme" position="attributes">
                 <attribute name="readonly" />
             </field>
         </field>

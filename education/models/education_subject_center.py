@@ -30,6 +30,7 @@ class EducationSubjectCenter(models.Model):
         string="Name by Language", inverse_name="subject_center_id")
     subject_type = fields.Selection(
         selection=SUBJECT_TYPE, string="Subject Type")
+    programme = fields.Html(string="Programme of Study")
 
     _sql_constraints = [
         ("subject_center_unique",

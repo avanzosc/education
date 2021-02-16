@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-19 10:14+0000\n"
-"PO-Revision-Date: 2020-11-19 10:14+0000\n"
+"POT-Creation-Date: 2021-02-16 16:40+0000\n"
+"PO-Revision-Date: 2021-02-16 16:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -401,6 +401,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_search
 #: model_terms:ir.ui.view,arch_db:education.education_schedule_view_search
 msgid "Current Academic Year"
+msgstr ""
+
+#. module: education
+#: model:ir.model.fields,field_description:education.field_education_academic_year_evaluation__current
+msgid "Current Evaluation"
 msgstr ""
 
 #. module: education
@@ -913,13 +918,13 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_academic_year.py:56
-#: code:addons/education/models/education_academic_year_evaluation.py:26
+#: code:addons/education/models/education_academic_year_evaluation.py:48
 #, python-format
 msgid "End date must be after start date."
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_academic_year_evaluation.py:37
+#: code:addons/education/models/education_academic_year_evaluation.py:59
 #, python-format
 msgid "Evaluation dates must be between academic year dates."
 msgstr ""
@@ -1383,6 +1388,12 @@ msgid "Positions"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_subject_center__programme
+#: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_form
+msgid "Programme of Study"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_group_session__recess
 msgid "Recess"
 msgstr ""
@@ -1621,7 +1632,6 @@ msgid "Student's Second Lastname"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:142
 #: code:addons/education/models/education_group.py:158
 #: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
@@ -1913,7 +1923,6 @@ msgid "Working Hours"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:130
 #: code:addons/education/models/education_group.py:146
 #, python-format
 msgid "You can only edit photos from official groups."
@@ -1942,7 +1951,7 @@ msgid "report.education.education_group_xlsx"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_academic_year_evaluation.py:40
+#: code:addons/education/models/education_academic_year_evaluation.py:62
 #: code:addons/education/tests/test_education.py:124
 #, python-format
 msgid "{} (copy)"
