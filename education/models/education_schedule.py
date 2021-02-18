@@ -109,6 +109,31 @@ class EducationSchedule(models.Model):
         })
         return action_dict
 
+    @api.multi
+    def button_open_programme(self):
+        self.ensure_one()
+        action = self.env.ref('education.action_education_subject_center')
+        action_dict = action.read()[0] if action else {}
+        programmes = self.env["education.subject.center"].search(
+            [("center_id", "=", self.center_id.id),
+             ("subject_id", "=", self.subject_id.id),
+             ("level_id", "=", self.level_id.id),
+             ("course_id", "in", self.mapped("group_ids.course_id").ids)])
+        if len(programmes) > 1:
+            action_dict['domain'] = expression.AND([
+                ("id", "in", programmes.ids),
+                safe_eval(action.domain or '[]')])
+        else:
+            action_dict['views'] = [
+                (self.env.ref(
+                    'education.education_subject_center_view_form').id,
+                 'form')]
+            action_dict['res_id'] = programmes.id
+        action_dict.update({
+            'display_name': _('Subject Programmes'),
+        })
+        return action_dict
+
 
 class EducationScheduleTimetable(models.Model):
     _name = 'education.schedule.timetable'
