@@ -13,4 +13,5 @@ from . import education_notebook_line
 from . import education_notebook_template
 from . import education_record
 from . import education_schedule
+from . import hr_employee
 from . import res_partner

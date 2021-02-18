@@ -17,6 +17,7 @@ class EducationNumericMark(models.Model):
         string="Passed", default=False,
         help="This field will determine if it the record is considered as"
              " passed or failed.")
+    active = fields.Boolean(default=True)
 
     def _get_mark(self, numeric_value=False):
         if not numeric_value:
