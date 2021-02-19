@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-16 16:40+0000\n"
-"PO-Revision-Date: 2021-02-16 16:40+0000\n"
+"POT-Creation-Date: 2021-02-18 14:17+0000\n"
+"PO-Revision-Date: 2021-02-18 14:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1388,6 +1388,11 @@ msgid "Positions"
 msgstr ""
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.education_schedule_view_form
+msgid "Programme"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_subject_center__programme
 #: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_form
 msgid "Programme of Study"
@@ -1691,6 +1696,12 @@ msgstr ""
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.education_subject_view_form
 msgid "Subject Names"
+msgstr ""
+
+#. module: education
+#: code:addons/education/models/education_schedule.py:133
+#, python-format
+msgid "Subject Programmes"
 msgstr ""
 
 #. module: education

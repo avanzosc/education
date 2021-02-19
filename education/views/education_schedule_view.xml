@@ -51,6 +51,10 @@
                             <field name="student_count" string="Students"
                                    widget="statinfo"/>
                         </button>
+                        <button name="button_open_programme" type="object"
+                                class="oe_stat_button"
+                                icon="fa-bars" string="Programme"
+                                attrs="{'invisible': [('subject_id', '=', False)]}"/>
                     </div>
                     <group>
                         <group>
