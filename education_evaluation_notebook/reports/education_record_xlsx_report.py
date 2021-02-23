@@ -3,6 +3,7 @@
 
 import logging
 from statistics import mean
+from xlsxwriter.utility import xl_rowcol_to_cell
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
@@ -42,6 +43,7 @@ class EducationGroupXlsx(models.AbstractModel):
         self.format_amount_not_evaluated = None
         self.format_amount_bold = None
         self.format_amount_bold_not_passed = None
+        self.format_integer_statistics = None
 
     def create_group_sheet(self, workbook, group, eval_type):
         sheet = workbook.add_worksheet(group.description)
@@ -97,9 +99,9 @@ class EducationGroupXlsx(models.AbstractModel):
                 "education_evaluation_notebook.numeric_mark_very_bad")]
         record_obj = self.env["education.record"]
         sheet.write("A" + str(row), str(row - 7), self.format_border)
-        sheet.write("B" + str(row), student.lastname, self.format_border)
-        sheet.write("C" + str(row), student.lastname2, self.format_border)
-        sheet.write("D" + str(row), student.firstname, self.format_border)
+        sheet.write("B" + str(row), student.lastname, self.format_left)
+        sheet.write("C" + str(row), student.lastname2, self.format_left)
+        sheet.write("D" + str(row), student.firstname, self.format_left)
         column_num = 5
         row_num = row - 1
         mark_list = []
@@ -111,7 +113,7 @@ class EducationGroupXlsx(models.AbstractModel):
                 ("eval_type", "=", eval_type),
                 ("evaluation_competence", "=", True),
             ])
-            sheet.set_column(column_num, column_num + 2, 5)
+            sheet.set_column(column_num, column_num + 2, 7)
             if not records:
                 sheet.write(row_num, column_num, "XX", self.format_border)
                 sheet.write(row_num, column_num + 1, "XX", self.format_border)
@@ -135,7 +137,7 @@ class EducationGroupXlsx(models.AbstractModel):
                         record.exceptionality, record)
                     sheet.merge_range(
                         row_num, column_num, row_num, column_num + 2,
-                        text, self.format_center_bold)
+                        text, self.format_border)
                 else:
                     format_amount = self.format_amount
                     format_mark = self.format_border
@@ -164,14 +166,88 @@ class EducationGroupXlsx(models.AbstractModel):
                         row_num, column_num + 2, behaviour, format_behaviour)
             column_num += 3
         sheet.write(
-            row_num, 4, not_passed_count, self.format_integer)
+            row_num, 4, not_passed_count, self.format_integer_statistics)
         avg_mark = mean(mark_list)
         avg_mark_name = self.env[
             "education.mark.numeric"]._get_mark(avg_mark)
         sheet.write(
             row_num, column_num, avg_mark,
-            self.format_amount_not_passed if avg_mark_name in not_passed else
-            self.format_amount)
+            self.format_amount_not_passed_statistics
+            if avg_mark_name in not_passed else
+            self.format_amount_statistics)
+
+    def add_statistics(self, sheet, row_num, subject_lists):
+        column_num = 5
+        num_marks = self.env["education.mark.numeric"].search([])
+        student_list_start_row = 7
+        student_list_end_row = row_num - 1
+        for subject in subject_lists:
+            sheet.write_formula(
+                row_num,
+                column_num,
+                '=AVERAGE(%s:%s)' % (
+                    xl_rowcol_to_cell(
+                        student_list_start_row,
+                        column_num
+                    ),
+                    xl_rowcol_to_cell(
+                        student_list_end_row,
+                        column_num
+                    ),
+                ),
+                self.format_header_amount,
+            )
+            sheet.merge_range(
+                row_num, column_num + 1, row_num, column_num + 2,
+                subject.description, self.format_header_center)
+            mark_row_num = row_num + 1
+            for num_mark in num_marks:
+                sheet.write(
+                    mark_row_num,
+                    column_num,
+                    num_mark.reduced_name,
+                    self.format_statistics
+                )
+                sheet.write_formula(
+                    mark_row_num,
+                    column_num + 1,
+                    "=COUNTIF(%s:%s,%s)" % (
+                        xl_rowcol_to_cell(
+                            student_list_start_row,
+                            column_num + 1
+                        ),
+                        xl_rowcol_to_cell(
+                            student_list_end_row,
+                            column_num + 1
+                        ),
+                        xl_rowcol_to_cell(
+                            mark_row_num,
+                            column_num
+                        ),
+                    ),
+                    self.format_amount_statistics,
+                )
+                sheet.write_formula(
+                    mark_row_num,
+                    column_num + 2,
+                    '=%s/COUNTIF(%s:%s,"<>XX")' % (
+                        xl_rowcol_to_cell(
+                            mark_row_num,
+                            column_num + 1
+                        ),
+                        xl_rowcol_to_cell(
+                            student_list_start_row,
+                            column_num + 1
+                        ),
+                        xl_rowcol_to_cell(
+                            student_list_end_row,
+                            column_num + 1
+                        ),
+                    ),
+                    self.format_percentage
+                )
+                mark_row_num += 1
+            column_num += 3
 
     def generate_xlsx_report(self, workbook, data, objects):
         self._define_formats(workbook)
@@ -196,6 +272,8 @@ class EducationGroupXlsx(models.AbstractModel):
             group_records = record_obj.search([
                 ("student_id", "in", group.student_ids.ids),
                 ("eval_type", "=", eval_type),
+                ("n_line_id.schedule_id.task_type_id.education_code", "!=",
+                 "0123"),
             ])
             subject_lists = group_records.mapped("subject_id")
             self.add_subject_list(group_sheet, group, subject_lists)
@@ -204,33 +282,56 @@ class EducationGroupXlsx(models.AbstractModel):
                     group_sheet, row, student, eval_type, subject_lists,
                     partial_mark=partial_mark)
                 row += 1
+            self.add_statistics(group_sheet, row - 1, subject_lists)
 
     def _define_formats(self, workbook):
         """ Add cell formats to current workbook.
         Those formats can be used on all cell.
         """
-        self.format_border = workbook.add_format({'border': True})
-        self.format_border_not_passed = workbook.add_format(
-            {'border': True, 'color': '#FF0000'})
-        self.format_bold = workbook.add_format({'bold': True, 'border': True})
-        self.format_bold_not_passed = workbook.add_format(
-            {'bold': True, 'border': True, 'color': '#FF0000'})
-        self.format_right = workbook.add_format({'align': 'right'})
-        self.format_left = workbook.add_format({'align': 'left'})
-        self.format_center_bold = workbook.add_format(
-            {'align': 'center', 'bold': True, 'border': True})
+        self.format_border = workbook.add_format({
+            'border': True,
+            'align': 'center',
+        })
+        self.format_border_not_passed = workbook.add_format({
+            'border': True,
+            'align': 'center',
+            'color': '#FF0000',
+        })
+        self.format_bold = workbook.add_format({
+            'bold': True,
+            'border': True,
+            'align': 'center',
+        })
+        self.format_bold_not_passed = workbook.add_format({
+            'bold': True,
+            'border': True,
+            'align': 'center',
+            'color': '#FF0000',
+        })
+        self.format_right = workbook.add_format({
+            'border': True,
+            'align': 'right',
+        })
+        self.format_left = workbook.add_format({
+            'border': True,
+            'align': 'left',
+        })
         self.format_right_bold_italic = workbook.add_format(
             {'align': 'right', 'bold': True, 'italic': True})
-        self.format_header_left = workbook.add_format(
-            {'bold': True, 'border': True, 'bg_color': '#F2F2F2'})
-        self.format_header_center = workbook.add_format(
-            {'bold': True, 'align': 'center', 'border': True,
-             'bg_color': '#F2F2F2'})
-        self.format_header_right = workbook.add_format(
-            {'bold': True, 'align': 'right', 'border': True,
-             'bg_color': '#F2F2F2'})
-        self.format_header_amount = workbook.add_format(
-            {'bold': True, 'border': True, 'bg_color': '#F2F2F2'})
+
+        header_dict = {
+            'bold': True,
+            'border': True,
+            'bg_color': '#F2F2F2'
+        }
+        self.format_header_left = workbook.add_format(header_dict)
+        self.format_header_center = workbook.add_format(header_dict)
+        self.format_header_center.set_align('center')
+        self.format_header_right = workbook.add_format(header_dict)
+        self.format_header_right.set_align('right')
+        self.format_header_amount = workbook.add_format(header_dict)
+        self.format_header_amount.set_num_format('#,##0.' + '00')
+
         self.format_amount = workbook.add_format({'border': True})
         self.format_amount.set_num_format('#,##0.' + '00')
         self.format_amount_not_passed = workbook.add_format({
@@ -239,10 +340,33 @@ class EducationGroupXlsx(models.AbstractModel):
         self.format_amount_not_evaluated = workbook.add_format({
             'color': '#B5B5B5', 'border': True})
         self.format_amount_not_evaluated.set_num_format('#,##0.' + '00')
-        self.format_amount_bold = workbook.add_format({'bold': True})
+        self.format_amount_bold = workbook.add_format({
+            'bold': True,
+            'border': True,
+        })
         self.format_amount_bold.set_num_format('#,##0.' + '00')
         self.format_amount_bold_not_passed = workbook.add_format({
-            'bold': True, 'color': '#FF0000'})
+            'bold': True,
+            'border': True,
+            'color': '#FF0000',
+        })
         self.format_amount_bold_not_passed.set_num_format('#,##0.' + '00')
-        self.format_integer = workbook.add_format({'border': True})
-        self.format_integer.set_num_format(1)
+
+        statistics_dict = {
+            'bold': True,
+            'border': True,
+            'align': 'center',
+            'bg_color': '#92BDDA'
+        }
+        self.format_statistics = workbook.add_format(statistics_dict)
+        self.format_percentage = workbook.add_format(statistics_dict)
+        self.format_percentage.set_num_format(10)
+        self.format_integer_statistics = workbook.add_format(statistics_dict)
+        self.format_integer_statistics.set_num_format(1)
+        self.format_amount_statistics = workbook.add_format(statistics_dict)
+        self.format_amount_statistics.set_num_format(
+            '#,##0.' + '00')
+        self.format_amount_not_passed_statistics = workbook.add_format(
+            statistics_dict)
+        self.format_amount_not_passed_statistics.set_num_format(
+            '#,##0.' + '00')

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-15 15:24+0000\n"
-"PO-Revision-Date: 2021-02-15 15:24+0000\n"
+"POT-Creation-Date: 2021-02-22 11:19+0000\n"
+"PO-Revision-Date: 2021-02-22 11:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -109,6 +109,18 @@ msgid "<br/>\n"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.hr_employee_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_education_minimal_view_form
+msgid "<span class=\"o_stat_text\">Exams</span>"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.hr_employee_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.res_partner_education_minimal_view_form
+msgid "<span class=\"o_stat_text\">Homework</span>"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_record_action
 #: model:ir.model,name:education_evaluation_notebook.model_education_record
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_record_menu
@@ -147,8 +159,8 @@ msgid "Academic Year"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:55
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:56
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:58
 #, python-format
 msgid "Academic Year:"
 msgstr ""
@@ -178,6 +190,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__active
+msgid "Active"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -218,6 +235,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:88
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:90
 #, python-format
 msgid "Average Score"
 msgstr ""
@@ -577,6 +595,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.hr_employee_view_kanban
+msgid "Dropdown menu"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__center_id
@@ -600,8 +623,8 @@ msgid "Education Center and Course relation"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:51
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:52
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:54
 #, python-format
 msgid "Education Center:"
 msgstr ""
@@ -617,8 +640,8 @@ msgid "Education Competence"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:65
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:66
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:68
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_exam_report__course_id
@@ -637,8 +660,8 @@ msgid "Education Exam"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:69
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:70
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:72
 #: model:ir.model,name:education_evaluation_notebook.model_education_group
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__group_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__group_id
@@ -688,6 +711,11 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_academic_year_revision_menuitem
 msgid "Educational Academic Year"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model,name:education_evaluation_notebook.model_hr_employee
+msgid "Employee"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -741,6 +769,12 @@ msgid "Evaluation Number"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/wizards/export_education_record_xlsx_report.py:21
+#, python-format
+msgid "Evaluation Record"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__eval_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__eval_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__eval_type
@@ -772,8 +806,8 @@ msgid "Evaluation notebook"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:58
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:59
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:61
 #, python-format
 msgid "Evaluation:"
 msgstr ""
@@ -792,6 +826,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_exam_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Exam"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_student_exam_calendar_report
+msgid "Exam Calendar"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -867,9 +906,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_exam_report_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_exam_report_view_calendar
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_homework_report_view_calendar
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_exam_report_view_calendar2
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.hr_employee_view_kanban
 msgid "Exams"
 msgstr ""
 
@@ -1094,12 +1134,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__homework_ids
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_homework_menu
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_homework_report_view_calendar
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_homework_report_view_calendar2
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_homework_view_tree
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.hr_employee_view_kanban
 msgid "Homework"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_student_homework_calendar_report
+msgid "Homework Calendar"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -1436,6 +1484,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:81
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:83
 #, python-format
 msgid "Not Passed"
 msgstr ""
@@ -1532,7 +1581,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_record.py:339
-#: code:addons/education_evaluation_notebook/models/education_record.py:341
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr ""
@@ -1772,8 +1820,8 @@ msgid "Retake records (only assessed without exam)"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:49
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:50
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:52
 #, python-format
 msgid "STUDENT LIST"
 msgstr ""
@@ -1860,8 +1908,8 @@ msgid "Status based on activities\n"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:73
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:74
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:76
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_exam_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_homework_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__student_id
@@ -1996,8 +2044,8 @@ msgid "Type"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:117
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:131
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:133
 #, python-format
 msgid "UN"
 msgstr ""
@@ -2059,31 +2107,27 @@ msgid "Wizard to export education records in xlsx"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:213
 #: code:addons/education_evaluation_notebook/models/education_exam.py:217
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:160
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:184
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:253
 #, python-format
 msgid "You can only get xlsx report of official groups"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:163
 #: code:addons/education_evaluation_notebook/models/education_exam.py:167
 #, python-format
 msgid "You must set an exam date."
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:231
 #: code:addons/education_evaluation_notebook/models/education_exam.py:235
 #: code:addons/education_evaluation_notebook/models/education_record.py:399
-#: code:addons/education_evaluation_notebook/models/education_record.py:401
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"

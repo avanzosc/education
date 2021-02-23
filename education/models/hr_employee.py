@@ -30,6 +30,14 @@ class HrEmployee(models.Model):
             r.daily_hour == daily_hour)
 
     @api.multi
+    def get_groups(self):
+        self.ensure_one()
+        schedules = self.env["education.schedule"].search([
+            ("teacher_id", "=", self.id)
+        ])
+        return schedules.mapped("group_ids")
+
+    @api.multi
     def button_open_schedule(self):
         self.ensure_one()
         action = self.env.ref(

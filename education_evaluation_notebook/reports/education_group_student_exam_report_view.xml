@@ -30,6 +30,17 @@
         </field>
     </record>
 
+        <record id="education_group_student_exam_report_view_calendar2" model="ir.ui.view">
+        <field name="model">education.group.student.exam.report</field>
+        <field name="arch" type="xml">
+            <calendar string="Exams" date_start="exam_date" mode="month" color="subject_id">
+                <field name="exam_description"/>
+                <field name="teacher_id"/>
+                <field name="subject_id"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id="education_group_student_exam_report_view_search" model="ir.ui.view">
         <field name="model">education.group.student.exam.report</field>
         <field name="arch" type="xml">
@@ -86,5 +97,22 @@
         <field name="search_view_id"
                ref="education_group_student_exam_report_view_search"/>
         <field name="context">{'search_default_current_academic_year': True}</field>
+    </record>
+
+    <record id="action_education_group_student_exam_calendar_report" model="ir.actions.act_window">
+        <field name="name">Exam Calendar</field>
+        <field name="res_model">education.group.student.exam.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">calendar,tree</field>
+        <field name="search_view_id"
+               ref="education_group_student_exam_report_view_search"/>
+        <field name="context">{'search_default_current_academic_year': True}</field>
+        <field name="domain">[('student_id', '=', active_id)]</field>
+    </record>
+
+    <record id="action_education_group_student_exam_calendar_report_view" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="action_education_group_student_exam_calendar_report" />
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="education_group_student_exam_report_view_calendar2" />
     </record>
 </odoo>

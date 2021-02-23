@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_employee_view_form" model="ir.ui.view">
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <div class="oe_button_box" name="button_box">
+                <button class="oe_stat_button" type="object"
+                        name="button_open_group_exams" icon="fa-file-text-o">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Exams</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" type="object"
+                        name="button_open_group_homework" icon="fa-briefcase">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Homework</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="hr_employee_view_kanban" model="ir.ui.view">
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <kanban class="o_hr_employee_kanban">
+                <field name="id"/>
+                <field name="message_follower_ids"/>
+                <field name="message_ids"/>
+                <field name="message_needaction_counter"/>
+                <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                        <!-- Medium employee's picture -->
+                        <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image: url(#{kanban_image('hr.employee', 'image_medium', record.id.raw_value)})" role="img"/>
+                        <!-- Employee's picture optimized for mobile -->
+                        <div class="o_kanban_image d-md-none rounded-circle" t-attf-style="background-image: url(#{kanban_image('hr.employee', 'image_small', record.id.raw_value)})" role="img"/>
+
+                        <div class="oe_kanban_details">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <span t-if="record.job_id.raw_value" class="o_kanban_record_subtitle"><field name="job_id"/></span>
+                                </div>
+                            </div>
+                            <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <ul>
+                                <li id="last_login"/>
+                                <li t-if="record.company_id.raw_value"><field name="company_id"/></li>
+                                <li t-if="record.center_ids.raw_value"><field name="center_ids" widget="many2many_tags"/></li>
+                                <li t-if="record.work_phone.raw_value"><field name="work_phone"/></li>
+                                <li t-if="record.work_email.raw_value"><field name="work_email"/></li>
+                                <li t-if="record.work_location.raw_value"><field name="work_location"/></li>
+                            </ul>
+                        </div>
+                        <div class="o_dropdown_kanban dropdown" tabindex="-1">
+                            <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" role="button" aria-label="Dropdown menu" title="Dropdown menu">
+                                <span class="fa fa-ellipsis-v"/>
+                            </a>
+                            <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <a name="button_open_group_exams" type="object" role="menuitem" class="dropdown-item">Exams</a>
+                                <a name="button_open_group_homework" type="object" role="menuitem" class="dropdown-item">Homework</a>
+                            </div>
+                        </div>
+                    </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="hr_employee_teacher_action_view_kanban" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="hr_education.hr_employee_teacher_action" />
+        <field name="view_id" ref="hr_employee_view_kanban" />
+        <field name="view_mode">kanban</field>
+    </record>
+
+</odoo>

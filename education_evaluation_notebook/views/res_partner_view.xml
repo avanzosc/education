@@ -26,6 +26,20 @@
                         attrs="{'invisible':[('academic_record_count','=',0)]}">
                     <field name="academic_record_count" string="Academic Records" widget="statinfo" />
                 </button>
+                <button class="oe_stat_button" type="action"
+                        name="%(action_education_group_student_exam_calendar_report)d"
+                        icon="fa-file-text-o">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Exams</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" type="action"
+                        name="%(action_education_group_student_homework_calendar_report)d"
+                        icon="fa-briefcase">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Homework</span>
+                    </div>
+                </button>
             </div>
         </field>
     </record>
