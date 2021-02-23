@@ -269,7 +269,7 @@ class EducationGroupXlsx(models.AbstractModel):
                 eval_type = current_eval.eval_type
             group_sheet = self.create_group_sheet(workbook, group, eval_type)
             row = 8
-            group_records = record_obj.search([
+            group_records = record_obj.sudo().search([
                 ("student_id", "in", group.student_ids.ids),
                 ("eval_type", "=", eval_type),
                 ("n_line_id.schedule_id.task_type_id.education_code", "!=",
