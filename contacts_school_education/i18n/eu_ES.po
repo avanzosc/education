@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-03 11:09+0000\n"
-"PO-Revision-Date: 2020-12-03 11:09+0000\n"
+"POT-Creation-Date: 2021-02-23 11:37+0000\n"
+"PO-Revision-Date: 2021-02-23 11:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -179,6 +179,7 @@ msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_course_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_lang_skill__student_current_course_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_course_id
 msgid "Current Course"
 msgstr ""
@@ -190,18 +191,21 @@ msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_center_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_lang_skill__student_current_center_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_center_id
 msgid "Current Education Center"
 msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_level_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_lang_skill__student_current_level_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_level_id
 msgid "Current Education Level"
 msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_partner__current_group_id
+#: model:ir.model.fields,field_description:contacts_school_education.field_res_partner_lang_skill__student_current_group_id
 #: model:ir.model.fields,field_description:contacts_school_education.field_res_users__current_group_id
 msgid "Current Group"
 msgstr ""
@@ -234,6 +238,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_current_view_tree
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_lang_skill_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
 msgid "Education Center"
 msgstr "Ikastetxea"
@@ -257,6 +262,7 @@ msgstr "Ikastetxeak"
 #. module: contacts_school_education
 #: code:addons/contacts_school_education/reports/partner_insurance_xlsx_report.py:54
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_lang_skill_view_search
 #, python-format
 msgid "Education Course"
 msgstr ""
@@ -276,6 +282,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__group_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_current_view_tree
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_lang_skill_view_search
 msgid "Education Group"
 msgstr ""
 
@@ -291,6 +298,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__level_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_current_view_tree
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_lang_skill_view_search
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
 msgid "Education Level"
 msgstr ""
@@ -544,6 +552,11 @@ msgid "Other Relative"
 msgstr "Beste senidea"
 
 #. module: contacts_school_education
+#: model:ir.model,name:contacts_school_education.model_res_partner_lang_skill
+msgid "Partner Language Skill"
+msgstr ""
+
+#. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
 msgid "Permissions"
 msgstr ""
@@ -735,7 +748,7 @@ msgstr ""
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__website_message_ids
 msgid "Website Messages"
-msgstr "Webgune mezuak"
+msgstr "Webgune mezuak  "
 
 #. module: contacts_school_education
 #: model:ir.model.fields,help:contacts_school_education.field_education_course_change__website_message_ids

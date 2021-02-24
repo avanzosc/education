@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_lang_skill_view_search" model="ir.ui.view">
+        <field name="model">res.partner.lang.skill</field>
+        <field name="inherit_id" ref="partner_language_skill.res_partner_lang_skill_view_search" />
+        <field name="arch" type="xml">
+            <field name="exam_date" position="after">
+                <separator />
+                <field name="student_current_center_id" />
+                <field name="student_current_level_id" />
+                <field name="student_current_course_id" />
+                <field name="student_current_group_id" />
+            </field>
+            <filter name="exam_date" position="after">
+                <separator />
+                <filter string="Education Center" name="student_current_center_id"
+                            context="{'group_by': 'student_current_center_id'}"/>
+                <filter string="Education Level" name="student_current_level_id"
+                            context="{'group_by': 'student_current_level_id'}"/>
+                <filter string="Education Course" name="student_current_course_id"
+                            context="{'group_by': 'student_current_course_id'}"/>
+                <filter string="Education Group" name="student_current_group_id"
+                            context="{'group_by': 'student_current_group_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
