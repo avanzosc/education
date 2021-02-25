@@ -5,10 +5,11 @@
         <field name="arch" type="xml">
             <tree decoration-danger="proof_state == 'required'">
                 <field name="issue_date" />
-                <field name="name" />
+                <field name="name" invisible="True" />
                 <field name="school_id" invisible="True" />
-                <field name="school_issue_type_id" options="{'no_open': True}" />
+                <field name="school_issue_type_id" string="Issue Type" options="{'no_open': True}" />
                 <field name="student_id" options="{'no_open': True}"/>
+                <field name="student_group_id" string="Official Group" options="{'no_open': True}"/>
                 <field name="reported_id" options="{'no_open': True}" />
                 <field name="site_id" options="{'no_open': True}" />
                 <field name="group_id" options="{'no_open': True}" />
@@ -26,6 +27,8 @@
                 <field name="name" />
                 <field name="school_issue_type_id" />
                 <field name="student_id" />
+                <field name="student_group_id" string="Official Group"
+                       domain="[('group_type_id.type','=','official')]"/>
                 <field name="reported_id" />
                 <field name="site_id" />
                 <field name="group_id" />
@@ -44,6 +47,10 @@
                             domain="[]" context="{'group_by':'school_issue_type_id'}"/>
                     <filter string="Student" name="group-student"
                             domain="[]" context="{'group_by':'student_id'}"/>
+                    <filter string="Official Group"
+                            name="group-student_group" domain="[]"
+                            context="{'group_by':'student_group_id'}"/>
+                    <separator />
                     <filter string="Reported by" name="group-reported"
                             domain="[]" context="{'group_by':'reported_id'}"/>
                     <filter string="Site" name="group-site" domain="[]"
@@ -54,6 +61,7 @@
                     <filter string="Class Schedule"
                             name="group_education_schedule" domain="[]"
                             context="{'group_by':'education_schedule_id'}"/>
+                    <separator />
                     <filter string="Date" name="group-issue_date"
                             domain="[]" context="{'group_by':'issue_date'}"/>
                     <filter string="Education Center" name="school_group"
@@ -89,6 +97,9 @@
                             <field name="student_id"
                                    attrs="{'invisible': [('affect_to', '!=', 'student')], 'required': [('affect_to', '=', 'student')]}"
                                    context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}"/>
+                            <field name="student_group_id" required="True"
+                                   options="{'no_create': True}"
+                                   domain="[('group_type_id.type','=','official'),('school_id','=',school_id)]"/>
                             <field name="site_id" options="{'no_open': True}" />
                             <field name="requires_imparting_group" invisible="1"/>
                             <field name="group_id"

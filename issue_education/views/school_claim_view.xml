@@ -31,13 +31,18 @@
                 <separator />
                 <filter string="Today" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
                 <group expand="0" string="Group By">
-                   <filter string="Date" name="group-issue_date" domain="[]"
-                           context="{'group_by':'issue_date'}"/>
-                   <filter string="Issue type" name="group-issue_type" domain="[]" context="{'group_by':'school_issue_type_id'}"/>
-                   <filter string="Class Schedule" name="group-education-schedule" domain="[]" context="{'group_by':'education_schedule_id'}"/>
-                   <filter string="Reported by" name="group-reported" domain="[]" context="{'group_by':'reported_id'}"/>
-                   <filter string="Student" name="group-student" domain="[]" context="{'group_by':'student_id'}"/>
-                   <filter string="State" name="group-state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Date" name="group-issue_date" domain="[]"
+                            context="{'group_by':'issue_date'}"/>
+                    <filter string="Issue type" name="group-issue_type" domain="[]"
+                            context="{'group_by':'school_issue_type_id'}"/>
+                    <filter string="Class Schedule" name="group-education-schedule" domain="[]"
+                            context="{'group_by':'education_schedule_id'}"/>
+                    <filter string="Reported by" name="group-reported" domain="[]"
+                            context="{'group_by':'reported_id'}"/>
+                    <filter string="Student" name="group-student" domain="[]"
+                            context="{'group_by':'student_id'}"/>
+                    <filter string="Status" name="group-state" domain="[]"
+                            context="{'group_by':'state'}"/>
                 </group>
             </search>
         </field>
