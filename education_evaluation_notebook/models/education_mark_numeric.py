@@ -21,7 +21,7 @@ class EducationNumericMark(models.Model):
 
     def _get_mark(self, numeric_value=False):
         if not numeric_value:
-            return False
+            numeric_value = 0.0
         return self.env["education.mark.numeric"].search([
             ("initial_mark", "<=", numeric_value),
             ("final_mark", ">=", numeric_value)], limit=1)
