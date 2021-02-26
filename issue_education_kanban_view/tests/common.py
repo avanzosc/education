@@ -9,7 +9,6 @@ class TestIssueEducationKanbanCommon(TestIssueEducationCommon):
     @classmethod
     def setUpClass(cls):
         super(TestIssueEducationKanbanCommon, cls).setUpClass()
-        cls.wiz_create_delete_model = cls.env['wiz.create.delete.issue']
         cls.wiz_create_model = cls.env['wiz.create.issue']
         cls.classroom = cls.env.ref(
             'issue_education.classroom_school_issue_site')
