@@ -117,6 +117,7 @@ class WizCreateIssue(models.TransientModel):
         vals = {
             'name': name,
             'student_id': self.student_id.id,
+            'student_group_id': self.student_id.current_group_id.id,
             'school_id': self.school_id.id,
             'notes': self.notes or '',
             'school_issue_type_id': self.school_issue_type_id.id,

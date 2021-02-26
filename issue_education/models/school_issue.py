@@ -50,6 +50,8 @@ class SchoolIssue(models.Model):
             ('optional', 'No Proof Required'),
             ('proved', 'Proof Added'),
         ], string='Proving State', compute='_compute_proof_state', store=True)
+    student_group_id = fields.Many2one(
+        comodel_name="education.group", string="Student Official Group")
 
     @api.multi
     @api.depends('proof_id', 'requires_justification')
@@ -75,6 +77,11 @@ class SchoolIssue(models.Model):
         for issue in self:
             issue.requires_imparting_group = (
                 issue.site_id.requires_imparting_group)
+
+    @api.onchange("student_id")
+    def onchange_student_id(self):
+        for issue in self:
+            issue.student_group_id = issue.student_id.current_group
 
     @api.model
     def create(self, values):

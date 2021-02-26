@@ -19,25 +19,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__access_warning
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "Sarbide abisua"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_needaction
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Beharrezko ekintza"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_ids
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Jarduerak"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_state
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Jarduera egoera"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__affect_to
@@ -61,7 +61,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_attachment_count
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Eranskin kontagailua"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__education_schedule_id
@@ -69,7 +69,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Class Schedule"
-msgstr ""
+msgstr "Ordutegia"
 
 #. module: issue_education
 #: model:school.issue.site,name:issue_education.classroom_school_issue_site
@@ -80,7 +80,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
 #: selection:school.claim,state:0
 msgid "Closed"
-msgstr ""
+msgstr "Itxita"
 
 #. module: issue_education
 #: model:school.issue.type,name:issue_education.comes_late_issue_type_master
@@ -93,12 +93,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.school_college_educational_measure_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
 msgid "Company"
-msgstr ""
+msgstr "Enpresa"
 
 #. module: issue_education
 #: model:ir.model,name:issue_education.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktua"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__create_uid
@@ -110,7 +110,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site__create_uid
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Nork sortua"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__create_date
@@ -122,7 +122,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site__create_date
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Noiz sortua"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__access_url
@@ -136,7 +136,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__date_from
@@ -158,7 +158,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site__name
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__name
 msgid "Description"
-msgstr ""
+msgstr "Deskribapena"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__description_facts
@@ -181,17 +181,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site__display_name
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Izena erakutsi"
 
 #. module: issue_education
 #: selection:school.claim,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Zirriborroa"
 
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Education Center"
-msgstr ""
+msgstr "Ikastetxea"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__education_group_id
@@ -248,13 +248,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_channel_ids
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Jarraitzaileak (kanalak)"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_partner_ids
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Jarraitzaileak (Lagunak)"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__generate_part
@@ -266,7 +266,7 @@ msgstr ""
 #: selection:school.issue,affect_to:0
 #: selection:school.issue.type,affect_to:0
 msgid "Group"
-msgstr ""
+msgstr "Taldea"
 
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
@@ -278,7 +278,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_type_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Taldekatu"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__id
@@ -314,7 +314,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__image
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__image
 msgid "Image"
-msgstr ""
+msgstr "Irudia"
 
 #. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_inappropriate
@@ -325,7 +325,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_is_follower
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Jarraitzailea da"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_id
@@ -422,7 +422,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site____last_update
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__write_uid
@@ -434,7 +434,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site__write_uid
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azkenengoz eguneratu zuena"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__write_date
@@ -446,24 +446,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site__write_date
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneraketa noiz"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__education_level_id
 #: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
 msgid "Level"
-msgstr ""
+msgstr "Maila"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_main_attachment_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Eranskin nagusia"
 
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
 msgid "Meetings"
-msgstr ""
+msgstr "Bilerak"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__calendar_event_count
@@ -474,13 +474,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_has_error
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Mezua igortzean errorea"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_ids
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mezuak"
 
 #. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_minor
@@ -496,19 +496,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_date_deadline
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Hurrengo jardueraren epemuga"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_summary
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Hurrengo jardueraren laburpena"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_type_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Hurrengo jarduera mota"
 
 #. module: issue_education
 #: selection:school.issue,proof_state:0
@@ -521,7 +521,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_form
 msgid "Notes"
-msgstr ""
+msgstr "Oharrak"
 
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
@@ -551,31 +551,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_needaction_counter
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Akzio kopurua"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_has_error_counter
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_has_error_counter
 msgid "Number of error"
-msgstr ""
+msgstr "Errore kopurua"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_needaction_counter
 #: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Ekintza bat eskatzen duen mezu kopurua"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_has_error_counter
 #: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Bidaltzean errorea eman duten mezu kopurua"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__message_unread_counter
 #: model:ir.model.fields,help:issue_education.field_school_issue_proof__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Irakurri gabeko mezu kopurua"
 
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
@@ -597,7 +597,7 @@ msgstr ""
 #: selection:school.claim,activity_state:0
 #: selection:school.issue.proof,activity_state:0
 msgid "Overdue"
-msgstr ""
+msgstr "Atzeratua"
 
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
@@ -687,7 +687,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_user_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Erabiltzaile arduraduna"
 
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
@@ -710,7 +710,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.school_college_educational_measure_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
 msgid "School"
-msgstr ""
+msgstr "Ikastetxea"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_res_partner__school_claim_count
@@ -758,7 +758,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__access_token
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__access_token
 msgid "Security Token"
-msgstr ""
+msgstr "Segurtasun Tokena "
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__send_email
@@ -769,7 +769,7 @@ msgstr ""
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sekuentzia"
 
 #. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_disruptive
@@ -818,7 +818,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__state
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 msgid "Status"
-msgstr ""
+msgstr "Egoera"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__activity_state
@@ -839,7 +839,7 @@ msgstr ""
 #: selection:school.issue,affect_to:0
 #: selection:school.issue.type,affect_to:0
 msgid "Student"
-msgstr ""
+msgstr "Ikaslea"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_group_id
@@ -852,7 +852,7 @@ msgstr ""
 #: selection:school.claim,activity_state:0
 #: selection:school.issue.proof,activity_state:0
 msgid "Today"
-msgstr ""
+msgstr "Gaur"
 
 #. module: issue_education
 #: model:ir.model,name:issue_education.model_school_issue_type
@@ -875,13 +875,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_unread
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Irakurri gabeko mezuak"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_unread_counter
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Irakurri gabeko mezuen kontagailua"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__usual_issue
@@ -892,13 +892,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__website_message_ids
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Webgune mezuak  "
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__website_message_ids
 #: model:ir.model.fields,help:issue_education.field_school_issue_proof__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Webgunearen komunikazioen historia "
 
 #. module: issue_education
 #: code:addons/issue_education/models/school_issue_severity_scale.py:34

@@ -95,6 +95,7 @@ class WizCreateDeleteIssue(models.TransientModel):
             school_issue_type.issue_type_id.requires_justification,
             'affect_to': school_issue_type.issue_type_id.affect_to,
             'student_id': self.student_id.id,
+            'student_group_id': self.student_id.current_group_id.id,
             'reported_id': self.env.user.id,
             'issue_date': today,
             'education_schedule_id': self.schedule_id.id,
