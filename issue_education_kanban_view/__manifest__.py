@@ -17,7 +17,6 @@
     "category": "Customer Relationship Management",
     "data": [
         "security/ir.model.access.csv",
-        "wizard/wiz_create_delete_issue_view.xml",
         "wizard/wiz_create_issue_view.xml",
         "views/education_group_view.xml",
         "views/education_schedule_view.xml",

@@ -42,26 +42,13 @@ class TestIssueEducationKanbanView(TestIssueEducationKanbanCommon):
             lambda i: i.college_issue_type_id == self.college_issue_type)
         self.assertEquals(student_issue.issue_count, 0)
         self.assertEquals(student_issue.issues_on_day, 0)
-        wiz_model = self.wiz_create_delete_model.with_context(context)
         self.assertFalse(self.student.school_issue_ids)
-        wiz = wiz_model.create({})
-        self.assertFalse(wiz.schedule_id)
-        self.assertEquals(wiz.student_id, self.student)
-        self.assertEquals(wiz.issue_type_id, self.college_issue_type)
-        self.assertEquals(wiz.group_id, self.group)
-        self.assertEquals(
-            wiz.name, _('You are going to CREATE an {} issue').format(
-                self.college_issue_type.name.lower()))
-        wiz.create_delete_issue()
+        self.student.with_context(context).create_delete_issue()
         self.assertTrue(self.student.school_issue_ids)
         student_issue.invalidate_cache()
         self.assertEquals(student_issue.issue_count, 0)
         self.assertEquals(student_issue.issues_on_day, 1)
-        wiz = wiz_model.create({})
-        self.assertEquals(
-            wiz.name, _('You are going to DELETE an {} issue').format(
-                self.college_issue_type.name.lower()))
-        wiz.create_delete_issue()
+        self.student.with_context(context).create_delete_issue()
         self.assertFalse(self.student.school_issue_ids)
         student_issue.invalidate_cache()
         self.assertEquals(student_issue.issue_count, 0)
@@ -103,32 +90,15 @@ class TestIssueEducationKanbanView(TestIssueEducationKanbanCommon):
             'issue_type': self.college_issue_type.id,
             'education_schedule_id': self.schedule.id,
         }
-        self.assertFalse(self.student.with_context(context).student_issue_ids)
-        self.issue_type.site_id = self.classroom
-        self.student.invalidate_cache()
         student_issues = self.student.with_context(context).student_issue_ids
         self.assertTrue(student_issues)
-        wiz_model = self.wiz_create_delete_model.with_context(context)
-        self.assertFalse(self.student.school_issue_ids)
-        wiz = wiz_model.create({})
-        self.assertEquals(wiz.student_id, self.student)
-        self.assertEquals(wiz.issue_type_id, self.college_issue_type)
-        self.assertEquals(wiz.schedule_id, self.schedule)
-        self.assertEquals(wiz.group_id, self.group)
-        self.assertEquals(
-            wiz.name, _('You are going to CREATE an {} issue').format(
-                self.college_issue_type.name.lower()))
-        wiz.create_delete_issue()
+        self.student.with_context(context).create_delete_issue()
         self.assertTrue(self.student.school_issue_ids)
         school_issue = self.student.student_issue_ids.filtered(
             lambda i: i.college_issue_type_id == self.college_issue_type)
         self.assertEquals(school_issue.issue_count, 0)
         self.assertEquals(school_issue.issues_on_day, 1)
-        wiz = wiz_model.create({})
-        self.assertEquals(
-            wiz.name, _('You are going to DELETE an {} issue').format(
-                self.college_issue_type.name.lower()))
-        wiz.create_delete_issue()
+        self.student.with_context(context).create_delete_issue()
         self.assertFalse(self.student.school_issue_ids)
         school_issue.invalidate_cache()
         self.assertEquals(school_issue.issue_count, 0)

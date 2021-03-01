@@ -47,3 +47,31 @@ class ResPartner(models.Model):
                 }
                 student_issues |= student_issues.create(student_issue_vals)
             student.student_issue_ids = [(6, 0, student_issues.ids)]
+
+    def create_delete_issue(self):
+        self.ensure_one()
+        context = self.env.context
+        issue_type = self.env['school.college.issue.type'].browse(
+            context.get('issue_type'))
+        group = self.env["education.group"].browse(
+            context.get('education_group_id'))
+        schedule = self.env['education.schedule'].browse(
+            context.get('education_schedule_id'))
+        if not group and schedule:
+            group = schedule.group_ids.filtered(
+                lambda g: self in g.student_ids)[:1]
+        issue_obj = self.env['school.issue']
+        issue = issue_obj._find_today_issue(
+            self.id, issue_type.id, group.id, schedule.id)
+        if issue:
+            issue.unlink()
+        else:
+            vals = issue_obj.prepare_issue_vals(
+                issue_type, self, schedule, group)
+            issue_obj.create(vals)
+        # Close wizard and reload view
+        return {
+            "actions": [
+                {"type": "ir.actions.act_view_reload"},
+            ],
+        }
