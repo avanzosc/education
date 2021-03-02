@@ -305,4 +305,16 @@ if records:
         </field>
     </record>
 
+    <record id="action_round_numeric_mark" model="ir.actions.server">
+        <field name="name">Round official mark</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_education_record" />
+        <field name="binding_model_id" ref="model_education_record" />
+        <field name="code">
+if records:
+    records.action_round_numeric_mark()
+        </field>
+    </record>
+
 </odoo>
