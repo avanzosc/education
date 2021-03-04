@@ -77,6 +77,9 @@ class EducationGroup(models.Model):
         column1='group_id', readonly=True, copy=False)
     schedule_count = fields.Integer(
         compute='_compute_schedule_count', string='Schedule Number')
+    timetable_ids = fields.One2many(
+        comodel_name="education.group.teacher.timetable.report",
+        compute="_compute_timetable_ids")
 
     _sql_constraints = [
         ('education_code_unique',
@@ -120,6 +123,15 @@ class EducationGroup(models.Model):
         for record in self:
             record.calendar_session_ids = [
                 (6, 0, record.calendar_id.attendance_ids.ids)]
+
+    @api.multi
+    def _compute_timetable_ids(self):
+        timetable_obj = self.env["education.group.teacher.timetable.report"]
+        for record in self:
+            record.timetable_ids = timetable_obj.search([
+                "|", ("group_id", "=", record.id),
+                ("group_id.parent_id", "=", record.id)
+            ])
 
     @api.multi
     def button_open_schedule(self):
@@ -197,6 +209,22 @@ class EducationGroup(models.Model):
         return "{}-{}-{}".format(
             self.education_code, re.sub(r"[\W_]+", "", self.description),
             re.sub(r"[\W_]+", "", self.center_id.display_name))
+
+    @api.multi
+    def get_timetable_max_daily_hour(self):
+        self.ensure_one()
+        reports = self.timetable_ids.filtered(
+            lambda r: r.academic_year_id.current)
+        return max(reports.mapped("daily_hour")) if reports else False
+
+    @api.multi
+    def get_timetable_info(self, dayofweek, daily_hour):
+        self.ensure_one()
+        reports = self.timetable_ids.filtered(
+            lambda r: r.academic_year_id.current)
+        return reports.filtered(
+            lambda r: r.dayofweek == str(dayofweek) and
+            r.daily_hour == daily_hour)
 
 
 class EducationGroupTeacher(models.Model):
