@@ -284,15 +284,20 @@ class EducationRecord(models.Model):
     @api.multi
     @api.depends("child_record_ids", "child_record_ids.numeric_mark",
                  "child_record_ids.exam_eval_percent",
-                 "child_record_ids.state")
+                 "child_record_ids.state",
+                 "child_record_ids.retake_record_ids",
+                 "child_record_ids.retake_record_ids.state",
+                 "child_record_ids.retake_record_ids.numeric_mark")
     def _compute_generate_marks(self):
         for record in self:
             mark_records = record.child_record_ids.filtered(
                 lambda r: r.state == "assessed" and
-                r.exceptionality not in ["not_evaluated"])
+                r.exceptionality not in ["not_evaluated"] and
+                not r.recovered_record_id)
             if mark_records:
                 record.calculated_numeric_mark = sum(
-                    [x.numeric_mark * x.exam_eval_percent / 100
+                    [(x.get_max_numeric_mark(assessed=True) *
+                      x.exam_eval_percent / 100)
                      for x in mark_records])
 
     @api.multi
@@ -307,22 +312,36 @@ class EducationRecord(models.Model):
         return False
 
     @api.multi
+    def get_max_numeric_mark(self, assessed=False):
+        self.ensure_one()
+        retake_records = self.mapped("retake_record_ids")
+        if assessed:
+            retake_records = retake_records.filtered(
+                lambda r: r.state == "assessed")
+        numeric_mark_list = (
+            [self.numeric_mark] + retake_records.mapped("numeric_mark"))
+        return max(numeric_mark_list)
+
+    @api.multi
     @api.depends("numeric_mark", "child_record_ids",
                  "child_record_ids.numeric_mark",
                  "child_record_ids.calculated_partial_mark",
                  "child_record_ids.exam_eval_percent",
                  "child_record_ids.state",
-                 "child_record_ids.exceptionality")
+                 "child_record_ids.exceptionality",
+                 "child_record_ids.retake_record_ids",
+                 "child_record_ids.retake_record_ids.numeric_mark")
     def _compute_partial_marks(self):
         for record in self:
             mark_records = record.child_record_ids
             partial_mark = eval_percent = 0.0
             for mark_record in mark_records.filtered(
-                    lambda r: r.exceptionality not in ["not_evaluated"]):
+                    lambda r: r.exceptionality not in ["not_evaluated"] and
+                    not r.recovered_record_id):
                 if mark_record.is_partial_assessed():
                     eval_percent += mark_record.exam_eval_percent
                     partial_mark += (
-                        ((mark_record.numeric_mark or
+                        ((mark_record.get_max_numeric_mark() or
                           mark_record.calculated_partial_mark)
                          if mark_record.exceptionality != "not_taken" else 0) *
                         mark_record.exam_eval_percent)
