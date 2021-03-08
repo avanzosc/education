@@ -153,6 +153,8 @@
                                     <field name="date" />
                                     <field name="mark_close_date" />
                                     <field name="state" readonly="True" />
+                                    <button name="button_open_exam_form" icon="fa-edit"
+                                            string="Open Exam" type="object" />
                                     <button name="action_generate_record" icon="fa-book"
                                             string="Create Academic Records" type="object"
                                             states="draft,progress"/>
@@ -197,6 +199,57 @@
                                             string="Create Academic Records" type="object" />
                                     <button name="button_show_records" icon="fa-th"
                                             string="Open Academic Records" type="object" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="records" string="Academic Records">
+                            <button name="action_copy_calculated_mark"
+                                    string="Copy calculated mark"
+                                    type="object" />
+                            <button name="action_copy_partial_calculated_mark"
+                                    string="Copy partial calculated mark"
+                                    type="object" />
+                            <button name="button_set_draft"
+                                    string="Set assessed records as initial"
+                                    type="object" />
+                            <button name="button_set_assessed"
+                                    string="Set pending records as assessed"
+                                    type="object" />
+                            <button name="action_retake"
+                                    string="Retake records"
+                                    type="object" />
+                            <button name="action_round_numeric_mark"
+                                    string="Round official mark"
+                                    type="object" />
+                            <field name="show_record_ids" readonly="False">
+                                <tree editable="bottom"
+                                      decoration-danger="recovered_record_id"
+                                      decoration-info="global_competence==True"
+                                      decoration-success="evaluation_competence==True"
+                                      decoration-muted="exceptionality=='not_taken'"
+                                      decoration-it="exceptionality=='exempt'"
+                                      decoration-bf="state=='assessed'"
+                                      create="0"
+                                      delete="0">
+                                    <field name="numeric_mark" attrs="{'readonly': [('competence_eval_mode','=','behaviour')], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
+                                    <field name="pass_mark" invisible="True"/>
+                                    <field name="n_mark_reduced_name" />
+                                    <field name="student_id" options="{'no_open': True}"/>
+                                    <field name="behaviour_mark_id" options="{'no_create': True}" attrs="{'readonly': [('competence_eval_mode','=','numeric')], 'required': [('competence_eval_mode','!=','numeric'),('exceptionality','!=','exempt')]}"/>
+                                    <field name="calculated_partial_mark"/>
+                                    <field name="exceptionality" string="Exception"/>
+                                    <field name="state"/>
+                                    <field name="mark_id" options="{'no_open': True, 'no_edit': True}"/>
+                                    <field name="calculated_numeric_mark" />
+                                    <field name="eval_type" invisible="True"/>
+                                    <field name="competence_eval_mode" invisible="True"/>
+                                    <field name="parent_record_id" invisible="True"/>
+                                    <field name="global_competence" invisible="True"/>
+                                    <field name="evaluation_competence" invisible="True"/>
+                                    <field name="academic_year_id" invisible="True"/>
+                                    <field name="recovered_record_id" invisible="True"/>
+                                    <button name="action_retake" icon="fa-refresh"
+                                            string="Retake" type="object" />
                                 </tree>
                             </field>
                         </page>

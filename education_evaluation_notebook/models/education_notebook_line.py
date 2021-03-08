@@ -83,6 +83,12 @@ class EducationNotebookLine(models.Model):
     record_count = fields.Integer(
         compute="_compute_record_count", string="# Academic Record",
         store=True)
+    show_record_ids = fields.Many2many(
+        comodel_name="education.record", compute="_compute_show_record_ids",
+        string="Academic Records",
+        # relation="education_notebook_line_show_record",
+        # column1="line_id", column2="record_id",
+        store=True)
     notes = fields.Html(string="Notes")
 
     @api.constrains("code")
@@ -166,6 +172,13 @@ class EducationNotebookLine(models.Model):
         for record in self:
             record.exam_count = len(record.exam_ids)
 
+    @api.multi
+    @api.depends("record_ids", "record_ids.exam_id")
+    def _compute_show_record_ids(self):
+        for record in self:
+            record.show_record_ids = record.record_ids.filtered(
+                lambda r: not r.exam_id)
+
     @api.onchange("competence_id")
     def _onchange_competence_id(self):
         for line in self:
@@ -207,6 +220,33 @@ class EducationNotebookLine(models.Model):
             for student in line.schedule_id.student_ids:
                 line.find_or_create_student_record(student)
             line.exam_ids.action_generate_record()
+
+    @api.multi
+    def action_copy_calculated_mark(self):
+        self.mapped("show_record_ids").filtered(
+            lambda r: not r.exam_id).action_copy_calculated_mark()
+
+    @api.multi
+    def action_copy_partial_calculated_mark(self):
+        self.mapped("show_record_ids").action_copy_partial_calculated_mark()
+
+    @api.multi
+    def button_set_draft(self):
+        self.mapped("show_record_ids").button_set_draft()
+
+    @api.multi
+    def button_set_assessed(self):
+        self.mapped("show_record_ids").button_set_assessed()
+
+    @api.multi
+    def action_retake(self):
+        self.mapped("show_record_ids").filtered(
+            lambda r: r.pass_mark == "fail" and
+            r.state == "assessed").action_retake()
+
+    @api.multi
+    def action_round_numeric_mark(self):
+        self.mapped("show_record_ids").action_round_numeric_mark()
 
     @api.multi
     def name_get(self):

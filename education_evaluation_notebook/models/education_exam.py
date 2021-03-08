@@ -122,6 +122,26 @@ class EducationExam(models.Model):
             exam.eval_percent = exam.recovered_exam_id.eval_percent
 
     @api.multi
+    def button_open_exam_form(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "education_evaluation_notebook.education_exam_action")
+        form_view = self.env.ref(
+            "education_evaluation_notebook.education_exam_view_form")
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [("id", "=", self.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({
+            "domain": domain,
+            "view_id": form_view.id,
+            "view_mode": "form",
+            "res_id": self.id,
+            "views": [],
+        })
+        return action_dict
+
+    @api.multi
     def button_show_records(self):
         self.ensure_one()
         action = self.env.ref(
@@ -172,9 +192,7 @@ class EducationExam(models.Model):
     def action_graded(self):
         for exam in self.filtered(lambda e: e.state == "progress"):
             exam.state = "done"
-            exam.record_ids.write({
-                "state": "assessed",
-            })
+            exam.mapped("record_ids").button_set_assessed()
 
     @api.multi
     def action_close_exam(self):
@@ -189,6 +207,26 @@ class EducationExam(models.Model):
     def action_draft(self):
         for exam in self.filtered(lambda e: e.state != "closed"):
             exam.state = "draft"
+
+    @api.multi
+    def action_copy_calculated_mark(self):
+        self.mapped("record_ids").action_copy_calculated_mark()
+
+    @api.multi
+    def action_copy_partial_calculated_mark(self):
+        self.mapped("record_ids").action_copy_partial_calculated_mark()
+
+    @api.multi
+    def button_set_draft(self):
+        self.mapped("record_ids").button_set_draft()
+
+    @api.multi
+    def button_set_assessed(self):
+        self.mapped("record_ids").button_set_assessed()
+
+    @api.multi
+    def action_round_numeric_mark(self):
+        self.mapped("record_ids").action_round_numeric_mark()
 
     @api.multi
     def retake_exam(self):

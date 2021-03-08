@@ -366,6 +366,12 @@ class EducationRecord(models.Model):
         return new_records
 
     @api.multi
+    def action_round_numeric_mark(self):
+        for record in self.filtered(
+                lambda r: r.competence_eval_mode != 'behaviour'):
+            record.numeric_mark = round(record.numeric_mark + 0.00001)
+
+    @api.multi
     def button_retake(self):
         self.ensure_one()
         records = self.action_retake()

@@ -7,7 +7,7 @@
                 <header>
                     <button name="action_generate_record"
                             string="Create Academic Records" type="object"
-                            states="draft,progress" />
+                            states="progress" />
                     <button name="action_marking" string="Publish Exam"
                             type="object" states="draft" />
                     <button name="action_graded" string="Mark Graded"
@@ -63,8 +63,51 @@
                             <field name="mark_close_date" readonly="True" states="closed"/>
                         </group>
                     </group>
-                    <separator string="Description" />
-                    <field name="description" />
+                    <notebook>
+                        <page name="description" string="Description">
+                            <field name="description" />
+                        </page>
+                        <page name="records" string="Academic Records">
+                            <button name="button_set_draft"
+                                    string="Set assessed records as initial"
+                                    type="object" />
+                            <button name="button_set_assessed"
+                                    string="Set pending records as assessed"
+                                    type="object" />
+                            <button name="action_round_numeric_mark"
+                                    string="Round official mark"
+                                    type="object" />
+                            <field name="record_ids">
+                                <tree editable="bottom"
+                                      decoration-danger="recovered_record_id"
+                                      decoration-info="global_competence==True"
+                                      decoration-success="evaluation_competence==True"
+                                      decoration-muted="exceptionality=='not_taken'"
+                                      decoration-it="exceptionality=='exempt'"
+                                      decoration-bf="state=='assessed'"
+                                      create="0">
+                                    <field name="numeric_mark" attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
+                                    <field name="pass_mark" invisible="True"/>
+                                    <field name="n_mark_reduced_name" />
+                                    <field name="student_id" options="{'no_open': True}"/>
+                                    <field name="behaviour_mark_id" options="{'no_create': True}" attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric'),('exceptionality','!=','exempt')]}"/>
+                                    <field name="exam_eval_percent" invisible="True"/>
+                                    <field name="exceptionality" string="Exception"/>
+                                    <field name="state" invisible="True"/>
+                                    <field name="mark_id" invisible="True"/>
+                                    <field name="exam_id" invisible="True"/>
+                                    <field name="exam_state" invisible="True"/>
+                                    <field name="eval_type" invisible="True"/>
+                                    <field name="competence_eval_mode" invisible="True"/>
+                                    <field name="parent_record_id" invisible="True"/>
+                                    <field name="global_competence" invisible="True"/>
+                                    <field name="evaluation_competence" invisible="True"/>
+                                    <field name="academic_year_id" invisible="True"/>
+                                    <field name="recovered_record_id" invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
@@ -98,7 +141,7 @@
                 <field name="academic_year_id"  invisible="True" />
                 <button name="action_generate_record" icon="fa-book"
                         string="Create Academic Records" type="object"
-                        states="draft,progress"/>
+                        states="progress"/>
                 <button name="button_show_records" icon="fa-th"
                         string="Open Academic Records" type="object" />
                 <button name="action_marking" icon="fa-arrow-circle-o-up" string="Publish Exam" type="object" states="draft"/>
