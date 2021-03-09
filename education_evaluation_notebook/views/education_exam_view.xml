@@ -86,10 +86,10 @@
                                       decoration-it="exceptionality=='exempt'"
                                       decoration-bf="state=='assessed'"
                                       create="0">
+                                    <field name="student_id" options="{'no_open': True}"/>
                                     <field name="numeric_mark" attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
                                     <field name="pass_mark" invisible="True"/>
                                     <field name="n_mark_reduced_name" />
-                                    <field name="student_id" options="{'no_open': True}"/>
                                     <field name="behaviour_mark_id" options="{'no_create': True}" attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric'),('exceptionality','!=','exempt')]}"/>
                                     <field name="exam_eval_percent" invisible="True"/>
                                     <field name="exceptionality" string="Exception"/>
