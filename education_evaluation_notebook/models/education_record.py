@@ -138,6 +138,7 @@ class EducationRecord(models.Model):
     retake_record_count = fields.Integer(
         compute="_compute_retake_record_count",
         string="# Retake Records", store=True)
+    comments = fields.Text(string="Comments")
 
     @api.multi
     @api.depends("numeric_mark", "n_line_id", "n_line_id.competence_id",

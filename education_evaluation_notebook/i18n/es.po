@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-03 11:06+0000\n"
-"PO-Revision-Date: 2021-03-03 11:06+0000\n"
+"POT-Creation-Date: 2021-03-11 16:12+0000\n"
+"PO-Revision-Date: 2021-03-11 16:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -382,12 +382,18 @@ msgstr "Código"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:33
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:93
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:96
+#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:99
 #: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
 #, python-format
 msgid "Code must have a length of 3 characters "
 msgstr "El código debe tener 3 carácteres"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__comments
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
+msgid "Comments"
+msgstr "Comentarios"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_id
@@ -1583,6 +1589,7 @@ msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_record.py:340
+#: code:addons/education_evaluation_notebook/models/education_record.py:360
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -1797,6 +1804,7 @@ msgstr "Usuario responsable"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_form
 msgid "Retake"
 msgstr "Recuperar"
@@ -2130,7 +2138,6 @@ msgid "Wizard to export education records in xlsx"
 msgstr "Asistente para exportar actas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:217
 #: code:addons/education_evaluation_notebook/models/education_exam.py:255
 #, python-format
 msgid "You can only delete an exam in draft state."
@@ -2143,17 +2150,15 @@ msgid "You can only get xlsx report of official groups"
 msgstr "Solo puede obtener el informe xlsx de grupos oficiales"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:167
 #: code:addons/education_evaluation_notebook/models/education_exam.py:187
 #, python-format
 msgid "You must set an exam date."
 msgstr "Debe seleccionar una fecha de examen."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:235
 #: code:addons/education_evaluation_notebook/models/education_exam.py:273
-#: code:addons/education_evaluation_notebook/models/education_record.py:400
 #: code:addons/education_evaluation_notebook/models/education_record.py:406
+#: code:addons/education_evaluation_notebook/models/education_record.py:426
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"
