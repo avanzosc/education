@@ -39,7 +39,7 @@
         <field name="model">calendar.event</field>
         <field name="inherit_id" ref="calendar_school.calendar_event_view_tree" />
         <field name="arch" type="xml">
-            <field name="categ_ids" position="before">
+            <field name="course_id" position="after">
                 <field name="eval_type" />
             </field>
         </field>
