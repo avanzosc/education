@@ -100,14 +100,14 @@
                   decoration-it="exceptionality=='exempt'"
                   decoration-bf="state=='assessed'"
                   create="0">
+                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}"
+                       options="{'no_open': True}" />
                 <field name="numeric_mark"
                        invisible="context.get('hide_numeric',True)"
                        attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
                 <field name="pass_mark" invisible="True" />
                 <field name="n_mark_reduced_name"
                        invisible="context.get('hide_numeric',True)" />
-                <field name="student_id" attrs="{'readonly': [('id','!=',False)]}"
-                       options="{'no_open': True}" />
                 <field name="behaviour_mark_id"
                        invisible="context.get('hide_behaviour',True)"
                        options="{'no_create': True}"
@@ -204,7 +204,47 @@
                             <field name="date" attrs="{'invisible': [('exam_id','=',False)]}" />
                         </group>
                         <field name="child_record_ids"
-                               attrs="{'invisible': [('child_record_ids','=',[])]}" />
+                               attrs="{'invisible': [('child_record_ids','=',[])]}">
+                            <tree editable="bottom"
+                                  decoration-danger="recovered_record_id"
+                                  decoration-info="global_competence==True"
+                                  decoration-success="evaluation_competence==True"
+                                  decoration-muted="exceptionality=='not_taken'"
+                                  decoration-it="exceptionality=='exempt'"
+                                  decoration-bf="state=='assessed'"
+                                  create="0"
+                                  delete="0">
+                                <field name="n_line_id" readonly="True"/>
+                                <field name="numeric_mark"
+                                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
+                                <field name="pass_mark" invisible="True" />
+                                <field name="n_mark_reduced_name" />
+                                <field name="behaviour_mark_id"
+                                       options="{'no_create': True}"
+                                       attrs="{'readonly': ['|',('competence_eval_mode','=','numeric'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','numeric'),('exceptionality','!=','exempt')]}"/>
+                                <field name="calculated_partial_mark" />
+                                <field name="exam_eval_percent" />
+                                <field name="exceptionality" string="Exception" />
+                                <field name="state" />
+                                <field name="mark_id"
+                                       options="{'no_open': True, 'no_edit': True}" />
+                                <field name="competence_id" />
+                                <field name="calculated_numeric_mark" />
+                                <field name="exam_id" readonly="True"/>
+                                <field name="exam_state" invisible="True" />
+                                <field name="eval_type" invisible="True" />
+                                <field name="competence_eval_mode" invisible="True" />
+                                <field name="parent_record_id" invisible="True" />
+                                <field name="global_competence" invisible="True" />
+                                <field name="evaluation_competence" invisible="True" />
+                                <field name="academic_year_id"  invisible="True" />
+                                <field name="recovered_record_id" invisible="True" />
+                                <button name="button_retake" icon="fa-refresh"
+                                        type="object" string="Retake"
+                                        attrs="{'invisible':['|',('exam_id','!=',False),('state','!=','assessed')]}"/>
+                            </tree>
+
+                        </field>
                     </group>
                 </sheet>
                 <div class="oe_chatter">

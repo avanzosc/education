@@ -13,6 +13,9 @@ class ResPartner(models.Model):
         comodel_name='education.idtype', string='ID Type')
     education_group_count = fields.Integer(
         string='# Education Groups', compute='_compute_education_group_count')
+    timetable_ids = fields.One2many(
+        comodel_name="education.group.student.timetable.report",
+        inverse_name="student_id")
 
     _sql_constraints = [
         ('education_code_uniq', 'unique(education_code)',
@@ -35,3 +38,19 @@ class ResPartner(models.Model):
             'domain': [('center_id', '=', self.id)],
         })
         return action_dict
+
+    @api.multi
+    def get_timetable_max_daily_hour(self):
+        self.ensure_one()
+        reports = self.timetable_ids.filtered(
+            lambda r: r.academic_year_id.current)
+        return max(reports.mapped("daily_hour")) if reports else False
+
+    @api.multi
+    def get_timetable_info(self, dayofweek, daily_hour):
+        self.ensure_one()
+        reports = self.timetable_ids.filtered(
+            lambda r: r.academic_year_id.current)
+        return reports.filtered(
+            lambda r: r.dayofweek == str(dayofweek) and
+            r.daily_hour == daily_hour)

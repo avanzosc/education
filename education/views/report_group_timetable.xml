@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <template t-name="report_employee_timetable_document">
+        <template t-name="report_group_timetable_document">
             <t t-call="web.external_layout">
                 <t t-set="o" t-value="o.with_context(lang=lang)"/>
                 <div class="page">
@@ -31,6 +31,7 @@
                                         <div class="text-muted"><span t-field="day_data.hour_from" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" />-<span t-field="day_data.hour_to" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}" /></div>
                                         <strong t-field="day_data.subject_name" /> <br />
                                         <span t-field="day_data.classroom_id.display_name"/> <br />
+                                        <span t-field="day_data.professor_id.display_name"/>
                                     </t></td>
                                 </t>
                             </tr>
@@ -44,21 +45,21 @@
             </t>
         </template>
 
-        <template id="report_employee_timetable">
+        <template id="report_group_timetable">
             <t t-call="web.html_container">
                 <t t-foreach="docs.sudo()" t-as="o">
                     <t t-set="lang" t-value="user.lang"/>
-                    <t t-call="education.report_employee_timetable_document" t-lang="lang"/>
+                    <t t-call="education.report_group_timetable_document" t-lang="lang"/>
                 </t>
             </t>
         </template>
 
-        <report id="education_employee_timetable"
-                model="hr.employee"
-                string="Employee Timetable"
+        <report id="education_group_timetable"
+                model="education.group"
+                string="Group Timetable"
                 report_type="qweb-html"
-                name="education.report_employee_timetable"
-                file="education.report_employee_timetable"
+                name="education.report_group_timetable"
+                file="education.report_group_timetable"
                 print_report_name="(object.display_name)"
         />
 

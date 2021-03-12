@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-18 14:17+0000\n"
-"PO-Revision-Date: 2021-02-18 14:17+0000\n"
+"POT-Creation-Date: 2021-03-04 11:13+0000\n"
+"PO-Revision-Date: 2021-03-04 11:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -970,6 +970,8 @@ msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_group_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_student_timetable_document
 msgid "Friday"
 msgstr ""
 
@@ -1005,6 +1007,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:education.action_education_group_report
 #: model:ir.ui.menu,name:education.education_group_report_menuitem
 msgid "Group List"
+msgstr ""
+
+#. module: education
+#: model:ir.actions.report,name:education.education_group_timetable
+msgid "Group Timetable"
 msgstr ""
 
 #. module: education
@@ -1266,6 +1273,8 @@ msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_group_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_student_timetable_document
 msgid "Monday"
 msgstr ""
 
@@ -1606,6 +1615,11 @@ msgid "Student Number"
 msgstr ""
 
 #. module: education
+#: model:ir.actions.report,name:education.education_student_timetable
+msgid "Student Timetable"
+msgstr ""
+
+#. module: education
 #: model:ir.actions.act_window,name:education.action_education_group_student_timetable_report
 #: model:ir.ui.menu,name:education.education_group_student_timetable_report_menuitem
 msgid "Student Timetable List"
@@ -1638,6 +1652,7 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:158
+#: code:addons/education/models/education_group.py:170
 #: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1827,6 +1842,8 @@ msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_group_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_student_timetable_document
 msgid "There is no timetable for current academic year."
 msgstr ""
 
@@ -1837,18 +1854,25 @@ msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_group_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_student_timetable_document
 msgid "Thursday"
 msgstr ""
 
 #. module: education
+#: model:ir.model.fields,field_description:education.field_education_group__timetable_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule__timetable_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule_timetable__attendance_id
 #: model:ir.model.fields,field_description:education.field_hr_employee__timetable_ids
+#: model:ir.model.fields,field_description:education.field_res_partner__timetable_ids
+#: model:ir.model.fields,field_description:education.field_res_users__timetable_ids
 msgid "Timetable"
 msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_group_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_student_timetable_document
 msgid "Tuesday"
 msgstr ""
 
@@ -1887,6 +1911,8 @@ msgstr ""
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.report_employee_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_group_timetable_document
+#: model_terms:ir.ui.view,arch_db:education.report_student_timetable_document
 msgid "Wednesday"
 msgstr ""
 
@@ -1935,6 +1961,7 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:146
+#: code:addons/education/models/education_group.py:158
 #, python-format
 msgid "You can only edit photos from official groups."
 msgstr ""
@@ -1947,6 +1974,7 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:90
+#: code:addons/education/models/education_group.py:93
 #, python-format
 msgid "You cannot create recursive groups."
 msgstr ""
@@ -1970,6 +1998,7 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:105
+#: code:addons/education/models/education_group.py:108
 #, python-format
 msgid "{} is already in one official group"
 msgstr ""
