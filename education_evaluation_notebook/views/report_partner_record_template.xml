@@ -21,23 +21,24 @@
                     </div>
                 </div>
                 <t t-set="records" t-value="o.get_academic_records_curricular(eval_type=eval_type)" />
-                <t t-set="retaken" t-value="any(records.mapped('retake_record_ids'))" />
+                <t t-set="retaken" t-value="any(records.mapped('retake_record_ids')) or any(records.mapped('child_record_ids').filtered('n_line_id.code').mapped('retake_record_ids'))" />
                 <t t-if="records">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <thead>
                             <tr>
                                 <td />
                                 <t t-if="retaken">
-                                    <th>Ordinary</th>
-                                    <th>Extraordinary</th>
+                                    <th width="15%">Ordinary</th>
+                                    <th width="15%">Extraordinary</th>
                                 </t>
                                 <t t-else="">
-                                    <th>Ordinary</th>
+                                    <th width="15%">Ordinary</th>
                                 </t>
                             </tr>
                         </thead>
                         <tbody>
                             <t t-foreach="records" t-as="record">
+                                <t t-set="retake_record" t-value="record.retake_record_ids and record.retake_record_ids[:1]" />
                                 <tr>
                                     <th class="text-left">
                                         <span t-field="record.subject_id" />
@@ -52,8 +53,7 @@
                                             <span t-field="record.numeric_mark" t-options="{'precision': 2}"/> - <span t-field="record.n_mark_reduced_name" />
                                         </th>
                                     </t>
-                                    <t t-if="record.retake_record_ids">
-                                        <t t-set="retake_record" t-value="record.retake_record_ids[:1]" />
+                                    <t t-if="retake_record">
                                         <t t-if="retake_record.exceptionality">
                                             <th class="text-left">
                                                 <span t-field="retake_record.exceptionality" />
@@ -65,18 +65,22 @@
                                             </th>
                                         </t>
                                     </t>
-                                    <t t-else="">
+                                    <t t-elif="retaken">
                                         <th />
                                     </t>
                                 </tr>
                                 <tr t-if="record.behaviour_mark_id">
                                     <td class="text-left pl-3">BEHAVIOUR</td>
-                                    <td class="text-left"><span t-field="record.behaviour_mark_id" /></td>
                                     <t t-if="retaken">
+                                        <td class="text-left"><span t-field="record.behaviour_mark_id" /></td>
                                         <td />
                                     </t>
+                                    <t t-else="">
+                                        <td class="text-left"><span t-field="record.behaviour_mark_id" /></td>
+                                    </t>
                                 </tr>
-                                <t t-foreach="record.child_record_ids.filtered('n_line_id.code')" t-as="child_record">
+                                <t t-foreach="record.child_record_ids.filtered('n_line_id.code').filtered(lambda c: not c.recovered_record_id)" t-as="child_record">
+                                    <t t-set="child_retake_record" t-value="child_record.retake_record_ids and child_record.retake_record_ids[:1]" />
                                     <tr>
                                         <td class="text-left pl-5">
                                             <span t-field="child_record.n_line_id.description" />
@@ -91,6 +95,27 @@
                                                 <span t-field="child_record.n_mark_reduced_name" />
                                             </td>
                                         </t>
+                                        <t t-if="child_retake_record">
+                                            <t t-if="child_retake_record.exceptionality">
+                                                <th class="text-left">
+                                                    <span t-field="child_retake_record.exceptionality" />
+                                                </th>
+                                            </t>
+                                            <t t-else="">
+                                                <th class="text-left">
+                                                    <span t-field="child_retake_record.n_mark_reduced_name" />
+                                                </th>
+                                            </t>
+                                        </t>
+                                        <t t-elif="retaken">
+                                            <th />
+                                        </t>
+                                    </tr>
+                                    <tr t-if="child_record.comments">
+                                        <td colspan="3"><i t-raw="child_record.comments" /></td>
+                                    </tr>
+                                    <tr t-if="child_retake_record.comments">
+                                        <td colspan="3"><i t-raw="child_retake_record.comments" /></td>
                                     </tr>
                                 </t>
                             </t>
@@ -129,6 +154,13 @@
                                             </td>
                                         </tr>
                                     </t>
+                                    <tr t-if="no_type_child_records.filtered('comments')">
+                                        <td colspan="2">
+                                            <t t-foreach="no_type_child_records.filtered('comments').mapped('comments')" t-as="record_comment">
+                                                <i t-esc="record_comment"/>
+                                            </t>
+                                        </td>
+                                    </tr>
                                     <t t-foreach="competence_types" t-as="competence_type">
                                         <tr>
                                             <td class="text-left pl-3" colspan="2">
@@ -136,6 +168,7 @@
                                             </td>
                                         </tr>
                                         <t t-set="type_child_records" t-value="child_records.filtered(lambda r: r.n_line_id.competence_type_id == competence_type)" />
+                                        <t t-set="comment" t-value="'\n'.format(type_child_records.filtered('comments').mapped('comments'))" />
                                         <t t-foreach="type_child_records" t-as="type_child_record">
                                             <tr>
                                                 <td class="text-left pl-6">
@@ -152,14 +185,23 @@
                                                   </t>
                                                 </td>
                                             </tr>
+                                            <tr t-if="type_child_record.comments">
+                                                <td colspan="2"><span t-raw="type_child_record.comments" /></td>
+                                            </tr>
                                         </t>
+                                        <tr t-if="type_child_records.filtered('comments')">
+                                            <td colspan="2">
+                                                <t t-foreach="type_child_records.filtered('comments').mapped('comments')" t-as="record_comment">
+                                                    <i t-esc="record_comment"/>
+                                                </t>
+                                            </td>
+                                        </tr>
                                     </t>
                                 </t>
                             </t>
                         </tbody>
                     </table>
                 </t>
-
                 <t t-set="non_curricular_records" t-value="o.get_academic_records_non_curricular(eval_type=eval_type)" />
                 <t t-if="non_curricular_records">
                     <h4 class="text-center">Further Qualifications</h4>
@@ -182,19 +224,31 @@
                                             </t>
                                         </td>
                                     </tr>
+                                    <tr t-if="child_record.comments">
+                                        <td colspan="2"><i t-raw="child_record.comments" /></td>
+                                    </tr>
                                 </t>
                             </t>
                         </tbody>
                     </table>
                 </t>
-
+                <t t-set="evaluation_records" t-value="o.academic_record_ids.filtered(lambda r: r.eval_type == eval_type and r.evaluation_competence and r.comments)"/>
+                <div class="row mt32 mb32" t-if="evaluation_records">
+                    <h5>Comments</h5>
+                    <div class="col-10">
+                        <t t-foreach="evaluation_records" t-as="evaluation_record">
+                            <p><i><b><span t-esc="evaluation_record.subject_id.get_subject_name(o.current_center_id, o.current_level_id, o.current_course_id, evaluation_record.schedule_id.language_id)" />:</b></i>
+                            <i t-raw="evaluation_record.comments" /></p>
+                        </t>
+                    </div>
+                </div>
             </div>
         </t>
     </template>
 
     <template id="report_partner_record">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
+            <t t-foreach="docs.sudo()" t-as="o">
                 <t t-set="lang" t-value="user.lang"/>
                 <t t-call="education_evaluation_notebook.report_partner_record_document" t-lang="lang"/>
             </t>
@@ -208,6 +262,7 @@
             name="education_evaluation_notebook.report_partner_record"
             file="education_evaluation_notebook.report_partner_record"
             print_report_name="(object.display_name)"
+            menu="False"
     />
 
 </odoo>
