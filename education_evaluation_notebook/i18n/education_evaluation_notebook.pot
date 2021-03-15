@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-11 16:12+0000\n"
-"PO-Revision-Date: 2021-03-11 16:12+0000\n"
+"POT-Creation-Date: 2021-03-15 15:55+0000\n"
+"PO-Revision-Date: 2021-03-15 15:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -161,6 +161,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:58
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:59
 #, python-format
 msgid "Academic Year:"
 msgstr ""
@@ -235,6 +236,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:90
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:91
 #, python-format
 msgid "Average Score"
 msgstr ""
@@ -632,6 +634,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:54
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:55
 #, python-format
 msgid "Education Center:"
 msgstr ""
@@ -648,6 +651,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:68
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:69
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_exam_report__course_id
@@ -667,6 +671,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:72
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:73
 #: model:ir.model,name:education_evaluation_notebook.model_education_group
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__group_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__group_id
@@ -775,6 +780,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/wizards/export_education_record_xlsx_report.py:21
+#: code:addons/education_evaluation_notebook/wizards/export_education_record_xlsx_report.py:22
 #, python-format
 msgid "Evaluation Record"
 msgstr ""
@@ -812,6 +818,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:61
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:62
 #, python-format
 msgid "Evaluation:"
 msgstr ""
@@ -1490,6 +1497,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:83
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:84
 #, python-format
 msgid "Not Passed"
 msgstr ""
@@ -1585,7 +1593,6 @@ msgid "Numeric Marks"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:340
 #: code:addons/education_evaluation_notebook/models/education_record.py:360
 #, python-format
 msgid "Numeric mark must be between {} and {}"
@@ -1837,6 +1844,11 @@ msgid "Retake records (only assessed without exam)"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_report_education_education_record_xlsx_export__retaken
+msgid "Retaken Marks"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.actions.server,name:education_evaluation_notebook.action_round_numeric_mark
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
@@ -1845,6 +1857,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:52
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:53
 #, python-format
 msgid "STUDENT LIST"
 msgstr ""
@@ -1936,6 +1949,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:76
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:77
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_exam_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_homework_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__student_id
@@ -2071,6 +2085,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:133
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:141
 #, python-format
 msgid "UN"
 msgstr ""
@@ -2139,6 +2154,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:260
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:268
 #, python-format
 msgid "You can only get xlsx report of official groups"
 msgstr ""
@@ -2151,8 +2167,8 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:273
-#: code:addons/education_evaluation_notebook/models/education_record.py:406
 #: code:addons/education_evaluation_notebook/models/education_record.py:426
+#: code:addons/education_evaluation_notebook/models/education_record.py:430
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"

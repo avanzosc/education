@@ -6,6 +6,7 @@
             report_type="xlsx"
             name="education.education_record_xlsx"
             file="education.education_record"
+            menu="False"
     />
 
 </odoo>

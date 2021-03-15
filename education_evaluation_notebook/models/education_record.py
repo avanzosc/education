@@ -387,9 +387,13 @@ class EducationRecord(models.Model):
 
     @api.multi
     def action_round_numeric_mark(self):
+        sys_params = self.env["ir.config_parameter"].sudo()
+        precision = int(sys_params.get_param(
+            "education.record.mark_precision", 0))
         for record in self.filtered(
-                lambda r: r.competence_eval_mode != 'behaviour'):
-            record.numeric_mark = round(record.numeric_mark + 0.00001)
+                lambda r: r.competence_eval_mode != "behaviour"):
+            record.numeric_mark = round(
+                record.numeric_mark + 0.00001, precision)
 
     @api.multi
     def button_retake(self):

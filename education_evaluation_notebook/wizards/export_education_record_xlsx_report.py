@@ -14,6 +14,7 @@ class ExportEducationRecordReport(models.TransientModel):
         required=True)
     partial_mark = fields.Boolean(
         string="Partial Marks", default=False)
+    retaken = fields.Boolean(string="Retaken Marks", default=False)
 
     @api.multi
     def export_xls(self):
@@ -28,6 +29,7 @@ class ExportEducationRecordReport(models.TransientModel):
             "data": {
                 "eval_type": self.eval_type,
                 "partial_mark": self.partial_mark,
+                "retaken": self.retaken,
             },
         }
         return report
