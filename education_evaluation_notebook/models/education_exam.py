@@ -100,7 +100,7 @@ class EducationExam(models.Model):
             n_line = exam.n_line_id
             for student in n_line.schedule_id.student_ids:
                 parent_record = n_line.find_or_create_student_record(student)
-                self.find_or_create_student_record(student, parent_record)
+                exam.find_or_create_student_record(student, parent_record)
 
     @api.multi
     @api.depends("record_ids")
