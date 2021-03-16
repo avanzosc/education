@@ -7,6 +7,7 @@ from xlsxwriter.utility import xl_rowcol_to_cell
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
+from odoo.models import expression
 
 _logger = logging.getLogger(__name__)
 
@@ -91,7 +92,7 @@ class EducationGroupXlsx(models.AbstractModel):
 
     def fill_student_row_data(
             self, sheet, row, student, eval_type, subject_lists,
-            partial_mark=False):
+            partial_mark=False, retaken=False):
         not_passed = [
             self.env.ref(
                 "education_evaluation_notebook.numeric_mark_insufficient"),
@@ -107,17 +108,25 @@ class EducationGroupXlsx(models.AbstractModel):
         mark_list = []
         not_passed_count = 0
         for subject in subject_lists:
-            records = record_obj.search([
+            domain = [
                 ("student_id", "=", student.id),
                 ("subject_id", "=", subject.id),
                 ("eval_type", "=", eval_type),
                 ("evaluation_competence", "=", True),
-            ])
+            ]
+            if retaken:
+                domain = expression.AND([
+                    [("recovered_record_id", "!=", False)], domain])
+            else:
+                domain = expression.AND([
+                    [("recovered_record_id", "=", False)], domain])
+            records = record_obj.search(domain)
             sheet.set_column(column_num, column_num + 2, 7)
             if not records:
-                sheet.write(row_num, column_num, "XX", self.format_border)
-                sheet.write(row_num, column_num + 1, "XX", self.format_border)
-                sheet.write(row_num, column_num + 2, "XX", self.format_border)
+                data = "-" if retaken else "XX"
+                sheet.write(row_num, column_num, data, self.format_border)
+                sheet.write(row_num, column_num + 1, data, self.format_border)
+                sheet.write(row_num, column_num + 2, data, self.format_border)
             else:
                 record = records[:1]
                 if partial_mark:
@@ -167,7 +176,7 @@ class EducationGroupXlsx(models.AbstractModel):
             column_num += 3
         sheet.write(
             row_num, 4, not_passed_count, self.format_integer_statistics)
-        avg_mark = mean(mark_list)
+        avg_mark = mean(mark_list) if mark_list else 0
         avg_mark_name = self.env[
             "education.mark.numeric"]._get_mark(avg_mark)
         sheet.write(
@@ -261,6 +270,7 @@ class EducationGroupXlsx(models.AbstractModel):
         for group in objects:
             eval_type = data and data.get("eval_type", False)
             partial_mark = data and data.get("partial_mark", False)
+            retaken = data and data.get("retaken", False)
             if not eval_type:
                 current_eval = group.academic_year_id.evaluation_ids.filtered(
                     lambda e: e.date_start <= today <= e.date_end and
@@ -280,7 +290,7 @@ class EducationGroupXlsx(models.AbstractModel):
             for student in group.student_ids:
                 self.fill_student_row_data(
                     group_sheet, row, student, eval_type, subject_lists,
-                    partial_mark=partial_mark)
+                    partial_mark=partial_mark, retaken=retaken)
                 row += 1
             self.add_statistics(group_sheet, row - 1, subject_lists)
 
