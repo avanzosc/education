@@ -81,7 +81,7 @@ class SchoolIssue(models.Model):
     @api.onchange("student_id")
     def onchange_student_id(self):
         for issue in self:
-            issue.student_group_id = issue.student_id.current_group
+            issue.student_group_id = issue.student_id.current_group_id
 
     @api.model
     def create(self, values):
