@@ -217,6 +217,11 @@ class ResPartner(models.Model):
         if self.educational_category == "student":
             view_id = self.env.ref(
                 "education.res_partner_education_minimal_view_form").id
+        elif self.educational_category in (
+                "progenitor", "guardian", "otherrelative"):
+            view_id = self.env.ref(
+                "education."
+                "res_partner_education_responsible_minimal_view_form").id
         else:
             view_id = super(ResPartner, self).get_formview_id()
         return view_id

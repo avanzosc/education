@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-23 11:37+0000\n"
-"PO-Revision-Date: 2021-02-23 11:37+0000\n"
+"POT-Creation-Date: 2021-03-23 10:25+0000\n"
+"PO-Revision-Date: 2021-03-23 10:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_attachment_count
 msgid "Attachment Count"
 msgstr "Eranskin kontagailua"
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_responsible_minimal_view_form
+msgid "Bank Accounts"
+msgstr "Banku Kontuak"
 
 #. module: contacts_school_education
 #: code:addons/contacts_school_education/reports/partner_insurance_xlsx_report.py:53
@@ -317,7 +322,7 @@ msgstr ""
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Jarraitzaileak"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_channel_ids
@@ -384,6 +389,21 @@ msgstr ""
 #: code:addons/contacts_school_education/reports/partner_insurance_xlsx_report.py:55
 #, python-format
 msgid "Insured"
+msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_responsible_minimal_view_form
+msgid "Internal Notes"
+msgstr "Barne oharrak"
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_responsible_minimal_view_form
+msgid "Internal note..."
+msgstr "Barne ohar..."
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_responsible_minimal_view_form
+msgid "Invoicing Info"
 msgstr ""
 
 #. module: contacts_school_education
@@ -622,6 +642,11 @@ msgid "Relation"
 msgstr "Harremana"
 
 #. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_responsible_minimal_view_form
+msgid "Sales"
+msgstr "Salmentak"
+
+#. module: contacts_school_education
 #: code:addons/contacts_school_education/reports/partner_insurance_xlsx_report.py:45
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_group_student_progenitor_report__student_id
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_group_student_progenitor_report_view_search
@@ -744,6 +769,11 @@ msgstr "Irakurri gabeko mezuen kontagailua"
 #, python-format
 msgid "VAT Number"
 msgstr ""
+
+#. module: contacts_school_education
+#: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_responsible_minimal_view_form
+msgid "View accounts detail"
+msgstr "Kontuen xehetasunak ikusi"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__website_message_ids
