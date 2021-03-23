@@ -142,15 +142,13 @@
                                             <td class="text-left pl-3">
                                                 <span t-field="no_type_child_record.n_line_id.description"/>
                                             </td>
-                                            <td class="text-left">
-                                              <t t-if="no_type_child_record.state == 'assessed'">
+                                            <td t-attf-class="text-left {{'text-muted' if no_type_child_record.state != 'assessed' else ''}}">
                                                 <t t-if="no_type_child_record.n_line_id.competence_id.eval_mode != 'numeric'">
                                                   <span t-field="no_type_child_record.behaviour_mark_id" />
                                                 </t>
                                                 <t t-if="no_type_child_record.n_line_id.competence_id.eval_mode != 'behaviour'">
                                                   <span t-field="no_type_child_record.numeric_mark" />
                                                 </t>
-                                              </t>
                                             </td>
                                         </tr>
                                     </t>
@@ -174,15 +172,13 @@
                                                 <td class="text-left pl-6">
                                                     <span t-field="type_child_record.n_line_id.description"/>
                                                 </td>
-                                                <td class="text-left">
-                                                  <t t-if="type_child_record.state == 'assessed'">
+                                                <td t-attf-class="text-left {{'text-muted' if type_child_record.state != 'assessed' else ''}}">
                                                     <t t-if="type_child_record.n_line_id.competence_id.eval_mode != 'numeric'">
                                                       <span t-field="type_child_record.behaviour_mark_id" />
                                                     </t>
                                                     <t t-if="type_child_record.n_line_id.competence_id.eval_mode != 'behaviour'">
                                                       <span t-field="type_child_record.numeric_mark" />
                                                     </t>
-                                                  </t>
                                                 </td>
                                             </tr>
                                             <tr t-if="type_child_record.comments">
