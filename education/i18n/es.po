@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-04 11:13+0000\n"
-"PO-Revision-Date: 2021-03-04 11:13+0000\n"
+"POT-Creation-Date: 2021-03-23 10:26+0000\n"
+"PO-Revision-Date: 2021-03-23 10:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -127,6 +127,7 @@ msgstr "Activo"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 msgid "Address"
 msgstr "Dirección"
 
@@ -177,6 +178,7 @@ msgstr "Cancelar"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 msgid "City"
 msgstr "Ciudad"
 
@@ -266,6 +268,7 @@ msgstr "Tipos de contratos privados"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 msgid "Country"
 msgstr "País"
 
@@ -908,7 +911,7 @@ msgstr "Horario de clases"
 #. module: education
 #: model:ir.model.fields,field_description:education.field_education_academic_year__date_end
 msgid "End Date"
-msgstr "Fecha finalización"
+msgstr "Fecha final"
 
 #. module: education
 #: code:addons/education/models/education_academic_year.py:66
@@ -1285,6 +1288,7 @@ msgstr "Lunes"
 #: model_terms:ir.ui.view,arch_db:education.education_group_view_form
 #: model_terms:ir.ui.view,arch_db:education.education_subject_center_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_tree_view
 #, python-format
 msgid "Name"
@@ -1561,16 +1565,19 @@ msgstr "La fecha inicial debe de ser anterior a la fecha inicial de las evaluaci
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 msgid "State"
 msgstr "Provincia"
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 msgid "Street 2..."
 msgstr "Calle 2..."
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 msgid "Street..."
 msgstr "Calle..."
 
@@ -1651,7 +1658,6 @@ msgid "Student's Second Lastname"
 msgstr "Segundo apellido de alumno"
 
 #. module: education
-#: code:addons/education/models/education_group.py:158
 #: code:addons/education/models/education_group.py:170
 #: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
@@ -1960,7 +1966,6 @@ msgid "Working Hours"
 msgstr "Horas laborales"
 
 #. module: education
-#: code:addons/education/models/education_group.py:146
 #: code:addons/education/models/education_group.py:158
 #, python-format
 msgid "You can only edit photos from official groups."
@@ -1973,7 +1978,6 @@ msgid "You can only get xlsx report of official groups"
 msgstr "Solo puede obtener el fichero excel de grupos oficiales"
 
 #. module: education
-#: code:addons/education/models/education_group.py:90
 #: code:addons/education/models/education_group.py:93
 #, python-format
 msgid "You cannot create recursive groups."
@@ -1981,6 +1985,7 @@ msgstr "No puede crear grupos recursivos."
 
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_responsible_minimal_view_form
 msgid "ZIP"
 msgstr "C.P."
 
@@ -1997,7 +2002,6 @@ msgid "{} (copy)"
 msgstr "{} (copia)"
 
 #. module: education
-#: code:addons/education/models/education_group.py:105
 #: code:addons/education/models/education_group.py:108
 #, python-format
 msgid "{} is already in one official group"

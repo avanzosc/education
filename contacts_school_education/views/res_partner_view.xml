@@ -196,7 +196,7 @@
                 <field name="student_progenitor_ids" mode="kanban"
                        nolabel="True" colspan="4"
                        attrs="{'invisible': [('educational_category','!=','student')]}"
-                       context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}">
+                       context="{'form_view_ref': 'education.res_partner_education_responsible_minimal_view_form'}">
                     <kanban>
                         <field name="id"/>
                         <field name="name"/>
@@ -232,6 +232,41 @@
                     </kanban>
                 </field>
             </group>
+        </field>
+    </record>
+
+    <record id="res_partner_education_responsible_minimal_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="education.res_partner_education_responsible_minimal_view_form" />
+        <field name="groups_id" eval="[(4, ref('education.education_center_responsible')), (4, ref('account.group_account_invoice'))]" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Invoicing Info" name="accounting" attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}">
+                    <group>
+                        <group string="Sales" name="sale" priority="1">
+                            <field name="customer_payment_mode_id" widget="selection"/>
+                        </group>
+                        <group string="Bank Accounts" name="banks">
+                            <field name="bank_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="bank_id"/>
+                                    <field name="acc_number"/>
+                                    <field name="acc_holder_name" invisible="1"/>
+                                </tree>
+                            </field>
+                            <button type="action" class="btn-link"
+                                    name="%(base.action_res_partner_bank_account_form)d"
+                                    context="{'search_default_partner_id': active_id, 'default_partner_id': active_id, 'form_view_ref': 'account.view_company_partner_bank_form'}"
+                                    string="View accounts detail"
+                                    colspan="2" />
+                        </group>
+                    </group>
+                </page>
+                <page name="internal_notes" string="Internal Notes">
+                    <field name="comment" placeholder="Internal note..."/>
+                </page>
+            </notebook>
         </field>
     </record>
 
