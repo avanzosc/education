@@ -99,7 +99,7 @@
                                    context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}"/>
                             <field name="student_group_id" required="True"
                                    options="{'no_create': True}"
-                                   domain="[('group_type_id.type','=','official'),('school_id','=',school_id)]"/>
+                                   domain="[('group_type_id.type','=','official'),('center_id','=',school_id)]"/>
                             <field name="site_id" options="{'no_open': True}" />
                             <field name="requires_imparting_group" invisible="1"/>
                             <field name="group_id"
