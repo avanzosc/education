@@ -253,6 +253,7 @@
                                     <field name="bank_id"/>
                                     <field name="acc_number"/>
                                     <field name="acc_holder_name" invisible="1"/>
+                                    <field name="use_default"/>
                                 </tree>
                             </field>
                             <button type="action" class="btn-link"
