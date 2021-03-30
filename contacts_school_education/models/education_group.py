@@ -1,11 +1,20 @@
 # Copyright 2020 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class EducationGroup(models.Model):
     _inherit = "education.group"
+
+    center_id = fields.Many2one(
+        domain=[("educational_category", "=", "school")])
+    student_ids = fields.Many2many(
+        domain=[("educational_category", "=", "student")])
+
+    @api.depends("student_ids", "student_ids.educational_category")
+    def _compute_student_count(self):
+        super()._compute_student_count()
 
     @api.model
     def create(self, values):

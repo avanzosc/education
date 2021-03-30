@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_discontinue_view_form" model="ir.ui.view">
+        <field name="model">res.partner.discontinue</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="date" />
+                </group>
+                <footer>
+                    <button name="discontinue" string="Discontinue Students" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="res_partner_discontinue_action"
+                name="Discontinue Students"
+                src_model="res.partner"
+                res_model="res.partner.discontinue"
+                view_type="form"
+                view_mode="form"
+                key2="client_action_multi"
+                target="new"/>
+</odoo>
