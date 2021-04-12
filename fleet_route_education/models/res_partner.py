@@ -1,11 +1,23 @@
 # Copyright 2020 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
+
+    @api.multi
+    def action_discontinue(self, date=False):
+        self.ensure_one()
+        self = self.sudo()
+        if not date:
+            date = fields.Date.context_today(self)
+        active_stops = self.stop_ids.filtered(lambda p: not p.end_date)
+        active_stops.write({
+            "end_date": date,
+        })
+        super(ResPartner, self).action_discontinue(date=date)
 
     def current_bus_stop(self, direction, date=False):
         self.ensure_one()

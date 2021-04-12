@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-07 08:42+0000\n"
-"PO-Revision-Date: 2020-09-07 08:42+0000\n"
+"POT-Creation-Date: 2021-03-31 13:29+0000\n"
+"PO-Revision-Date: 2021-03-31 13:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,8 @@ msgstr ""
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid ")\n"
-"                                    <br/>\n"
-"                                    <b>Bus:</b>"
+"                            <br/>\n"
+"                            <b>Bus:</b>"
 msgstr ""
 
 #. module: fleet_route_education
@@ -55,19 +55,19 @@ msgstr ""
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid "<br/>\n"
-"                                    <b>Driver:</b>"
+"                            <b>Driver:</b>"
 msgstr ""
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid "<br/>\n"
-"                                    <b>Mobile phone:</b>"
+"                            <b>Mobile phone:</b>"
 msgstr ""
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid "<br/>\n"
-"                                    <b>Route:</b>"
+"                            <b>Route:</b>"
 msgstr ""
 
 #. module: fleet_route_education
@@ -94,6 +94,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_stop_id
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Coming Stop"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_stop_route_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_complete_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route complete product"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_half_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Coming route half product"
 msgstr ""
 
 #. module: fleet_route_education
@@ -158,6 +176,24 @@ msgid "Going Stop"
 msgstr ""
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_stop_route_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_complete_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route complete product"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_half_product_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
+msgid "Going route half product"
+msgstr ""
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
 msgid "Group"
 msgstr ""
@@ -205,6 +241,16 @@ msgid "Route Passenger List"
 msgstr ""
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_complete_product_id
+msgid "Route complete product"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_half_product_id
+msgid "Route half product"
+msgstr ""
+
+#. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_group_section_id
 msgid "Section"
 msgstr ""
@@ -222,51 +268,5 @@ msgstr ""
 #. module: fleet_route_education
 #: selection:res.partner.fleet.route.report,bus_passenger:0
 msgid "Yes"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_complete_product_id
-msgid "Route complete product"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_half_product_id
-msgid "Route half product"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_stop_route_id
-#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
-msgid "Going route"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_stop_route_id
-#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
-msgid "Coming route"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_complete_product_id
-#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
-msgid "Going route complete product"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_route_half_product_id
-#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
-msgid "Going route half product"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_complete_product_id
-#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
-msgid "Coming route complete product"
-msgstr ""
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_route_half_product_id
-#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
-msgid "Coming route half product"
 msgstr ""
 
