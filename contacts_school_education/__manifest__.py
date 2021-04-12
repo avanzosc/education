@@ -31,6 +31,7 @@
         "views/res_partner_permission_view.xml",
         "views/res_partner_view.xml",
         "wizards/education_group_next_year_schedule_view.xml",
+        "wizards/res_partner_discontinue_view.xml",
         "reports/partner_insurance_xlsx_report.xml",
     ],
     "post_init_hook": "post_init_hook",

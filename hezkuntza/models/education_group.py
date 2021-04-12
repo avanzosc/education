@@ -2,17 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
 
 
 class EducationGroup(models.Model):
     _inherit = "education.group"
 
     education_code = fields.Char(default="/", readonly=True)
-    center_id = fields.Many2one(
-        domain=[('educational_category', '=', 'school')])
-    student_ids = fields.Many2many(
-        domain=[('educational_category', '=', 'student')])
 
     @api.model
     def create(self, values):
