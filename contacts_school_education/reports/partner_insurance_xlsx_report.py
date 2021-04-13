@@ -81,13 +81,14 @@ class EducationGroupXlsx(models.AbstractModel):
         sheet.write(
             "F" + str(row), student.current_course_id.description or "")
         sheet.write("G" + str(row), student.insured_partner_count or 0)
-        if student.insured_partner_count >= 1:
+        insured_count = len(student.insured_partner_ids)
+        if insured_count >= 1:
             progenitor1 = student.insured_partner_ids[0]
             sheet.write("H" + str(row), progenitor1.lastname or "")
             sheet.write("I" + str(row), progenitor1.lastname2 or "")
             sheet.write("J" + str(row), progenitor1.firstname or "")
             sheet.write("K" + str(row), progenitor1.vat or "")
-            if student.insured_partner_count > 1:
+            if insured_count > 1:
                 progenitor2 = student.insured_partner_ids[1]
                 sheet.write("L" + str(row), progenitor2.lastname or "")
                 sheet.write("M" + str(row), progenitor2.lastname2 or "")
