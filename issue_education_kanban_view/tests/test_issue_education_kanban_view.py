@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from .common import TestIssueEducationKanbanCommon
-from odoo import _
 from odoo.exceptions import UserError
 from odoo.tests import common
 

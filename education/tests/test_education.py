@@ -211,6 +211,9 @@ class TestEducation(TestEducationCommon):
             session_dict.get('dayofweek'), attendance_dict.get('dayofweek'))
 
     def test_education_group(self):
+        self.edu_partner.write({
+            "educational_category": "student",
+        })
         group = self.group_model.create({
             'education_code': 'TEST',
             'description': 'Test Group',

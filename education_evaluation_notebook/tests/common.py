@@ -36,7 +36,9 @@ class EducationNotebookCommon(TestEducationCommon):
         task_type = cls.env['education.task_type'].search([
             ("education_code", "=", "0120")]) or cls.edu_task_type
         if task_type.education_code != "0120":
-            task_type.education_code == "0120"
+            task_type.write({
+                "education_code": "0120",
+            })
         cls.schedule = cls.schedule_model.create({
             "center_id": cls.edu_partner.id,
             "academic_year_id": cls.academic_year.id,
