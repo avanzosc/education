@@ -84,16 +84,16 @@ class EducationRecord(models.Model):
     student_id = fields.Many2one(
         comodel_name="res.partner", string="Student", required=True,
         ondelete="cascade")
-    numeric_mark = fields.Float(string="Official Mark")
+    numeric_mark = fields.Float(string="Official Mark", group_operator="max")
     behaviour_mark_id = fields.Many2one(
         comodel_name="education.mark.behaviour", string="Behaviour Mark",
         copy=False)
     calculated_numeric_mark = fields.Float(
         compute="_compute_generate_marks", string="Calculated Numeric Mark",
-        store=True)
+        store=True, group_operator="max")
     calculated_partial_mark = fields.Float(
         compute="_compute_partial_marks", string="Calculated Partial Mark",
-        store=True)
+        store=True, group_operator="max")
     mark_id = fields.Many2one(
         comodel_name="education.mark.numeric", string="Numeric Mark (Text)",
         compute="_compute_mark_id", store=True)

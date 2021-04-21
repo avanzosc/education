@@ -40,7 +40,7 @@ class EducationGroupStudentExamReport(models.Model):
                 , edu_exam.date AS exam_date
                 , edu_exam.state AS exam_state
         """
-        return (super(EducationGroupStudentExamReport, self)._select() +\
+        return (super(EducationGroupStudentExamReport, self)._select() +
                 select_str)
 
     def _from(self):
