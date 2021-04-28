@@ -262,11 +262,9 @@ class EducationGroupXlsx(models.AbstractModel):
         self._define_formats(workbook)
         record_obj = self.env["education.record"]
         today = fields.Date.context_today(self)
-        objects = objects.filtered(
-            lambda g: g.group_type_id.type == "official")
         if not objects:
             raise UserError(
-                _("You can only get xlsx report of official groups"))
+                _("You can only get xlsx report of education groups"))
         for group in objects:
             eval_type = data and data.get("eval_type", False)
             partial_mark = data and data.get("partial_mark", False)
