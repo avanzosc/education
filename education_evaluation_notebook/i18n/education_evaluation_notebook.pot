@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-15 15:55+0000\n"
-"PO-Revision-Date: 2021-03-15 15:55+0000\n"
+"POT-Creation-Date: 2021-04-27 08:54+0000\n"
+"PO-Revision-Date: 2021-04-27 08:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -160,7 +160,6 @@ msgid "Academic Year"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:58
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:59
 #, python-format
 msgid "Academic Year:"
@@ -235,7 +234,6 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:90
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:91
 #, python-format
 msgid "Average Score"
@@ -633,7 +631,6 @@ msgid "Education Center and Course relation"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:54
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:55
 #, python-format
 msgid "Education Center:"
@@ -650,7 +647,6 @@ msgid "Education Competence"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:68
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:69
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__course_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__course_id
@@ -670,7 +666,6 @@ msgid "Education Exam"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:72
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:73
 #: model:ir.model,name:education_evaluation_notebook.model_education_group
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__group_id
@@ -779,7 +774,6 @@ msgid "Evaluation Number"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/wizards/export_education_record_xlsx_report.py:21
 #: code:addons/education_evaluation_notebook/wizards/export_education_record_xlsx_report.py:22
 #, python-format
 msgid "Evaluation Record"
@@ -817,7 +811,6 @@ msgid "Evaluation notebook"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:61
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:62
 #, python-format
 msgid "Evaluation:"
@@ -1496,7 +1489,6 @@ msgid "Not Evaluated Record"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:83
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:84
 #, python-format
 msgid "Not Passed"
@@ -1856,7 +1848,6 @@ msgid "Round official mark"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:52
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:53
 #, python-format
 msgid "STUDENT LIST"
@@ -1948,7 +1939,6 @@ msgid "Status based on activities\n"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:76
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:77
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_exam_report__student_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_homework_report__student_id
@@ -2084,8 +2074,7 @@ msgid "Type"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:133
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:141
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:142
 #, python-format
 msgid "UN"
 msgstr ""
@@ -2153,10 +2142,9 @@ msgid "You can only delete an exam in draft state."
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:260
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:268
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:267
 #, python-format
-msgid "You can only get xlsx report of official groups"
+msgid "You can only get xlsx report of education groups"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -2167,7 +2155,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:273
-#: code:addons/education_evaluation_notebook/models/education_record.py:426
 #: code:addons/education_evaluation_notebook/models/education_record.py:430
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
