@@ -112,7 +112,8 @@ class EducationGroupXlsx(models.AbstractModel):
                 ("student_id", "=", student.id),
                 ("subject_id", "=", subject.id),
                 ("eval_type", "=", eval_type),
-                ("evaluation_competence", "=", True),
+                "|", ("evaluation_competence", "=", True),
+                ("global_competence", "=", True),
             ]
             if retaken:
                 domain = expression.AND([
