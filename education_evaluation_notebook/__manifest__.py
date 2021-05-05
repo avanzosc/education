@@ -26,6 +26,7 @@
         "reports/education_group_homework_report_view.xml",
         "reports/education_group_student_exam_report_view.xml",
         "reports/education_group_student_homework_report_view.xml",
+        "reports/education_record_all_xlsx_report_view.xml",
         "reports/education_record_xlsx_report_view.xml",
         "views/education_academic_year_evaluation_view.xml",
         "views/education_competence_type_view.xml",
