@@ -6,6 +6,7 @@ from odoo import api, fields, models
 class SchoolIssue(models.Model):
     _name = 'school.issue'
     _description = 'School issues'
+    _inherit = 'mail.thread'
 
     name = fields.Char(string='Description', required=True)
     school_issue_type_id = fields.Many2one(
