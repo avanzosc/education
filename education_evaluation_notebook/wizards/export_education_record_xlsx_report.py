@@ -15,10 +15,16 @@ class ExportEducationRecordReport(models.TransientModel):
     partial_mark = fields.Boolean(
         string="Partial Marks", default=False)
     retaken = fields.Boolean(string="Retaken Marks", default=False)
+    accumulated = fields.Boolean(
+        string="Accumulated", default=False,
+        help="If this check is selected, none of the other fields will be "
+             "taken into account")
 
     @api.multi
     def export_xls(self):
         report_name = "education.education_record_xlsx"
+        if self.accumulated:
+            report_name = "education.education_record_all_xlsx"
         print_report_name = _("Evaluation Record")
         report = {
             "type": "ir.actions.report",
