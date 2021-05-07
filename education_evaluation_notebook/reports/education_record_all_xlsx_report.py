@@ -41,6 +41,7 @@ class EducationGroupXlsx(models.AbstractModel):
         self.format_amount_not_passed = None
         self.format_amount_not_passed_final = None
         self.format_amount_bold = None
+        self.format_amount_bold_final = None
         self.format_amount_bold_not_passed = None
         self.format_integer_statistics = None
 
@@ -289,6 +290,12 @@ class EducationGroupXlsx(models.AbstractModel):
             'border': True,
         })
         self.format_amount_bold.set_num_format('#,##0.' + '00')
+        self.format_amount_bold_final = workbook.add_format({
+            'bold': True,
+            'border': True,
+            'bg_color': '#DBDBDB',
+        })
+        self.format_amount_bold_final.set_num_format('#,##0.' + '00')
         self.format_amount_bold_not_passed = workbook.add_format({
             'bold': True,
             'border': True,
