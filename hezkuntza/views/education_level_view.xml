@@ -58,6 +58,9 @@
                 <field name="short_description_eu" string="Basque"
                        groups="hezkuntza.education_basque" />
             </field>
+            <field name="plan_id" position="after">
+                <field name="hezkuntza_level" />
+            </field>
         </field>
     </record>
 </odoo>

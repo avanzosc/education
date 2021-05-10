@@ -1,0 +1,1042 @@
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ 
+<xsd:element name='DatosHistoriales'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoCentroJuridico'/>
+    <xsd:element ref='NombreCentro' minOccurs='0' maxOccurs='1'/>
+    <xsd:sequence>
+     <xsd:element ref='Historial' maxOccurs='unbounded'/>
+    </xsd:sequence>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="AC">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="S"/>
+   <xsd:enumeration value="N"/>   
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="ACI">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="S"/>
+   <xsd:enumeration value="N"/>   
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name="Ano">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:pattern value="[0-9]{4}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="AnoAcademicoFin">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:pattern value="[0-9]{4}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="AnoAcademicoInicio">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:pattern value="[0-9]{4}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Apellido1">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="50"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Apellido2">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="50"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='AreaConocimiento'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NotaNumerica' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='MedidasAdoptadas' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='AreasConocimiento'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='AreaConocimiento' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='Bachillerato'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursosBachillerato' />
+    <xsd:element ref='NotaDanzaMusica' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Diligencias' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Observaciones' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='Centro'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoCentroJuridico' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreCentro' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoProvincia' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreProvincia' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoMunicipio' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreMunicipio' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+ 
+<xsd:element name="CicloCurso">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:minInclusive value="1"/>
+	<xsd:maxInclusive value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='CursoPrimaria'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Centro' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ValorCurso' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoInicio' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoFin' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AreasConocimiento'/>
+    <xsd:element ref='FechaPromociona' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='InformeCompetencias' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CicloFormativo'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoCicloFormativo' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionCicloFormativo' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CursosFP'/>
+    <xsd:element ref='NotaPruebaAcceso' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Diligencias' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Observaciones' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CursosPrimaria'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursoPrimaria' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CiclosFormativos'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CicloFormativo' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="CodigoAsignatura">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="8"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name='CodigoCentro'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='DIEAlumno' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoAlumno' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoInternoCentro' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="CodigoCicloFormativo">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="4"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoInternoCentro">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="50"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="DIEAlumno">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+	<xsd:maxLength value="11"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoAlumno">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string"/>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoCentroJuridico">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="6"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoModalidad">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="4"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoNivelEducativo">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="4"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoPrograma">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="3"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoRegimen">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="1"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoTurno">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="1"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoVia">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="1"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='ConDni'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='TipoIdentificador' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ValorDocumentoIdentificativo' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="Convocatoria">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:minInclusive value="1"/>
+    <xsd:maxInclusive value="99"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='CursoSecundaria'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Centro' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ValorCurso' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ProgramaDiversificacion' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoInicio' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoFin' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='MateriasSecundaria' />
+    <xsd:element ref='FechaPromocionCursoSiguiente' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='FechaPromocionImposibilidadRepetir' minOccurs='0' maxOccurs='1'/>
+	<xsd:element ref='InformeCompetencias' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="Curso">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:minInclusive value="1"/>
+    <xsd:maxInclusive value="6"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='CursosSecundaria'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursoSecundaria' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CursoPCPI'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Centro' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoInicio' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoFin' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='MateriasPCPI' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Promociona' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CursosPCPI'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursoPCPI' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CursoBachillerato'>
+  <xsd:complexType>
+   <xsd:sequence>
+	<xsd:element ref='Centro' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ValorCurso'  minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoInicio' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoFin' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoModalidad' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionModalidad' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoVia' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionVia' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoRegimen' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionRegimen' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='MateriasBachillerato'/>
+    <xsd:element ref='Promociona' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CursosBachillerato'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursoBachillerato' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CursoFP'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Centro' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ValorCurso' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoInicio' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='AnoAcademicoFin' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoModalidad' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionModalidad' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CodigoTurno' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionTurno' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='MateriasFP' />
+    <xsd:element ref='Promociona' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='CursosFP'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursoFP' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='DatosComunes'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='NivelEducativo'/>
+    <xsd:element ref='IdentificacionAlumno'/>    
+    <xsd:element ref='MedidasAtDiversidad' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="Descripcion">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4000"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="DescripcionCicloFormativo">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="200"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name="DescripcionDiligencia">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4000"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="DescripcionModalidad">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="200"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+
+<xsd:element name="DescripcionNivelEducativo">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="200"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="DescripcionObservacion">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4000"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="DescripcionPrograma">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="200"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="DescripcionRegimen">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="100"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="DescripcionTurno">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="100"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+
+<xsd:element name="DescripcionVia">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="100"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name='Diligencia'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='DescripcionDiligencia' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='FechaDiligencia' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='Diligencias'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Diligencia' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="ProgramaDiversificacion">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+   <xsd:enumeration value="1"/>
+   <xsd:enumeration value="2"/>   
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='FP'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CiclosFormativos'/>	
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="FechaApertura">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="10"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="FechaDiligencia">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="10"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name="FechaNacimiento">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="10"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="FechaObservacion">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="10"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='Historial'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='DatosComunes'/>
+    <xsd:element ref='Primaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Secundaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='PCPI' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Bachillerato' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='FP' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='IdentificacionAlumno'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoCentro' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ConDni' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='SinDni' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriaSecundaria' >
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NotaNumericaOrdinaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NotaNumericaExtraOrdinaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ACI' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriasSecundaria'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='MateriaSecundaria' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriaPCPI'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NotaNumericaOrdinaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NotaNumericaExtraOrdinaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ACI' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriasPCPI'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='MateriaPCPI' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriaBachillerato'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NotaNumericaOrdinaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NotaNumericaExtraOrdinaria' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='ACI' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Optativa' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriasBachillerato'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='MateriaBachillerato' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriaFP'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='NombreAsignatura' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Convocatoria1' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Convocatoria2' minOccurs='0' maxOccurs='1'/>
+	<xsd:element ref='Convocatoria3' minOccurs='0' maxOccurs='1'/>
+	<xsd:element ref='Convocatoria4' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='MateriasFP'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='MateriaFP' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='Medida'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Tipo' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Curso' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Descripcion' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="MedidasAdoptadas">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="3"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+
+ <xsd:element name='MedidasAtDiversidad'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Medida' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='ModulosObligatorios'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Programa' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='ModulosVoluntarios'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursosPCPI'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="CodigoMunicipio">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="3"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NombreMunicipio">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="50"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='NivelEducativo'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoNivelEducativo' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionNivelEducativo' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='FechaApertura' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="Nombre">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="30"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NombreAsignatura">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="200"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NombreCentro">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="150"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NotaPruebaAcceso">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NotaDanzaMusica">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NotaNumerica">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NotaNumericaOrdinaria">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NotaNumericaExtraOrdinaria">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Convocatoria1">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Convocatoria2">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Convocatoria3">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Convocatoria4">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="4"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Optativa">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="2"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name='Observacion'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='DescripcionObservacion' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='FechaObservacion' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='Observaciones'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Observacion' maxOccurs='unbounded'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='PCPI'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='ModulosObligatorios' minOccurs='0' maxOccurs='1' />
+    <xsd:element ref='ModulosVoluntarios' maxOccurs='unbounded'/>
+    <xsd:element ref='Diligencias' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Observaciones' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='Primaria'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursosPrimaria'/>
+    <xsd:element ref='Diligencias' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Observaciones' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='Programa'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CodigoPrograma' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='DescripcionPrograma' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='CursosPCPI' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="FechaPromociona">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="10"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="FechaPromocionCursoSiguiente">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="10"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="FechaPromocionImposibilidadRepetir">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="10"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Promociona">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="S"/>
+   <xsd:enumeration value="N"/>   
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="CodigoProvincia">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="2"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="NombreProvincia">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="50"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+
+ <xsd:element name='Secundaria'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='CursosSecundaria'/>
+    <xsd:element ref='Diligencias' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Observaciones' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name='SinDni'>
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element ref='Nombre' minOccurs='0' maxOccurs='1' />
+    <xsd:element ref='Apellido1' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='Apellido2' minOccurs='0' maxOccurs='1'/>
+    <xsd:element ref='FechaNacimiento' minOccurs='0' maxOccurs='1'/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+<xsd:element name="Tipo">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="3"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="TipoIdentificador">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:totalDigits value="4"/>	
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="ValorCiclo">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:minInclusive value="1"/>
+	<xsd:maxInclusive value="3"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="ValorCurso">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:integer">
+	<xsd:minInclusive value="1"/>
+    <xsd:maxInclusive value="6"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+
+ <xsd:element name="ValorDocumentoIdentificativo">
+ <xsd:simpleType>
+  <xsd:restriction base="xsd:string">
+    <xsd:maxLength value="15"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:element>
+ 
+<xsd:element name='InformeCompetencias'>
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref='Competencias' maxOccurs='unbounded'/>
+			<xsd:element ref='ObservacionesIC' minOccurs='0' maxOccurs='1'/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+ 
+<xsd:element name='Competencias'>
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref='Competencia' maxOccurs='unbounded'/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+	
+<xsd:element name='Competencia'>
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref='ClaveCompetencia'/>
+			<xsd:element ref='ValorCompetencia'/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+	
+<xsd:element name="ClaveCompetencia">
+	<xsd:simpleType>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:element>
+	
+<xsd:element name="ValorCompetencia">
+	<xsd:simpleType>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:element>	
+
+<xsd:element name="ObservacionesIC">
+	<xsd:simpleType>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:element>	
+
+</xsd:schema>

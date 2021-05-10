@@ -3,13 +3,14 @@
 
 {
     "name": "Hezkuntza",
-    "version": "12.0.4.0.0",
+    "version": "12.0.5.0.0",
     "category": "Education",
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
     "depends": [
         "education",
+        "education_evaluation_notebook",
         "resource_education",
         "hr_education",
         "hr_contract_education",
@@ -28,6 +29,7 @@
         "views/education_course_view.xml",
         "views/education_designation_level_view.xml",
         "views/education_field_view.xml",
+        "views/education_group_view.xml",
         "views/education_group_type_view.xml",
         "views/education_idtype_view.xml",
         "views/education_language_view.xml",
@@ -40,6 +42,7 @@
         "views/education_task_type_view.xml",
         "views/education_work_reason_view.xml",
         "views/education_workday_type_view.xml",
+        "views/ir_attachment_view.xml",
         "wizard/update_education_partner_view.xml",
         "wizard/upload_education_activity_type_view.xml",
         "wizard/upload_education_all_view.xml",
