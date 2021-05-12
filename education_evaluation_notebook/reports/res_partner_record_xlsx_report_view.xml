@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report id="education_group_record_xlsx"
+            string="Student Records XLSX report"
+            model="res.partner"
+            report_type="xlsx"
+            name="education.partner_record_xlsx"
+            file="education.partner_record"
+    />
+
+</odoo>
