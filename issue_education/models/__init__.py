@@ -1,4 +1,5 @@
 from . import education_position
+from . import education_schedule
 from . import res_partner
 from . import school_claim
 from . import school_college_educational_measure
