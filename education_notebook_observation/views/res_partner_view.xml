@@ -24,4 +24,17 @@
             </page>
         </field>
     </record>
+
+    <record id="res_partner_education_minimal_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.res_partner_education_minimal_view_form" />
+        <field name="arch" type="xml">
+            <button name="button_show_student_records" position="after">
+                <button class="oe_stat_button" type="object" name="button_show_student_observations"
+                        icon="fa-clipboard" attrs="{'invisible':[('observation_count','=',0)]}">
+                    <field name="observation_count" string="Observations" widget="statinfo"/>
+                </button>
+            </button>
+        </field>
+    </record>
 </odoo>
