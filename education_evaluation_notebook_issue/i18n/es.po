@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* education_evaluation_notebook_issue
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-18 11:05+0000\n"
+"PO-Revision-Date: 2021-05-18 11:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: education_evaluation_notebook_issue
+#: model:ir.model.fields,field_description:education_evaluation_notebook_issue.field_school_issue__academic_year_id
+msgid "Academic Year"
+msgstr "Año académico"
+
+#. module: education_evaluation_notebook_issue
+#: model:ir.model.fields,field_description:education_evaluation_notebook_issue.field_school_issue__evaluation_id
+msgid "Evaluation"
+msgstr "Evaluación"
+
+#. module: education_evaluation_notebook_issue
+#: code:addons/education_evaluation_notebook_issue/reports/res_partner_record_xlsx_report.py:39
+#, python-format
+msgid "Issues"
+msgstr "Incidencias"
+
+#. module: education_evaluation_notebook_issue
+#: model:ir.model,name:education_evaluation_notebook_issue.model_school_issue
+msgid "School issues"
+msgstr "Incidencias colegio"
+
+#. module: education_evaluation_notebook_issue
+#: model:ir.model,name:education_evaluation_notebook_issue.model_report_education_partner_record_xlsx
+msgid "report.education.partner_record_xlsx"
+msgstr ""
+
