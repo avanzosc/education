@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 10:39+0000\n"
-"PO-Revision-Date: 2020-11-11 10:39+0000\n"
+"POT-Creation-Date: 2021-05-18 11:05+0000\n"
+"PO-Revision-Date: 2021-05-18 11:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,12 @@ msgstr ""
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_hr_employee__count_notebook_observation
 msgid "# Notebook observations"
+msgstr ""
+
+#. module: education_notebook_observation
+#: model:ir.model.fields,field_description:education_notebook_observation.field_res_partner__observation_count
+#: model:ir.model.fields,field_description:education_notebook_observation.field_res_users__observation_count
+msgid "# Observations"
 msgstr ""
 
 #. module: education_notebook_observation
@@ -259,7 +265,10 @@ msgid "Notebook observations to make"
 msgstr ""
 
 #. module: education_notebook_observation
+#: code:addons/education_notebook_observation/reports/res_partner_record_xlsx_report.py:21
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__observations
+#: model_terms:ir.ui.view,arch_db:education_notebook_observation.res_partner_education_minimal_view_form
+#, python-format
 msgid "Observations"
 msgstr ""
 
@@ -329,6 +338,12 @@ msgid "Tutored by year"
 msgstr ""
 
 #. module: education_notebook_observation
+#: code:addons/education_notebook_observation/reports/res_partner_record_xlsx_report.py:38
+#, python-format
+msgid "UN"
+msgstr ""
+
+#. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_wiz_generate_notebook_observation_line__wiz_id
 msgid "Wizard"
 msgstr ""
@@ -351,5 +366,10 @@ msgstr ""
 #. module: education_notebook_observation
 #: model:ir.model,name:education_notebook_observation.model_wiz_generate_notebook_observation_line
 msgid "lines of wizard for generate notebook observations"
+msgstr ""
+
+#. module: education_notebook_observation
+#: model:ir.model,name:education_notebook_observation.model_report_education_partner_record_xlsx
+msgid "report.education.partner_record_xlsx"
 msgstr ""
 
