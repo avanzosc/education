@@ -132,7 +132,8 @@
         <field name="name">Issues</field>
         <field name="res_model">school.issue</field>
         <field name="view_type">form</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,tree,pivot</field>
+        <field name="domain">[]</field>
         <field name="view_id" ref="school_issue_view_tree" />
         <field name="context">{"search_default_filter-today-issues":1}</field>
     </record>

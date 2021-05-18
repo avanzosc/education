@@ -19,6 +19,7 @@
         "security/issue_education_rule.xml",
         "data/issue_education_data.xml",
         "views/calendar_event_view.xml",
+        "views/issue_education_menu_view.xml",
         "views/res_partner_view.xml",
         "views/school_claim_view.xml",
         "views/school_issue_severity_scale_view.xml",
@@ -28,7 +29,7 @@
         "views/school_issue_site_view.xml",
         "views/school_issue_proof_view.xml",
         "views/school_issue_view.xml",
-        "views/issue_education_menu_view.xml",
+        "views/education_schedule_view.xml",
     ],
     "installable": True,
 }

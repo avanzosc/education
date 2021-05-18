@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_schedule_view_form" model="ir.ui.view">
+        <field name="model">education.schedule</field>
+        <field name="inherit_id" ref="education.education_schedule_view_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="button_open_school_issues"
+                        icon="fa-bullhorn">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">School Issues</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

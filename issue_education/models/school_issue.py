@@ -17,7 +17,11 @@ class SchoolIssue(models.Model):
         related='school_issue_type_id.school_id', store=True)
     issue_type_id = fields.Many2one(
         string='Issue type', comodel_name='school.issue.type',
-        related='school_issue_type_id.issue_type_id')
+        related='school_issue_type_id.issue_type_id', store=True)
+    gravity_scale_id = fields.Many2one(
+        string='Severity scale', comodel_name='school.issue.severity.scale',
+        related='school_issue_type_id.issue_type_id.gravity_scale_id',
+        store=True)
     requires_justification = fields.Boolean(
         string='Requires Justification')
     affect_to = fields.Selection(
@@ -53,6 +57,12 @@ class SchoolIssue(models.Model):
         ], string='Proving State', compute='_compute_proof_state', store=True)
     student_group_id = fields.Many2one(
         comodel_name="education.group", string="Student Official Group")
+    student_course_id = fields.Many2one(
+        comodel_name="education.course", string="Course",
+        related="student_group_id.course_id", store=True)
+    student_level_id = fields.Many2one(
+        comodel_name="education.level", string="Education Level",
+        related="student_group_id.level_id", store=True)
 
     @api.multi
     @api.depends('proof_id', 'requires_justification')
