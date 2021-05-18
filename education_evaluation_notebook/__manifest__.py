@@ -3,7 +3,7 @@
 
 {
     "name": "Education Evaluation Notebook",
-    "version": "12.0.6.0.0",
+    "version": "12.0.7.0.0",
     "category": "Education",
     "depends": [
         "education",
@@ -14,6 +14,7 @@
         "hr_school",
         "hr_education",
         "report_xlsx",
+        "queue_job",
     ],
     "author":  "AvanzoSC",
     "license": "AGPL-3",
@@ -28,6 +29,7 @@
         "reports/education_group_student_homework_report_view.xml",
         "reports/education_record_all_xlsx_report_view.xml",
         "reports/education_record_xlsx_report_view.xml",
+        "reports/res_partner_record_xlsx_report_view.xml",
         "views/education_academic_year_evaluation_view.xml",
         "views/education_competence_type_view.xml",
         "views/education_competence_view.xml",
