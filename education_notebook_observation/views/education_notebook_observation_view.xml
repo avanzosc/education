@@ -47,7 +47,7 @@
                     <filter name="groupby_student"
                             context="{'group_by':'student_id'}" string="Student" />
                     <filter name="groupby_state"
-                            context="{'group_by':'state'}" string="State" />
+                            context="{'group_by':'state'}" string="Status" />
                 </group>
             </search>
         </field>
