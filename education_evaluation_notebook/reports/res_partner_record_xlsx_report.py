@@ -21,24 +21,14 @@ class EducationGroupXlsx(models.AbstractModel):
 
         # Formats
         self.format_border = None
-        self.format_border_not_passed = None
+        self.format_border_grey = None
         self.format_bold = None
         self.format_italic = None
-        self.format_bold_not_passed = None
-        self.format_right = None
         self.format_left = None
-        self.format_center_bold = None
-        self.format_right_bold_italic = None
-        self.format_header_left = None
         self.format_header_center = None
         self.format_header_right = None
-        self.format_header_amount = None
         self.format_amount = None
-        self.format_amount_not_passed = None
-        self.format_amount_not_evaluated = None
-        self.format_amount_bold = None
-        self.format_amount_bold_not_passed = None
-        self.format_integer_statistics = None
+        self.format_amount_grey = None
 
     def _get_not_passed(self):
         return [
@@ -115,10 +105,10 @@ class EducationGroupXlsx(models.AbstractModel):
             sheet.set_row(row, None, self.format_border)
             sheet.merge_range(
                 row, 0, row, 2, record.n_line_id.description,
-                self.format_border)
+                self.format_border_grey)
             self.write_evaluation_mark(
                 sheet, row, record.eval_type, record.numeric_mark,
-                self.format_amount)
+                self.format_amount_grey)
             row += 1
             for exam_record in record.child_record_ids:
                 sheet.set_row(row, None, self.format_border)
@@ -133,23 +123,29 @@ class EducationGroupXlsx(models.AbstractModel):
 
     def generate_xlsx_report(self, workbook, data, objects):
         self._define_formats(workbook)
+        students = []
+        if objects._name == "res.partner":
+            students = objects
+        elif objects._name == "hr.employee.supervised.year":
+            students = objects.mapped("student_id")
         record_obj = self.env["education.record"]
         current_academic_year = self.env["education.academic_year"].search([
             ("current", "=", True),
         ])
-        today = fields.Date.context_today(self)
         academic_year_id = data and data.get(
             "academic_year_id", False) or current_academic_year[:1].id
-        eval_type = data and data.get("eval_type", False)
-        partial_mark = data and data.get("partial_mark", False)
-        retaken = data and data.get("retaken", False)
-        if not objects:
+        # partial_mark = data and data.get("partial_mark", False)
+        # retaken = data and data.get("retaken", False)
+        if not students:
             raise UserError(
                 _("You must select at least one student."))
+        if len(students) > 1:
+            raise UserError(
+                _("Please select only one student"))
         if not academic_year_id:
             raise UserError(
                 _("There is no academic year selected."))
-        for student in objects:
+        for student in students:
             student_sheet = self.create_student_sheet(workbook, student)
             row = 6
             student_records = record_obj.sudo().search([
@@ -174,11 +170,13 @@ class EducationGroupXlsx(models.AbstractModel):
             'align': 'center',
         })
         self.format_border.set_text_wrap()
-        self.format_border_not_passed = workbook.add_format({
+        border_grey = {
             'border': True,
-            'align': 'center',
-            'color': '#FF0000',
-        })
+            'bg_color': '#C0C0C0',
+        }
+        self.format_border_grey = workbook.add_format(border_grey)
+        self.format_border_grey.set_align("center")
+        self.format_border_grey.set_text_wrap()
         self.format_bold = workbook.add_format({
             'bold': True,
             'border': True,
@@ -189,71 +187,20 @@ class EducationGroupXlsx(models.AbstractModel):
             'border': True,
             'align': 'center',
         })
-        self.format_bold_not_passed = workbook.add_format({
-            'bold': True,
-            'border': True,
-            'align': 'center',
-            'color': '#FF0000',
-        })
-        self.format_right = workbook.add_format({
-            'border': True,
-            'align': 'right',
-        })
         self.format_left = workbook.add_format({
             'border': True,
             'align': 'left',
         })
-        self.format_right_bold_italic = workbook.add_format(
-            {'align': 'right', 'bold': True, 'italic': True})
-
         header_dict = {
             'bold': True,
             'border': True,
             'bg_color': '#F2F2F2'
         }
-        self.format_header_left = workbook.add_format(header_dict)
         self.format_header_center = workbook.add_format(header_dict)
         self.format_header_center.set_align('center')
         self.format_header_right = workbook.add_format(header_dict)
         self.format_header_right.set_align('right')
-        self.format_header_amount = workbook.add_format(header_dict)
-        self.format_header_amount.set_num_format('#,##0.' + '00')
-
         self.format_amount = workbook.add_format({'border': True})
         self.format_amount.set_num_format('#,##0.' + '00')
-        self.format_amount_not_passed = workbook.add_format({
-            'color': '#FF0000', 'border': True})
-        self.format_amount_not_passed.set_num_format('#,##0.' + '00')
-        self.format_amount_not_evaluated = workbook.add_format({
-            'color': '#B5B5B5', 'border': True})
-        self.format_amount_not_evaluated.set_num_format('#,##0.' + '00')
-        self.format_amount_bold = workbook.add_format({
-            'bold': True,
-            'border': True,
-        })
-        self.format_amount_bold.set_num_format('#,##0.' + '00')
-        self.format_amount_bold_not_passed = workbook.add_format({
-            'bold': True,
-            'border': True,
-            'color': '#FF0000',
-        })
-        self.format_amount_bold_not_passed.set_num_format('#,##0.' + '00')
-
-        statistics_dict = {
-            'bold': True,
-            'border': True,
-            'align': 'center',
-            'bg_color': '#92BDDA'
-        }
-        self.format_statistics = workbook.add_format(statistics_dict)
-        self.format_percentage = workbook.add_format(statistics_dict)
-        self.format_percentage.set_num_format(10)
-        self.format_integer_statistics = workbook.add_format(statistics_dict)
-        self.format_integer_statistics.set_num_format(1)
-        self.format_amount_statistics = workbook.add_format(statistics_dict)
-        self.format_amount_statistics.set_num_format(
-            '#,##0.' + '00')
-        self.format_amount_not_passed_statistics = workbook.add_format(
-            statistics_dict)
-        self.format_amount_not_passed_statistics.set_num_format(
-            '#,##0.' + '00')
+        self.format_amount_grey = workbook.add_format(border_grey)
+        self.format_amount_grey.set_num_format('#,##0.' + '00')
