@@ -17,27 +17,33 @@ class EducationGroupXlsx(models.AbstractModel):
         evaluation_obj = self.env["education.academic_year.evaluation"]
         row = super(EducationGroupXlsx, self).fill_student_subject_data(
             sheet, student, subject, row)
-        sheet.merge_range(
-            row, 0, row, 6, _("Observations"), self.format_header_center)
-        row += 1
-        for eval_type in ["first", "second", "third", "final"]:
-            observations = observation_obj.search([
-                ("e_notebook_line_id.a_year_id.current", "=", True),
-                ("e_notebook_line_id.eval_type", "=", eval_type),
-                ("student_id", "=", student.id),
-                ("e_notebook_line_id.subject_id", "=", subject.id),
-            ])
-            for observation in observations:
-                field = evaluation_obj._fields["eval_type"]
-                eval_type_text = field.convert_to_export(
-                    eval_type, evaluation_obj)
-                sheet.set_row(row, 170)
-                sheet.write(
-                    row, 0, eval_type_text, self.format_observations_header)
-                sheet.merge_range(
-                    row, 1, row, 6, observation.observations or _("UN"),
-                    self.format_observations)
-                row += 1
+        observations = observation_obj.search([
+            ("e_notebook_line_id.a_year_id.current", "=", True),
+            ("student_id", "=", student.id),
+            ("e_notebook_line_id.subject_id", "=", subject.id),
+        ])
+        if observations:
+            teacher_list = ",".join(observations.mapped(
+                "teacher_id.display_name"))
+            sheet.merge_range(
+                row, 0, row, 6, _("Observations ({})").format(teacher_list),
+                self.format_header_center)
+            row += 1
+            for eval_type in ["first", "second", "third", "final"]:
+                eval_observations = observations.filtered(
+                    lambda o: o.e_notebook_line_id.eval_type == eval_type)
+                for observation in eval_observations:
+                    field = evaluation_obj._fields["eval_type"]
+                    eval_type_text = field.convert_to_export(
+                        eval_type, evaluation_obj)
+                    sheet.set_row(row, 170)
+                    sheet.write(
+                        row, 0, eval_type_text,
+                        self.format_observations_header)
+                    sheet.merge_range(
+                        row, 1, row, 6, observation.observations or _("UN"),
+                        self.format_observations)
+                    row += 1
         return row
 
     def _define_formats(self, workbook):

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-18 11:05+0000\n"
-"PO-Revision-Date: 2021-05-18 11:05+0000\n"
+"POT-Creation-Date: 2021-05-19 13:14+0000\n"
+"PO-Revision-Date: 2021-05-19 13:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -273,6 +273,12 @@ msgid "Observations"
 msgstr ""
 
 #. module: education_notebook_observation
+#: code:addons/education_notebook_observation/reports/res_partner_record_xlsx_report.py:29
+#, python-format
+msgid "Observations ({})"
+msgstr ""
+
+#. module: education_notebook_observation
 #: selection:education.notebook.observation,state:0
 msgid "Pending"
 msgstr "Zain"
@@ -311,8 +317,8 @@ msgstr ""
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__state
 #: model_terms:ir.ui.view,arch_db:education_notebook_observation.education_notebook_observation_view_search
-msgid "State"
-msgstr "Estado"
+msgid "Status"
+msgstr "Egoera"
 
 #. module: education_notebook_observation
 #: model:ir.model.fields,field_description:education_notebook_observation.field_education_notebook_observation__student_id
@@ -339,6 +345,7 @@ msgstr ""
 
 #. module: education_notebook_observation
 #: code:addons/education_notebook_observation/reports/res_partner_record_xlsx_report.py:38
+#: code:addons/education_notebook_observation/reports/res_partner_record_xlsx_report.py:44
 #, python-format
 msgid "UN"
 msgstr ""

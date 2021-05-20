@@ -35,6 +35,7 @@ class EducationNotebookObservation(models.Model):
     state = fields.Selection(
         selection=[("pending", "Pending"),
                    ("included", "Included"), ],
+        string="Status",
         default="pending", track_visibility="onchange",
         compute="_compute_state", store=True)
     event_teacher_id = fields.Many2one(
