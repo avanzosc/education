@@ -63,6 +63,7 @@
                             <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                 <a name="button_open_group_exams" type="object" role="menuitem" class="dropdown-item">Exams</a>
                                 <a name="button_open_group_homework" type="object" role="menuitem" class="dropdown-item">Homework</a>
+                                <a name="education.education_employee_timetable" type="action" role="menuitem" class="dropdown-item">Timetable</a>
                             </div>
                         </div>
                     </div>

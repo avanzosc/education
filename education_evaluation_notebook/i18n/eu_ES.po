@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 12:42+0000\n"
-"PO-Revision-Date: 2021-05-19 12:42+0000\n"
+"POT-Creation-Date: 2021-05-24 15:55+0000\n"
+"PO-Revision-Date: 2021-05-24 15:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -643,7 +643,6 @@ msgstr ""
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:61
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:55
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:45
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:55
 #, python-format
 msgid "Education Center:"
 msgstr ""
@@ -675,7 +674,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:49
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:59
 #, python-format
 msgid "Education Course:"
 msgstr ""
@@ -713,7 +711,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:53
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:63
 #, python-format
 msgid "Education Group:"
 msgstr ""
@@ -2010,7 +2007,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:42
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:52
 #, python-format
 msgid "Student:"
 msgstr ""
@@ -2070,7 +2066,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:147
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:151
 #, python-format
 msgid "There is no academic year selected."
 msgstr ""
@@ -2108,6 +2103,11 @@ msgid "Three"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.hr_employee_view_kanban
+msgid "Timetable"
+msgstr "Ordutegia"
+
+#. module: education_evaluation_notebook
 #: selection:education.exam,activity_state:0
 #: selection:education.record,activity_state:0
 msgid "Today"
@@ -2137,7 +2137,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:57
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:67
 #, python-format
 msgid "Tutor:"
 msgstr ""
@@ -2230,7 +2229,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:141
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:148
 #, python-format
 msgid "You must select at least one student."
 msgstr ""
