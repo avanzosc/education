@@ -114,21 +114,33 @@ class EducationSchedule(models.Model):
         self.ensure_one()
         action = self.env.ref('education.action_education_subject_center')
         action_dict = action.read()[0] if action else {}
+        courses = self.mapped("group_ids.course_id")
+        programme_domain = [
+            ("center_id", "=", self.center_id.id),
+            ("subject_id", "=", self.subject_id.id),
+            ("level_id", "in", courses.mapped("level_id").ids),
+            ("course_id", "in", courses.ids)
+        ]
         programmes = self.env["education.subject.center"].search(
-            [("center_id", "=", self.center_id.id),
-             ("subject_id", "=", self.subject_id.id),
-             ("level_id", "=", self.level_id.id),
-             ("course_id", "in", self.mapped("group_ids.course_id").ids)])
-        if len(programmes) > 1:
-            action_dict['domain'] = expression.AND([
-                ("id", "in", programmes.ids),
-                safe_eval(action.domain or '[]')])
-        else:
+            programme_domain)
+        action_dict["context"] = safe_eval(
+            action_dict.get("context", "{}"))
+        action_dict["context"].update({
+            "default_center_id": self.center_id.id,
+            "default_subject_id": self.subject_id.id,
+            "default_level_id": courses[:1].mapped("level_id").id,
+            "default_course_id": courses[:1].id,
+        })
+        if len(programmes) == 1:
             action_dict['views'] = [
                 (self.env.ref(
                     'education.education_subject_center_view_form').id,
                  'form')]
             action_dict['res_id'] = programmes.id
+        else:
+            action_dict['domain'] = expression.AND([
+                programme_domain,
+                safe_eval(action.domain or '[]')])
         action_dict.update({
             'display_name': _('Subject Programmes'),
         })
