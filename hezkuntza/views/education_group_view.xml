@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_group_view_form" model="ir.ui.view">
+        <field name="model">education.group</field>
+        <field name="inherit_id" ref="education.education_group_view_form" />
+        <field name="arch" type="xml">
+            <button name="button_edit_students" position="after">
+                <button name="export_xml" type="object"
+                        string="Export education records in XML"
+                        attrs="{'invisible': [('record_count','=',0)]}"/>
+            </button>
+        </field>
+    </record>
+</odoo>

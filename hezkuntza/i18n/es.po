@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 12:11+0000\n"
-"PO-Revision-Date: 2020-10-13 12:11+0000\n"
+"POT-Creation-Date: 2021-05-21 12:21+0000\n"
+"PO-Revision-Date: 2021-05-21 12:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,10 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_group.py:51
 #: code:addons/hezkuntza/wizard/download_education_group.py:59
-#: code:addons/hezkuntza/wizard/download_education_schedule.py:50
-#: code:addons/hezkuntza/wizard/download_education_schedule.py:75
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:76
 #, python-format
 msgid "<dd>Must have defined a classroom.</dd>\n"
 ""
@@ -27,7 +25,6 @@ msgstr "<dd>Debe tener definido un aula.</dd>\n"
 ""
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_group.py:55
 #: code:addons/hezkuntza/wizard/download_education_group.py:63
 #, python-format
 msgid "<dd>Must have defined a course.</dd>\n"
@@ -36,7 +33,6 @@ msgstr "<dd>Debe tener definido un curso.</dd>\n"
 ""
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_group.py:53
 #: code:addons/hezkuntza/wizard/download_education_group.py:61
 #, python-format
 msgid "<dd>Must have defined a shift.</dd>\n"
@@ -45,7 +41,6 @@ msgstr "<dd>Debe tener definido un turno.</dd>\n"
 ""
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_group.py:76
 #: code:addons/hezkuntza/wizard/download_education_group.py:84
 #, python-format
 msgid "<dd>Must have defined a teacher with sequence 1.</dd>\n"
@@ -54,7 +49,6 @@ msgstr "<dd>Debe tener definido al menos un profesor con secuencia 1.</dd>\n"
 ""
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_group.py:57
 #: code:addons/hezkuntza/wizard/download_education_group.py:65
 #, python-format
 msgid "<dd>Must have defined an educational model.</dd>\n"
@@ -74,6 +68,11 @@ msgstr "Año académico"
 #: model:ir.model.fields,field_description:hezkuntza.field_education_shift__active
 msgid "Active"
 msgstr "Activo"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.view_attachment_simplified_form
+msgid "Attachments"
+msgstr "Adjuntos"
 
 #. module: hezkuntza
 #: model_terms:ir.ui.view,arch_db:hezkuntza.education_activity_type_view_form
@@ -234,6 +233,11 @@ msgid "Code"
 msgstr "Código"
 
 #. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "Compulsory Secondary Education"
+msgstr "Educación secundaria obligatoria"
+
+#. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
@@ -297,6 +301,7 @@ msgstr "Fichero de cursos (V55T12)"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_teacher__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_work_reason__create_uid
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_workday_type__create_uid
+#: model_terms:ir.ui.view,arch_db:hezkuntza.view_attachment_simplified_form
 msgid "Created by"
 msgstr "Creado por"
 
@@ -438,7 +443,6 @@ msgstr "Educación"
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_classroom__center_id
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_education_schedule__center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_hr_contract__ed_center_id
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_classroom__center_id
@@ -449,10 +453,8 @@ msgid "Education Center"
 msgstr "Centro educativo"
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_group.py:38
 #: code:addons/hezkuntza/wizard/download_education_group.py:44
-#: code:addons/hezkuntza/wizard/download_education_schedule.py:38
-#: code:addons/hezkuntza/wizard/download_education_schedule.py:46
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:45
 #, python-format
 msgid "Education Center must have Education Code defined"
 msgstr "El centro educativo debe tener un código educativo definido"
@@ -474,6 +476,7 @@ msgstr "Código educación"
 #: code:addons/hezkuntza/models/education_idtype.py:17
 #: code:addons/hezkuntza/models/education_language.py:17
 #: code:addons/hezkuntza/models/education_level.py:17
+#: code:addons/hezkuntza/models/education_level.py:32
 #: code:addons/hezkuntza/models/education_model.py:17
 #: code:addons/hezkuntza/models/education_plan.py:17
 #: code:addons/hezkuntza/models/education_position.py:17
@@ -537,6 +540,11 @@ msgstr "Relación entre nivel, curso y asignatura"
 #: model:ir.model,name:hezkuntza.model_education_level_field_subject
 msgid "Education Level, Field and Subject Relation"
 msgstr "Relación entre nivel, especialidad y asignatura"
+
+#. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_education_level__hezkuntza_level
+msgid "Education Levels to Export XML"
+msgstr "Nivel educativo para exportar XML"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_activity_type
@@ -607,6 +615,11 @@ msgid "Educational Models file (V55T35)"
 msgstr "Fichero de modelos educativos (V55T35)"
 
 #. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "Elementary School"
+msgstr "Educación primaria"
+
+#. module: hezkuntza
 #: code:addons/hezkuntza/wizard/upload_education_activity_type.py:20
 #: code:addons/hezkuntza/wizard/upload_education_classroom.py:23
 #: code:addons/hezkuntza/wizard/upload_education_contract_type.py:20
@@ -638,6 +651,12 @@ msgid "Empty file."
 msgstr "Fichero vacío"
 
 #. module: hezkuntza
+#: code:addons/hezkuntza/wizard/export_education_record_xml.py:28
+#, python-format
+msgid "Evaluation Record"
+msgstr "Registro academico"
+
+#. module: hezkuntza
 #: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_classroom_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_resource_view_form
@@ -646,12 +665,23 @@ msgid "Export"
 msgstr "Exportar"
 
 #. module: hezkuntza
+#: code:addons/hezkuntza/models/education_group.py:180
+#, python-format
+msgid "Export Education Records XML"
+msgstr "Exportar registro academico en XML"
+
+#. module: hezkuntza
 #: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_classroom_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_group_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_resource_view_form
 #: model_terms:ir.ui.view,arch_db:hezkuntza.download_education_schedule_view_form
 msgid "Export completed"
 msgstr "Exportación completada"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.education_group_view_form
+msgid "Export education records in XML"
+msgstr "Exportar registros academicos en XML"
 
 #. module: hezkuntza
 #: model:ir.ui.menu,name:hezkuntza.faculty_configuration_menuitem
@@ -677,6 +707,11 @@ msgstr "Archivo"
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__name_student
 msgid "File name"
 msgstr "Nombre del archivo"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.view_attachment_simplified_form
+msgid "Generated File"
+msgstr "Archivo generado"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_group__file
@@ -713,6 +748,11 @@ msgstr "Aquí está el fichero de alumnado:"
 #: model:ir.ui.menu,name:hezkuntza.hezkuntza_configuration_menuitem
 msgid "Hezkuntza"
 msgstr ""
+
+#. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "High School"
+msgstr "Bachillerato"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__id
@@ -762,6 +802,31 @@ msgstr "Documento de identidad"
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_idtype__file
 msgid "ID Types File (V55T86)"
 msgstr "Fichero de tipos de documentos (V55T86)"
+
+#. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "LOE - Basic Vocational Training"
+msgstr "LOE - Formación profesional básica"
+
+#. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "LOE - Higher Grade Vocational Training"
+msgstr "LOE - Formación profesional grado superior"
+
+#. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "LOE - Medium Grade Vocational Training"
+msgstr "LOE - Formación profesional grado medio"
+
+#. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "LOGSE - Higher Grade Vocational Training"
+msgstr "LOGSE - Formación profesional grado superior"
+
+#. module: hezkuntza
+#: selection:education.level,hezkuntza_level:0
+msgid "LOGSE - Medium Grade Vocational Training"
+msgstr "LOGSE - Formación profesional grado medio"
 
 #. module: hezkuntza
 #: model:ir.model,name:hezkuntza.model_education_language
@@ -1069,11 +1134,6 @@ msgid "Student Second Last Name"
 msgstr "Segundo apellido del alumno"
 
 #. module: hezkuntza
-#: model:ir.model.fields,field_description:hezkuntza.field_education_group__student_ids
-msgid "Students"
-msgstr "Alumnos"
-
-#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_student__file
 msgid "Students File (T27)"
 msgstr "Fichero alumnos (T27)"
@@ -1108,8 +1168,7 @@ msgid "Teacher"
 msgstr "Profesor"
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_schedule.py:87
-#: code:addons/hezkuntza/wizard/download_education_schedule.py:113
+#: code:addons/hezkuntza/wizard/download_education_schedule.py:129
 #, python-format
 msgid "Teacher {} must have identification type and number.<br/>\n"
 ""
@@ -1125,6 +1184,12 @@ msgstr "Profesorado (T06)"
 #: model:ir.model.fields,help:hezkuntza.field_update_education_partner_line__vat
 msgid "The Tax Identification Number. Complete it if the contact is subjected to government taxes. Used in some legal statements."
 msgstr "El número de identificación de impuesto. Complételo si el contacto está sujeto a los impuestos del gobierno. Utilizado en algunas declaraciones legales."
+
+#. module: hezkuntza
+#: code:addons/hezkuntza/models/education_group.py:145
+#, python-format
+msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s"
+msgstr "El archivo XML generado no se puede validar contra la definición de esquema XML oficial. El archivo XML generado el error completo se ha escrito en los registros del servidor. Aquí está el error, que le puede dar una idea de la causa del problema : %s"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/wizard/update_education_partner.py:84
@@ -1343,7 +1408,7 @@ msgstr "NIF"
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_group__warning_msg
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__warning_msg
 msgid "Warning"
-msgstr "Aviso"
+msgstr "Alerta"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__wizard_id
@@ -1572,7 +1637,6 @@ msgid "or"
 msgstr "o"
 
 #. module: hezkuntza
-#: code:addons/hezkuntza/wizard/download_education_group.py:103
 #: code:addons/hezkuntza/wizard/download_education_group.py:111
 #, python-format
 msgid "{} missing education code<br/>\n"
