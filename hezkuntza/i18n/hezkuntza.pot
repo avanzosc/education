@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 12:20+0000\n"
-"PO-Revision-Date: 2021-05-21 12:20+0000\n"
+"POT-Creation-Date: 2021-05-25 13:57+0000\n"
+"PO-Revision-Date: 2021-05-25 13:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -256,6 +256,11 @@ msgid "Course"
 msgstr ""
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_education_course__course_value
+msgid "Course Value to Export XML"
+msgstr ""
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_course
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__file
 msgid "Courses File (V55T12)"
@@ -465,12 +470,12 @@ msgstr ""
 #: code:addons/hezkuntza/models/education_activity_type.py:17
 #: code:addons/hezkuntza/models/education_contract_type.py:17
 #: code:addons/hezkuntza/models/education_course.py:17
+#: code:addons/hezkuntza/models/education_course.py:19
 #: code:addons/hezkuntza/models/education_designation_level.py:17
 #: code:addons/hezkuntza/models/education_field.py:17
 #: code:addons/hezkuntza/models/education_group_type.py:17
 #: code:addons/hezkuntza/models/education_idtype.py:17
 #: code:addons/hezkuntza/models/education_language.py:17
-#: code:addons/hezkuntza/models/education_level.py:17
 #: code:addons/hezkuntza/models/education_level.py:32
 #: code:addons/hezkuntza/models/education_model.py:17
 #: code:addons/hezkuntza/models/education_plan.py:17
@@ -661,6 +666,7 @@ msgstr ""
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/models/education_group.py:180
+#: code:addons/hezkuntza/models/education_group.py:199
 #, python-format
 msgid "Export Education Records XML"
 msgstr ""
@@ -1181,6 +1187,7 @@ msgstr ""
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/models/education_group.py:145
+#: code:addons/hezkuntza/models/education_group.py:164
 #, python-format
 msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s"
 msgstr ""

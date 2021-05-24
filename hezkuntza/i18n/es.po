@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 12:21+0000\n"
-"PO-Revision-Date: 2021-05-21 12:21+0000\n"
+"POT-Creation-Date: 2021-05-25 13:58+0000\n"
+"PO-Revision-Date: 2021-05-25 13:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -261,6 +261,11 @@ msgid "Course"
 msgstr "Curso"
 
 #. module: hezkuntza
+#: model:ir.model.fields,field_description:hezkuntza.field_education_course__course_value
+msgid "Course Value to Export XML"
+msgstr "Valor del curso para exportar XML"
+
+#. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_all__file_course
 #: model:ir.model.fields,field_description:hezkuntza.field_upload_education_course__file
 msgid "Courses File (V55T12)"
@@ -470,12 +475,12 @@ msgstr "Código educación"
 #: code:addons/hezkuntza/models/education_activity_type.py:17
 #: code:addons/hezkuntza/models/education_contract_type.py:17
 #: code:addons/hezkuntza/models/education_course.py:17
+#: code:addons/hezkuntza/models/education_course.py:19
 #: code:addons/hezkuntza/models/education_designation_level.py:17
 #: code:addons/hezkuntza/models/education_field.py:17
 #: code:addons/hezkuntza/models/education_group_type.py:17
 #: code:addons/hezkuntza/models/education_idtype.py:17
 #: code:addons/hezkuntza/models/education_language.py:17
-#: code:addons/hezkuntza/models/education_level.py:17
 #: code:addons/hezkuntza/models/education_level.py:32
 #: code:addons/hezkuntza/models/education_model.py:17
 #: code:addons/hezkuntza/models/education_plan.py:17
@@ -666,6 +671,7 @@ msgstr "Exportar"
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/models/education_group.py:180
+#: code:addons/hezkuntza/models/education_group.py:199
 #, python-format
 msgid "Export Education Records XML"
 msgstr "Exportar registro academico en XML"
@@ -1106,7 +1112,7 @@ msgstr "Castellano"
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_resource__state
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__state
 msgid "State"
-msgstr "Provincia"
+msgstr "Estado"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_update_education_partner_line__student_education_code
@@ -1187,6 +1193,7 @@ msgstr "El número de identificación de impuesto. Complételo si el contacto es
 
 #. module: hezkuntza
 #: code:addons/hezkuntza/models/education_group.py:145
+#: code:addons/hezkuntza/models/education_group.py:164
 #, python-format
 msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s"
 msgstr "El archivo XML generado no se puede validar contra la definición de esquema XML oficial. El archivo XML generado el error completo se ha escrito en los registros del servidor. Aquí está el error, que le puede dar una idea de la causa del problema : %s"
@@ -1599,6 +1606,11 @@ msgstr "Fichero de tipos de jornada (T30)"
 #: selection:download.education.schedule,state:0
 msgid "get"
 msgstr "obtener"
+
+#. module: hezkuntza
+#: model_terms:ir.ui.view,arch_db:hezkuntza.view_attachment_simplified_form
+msgid "on"
+msgstr "en"
 
 #. module: hezkuntza
 #: selection:download.education.classroom,state:0
