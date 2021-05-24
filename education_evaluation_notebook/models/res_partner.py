@@ -45,7 +45,8 @@ class ResPartner(models.Model):
             ], limit=1)
             eval_type = evaluation.eval_type or "final"
         return self.academic_record_ids.filtered(
-            lambda r: r.eval_type == eval_type and r.evaluation_competence)
+            lambda r: r.eval_type == eval_type and
+            (r.evaluation_competence or r.global_competence))
 
     @api.multi
     def get_academic_records_curricular(self, eval_type=False):

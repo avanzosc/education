@@ -6,16 +6,14 @@
             <div class="page">
                 <div class="oe_structure"/>
                 <h2 class="text-center font-weight-bold mt-n1">Report Card</h2>
-                <t t-set="evaluations" t-value="request.env['education.academic_year.evaluation'].search([('academic_year_id.current','=',True),('center_id','=',o.current_center_id.id),('course_id', '=', o.current_course_id.id)])" />
-                <t t-set="evaluation" t-value="evaluations.filtered(lambda e: e.eval_type == eval_type)" />
-                <t t-if="not evaluation">
-                    <t t-set="evaluation" t-value="evaluations.filtered('current')" />
-                </t>
+                <t t-set="evaluation_obj" t-value="request.env['education.academic_year.evaluation']" />
+                <t t-set="field" t-value="evaluation_obj._fields['eval_type']" />
+                <t t-set="eval_type_text" t-value="field.convert_to_export(eval_type, evaluation_obj)" />
                 <div class="row mt32 mb32">
                     <div class="col-12">
                         <b>Student:</b> <span t-field="o.display_name"/><br/>
                         <b>Education Course:</b> <span t-field="o.current_course_id"/><br/>
-                        <b>Period:</b> <span t-field="evaluation[:1].eval_type" /><br/>
+                        <b>Period:</b> <span t-esc="eval_type_text" /><br/>
                         <b>Tutor:</b> <t t-if="o.current_year_tutor_ids"><span t-esc="o.current_year_tutor_ids[:1].display_name" /></t><br/>
                         <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A, %Y-%m-%d')"/>
                     </div>
