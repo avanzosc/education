@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 12:43+0000\n"
-"PO-Revision-Date: 2021-05-19 12:43+0000\n"
+"POT-Creation-Date: 2021-05-24 15:55+0000\n"
+"PO-Revision-Date: 2021-05-24 15:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -199,7 +199,7 @@ msgstr "Acumulado"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción requerida"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__active
@@ -240,7 +240,7 @@ msgstr "Nota evaluada"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_attachment_count
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_attachment_count
 msgid "Attachment Count"
-msgstr "Conteo de archivos adjuntos"
+msgstr "Nº de archivos adjuntos"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:92
@@ -572,7 +572,7 @@ msgstr "Año actual"
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__access_url
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__access_url
 msgid "Customer Portal URL"
-msgstr "URL para portal"
+msgstr "URL del portal de cliente"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__date
@@ -646,7 +646,6 @@ msgstr "Relación de centro educativo y curso"
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:61
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:55
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:45
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:55
 #, python-format
 msgid "Education Center:"
 msgstr "Centro educativo:"
@@ -678,7 +677,6 @@ msgstr "Curso"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:49
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:59
 #, python-format
 msgid "Education Course:"
 msgstr "Curso:"
@@ -707,7 +705,7 @@ msgstr "Grupo educativo"
 #. module: education_evaluation_notebook
 #: model:ir.actions.report,name:education_evaluation_notebook.education_group_record_all_xlsx
 msgid "Education Group Report All XLSX report"
-msgstr "Informe XLSX de notas acumuladas del grupo""
+msgstr "Informe XLSX de notas acumuladas del grupo"
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.report,name:education_evaluation_notebook.education_group_record_xlsx
@@ -716,7 +714,6 @@ msgstr "Informe XLSX de notas del grupo"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:53
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:63
 #, python-format
 msgid "Education Group:"
 msgstr "Grupo educativo:"
@@ -1441,7 +1438,7 @@ msgstr "Nota máx."
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_has_error
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de Envío de Mensaje"
+msgstr "Mensaje de Error de entrega"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_ids
@@ -2016,7 +2013,6 @@ msgstr "Informe XLSX de notas de alumno"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:42
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:52
 #, python-format
 msgid "Student:"
 msgstr "Alumno:"
@@ -2076,7 +2072,6 @@ msgstr "Solo puede haber una competencia global."
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:147
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:151
 #, python-format
 msgid "There is no academic year selected."
 msgstr "No se ha seleccionado año académico."
@@ -2114,6 +2109,11 @@ msgid "Three"
 msgstr "Tres"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.hr_employee_view_kanban
+msgid "Timetable"
+msgstr "Horario"
+
+#. module: education_evaluation_notebook
 #: selection:education.exam,activity_state:0
 #: selection:education.record,activity_state:0
 msgid "Today"
@@ -2143,7 +2143,6 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:57
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:67
 #, python-format
 msgid "Tutor:"
 msgstr ""
@@ -2169,13 +2168,13 @@ msgstr "ND"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_unread
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_unread
 msgid "Unread Messages"
-msgstr "Mensajes por leer"
+msgstr "Mensajes no leídos"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_unread_counter
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr "Contador de mensajes sin leer"
+msgstr "Contador de mensajes no leídos"
 
 #. module: education_evaluation_notebook
 #: selection:education.mark.behaviour,code:0
@@ -2236,7 +2235,6 @@ msgstr "Solo puede obtener el informe xlsx de grupos educativos"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:141
-#: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:148
 #, python-format
 msgid "You must select at least one student."
 msgstr "Debe seleccionar al menos un alumno."
