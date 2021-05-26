@@ -6,10 +6,6 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
-from odoo.addons.queue_job.job import job
-
-QUEUE_CHANNEL = "root.EXAM_GENERATE_RECORDS"
-
 EXAM_STATES = [
     ("draft", "New"),
     ("progress", "Marking"),
@@ -72,12 +68,12 @@ class EducationExam(models.Model):
     description = fields.Text(string="Description")
 
     @api.multi
-    @job(default_channel=QUEUE_CHANNEL)
     def find_or_create_student_record(self, student, parent_record=False):
         self.ensure_one()
         record_obj = self.env["education.record"]
         if not parent_record:
-            parent_record = self.n_line_id.find_or_create_student_record(student)
+            parent_record = self.n_line_id.find_or_create_student_record(
+                student)
         exam_record = (
             self.recovered_exam_id.find_or_create_student_record(
                 student, parent_record) if self.recovered_exam_id else False)
@@ -102,13 +98,11 @@ class EducationExam(models.Model):
             return record
 
     @api.multi
-    # @job(default_channel=QUEUE_CHANNEL)
     def action_generate_record(self):
         for exam in self.filtered(lambda e: e.state in ('draft', 'progress')):
             n_line = exam.n_line_id
             for student in n_line.schedule_id.student_ids:
-                #parent_record = n_line.find_or_create_student_record(student)
-                exam.with_delay().find_or_create_student_record(student) #, parent_record)
+                exam.find_or_create_student_record(student)
 
     @api.multi
     @api.depends("record_ids")
@@ -193,7 +187,7 @@ class EducationExam(models.Model):
                 if not exam.date:
                     raise ValidationError(
                         _('You must set an exam date.'))
-                exam.with_delay().action_generate_record()
+                exam.action_generate_record()
             exam.state = "progress"
 
     @api.multi
