@@ -121,6 +121,8 @@
                         context="{'group_by': 'current_level_id'}" />
                 <filter name="group_edu_course" string="Course"
                         context="{'group_by': 'current_course_id'}" />
+                <filter name="group_current_group" string="Current Group"
+                        context="{'group_by': 'current_group_id'}" />
             </group>
         </field>
     </record>
