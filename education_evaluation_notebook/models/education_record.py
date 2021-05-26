@@ -34,12 +34,13 @@ class EducationRecord(models.Model):
             allfields=["state"])["state"]["selection"]
 
     exam_id = fields.Many2one(
-        comodel_name="education.exam", string="Exam", ondelete="cascade")
+        comodel_name="education.exam", string="Exam", ondelete="cascade",
+        index=True)
     exam_type_id = fields.Many2one(
         comodel_name="education.exam.type", related="exam_id.exam_type_id",
         string="Exam Type", store=True)
     exam_eval_percent = fields.Float(
-        compute="_compute_eval_percent", string="Percent (%)")
+        compute="_compute_eval_percent", string="Percent (%)", store=True)
     exam_state = fields.Selection(
         selection="_get_selection_exam_state", string="Exam State",
         related="exam_id.state", store=True)
@@ -47,10 +48,10 @@ class EducationRecord(models.Model):
         related="exam_id.date", string="Exam Date", store=True)
     n_line_id = fields.Many2one(
         comodel_name="education.notebook.line", string="Notebook Line",
-        required=True, ondelete="cascade")
+        required=True, ondelete="cascade", index=True)
     competence_id = fields.Many2one(
         related="n_line_id.competence_id", comodel_name="education.competence",
-        store=True, string="Competence")
+        store=True, string="Competence", index=True)
     competence_eval_mode = fields.Selection(
         related="n_line_id.competence_id.eval_mode", string="Evaluation Mode",
         store=True)
@@ -83,7 +84,7 @@ class EducationRecord(models.Model):
         string="Evaluation Season", store=True)
     student_id = fields.Many2one(
         comodel_name="res.partner", string="Student", required=True,
-        ondelete="cascade")
+        ondelete="cascade", index=True)
     numeric_mark = fields.Float(string="Official Mark", group_operator="max")
     behaviour_mark_id = fields.Many2one(
         comodel_name="education.mark.behaviour", string="Behaviour Mark",
@@ -101,7 +102,7 @@ class EducationRecord(models.Model):
         related="mark_id.reduced_name", comodel_name="education.mark.numeric",
         string="Reduced Numeric Mark", store=True)
     parent_record_id = fields.Many2one(
-        comodel_name="education.record", string="Parent Record")
+        comodel_name="education.record", string="Parent Record", index=True)
     child_record_ids = fields.One2many(
         comodel_name="education.record", inverse_name="parent_record_id",
         string="Academic Records", editable=True)
@@ -131,7 +132,8 @@ class EducationRecord(models.Model):
                    ('fail', 'Fail')],
         string="Passed Mark", compute="_compute_pass_mark", store=True)
     recovered_record_id = fields.Many2one(
-        comodel_name="education.record", string="Recovering Record")
+        comodel_name="education.record", string="Recovering Record",
+        index=True)
     retake_record_ids = fields.One2many(
         comodel_name="education.record", inverse_name="recovered_record_id",
         string="Retake Records")

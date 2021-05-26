@@ -3,7 +3,7 @@
 
 {
     "name": "Education Evaluation Notebook",
-    "version": "12.0.7.0.0",
+    "version": "12.0.7.1.0",
     "category": "Education",
     "depends": [
         "education",
@@ -14,7 +14,6 @@
         "hr_school",
         "hr_education",
         "report_xlsx",
-        "queue_job",
     ],
     "author":  "AvanzoSC",
     "license": "AGPL-3",

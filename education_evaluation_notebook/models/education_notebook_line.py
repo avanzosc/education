@@ -216,10 +216,12 @@ class EducationNotebookLine(models.Model):
 
     @api.multi
     def button_create_student_records(self):
-        for line in self:
-            for student in line.schedule_id.student_ids:
-                line.find_or_create_student_record(student)
-            line.exam_ids.action_generate_record()
+        with self.env.norecompute():
+            for line in self:
+                for student in line.schedule_id.student_ids:
+                    line.find_or_create_student_record(student)
+                line.exam_ids.action_generate_record()
+        self.mapped("record_ids").recompute()
 
     @api.multi
     def action_copy_calculated_mark(self):
