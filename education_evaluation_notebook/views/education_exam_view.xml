@@ -171,6 +171,15 @@
                         domain="[('state','=','done')]" />
                 <filter name="closed_exam" string="Closed Exam"
                         domain="[('state','=','closed')]" />
+                <separator />
+                <filter name="first_eval" string="First Evaluation"
+                        domain="[('eval_type','=','first')]" />
+                <filter name="second_eval" string="Second Evaluation"
+                        domain="[('eval_type','=','second')]" />
+                <filter name="third_eval" string="Third Evaluation"
+                        domain="[('eval_type','=','third')]" />
+                <filter name="final_eval" string="Final Evaluation"
+                        domain="[('eval_type','=','final')]" />
                 <group expand="0" string="Group By">
                     <filter name="groupby_line" string="Notebook Line"
                             context="{'group_by':'n_line_id'}" />
@@ -181,6 +190,9 @@
                     <separator />
                     <filter name="groupby_state" string="Exam State"
                             context="{'group_by':'state'}" />
+                    <separator />
+                    <filter name="groupby_eval_type" string="Evaluation Season"
+                            context="{'group_by':'eval_type'}" />
                 </group>
             </search>
         </field>

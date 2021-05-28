@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-24 15:55+0000\n"
-"PO-Revision-Date: 2021-05-24 15:55+0000\n"
+"POT-Creation-Date: 2021-05-28 08:05+0000\n"
+"PO-Revision-Date: 2021-05-28 08:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -199,7 +199,7 @@ msgstr "Acumulado"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
-msgstr "Acción requerida"
+msgstr "Acción necesaria"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__active
@@ -240,7 +240,7 @@ msgstr "Nota evaluada"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_attachment_count
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_attachment_count
 msgid "Attachment Count"
-msgstr "Nº de archivos adjuntos"
+msgstr "Conteo de archivos adjuntos"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:92
@@ -821,6 +821,7 @@ msgstr "Informe de evaluación"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__eval_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__eval_type
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_report_education_education_record_xlsx_export__eval_type
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_search
 msgid "Evaluation Season"
 msgstr "Evaluación"
 
@@ -1008,6 +1009,7 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__final_evaluation
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
@@ -1028,6 +1030,7 @@ msgid "First"
 msgstr "Primera"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
@@ -1438,7 +1441,7 @@ msgstr "Nota máx."
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_has_error
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_has_error
 msgid "Message Delivery error"
-msgstr "Mensaje de Error de entrega"
+msgstr "Error de Envío de Mensaje"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_ids
@@ -1630,7 +1633,7 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:360
+#: code:addons/education_evaluation_notebook/models/education_record.py:362
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -1914,6 +1917,7 @@ msgid "Second"
 msgstr "Segundo"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
@@ -2085,6 +2089,7 @@ msgid "Third"
 msgstr "Tercero"
 
 #. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
@@ -2221,7 +2226,7 @@ msgid "Wizard to export education records in xlsx"
 msgstr "Asistente para exportar actas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:263
+#: code:addons/education_evaluation_notebook/models/education_exam.py:257
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr "Solo puedes eliminar un examen borrador."
@@ -2240,14 +2245,14 @@ msgid "You must select at least one student."
 msgstr "Debe seleccionar al menos un alumno."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:195
+#: code:addons/education_evaluation_notebook/models/education_exam.py:189
 #, python-format
 msgid "You must set an exam date."
 msgstr "Debe seleccionar una fecha de examen."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:281
-#: code:addons/education_evaluation_notebook/models/education_record.py:430
+#: code:addons/education_evaluation_notebook/models/education_exam.py:275
+#: code:addons/education_evaluation_notebook/models/education_record.py:432
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format
 msgid "[RETAKE] {}"
