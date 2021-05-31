@@ -12,7 +12,7 @@
             string="Student Records XLSX report"
             model="hr.employee.supervised.year"
             report_type="xlsx"
-            name="education.partner_record_xlsx"
+            name="education.partner_tutor_record_xlsx"
             file="education.partner_record"
     />
 

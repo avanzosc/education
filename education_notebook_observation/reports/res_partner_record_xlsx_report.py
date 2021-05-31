@@ -17,7 +17,7 @@ class EducationGroupXlsx(models.AbstractModel):
         evaluation_obj = self.env["education.academic_year.evaluation"]
         row = super(EducationGroupXlsx, self).fill_student_subject_data(
             sheet, student, subject, row)
-        observations = observation_obj.search([
+        observations = observation_obj.sudo().search([
             ("e_notebook_line_id.a_year_id.current", "=", True),
             ("student_id", "=", student.id),
             ("e_notebook_line_id.subject_id", "=", subject.id),

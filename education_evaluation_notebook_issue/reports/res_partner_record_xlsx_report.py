@@ -29,7 +29,7 @@ class EducationGroupXlsx(models.AbstractModel):
         issues_obj = self.env["school.issue"]
         row = super(EducationGroupXlsx, self).fill_student_subject_data(
             sheet, student, subject, row)
-        issues = issues_obj.search([
+        issues = issues_obj.sudo().search([
             ("academic_year_id.current", "=", True),
             ("student_id", "=", student.id),
             ("education_schedule_id.subject_id", "=", subject.id),
