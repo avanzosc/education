@@ -31,7 +31,7 @@ class EducationExam(models.Model):
         comodel_name="education.schedule", related="n_line_id.schedule_id",
         string="Class Schedule", store=True)
     eval_type = fields.Selection(
-        related="n_line_id.eval_type", string="Evaluation Season")
+        related="n_line_id.eval_type", string="Evaluation Season", store=True)
     teacher_id = fields.Many2one(
         comodel_name="hr.employee", related="n_line_id.schedule_id.teacher_id",
         string="Teacher", store=True)
