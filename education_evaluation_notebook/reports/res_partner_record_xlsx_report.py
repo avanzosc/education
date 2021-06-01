@@ -5,7 +5,7 @@ from odoo import _, models
 from odoo.exceptions import UserError
 
 
-class EducationGroupXlsx(models.AbstractModel):
+class StudentXlsxReport(models.AbstractModel):
     _name = "report.education.partner_record_xlsx"
     _inherit = "report.report_xlsx.abstract"
 
@@ -123,11 +123,6 @@ class EducationGroupXlsx(models.AbstractModel):
 
     def generate_xlsx_report(self, workbook, data, objects):
         self._define_formats(workbook)
-        students = []
-        if objects._name == "res.partner":
-            students = objects
-        elif objects._name == "hr.employee.supervised.year":
-            students = objects.mapped("student_id")
         record_obj = self.env["education.record"]
         current_academic_year = self.env["education.academic_year"].search([
             ("current", "=", True),
@@ -136,16 +131,16 @@ class EducationGroupXlsx(models.AbstractModel):
             "academic_year_id", False) or current_academic_year[:1].id
         # partial_mark = data and data.get("partial_mark", False)
         # retaken = data and data.get("retaken", False)
-        if not students:
+        if not objects:
             raise UserError(
                 _("You must select at least one student."))
-        if len(students) > 1:
+        if len(objects) > 1:
             raise UserError(
                 _("Please select only one student"))
         if not academic_year_id:
             raise UserError(
                 _("There is no academic year selected."))
-        for student in students:
+        for student in objects:
             student_sheet = self.create_student_sheet(workbook, student)
             row = 6
             student_records = record_obj.sudo().search([
@@ -204,3 +199,12 @@ class EducationGroupXlsx(models.AbstractModel):
         self.format_amount.set_num_format('#,##0.' + '00')
         self.format_amount_grey = workbook.add_format(border_grey)
         self.format_amount_grey.set_num_format('#,##0.' + '00')
+
+
+class StudentTutorXlsxReport(models.AbstractModel):
+    _name = "report.education.partner_tutor_record_xlsx"
+    _inherit = "report.education.partner_record_xlsx"
+
+    def generate_xlsx_report(self, workbook, data, objects):
+        return super().generate_xlsx_report(
+            workbook, data, objects.mapped("student_id"))

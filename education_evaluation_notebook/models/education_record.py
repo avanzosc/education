@@ -63,22 +63,23 @@ class EducationRecord(models.Model):
         string="Global Competence", store=True)
     schedule_id = fields.Many2one(
         comodel_name="education.schedule", related="n_line_id.schedule_id",
-        string="Class Schedule", store=True)
+        string="Class Schedule", store=True, index=True)
     subject_id = fields.Many2one(
         comodel_name="education.subject", string="Education Subject",
-        related="n_line_id.schedule_id.subject_id", store=True)
+        related="n_line_id.schedule_id.subject_id", store=True, index=True)
     subject_name = fields.Char(
-        string="Subject Name", compute="_compute_subject_name")
+        string="Subject Name", compute="_compute_subject_name", index=True)
     teacher_id = fields.Many2one(
         comodel_name="hr.employee", related="n_line_id.schedule_id.teacher_id",
-        string="Teacher", store=True)
+        string="Teacher", store=True, index=True)
     academic_year_id = fields.Many2one(
         comodel_name="education.academic_year",
         related="n_line_id.schedule_id.academic_year_id",
-        string="Academic Year", store=True)
+        string="Academic Year", store=True, index=True)
     evaluation_id = fields.Many2one(
         comodel_name="education.academic_year.evaluation",
-        compute="_compute_evaluation_id", string="Evaluation", store=True)
+        compute="_compute_evaluation_id", string="Evaluation", store=True,
+        compute_sudo=True, index=True)
     eval_type = fields.Selection(
         selection=EVAL_TYPE, related="n_line_id.eval_type",
         string="Evaluation Season", store=True)
@@ -97,10 +98,10 @@ class EducationRecord(models.Model):
         store=True, group_operator="max")
     mark_id = fields.Many2one(
         comodel_name="education.mark.numeric", string="Numeric Mark (Text)",
-        compute="_compute_mark_id", store=True)
+        compute="_compute_mark_id", store=True, index=True)
     n_mark_reduced_name = fields.Char(
         related="mark_id.reduced_name", comodel_name="education.mark.numeric",
-        string="Reduced Numeric Mark", store=True)
+        string="Reduced Numeric Mark", store=True, index=True)
     parent_record_id = fields.Many2one(
         comodel_name="education.record", string="Parent Record", index=True)
     child_record_ids = fields.One2many(
@@ -108,7 +109,7 @@ class EducationRecord(models.Model):
         string="Academic Records", editable=True)
     child_record_count = fields.Integer(
         compute="_compute_child_record_count",
-        string="# Child Records", store=True)
+        string="# Child Records", store=True, compute_sudo=True)
     state = fields.Selection(
         selection=RECORD_STATE, string="Record State", default="initial")
     exceptionality = fields.Selection(
@@ -195,10 +196,10 @@ class EducationRecord(models.Model):
     @api.multi
     @api.depends("student_id", "academic_year_id", "subject_id", "schedule_id")
     def _compute_subject_name(self):
-        for record in self.filtered("subject_id"):
+        for record in self.sudo().filtered("subject_id"):
             student_group = record.student_id.get_current_group(
                 academic_year=record.academic_year_id)
-            record.subject_name = self.subject_id.get_subject_name(
+            record.subject_name = record.subject_id.get_subject_name(
                 student_group.center_id, student_group.level_id,
                 student_group.course_id, record.schedule_id.language_id)
 

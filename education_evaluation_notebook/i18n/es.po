@@ -1946,14 +1946,14 @@ msgstr "Secuencia"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Set assessed records as initial"
-msgstr "Pasar la nota a estado ABIERTO"
+msgstr "Pasar la nota a estado INICIAL"
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.server,name:education_evaluation_notebook.action_set_assessed
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Set pending records as assessed"
-msgstr "Pasar la nota a estado CERRADO"
+msgstr "Pasar la nota a estado EVALUADO"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
