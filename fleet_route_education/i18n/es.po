@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-31 13:31+0000\n"
-"PO-Revision-Date: 2021-03-31 13:31+0000\n"
+"POT-Creation-Date: 2021-06-01 13:34+0000\n"
+"PO-Revision-Date: 2021-06-01 13:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,21 +57,21 @@ msgstr "<b>Turno:</b>"
 msgid "<br/>\n"
 "                            <b>Driver:</b>"
 msgstr "<br/>\n"
-"                                    <b>Conductor:</b>"
+"                            <b>Conductor:</b>"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid "<br/>\n"
 "                            <b>Mobile phone:</b>"
 msgstr "<br/>\n"
-"                                    <b>Teléfono móvil:</b>"
+"                            <b>Teléfono móvil:</b>"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid "<br/>\n"
 "                            <b>Route:</b>"
 msgstr "<br/>\n"
-"                                    <b>Ruta:</b>"
+"                            <b>Ruta:</b>"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.report_education_bus_group_document
@@ -87,6 +87,11 @@ msgstr "<span>Nombre</span>"
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.report_education_bus_group_document
 msgid "<span>Surnames</span>"
 msgstr "<span>Apellidos</span>"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
+msgid "Bus Issues"
+msgstr "Incidencias de bus"
 
 #. module: fleet_route_education
 #: model:ir.actions.report,name:fleet_route_education.education_bus_group_list
@@ -126,7 +131,7 @@ msgstr "Contacto"
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Course"
-msgstr "Curso"
+msgstr "Curso educativo"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_course_id
@@ -170,7 +175,7 @@ msgstr "Curso"
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Education Level"
-msgstr "Nivel"
+msgstr "Nivel educativo"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__going_stop_id
@@ -244,6 +249,11 @@ msgid "Route Passenger List"
 msgstr "Listado de pasajeros de ruta"
 
 #. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
+msgid "Route Stops"
+msgstr "Paradas de bus"
+
+#. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_complete_product_id
 msgid "Route complete product"
 msgstr "Producto ruta completa"
@@ -257,6 +267,11 @@ msgstr "Producto media ruta"
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_group_section_id
 msgid "Section"
 msgstr "Sección"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
+msgid "Stops"
+msgstr "Paradas"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
