@@ -14,4 +14,44 @@
             </tree>
         </field>
     </record>
+
+    <record id="res_partner_education_minimal_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="education.res_partner_education_minimal_view_form" />
+        <field name="groups_id" eval="[(4, ref('fleet.fleet_group_user'))]" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="button_open_partner_stops" type="object"
+                        class="oe_stat_button" icon="fa-map-marker"
+                        attrs="{'invisible': [('educational_category', '!=', 'student')]}">
+                    <field name="stop_count" widget="statinfo"
+                           string="Stops" />
+                </button>
+                <button name="button_open_bus_issues" type="object"
+                    class="oe_stat_button" icon="fa-bus"
+                    attrs="{'invisible': [('educational_category', '!=', 'student')]}">
+                 <field name="bus_issue_count" widget="statinfo"
+                        string="Bus Issues" />
+             </button>
+            </div>
+            <notebook position="inside">
+                <page name="route_stop" string="Route Stops"
+                      attrs="{'invisible': [('educational_category', '!=', 'student'),('stop_ids','!=',False)]}">
+                    <field name="stop_ids">
+                        <tree>
+                            <field name="route_id"/>
+                            <field name="stop_id" />
+                            <field name="estimated_time" widget="float_time"/>
+                            <field name="manager_id"/>
+                            <field name="manager_phone_mobile"/>
+                            <field name="dayofweek_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
 </odoo>
+
