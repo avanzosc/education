@@ -218,7 +218,8 @@ class EducationNotebookLine(models.Model):
     def button_create_student_records(self):
         with self.env.norecompute():
             for line in self:
-                for student in line.schedule_id.student_ids:
+                for student in line.schedule_id.student_ids.filtered(
+                        lambda s: s.educational_category == "student"):
                     line.find_or_create_student_record(student)
                 line.exam_ids.action_generate_record()
         self.mapped("record_ids").recompute()
