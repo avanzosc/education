@@ -54,6 +54,7 @@
                 <field name="mobile"/>
                 <field name="image_medium"/>
                 <field name="image_small"/>
+                <field name="birthdate_date"/>
                 <!-- fields in form x2many view to diminish requests -->
                 <field name="display_name"/>
                 <templates>
@@ -74,6 +75,9 @@
                                 <div t-if="record.email.raw_value"><field name="email" widget="email"/></div>
                                 <div t-if="record.phone.raw_value">Phone: <field name="phone" widget="phone"/></div>
                                 <div t-if="record.mobile.raw_value">Mobile: <field name="mobile" widget="phone"/></div>
+                            </div>
+                            <div t-if="moment(record.birthdate_date.raw_value).format('DD-MMM')==moment(Date()).format('DD-MMM')">
+                                <img src="/education/static/src/img/birthdaycake.png" style="width:40px;height:30px"/>
                             </div>
                         </div>
                     </t>
@@ -228,6 +232,7 @@
                         <field name="phone" widget="phone"/>
                         <field name="mobile" widget="phone"/>
                         <field name="email"/>
+                        <field name="birthdate_date"/>
                     </group>
                 </sheet>
             </form>
