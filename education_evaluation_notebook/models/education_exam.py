@@ -101,7 +101,8 @@ class EducationExam(models.Model):
     def action_generate_record(self):
         for exam in self.filtered(lambda e: e.state in ('draft', 'progress')):
             n_line = exam.n_line_id
-            for student in n_line.schedule_id.student_ids:
+            for student in n_line.schedule_id.student_ids.filtered(
+                    lambda s: s.educational_category == "student"):
                 exam.find_or_create_student_record(student)
 
     @api.multi
