@@ -56,12 +56,13 @@
                                 <li t-if="record.work_email.raw_value"><field name="work_email"/></li>
                                 <li t-if="record.work_location.raw_value"><field name="work_location"/></li>
                             </ul>
-                            <div t-if="moment(record.birthday.raw_value).format('MMM')==moment(Date()).format('MMM')">
+                            <div t-if="record.birthday and moment(record.birthday.raw_value).format('MMM')==moment(Date()).format('MMM')">
                                 <span t-esc="moment(record.birthday.raw_value).format('DD-MMM')" style="color:green" />
                             </div>
                         </div>
-                        <div t-if="moment(record.birthday.raw_value).format('DD-MMM')==moment(Date()).format('DD-MMM')">
-                            <img src="/education/static/src/img/birthdaycake.png" style="width:40px;height:30px"/>
+                        <div t-if="record.birthday and moment(record.birthday.raw_value).format('DD-MMM')==moment(Date()).format('DD-MMM')">
+                            <img src="/education/static/src/img/birthdaycake.png" style="width:40px;height:30px"
+                                 alt="Happy Birthday"/>
                         </div>
                         <div class="o_dropdown_kanban dropdown" tabindex="-1">
                             <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" role="button" aria-label="Dropdown menu" title="Dropdown menu">
