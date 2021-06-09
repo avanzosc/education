@@ -33,3 +33,21 @@ class EducationGroup(models.Model):
             "domain": domain,
         })
         return action_dict
+
+    @api.multi
+    def get_notebook_lines(self, eval_type=False):
+        self.ensure_one()
+        notebook_obj = self.env["education.notebook.line"]
+        if not eval_type:
+            eval_obj = self.env["education.academic_year.evaluation"]
+            evaluation = eval_obj.search([
+                ("current", "=", True),
+                ("academic_year_id", "=", self.academic_year_id.id),
+                ("center_id", "=", self.center_id.id),
+                ("course_id", "=", self.course_id.id),
+            ], limit=1)
+            eval_type = evaluation.eval_type or "final"
+        return notebook_obj.search([
+            ("eval_type", "=", eval_type),
+            ("schedule_id.group_ids", "in", self.ids),
+        ])
