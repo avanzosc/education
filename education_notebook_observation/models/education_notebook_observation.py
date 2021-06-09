@@ -18,15 +18,17 @@ class EducationNotebookObservation(models.Model):
         string="Date")
     e_notebook_line_id = fields.Many2one(
         string="Education notebook line",
-        comodel_name="education.notebook.line")
+        comodel_name="education.notebook.line", index=True, required=True)
     teacher_id = fields.Many2one(
         string="Teacher", comodel_name="hr.employee",
         related="e_notebook_line_id.teacher_id", store=True)
     student_id = fields.Many2one(
         string="Student", comodel_name="res.partner",
-        domain=[("educational_category", "=", "student")])
+        domain=[("educational_category", "=", "student")], index=True,
+        required=True)
     calendar_event_id = fields.Many2one(
-        string="Meeting", comodel_name="calendar.event")
+        string="Meeting", comodel_name="calendar.event", index=True,
+        required=True)
     education_center_id = fields.Many2one(
         string="Education Center", comodel_name="res.partner",
         related="calendar_event_id.center_id", store=True)
@@ -41,6 +43,12 @@ class EducationNotebookObservation(models.Model):
     event_teacher_id = fields.Many2one(
         comodel_name="hr.employee", string="Meeting Teacher",
         related="calendar_event_id.teacher_id")
+
+    _sql_constraints = [
+        ('unique_observation_event_notebook_line',
+         'unique(e_notebook_line_id, student_id, calendar_event_id)',
+         'There can only be one observation for the meeting per subject!'),
+    ]
 
     @api.multi
     def get_eval_type(self):
