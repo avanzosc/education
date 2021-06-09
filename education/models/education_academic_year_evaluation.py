@@ -14,7 +14,7 @@ class EducationAcademicYearEvaluation(models.Model):
     sequence = fields.Integer()
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',
-        ondelete='cascade', required=True)
+        ondelete='cascade', required=True, index=True)
     date_start = fields.Date(string='Date Start', required=True)
     date_end = fields.Date(string='Date End', required=True)
     current = fields.Boolean(

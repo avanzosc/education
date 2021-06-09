@@ -13,16 +13,16 @@ class EducationSubjectCenter(models.Model):
 
     subject_id = fields.Many2one(
         comodel_name="education.subject", string="Education Subject",
-        required=True, ondelete="cascade")
+        required=True, ondelete="cascade", index=True)
     level_id = fields.Many2one(
         comodel_name="education.level", string="Education Level",
-        required=True, ondelete="cascade")
+        required=True, ondelete="cascade", index=True)
     course_id = fields.Many2one(
         comodel_name="education.course", string="Course",
-        required=True, ondelete="cascade")
+        required=True, ondelete="cascade", index=True)
     center_id = fields.Many2one(
         comodel_name="res.partner", string="Education Center",
-        required=True, ondelete="cascade")
+        required=True, ondelete="cascade", index=True)
     group_type_id = fields.Many2one(
         comodel_name="education.group_type", string="Educational Group Type")
     name_ids = fields.One2many(
