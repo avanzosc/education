@@ -72,3 +72,28 @@ class ResPartner(models.Model):
         return academic_records.filtered(
             lambda r:
             r.n_line_id.schedule_id.task_type_id.education_code == "0123")
+
+    @api.multi
+    def get_notebook_lines(self, academic_year=False, eval_type=False):
+        self.ensure_one()
+        notebook_lines = self.env["education.notebook.line"]
+        if not academic_year:
+            academic_year = self.env["education.academic_year"].search([
+                ("current", "=", True),
+            ])
+        groups = self.student_group_ids.filtered(
+            lambda g: g.academic_year_id == academic_year)
+        if not eval_type:
+            group = groups.filtered(
+                lambda g: g.group_type_id.type == "official")
+            eval_obj = self.env["education.academic_year.evaluation"]
+            evaluation = eval_obj.search([
+                ("current", "=", True),
+                ("academic_year_id", "=", academic_year.id),
+                ("center_id", "=", group.center_id.id),
+                ("course_id", "=", group.course_id.id),
+            ], limit=1)
+            eval_type = evaluation.eval_type or "final"
+        for group in groups:
+            notebook_lines |= group.get_notebook_lines(eval_type=eval_type)
+        return notebook_lines
