@@ -18,10 +18,10 @@ class EducationGroup(models.Model):
 
     academic_year_id = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',
-        required=True)
+        required=True, index=True)
     center_id = fields.Many2one(
         comodel_name='res.partner', string='Education Center',
-        required=True)
+        required=True, index=True)
     plan_id = fields.Many2one(
         comodel_name='education.plan', string='Plan', required=True)
     level_id = fields.Many2one(
@@ -37,11 +37,13 @@ class EducationGroup(models.Model):
     course_id = fields.Many2one(
         comodel_name='education.course', string='Course',
         domain="[('plan_id', '=', plan_id), ('level_id', '=', level_id),"
-               "('field_id', '=', field_id), ('shift_id', '=', shift_id)]")
+               "('field_id', '=', field_id), ('shift_id', '=', shift_id)]",
+        index=True)
     model_id = fields.Many2one(
         comodel_name='education.model', string='Educational Model')
     group_type_id = fields.Many2one(
-        comodel_name='education.group_type', string='Educational Group Type')
+        comodel_name='education.group_type', string='Educational Group Type',
+        index=True)
     calendar_id = fields.Many2one(
         comodel_name='resource.calendar', string='Calendar',
         domain="[('center_id', '=', center_id)]")
@@ -50,7 +52,7 @@ class EducationGroup(models.Model):
     comments = fields.Text(string='Comments')
     teacher_ids = fields.One2many(
         comodel_name='education.group.teacher',
-        inverse_name='group_id', string='Teachers', copy=True)
+        inverse_name='group_id', string='Teachers', copy=False)
     session_ids = fields.One2many(
         comodel_name='education.group.session', inverse_name='group_id',
         string='Sessions', copy=True)
@@ -70,7 +72,8 @@ class EducationGroup(models.Model):
         domain="[('academic_year_id', '=', academic_year_id),"
                "('center_id', '=', center_id),"
                "('course_id', '=', course_id),"
-               "('group_type_id.type', '=', 'official')]", copy=False)
+               "('group_type_id.type', '=', 'official')]", copy=False,
+        index=True)
     schedule_ids = fields.Many2many(
         comodel_name='education.schedule', string='Class Schedule',
         relation='edu_schedule_group', column2='schedule_id',
