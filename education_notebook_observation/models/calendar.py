@@ -15,28 +15,41 @@ class CalendarEvent(models.Model):
     eval_type = fields.Selection(
         selection=EVAL_TYPE, string="Evaluation Season")
 
+    def get_related_notebook_lines(self):
+        self.ensure_one()
+        notebook_lines = self.student_id.get_notebook_lines(
+            academic_year=self.supervised_year_id.school_year_id,
+            eval_type=self.eval_type)
+        return notebook_lines.filtered("exists_master")
+
     def generate_notebook_observations(self, notebook_lines):
+        self.ensure_one()
         observation_obj = self.env['education.notebook.observation']
-        for line in notebook_lines:
+        created_lines = self.mapped(
+            "calendar_event_notebook_observation_ids.e_notebook_line_id")
+        for line in notebook_lines.filtered(lambda l: l not in created_lines):
             observation_obj.create(
                 self._catch_notebook_observation_values(line))
 
     def _catch_notebook_observation_values(self, line):
-        vals = {'observ_date': self.start_datetime.date(),
-                'e_notebook_line_id': line.id,
-                'student_id': self.student_id.id,
-                'calendar_event_id': self.id}
+        self.ensure_one()
+        vals = {
+            "observ_date": self.start_datetime.date(),
+            "e_notebook_line_id": line.id,
+            "student_id": self.student_id.id,
+            "calendar_event_id": self.id
+        }
         return vals
 
     def send_email_to_teachers_notebook_observation(self):
         template = self.env.ref(
-            'education_notebook_observation.notebook_observation_teacher',
+            "education_notebook_observation.notebook_observation_teacher",
             False)
         if template:
             for observation in self.calendar_event_notebook_observation_ids:
                 template.with_context(
                     lang=observation.teacher_id.user_id.lang).send_mail(
-                        observation.id, force_send=True, raise_exception=True)
+                        observation.id, force_send=True)
 
 
 class CalendarAttendee(models.Model):
