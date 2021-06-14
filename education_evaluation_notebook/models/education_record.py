@@ -309,9 +309,8 @@ class EducationRecord(models.Model):
         self.ensure_one()
         if self.child_record_ids:
             return any(x.is_partial_assessed() for x in self.child_record_ids)
-        elif ((self.state == "assessed" and
-               self.exceptionality not in ["not_evaluated"]) or
-              self.exceptionality in ["not_taken", "not_evaluated"] or (
+        elif (self.state == "assessed" or
+              self.exceptionality in ["not_taken"] or (
                 not self.exam_id and self.numeric_mark != 0)):
             return True
         return False
