@@ -50,41 +50,51 @@ class EducationGroup(models.Model):
             level1 = "Primaria"
             cursos_tag = "CursosPrimaria"
             curso_tag = "CursoPrimaria"
+            materias_tag = "AreasConocimiento"
+            materia_tag = "AreaConocimiento"
+            grade_tag = "NotaNumerica"
         elif level_code == "2260":
             level1 = "Secundaria"
             cursos_tag = "CursosSecundaria"
             curso_tag = "CursoSecundaria"
             materias_tag = "MateriasSecundaria"
             materia_tag = "MateriaSecundaria"
+            grade_tag = "NotaNumericaOrdinaria"
         elif level_code == "3270":
             level1 = "Bachillerato"
             cursos_tag = "CursosBachillerato"
             curso_tag = "CursoBachillerato"
             materias_tag = "MateriasBachillerato"
             materia_tag = "MateriaBachillerato"
+            grade_tag = "NotaNumericaOrdinaria"
         else:
             level1 = "FP"
             cursos_tag = "CiclosFormativos"
             curso_tag = "CicloFormativo"
+            grade_tag = "NotaNumericaOrdinaria"
 
         for student in self.student_ids:
-            Historial = etree.SubElement(xml_root, "Historial")
-            DatosComunes = etree.SubElement(
-                Historial, "DatosComunes")
+            history = etree.SubElement(xml_root, "Historial")
+            common_data = etree.SubElement(
+                history, "DatosComunes")
             NivelEducativo = etree.SubElement(
-                DatosComunes, "NivelEducativo")
+                common_data, "NivelEducativo")
             CodigoNivelEducativo = etree.SubElement(
                 NivelEducativo, "CodigoNivelEducativo")
             CodigoNivelEducativo.text = level_code
 
             IdentificacionAlumno = etree.SubElement(
-                DatosComunes, "IdentificacionAlumno")
+                common_data, "IdentificacionAlumno")
             center_code = etree.SubElement(
                 IdentificacionAlumno, "CodigoCentro")
             student_code = etree.SubElement(center_code, "CodigoAlumno")
-            student_code.text = student.education_code
+            education_code = student.education_code
+            if not education_code.isdigit():
+                education_code = education_code[:-1]
 
-            Level1 = etree.SubElement(Historial, level1)
+            student_code.text = education_code.zfill(10)
+
+            Level1 = etree.SubElement(history, level1)
             cursos = etree.SubElement(Level1, cursos_tag)
             curso = etree.SubElement(cursos, curso_tag)
 
@@ -92,7 +102,8 @@ class EducationGroup(models.Model):
             center_code_element = etree.SubElement(
                 centro_element, "CodigoCentroJuridico")
             center_code_element.text = self.center_id.education_code
-            # ValorCurso = etree.SubElement(Level3, "ValorCurso")
+            course_value = etree.SubElement(curso, "ValorCurso")
+            course_value.text = str(self.course_id.course_value or 0)
             start_year = self.academic_year_id.date_start.year
             end_year = self.academic_year_id.date_end.year
             academic_year_start = etree.SubElement(curso, "AnoAcademicoInicio")
@@ -102,15 +113,12 @@ class EducationGroup(models.Model):
             if level_code == "3270":
                 field_element = etree.SubElement(curso, "CodigoModalidad")
                 field_element.text = self.field_id.education_code
-
-            # AreasConocimiento = etree.SubElement(Level3, "AreasConocimiento")
-            # AreaConocimiento = etree.SubElement(AreasConocimiento, "AreaConocimiento")
-
+                regimen = etree.SubElement(curso, "CodigoRegimen")
+                regimen.text = "1"
             records = student.academic_record_ids.filtered(
                 lambda r: r.n_line_id.schedule_id.academic_year_id.current)
-            if records and level_code in ["2260", "3270"]:
+            if records and level_code in ["1120", "2260", "3270"]:
                 subjects = records.mapped("subject_id")
-
                 Materias = etree.SubElement(curso, materias_tag)
                 for subject in subjects:
                     Materia = etree.SubElement(Materias, materia_tag)
@@ -121,9 +129,23 @@ class EducationGroup(models.Model):
                         lambda r: r.subject_id == subject and
                         r.eval_type == "final" and
                         not r.recovered_record_id)[:1]
-                    grade = etree.SubElement(Materia, "NotaNumericaOrdinaria")
-                    num_mark = round(nota_ordinaria.numeric_mark + 0.00001, 0)
-                    grade.text = "{:0>2d}".format(int(num_mark))
+                    grade = etree.SubElement(Materia, grade_tag)
+                    if nota_ordinaria.exceptionality == "exempt":
+                        grade.text = "13"
+                    elif nota_ordinaria.exceptionality == "not_evaluated":
+                        grade.text = "14"
+                    elif nota_ordinaria.exceptionality == "not_taken":
+                        grade.text = "15"
+                    else:
+                        num_mark = round(
+                            nota_ordinaria.numeric_mark + 0.00001, 0)
+                        grade.text = "{:0>2d}".format(int(num_mark))
+                    if level_code != "1120":
+                        aci_element = etree.SubElement(Materia, "ACI")
+                        if nota_ordinaria.exceptionality == "adaptation":
+                            aci_element.text = "S"
+                        else:
+                            aci_element.text = "N"
 
         return self.finalize_file_creation(xml_root, gen_args)
 

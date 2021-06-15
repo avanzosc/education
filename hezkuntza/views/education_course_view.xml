@@ -40,6 +40,9 @@
                 <attribute name="delete">false</attribute>
                 <attribute name="edit">false</attribute>
             </form>
+            <field name="level_id" position="before">
+                <field name="course_value" />
+            </field>
             <field name="description" position="before">
                 <label for="description" string="Spanish" />
             </field>
