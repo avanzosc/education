@@ -24,10 +24,10 @@ class EducationNotebookLine(models.Model):
     sequence = fields.Integer(string="Sequence", default=1)
     schedule_id = fields.Many2one(
         comodel_name="education.schedule", string="Class Schedule",
-        required=True)
+        required=True, index=True)
     teacher_id = fields.Many2one(
         related="schedule_id.teacher_id", comodel_name="hr.employee",
-        string="Teacher", store=True)
+        string="Teacher", store=True, index=True)
     a_year_id = fields.Many2one(
         related="schedule_id.academic_year_id",
         comodel_name="education.academic_year",
@@ -46,7 +46,7 @@ class EducationNotebookLine(models.Model):
         string="Education Subject", store=True)
     competence_id = fields.Many2one(
         comodel_name="education.competence", string="Competence",
-        required=True)
+        required=True, index=True)
     description = fields.Char(string="Description", required=True)
     eval_percent = fields.Float(string="Percent (%)", default=100.0)
     eval_type = fields.Selection(
@@ -58,9 +58,11 @@ class EducationNotebookLine(models.Model):
     exam_count = fields.Integer(
         compute="_compute_exam_count", string="# Exams")
     competence_type_id = fields.Many2one(
-        comodel_name="education.competence.type", string="Competence Type")
+        comodel_name="education.competence.type", string="Competence Type",
+        index=True)
     parent_line_id = fields.Many2one(
-        comodel_name="education.notebook.line", string="Parent Line")
+        comodel_name="education.notebook.line", string="Parent Line",
+        ondelete="restrict", index=True)
     child_line_ids = fields.One2many(
         comodel_name="education.notebook.line", inverse_name="parent_line_id",
         string="Child Lines")
