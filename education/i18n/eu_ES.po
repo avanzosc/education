@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-24 15:59+0000\n"
-"PO-Revision-Date: 2021-05-24 15:59+0000\n"
+"POT-Creation-Date: 2021-06-18 09:05+0000\n"
+"PO-Revision-Date: 2021-06-18 09:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1034,6 +1034,11 @@ msgid "Groups Report"
 msgstr ""
 
 #. module: education
+#: model_terms:ir.ui.view,arch_db:education.res_partner_education_view_kanban
+msgid "Happy Birthday"
+msgstr ""
+
+#. module: education
 #: model:ir.model.fields,field_description:education.field_education_group_student_timetable_report__daily_hour
 #: model:ir.model.fields,field_description:education.field_education_group_teacher_timetable_report__daily_hour
 msgid "Hour in Day"
@@ -1658,7 +1663,7 @@ msgid "Student's Second Lastname"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:170
+#: code:addons/education/models/education_group.py:173
 #: code:addons/education/models/education_schedule.py:107
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
@@ -1720,7 +1725,6 @@ msgid "Subject Names"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_schedule.py:133
 #: code:addons/education/models/education_schedule.py:145
 #, python-format
 msgid "Subject Programmes"
@@ -1967,7 +1971,7 @@ msgid "Working Hours"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:158
+#: code:addons/education/models/education_group.py:161
 #, python-format
 msgid "You can only edit photos from official groups."
 msgstr ""
@@ -1979,7 +1983,7 @@ msgid "You can only get xlsx report of official groups"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_group.py:93
+#: code:addons/education/models/education_group.py:96
 #, python-format
 msgid "You cannot create recursive groups."
 msgstr ""
@@ -2003,7 +2007,7 @@ msgid "{} (copy)"
 msgstr "{} (kopia)"
 
 #. module: education
-#: code:addons/education/models/education_group.py:108
+#: code:addons/education/models/education_group.py:111
 #, python-format
 msgid "{} is already in one official group"
 msgstr ""

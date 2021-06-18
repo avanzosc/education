@@ -10,6 +10,8 @@
                 <field name="teacher_id" groups="education.education_responsible" />
                 <filter name="exam_record" string="Exam Record"
                         domain="[('exam_id','!=',False)]" />
+                <filter name="non_exam_record" string="Non Exam Record"
+                        domain="[('exam_id','=',False)]" />
                 <separator />
                 <filter name="pending" string="Pending Record"
                         domain="[('state','!=','assessed')]" />

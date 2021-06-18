@@ -103,7 +103,8 @@ class EducationRecord(models.Model):
         related="mark_id.reduced_name", comodel_name="education.mark.numeric",
         string="Reduced Numeric Mark", store=True, index=True)
     parent_record_id = fields.Many2one(
-        comodel_name="education.record", string="Parent Record", index=True)
+        comodel_name="education.record", string="Parent Record", index=True,
+        ondelete="restrict")
     child_record_ids = fields.One2many(
         comodel_name="education.record", inverse_name="parent_record_id",
         string="Academic Records", editable=True)

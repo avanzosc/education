@@ -34,7 +34,7 @@ msgstr "Kodea"
 #: model:ir.model.fields,field_description:resource_education.field_resource_calendar__center_id
 #: model_terms:ir.ui.view,arch_db:resource_education.resource_calendar_view_search
 msgid "Education Center"
-msgstr ""
+msgstr "Ikastetxea"
 
 #. module: resource_education
 #: model:ir.model.fields,field_description:resource_education.field_resource_calendar__education_code
