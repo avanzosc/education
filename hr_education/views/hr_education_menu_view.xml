@@ -4,6 +4,10 @@
               parent="education.faculty_menuitem"
               action="hr_employee_teacher_action" />
 
+    <menuitem id="my_employee_menuitem"
+              parent="education.faculty_menuitem"
+              action="hr_employee_my_action" />
+
     <menuitem id="hr_employee_edu_type_menuitem"
               parent="education.configuration_faculty_menuitem"
               action="hr_employee_edu_type_action"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-26 13:50+0000\n"
-"PO-Revision-Date: 2020-08-26 13:50+0000\n"
+"POT-Creation-Date: 2021-06-08 11:22+0000\n"
+"PO-Revision-Date: 2021-06-08 11:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -208,6 +208,12 @@ msgid "Married"
 msgstr "Casado (a)"
 
 #. module: hr_education
+#: model:ir.actions.act_window,name:hr_education.hr_employee_my_action
+#: model:ir.ui.menu,name:hr_education.my_employee_menuitem
+msgid "My teacher profile"
+msgstr "Mi perfil de profesor"
+
+#. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee_edu_type__name
 msgid "Name"
 msgstr "Nombre"
@@ -277,11 +283,6 @@ msgstr "Asignaturas"
 #: model:hr.employee.edu_type,name:hr_education.teaching_edu_type
 msgid "Teaching Staff"
 msgstr "Docente"
-
-#. module: hr_education
-#: model_terms:ir.ui.view,arch_db:hr_education.hr_employee_report_view_search
-msgid "Today Birthdays"
-msgstr "Cumpleaños hoy"
 
 #. module: hr_education
 #: model:ir.model.fields,field_description:hr_education.field_hr_employee_report__visa_expire
