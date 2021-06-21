@@ -122,7 +122,8 @@
                                    options="{'no_create': True, 'no_open': True}" />
                             <field name="parent_id"
                                    options="{'no_create': True, 'no_open': True}"
-                                   attrs="{'invisible': [('group_type_id','=',False)]}" />
+                                   attrs="{'invisible': [('parent_id','=',False)]}"
+                                   readonly="True" />
                         </group>
                     </group>
                     <notebook>
