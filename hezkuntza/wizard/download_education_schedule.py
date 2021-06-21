@@ -48,10 +48,10 @@ class DownloadEducationClassroom(models.TransientModel):
         warning_msg = ""
         errored_teacher = self.env["hr.employee"]
         group_domain = [
-                ("center_id", "=", self.center_id.id),
-                ("academic_year_id", "=", self.academic_year_id.id),
-                ("student_count", "!=", 0),
-                ("group_type_id.type", "in", ["official", "class"]),
+            ("center_id", "=", self.center_id.id),
+            ("academic_year_id", "=", self.academic_year_id.id),
+            ("student_count", "!=", 0),
+            ("group_type_id.type", "in", ["official", "class"]),
         ]
         if self.level_id:
             group_domain = expression.AND(
@@ -61,11 +61,11 @@ class DownloadEducationClassroom(models.TransientModel):
                 [group_domain, [("course_id", "in", self.course_ids.ids)]])
         groups = self.env["education.group"].search(group_domain)
         schedule_domain = [
-                ("center_id", "=", self.center_id.id),
-                ("academic_year_id", "=", self.academic_year_id.id),
-                ("teacher_id", "!=", anonymus_teacher.id),
-                ("timetable_ids", "!=", False),
-                ("group_ids", "in", groups.ids),
+            ("center_id", "=", self.center_id.id),
+            ("academic_year_id", "=", self.academic_year_id.id),
+            ("teacher_id", "!=", anonymus_teacher.id),
+            ("timetable_ids", "!=", False),
+            ("group_ids", "in", groups.ids),
         ]
         if self.teacher_id:
             schedule_domain = expression.AND(
@@ -92,19 +92,20 @@ class DownloadEducationClassroom(models.TransientModel):
                         schedule.classroom_id.education_code))
                 if schedule.task_type_id.type == "L":
                     levels = schedule.mapped("group_ids.level_id")
-                    schedule_string += "{:0>8}{}{:0>2}000{:0>4}{:0>4}\r".format(
-                        schedule.subject_id.education_code,
-                        (schedule.subject_type and schedule.subject_type[:1] or
-                         " "),
-                        schedule.language_id.education_code,
-                        levels[:1].education_code,
-                        levels[:1].plan_id.education_code
-                    )
+                    schedule_string += (
+                        "{:0>8}{}{:0>2}000{:0>4}{:0>4}\r".format(
+                            schedule.subject_id.education_code,
+                            (schedule.subject_type and
+                             schedule.subject_type[:1] or " "),
+                            schedule.language_id.education_code,
+                            levels[:1].education_code,
+                            levels[:1].plan_id.education_code))
                 elif schedule.task_type_id.type == "N":
-                    schedule_string += "00000000 00{:0>3}{:0>4}{:0>4}\r".format(
-                        schedule.activity_type_id.education_code,
-                        schedule.level_id.education_code,
-                        schedule.plan_id.education_code)
+                    schedule_string += (
+                        "00000000 00{:0>3}{:0>4}{:0>4}\r".format(
+                            schedule.activity_type_id.education_code,
+                            schedule.level_id.education_code,
+                            schedule.plan_id.education_code))
                 multiple_lines = (
                     len(schedule.group_ids) > 1 and
                     (len(schedule.mapped("group_ids.course_id")) > 1 or
@@ -112,13 +113,29 @@ class DownloadEducationClassroom(models.TransientModel):
                 encode_string += schedule_string
                 count = multiple_lines and (len(schedule.group_ids) - 1)
                 for group in schedule.group_ids:
-                    parent = group.parent_id or group
-                    encode_string += "3{:0>8}{:0>4}{:0>4}{:<50}{:0>8}\r".format(
-                        group.education_code,
-                        timetable.attendance_id.daily_hour,
-                        group.student_count,
-                        group.description.replace("\n", " "),
-                        parent.education_code)
+                    # parent = group.parent_id or group
+                    if group.group_type_id.type == "official":
+                        parents = group
+                    elif group.group_type_id.type == "class":
+                        parents = group.mapped(
+                            "student_ids.student_group_ids").filtered(
+                            lambda g: (
+                                g.academic_year_id == group.academic_year_id
+                                and g.group_type_id.type == "official"))
+                    for parent in parents:
+                        alias = group.description.replace("\n", " ")
+                        student_count = 0
+                        if group != parent:
+                            alias += parent.description.replace("\n", " ")
+                            student_count = len(group.student_ids.filtered(
+                                lambda s: parent in s.student_group_ids))
+                        encode_string += (
+                            "3{:0>8}{:0>4}{:0>4}{:<50}{:0>8}\r".format(
+                                group.education_code,
+                                timetable.attendance_id.daily_hour,
+                                student_count or group.student_count,
+                                alias,
+                                parent.education_code))
                     if multiple_lines and count:
                         count -= 1
                         encode_string += schedule_string
