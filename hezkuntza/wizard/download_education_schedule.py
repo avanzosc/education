@@ -35,7 +35,7 @@ class DownloadEducationClassroom(models.TransientModel):
         selection=[
             ("open", "open"),
             ("get", "get"),
-        ], string="State", default="open")
+        ], string="Status", default="open")
 
     def button_download_file(self):
         fname_schedule = "cuadrohorario.txt"
