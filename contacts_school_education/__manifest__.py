@@ -27,6 +27,7 @@
         "reports/education_group_teacher_report_view.xml",
         "reports/education_group_teacher_timetable_report_view.xml",
         "views/education_course_change_view.xml",
+        "views/education_group_view.xml",
         "views/res_partner_lang_skill_view.xml",
         "views/res_partner_permission_view.xml",
         "views/res_partner_view.xml",

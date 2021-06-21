@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_group_view_form" model="ir.ui.view">
+        <field name="model">education.group</field>
+        <field name="inherit_id" ref="education.education_group_view_form" />
+        <field name="arch" type="xml">
+            <field name="student_ids" position="attributes">
+                <attribute name="domain">
+                    [('educational_category','=','student'),
+                     ('current_center_id','=',center_id),
+                     ('current_level_id','=',level_id),
+                     ('current_course_id','=',course_id)]
+                </attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

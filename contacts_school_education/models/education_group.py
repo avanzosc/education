@@ -9,9 +9,6 @@ class EducationGroup(models.Model):
 
     center_id = fields.Many2one(
         domain=[("educational_category", "=", "school")])
-    student_ids = fields.Many2many(
-        domain="[('educational_category', '=', 'student'),"
-               "('student_group_ids', '=', parent_id)]")
 
     @api.depends("student_ids", "student_ids.educational_category")
     def _compute_student_count(self):
