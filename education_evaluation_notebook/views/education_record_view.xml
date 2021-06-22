@@ -106,7 +106,7 @@
                        options="{'no_open': True}" />
                 <field name="numeric_mark"
                        invisible="context.get('hide_numeric',True)"
-                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
+                       attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'|',('state','=','assessed'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
                 <field name="pass_mark" invisible="True" />
                 <field name="n_mark_reduced_name"
                        invisible="context.get('hide_numeric',True)" />
@@ -180,7 +180,7 @@
                             <field name="student_id"
                                    context="{'form_view_ref': 'education.res_partner_education_minimal_view_form'}"/>
                             <field name="numeric_mark"
-                                   attrs="{'readonly': [('competence_eval_mode','=','behaviour')], 'required': [('competence_eval_mode','!=','behaviour')]}" />
+                                   attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'|',('state','=','assessed'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}" />
                             <field name="mark_id" options="{'no_create': True}" />
                             <field name="behaviour_mark_id"
                                    options="{'no_create': True}"
@@ -221,7 +221,7 @@
                                       delete="0">
                                     <field name="n_line_id" readonly="True"/>
                                     <field name="numeric_mark"
-                                           attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
+                                           attrs="{'readonly': ['|',('competence_eval_mode','=','behaviour'),'|',('state','=','assessed'),'&amp;',('exam_id','!=',False),('exam_state','not in',['draft','progress'])], 'required': [('competence_eval_mode','!=','behaviour'),('exceptionality','!=','exempt')]}"/>
                                     <field name="pass_mark" invisible="True" />
                                     <field name="n_mark_reduced_name" />
                                     <field name="behaviour_mark_id"
