@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 10:26+0000\n"
-"PO-Revision-Date: 2021-05-26 10:26+0000\n"
+"POT-Creation-Date: 2021-06-28 13:23+0000\n"
+"PO-Revision-Date: 2021-06-28 13:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -594,10 +594,12 @@ msgstr ""
 
 #. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_res_partner_lang_skill
+#: model:ir.ui.menu,name:contacts_school_education.language_skill_menuitem
 msgid "Partner Language Skill"
 msgstr ""
 
 #. module: contacts_school_education
+#: model:ir.ui.menu,name:contacts_school_education.permission_menuitem
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
 msgid "Permissions"
 msgstr ""
@@ -676,6 +678,7 @@ msgid "Student"
 msgstr ""
 
 #. module: contacts_school_education
+#: model:ir.ui.menu,name:contacts_school_education.student_characteristic_menuitem
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
 msgid "Student Characteristics"
 msgstr ""
@@ -733,7 +736,6 @@ msgid "Student's registration has been discharged."
 msgstr ""
 
 #. module: contacts_school_education
-#: model:ir.model.fields,field_description:contacts_school_education.field_education_group__student_ids
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Students"
 msgstr ""

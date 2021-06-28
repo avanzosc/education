@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 10:27+0000\n"
-"PO-Revision-Date: 2021-05-26 10:27+0000\n"
+"POT-Creation-Date: 2021-06-28 13:23+0000\n"
+"PO-Revision-Date: 2021-06-28 13:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Año académico"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_needaction
 msgid "Action Needed"
-msgstr "Acción necesaria"
+msgstr "Acción requerida"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.education_course_change_view_form
@@ -49,7 +49,7 @@ msgstr "Miembro asociación antiguos alumnos"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_attachment_count
 msgid "Attachment Count"
-msgstr "Número de adjuntos"
+msgstr "Nº de archivos adjuntos"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_responsible_minimal_view_form
@@ -135,7 +135,7 @@ msgstr "Permiso de estudiante"
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_search
 msgid "Course"
-msgstr "Curso educativo"
+msgstr "Curso"
 
 #. module: contacts_school_education
 #: model:ir.actions.act_window,name:contacts_school_education.action_education_course_change
@@ -427,7 +427,7 @@ msgstr "Datos para facturación"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_is_follower
 msgid "Is Follower"
-msgstr "Es seguidor"
+msgstr "Es un seguidor"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
@@ -472,12 +472,12 @@ msgstr "Última actualización el"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Adjunto principal"
+msgstr "Adjuntos principales"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de entrega de mensaje"
+msgstr "Error de envío del mensaje"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_ids
@@ -554,7 +554,7 @@ msgstr "Grupos no oficiales"
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Número de Acciones"
+msgstr "Número de acciones"
 
 #. module: contacts_school_education
 #: model:ir.model.fields,field_description:contacts_school_education.field_education_course_change__message_has_error_counter
@@ -594,13 +594,15 @@ msgstr "Otro familiar"
 
 #. module: contacts_school_education
 #: model:ir.model,name:contacts_school_education.model_res_partner_lang_skill
+#: model:ir.ui.menu,name:contacts_school_education.language_skill_menuitem
 msgid "Partner Language Skill"
 msgstr "Habilidad lingüística asignada"
 
 #. module: contacts_school_education
+#: model:ir.ui.menu,name:contacts_school_education.permission_menuitem
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
 msgid "Permissions"
-msgstr "Permisos"
+msgstr "Autorizaciones"
 
 #. module: contacts_school_education
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
@@ -676,6 +678,7 @@ msgid "Student"
 msgstr "Alumno"
 
 #. module: contacts_school_education
+#: model:ir.ui.menu,name:contacts_school_education.student_characteristic_menuitem
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_education_minimal_view_form
 msgid "Student Characteristics"
 msgstr "Características estudiante"
@@ -733,7 +736,6 @@ msgid "Student's registration has been discharged."
 msgstr "Se ha dado de baja la matricula del alumno"
 
 #. module: contacts_school_education
-#: model:ir.model.fields,field_description:contacts_school_education.field_education_group__student_ids
 #: model_terms:ir.ui.view,arch_db:contacts_school_education.res_partner_view_form
 msgid "Students"
 msgstr "Alumnos"
