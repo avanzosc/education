@@ -4,28 +4,10 @@
               web_icon="education,static/description/icon.png"
               groups="education_user"/>
 
-    <menuitem id="education_center_menuitem"
-              name="Education Center"
-              parent="education_menuitem"
-              sequence="1" />
-
-    <menuitem id="education_classroom_menuitem"
-              parent="education_center_menuitem"
-              action="action_education_classroom"
-              sequence="1" />
-    <menuitem id="education_section_menuitem"
-              parent="education_center_menuitem"
-              action="action_education_section"
-              sequence="2" />
-    <menuitem id="education_subject_center_menuitem"
-              parent="education_center_menuitem"
-              action="action_education_subject_center"
-              sequence="3" />
-
     <menuitem id="faculty_menuitem"
               name="Faculty"
               parent="education_menuitem"
-              sequence="2" />
+              sequence="1" />
 
     <menuitem id="faculty_employee_menuitem"
               parent="faculty_menuitem"
@@ -35,7 +17,7 @@
     <menuitem id="groups_menuitem"
               name="Groups"
               parent="education_menuitem"
-              sequence="3" />
+              sequence="2" />
 
     <menuitem id="group_menuitem"
               parent="groups_menuitem"
@@ -49,28 +31,12 @@
     <menuitem id="schedule_table_menuitem"
               name="Schedule Table"
               parent="education_menuitem"
-              sequence="4" />
+              sequence="3" />
 
     <menuitem id="schedule_schedule_menuitem"
               parent="schedule_table_menuitem"
               action="action_education_schedule"
               sequence="0" />
-    <menuitem id="schedule_subject_menuitem"
-              parent="schedule_table_menuitem"
-              action="action_education_subject"
-              sequence="1" />
-    <menuitem id="schedule_course_menuitem"
-              parent="schedule_table_menuitem"
-              action="action_education_course"
-              sequence="2" />
-    <menuitem id="schedule_field_menuitem"
-              parent="schedule_table_menuitem"
-              action="action_education_field"
-              sequence="3" />
-    <menuitem id="schedule_level_menuitem"
-              parent="schedule_table_menuitem"
-              action="action_education_level"
-              sequence="4" />
 
     <menuitem id="education_report_menuitem"
               name="Reports"
@@ -98,10 +64,28 @@
               action="action_education_group_teacher_timetable_report"
               sequence="11" />
 
+    <menuitem id="education_center_menuitem"
+              name="Education Center"
+              parent="education_menuitem"
+              sequence="50" />
+
+    <menuitem id="education_classroom_menuitem"
+              parent="education_center_menuitem"
+              action="action_education_classroom"
+              sequence="1" />
+    <menuitem id="education_section_menuitem"
+              parent="education_center_menuitem"
+              action="action_education_section"
+              sequence="2" />
+    <menuitem id="education_subject_center_menuitem"
+              parent="education_center_menuitem"
+              action="action_education_subject_center"
+              sequence="3" />
+
     <menuitem id="education_configuration_menuitem"
               name="Configuration"
               parent="education_menuitem"
-              sequence="50"
+              sequence="51"
               groups="education_responsible"/>
 
     <menuitem id="configuration_faculty_menuitem"
@@ -157,6 +141,22 @@
               parent="education_configuration_menuitem"
               sequence="3" />
 
+    <menuitem id="schedule_subject_menuitem"
+              parent="configuration_schedule_table_menuitem"
+              action="action_education_subject"
+              sequence="1" />
+    <menuitem id="schedule_course_menuitem"
+              parent="configuration_schedule_table_menuitem"
+              action="action_education_course"
+              sequence="2" />
+    <menuitem id="schedule_field_menuitem"
+              parent="configuration_schedule_table_menuitem"
+              action="action_education_field"
+              sequence="3" />
+    <menuitem id="schedule_level_menuitem"
+              parent="configuration_schedule_table_menuitem"
+              action="action_education_level"
+              sequence="4" />
     <menuitem id="schedule_language_menuitem"
               parent="configuration_schedule_table_menuitem"
               action="action_education_language"
