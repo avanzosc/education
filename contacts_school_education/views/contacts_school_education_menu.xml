@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="permission_menuitem"
+              parent="education.groups_menuitem"
+              action="contacts_school_permission.action_res_partner_permission"
+              sequence="20"
+              groups="education.education_user" />
+
+    <menuitem id="language_skill_menuitem"
+              parent="education.groups_menuitem"
+              action="partner_language_skill.action_res_partner_lang_skill"
+              sequence="21"
+              groups="education.education_user" />
+
+    <menuitem id="student_characteristic_menuitem"
+              parent="education.groups_menuitem"
+              action="contacts_school.res_partner_student_characteristic_action"
+              sequence="22"
+              groups="education.education_user" />
+
+</odoo>

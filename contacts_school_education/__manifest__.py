@@ -31,6 +31,7 @@
         "views/res_partner_lang_skill_view.xml",
         "views/res_partner_permission_view.xml",
         "views/res_partner_view.xml",
+        "views/contacts_school_education_menu.xml",
         "wizards/education_group_next_year_schedule_view.xml",
         "wizards/res_partner_discontinue_view.xml",
         "reports/partner_insurance_xlsx_report.xml",
