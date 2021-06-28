@@ -35,8 +35,6 @@ class UploadEducationContractType(models.TransientModel):
             'education.subject'].with_context(active_test=False)
         language_obj = self.env[
             'education.language'].with_context(active_test=False)
-        group_obj = self.env[
-            'education.schedule.group'].with_context(active_test=False)
         edu_group_obj = self.env['education.group'].with_context(
             active_test=False)
         dayofweek_dict = dict(map(reversed, EDUCATION_DAYOFWEEK_CODE.items()))
@@ -165,32 +163,6 @@ class UploadEducationContractType(models.TransientModel):
                                 schedule.write({
                                     'group_ids': [(4, imp_group.id)],
                                 })
-                            group_code2 = _format_info(line[67:76])
-                            off_group = edu_group_obj.search([
-                                ('education_code', '=', group_code2),
-                                ('center_id', '=', center.id),
-                                ('academic_year_id', '=', academic_year.id),
-                            ])
-                            session_number = int(_format_info(line[9:13]))
-                            student_count = int(_format_info(line[13:17]))
-                            alias = _format_info(line[17:67])
-                            if imp_group and off_group:
-                                vals = {
-                                    'schedule_id': schedule.id,
-                                    'group_id': imp_group.id,
-                                    'session_number': session_number,
-                                    'student_count': student_count,
-                                    'group_alias': alias,
-                                    'parent_group_id': off_group.id,
-                                }
-                                group = group_obj.search([
-                                    ('schedule_id', '=', schedule.id),
-                                    ('group_id', '=', imp_group.id),
-                                ])
-                                if group:
-                                    group.write(vals)
-                                # else:
-                                #     group_obj.create(vals)
                         except Exception:
                             pass
         action = self.env.ref('education.action_education_schedule')

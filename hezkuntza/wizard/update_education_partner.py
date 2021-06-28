@@ -66,9 +66,9 @@ class UpdateEducationResPartner(models.TransientModel):
                 line_obj = self.env["update.education.partner.line"]
                 keys = [c.value for c in sheet.row(1)]
                 for counter in range(2, sheet.nrows-1):
-                    rowValues = sheet.row_values(
+                    row_values = sheet.row_values(
                         counter, 0, end_colx=sheet.ncols)
-                    values = dict(zip(keys, rowValues))
+                    values = dict(zip(keys, row_values))
                     line_data = {
                         "wizard_id": self.id,
                         "student_education_code":
@@ -77,7 +77,7 @@ class UpdateEducationResPartner(models.TransientModel):
                         "student_lastname1": values.get("APELLIDO_1_ALU"),
                         "student_lastname2": values.get("APELLIDO_2_ALU"),
                         # There are 2 columns with key NOMBRE_ALU
-                        "student_name": rowValues[11],
+                        "student_name": row_values[11],
                     }
                     line_obj.find_or_create(line_data)
             except Exception:
