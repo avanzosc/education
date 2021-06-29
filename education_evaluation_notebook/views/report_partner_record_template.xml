@@ -19,12 +19,14 @@
                     </div>
                 </div>
                 <t t-set="records" t-value="o.get_academic_records_curricular(eval_type=eval_type)" />
+                <t t-set="courses" t-value="records.mapped('n_line_id.schedule_id.subject_course_id')" />
                 <t t-set="retaken" t-value="any(records.mapped('retake_record_ids')) or any(records.mapped('child_record_ids').filtered('n_line_id.code').mapped('retake_record_ids'))" />
                 <t t-if="records">
+                    <t t-foreach="courses" t-as="course">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <thead>
-                            <tr>
-                                <td />
+                            <tr class="table-active">
+                                <th><t t-esc="course.display_name"/></th>
                                 <t t-if="retaken">
                                     <th width="15%">Ordinary</th>
                                     <th width="15%">Extraordinary</th>
@@ -35,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-foreach="records" t-as="record">
+                            <t t-foreach="records.filtered(lambda r: r.n_line_id.schedule_id.subject_course_id == course)" t-as="record">
                                 <t t-set="retake_record" t-value="record.retake_record_ids and record.retake_record_ids[:1]" />
                                 <tr>
                                     <th class="text-left">
@@ -119,6 +121,8 @@
                             </t>
                         </tbody>
                     </table>
+                    <br/>
+                    </t>
                 </t>
                 <t t-set="teaching_records" t-value="o.get_academic_records_teaching(eval_type=eval_type)" />
                 <t t-if="teaching_records">
@@ -202,7 +206,7 @@
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
                             <t t-foreach="non_curricular_records" t-as="record">
-                                <t t-foreach="record.child_record_ids" t-as="child_record">
+                                <t t-foreach="record.child_record_ids.filtered(lambda r: not r.evaluation_competence and not r.global_competence)" t-as="child_record">
                                     <tr>
                                         <td class="text-left pl-5">
                                             <span t-field="child_record.n_line_id.description"/>
@@ -226,7 +230,7 @@
                         </tbody>
                     </table>
                 </t>
-                <t t-set="evaluation_records" t-value="o.academic_record_ids.filtered(lambda r: r.eval_type == eval_type and r.evaluation_competence and r.comments)"/>
+                <t t-set="evaluation_records" t-value="o.academic_record_ids.filtered(lambda r: r.eval_type == eval_type and (r.evaluation_competence or r.global_competence) and r.comments)"/>
                 <div class="row mt32 mb32" t-if="evaluation_records">
                     <h5>Comments</h5>
                     <div class="col-10">
