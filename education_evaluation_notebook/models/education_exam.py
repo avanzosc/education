@@ -26,22 +26,23 @@ class EducationExam(models.Model):
         string="Type", related="exam_type_id.e_type")
     n_line_id = fields.Many2one(
         comodel_name="education.notebook.line", string="Notebook Line",
-        required=True, domain="[('exists_master', '=', False)]")
+        required=True,
+        domain="[('exists_master','=',False),('schedule_id','=',schedule_id)]")
     schedule_id = fields.Many2one(
-        comodel_name="education.schedule", related="n_line_id.schedule_id",
-        string="Class Schedule", store=True)
+        comodel_name="education.schedule", string="Class Schedule",
+        required=True)
     eval_type = fields.Selection(
         related="n_line_id.eval_type", string="Evaluation Season", store=True)
     teacher_id = fields.Many2one(
-        comodel_name="hr.employee", related="n_line_id.schedule_id.teacher_id",
+        comodel_name="hr.employee", related="schedule_id.teacher_id",
         string="Teacher", store=True)
     academic_year_id = fields.Many2one(
         comodel_name="education.academic_year",
-        related="n_line_id.schedule_id.academic_year_id",
+        related="schedule_id.academic_year_id",
         string="Academic Year", store=True)
     subject_id = fields.Many2one(
         comodel_name="education.subject",
-        related="n_line_id.schedule_id.subject_id",
+        related="schedule_id.subject_id",
         string="Education Subject", store=True)
     date = fields.Date(string="Exam date", copy=False)
     eval_percent = fields.Float(string="Percent (%)", required=True)
@@ -66,6 +67,25 @@ class EducationExam(models.Model):
     record_count = fields.Integer(
         compute="_compute_record_count", string="# Records", store=True)
     description = fields.Text(string="Description")
+
+    @api.constrains("n_line_id", "schedule_id")
+    def _check_notebook_line_schedule(self):
+        for exam in self:
+            if (exam.n_line_id and exam.schedule_id and
+                    exam.n_line_id.schedule_id != exam.schedule_id):
+                raise ValidationError(_(
+                    "The class schedule and the notebook line's schedule are"
+                    "inconsistent. The selected notebook line must be from the"
+                    "selected class schedule."
+                ))
+
+    @api.model
+    def create(self, values):
+        if not values.get("schedule_id") and values.get("n_line_id"):
+            notebook_line = self.env["education.notebook.line"].browse(
+                values.get("n_line_id"))
+            values["schedule_id"] = notebook_line.schedule_id.id
+        return super(EducationExam, self).create(values)
 
     @api.multi
     def find_or_create_student_record(self, student, parent_record=False):
@@ -123,6 +143,20 @@ class EducationExam(models.Model):
         for exam in self.filtered("recovered_exam_id"):
             exam.n_line_id = exam.recovered_exam_id.n_line_id
             exam.eval_percent = exam.recovered_exam_id.eval_percent
+
+    @api.multi
+    @api.onchange("schedule_id")
+    def _onchange_schedule_id(self):
+        self.ensure_one()
+        if self.n_line_id and self.n_line_id.schedule_id != self.schedule_id:
+            self.n_line_id = False
+
+    @api.multi
+    @api.onchange("n_line_id")
+    def _onchange_notebook_line(self):
+        self.ensure_one()
+        if not self.schedule_id:
+            self.schedule_id = self.n_line_id.schedule_id
 
     @api.multi
     def button_open_exam_form(self):

@@ -56,8 +56,8 @@
                                    domain="[('exam_type_id.e_type','!=','secondchance')]" />
                         </group>
                         <group>
+                            <field name="schedule_id" context="{'show_groups': True}" options="{'no_create': True, 'no_edit': True}" />
                             <field name="n_line_id" options="{'no_create': True, 'no_edit': True}" />
-                            <field name="schedule_id" />
                             <field name="teacher_id" />
                             <field name="subject_id" />
                             <field name="mark_close_date" readonly="True" states="closed"/>
