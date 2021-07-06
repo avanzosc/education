@@ -94,6 +94,10 @@ class EducationSchedule(models.Model):
         action = self.env.ref(
             "education_evaluation_notebook.education_exam_action")
         action_dict = action.read()[0] if action else {}
+        action_dict["context"] = safe_eval(
+            action_dict.get("context", "{}"))
+        action_dict["context"].update(
+            {"default_schedule_id": self.id})
         domain = expression.AND([
             [("schedule_id", "=", self.id)],
             safe_eval(action.domain or "[]")])
@@ -220,3 +224,23 @@ class EducationSchedule(models.Model):
     @api.multi
     def action_generate_records(self):
         self.mapped('notebook_line_ids').button_create_student_records()
+
+    @api.multi
+    def name_get(self):
+        """ name_get() -> [(id, name), ...]
+
+        Returns a textual representation for the records in ``self``.
+        By default this is the value of the ``display_name`` field.
+
+        :return: list of pairs ``(id, text_repr)`` for each records
+        :rtype: list(tuple)
+        """
+        result = []
+        for record in self:
+            name_tuple = super(EducationSchedule, record).name_get()
+            name = name_tuple[0][1] if name_tuple and name_tuple[0] else ""
+            if self.env.context.get("show_groups"):
+                name = "{} [{}]".format(name, ", ".join(
+                    record.mapped("group_ids.display_name")))
+            result.append((record.id, name))
+        return result
