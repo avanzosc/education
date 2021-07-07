@@ -95,6 +95,20 @@ class EducationSchedule(models.Model):
                 description, record.teacher_id.name)))
         return result
 
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        # Make a search with default criteria
+        names1 = super(EducationSchedule, self).name_search(
+                name=name, args=args, operator=operator, limit=limit)
+        names2 = []
+        if name:
+            # Make the other search
+            domain = ['|', ('subject_id', '=ilike', name + '%'),
+                      ('teacher_id', '=ilike', name + '%')]
+            names2 = self.search(domain, limit=limit).name_get()
+        # Merge both results
+        return list(set(names2 or names1))[:limit]
+
     @api.multi
     def button_open_students(self):
         action = self.env.ref('education.res_partner_education_action')
