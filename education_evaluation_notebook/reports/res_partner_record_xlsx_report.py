@@ -68,7 +68,7 @@ class StudentXlsxReport(models.AbstractModel):
         sheet.write(row, 5, "Tercera", self.format_header_center)
         sheet.write(row, 6, "Final", self.format_header_center)
 
-    def write_evaluation_mark(self, sheet, row, eval_type, data, format):
+    def write_evaluation_mark(self, sheet, row, eval_type, data, cell_format):
         if eval_type == "first":
             column = 3
         elif eval_type == "second":
@@ -79,7 +79,7 @@ class StudentXlsxReport(models.AbstractModel):
             column = 6
         else:
             return False
-        sheet.write(row, column, data, format)
+        sheet.write(row, column, data, cell_format)
 
     def fill_student_subject_data(self, sheet, student, subject, row):
         self.set_evaluation_header_table(sheet, row)
