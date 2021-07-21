@@ -108,7 +108,8 @@ class ResPartner(models.Model):
 
     @api.multi
     @api.depends("child_ids", "child_ids.educational_category",
-                 "educational_category", "child_ids.old_student")
+                 "educational_category", "child_ids.old_student",
+                 "parent_id", "parent_id.children_number")
     def _compute_children_number(self):
         for partner in self.filtered(
                 lambda p: p.educational_category == "family" and p.child_ids):
@@ -117,8 +118,9 @@ class ResPartner(models.Model):
                 not p.old_student)
             children_number = len(children)
             partner.children_number = children_number
-            for child in partner.child_ids:
-                child.children_number = children_number
+        for child_partner in self.filtered("parent_id"):
+            child_partner.children_number = (
+                child_partner.parent_id.children_number)
 
     @api.multi
     @api.depends("parent_id", "parent_id.child_ids", "educational_category",

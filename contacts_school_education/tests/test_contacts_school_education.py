@@ -17,6 +17,7 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         self.assertEquals(self.student.current_group_id, self.group)
         self.assertEquals(self.family, self.student.parent_id)
         self.assertEquals(self.family.children_number, 2)
+        self.assertEquals(self.student.children_number, 2)
         students = self.partner_model.search([
             ('current_center_id', '=', self.edu_partner.id)])
         self.assertIn(self.student, students)
@@ -58,6 +59,8 @@ class TestContactsSchoolEducation(TestContactsSchoolEducationCommon):
         self.student.educational_category = "otherchild"
         with self.assertRaises(UserError):
             self.student.get_current_group()
+        self.assertEquals(self.family.children_number, 1)
+        self.assertEquals(self.student.children_number, 1)
 
     def test_course_change(self):
         with self.assertRaises(ValidationError):
