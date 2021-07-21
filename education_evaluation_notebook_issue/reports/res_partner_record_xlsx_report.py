@@ -10,7 +10,7 @@ class EducationGroupXlsx(models.AbstractModel):
     def __init__(self, pool, cr):
         super().__init__(pool, cr)
 
-    def write_issue_count(self, sheet, row, eval_type, data, format):
+    def write_issue_count(self, sheet, row, eval_type, data, cell_format):
         if eval_type == "first":
             column = 3
         elif eval_type == "second":
@@ -21,7 +21,7 @@ class EducationGroupXlsx(models.AbstractModel):
             column = 6
         else:
             return False
-        sheet.write(row, column, data, format)
+        sheet.write(row, column, data, cell_format)
 
     def fill_student_subject_data(self, sheet, student, subject, row):
         # observation_obj = self.env["education.notebook.observation"]

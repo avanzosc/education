@@ -99,7 +99,7 @@ class EducationSchedule(models.Model):
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         # Make a search with default criteria
         names1 = super(EducationSchedule, self).name_search(
-                name=name, args=args, operator=operator, limit=limit)
+            name=name, args=args, operator=operator, limit=limit)
         names2 = []
         if name:
             # Make the other search
