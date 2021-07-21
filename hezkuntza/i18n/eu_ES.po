@@ -695,7 +695,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__data
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_schedule__data_student
 msgid "File"
-msgstr "Archivo"
+msgstr "Fitxategia"
 
 #. module: hezkuntza
 #: model:ir.model.fields,field_description:hezkuntza.field_download_education_classroom__name
