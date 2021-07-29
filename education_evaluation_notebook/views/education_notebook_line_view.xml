@@ -262,6 +262,16 @@
         </field>
     </record>
 
+    <record id="education_notebook_line_current_action" model="ir.actions.act_window">
+        <field name="name">Evaluation notebook</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.notebook.line</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('a_year_id.current','=',True)]</field>
+        <field name="view_id" ref="education_notebook_line_view_tree"/>
+    </record>
+
     <record id="education_notebook_line_action" model="ir.actions.act_window">
         <field name="name">Evaluation notebook</field>
         <field name="type">ir.actions.act_window</field>

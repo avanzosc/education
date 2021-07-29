@@ -45,6 +45,16 @@
         </field>
     </record>
 
+    <record id="education_homework_current_action" model="ir.actions.act_window">
+        <field name="name">Homework</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.homework</field>
+        <field name="view_mode">form,tree,calendar</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_homework_view_tree"/>
+        <field name="domain">[('schedule_id.academic_year_id.current','=',True)]</field>
+    </record>
+
     <record id="education_homework_action" model="ir.actions.act_window">
         <field name="name">Homework</field>
         <field name="type">ir.actions.act_window</field>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-15 15:28+0000\n"
-"PO-Revision-Date: 2021-06-15 15:28+0000\n"
+"POT-Creation-Date: 2021-08-03 11:55+0000\n"
+"PO-Revision-Date: 2021-08-03 11:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,9 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_record_action
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_record_current_action
 #: model:ir.model,name:education_evaluation_notebook.model_education_record
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_record_historic_menu
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_record_menu
 msgid "Academic Record"
 msgstr ""
@@ -763,6 +765,7 @@ msgstr ""
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:84
 #: model:education.competence,name:education_evaluation_notebook.competence_evaluation
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__evaluation_id
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_historic_menuitem
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_evaluation_menuitem
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_competence_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
@@ -840,6 +843,8 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_notebook_line_action
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_notebook_line_current_action
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_notebook_line_historic_menu
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_notebook_line_menu
 msgid "Evaluation notebook"
 msgstr ""
@@ -888,13 +893,17 @@ msgid "Exam Description"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_exam_current_report
 #: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_exam_report
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_group_exam_historic_report_menuitem
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_group_exam_report_menuitem
 msgid "Exam List"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_student_exam_current_report
 #: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_student_exam_report
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_group_student_exam_historic_report_menuitem
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_group_student_exam_report_menuitem
 msgid "Exam List for Student"
 msgstr ""
@@ -938,7 +947,9 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_exam_action
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_exam_current_action
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__exam_ids
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_exam_historic_menu
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_exam_menu
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_exam_report_view_calendar
@@ -1176,9 +1187,11 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_homework_action
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_homework_current_action
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__homework_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_homework_report__homework_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__homework_ids
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_homework_historic_menu
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_homework_menu
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_homework_report_view_calendar
@@ -1210,13 +1223,17 @@ msgid "Homework Description"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_homework_current_report
 #: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_homework_report
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_group_homework_historic_report_menuitem
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_group_homework_report_menuitem
 msgid "Homework List"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_student_homework_current_report
 #: model:ir.actions.act_window,name:education_evaluation_notebook.action_education_group_student_homework_report
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_group_student_homework_historic_report_menuitem
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_group_student_homework_report_menuitem
 msgid "Homework List for Student"
 msgstr ""
@@ -2070,6 +2087,12 @@ msgid "Teacher"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: code:addons/education_evaluation_notebook/models/education_exam.py:76
+#, python-format
+msgid "The class schedule and the notebook line's schedule areinconsistent. The selected notebook line must be from theselected class schedule."
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:40
 #, python-format
 msgid "There can only be one evaluation competence."
@@ -2233,7 +2256,7 @@ msgid "Wizard to export education records in xlsx"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:258
+#: code:addons/education_evaluation_notebook/models/education_exam.py:292
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr ""
@@ -2252,13 +2275,13 @@ msgid "You must select at least one student."
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:190
+#: code:addons/education_evaluation_notebook/models/education_exam.py:224
 #, python-format
 msgid "You must set an exam date."
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:276
+#: code:addons/education_evaluation_notebook/models/education_exam.py:310
 #: code:addons/education_evaluation_notebook/models/education_record.py:434
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:313
 #, python-format

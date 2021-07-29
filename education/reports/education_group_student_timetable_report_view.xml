@@ -60,6 +60,16 @@
         </field>
     </record>
 
+    <record id="action_education_group_student_timetable_current_report" model="ir.actions.act_window">
+        <field name="name">Student Timetable List</field>
+        <field name="res_model">education.group.student.timetable.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id"
+               ref="education_group_student_timetable_report_view_search"/>
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+    </record>
+
     <record id="action_education_group_student_timetable_report" model="ir.actions.act_window">
         <field name="name">Student Timetable List</field>
         <field name="res_model">education.group.student.timetable.report</field>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-18 09:05+0000\n"
-"PO-Revision-Date: 2021-06-18 09:05+0000\n"
+"POT-Creation-Date: 2021-08-03 11:21+0000\n"
+"PO-Revision-Date: 2021-08-03 11:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -188,12 +188,14 @@ msgid "Class"
 msgstr ""
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_current_education_schedule
 #: model:ir.actions.act_window,name:education.action_education_schedule
 #: model:ir.actions.act_window,name:education.action_education_schedule_from_group
 #: model:ir.model,name:education.model_education_schedule
 #: model:ir.model.fields,field_description:education.field_education_group__schedule_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule_group__schedule_id
 #: model:ir.model.fields,field_description:education.field_education_schedule_timetable__schedule_id
+#: model:ir.ui.menu,name:education.schedule_schedule_historic_menuitem
 #: model:ir.ui.menu,name:education.schedule_schedule_menuitem
 #: model_terms:ir.ui.view,arch_db:education.hr_employee_view_form
 msgid "Class Schedule"
@@ -875,8 +877,10 @@ msgid "Educational Group Types"
 msgstr ""
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_current_education_group
 #: model:ir.actions.act_window,name:education.action_education_group
 #: model:ir.ui.menu,name:education.group_menuitem
+#: model:ir.ui.menu,name:education.historic_group_menuitem
 msgid "Educational Groups"
 msgstr ""
 
@@ -1007,7 +1011,9 @@ msgid "Group By..."
 msgstr "Taldekatu..."
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_education_group_current_report
 #: model:ir.actions.act_window,name:education.action_education_group_report
+#: model:ir.ui.menu,name:education.education_group_historic_report_menuitem
 #: model:ir.ui.menu,name:education.education_group_report_menuitem
 msgid "Group List"
 msgstr ""
@@ -1025,6 +1031,7 @@ msgstr ""
 #. module: education
 #: model:ir.ui.menu,name:education.configuration_groups_menuitem
 #: model:ir.ui.menu,name:education.groups_menuitem
+#: model:ir.ui.menu,name:education.historic_groups_menuitem
 msgid "Groups"
 msgstr "Taldeak"
 
@@ -1036,6 +1043,11 @@ msgstr ""
 #. module: education
 #: model_terms:ir.ui.view,arch_db:education.res_partner_education_view_kanban
 msgid "Happy Birthday"
+msgstr ""
+
+#. module: education
+#: model:ir.ui.menu,name:education.education_historic_menuitem
+msgid "Historic"
 msgstr ""
 
 #. module: education
@@ -1422,6 +1434,7 @@ msgid "Recess"
 msgstr "Atsedena"
 
 #. module: education
+#: model:ir.ui.menu,name:education.education_historic_report_menuitem
 #: model:ir.ui.menu,name:education.education_report_menuitem
 msgid "Reports"
 msgstr "Txostenak"
@@ -1449,6 +1462,7 @@ msgstr ""
 
 #. module: education
 #: model:ir.ui.menu,name:education.configuration_schedule_table_menuitem
+#: model:ir.ui.menu,name:education.schedule_table_historic_menuitem
 #: model:ir.ui.menu,name:education.schedule_table_menuitem
 msgid "Schedule Table"
 msgstr ""
@@ -1602,7 +1616,9 @@ msgid "Student Count"
 msgstr ""
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_education_group_student_current_report
 #: model:ir.actions.act_window,name:education.action_education_group_student_report
+#: model:ir.ui.menu,name:education.education_group_student_historic_report_menuitem
 #: model:ir.ui.menu,name:education.education_group_student_report_menuitem
 msgid "Student Group List"
 msgstr ""
@@ -1632,7 +1648,9 @@ msgid "Student Timetable"
 msgstr ""
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_education_group_student_timetable_current_report
 #: model:ir.actions.act_window,name:education.action_education_group_student_timetable_report
+#: model:ir.ui.menu,name:education.education_group_student_timetable_historic_report_menuitem
 #: model:ir.ui.menu,name:education.education_group_student_timetable_report_menuitem
 msgid "Student Timetable List"
 msgstr ""
@@ -1664,7 +1682,7 @@ msgstr ""
 
 #. module: education
 #: code:addons/education/models/education_group.py:173
-#: code:addons/education/models/education_schedule.py:107
+#: code:addons/education/models/education_schedule.py:121
 #: model:ir.actions.act_window,name:education.res_partner_education_action
 #: model:ir.model.fields,field_description:education.field_education_group__student_ids
 #: model:ir.model.fields,field_description:education.field_education_schedule__student_ids
@@ -1725,7 +1743,7 @@ msgid "Subject Names"
 msgstr ""
 
 #. module: education
-#: code:addons/education/models/education_schedule.py:145
+#: code:addons/education/models/education_schedule.py:159
 #, python-format
 msgid "Subject Programmes"
 msgstr ""
@@ -1819,7 +1837,9 @@ msgid "Teacher"
 msgstr "Irakaslea"
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_education_group_teacher_current_report
 #: model:ir.actions.act_window,name:education.action_education_group_teacher_report
+#: model:ir.ui.menu,name:education.education_group_teacher_historic_report_menuitem
 #: model:ir.ui.menu,name:education.education_group_teacher_report_menuitem
 msgid "Teacher Group List"
 msgstr ""
@@ -1830,7 +1850,9 @@ msgid "Teacher Groups Report"
 msgstr ""
 
 #. module: education
+#: model:ir.actions.act_window,name:education.action_education_group_teacher_timetable_current_report
 #: model:ir.actions.act_window,name:education.action_education_group_teacher_timetable_report
+#: model:ir.ui.menu,name:education.education_group_teacher_timetable_historic_report_menuitem
 #: model:ir.ui.menu,name:education.education_group_teacher_timetable_report_menuitem
 msgid "Teacher Timetable List"
 msgstr ""

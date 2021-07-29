@@ -279,6 +279,21 @@
         </field>
     </record>
 
+    <record id="education_record_current_action" model="ir.actions.act_window">
+        <field name="name">Academic Record</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.record</field>
+        <field name="view_mode">form,tree,pivot</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+        <field name="context">{
+            "hide_numeric": False,
+            "hide_behaviour": False,
+            "hide_calculated": False,
+        }</field>
+        <field name="view_id" ref="education_record_view_tree"/>
+    </record>
+
     <record id="education_record_action" model="ir.actions.act_window">
         <field name="name">Academic Record</field>
         <field name="type">ir.actions.act_window</field>
