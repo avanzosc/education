@@ -77,6 +77,16 @@
         </field>
     </record>
 
+    <record id="action_education_group_homework_current_report" model="ir.actions.act_window">
+        <field name="name">Homework List</field>
+        <field name="res_model">education.group.homework.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,calendar</field>
+        <field name="search_view_id"
+               ref="education_group_homework_report_view_search"/>
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+    </record>
+
     <record id="action_education_group_homework_report" model="ir.actions.act_window">
         <field name="name">Homework List</field>
         <field name="res_model">education.group.homework.report</field>

@@ -53,12 +53,13 @@
         </field>
     </record>
 
-    <record id="education_notebook_observation_action" model="ir.actions.act_window">
+    <record id="education_notebook_observation_current_action" model="ir.actions.act_window">
         <field name="name">Notebook Observations</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">education.notebook.observation</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
+        <field name="domain">[('e_notebook_line_id.a_year_id.current','=',True)]</field>
         <field name="context">{
             'search_default_my_request': True,
             'search_default_pending': True,
@@ -68,7 +69,7 @@
 
     <menuitem id="education_notebook_observation_menu"
               parent="education_evaluation_notebook.education_evaluation_menuitem"
-              action="education_notebook_observation_action" />
+              action="education_notebook_observation_current_action" />
 
     <record id="education_notebook_observation_action2" model="ir.actions.act_window">
         <field name="name">Notebook observations to make</field>
@@ -76,7 +77,7 @@
         <field name="res_model">education.notebook.observation</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
-        <field name="domain">[('teacher_id.user_id','=',uid)]</field>
+        <field name="domain">[('e_notebook_line_id.a_year_id.current','=',True),('teacher_id.user_id','=',uid)]</field>
         <field name="context">{
             'search_default_pending': True,
         }</field>
@@ -86,4 +87,17 @@
     <menuitem id="education_notebook_observation_menu2"
               parent="education_evaluation_notebook.education_evaluation_menuitem"
               action="education_notebook_observation_action2" />
+
+    <record id="education_notebook_observation_action" model="ir.actions.act_window">
+        <field name="name">Notebook Observations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.notebook.observation</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_notebook_observation_view_tree"/>
+    </record>
+
+    <menuitem id="education_notebook_observation_historic_menu"
+              parent="education_evaluation_notebook.education_evaluation_historic_menuitem"
+              action="education_notebook_observation_action" />
 </odoo>

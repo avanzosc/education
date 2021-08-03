@@ -9,19 +9,19 @@
 
     <menuitem id="education_notebook_line_menu"
               parent="education_evaluation_menuitem"
-              action="education_notebook_line_action"
+              action="education_notebook_line_current_action"
               sequence="1" />
     <menuitem id="education_exam_menu"
               parent="education_evaluation_menuitem"
-              action="education_exam_action"
+              action="education_exam_current_action"
               sequence="2" />
     <menuitem id="education_record_menu"
               parent="education_evaluation_menuitem"
-              action="education_record_action"
+              action="education_record_current_action"
               sequence="3" />
     <menuitem id="education_homework_menu"
               parent="education_evaluation_menuitem"
-              action="education_homework_action"
+              action="education_homework_current_action"
               sequence="4" />
 
     <menuitem id="education_evaluation_notebook_menu"
@@ -56,18 +56,58 @@
 
     <menuitem id="education_group_exam_report_menuitem"
               parent="education.education_report_menuitem"
-              action="action_education_group_exam_report"
+              action="action_education_group_exam_current_report"
               sequence="20" />
     <menuitem id="education_group_homework_report_menuitem"
               parent="education.education_report_menuitem"
-              action="action_education_group_homework_report"
+              action="action_education_group_homework_current_report"
               sequence="21" />
     <menuitem id="education_group_student_exam_report_menuitem"
               parent="education.education_report_menuitem"
+              action="action_education_group_student_exam_current_report"
+              sequence="22" />
+    <menuitem id="education_group_student_homework_report_menuitem"
+              parent="education.education_report_menuitem"
+              action="action_education_group_student_homework_current_report"
+              sequence="23" />
+
+    <menuitem id="education_evaluation_historic_menuitem"
+              name="Evaluation"
+              parent="education.education_historic_menuitem"
+              groups="education.education_responsible"
+              sequence="5" />
+
+    <menuitem id="education_notebook_line_historic_menu"
+              parent="education_evaluation_historic_menuitem"
+              action="education_notebook_line_action"
+              sequence="1" />
+    <menuitem id="education_exam_historic_menu"
+              parent="education_evaluation_historic_menuitem"
+              action="education_exam_action"
+              sequence="2" />
+    <menuitem id="education_record_historic_menu"
+              parent="education_evaluation_historic_menuitem"
+              action="education_record_action"
+              sequence="3" />
+    <menuitem id="education_homework_historic_menu"
+              parent="education_evaluation_historic_menuitem"
+              action="education_homework_action"
+              sequence="4" />
+
+    <menuitem id="education_group_exam_historic_report_menuitem"
+              parent="education.education_historic_report_menuitem"
+              action="action_education_group_exam_report"
+              sequence="20" />
+    <menuitem id="education_group_homework_historic_report_menuitem"
+              parent="education.education_historic_report_menuitem"
+              action="action_education_group_homework_report"
+              sequence="21" />
+    <menuitem id="education_group_student_exam_historic_report_menuitem"
+              parent="education.education_historic_report_menuitem"
               action="action_education_group_student_exam_report"
               sequence="22" />
-        <menuitem id="education_group_student_homework_report_menuitem"
-              parent="education.education_report_menuitem"
+    <menuitem id="education_group_student_homework_historic_report_menuitem"
+              parent="education.education_historic_report_menuitem"
               action="action_education_group_student_homework_report"
               sequence="23" />
 

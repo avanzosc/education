@@ -137,6 +137,15 @@
         </field>
     </record>
 
+    <record model="ir.actions.act_window" id="action_current_education_schedule">
+        <field name="name">Class Schedule</field>
+        <field name="res_model">education.schedule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="education_schedule_view_tree" />
+        <field name="domain">[("academic_year_id.current", "=", True)]</field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_education_schedule">
         <field name="name">Class Schedule</field>
         <field name="res_model">education.schedule</field>

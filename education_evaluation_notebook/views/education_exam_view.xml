@@ -209,6 +209,16 @@
         </field>
     </record>
 
+    <record id="education_exam_current_action" model="ir.actions.act_window">
+        <field name="name">Exams</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.exam</field>
+        <field name="view_mode">form,tree,calendar</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+        <field name="view_id" ref="education_exam_view_tree"/>
+    </record>
+
     <record id="education_exam_action" model="ir.actions.act_window">
         <field name="name">Exams</field>
         <field name="type">ir.actions.act_window</field>

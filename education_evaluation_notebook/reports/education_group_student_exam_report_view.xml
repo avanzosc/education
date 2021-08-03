@@ -89,6 +89,16 @@
         </field>
     </record>
 
+    <record id="action_education_group_student_exam_current_report" model="ir.actions.act_window">
+        <field name="name">Exam List for Student</field>
+        <field name="res_model">education.group.student.exam.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,calendar</field>
+        <field name="search_view_id"
+               ref="education_group_student_exam_report_view_search"/>
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+    </record>
+
     <record id="action_education_group_student_exam_report" model="ir.actions.act_window">
         <field name="name">Exam List for Student</field>
         <field name="res_model">education.group.student.exam.report</field>
