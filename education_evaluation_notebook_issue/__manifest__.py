@@ -12,8 +12,9 @@
         "education_evaluation_notebook",
         "issue_education",
     ],
-    "excludes": [],
-    "data": [],
+    "data": [
+        "views/school_issue_view.xml",
+    ],
     "installable": True,
     "auto_install": True,
 }
