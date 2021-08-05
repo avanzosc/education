@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_issue_view_search" model="ir.ui.view">
+        <field name="model">school.issue</field>
+        <field name="inherit_id" ref="issue_education.school_issue_view_search" />
+        <field name="arch" type="xml">
+            <filter name="filter_pending_proof" position="before">
+                <filter name="current_academic_year"
+                        string="Current Academic Year"
+                        domain="[('academic_year_id.current','=',True)]"/>
+                <separator />
+            </filter>
+            <filter name="proof_state_group" position="after">
+                <separator />
+                <filter name="group_academic_year"
+                        string="Academic Year"
+                        context="{'group_by': 'academic_year_id'}" />
+            </filter>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_issue_current">
+        <field name="name">Issues</field>
+        <field name="res_model">school.issue</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree,pivot</field>
+        <field name="domain">[]</field>
+        <field name="view_id" ref="issue_education.school_issue_view_tree" />
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+        <field name="context">{"search_default_filter-today-issues":1}</field>
+    </record>
+
+    <record id="issue_education.school_issue_menuitem" model="ir.ui.menu">
+        <field name="action" ref="education_evaluation_notebook_issue.action_school_issue_current" />
+    </record>
+
+    <menuitem id="issue_historic_menuitem"
+              name="Issues"
+              parent="education.education_historic_menuitem"
+              sequence="10" />
+
+    <menuitem id="school_issue_historic_menuitem"
+              parent="issue_historic_menuitem"
+              action="issue_education.action_school_issue"
+              sequence="1" />
+
+</odoo>

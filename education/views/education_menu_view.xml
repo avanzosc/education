@@ -192,9 +192,9 @@
 
     <menuitem id="education_historic_menuitem"
               name="Historic"
-
+              parent="education_menuitem"
               sequence="99"
-              groups="education.education_responsible" /><!--parent="education_menuitem"-->
+              groups="education.education_responsible" />
 
     <menuitem id="historic_groups_menuitem"
               name="Groups"
