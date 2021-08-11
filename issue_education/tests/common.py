@@ -1,6 +1,7 @@
 # Copyright 2019 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
+from odoo import fields
 from odoo.addons.education.tests.common import TestEducationCommon
 
 
@@ -84,3 +85,13 @@ class TestIssueEducationCommon(TestEducationCommon):
             'person_id': cls.progenitor.id,
             'student_id': cls.student.id,
         })
+        cls.issue_vals = {
+            'name': 'School issue for test',
+            'student_id': cls.student.id,
+            'issue_date': fields.Date.today(),
+            'school_issue_type_id': cls.college_issue_type.id,
+            'school_id': cls.college_issue_type.school_id.id,
+            'site_id': cls.site.id,
+            'reported_id': cls.env.user.id,
+            'education_schedule_id': cls.schedule.id,
+        }

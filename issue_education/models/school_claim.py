@@ -1,6 +1,7 @@
 # Copyright 2019 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 from datetime import timedelta
@@ -82,6 +83,12 @@ class SchoolClaim(models.Model):
             claim.message_subscribe(
                 list(claim.mapped('school_issue_type_id.notify_ids').ids))
         return claim
+
+    @api.multi
+    def unlink(self):
+        if any(claim.state != 'draft' for claim in self):
+            raise UserError(_('You can only delete draft reports.'))
+        return super(SchoolClaim, self).unlink()
 
     @api.multi
     def open_calendar_event(self):
