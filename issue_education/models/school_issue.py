@@ -101,6 +101,12 @@ class SchoolIssue(models.Model):
             issue.create_issue_report()
         return issues
 
+    @api.multi
+    def unlink(self):
+        claims = self.mapped("claim_id")
+        claims.filtered(lambda c: len(c.school_issue_ids) == 1).unlink()
+        return super(SchoolIssue, self).unlink()
+
     def create_issue_report(self):
         self.ensure_one()
         claim_obj = self.env['school.claim']

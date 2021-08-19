@@ -3,7 +3,6 @@
 from .common import TestIssueEducationCommon
 from odoo.tests import common
 from odoo.exceptions import UserError
-from odoo import fields
 
 
 @common.at_install(False)
@@ -62,7 +61,6 @@ class TestIssueEducation(TestIssueEducationCommon):
         }
         college_issue_type = self.college_issue_type_obj.create(vals)
         college_issue_type.onchange_issue_type_id()
-
         self.assertEquals(
             college_issue_type.display_name,
             '{}  ({})'.format(college_issue_type.name,
@@ -72,16 +70,7 @@ class TestIssueEducation(TestIssueEducationCommon):
             'School issue type for test')
 
     def test_issue_education(self):
-        vals = {
-            'name': 'School issue for test',
-            'student_id': self.student.id,
-            'issue_date': fields.Date.today(),
-            'school_issue_type_id': self.college_issue_type.id,
-            'school_id': self.college_issue_type.school_id.id,
-            'site_id': self.site.id,
-            'reported_id': self.env.user.id,
-        }
-        issue = self.issue_obj.create(vals)
+        issue = self.issue_obj.create(self.issue_vals)
         self.assertTrue(issue.claim_id)
         self.assertEquals(issue.proof_state, 'optional')
         self.assertIn(self.progenitor, issue.claim_id.message_partner_ids)
@@ -108,6 +97,8 @@ class TestIssueEducation(TestIssueEducationCommon):
         self.assertEquals(issue.claim_id.state, 'fulfill')
         issue.claim_id.button_closed()
         self.assertEquals(issue.claim_id.state, 'closed')
+        with self.assertRaises(UserError):
+            issue.claim_id.unlink()
         action_dict = issue.claim_id.open_calendar_event()
         self.assertIn(
             ('res_id', '=', issue.claim_id.id), action_dict.get('domain'))
@@ -119,3 +110,30 @@ class TestIssueEducation(TestIssueEducationCommon):
         self.assertIn(
             ('student_id', 'in', self.student.ids), action_dict.get('domain'))
         self.assertEquals(action_dict.get('res_model'), 'school.claim')
+        schedule_students = self.schedule.mapped("student_ids")
+        action_dict = self.schedule.button_open_school_issues()
+        self.assertEquals(action_dict.get('res_model'), 'school.issue')
+        self.assertIn(
+            ('student_id', 'in', schedule_students.ids),
+            action_dict.get('domain'))
+        action_dict = self.schedule.button_open_school_claims()
+        self.assertEquals(action_dict.get('res_model'), 'school.claim')
+        self.assertIn(
+            ('student_id', 'in', schedule_students.ids),
+            action_dict.get('domain'))
+
+    def test_issue_education_delete(self):
+        issue1 = self.issue_obj.with_context(
+            mail_create_nosubscribe=True).create(self.issue_vals)
+        self.assertTrue(issue1.claim_id)
+        issue1.claim_id.button_notified()
+        self.assertEquals(issue1.claim_id.state, "notified")
+        with self.assertRaises(UserError):
+            issue1.unlink()
+        self.assertTrue(issue1)
+        self.assertTrue(issue1.claim_id)
+        issue2 = self.issue_obj.with_context(
+            mail_create_nosubscribe=True).create(self.issue_vals)
+        self.assertTrue(issue2.claim_id)
+        self.assertEquals(issue2.claim_id.state, "draft")
+        issue2.unlink()

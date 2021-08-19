@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-18 13:32+0000\n"
-"PO-Revision-Date: 2021-05-18 13:32+0000\n"
+"POT-Creation-Date: 2021-08-11 12:33+0000\n"
+"PO-Revision-Date: 2021-08-11 12:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Alerta de acceso"
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__message_needaction
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción requerida"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_ids
@@ -71,6 +71,7 @@ msgid "Attachment Count"
 msgstr "Conteo de archivos adjuntos"
 
 #. module: issue_education
+#: model:ir.model,name:issue_education.model_education_schedule
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__education_schedule_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__education_schedule_id
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
@@ -140,7 +141,7 @@ msgstr "Creado el"
 #: model:ir.model.fields,help:issue_education.field_school_claim__access_url
 #: model:ir.model.fields,help:issue_education.field_school_issue_proof__access_url
 msgid "Customer Portal URL"
-msgstr "URL para portal"
+msgstr "URL del portal de cliente"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__issue_date
@@ -412,11 +413,6 @@ msgstr "Tipo de incidencia"
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_form
 msgid "Issues"
 msgstr "Incidencias"
-
-#. module: issue_education
-#: model:ir.actions.act_window,name:issue_education.action_school_issue_from_schedule
-msgid "Issues (from Schedule)"
-msgstr "Incidencias (desde horario)"
 
 #. module: issue_education
 #: model:ir.ui.menu,name:issue_education.issues_configuration_menuitem
@@ -946,6 +942,12 @@ msgstr "Mensajes del sitio web"
 #: model:ir.model.fields,help:issue_education.field_school_issue_proof__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
+
+#. module: issue_education
+#: code:addons/issue_education/models/school_claim.py:90
+#, python-format
+msgid "You can only delete draft reports."
+msgstr "Solo se pueden eliminar partes de incidencia en estado borrador"
 
 #. module: issue_education
 #: code:addons/issue_education/models/school_issue_severity_scale.py:34
