@@ -106,11 +106,14 @@ class TestEducationEvaluationNotebook(EducationNotebookCommon):
             student_eval_records = eval_records.filtered(
                 lambda r: r.student_id == student)
             self.assertEquals(len(student_eval_records), evaluation_count)
-            records = student.get_academic_records_curricular()
+            records = student.get_academic_records_curricular(
+                self.schedule.academic_year_id)
             self.assertIn(records, student_eval_records)
-            records = student.get_academic_records_teaching()
+            records = student.get_academic_records_teaching(
+                self.schedule.academic_year_id)
             self.assertFalse(records)
-            records = student.get_academic_records_non_curricular()
+            records = student.get_academic_records_non_curricular(
+                self.schedule.academic_year_id)
             self.assertFalse(records)
         for eval_record in eval_records:
             eval_record.button_set_assessed()

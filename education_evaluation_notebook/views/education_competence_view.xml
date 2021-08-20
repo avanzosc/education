@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="education_notebook_competence_view_form"
-            model="ir.ui.view">
+    <record id="education_notebook_competence_view_form" model="ir.ui.view">
         <field name="model">education.competence</field>
         <field name="arch" type="xml">
             <form>
@@ -32,6 +31,12 @@
                             <field name="global_check" />
                         </group>
                     </group>
+                    <separator string="Education Levels" />
+                    <field name="level_ids">
+                        <tree>
+                            <field name="display_name" />
+                        </tree>
+                    </field>
                 </sheet>
             </form>
         </field>
@@ -47,6 +52,7 @@
                 <field name="eval_mode" />
                 <field name="evaluation_check" />
                 <field name="global_check" />
+                <field name="level_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>

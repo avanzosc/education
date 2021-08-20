@@ -12,13 +12,14 @@ class EducationGroupXlsx(models.AbstractModel):
         self.format_observations_header = None
         self.format_observations = None
 
-    def fill_student_subject_data(self, sheet, student, subject, row):
+    def fill_student_subject_data(
+            self, sheet, student, academic_year, subject, row):
         observation_obj = self.env["education.notebook.observation"]
         evaluation_obj = self.env["education.academic_year.evaluation"]
         row = super(EducationGroupXlsx, self).fill_student_subject_data(
-            sheet, student, subject, row)
+            sheet, student, academic_year, subject, row)
         observations = observation_obj.sudo().search([
-            ("e_notebook_line_id.a_year_id.current", "=", True),
+            ("e_notebook_line_id.a_year_id", "=", academic_year.id),
             ("student_id", "=", student.id),
             ("e_notebook_line_id.subject_id", "=", subject.id),
         ])

@@ -18,6 +18,7 @@ class EducationGroup(models.Model):
         for group in self:
             group.record_count = academic_record_obj.search_count([
                 ("student_id", "in", group.student_ids.ids),
+                ("academic_year_id", "=", group.academic_year_id.id),
             ])
 
     @api.multi
@@ -27,7 +28,8 @@ class EducationGroup(models.Model):
             "education_evaluation_notebook.education_record_action")
         action_dict = action.read()[0]if action else {}
         domain = expression.AND([
-            [("student_id", "in", self.student_ids.ids)],
+            [("student_id", "in", self.student_ids.ids),
+             ("academic_year_id", "=", self.academic_year_id.id)],
             safe_eval(action.domain or "[]")])
         action_dict.update({
             "domain": domain,
