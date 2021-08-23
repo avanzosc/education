@@ -29,18 +29,29 @@
                 <field name="student_id" />
                 <field name="state" />
                 <separator />
-                <filter string="Today" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <filter string="Today" name="filter_today_issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
                 <group expand="0" string="Group By">
-                    <filter string="Date" name="group-issue_date" domain="[]"
-                            context="{'group_by':'issue_date'}"/>
-                    <filter string="Issue type" name="group-issue_type" domain="[]"
+                    <filter string="Issue type" name="group_issue_type" domain="[]"
                             context="{'group_by':'school_issue_type_id'}"/>
-                    <filter string="Class Schedule" name="group-education-schedule" domain="[]"
+                    <filter string="Student" name="group_student"
+                            domain="[]" context="{'group_by':'student_id'}"/>
+                    <filter string="Official Group"
+                            name="group_student_group" domain="[]"
+                            context="{'group_by':'student_group_id'}"/>
+                    <separator />
+                    <filter string="Reported by" name="group_reported"
+                            domain="[]" context="{'group_by':'reported_id'}"/>
+                    <filter string="Education Group"
+                            name="group_education_group" domain="[]"
+                            context="{'group_by':'education_group_id'}"/>
+                    <filter string="Class Schedule"
+                            name="group_education_schedule" domain="[]"
                             context="{'group_by':'education_schedule_id'}"/>
-                    <filter string="Reported by" name="group-reported" domain="[]"
-                            context="{'group_by':'reported_id'}"/>
-                    <filter string="Student" name="group-student" domain="[]"
-                            context="{'group_by':'student_id'}"/>
+                    <separator />
+                    <filter string="Date" name="group_issue_date"
+                            domain="[]" context="{'group_by':'issue_date'}"/>
+                    <filter string="Education Center" name="school_group"
+                            context="{'group_by': 'school_id'}" />
                     <filter string="Status" name="group-state" domain="[]"
                             context="{'group_by':'state'}"/>
                 </group>
@@ -128,7 +139,29 @@
         <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="school_claim_view_tree" />
-        <field name="context">{"search_default_filter-today-issues":1}</field>
+        <field name="context">{"search_default_filter_today_issues":1}</field>
+    </record>
+
+    <record id="action_update_education_group" model="ir.actions.server">
+        <field name="name">Update official group</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="issue_education.model_school_claim" />
+        <field name="code">
+academic_year_obj = env["education.academic_year"]
+for record in records:
+    academic_year = academic_year_obj.search([
+        ("date_start", "&gt;=", record.issue_date),
+        ("date_end", "&lt;=", record.issue_date)])
+    try:
+        student = record.student_id
+        record.write({
+            "student_group_id": student.get_current_group(
+                academic_year=academic_year).id,
+        })
+    except:
+        continue
+        </field>
     </record>
 
 </odoo>
