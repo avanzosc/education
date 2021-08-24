@@ -12,6 +12,9 @@ $(document).ready(function() {
         else{
             $('.student_schedule_td').show();
             $('.td_eval_' + evaluation).show();
+            if(evaluation == 'final'){
+                $('.final_td').show();
+            }
         }
     });
 

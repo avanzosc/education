@@ -115,12 +115,12 @@
                                        <t t-esc="competence.description"/>
                                        </td>
                                        </t>
-                                       <td t-att-class="'eval_schedule_td td_eval_' + eval.eval_type">
+                                       <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
                                        <t t-esc="eval.competence_id.display_name"/>
                                        <span t-field="eval.eval_type" />
                                        </td>
                                        </t>
-                                       <td t-att-class="'global_schedule_td td_eval_' + line.eval_type">
+                                       <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
                                        <t t-esc="line.competence_id.display_name"/>
                                        <span t-field="line.eval_type" />
                                        </td>
@@ -163,7 +163,7 @@
                                                          </t>
                                                       </td>
                                                    </t>
-                                                   <td t-att-class="'eval_schedule_td td_eval_' + eval.eval_type">
+                                                   <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
                                                       <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
                                                       <t t-foreach="eval_record" t-as="er">
                                                          <t t-esc="er.calculated_partial_mark"
@@ -173,7 +173,7 @@
                                                       </t>
                                                    </td>
                                                 </t>
-                                                <td t-att-class="'global_schedule_td td_eval_' + line.eval_type">
+                                                <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
                                                    <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
                                                    <t t-foreach="global_record" t-as="gr">
                                                       <t t-esc="gr.calculated_partial_mark"
