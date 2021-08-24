@@ -4,7 +4,7 @@ from odoo.http import request
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
 
-class CoasMain(CustomerPortal):
+class EducationMain(CustomerPortal):
 
     @http.route(['/schedules'], type='http',
                 auth="user", website=True)
