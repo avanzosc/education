@@ -3,6 +3,7 @@
    <template id="assets_frontend" name="Evaluation notebook table assets" inherit_id="website.assets_frontend">
       <xpath expr="." position="inside">
          <link type="text/scss" href="/education_evaluation_notebook_table/static/src/css/style.css" rel="stylesheet"/>
+            <script type="text/javascript" src="/education_evaluation_notebook_table/static/src/js/script.js"/>
       </xpath>
    </template>
    <template id="portal_schedules" inherit_id="portal.portal_my_home" name="Portal My Home : schedule entries">
@@ -86,98 +87,108 @@
                            data-oe-model="ir.ui.view" data-oe-id="599"
                            data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]"></div>
                         <div class="o_portal_docs list-group">
-                           <table t-if="record_lines" id="teacher_schedule_table">
-                              <thead>
-                                 <tr>
-                                    <td/>
-                                       <t t-foreach="record_lines" t-as="line">
-                                          <t t-if="line.competence_id.global_check">
-                                             <t t-set="evals"
-                                                t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
-                                             <t t-foreach="evals" t-as="eval">
-                                                <t t-set="competences"
-                                                   t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
-                                                <t t-foreach="competences" t-as="competence">
-                                    <td class="exam_schedule_td" t-foreach="competence.exam_ids" t-as="exam">
-                                    <t t-esc="exam.name"/>
-                                    </td>
-                                    <td class="comp_schedule_td">
-                                    <t t-esc="competence.description"/>
-                                    </td>
-                                    </t>
-                                    <td class="eval_schedule_td">
-                                    <t t-esc="eval.competence_id.display_name"/>
-                                    <span t-field="eval.eval_type" />
-                                    </td>
-                                    </t>
-                                    <td class="global_schedule_td">
-                                    <t t-esc="line.competence_id.display_name"/>
-                                    <span t-field="line.eval_type" />
-                                    </td>
-                                    </t>
-                                    </t>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <t t-foreach="evaluation_record_students" t-as="student">
-                                    <t t-set="student_record_lines"
-                                       t-value="schedule_evaluation_records.filtered(lambda r: r.student_id.id == student.id)"/>
+                           <t t-if="record_lines">
+                              <div id="eval_buttons" class="btn-group col-lg-12">
+                                 <t t-foreach="evaluations" t-as="evaluation">
+                                    <button t-att-id="evaluation.eval_type" class="eval_button btn btn-primary mr-2 mb-2">
+                                       <span t-field="evaluation.eval_type" />
+                                    </button>
+                                 </t>
+                                 <button id="all" class="eval_button btn btn-primary mb-2">All</button>
+                              </div>
+                              <table id="teacher_schedule_table">
+                                 <thead>
                                     <tr>
-                                       <td class="student_schedule_td">
-                                          <t t-esc="student.name"/>
+                                       <td class="student_schedule_td"/>
+                                          <t t-foreach="record_lines" t-as="line">
+                                             <t t-if="line.competence_id.global_check">
+                                                <t t-set="evals"
+                                                   t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
+                                                <t t-foreach="evals" t-as="eval">
+                                                   <t t-set="competences"
+                                                      t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
+                                                   <t t-foreach="competences" t-as="competence">
+                                       <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-foreach="competence.exam_ids" t-as="exam">
+                                       <t t-esc="exam.name"/>
                                        </td>
-                                       <t t-foreach="record_lines" t-as="line">
-                                          <t t-if="line.competence_id.global_check">
-                                             <t t-set="evals"
-                                                t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
-                                             <t t-foreach="evals" t-as="eval">
-                                                <t t-set="competences"
-                                                   t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
-                                                <t t-foreach="competences" t-as="competence">
-                                                   <td t-foreach="competence.exam_ids" t-as="exam">
-                                                      <t t-set="exam_record" t-value="student_record_lines.filtered(lambda r: r.exam_id.id == exam.id)"/>
-                                                      <t t-foreach="exam_record" t-as="exr">
-                                                         <t t-esc="exr.calculated_partial_mark"
+                                       <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
+                                       <t t-esc="competence.description"/>
+                                       </td>
+                                       </t>
+                                       <td t-att-class="'eval_schedule_td td_eval_' + eval.eval_type">
+                                       <t t-esc="eval.competence_id.display_name"/>
+                                       <span t-field="eval.eval_type" />
+                                       </td>
+                                       </t>
+                                       <td t-att-class="'global_schedule_td td_eval_' + line.eval_type">
+                                       <t t-esc="line.competence_id.display_name"/>
+                                       <span t-field="line.eval_type" />
+                                       </td>
+                                       </t>
+                                       </t>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <t t-foreach="evaluation_record_students" t-as="student">
+                                       <t t-set="student_record_lines"
+                                          t-value="schedule_evaluation_records.filtered(lambda r: r.student_id.id == student.id)"/>
+                                       <tr>
+                                          <td class="student_schedule_td">
+                                             <t t-esc="student.name"/>
+                                          </td>
+                                          <t t-foreach="record_lines" t-as="line">
+                                             <t t-if="line.competence_id.global_check">
+                                                <t t-set="evals"
+                                                   t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
+                                                <t t-foreach="evals" t-as="eval">
+                                                   <t t-set="competences"
+                                                      t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
+                                                   <t t-foreach="competences" t-as="competence">
+                                                      <td t-foreach="competence.exam_ids" t-as="exam" t-att-class="'td_eval_' + exam.eval_type">
+                                                         <t t-set="exam_record" t-value="student_record_lines.filtered(lambda r: r.exam_id.id == exam.id)"/>
+                                                         <t t-foreach="exam_record" t-as="exr">
+                                                            <t t-esc="exr.calculated_partial_mark"
+                                                               t-options='{"widget": "float", "precision": 2}'/>
+                                                            <t t-if="exr.is_retake_record">(REC)</t>
+                                                            <hr t-if="len(exam_record)>1"/>
+                                                         </t>
+                                                      </td>
+                                                      <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
+                                                         <t t-set="comp_record" t-value="student_record_lines.filtered(lambda r: not r.exam_id and r.n_line_id.id == competence.id)"/>
+                                                         <t t-foreach="comp_record" t-as="cr">
+                                                            <t t-esc="cr.calculated_partial_mark"
+                                                               t-options='{"widget": "float", "precision": 2}'/>
+                                                            <t t-if="cr.is_retake_record">(REC)</t>
+                                                            <hr t-if="len(comp_record)>1"/>
+                                                         </t>
+                                                      </td>
+                                                   </t>
+                                                   <td t-att-class="'eval_schedule_td td_eval_' + eval.eval_type">
+                                                      <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
+                                                      <t t-foreach="eval_record" t-as="er">
+                                                         <t t-esc="er.calculated_partial_mark"
                                                             t-options='{"widget": "float", "precision": 2}'/>
-                                                         <t t-if="exr.is_retake_record">(REC)</t>
-                                                         <hr t-if="len(exam_record)>1"/>
-                                                      </t>
-                                                   </td>
-                                                   <td class="comp_schedule_td">
-                                                      <t t-set="comp_record" t-value="student_record_lines.filtered(lambda r: not r.exam_id and r.n_line_id.id == competence.id)"/>
-                                                      <t t-foreach="comp_record" t-as="cr">
-                                                         <t t-esc="cr.calculated_partial_mark"
-                                                            t-options='{"widget": "float", "precision": 2}'/>
-                                                         <t t-if="cr.is_retake_record">(REC)</t>
-                                                         <hr t-if="len(comp_record)>1"/>
+                                                         <t t-if="er.is_retake_record">(REC)</t>
+                                                         <hr t-if="len(eval_record)>1"/>
                                                       </t>
                                                    </td>
                                                 </t>
-                                                <td class="eval_schedule_td">
-                                                   <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
-                                                   <t t-foreach="eval_record" t-as="er">
-                                                      <t t-esc="er.calculated_partial_mark"
+                                                <td t-att-class="'global_schedule_td td_eval_' + line.eval_type">
+                                                   <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
+                                                   <t t-foreach="global_record" t-as="gr">
+                                                      <t t-esc="gr.calculated_partial_mark"
                                                          t-options='{"widget": "float", "precision": 2}'/>
-                                                      <t t-if="er.is_retake_record">(REC)</t>
-                                                      <hr t-if="len(eval_record)>1"/>
+                                                      <t t-if="gr.is_retake_record">(REC)</t>
+                                                      <hr t-if="len(global_record)>1"/>
                                                    </t>
                                                 </td>
                                              </t>
-                                             <td class="global_schedule_td">
-                                                <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
-                                                <t t-foreach="global_record" t-as="gr">
-                                                   <t t-esc="gr.calculated_partial_mark"
-                                                      t-options='{"widget": "float", "precision": 2}'/>
-                                                   <t t-if="gr.is_retake_record">(REC)</t>
-                                                   <hr t-if="len(global_record)>1"/>
-                                                </t>
-                                             </td>
                                           </t>
-                                       </t>
-                                    </tr>
-                                 </t>
-                              </tbody>
-                           </table>
+                                       </tr>
+                                    </t>
+                                 </tbody>
+                              </table>
+                           </t>
                            <t t-else="">
                               <h2>
                                  No records found

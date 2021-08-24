@@ -1,3 +1,9 @@
+#eval_buttons {
+   justify-content: center;
+}
+.btn-highlight {
+   border: 3px solid #3399ff !important;
+}
 #teacher_schedule_table, td, tr{
    border: 1px solid #666666;
    border-collapse: collapse;

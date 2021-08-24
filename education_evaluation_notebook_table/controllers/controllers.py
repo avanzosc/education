@@ -46,15 +46,19 @@ class EducationMain(CustomerPortal):
 
         schedule = schedule_obj.sudo().browse(schedule_id)
         schedule_evaluation_records = schedule.record_ids
-        evaluation_record_students = schedule_evaluation_records.mapped('student_id')
+        evaluation_record_students = schedule_evaluation_records.mapped(
+            'student_id')
 
         record_lines = schedule_evaluation_records.mapped('n_line_id')
+        evaluations = record_lines.filtered(
+            lambda l: l.competence_id.evaluation_check or l.competence_id.global_check)
 
         values = {
             'schedule': schedule,
             'schedule_evaluation_records': schedule_evaluation_records,
             'evaluation_record_students': evaluation_record_students,
             'record_lines': record_lines,
+            'evaluations': evaluations,
         }
 
         return http.request.render(
