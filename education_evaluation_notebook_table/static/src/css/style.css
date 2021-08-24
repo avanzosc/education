@@ -1,0 +1,28 @@
+#teacher_schedule_table, td, tr{
+   border: 1px solid #666666;
+   border-collapse: collapse;
+}
+#teacher_schedule_table{
+   overflow-x: auto;
+   display:block;
+   text-align: center;
+   td{
+    padding: 5px;
+   }
+}
+.eval_schedule_td{
+    background-color: #ffff99;
+}
+.global_schedule_td{
+    background-color: #33ccff;
+}
+.comp_schedule_td{
+    background-color: #d9d9d9;
+}
+.exam_schedule_td{
+    background-color: #f2f2f2;
+}
+.student_schedule_td{
+    min-width: 80px;
+    text-align: left;
+}
