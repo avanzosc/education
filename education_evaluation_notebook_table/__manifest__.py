@@ -3,6 +3,8 @@
 
 {
     "name": "Education Evaluation Notebook - Teacher Table",
+    "summary": "Show teacher table on website from portal"
+               " or from education schedule",
     "version": "12.0.1.0.0",
     "category": "Hidden",
     "license": "AGPL-3",
@@ -15,6 +17,7 @@
     ],
     "data": [
         "views/templates.xml",
+        "views/views.xml",
     ],
     "installable": True,
     "auto_install": True,

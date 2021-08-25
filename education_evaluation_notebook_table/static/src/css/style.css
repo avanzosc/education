@@ -1,3 +1,6 @@
+.mark_fail {
+    color: red;
+}
 #eval_buttons {
    justify-content: center;
 }
@@ -17,7 +20,7 @@
    }
 }
 .eval_schedule_td{
-    background-color: #ffff99;
+    background-color: #66ff66;
 }
 .global_schedule_td{
     background-color: #33ccff;

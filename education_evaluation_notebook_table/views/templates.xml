@@ -75,7 +75,10 @@
                         <li class="breadcrumb-item">
                            <a href="/schedules">Schedules</a>
                            /
-                           <t t-esc="schedule.display_name"/>
+                           <t t-esc="schedule.subject_id.description"/>
+                           [
+                           <t t-esc="schedule.classroom_id.description"/>
+                           ]
                         </li>
                      </ol>
                   </div>
@@ -147,18 +150,22 @@
                                                       <td t-foreach="competence.exam_ids" t-as="exam" t-att-class="'td_eval_' + exam.eval_type">
                                                          <t t-set="exam_record" t-value="student_record_lines.filtered(lambda r: r.exam_id.id == exam.id)"/>
                                                          <t t-foreach="exam_record" t-as="exr">
-                                                            <t t-esc="exr.calculated_partial_mark"
-                                                               t-options='{"widget": "float", "precision": 2}'/>
-                                                            <t t-if="exr.is_retake_record">(REC)</t>
+                                                            <span t-att-class="'mark_fail' if exr.calculated_partial_mark &lt; 5 else ''">
+                                                               <t t-esc="exr.calculated_partial_mark"
+                                                                  t-options='{"widget": "float", "precision": 2}'/>
+                                                               <t t-if="exr.is_retake_record"><b>(REC)</b></t>
+                                                            </span>
                                                             <hr t-if="len(exam_record)>1"/>
                                                          </t>
                                                       </td>
                                                       <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
                                                          <t t-set="comp_record" t-value="student_record_lines.filtered(lambda r: not r.exam_id and r.n_line_id.id == competence.id)"/>
                                                          <t t-foreach="comp_record" t-as="cr">
-                                                            <t t-esc="cr.calculated_partial_mark"
-                                                               t-options='{"widget": "float", "precision": 2}'/>
-                                                            <t t-if="cr.is_retake_record">(REC)</t>
+                                                            <span t-att-class="'mark_fail' if cr.calculated_partial_mark &lt; 5 else ''">
+                                                               <t t-esc="cr.calculated_partial_mark"
+                                                                  t-options='{"widget": "float", "precision": 2}'/>
+                                                               <t t-if="cr.is_retake_record"><b>(REC)</b></t>
+                                                            </span>
                                                             <hr t-if="len(comp_record)>1"/>
                                                          </t>
                                                       </td>
@@ -166,9 +173,11 @@
                                                    <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
                                                       <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
                                                       <t t-foreach="eval_record" t-as="er">
-                                                         <t t-esc="er.calculated_partial_mark"
-                                                            t-options='{"widget": "float", "precision": 2}'/>
-                                                         <t t-if="er.is_retake_record">(REC)</t>
+                                                         <span t-att-class="'mark_fail' if er.calculated_partial_mark &lt; 5 else ''">
+                                                            <t t-esc="er.calculated_partial_mark"
+                                                               t-options='{"widget": "float", "precision": 2}'/>
+                                                            <t t-if="er.is_retake_record"><b>(REC)</b></t>
+                                                         </span>
                                                          <hr t-if="len(eval_record)>1"/>
                                                       </t>
                                                    </td>
@@ -176,9 +185,11 @@
                                                 <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
                                                    <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
                                                    <t t-foreach="global_record" t-as="gr">
-                                                      <t t-esc="gr.calculated_partial_mark"
-                                                         t-options='{"widget": "float", "precision": 2}'/>
-                                                      <t t-if="gr.is_retake_record">(REC)</t>
+                                                      <span t-att-class="'mark_fail' if gr.calculated_partial_mark &lt; 5 else ''">
+                                                         <t t-esc="gr.calculated_partial_mark"
+                                                            t-options='{"widget": "float", "precision": 2}'/>
+                                                         <t t-if="gr.is_retake_record"><b>(REC)</b></t>
+                                                      </span>
                                                       <hr t-if="len(global_record)>1"/>
                                                    </t>
                                                 </td>
