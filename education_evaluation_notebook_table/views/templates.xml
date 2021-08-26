@@ -91,14 +91,25 @@
                            data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]"></div>
                         <div class="o_portal_docs list-group">
                            <t t-if="record_lines">
-                              <div id="eval_buttons" class="btn-group col-lg-12">
-                                 <t t-foreach="evaluations" t-as="evaluation">
-                                    <button t-att-id="evaluation.eval_type" class="eval_button btn btn-primary mr-2 mb-2">
-                                       <span t-field="evaluation.eval_type" />
+                              <form>
+                                 <div id="eval_buttons" class="btn-group col-lg-12">
+                                    <t t-foreach="evaluations" t-as="evaluation">
+                                       <a t-att-id="evaluation.eval_type" class="eval_button btn btn-primary mr-2 mb-2">
+                                          <span t-field="evaluation.eval_type" />
+                                       </a>
+                                    </t>
+                                    <a id="all" class="eval_button btn btn-primary mb-2">All</a>
+                                    <button style="display:none;" id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-4 mb-2">
+                                       Save changes <i class="fa fa-save"></i>
                                     </button>
-                                 </t>
-                                 <button id="all" class="eval_button btn btn-primary mb-2">All</button>
-                              </div>
+                                 </div>
+                                 <div id="editing_msg" class="col-lg-12" style="display:none;">
+                                    <div class="text-center">
+                                       <i>You are editing this table</i>
+                                    </div>
+                                 </div>
+                                 <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
+                              </form>
                               <table id="teacher_schedule_table">
                                  <thead>
                                     <tr>
@@ -151,9 +162,8 @@
                                                          <t t-set="exam_record" t-value="student_record_lines.filtered(lambda r: r.exam_id.id == exam.id)"/>
                                                          <t t-foreach="exam_record" t-as="exr">
                                                             <span t-att-class="'mark_retake' if exr.is_retake_record else None">
-                                                               <span t-att-class="'mark_fail' if exr.calculated_partial_mark &lt; 5 else None">
-                                                                  <t t-esc="exr.calculated_partial_mark"
-                                                                     t-options='{"widget": "float", "precision": 2}'/>
+                                                               <span t-att-class="'mark_fail' if exr.numeric_mark &lt; 5 else None">
+                                                                  <input readonly="True" t-att-id="exr.id" t-att-value="round(exr.numeric_mark, 2)"/>
                                                                   <t t-if="exr.is_retake_record"><b>(REC)</b></t>
                                                                </span>
                                                             </span>
@@ -164,9 +174,8 @@
                                                          <t t-set="comp_record" t-value="student_record_lines.filtered(lambda r: not r.exam_id and r.n_line_id.id == competence.id)"/>
                                                          <t t-foreach="comp_record" t-as="cr">
                                                             <span t-att-class="'mark_retake' if cr.is_retake_record else None">
-                                                               <span t-att-class="'mark_fail' if cr.calculated_partial_mark &lt; 5 else None">
-                                                                  <t t-esc="cr.calculated_partial_mark"
-                                                                     t-options='{"widget": "float", "precision": 2}'/>
+                                                               <span t-att-class="'mark_fail' if cr.numeric_mark &lt; 5 else None">
+                                                                  <input readonly="True" t-att-id="cr.id" t-att-value="round(cr.numeric_mark, 2)"/>
                                                                   <t t-if="cr.is_retake_record"><b>(REC)</b></t>
                                                                </span>
                                                             </span>
@@ -178,9 +187,8 @@
                                                       <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
                                                       <t t-foreach="eval_record" t-as="er">
                                                          <span t-att-class="'mark_retake' if er.is_retake_record else None">
-                                                            <span t-att-class="'mark_fail' if er.calculated_partial_mark &lt; 5 else None">
-                                                               <t t-esc="er.calculated_partial_mark"
-                                                                  t-options='{"widget": "float", "precision": 2}'/>
+                                                            <span t-att-class="'mark_fail' if er.numeric_mark &lt; 5 else None">
+                                                               <input readonly="True" t-att-id="er.id" t-att-value="round(er.numeric_mark, 2)"/>
                                                                <t t-if="er.is_retake_record"><b>(REC)</b></t>
                                                             </span>
                                                          </span>
@@ -192,9 +200,8 @@
                                                    <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
                                                    <t t-foreach="global_record" t-as="gr">
                                                       <span t-att-class="'mark_retake' if gr.is_retake_record else None">
-                                                         <span t-att-class="'mark_fail' if gr.calculated_partial_mark &lt; 5 else None">
-                                                            <t t-esc="gr.calculated_partial_mark"
-                                                               t-options='{"widget": "float", "precision": 2}'/>
+                                                         <span t-att-class="'mark_fail' if gr.numeric_mark &lt; 5 else None">
+                                                            <input readonly="True" t-att-id="gr.id" t-att-value="round(gr.numeric_mark, 2)"/>
                                                             <t t-if="gr.is_retake_record"><b>(REC)</b></t>
                                                          </span>
                                                       </span>

@@ -1,8 +1,14 @@
 .mark_retake {
     font-weight: bold;
+    input{
+        font-weight: bold;
+    }
 }
 .mark_fail {
     color: red;
+    input{
+        color: red !important;
+    }
 }
 #eval_buttons {
    justify-content: center;
@@ -21,6 +27,16 @@
    td{
     padding: 5px;
    }
+   input {
+  background: rgba(255,255,255,0);
+    border-style: none;
+    text-align: center;
+    width: 70%;
+    padding: 5px;
+   }
+   input:focus, input:hover {
+    border-style:groove;
+    }
 }
 .eval_schedule_td{
     background-color: #66ff66;
