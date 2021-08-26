@@ -4,6 +4,10 @@
         font-weight: bold;
     }
 }
+.partial_mark {
+    color: grey;
+    font-style: italic;
+}
 .mark_fail {
     color: red;
     input{
@@ -31,7 +35,7 @@
   background: rgba(255,255,255,0);
     border-style: none;
     text-align: center;
-    width: 70%;
+    width: 100%;
     padding: 5px;
    }
    input:focus, input:hover {
@@ -39,10 +43,10 @@
     }
 }
 .eval_schedule_td{
-    background-color: #66ff66;
+    background-color: #b3ffb3;
 }
 .global_schedule_td{
-    background-color: #33ccff;
+    background-color: #b3e6ff;
 }
 .comp_schedule_td{
     background-color: #d9d9d9;
