@@ -161,12 +161,10 @@
                                                       <td t-foreach="competence.exam_ids" t-as="exam" t-att-class="'td_eval_' + exam.eval_type">
                                                          <t t-set="exam_record" t-value="student_record_lines.filtered(lambda r: r.exam_id.id == exam.id)"/>
                                                          <t t-foreach="exam_record" t-as="exr">
-                                                            <span t-att-class="'partial_mark' + (' mark_fail' if exr.calculated_partial_mark &lt; 5 else '')">
-                                                               <t t-esc="exr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
                                                             <span t-att-class="'mark_retake' if exr.is_retake_record else None">
                                                                <span t-att-class="'mark_fail' if exr.numeric_mark &lt; 5 else None">
                                                                   <input readonly="True" t-att-id="exr.id" t-att-value="round(exr.numeric_mark, 2)"/>
-                                                                  <t t-if="exr.is_retake_record"><b>(REC)</b></t>
+                                                                  <t t-if="exr.exceptionality"><b>[<span t-field="exr.exceptionality"/>]</b></t><t t-if="exr.is_retake_record"><b>(REC)</b></t>
                                                                </span>
                                                             </span>
                                                             <hr t-if="len(exam_record)>1"/>
@@ -180,7 +178,7 @@
                                                             <span t-att-class="'mark_retake' if cr.is_retake_record else None">
                                                                <span t-att-class="'mark_fail' if cr.numeric_mark &lt; 5 else None">
                                                                   <input readonly="True" t-att-id="cr.id" t-att-value="round(cr.numeric_mark, 2)"/>
-                                                                  <t t-if="cr.is_retake_record"><b>(REC)</b></t>
+                                                                  <t t-if="cr.exceptionality"><b>[<span t-field="cr.exceptionality"/>]</b></t><t t-if="cr.is_retake_record"><b>(REC)</b></t>
                                                                </span>
                                                             </span>
                                                             <hr t-if="len(comp_record)>1"/>
@@ -195,7 +193,7 @@
                                                          <span t-att-class="'mark_retake' if er.is_retake_record else None">
                                                             <span t-att-class="'mark_fail' if er.numeric_mark &lt; 5 else None">
                                                                <input readonly="True" t-att-id="er.id" t-att-value="round(er.numeric_mark, 2)"/>
-                                                               <t t-if="er.is_retake_record"><b>(REC)</b></t>
+                                                               <t t-if="er.exceptionality"><b>[<span t-field="er.exceptionality"/>]</b></t><t t-if="er.is_retake_record"><b>(REC)</b></t>
                                                             </span>
                                                          </span>
                                                          <hr t-if="len(eval_record)>1"/>
@@ -209,8 +207,10 @@
                                                          <t t-esc="gr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
                                                       <span t-att-class="'mark_retake' if gr.is_retake_record else None">
                                                          <span t-att-class="'mark_fail' if gr.numeric_mark &lt; 5 else None">
+                                                 <form>
                                                             <input readonly="True" t-att-id="gr.id" t-att-value="round(gr.numeric_mark, 2)"/>
-                                                            <t t-if="gr.is_retake_record"><b>(REC)</b></t>
+                                                 </form>
+                                                            <t t-if="gr.exceptionality"><b>[<span t-field="gr.exceptionality"/>]</b></t><t t-if="gr.is_retake_record"><b>(REC)</b></t>
                                                          </span>
                                                       </span>
                                                       <hr t-if="len(global_record)>1"/>
