@@ -32,6 +32,14 @@ class SchoolClaim(models.Model):
         string='Class Schedule', comodel_name='education.schedule')
     education_group_id = fields.Many2one(
         string='Education Group', comodel_name='education.group')
+    student_group_id = fields.Many2one(
+        comodel_name="education.group", string="Student Official Group")
+    student_course_id = fields.Many2one(
+        comodel_name="education.course", string="Course",
+        related="student_group_id.course_id", store=True)
+    student_level_id = fields.Many2one(
+        comodel_name="education.level", string="Education Level",
+        related="student_group_id.level_id", store=True)
     reported_id = fields.Many2one(
         string='Reported by', comodel_name='res.users', required=True,
         default=lambda self: self.env.user)
@@ -57,6 +65,11 @@ class SchoolClaim(models.Model):
         track_visibility='onchange')
     calendar_event_count = fields.Integer(
         string='Meetings Count', compute='_compute_calendar_events')
+
+    @api.onchange("student_id")
+    def onchange_student_id(self):
+        for issue in self:
+            issue.student_group_id = issue.student_id.current_group_id
 
     @api.depends('school_issue_type_id',
                  'school_issue_type_id.educational_measure_ids')
