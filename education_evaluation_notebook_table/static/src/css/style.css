@@ -32,15 +32,21 @@
     padding: 5px;
    }
    input {
-  background: rgba(255,255,255,0);
+    background: rgba(255,255,255,0);
     border-style: none;
     text-align: center;
     width: 100%;
     padding: 5px;
    }
-   input:focus, input:hover {
+   input:focus, input:hover{
     border-style:groove;
-    }
+   }
+   .select_disabled {
+    background-color: #cccccc;
+   }
+   select:focus, select:hover{
+    background-color: white;
+   }
 }
 .eval_schedule_td{
     background-color: #b3ffb3;
