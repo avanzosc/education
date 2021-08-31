@@ -133,6 +133,7 @@ class SchoolIssue(models.Model):
             'reported_id': self.reported_id.id,
             'school_issue_type_id': self.school_issue_type_id.id,
             'student_id': self.student_id.id,
+            'student_group_id': self.student_group_id.id,
             'education_group_id': self.group_id.id,
             'education_schedule_id': self.education_schedule_id.id,
         }

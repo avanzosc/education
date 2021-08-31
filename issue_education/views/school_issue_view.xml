@@ -138,4 +138,37 @@
         <field name="context">{"search_default_filter-today-issues":1}</field>
     </record>
 
+    <record id="action_create_issue_report" model="ir.actions.server">
+        <field name="name">Create Issue Report</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="issue_education.model_school_issue" />
+        <field name="binding_model_id" ref="issue_education.model_school_issue" />
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+                record.create_issue_report()
+        </field>
+    </record>
+
+    <record id="action_update_education_group" model="ir.actions.server">
+        <field name="name">Update official group</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="issue_education.model_school_issue" />
+        <field name="code">
+academic_year_obj = env["education.academic_year"]
+for record in records:
+    academic_year = academic_year_obj.search([
+        ("date_start", "&gt;=", record.issue_date),
+        ("date_end", "&lt;=", record.issue_date)])
+    try:
+        student = record.student_id
+        record.write({
+            "student_group_id": student.get_current_group(
+                academic_year=academic_year).id,
+        })
+    except:
+        continue
+        </field>
+    </record>
 </odoo>

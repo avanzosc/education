@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-11 12:33+0000\n"
-"PO-Revision-Date: 2021-08-11 12:33+0000\n"
+"POT-Creation-Date: 2021-08-23 12:55+0000\n"
+"PO-Revision-Date: 2021-08-23 12:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -111,6 +111,11 @@ msgstr ""
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_course_id
 msgid "Course"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.actions.server,name:issue_education.action_create_issue_report
+msgid "Create Issue Report"
 msgstr ""
 
 #. module: issue_education
