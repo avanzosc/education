@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="export_education_records_xlsx_report_view_form" model="ir.ui.view">
-        <field name="model">report.education.education_record_xlsx.export</field>
+    <record id="export_partner_education_records_xlsx_report_view_form" model="ir.ui.view">
+        <field name="model">report.education.partner_education_record_xlsx.export</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group name="main">
-                        <field name="eval_type" />
-                        <field name="partial_mark" />
-                        <field name="retaken" />
-                        <field name="accumulated" />
+                        <field name="academic_year_id"
+                               options="{'no_create': True, 'no_open': True}"/>
+<!--                        <field name="eval_type" />-->
+<!--                        <field name="partial_mark" />-->
+<!--                        <field name="retaken" />-->
+<!--                        <field name="accumulated" />-->
                     </group>
                     <footer>
                         <button name="export_xls" string="Export Education Records"
@@ -21,14 +23,14 @@
         </field>
     </record>
 
-    <record id="action_export_education_records_xlsx_report" model="ir.actions.act_window">
+    <record id="action_export_partner_education_records_xlsx_report" model="ir.actions.act_window">
         <field name="name">Export Education Records</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">report.education.education_record_xlsx.export</field>
+        <field name="res_model">report.education.partner_education_record_xlsx.export</field>
         <field name="view_mode">form</field>
         <field name="view_type">form</field>
         <field name="target">new</field>
-        <field name="binding_model_id" ref="education.model_education_group" />
+        <field name="binding_model_id" ref="base.model_res_partner" />
         <field name="binding_type">report</field>
     </record>
 

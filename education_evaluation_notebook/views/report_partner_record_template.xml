@@ -3,22 +3,28 @@
     <template t-name="report_partner_record_document">
         <t t-call="web.external_layout">
             <t t-set="o" t-value="o.with_context(lang=lang)"/>
+            <t t-set="current_year" t-value="request.env['education.academic_year'].search([('current','=',True)], limit=1)" />
+            <t t-set="academic_year" t-value="request.env['education.academic_year'].browse(academic_year_id) or current_year" />
+            <t t-set="eval_type" t-value="eval_type or 'final'" />
+            <t t-set="evaluation_obj" t-value="request.env['education.academic_year.evaluation']" />
+            <t t-set="field" t-value="evaluation_obj._fields['eval_type']" />
+            <t t-set="eval_type_text" t-value="field.convert_to_export(eval_type, evaluation_obj)" />
             <div class="page">
                 <div class="oe_structure"/>
+                <t t-set="course" t-value="o.student_group_ids.filtered(lambda g: g.academic_year_id == academic_year and g.group_type_id.type == 'official').mapped('course_id')" />
+                <t t-set="tutor" t-value="o.year_tutor_ids.filtered(lambda t: t.school_year_id == academic_year).mapped('teacher_id')"/>
                 <h2 class="text-center font-weight-bold mt-n1">Report Card</h2>
-                <t t-set="evaluation_obj" t-value="request.env['education.academic_year.evaluation']" />
-                <t t-set="field" t-value="evaluation_obj._fields['eval_type']" />
-                <t t-set="eval_type_text" t-value="field.convert_to_export(eval_type, evaluation_obj)" />
                 <div class="row mt32 mb32">
                     <div class="col-12">
                         <b>Student:</b> <span t-field="o.display_name"/><br/>
-                        <b>Education Course:</b> <span t-field="o.current_course_id"/><br/>
+                        <b>Education Course:</b> <span t-field="course and course[:1].display_name"/><br/>
+                        <b>Academic Year:</b> <span t-esc="academic_year and academic_year.display_name" /><br/>
                         <b>Period:</b> <span t-esc="eval_type_text" /><br/>
-                        <b>Tutor:</b> <t t-if="o.current_year_tutor_ids"><span t-esc="o.current_year_tutor_ids[:1].display_name" /></t><br/>
+                        <b>Tutor:</b> <span t-esc="tutor and tutor[:1].display_name" /><br/>
                         <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A, %Y-%m-%d')"/>
                     </div>
                 </div>
-                <t t-set="records" t-value="o.get_academic_records_curricular(eval_type=eval_type)" />
+                <t t-set="records" t-value="o.get_academic_records_curricular(academic_year, eval_type=eval_type)" />
                 <t t-set="courses" t-value="records.mapped('n_line_id.schedule_id.subject_course_id')" />
                 <t t-set="retaken" t-value="any(records.mapped('retake_record_ids')) or any(records.mapped('child_record_ids').filtered('n_line_id.code').mapped('retake_record_ids'))" />
                 <t t-if="records">
@@ -124,7 +130,7 @@
                     <br/>
                     </t>
                 </t>
-                <t t-set="teaching_records" t-value="o.get_academic_records_teaching(eval_type=eval_type)" />
+                <t t-set="teaching_records" t-value="o.get_academic_records_teaching(academic_year, eval_type=eval_type)" />
                 <t t-if="teaching_records">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
@@ -200,7 +206,7 @@
                         </tbody>
                     </table>
                 </t>
-                <t t-set="non_curricular_records" t-value="o.get_academic_records_non_curricular(eval_type=eval_type)" />
+                <t t-set="non_curricular_records" t-value="o.get_academic_records_non_curricular(academic_year, eval_type=eval_type)" />
                 <t t-if="non_curricular_records">
                     <h4 class="text-center">Further Qualifications</h4>
                     <table class="table table-sm o_main_table borderless smallfont">
@@ -230,7 +236,7 @@
                         </tbody>
                     </table>
                 </t>
-                <t t-set="evaluation_records" t-value="o.academic_record_ids.filtered(lambda r: r.eval_type == eval_type and (r.evaluation_competence or r.global_competence) and r.comments)"/>
+                <t t-set="evaluation_records" t-value="o.academic_record_ids.filtered(lambda r: r.academic_year_id == academic_year and r.eval_type == eval_type and (r.evaluation_competence or r.global_competence) and r.comments)"/>
                 <div class="row mt32 mb32" t-if="evaluation_records">
                     <h5>Comments</h5>
                     <div class="col-10">

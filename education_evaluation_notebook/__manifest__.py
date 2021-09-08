@@ -47,6 +47,8 @@
         "views/res_partner_view.xml",
         "wizards/create_academic_year_evaluation_view.xml",
         "wizards/export_education_record_xlsx_report_view.xml",
+        "wizards/export_res_partner_record_xlsx_report_view.xml",
+        "wizards/print_partner_record_report_view.xml",
         "views/education_notebook_menu_view.xml",
         "views/report_partner_record_template.xml",
     ],

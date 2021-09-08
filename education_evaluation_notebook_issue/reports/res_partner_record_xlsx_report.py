@@ -23,14 +23,15 @@ class EducationGroupXlsx(models.AbstractModel):
             return False
         sheet.write(row, column, data, cell_format)
 
-    def fill_student_subject_data(self, sheet, student, subject, row):
+    def fill_student_subject_data(
+            self, sheet, student, academic_year, subject, row):
         # observation_obj = self.env["education.notebook.observation"]
         # evaluation_obj = self.env["education.academic_year.evaluation"]
         issues_obj = self.env["school.issue"]
         row = super(EducationGroupXlsx, self).fill_student_subject_data(
-            sheet, student, subject, row)
+            sheet, student, academic_year, subject, row)
         issues = issues_obj.sudo().search([
-            ("academic_year_id.current", "=", True),
+            ("academic_year_id", "=", academic_year.id),
             ("student_id", "=", student.id),
             ("education_schedule_id.subject_id", "=", subject.id),
         ])

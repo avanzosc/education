@@ -44,6 +44,11 @@ class EducationNotebookLine(models.Model):
     subject_id = fields.Many2one(
         related="schedule_id.subject_id", comodel_name="education.subject",
         string="Education Subject", store=True)
+    level_ids = fields.Many2many(
+        related="schedule_id.subject_id.level_ids",
+        comodel_name="education.level", string="Education Levels",
+        relation="notebook_line_education_level_rel",
+        column1="line_id", column2="level_id", store=True)
     competence_id = fields.Many2one(
         comodel_name="education.competence", string="Competence",
         required=True, index=True)

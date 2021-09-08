@@ -37,26 +37,29 @@ class StudentXlsxReport(models.AbstractModel):
             self.env.ref(
                 "education_evaluation_notebook.numeric_mark_very_bad")]
 
-    def create_student_sheet(self, workbook, student):
+    def create_student_sheet(self, workbook, student, academic_year):
         sheet = workbook.add_worksheet(student.display_name)
         sheet.merge_range("A1:C1", _("Student:"), self.format_header_right)
         sheet.merge_range("D1:G1", student.display_name, self.format_left)
+        group = student.get_current_group(academic_year=academic_year)
         sheet.merge_range(
             "A2:C2", _("Education Center:"), self.format_header_right)
         sheet.merge_range(
-            "D2:G2", student.current_center_id.display_name, self.format_left)
+            "D2:G2", group.center_id.display_name, self.format_left)
         sheet.merge_range(
             "A3:C3", _("Education Course:"), self.format_header_right)
         sheet.merge_range(
-            "D3:G3", student.current_course_id.display_name, self.format_left)
+            "D3:G3", group.course_id.display_name, self.format_left)
         sheet.merge_range(
             "A4:C4", _("Education Group:"), self.format_header_right)
         sheet.merge_range(
-            "D4:G4", student.current_group_id.display_name, self.format_left)
+            "D4:G4", group.display_name, self.format_left)
         sheet.merge_range(
             "A5:C5", _("Tutor:"), self.format_header_right)
+        tutor = student.year_tutor_ids.filtered(
+            lambda t: t.school_year_id == academic_year).mapped("teacher_id")
         sheet.merge_range(
-            "D5:G5", student.current_year_tutor_ids[:1].display_name,
+            "D5:G5", tutor and tutor[:1].display_name or _("Unknown"),
             self.format_left)
 
         sheet.set_column("A:G", 10)
@@ -81,12 +84,14 @@ class StudentXlsxReport(models.AbstractModel):
             return False
         sheet.write(row, column, data, cell_format)
 
-    def fill_student_subject_data(self, sheet, student, subject, row):
+    def fill_student_subject_data(
+            self, sheet, student, academic_year, subject, row):
         self.set_evaluation_header_table(sheet, row)
         record_obj = self.env["education.record"]
         domain = [
             ("student_id", "=", student.id),
             ("subject_id", "=", subject.id),
+            ("n_line_id.schedule_id.academic_year_id", "=", academic_year.id)
         ]
         records = record_obj.search(domain)
         row += 1
@@ -124,11 +129,12 @@ class StudentXlsxReport(models.AbstractModel):
     def generate_xlsx_report(self, workbook, data, objects):
         self._define_formats(workbook)
         record_obj = self.env["education.record"]
-        current_academic_year = self.env["education.academic_year"].search([
+        year_obj = self.env["education.academic_year"]
+        current_academic_year = year_obj.search([
             ("current", "=", True),
         ])
-        academic_year_id = data and data.get(
-            "academic_year_id", False) or current_academic_year[:1].id
+        academic_year = year_obj.browse(
+            data.get("academic_year_id", False)) or current_academic_year[:1]
         # partial_mark = data and data.get("partial_mark", False)
         # retaken = data and data.get("retaken", False)
         if not objects:
@@ -137,23 +143,24 @@ class StudentXlsxReport(models.AbstractModel):
         if len(objects) > 1:
             raise UserError(
                 _("Please select only one student"))
-        if not academic_year_id:
+        if not academic_year:
             raise UserError(
                 _("There is no academic year selected."))
         for student in objects:
-            student_sheet = self.create_student_sheet(workbook, student)
+            student_sheet = self.create_student_sheet(
+                workbook, student, academic_year)
             row = 6
             student_records = record_obj.sudo().search([
                 ("student_id", "in", student.ids),
                 ("n_line_id.schedule_id.task_type_id.education_code", "!=",
                  "0123"),
                 ("n_line_id.schedule_id.academic_year_id", "=",
-                 academic_year_id),
+                 academic_year.id),
             ])
             subject_lists = student_records.mapped("subject_id")
             for subject in subject_lists:
                 row = self.fill_student_subject_data(
-                    student_sheet, student, subject, row)
+                    student_sheet, student, academic_year, subject, row)
                 row += 1
 
     def _define_formats(self, workbook):
@@ -206,5 +213,8 @@ class StudentTutorXlsxReport(models.AbstractModel):
     _inherit = "report.education.partner_record_xlsx"
 
     def generate_xlsx_report(self, workbook, data, objects):
+        data.update({
+            "academic_year_id": objects.mapped("school_year_id")[:1].id,
+        })
         return super().generate_xlsx_report(
             workbook, data, objects.mapped("student_id"))

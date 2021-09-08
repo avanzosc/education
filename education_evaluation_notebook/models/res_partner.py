@@ -34,7 +34,7 @@ class ResPartner(models.Model):
         return action_dict
 
     @api.multi
-    def get_academic_records(self, eval_type=False):
+    def get_academic_records(self, academic_year, eval_type=False):
         self.ensure_one()
         if not eval_type:
             eval_obj = self.env["education.academic_year.evaluation"]
@@ -46,29 +46,34 @@ class ResPartner(models.Model):
             eval_type = evaluation.eval_type or "final"
         return self.academic_record_ids.filtered(
             lambda r: r.eval_type == eval_type and
+            r.academic_year_id == academic_year and
             (r.evaluation_competence or r.global_competence))
 
     @api.multi
-    def get_academic_records_curricular(self, eval_type=False):
+    def get_academic_records_curricular(self, academic_year, eval_type=False):
         self.ensure_one()
-        academic_records = self.get_academic_records(eval_type=eval_type)
+        academic_records = self.get_academic_records(
+            academic_year, eval_type=eval_type)
         return academic_records.filtered(
             lambda r:
             r.n_line_id.schedule_id.task_type_id.education_code == "0120" and
             not r.recovered_record_id)
 
     @api.multi
-    def get_academic_records_teaching(self, eval_type=False):
+    def get_academic_records_teaching(self, academic_year, eval_type=False):
         self.ensure_one()
-        academic_records = self.get_academic_records(eval_type=eval_type)
+        academic_records = self.get_academic_records(
+            academic_year, eval_type=eval_type)
         return academic_records.filtered(
             lambda r:
             r.n_line_id.schedule_id.task_type_id.education_code == "0105")
 
     @api.multi
-    def get_academic_records_non_curricular(self, eval_type=False):
+    def get_academic_records_non_curricular(
+            self, academic_year, eval_type=False):
         self.ensure_one()
-        academic_records = self.get_academic_records(eval_type=eval_type)
+        academic_records = self.get_academic_records(
+            academic_year, eval_type=eval_type)
         return academic_records.filtered(
             lambda r:
             r.n_line_id.schedule_id.task_type_id.education_code == "0123")
