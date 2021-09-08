@@ -2,11 +2,14 @@
 <odoo>
     <!-- MENU -->
     <report id="fleet_route_passenger_list_report"
-            string="Route Passenger List" model="fleet.route"
+            string="Route Passenger List"
+            model="fleet.route"
             report_type="qweb-pdf"
             name="fleet_route_education.fleet_route_passenger_list_report_qweb"
             file="fleet_route_education.fleet_route_passenger_list_report_qweb"
-            print_report_name="(object._get_report_base_filename())"/>
+            print_report_name="(object._get_report_base_filename())"
+            menu="False"
+    />
 
     <!-- TEMPLATE CONFIG -->
     <template id="fleet_route_passenger_list_report_qweb">
@@ -22,10 +25,13 @@
     <template id="fleet_route_passenger_list_report_qweb_template">
         <t t-call="web.external_layout">
             <div class="page">
+                <t t-set="selected_date" t-value="selected_date or context_timestamp(datetime.datetime.now())" />
+                <t t-set="doc" t-value="doc.with_context(date=selected_date)" />
                 <div class="oe_structure"/>
                 <h2 class="text-center">
                     <b>Distribution of students per bus</b>
                 </h2>
+                <h4 class="text-right font-weight-bold mt-n1" t-if="selected_date"><b>Date:</b> <t t-esc="selected_date.strftime('%A, %Y-%m-%d')"/></h4>
                 <div class="row mt32 mb32">
                     <div class="col-6">
                         <p>
@@ -57,7 +63,7 @@
                             <br/>
                             <span>
                                 <b>Bus registered passengers:</b>
-                                <t t-esc="doc.passenger_count"/>
+                                <t t-esc="doc.with_context(date=selected_date).passenger_count"/>
                             </span>
                         </p>
                         <p>

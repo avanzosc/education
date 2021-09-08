@@ -4,11 +4,12 @@
         <template t-name="report_education_bus_group_document">
             <t t-call="web.external_layout">
                 <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <t t-set="selected_date" t-value="selected_date or context_timestamp(datetime.datetime.now())" />
                 <div class="page">
                     <h2>
                         <span t-field="o.description"/>
                     </h2>
-                    <h4 class="text-right"><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>  </h4>
+                    <h4 class="text-right"><span t-esc="selected_date.strftime('%Y-%m-%d')"/></h4>
                     <table class="table table-sm o_main_table" name="education_group_student_list">
                         <thead>
                             <tr>
@@ -21,8 +22,8 @@
                         <tbody class="student_list_tbody">
                             <t t-set="number" t-value="0"/>
                             <t t-foreach="o.student_ids" t-as="student">
-                                <t t-set="bus_stop" t-value="student.current_bus_stop('coming')" />
-                                <t t-set="bus_issues" t-value="student.current_bus_issues('coming')" />
+                                <t t-set="bus_stop" t-value="student.current_bus_stop('coming', date=selected_date)" />
+                                <t t-set="bus_issues" t-value="student.current_bus_issues('coming', date=selected_date)" />
                                 <t t-set="number" t-value="number+1"/>
                                 <tr>
                                     <td class="text-center" name="student_number"><t t-esc="number"/></td>
@@ -73,6 +74,7 @@
                 report_type="qweb-pdf"
                 name="fleet_route_education.report_education_bus_group"
                 file="fleet_route_education.report_education_bus_group"
+                menu="False"
         />
 
     </data>

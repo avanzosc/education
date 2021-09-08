@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 13:33+0000\n"
-"PO-Revision-Date: 2021-06-01 13:33+0000\n"
+"POT-Creation-Date: 2021-08-31 13:15+0000\n"
+"PO-Revision-Date: 2021-08-31 13:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid "<b>Bus registered passengers:</b>"
 msgstr ""
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
+msgid "<b>Date:</b>"
+msgstr "<b>Data:</b>"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
@@ -91,9 +96,21 @@ msgid "Bus Issues"
 msgstr ""
 
 #. module: fleet_route_education
+#: model:ir.actions.act_window,name:fleet_route_education.action_print_education_bus_group_list_report
 #: model:ir.actions.report,name:fleet_route_education.education_bus_group_list
 msgid "Bus List"
 msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_report_fleet_route_education_report_education_bus_group
+msgid "Bus List Report"
+msgstr ""
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.print_education_bus_group_list_report_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.print_fleet_route_passenger_list_report_view_form
+msgid "Close"
+msgstr "Irten"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__coming_stop_id
@@ -131,6 +148,18 @@ msgid "Course"
 msgstr "Maila"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__create_uid
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__create_uid
+msgid "Created by"
+msgstr "Nork sortua"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__create_date
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__create_date
+msgid "Created on"
+msgstr "Noiz sortua"
+
+#. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_course_id
 msgid "Current Course"
 msgstr ""
@@ -151,6 +180,10 @@ msgid "Current Group"
 msgstr ""
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__display_name
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__display_name
+#: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb__display_name
+#: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_report_education_bus_group__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__display_name
 msgid "Display Name"
 msgstr "Izena erakutsi"
@@ -172,6 +205,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Education Level"
+msgstr ""
+
+#. module: fleet_route_education
+#: code:addons/fleet_route_education/reports/education_bus_group_list_report.py:16
+#: code:addons/fleet_route_education/reports/fleet_route_passenger_list_report.py:18
+#, python-format
+msgid "Form content is missing, this report cannot be printed."
 msgstr ""
 
 #. module: fleet_route_education
@@ -209,14 +249,34 @@ msgid "Group By"
 msgstr "Taldekatu"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__id
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__id
+#: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb__id
+#: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_report_education_bus_group__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__id
 msgid "ID"
 msgstr ""
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report____last_update
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report____last_update
+#: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb____last_update
+#: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_report_education_bus_group____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report____last_update
 msgid "Last Modified on"
 msgstr "Azken aldaketa"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__write_uid
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__write_uid
+msgid "Last Updated by"
+msgstr "Azkenengoz eguneratu zuena"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__write_date
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__write_date
+msgid "Last Updated on"
+msgstr "Azken eguneraketa noiz"
 
 #. module: fleet_route_education
 #: selection:res.partner.fleet.route.report,bus_passenger:0
@@ -241,8 +301,20 @@ msgid "Passenger List"
 msgstr ""
 
 #. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.print_education_bus_group_list_report_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.print_fleet_route_passenger_list_report_view_form
+msgid "Print Report"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.actions.act_window,name:fleet_route_education.action_print_fleet_route_passenger_list_report
 #: model:ir.actions.report,name:fleet_route_education.fleet_route_passenger_list_report
 msgid "Route Passenger List"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_report_fleet_route_education_fleet_route_passenger_list_report_qweb
+msgid "Route Passenger List Report"
 msgstr ""
 
 #. module: fleet_route_education
@@ -266,6 +338,12 @@ msgid "Section"
 msgstr "Sekzio"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__date
+#: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__date
+msgid "Select Date"
+msgstr ""
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
 msgid "Stops"
 msgstr ""
@@ -278,6 +356,16 @@ msgstr "Ikaslea"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__bus_passenger
 msgid "Uses Bus"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_print_education_bus_group_list_report
+msgid "Wizard to print Bus List"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_print_fleet_route_passenger_list_report
+msgid "Wizard to print Route Passenger List"
 msgstr ""
 
 #. module: fleet_route_education
