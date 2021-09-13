@@ -13,7 +13,9 @@
         "issue_education",
     ],
     "data": [
+        "views/school_claim_view.xml",
         "views/school_issue_view.xml",
+        "views/education_evaluation_notebook_issue_menu_view.xml",
     ],
     "installable": True,
     "auto_install": True,
