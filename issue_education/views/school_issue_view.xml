@@ -34,14 +34,19 @@
                 <field name="group_id" />
                 <field name="education_schedule_id" />
                 <field name="issue_date" />
+                <field name="academic_year_id" />
                 <field name="proof_id" />
                 <field name="school_id" />
                 <field name="proof_state" />
                 <separator />
-                <filter string="Today" name="filter-today-issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <filter string="Today" name="filter-today-issues"
+                        domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]" />
                 <separator />
                 <filter string="Pending Proof" name="filter_pending_proof"
                         domain="[('proof_state','=','required')]" />
+                <separator />
+                <filter string="Current Academic Year" name="current_academic_year"
+                        domain="[('academic_year_id.current','=',True)]" />
                 <group expand="0" string="Group By">
                     <filter string="Issue type" name="group-issue_type"
                             domain="[]" context="{'group_by':'school_issue_type_id'}"/>
@@ -128,13 +133,23 @@
         </field>
     </record>
 
+    <record model="ir.actions.act_window" id="action_school_issue_current">
+        <field name="name">Issues</field>
+        <field name="res_model">school.issue</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree,pivot</field>
+        <field name="view_id" ref="school_issue_view_tree" />
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+        <field name="context">{"search_default_filter-today-issues":1}</field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_school_issue">
         <field name="name">Issues</field>
         <field name="res_model">school.issue</field>
         <field name="view_type">form</field>
         <field name="view_mode">form,tree,pivot</field>
-        <field name="domain">[]</field>
         <field name="view_id" ref="school_issue_view_tree" />
+        <field name="domain">[]</field>
         <field name="context">{"search_default_filter-today-issues":1}</field>
     </record>
 
