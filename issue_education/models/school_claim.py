@@ -192,7 +192,7 @@ class SchoolClaim(models.Model):
             'partner_ids': [(6, 0, progenitors.ids)],
             'categ_ids': [(6, 0, label.ids)],
             'academic_year_id': self.academic_year_id.id,
-            'center_id': self.student_center_id.id,
+            'center_id': self.school_id.id,
             'course_id': self.student_course_id.id,
         }
         return vals
