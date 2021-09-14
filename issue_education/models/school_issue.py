@@ -42,6 +42,9 @@ class SchoolIssue(models.Model):
     issue_date = fields.Date(
         string='Date', required=True,
         default=lambda self: fields.Date.context_today(self))
+    academic_year_id = fields.Many2one(
+        comodel_name="education.academic_year", string="Academic Year",
+        compute="_compute_academic_year", store=True)
     proof_id = fields.Many2one(
         string='Proof', comodel_name='school.issue.proof')
     education_schedule_id = fields.Many2one(
@@ -63,6 +66,15 @@ class SchoolIssue(models.Model):
     student_level_id = fields.Many2one(
         comodel_name="education.level", string="Education Level",
         related="student_group_id.level_id", store=True)
+
+    @api.depends("issue_date")
+    def _compute_academic_year(self):
+        academic_year_obj = self.env["education.academic_year"]
+        for claim in self:
+            claim.academic_year_id = academic_year_obj.search([
+                ("date_start", "<=", claim.issue_date),
+                ("date_end", ">=", claim.issue_date),
+            ], limit=1)
 
     @api.multi
     @api.depends('proof_id', 'requires_justification')

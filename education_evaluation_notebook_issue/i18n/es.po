@@ -6,28 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-30 10:17+0000\n"
-"PO-Revision-Date: 2021-08-30 10:17+0000\n"
+"POT-Creation-Date: 2021-09-14 11:33+0000\n"
+"PO-Revision-Date: 2021-09-14 11:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: education_evaluation_notebook_issue
-#: model:ir.model.fields,field_description:education_evaluation_notebook_issue.field_school_claim__academic_year_id
-#: model:ir.model.fields,field_description:education_evaluation_notebook_issue.field_school_issue__academic_year_id
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_issue.school_claim_view_search
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_issue.school_issue_view_search
-msgid "Academic Year"
-msgstr "Año académico"
-
-#. module: education_evaluation_notebook_issue
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_issue.school_claim_view_search
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_issue.school_issue_view_search
-msgid "Current Academic Year"
-msgstr "Año académico actual"
 
 #. module: education_evaluation_notebook_issue
 #: model:ir.model.fields,field_description:education_evaluation_notebook_issue.field_school_claim__evaluation_id
@@ -41,16 +27,7 @@ msgid "Issue Report"
 msgstr "Parte de incidencia"
 
 #. module: education_evaluation_notebook_issue
-#: model:ir.ui.menu,name:education_evaluation_notebook_issue.school_claim_historic_menuitem
-msgid "Issue Reports"
-msgstr "Parte de incidencia"
-
-#. module: education_evaluation_notebook_issue
-#: code:addons/education_evaluation_notebook_issue/reports/res_partner_record_xlsx_report.py:39
-#: model:ir.actions.act_window,name:education_evaluation_notebook_issue.action_school_claim_current
-#: model:ir.actions.act_window,name:education_evaluation_notebook_issue.action_school_issue_current
-#: model:ir.ui.menu,name:education_evaluation_notebook_issue.issue_historic_menuitem
-#: model:ir.ui.menu,name:education_evaluation_notebook_issue.school_issue_historic_menuitem
+#: code:addons/education_evaluation_notebook_issue/reports/res_partner_record_xlsx_report.py:40
 #, python-format
 msgid "Issues"
 msgstr "Incidencias"

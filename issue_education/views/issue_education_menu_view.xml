@@ -7,11 +7,11 @@
 
     <menuitem id="school_issue_menuitem"
               parent="issue_menuitem"
-              action="action_school_issue"
+              action="action_school_issue_current"
               sequence="1" />
     <menuitem id="school_claim_menuitem"
               parent="issue_menuitem"
-              action="action_school_claim"
+              action="action_school_claim_current"
               sequence="10" />
     <menuitem id="school_proof_menuitem"
               parent="issue_menuitem"
@@ -19,7 +19,7 @@
               sequence="20" />
     <menuitem id="disciplinary_meeting_menuitem"
               parent="issue_menuitem"
-              action="disciplinary_calendar_event_action"
+              action="disciplinary_calendar_current_event_action"
               sequence="30" />
 
     <menuitem id="issues_configuration_menuitem"
@@ -47,4 +47,22 @@
               parent="issues_configuration_menuitem"
               action="action_school_college_issue_type"
               sequence="50" />
+
+    <menuitem id="issue_historic_menuitem"
+              name="Issues"
+              parent="education.education_historic_menuitem"
+              sequence="10" />
+
+    <menuitem id="school_issue_historic_menuitem"
+              parent="issue_historic_menuitem"
+              action="action_school_issue"
+              sequence="1" />
+    <menuitem id="school_claim_historic_menuitem"
+              parent="issue_historic_menuitem"
+              action="action_school_claim"
+              sequence="10" />
+    <menuitem id="disciplinary_meeting_historic_menuitem"
+              parent="issue_historic_menuitem"
+              action="disciplinary_calendar_event_action"
+              sequence="30" />
 </odoo>
