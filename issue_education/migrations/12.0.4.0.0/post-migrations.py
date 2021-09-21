@@ -30,5 +30,5 @@ def migrate(env, version):
             UPDATE calendar_event e
                SET course_id = %s,
                    center_id = %s
-             WHERE e.id = %s 
+             WHERE e.id = %s
             """, (group.course_id.id, group.center_id.id, event.id))

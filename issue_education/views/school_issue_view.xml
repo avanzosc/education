@@ -160,12 +160,14 @@
         <field name="binding_model_id" ref="issue_education.model_school_issue" />
         <field name="state">code</field>
         <field name="code">
-            for record in records:
-                record.create_issue_report()
+for record in records:
+    record.create_issue_report()
+
+action = records.open_issue_report()
         </field>
     </record>
 
-    <record id="action_update_education_group" model="ir.actions.server">
+    <record id="action_update_education_group_issue" model="ir.actions.server">
         <field name="name">Update official group</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
