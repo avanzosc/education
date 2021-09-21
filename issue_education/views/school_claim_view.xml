@@ -161,7 +161,7 @@
         <field name="context">{"search_default_filter_today_issues":1}</field>
     </record>
 
-    <record id="action_update_education_group" model="ir.actions.server">
+    <record id="action_update_education_group_claim" model="ir.actions.server">
         <field name="name">Update official group</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
