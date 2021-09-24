@@ -24,6 +24,10 @@ class EducationCompetence(models.Model):
     max_mark = fields.Float(string="Max. Mark", default=10.0, copy=False)
     passed_mark = fields.Float(
         string="Min. Mark to Pass", default=5.0, copy=False)
+    level_ids = fields.Many2many(
+        comodel_name="education.level", string="Education Levels",
+        relation="education_competence_level_rel", column1="competence_id",
+        column2="level_id")
 
     @api.constrains("code")
     def _check_code_length(self):

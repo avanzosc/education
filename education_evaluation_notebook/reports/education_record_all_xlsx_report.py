@@ -210,6 +210,8 @@ class EducationGroupXlsx(models.AbstractModel):
                 ("student_id", "in", group.student_ids.ids),
                 ("n_line_id.schedule_id.task_type_id.education_code", "!=",
                  "0123"),
+                ("n_line_id.schedule_id.academic_year_id", "=",
+                 group.academic_year_id.id),
             ])
             subject_lists = group_records.mapped("subject_id")
             self.add_subject_list(group_sheet, subject_lists)

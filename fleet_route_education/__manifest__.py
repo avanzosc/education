@@ -23,6 +23,8 @@
         "views/education_group_template.xml",
         "views/fleet_route_passenger_list_report_view.xml",
         "views/fleet_route_template.xml",
+        "wizards/print_education_bus_group_list_report_view.xml",
+        "wizards/print_fleet_route_passenger_list_report_view.xml",
     ],
     "installable": True,
 }

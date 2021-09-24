@@ -22,6 +22,7 @@
             <search>
                 <field name="name" />
                 <field name="issue_date" />
+                <field name="academic_year_id" />
                 <field name="school_issue_id" />
                 <field name="school_issue_type_id" />
                 <field name="education_schedule_id" />
@@ -29,7 +30,13 @@
                 <field name="student_id" />
                 <field name="state" />
                 <separator />
-                <filter string="Today" name="filter_today_issues" domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_today_issues"
+                        string="Today"
+                        domain="[('issue_date','=',time.strftime('%Y-%m-%d'))]"/>
+                <separator />
+                <filter name="current_academic_year"
+                        string="Current Academic Year"
+                        domain="[('academic_year_id.current','=',True)]"/>
                 <group expand="0" string="Group By">
                     <filter string="Issue type" name="group_issue_type" domain="[]"
                             context="{'group_by':'school_issue_type_id'}"/>
@@ -49,7 +56,9 @@
                             context="{'group_by':'education_schedule_id'}"/>
                     <separator />
                     <filter string="Date" name="group_issue_date"
-                            domain="[]" context="{'group_by':'issue_date'}"/>
+                            context="{'group_by':'issue_date'}"/>
+                    <filter string="Academic Year" name="group_academic_year"
+                            context="{'group_by': 'academic_year_id'}" />
                     <filter string="Education Center" name="school_group"
                             context="{'group_by': 'school_id'}" />
                     <filter string="Status" name="group-state" domain="[]"
@@ -133,6 +142,16 @@
         </field>
     </record>
 
+    <record model="ir.actions.act_window" id="action_school_claim_current">
+        <field name="name">Issue Reports</field>
+        <field name="res_model">school.claim</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="school_claim_view_tree" />
+        <field name="domain">[('academic_year_id.current','=',True)]</field>
+        <field name="context">{"search_default_filter_today_issues":1}</field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_school_claim">
         <field name="name">Issue Reports</field>
         <field name="res_model">school.claim</field>
@@ -142,7 +161,7 @@
         <field name="context">{"search_default_filter_today_issues":1}</field>
     </record>
 
-    <record id="action_update_education_group" model="ir.actions.server">
+    <record id="action_update_education_group_claim" model="ir.actions.server">
         <field name="name">Update official group</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>

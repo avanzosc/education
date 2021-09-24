@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-23 12:55+0000\n"
-"PO-Revision-Date: 2021-08-23 12:55+0000\n"
+"POT-Creation-Date: 2021-09-14 11:31+0000\n"
+"PO-Revision-Date: 2021-09-14 11:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:issue_education.education_schedule_view_form
 msgid "<span class=\"o_stat_text\">School Issues</span>"
 msgstr "<span class=\"o_stat_text\">Incidencias</span>"
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__academic_year_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__academic_year_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+msgid "Academic Year"
+msgstr "Año académico"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__access_warning
@@ -109,6 +116,7 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__student_course_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_course_id
 msgid "Course"
 msgstr "Curso"
@@ -141,6 +149,12 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Current Academic Year"
+msgstr "Año académico actual"
 
 #. module: issue_education
 #: model:ir.model.fields,help:issue_education.field_school_claim__access_url
@@ -207,17 +221,20 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__education_group_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Education Group"
 msgstr "Grupo educativo"
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__student_level_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_level_id
 msgid "Education Level"
 msgstr "Nivel educativo"
@@ -256,7 +273,9 @@ msgid "Educational measures"
 msgstr "Medidas educativas"
 
 #. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.disciplinary_calendar_current_event_action
 #: model:ir.actions.act_window,name:issue_education.disciplinary_calendar_event_action
+#: model:ir.ui.menu,name:issue_education.disciplinary_meeting_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.disciplinary_meeting_menuitem
 msgid "Extraordinary Meetings"
 msgstr "Reuniones extraordinarias"
@@ -370,6 +389,7 @@ msgstr "Nº incidencias"
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue_proof
 #: model:ir.model,name:issue_education.model_school_issue_proof
+#: model:ir.ui.menu,name:issue_education.school_proof_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_proof_menuitem
 msgid "Issue Proof"
 msgstr "Justificante de incidencia"
@@ -382,6 +402,8 @@ msgstr "Parte de incidencia"
 
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_claim
+#: model:ir.actions.act_window,name:issue_education.action_school_claim_current
+#: model:ir.ui.menu,name:issue_education.school_claim_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_claim_menuitem
 msgid "Issue Reports"
 msgstr "Parte de incidencia"
@@ -410,9 +432,12 @@ msgstr "Tipo de incidencia"
 
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue
+#: model:ir.actions.act_window,name:issue_education.action_school_issue_current
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_ids
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__issue_ids
+#: model:ir.ui.menu,name:issue_education.issue_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.issue_menuitem
+#: model:ir.ui.menu,name:issue_education.school_issue_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_issue_menuitem
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_form
@@ -616,6 +641,7 @@ msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
 
 #. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_tree
 msgid "Official Group"
@@ -886,6 +912,7 @@ msgid "Student"
 msgstr "Alumno"
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__student_group_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_group_id
 msgid "Student Official Group"
 msgstr "Grupo oficial del alumno"
@@ -930,6 +957,11 @@ msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
 
 #. module: issue_education
+#: model:ir.actions.server,name:issue_education.action_update_education_group
+msgid "Update official group"
+msgstr "Actualizar grupo oficial"
+
+#. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__usual_issue
 msgid "Usual issue"
 msgstr "Incidencia habitutal"
@@ -949,7 +981,8 @@ msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
 
 #. module: issue_education
-#: code:addons/issue_education/models/school_claim.py:90
+#: code:addons/issue_education/models/school_claim.py:103
+#: code:addons/issue_education/models/school_claim.py:115
 #, python-format
 msgid "You can only delete draft reports."
 msgstr "Solo se pueden eliminar partes de incidencia en estado borrador"

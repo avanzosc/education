@@ -22,6 +22,9 @@ class SchoolClaim(models.Model):
     issue_date = fields.Date(
         string='Date', required=True,
         default=lambda self: fields.Date.context_today(self))
+    academic_year_id = fields.Many2one(
+        comodel_name="education.academic_year", string="Academic Year",
+        compute="_compute_academic_year", store=True)
     school_issue_type_id = fields.Many2one(
         string='School issue type', comodel_name='school.college.issue.type',
         required=True)
@@ -70,6 +73,15 @@ class SchoolClaim(models.Model):
     def onchange_student_id(self):
         for issue in self:
             issue.student_group_id = issue.student_id.current_group_id
+
+    @api.depends("issue_date")
+    def _compute_academic_year(self):
+        academic_year_obj = self.env["education.academic_year"]
+        for claim in self:
+            claim.academic_year_id = academic_year_obj.search([
+                ("date_start", "<=", claim.issue_date),
+                ("date_end", ">=", claim.issue_date),
+            ], limit=1)
 
     @api.depends('school_issue_type_id',
                  'school_issue_type_id.educational_measure_ids')
@@ -179,5 +191,8 @@ class SchoolClaim(models.Model):
             'alarm_ids': [(6, 0, alarm.ids)],
             'partner_ids': [(6, 0, progenitors.ids)],
             'categ_ids': [(6, 0, label.ids)],
+            'academic_year_id': self.academic_year_id.id,
+            'center_id': self.school_id.id,
+            'course_id': self.student_course_id.id,
         }
         return vals

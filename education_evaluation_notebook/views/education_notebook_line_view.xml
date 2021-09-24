@@ -134,6 +134,7 @@
                                    attrs="{'readonly': [('id','!=',False)]}"/>
                             <field name="teacher_id" groups="education.education_responsible" />
                             <field name="subject_id" />
+                            <field name="level_ids" widget="many2many_tags" />
                             <field name="education_center_id" />
                             <field name="classroom_id"  />
                             <field name="task_type_id"  />
@@ -183,8 +184,9 @@
                                       decoration-muted="eval_percent==0">
                                     <field name="sequence" widget="handle" />
                                     <field name="schedule_id" invisible="True" />
+                                    <field name="level_ids" invisible="True" />
                                     <field name="competence_id" options="{'no_create': True, 'no_edit': True}"
-                                           domain="[('evaluation_check','!=',True),('global_check','!=',True)]"/>
+                                           domain="[('evaluation_check','!=',True),('global_check','!=',True),'|',('level_ids','=',False),('level_ids','in',level_ids)]"/>
                                     <field name="global_competence" invisible="True" />
                                     <field name="evaluation_competence" invisible="True" />
                                     <field name="exists_master" invisible="True" />

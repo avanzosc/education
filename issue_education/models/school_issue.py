@@ -42,6 +42,9 @@ class SchoolIssue(models.Model):
     issue_date = fields.Date(
         string='Date', required=True,
         default=lambda self: fields.Date.context_today(self))
+    academic_year_id = fields.Many2one(
+        comodel_name="education.academic_year", string="Academic Year",
+        compute="_compute_academic_year", store=True)
     proof_id = fields.Many2one(
         string='Proof', comodel_name='school.issue.proof')
     education_schedule_id = fields.Many2one(
@@ -63,6 +66,15 @@ class SchoolIssue(models.Model):
     student_level_id = fields.Many2one(
         comodel_name="education.level", string="Education Level",
         related="student_group_id.level_id", store=True)
+
+    @api.depends("issue_date")
+    def _compute_academic_year(self):
+        academic_year_obj = self.env["education.academic_year"]
+        for claim in self:
+            claim.academic_year_id = academic_year_obj.search([
+                ("date_start", "<=", claim.issue_date),
+                ("date_end", ">=", claim.issue_date),
+            ], limit=1)
 
     @api.multi
     @api.depends('proof_id', 'requires_justification')
@@ -109,20 +121,40 @@ class SchoolIssue(models.Model):
 
     def create_issue_report(self):
         self.ensure_one()
-        claim_obj = self.env['school.claim']
-        claim_data = [
-            ('school_issue_type_id', '=', self.school_issue_type_id.id),
-            ('student_id', '=', self.student_id.id),
-            ('education_group_id', '=', self.group_id.id),
-            ('education_schedule_id', '=', self.education_schedule_id.id),
-            ('state', '=', 'draft'),
-        ]
-        claim = claim_obj.search(claim_data)
-        if claim:
-            self.claim_id = claim
-        else:
-            values = self._catch_values_for_generate_part()
-            self.claim_id = claim_obj.create(values)
+        if not self.claim_id:
+            claim_obj = self.env['school.claim']
+            claim_data = [
+                ('school_issue_type_id', '=', self.school_issue_type_id.id),
+                ('student_id', '=', self.student_id.id),
+                ('education_group_id', '=', self.group_id.id),
+                ('education_schedule_id', '=', self.education_schedule_id.id),
+                ('state', '=', 'draft'),
+            ]
+            claim = claim_obj.search(claim_data)
+            if claim:
+                self.claim_id = claim
+            else:
+                values = self._catch_values_for_generate_part()
+                self.claim_id = claim_obj.create(values)
+
+    def open_issue_report(self):
+        reports = self.mapped("claim_id")
+        action = self.env.ref("issue_education.action_school_claim")
+        action_dict = action.read()[0] if action else {}
+        if len(reports) > 1:
+            action_dict["domain"] = [("id", "in", reports.ids)]
+        elif reports:
+            form_view = [
+                (self.env.ref("issue_education.school_claim_view_form").id,
+                 "form")]
+            if "views" in action:
+                action_dict["views"] = form_view + [
+                    (state, view) for state, view in action_dict["views"]
+                    if view != "form"]
+            else:
+                action_dict["views"] = form_view
+            action_dict["res_id"] = reports.id
+        return action_dict
 
     def _catch_values_for_generate_part(self):
         self.ensure_one()

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-23 12:55+0000\n"
-"PO-Revision-Date: 2021-08-23 12:55+0000\n"
+"POT-Creation-Date: 2021-09-14 11:31+0000\n"
+"PO-Revision-Date: 2021-09-14 11:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,13 @@ msgstr ""
 #. module: issue_education
 #: model_terms:ir.ui.view,arch_db:issue_education.education_schedule_view_form
 msgid "<span class=\"o_stat_text\">School Issues</span>"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__academic_year_id
+#: model:ir.model.fields,field_description:issue_education.field_school_issue__academic_year_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+msgid "Academic Year"
 msgstr ""
 
 #. module: issue_education
@@ -109,6 +116,7 @@ msgid "Contact"
 msgstr ""
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__student_course_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_course_id
 msgid "Course"
 msgstr ""
@@ -140,6 +148,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_site__create_date
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__create_date
 msgid "Created on"
+msgstr ""
+
+#. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
+#: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
+msgid "Current Academic Year"
 msgstr ""
 
 #. module: issue_education
@@ -207,17 +221,20 @@ msgid "Draft"
 msgstr ""
 
 #. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Education Center"
 msgstr ""
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__education_group_id
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 msgid "Education Group"
 msgstr ""
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__student_level_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_level_id
 msgid "Education Level"
 msgstr ""
@@ -256,7 +273,9 @@ msgid "Educational measures"
 msgstr ""
 
 #. module: issue_education
+#: model:ir.actions.act_window,name:issue_education.disciplinary_calendar_current_event_action
 #: model:ir.actions.act_window,name:issue_education.disciplinary_calendar_event_action
+#: model:ir.ui.menu,name:issue_education.disciplinary_meeting_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.disciplinary_meeting_menuitem
 msgid "Extraordinary Meetings"
 msgstr ""
@@ -370,6 +389,7 @@ msgstr ""
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue_proof
 #: model:ir.model,name:issue_education.model_school_issue_proof
+#: model:ir.ui.menu,name:issue_education.school_proof_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_proof_menuitem
 msgid "Issue Proof"
 msgstr ""
@@ -382,6 +402,8 @@ msgstr ""
 
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_claim
+#: model:ir.actions.act_window,name:issue_education.action_school_claim_current
+#: model:ir.ui.menu,name:issue_education.school_claim_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_claim_menuitem
 msgid "Issue Reports"
 msgstr ""
@@ -410,9 +432,12 @@ msgstr ""
 
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue
+#: model:ir.actions.act_window,name:issue_education.action_school_issue_current
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__school_issue_ids
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__issue_ids
+#: model:ir.ui.menu,name:issue_education.issue_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.issue_menuitem
+#: model:ir.ui.menu,name:issue_education.school_issue_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_issue_menuitem
 #: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_proof_view_form
@@ -616,6 +641,7 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_claim_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_search
 #: model_terms:ir.ui.view,arch_db:issue_education.school_issue_view_tree
 msgid "Official Group"
@@ -883,6 +909,7 @@ msgid "Student"
 msgstr ""
 
 #. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_claim__student_group_id
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__student_group_id
 msgid "Student Official Group"
 msgstr ""
@@ -927,6 +954,11 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: issue_education
+#: model:ir.actions.server,name:issue_education.action_update_education_group
+msgid "Update official group"
+msgstr ""
+
+#. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__usual_issue
 msgid "Usual issue"
 msgstr ""
@@ -946,7 +978,8 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: issue_education
-#: code:addons/issue_education/models/school_claim.py:90
+#: code:addons/issue_education/models/school_claim.py:103
+#: code:addons/issue_education/models/school_claim.py:115
 #, python-format
 msgid "You can only delete draft reports."
 msgstr ""
