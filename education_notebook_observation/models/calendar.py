@@ -17,7 +17,7 @@ class CalendarEvent(models.Model):
 
     def get_related_notebook_lines(self):
         self.ensure_one()
-        notebook_lines = self.student_id.get_notebook_lines(
+        notebook_lines = self.student_id.sudo().get_notebook_lines(
             academic_year=self.supervised_year_id.school_year_id,
             eval_type=self.eval_type)
         return notebook_lines.filtered("exists_master")
