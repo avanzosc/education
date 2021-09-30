@@ -91,7 +91,7 @@ class DownloadEducationClassroom(models.TransientModel):
                 group.student_count, group.comments,
                 group.classroom_id.education_code)
             for attendance in group.calendar_session_ids.sorted(
-                    key=lambda a: (a.dayofweek_education, a.daily_hour)):
+                    key=lambda a: (a.daily_hour, a.dayofweek_education)):
                 encode_string += "3{:0>8}{:0>2}{}{}{}{}\r".format(
                     group.education_code, attendance.daily_hour,
                     attendance.dayofweek_education,
