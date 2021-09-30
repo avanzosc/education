@@ -82,11 +82,6 @@ class EducationGroupXlsx(models.AbstractModel):
         sheet.write("E" + str(row), student.vat or "")
 
     def generate_xlsx_report(self, workbook, data, objects):
-        objects = objects.filtered(
-            lambda g: g.group_type_id.type == "official")
-        if not objects:
-            raise UserError(
-                _("You can only get xlsx report of official groups"))
         for group in objects:
             group_sheet = self.create_group_sheet(workbook, group)
             row = 8
