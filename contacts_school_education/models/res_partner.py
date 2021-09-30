@@ -223,7 +223,15 @@ class ResPartner(models.Model):
         domain = expression.AND([
             [("center_id", "in", self.ids)],
             safe_eval(action.domain or "[]")])
-        action_dict.update({"domain": domain})
+        context = safe_eval(action.context or "{}")
+        context.update({
+            "default_center_id": self.id,
+            "active_test": False,
+        })
+        action_dict.update({
+            "domain": domain,
+            "context": context,
+        })
         return action_dict
 
     @api.multi
