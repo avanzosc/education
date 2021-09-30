@@ -4,6 +4,8 @@ from odoo import http, _
 from odoo.http import request
 from odoo.addons.education_evaluation_notebook.models.education_record import RECORD_EXCEPTIONALITY
 from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.exceptions import AccessError, MissingError
+from odoo.addons.website.controllers.main import QueryURL
 
 
 class EducationMain(CustomerPortal):
@@ -38,13 +40,17 @@ class EducationMain(CustomerPortal):
                 auth="user", website=True)
     def schedule_califications(
             self, schedule_id=None, changed_input_ids=None,
-            changed_select_ids=None, **args):
+            changed_select_ids=None, download=False, report_type=None,
+            access_token=None, **args):
 
         logged_employee = request.env['hr.employee'].search([
             ('user_id', '=', request.uid)])
 
         if not logged_employee:
             return request.redirect('/main')
+
+        if report_type:
+            self.print_schedule_record_reports(report_type, download, access_token)
 
         if changed_input_ids:
             changed_input_ids_array = json.loads(changed_input_ids)
@@ -66,7 +72,10 @@ class EducationMain(CustomerPortal):
         evaluations = record_lines.filtered(
             lambda l: l.competence_id.evaluation_check or l.competence_id.global_check)
 
+        url = '/schedule/%s/califications' % schedule_id
+        keep = QueryURL(url, access_token=access_token)
         values = {
+            'keep': keep,
             'schedule': schedule,
             'schedule_evaluation_records': schedule_evaluation_records,
             'evaluation_record_students': evaluation_record_students,
@@ -104,3 +113,17 @@ class EducationMain(CustomerPortal):
                 if update_ok:
                     edu_record.sudo().update({field_type: new_val})
         return True
+
+    def print_schedule_record_reports(self, report_type, download, access_token):
+        try:
+            partner_sudo = self._document_check_access(
+                'education.schedule', request.env.user.partner_id, access_token=access_token)
+        except (AccessError, MissingError):
+            return request.redirect('/schedules')
+        if report_type in ('html', 'pdf', 'text'):
+            report_ref = \
+                'education_evaluation_notebook_table.schedule_academic_record_report_xlsx'
+            return self._show_report(
+                model=partner_sudo, report_type=report_type,
+                report_ref=report_ref,
+                download=download)

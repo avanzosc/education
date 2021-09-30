@@ -23,10 +23,10 @@ $(document).ready(function() {
         $('#changed_input_ids').val(JSON.stringify(changed_vals_obj));
     });
     $("#teacher_schedule_table input").click(function(){
-        $('input').prop("readonly", true);
-        $(this).prop("readonly", false);
-        $('#editing_msg').show();
-        $('#save_schedule_btn').show();
+        show_save_button($(this));
+    });
+    $("#teacher_schedule_table select").change(function(){
+        show_save_button($(this));
     });
     $("#teacher_schedule_table .exceptionality_select").change(function(){
         $(this).removeClass("select_disabled");
@@ -52,5 +52,22 @@ $(document).ready(function() {
             }
         }
     });
+    $(".mark_input").keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+        {
+           var col = $(this).closest("td").index();
+           var next_mark_input = $(this).closest('tr').next().find('td:eq('+col+')').find('input');
+           next_mark_input.prop("readonly", false);
+           next_mark_input.focus();
+        }
+    });
+
+    function show_save_button(clicked_item){
+        $('input').prop("readonly", true);
+        clicked_item.prop("readonly", false);
+        $('#editing_msg').show();
+        $('#save_schedule_btn').show();
+    }
 
 });

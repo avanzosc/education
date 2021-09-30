@@ -99,9 +99,10 @@
                                        </a>
                                     </t>
                                     <a id="all" class="eval_button btn btn-primary mb-2">All</a>
-                                    <button style="display:none;" id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-4 mb-2">
+                                    <button style="display:none;" id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-2 mb-2">
                                        Save changes <i class="fa fa-save"></i>
                                     </button>
+<!--                                    <a t-att-href="keep(report_type='pdf')" id="action_print" class="eval_button btn btn-primary ml-2 mb-2">Print <i class="fa fa-print"></i></a>-->
                                  </div>
                                  <div id="editing_msg" class="col-lg-12" style="display:none;">
                                     <div class="text-center">
@@ -124,10 +125,10 @@
                                                       t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
                                                    <t t-foreach="competences" t-as="competence">
                                        <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-foreach="competence.exam_ids" t-as="exam">
-                                       <t t-esc="exam.name"/>
+                                       <t t-esc="exam.name"/> (<t t-esc="exam.eval_percent"/>%)
                                        </td>
                                        <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
-                                       <t t-esc="competence.description"/>
+                                       <t t-esc="competence.description"/> (<t t-esc="competence.eval_percent"/>%)
                                        </td>
                                        </t>
                                        <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
@@ -164,12 +165,10 @@
                                                          <t t-foreach="exam_record" t-as="exr">
                                                             <span t-att-class="'mark_retake' if exr.is_retake_record else None">
                                                                <span t-att-class="'mark_fail' if exr.numeric_mark &lt; 5 else None">
-                                                                  <input readonly="True" t-att-id="exr.id" t-att-value="round(exr.numeric_mark, 2)"/>
-                                                                  <t t-if="exr.exceptionality">
-                                                                     <t t-call="education_evaluation_notebook_table.select_exceptionality">
-                                                                        <t t-set="selected_record" t-value="exr.id"/>
-                                                                        <t t-set="selected_exceptionality" t-value="exr.exceptionality"/>
-                                                                     </t>
+                                                                  <input readonly="True" class="mark_input" t-att-id="exr.id" t-att-value="round(exr.numeric_mark, 2)" placeholder="Insert mark"/>
+                                                                  <t t-call="education_evaluation_notebook_table.select_exceptionality">
+                                                                     <t t-set="selected_record" t-value="exr.id"/>
+                                                                     <t t-set="selected_exceptionality" t-value="exr.exceptionality"/>
                                                                   </t>
                                                                   <t t-if="exr.is_retake_record"><b>(REC)</b></t>
                                                                </span>
@@ -184,12 +183,10 @@
                                                                <t t-esc="cr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
                                                             <span t-att-class="'mark_retake' if cr.is_retake_record else None">
                                                                <span t-att-class="'mark_fail' if cr.numeric_mark &lt; 5 else None">
-                                                                  <input readonly="True" t-att-id="cr.id" t-att-value="round(cr.numeric_mark, 2)"/>
-                                                                  <t t-if="cr.exceptionality">
-                                                                     <t t-call="education_evaluation_notebook_table.select_exceptionality">
-                                                                        <t t-set="selected_record" t-value="cr.id"/>
-                                                                        <t t-set="selected_exceptionality" t-value="cr.exceptionality"/>
-                                                                     </t>
+                                                                  <input readonly="True" class="mark_input" t-att-id="cr.id" t-att-value="round(cr.numeric_mark, 2)" placeholder="Insert mark"/>
+                                                                  <t t-call="education_evaluation_notebook_table.select_exceptionality">
+                                                                     <t t-set="selected_record" t-value="cr.id"/>
+                                                                     <t t-set="selected_exceptionality" t-value="cr.exceptionality"/>
                                                                   </t>
                                                                   <t t-if="cr.is_retake_record"><b>(REC)</b></t>
                                                                </span>
@@ -205,12 +202,10 @@
                                                             <t t-esc="er.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
                                                          <span t-att-class="'mark_retake' if er.is_retake_record else None">
                                                             <span t-att-class="'mark_fail' if er.numeric_mark &lt; 5 else None">
-                                                               <input readonly="True" t-att-id="er.id" t-att-value="round(er.numeric_mark, 2)"/>
-                                                               <t t-if="er.exceptionality">
-                                                                  <t t-call="education_evaluation_notebook_table.select_exceptionality">
-                                                                     <t t-set="selected_record" t-value="er.id"/>
-                                                                     <t t-set="selected_exceptionality" t-value="er.exceptionality"/>
-                                                                  </t>
+                                                               <input readonly="True" class="mark_input" t-att-id="er.id" t-att-value="round(er.numeric_mark, 2)" placeholder="Insert mark"/>
+                                                               <t t-call="education_evaluation_notebook_table.select_exceptionality">
+                                                                  <t t-set="selected_record" t-value="er.id"/>
+                                                                  <t t-set="selected_exceptionality" t-value="er.exceptionality"/>
                                                                </t>
                                                                <t t-if="er.is_retake_record"><b>(REC)</b></t>
                                                             </span>
@@ -226,12 +221,10 @@
                                                          <t t-esc="gr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
                                                       <span t-att-class="'mark_retake' if gr.is_retake_record else None">
                                                          <span t-att-class="'mark_fail' if gr.numeric_mark &lt; 5 else None">
-                                                            <input readonly="True" t-att-id="gr.id" t-att-value="round(gr.numeric_mark, 2)"/>
-                                                            <t t-if="gr.exceptionality">
-                                                               <t t-call="education_evaluation_notebook_table.select_exceptionality">
-                                                                  <t t-set="selected_record" t-value="gr.id"/>
-                                                                  <t t-set="selected_exceptionality" t-value="gr.exceptionality"/>
-                                                               </t>
+                                                            <input readonly="True" class="mark_input" t-att-id="gr.id" t-att-value="round(gr.numeric_mark, 2)" placeholder="Insert mark"/>
+                                                            <t t-call="education_evaluation_notebook_table.select_exceptionality">
+                                                               <t t-set="selected_record" t-value="gr.id"/>
+                                                               <t t-set="selected_exceptionality" t-value="gr.exceptionality"/>
                                                             </t>
                                                             <t t-if="gr.is_retake_record"><b>(REC)</b></t>
                                                          </span>
@@ -260,7 +253,8 @@
       </t>
    </template>
    <template id="select_exceptionality">
-      <select t-if="selected_exceptionality" class="exceptionality_select select_disabled" name="exceptionality_select" t-att-id="selected_record">
+      <select t-att-class="'exceptionality_select select_disabled' + ' no_exceptionality' if not selected_exceptionality else ''" name="exceptionality_select" t-att-id="selected_record">
+         <option value="">Select exceptionality</option>
          <t t-foreach="exceptionalities" t-as="exceptionality">
             <option t-att-value="exceptionality" t-att-selected="exceptionality == selected_exceptionality">
                <t t-esc="exceptionalities[exceptionality]"/>
