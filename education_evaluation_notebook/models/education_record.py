@@ -164,7 +164,7 @@ class EducationRecord(models.Model):
         for record in self:
             schedule = record.n_line_id.schedule_id
             group = schedule.group_ids.filtered(
-                lambda g: record.student_id in g.student_ids)
+                lambda g: record.student_id in g.student_ids)[:1]
             evaluations = schedule.academic_year_id.evaluation_ids
             record.evaluation_id = evaluations.filtered(
                 lambda e: e.center_id == group.center_id and
