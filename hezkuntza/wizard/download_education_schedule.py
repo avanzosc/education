@@ -134,7 +134,7 @@ class DownloadEducationClassroom(models.TransientModel):
                                 group.education_code,
                                 timetable.attendance_id.daily_hour,
                                 student_count or group.student_count,
-                                alias,
+                                alias[:50],
                                 parent.education_code))
                     if multiple_lines and count:
                         count -= 1
