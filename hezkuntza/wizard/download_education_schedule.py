@@ -70,7 +70,8 @@ class DownloadEducationClassroom(models.TransientModel):
         if self.teacher_id:
             schedule_domain = expression.AND(
                 [schedule_domain, [("teacher_id", "=", self.teacher_id.id)]])
-        for schedule in self.env["education.schedule"].search(schedule_domain):
+        for schedule in self.env["education.schedule"].search(
+                schedule_domain, order="level_id"):
             schedule_msg = ""
             if not schedule.classroom_id:
                 schedule_msg += _("<dd>Must have defined a classroom.</dd>\n")
@@ -92,9 +93,12 @@ class DownloadEducationClassroom(models.TransientModel):
                         schedule.classroom_id.education_code))
                 if schedule.task_type_id.type == "L":
                     levels = schedule.mapped("group_ids.level_id")
+                    subject_code = schedule.subject_id.education_code
+                    if schedule.task_type_id.education_code == "0123":
+                        subject_code = "0"
                     schedule_string += (
                         "{:0>8}{}{:0>2}000{:0>4}{:0>4}\r".format(
-                            schedule.subject_id.education_code,
+                            subject_code,
                             (schedule.subject_type and
                              schedule.subject_type[:1] or " "),
                             schedule.language_id.education_code,
