@@ -92,7 +92,7 @@ class EducationGroupXlsx(models.AbstractModel):
 
     def fill_student_row_data(
             self, sheet, row, student, eval_type, subject_lists,
-            partial_mark=False, retaken=False):
+            academic_year, partial_mark=False, retaken=False):
         not_passed = [
             self.env.ref(
                 "education_evaluation_notebook.numeric_mark_insufficient"),
@@ -100,15 +100,17 @@ class EducationGroupXlsx(models.AbstractModel):
                 "education_evaluation_notebook.numeric_mark_very_bad")]
         record_obj = self.env["education.record"]
         sheet.write("A" + str(row), str(row - 7), self.format_border)
-        sheet.write("B" + str(row), student.lastname, self.format_left)
-        sheet.write("C" + str(row), student.lastname2, self.format_left)
-        sheet.write("D" + str(row), student.firstname, self.format_left)
+        sheet.write("B" + str(row), student.lastname or "", self.format_left)
+        sheet.write("C" + str(row), student.lastname2 or "", self.format_left)
+        sheet.write("D" + str(row), student.firstname or "", self.format_left)
         column_num = 5
         row_num = row - 1
         mark_list = []
         not_passed_count = 0
         for subject in subject_lists:
             domain = [
+                ("n_line_id.schedule_id.academic_year_id", "=",
+                 academic_year.id),
                 ("student_id", "=", student.id),
                 ("subject_id", "=", subject.id),
                 ("eval_type", "=", eval_type),
@@ -291,7 +293,8 @@ class EducationGroupXlsx(models.AbstractModel):
             for student in group.student_ids:
                 self.fill_student_row_data(
                     group_sheet, row, student, eval_type, subject_lists,
-                    partial_mark=partial_mark, retaken=retaken)
+                    group.academic_year_id, partial_mark=partial_mark,
+                    retaken=retaken)
                 row += 1
             self.add_statistics(group_sheet, row - 1, subject_lists)
 

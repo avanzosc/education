@@ -132,14 +132,14 @@ class EducationGroupXlsx(models.AbstractModel):
                 return ordinary
 
     def fill_student_row_data(
-            self, sheet, student_num, student, subject_lists):
+            self, sheet, student_num, student, subject_lists, academic_year):
         not_passed = self._get_not_passed()
         record_obj = self.env["education.record"]
         row = 8 + (4 * (student_num - 1))
         sheet.write("A" + str(row), str(student_num), self.format_border)
-        sheet.write("B" + str(row), student.lastname, self.format_left)
-        sheet.write("C" + str(row), student.lastname2, self.format_left)
-        sheet.write("D" + str(row), student.firstname, self.format_left)
+        sheet.write("B" + str(row), student.lastname or "", self.format_left)
+        sheet.write("C" + str(row), student.lastname2 or "", self.format_left)
+        sheet.write("D" + str(row), student.firstname or "", self.format_left)
         column_num = 6
         row_num = row - 1
         for eval_type in ["first", "second", "third", "final"]:
@@ -155,6 +155,8 @@ class EducationGroupXlsx(models.AbstractModel):
                 self.format_border_final)
             for subject in subject_lists:
                 domain = [
+                    ("n_line_id.schedule_id.academic_year_id", "=",
+                     academic_year.id),
                     ("student_id", "=", student.id),
                     ("subject_id", "=", subject.id),
                     ("eval_type", "=", eval_type),
@@ -218,7 +220,8 @@ class EducationGroupXlsx(models.AbstractModel):
             student_num = 1
             for student in group.student_ids:
                 self.fill_student_row_data(
-                    group_sheet, student_num, student, subject_lists)
+                    group_sheet, student_num, student, subject_lists,
+                    group.academic_year_id)
                 student_num += 1
 
     def _define_formats(self, workbook):
