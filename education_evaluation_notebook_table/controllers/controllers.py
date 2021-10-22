@@ -50,7 +50,7 @@ class EducationMain(CustomerPortal):
             return request.redirect('/main')
 
         if report_type:
-            self.print_schedule_record_reports(report_type, download, access_token)
+            self.print_schedule_record_reports(schedule_id, report_type, download, access_token)
 
         if changed_input_ids:
             changed_input_ids_array = json.loads(changed_input_ids)
@@ -114,10 +114,10 @@ class EducationMain(CustomerPortal):
                     edu_record.sudo().update({field_type: new_val})
         return True
 
-    def print_schedule_record_reports(self, report_type, download, access_token):
+    def print_schedule_record_reports(self, schedule_id, report_type, download, access_token):
         try:
             partner_sudo = self._document_check_access(
-                'education.schedule', request.env.user.partner_id, access_token=access_token)
+                'education.schedule', schedule_id, access_token=access_token)
         except (AccessError, MissingError):
             return request.redirect('/schedules')
         if report_type in ('html', 'pdf', 'text'):

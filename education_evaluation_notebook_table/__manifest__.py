@@ -14,6 +14,7 @@
         "education_evaluation_notebook",
     ],
     "data": [
+        "reports/academic_record_report_view.xml",
         "views/templates.xml",
         "views/views.xml",
     ],

@@ -116,31 +116,31 @@
                                  <thead>
                                     <tr>
                                        <td class="student_schedule_td"/>
-                                          <t t-foreach="record_lines" t-as="line">
-                                             <t t-if="line.competence_id.global_check">
-                                                <t t-set="evals"
-                                                   t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
-                                                <t t-foreach="evals" t-as="eval">
-                                                   <t t-set="competences"
-                                                      t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
-                                                   <t t-foreach="competences" t-as="competence">
-                                       <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-foreach="competence.exam_ids" t-as="exam">
-                                       <t t-esc="exam.name"/> (<t t-esc="exam.eval_percent"/>%)
-                                       </td>
-                                       <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
-                                       <t t-esc="competence.description"/> (<t t-esc="competence.eval_percent"/>%)
-                                       </td>
-                                       </t>
-                                       <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
-                                       <t t-esc="eval.competence_id.display_name"/>
-                                       <span t-field="eval.eval_type" />
-                                       </td>
-                                       </t>
-                                       <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
-                                       <t t-esc="line.competence_id.display_name"/>
-                                       <span t-field="line.eval_type" />
-                                       </td>
-                                       </t>
+                                       <t t-foreach="record_lines" t-as="line">
+                                          <t t-if="line.competence_id.global_check">
+                                             <t t-set="evals"
+                                                t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
+                                             <t t-foreach="evals" t-as="eval">
+                                                <t t-set="competences"
+                                                   t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
+                                                <t t-foreach="competences" t-as="competence">
+                                                   <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-foreach="competence.exam_ids" t-as="exam">
+                                                      <t t-esc="exam.name"/> (<t t-esc="exam.eval_percent"/>%)
+                                                   </td>
+                                                   <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
+                                                      <t t-esc="competence.description"/> (<t t-esc="competence.eval_percent"/>%)
+                                                   </td>
+                                                </t>
+                                                <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
+                                                   <t t-esc="eval.competence_id.display_name"/>
+                                                   <span t-field="eval.eval_type" />
+                                                </td>
+                                             </t>
+                                             <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
+                                                <t t-esc="line.competence_id.display_name"/>
+                                                <span t-field="line.eval_type" />
+                                             </td>
+                                          </t>
                                        </t>
                                     </tr>
                                  </thead>
