@@ -93,7 +93,7 @@ class StudentXlsxReport(models.AbstractModel):
             ("subject_id", "=", subject.id),
             ("n_line_id.schedule_id.academic_year_id", "=", academic_year.id)
         ]
-        records = record_obj.search(domain)
+        records = record_obj.sudo().search(domain)
         row += 1
         sheet.merge_range(
             row, 0, row, 2, subject.display_name, self.format_bold)

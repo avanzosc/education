@@ -317,6 +317,15 @@ class EducationRecord(models.Model):
         return False
 
     @api.multi
+    def is_not_evaluated(self):
+        self.ensure_one()
+        if self.child_record_ids:
+            return all(x.is_not_evaluated() for x in self.child_record_ids)
+        elif self.exceptionality in ["not_evaluated"]:
+            return True
+        return False
+
+    @api.multi
     def get_max_numeric_mark(self, assessed=False):
         self.ensure_one()
         retake_records = self.mapped("retake_record_ids")
@@ -343,6 +352,8 @@ class EducationRecord(models.Model):
             for mark_record in mark_records.filtered(
                     lambda r: r.exceptionality not in ["not_evaluated"] and
                     not r.recovered_record_id):
+                if mark_record.is_not_evaluated():
+                    continue
                 if mark_record.is_partial_assessed():
                     eval_percent += mark_record.exam_eval_percent
                     partial_mark += (
