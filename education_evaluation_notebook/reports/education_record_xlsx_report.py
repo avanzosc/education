@@ -123,7 +123,7 @@ class EducationGroupXlsx(models.AbstractModel):
             else:
                 domain = expression.AND([
                     [("recovered_record_id", "=", False)], domain])
-            records = record_obj.search(domain)
+            records = record_obj.sudo().search(domain)
             sheet.set_column(column_num, column_num + 2, 7)
             if not records:
                 data = "-" if retaken else "XX"
