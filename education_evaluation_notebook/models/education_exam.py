@@ -223,6 +223,8 @@ class EducationExam(models.Model):
                     raise ValidationError(
                         _('You must set an exam date.'))
                 exam.action_generate_record()
+            else:
+                exam.mapped("record_ids").button_set_draft()
             exam.state = "progress"
 
     @api.multi
@@ -244,6 +246,7 @@ class EducationExam(models.Model):
     def action_draft(self):
         for exam in self.filtered(lambda e: e.state != "closed"):
             exam.state = "draft"
+            exam.mapped("record_ids").button_set_draft()
 
     @api.multi
     def action_copy_calculated_mark(self):

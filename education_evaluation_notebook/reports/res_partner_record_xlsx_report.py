@@ -140,9 +140,6 @@ class StudentXlsxReport(models.AbstractModel):
         if not objects:
             raise UserError(
                 _("You must select at least one student."))
-        if len(objects) > 1:
-            raise UserError(
-                _("Please select only one student"))
         if not academic_year:
             raise UserError(
                 _("There is no academic year selected."))
