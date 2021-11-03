@@ -163,7 +163,7 @@ class EducationGroupXlsx(models.AbstractModel):
                     "|", ("evaluation_competence", "=", True),
                     ("global_competence", "=", True),
                 ]
-                records = record_obj.search(domain)
+                records = record_obj.sudo().search(domain)
                 sheet.set_column(column_num, column_num + 2, 7)
                 ordinary = records.filtered(
                     lambda r: not r.recovered_record_id)[:1]

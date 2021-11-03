@@ -80,7 +80,7 @@ class EducationGroupXlsx(models.AbstractModel):
         sheet.set_column("B:D", 15)
         return sheet
 
-    def add_subject_list(self, sheet, group, subject_lists):
+    def add_subject_list(self, sheet, group, subject_lists, notebook_lines):
         sheet.write(6, 4, _("Not Passed"), self.format_header_center)
         col = 5
         for subject in subject_lists:
@@ -88,11 +88,17 @@ class EducationGroupXlsx(models.AbstractModel):
                 6, col, 6, col + 2, subject.description,
                 self.format_header_center)
             col += 3
+            for notebook_line in notebook_lines.filtered(
+                    lambda l: l.subject_id == subject).mapped(
+                        "child_line_ids").filtered("code"):
+                sheet.write(6, col, notebook_line.code,
+                            self.format_header_center)
+                col += 1
         sheet.write(6, col, _("Average Score"), self.format_header_center)
 
     def fill_student_row_data(
             self, sheet, row, student, eval_type, subject_lists,
-            academic_year, partial_mark=False, retaken=False):
+            notebook_lines, academic_year, partial_mark=False, retaken=False):
         not_passed = [
             self.env.ref(
                 "education_evaluation_notebook.numeric_mark_insufficient"),
@@ -123,13 +129,14 @@ class EducationGroupXlsx(models.AbstractModel):
             else:
                 domain = expression.AND([
                     [("recovered_record_id", "=", False)], domain])
-            records = record_obj.search(domain)
+            records = record_obj.sudo().search(domain)
             sheet.set_column(column_num, column_num + 2, 7)
             if not records:
                 data = "-" if retaken else "XX"
                 sheet.write(row_num, column_num, data, self.format_border)
                 sheet.write(row_num, column_num + 1, data, self.format_border)
                 sheet.write(row_num, column_num + 2, data, self.format_border)
+                column_num += 3
             else:
                 record = records[:1]
                 if partial_mark:
@@ -143,40 +150,62 @@ class EducationGroupXlsx(models.AbstractModel):
                     num_mark_name = record.n_mark_reduced_name
                 mark_list.append(num_mark)
                 behaviour = record.behaviour_mark_id.display_name or _("UN")
+                format_amount = self.format_amount
+                format_mark = self.format_border
+                format_behaviour = self.format_border
+                if record.state == "assessed":
+                    format_amount = self.format_amount_bold
+                    format_mark = self.format_bold
+                    if mark_name in not_passed:
+                        not_passed_count += 1
+                        format_amount = self.format_amount_bold_not_passed
+                        format_mark = self.format_bold_not_passed
+                    if (record.behaviour_mark_id.code not in
+                            ('A', 'B', 'C')):
+                        format_behaviour = self.format_bold_not_passed
+                elif mark_name in not_passed:
+                    not_passed_count += 1
+                    format_amount = self.format_amount_not_passed
+                    format_mark = self.format_border_not_passed
+                if record.behaviour_mark_id.code not in ('A', 'B', 'C'):
+                    format_behaviour = self.format_border_not_passed
+                sheet.write_number(
+                    row_num, column_num, float(num_mark), format_amount)
                 if record.exceptionality:
                     field = record._fields['exceptionality']
                     text = field.convert_to_export(
                         record.exceptionality, record)
-                    sheet.merge_range(
-                        row_num, column_num, row_num, column_num + 2,
-                        text, self.format_border)
+                    sheet.write(
+                        row_num, column_num + 1, text, self.format_border)
                 else:
-                    format_amount = self.format_amount
-                    format_mark = self.format_border
-                    format_behaviour = self.format_border
-                    if record.state == "assessed":
-                        format_amount = self.format_amount_bold
-                        format_mark = self.format_bold
-                        if mark_name in not_passed:
-                            not_passed_count += 1
-                            format_amount = self.format_amount_bold_not_passed
-                            format_mark = self.format_bold_not_passed
-                        if (record.behaviour_mark_id.code not in
-                                ('A', 'B', 'C')):
-                            format_behaviour = self.format_bold_not_passed
-                    elif mark_name in not_passed:
-                        not_passed_count += 1
-                        format_amount = self.format_amount_not_passed
-                        format_mark = self.format_border_not_passed
-                    if record.behaviour_mark_id.code not in ('A', 'B', 'C'):
-                        format_behaviour = self.format_border_not_passed
-                    sheet.write_number(
-                        row_num, column_num, float(num_mark), format_amount)
                     sheet.write(
                         row_num, column_num + 1, num_mark_name, format_mark)
+                sheet.write(
+                    row_num, column_num + 2, behaviour, format_behaviour)
+                column_num += 3
+                for notebook_line in notebook_lines.filtered(
+                        lambda l: l.subject_id == subject).mapped(
+                            "child_line_ids").filtered("code"):
+                    child_mark = record.child_record_ids.filtered(
+                        lambda r: r.n_line_id == notebook_line)
+                    if partial_mark:
+                        child_num_mark = child_mark.calculated_partial_mark
+                        child_mark_name = self.env[
+                            "education.mark.numeric"]._get_mark(child_num_mark)
+                    else:
+                        child_num_mark = child_mark.numeric_mark
+                        child_mark_name = child_mark.mark_id
+                    format_amount = self.format_amount
+                    if child_mark.state == "assessed":
+                        format_amount = self.format_amount_bold
+                        if child_mark_name in not_passed:
+                            format_amount = self.format_amount_bold_not_passed
+                    elif child_mark_name in not_passed:
+                        format_amount = self.format_amount_not_passed
                     sheet.write(
-                        row_num, column_num + 2, behaviour, format_behaviour)
-            column_num += 3
+                        row_num, column_num, float(child_num_mark),
+                        format_amount)
+                    column_num += 1
         sheet.write(
             row_num, 4, not_passed_count, self.format_integer_statistics)
         avg_mark = mean(mark_list) if mark_list else 0
@@ -188,7 +217,7 @@ class EducationGroupXlsx(models.AbstractModel):
             if avg_mark_name in not_passed else
             self.format_amount_statistics)
 
-    def add_statistics(self, sheet, row_num, subject_lists):
+    def add_statistics(self, sheet, row_num, subject_lists, notebook_lines):
         column_num = 5
         num_marks = self.env["education.mark.numeric"].search([])
         student_list_start_row = 7
@@ -260,6 +289,10 @@ class EducationGroupXlsx(models.AbstractModel):
                 )
                 mark_row_num += 1
             column_num += 3
+            child_lines = notebook_lines.filtered(
+                    lambda l: l.subject_id == subject).mapped(
+                        "child_line_ids").filtered("code")
+            column_num += len(child_lines)
 
     def generate_xlsx_report(self, workbook, data, objects):
         self._define_formats(workbook)
@@ -288,15 +321,18 @@ class EducationGroupXlsx(models.AbstractModel):
                 ("n_line_id.schedule_id.academic_year_id", "=",
                  group.academic_year_id.id),
             ])
+            notebook_lines = group_records.mapped("n_line_id")
             subject_lists = group_records.mapped("subject_id")
-            self.add_subject_list(group_sheet, group, subject_lists)
+            self.add_subject_list(
+                group_sheet, group, subject_lists, notebook_lines)
             for student in group.student_ids:
                 self.fill_student_row_data(
                     group_sheet, row, student, eval_type, subject_lists,
-                    group.academic_year_id, partial_mark=partial_mark,
-                    retaken=retaken)
+                    notebook_lines, group.academic_year_id,
+                    partial_mark=partial_mark, retaken=retaken)
                 row += 1
-            self.add_statistics(group_sheet, row - 1, subject_lists)
+            self.add_statistics(
+                group_sheet, row - 1, subject_lists, notebook_lines)
 
     def _define_formats(self, workbook):
         """ Add cell formats to current workbook.

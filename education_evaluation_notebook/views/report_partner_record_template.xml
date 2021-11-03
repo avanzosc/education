@@ -2,7 +2,7 @@
 <odoo>
     <template t-name="report_partner_record_document">
         <t t-call="web.external_layout">
-            <t t-set="o" t-value="o.with_context(lang=lang)"/>
+            <t t-set="o" t-value="o.sudo().with_context(lang=lang)"/>
             <t t-set="current_year" t-value="request.env['education.academic_year'].search([('current','=',True)], limit=1)" />
             <t t-set="academic_year" t-value="request.env['education.academic_year'].browse(academic_year_id) or current_year" />
             <t t-set="eval_type" t-value="eval_type or 'final'" />
