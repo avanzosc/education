@@ -88,7 +88,12 @@
                      <div class="o_portal_my_home">
                         <div class="oe_structure" id="oe_structure_portal_my_home_1"
                            data-oe-model="ir.ui.view" data-oe-id="599"
-                           data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]"></div>
+                           data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]">
+                           <t t-set="backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (schedule._name, schedule.id, schedule.env.ref('education.action_current_education_schedule').id)"/>
+                           <div t-ignore="true" class="text-center mb-2">
+                              This is a preview of the schedule records. <a t-att-href="backend_url"><i class="fa fa-arrow-right"/> Back to backend view</a>
+                           </div>
+                        </div>
                         <div class="o_portal_docs list-group">
                            <t t-if="record_lines">
                               <form>
