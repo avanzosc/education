@@ -10,10 +10,10 @@
                 <field name="e_notebook_line_id" readonly="1"/>
                 <field name="education_center_id" readonly="1" />
                 <field name="teacher_id" readonly="1"/>
+                <field name="event_teacher_id" readonly="True" />
                 <field name="student_id" readonly="1"/>
                 <field name="observations" />
                 <field name="state" readonly="1"/>
-                <field name="event_teacher_id" invisible="True" readonly="True" />
             </tree>
         </field>
     </record>
