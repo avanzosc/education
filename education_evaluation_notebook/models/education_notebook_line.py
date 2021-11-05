@@ -91,10 +91,9 @@ class EducationNotebookLine(models.Model):
         compute="_compute_record_count", string="# Academic Record",
         store=True)
     show_record_ids = fields.Many2many(
-        comodel_name="education.record", compute="_compute_show_record_ids",
-        string="Academic Records",
-        # relation="education_notebook_line_show_record",
-        # column1="line_id", column2="record_id",
+        comodel_name="education.record",
+        compute="_compute_show_record_ids",
+        string="Academic Records (filtered)",
         store=True)
     notes = fields.Html(string="Notes")
 

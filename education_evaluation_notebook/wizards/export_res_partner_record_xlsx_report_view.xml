@@ -24,7 +24,7 @@
     </record>
 
     <record id="action_export_partner_education_records_xlsx_report" model="ir.actions.act_window">
-        <field name="name">Export Education Records</field>
+        <field name="name">Student Records XLSX report</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">report.education.partner_education_record_xlsx.export</field>
         <field name="view_mode">form</field>

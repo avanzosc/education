@@ -215,3 +215,15 @@ class StudentTutorXlsxReport(models.AbstractModel):
         })
         return super().generate_xlsx_report(
             workbook, data, objects.mapped("student_id"))
+
+
+class StudentCalendarXlsxReport(models.AbstractModel):
+    _name = "report.education.partner_calendar_record_xlsx"
+    _inherit = "report.education.partner_record_xlsx"
+
+    def generate_xlsx_report(self, workbook, data, objects):
+        data.update({
+            "academic_year_id": objects.mapped("academic_year_id")[:1].id,
+        })
+        return super().generate_xlsx_report(
+            workbook, data, objects.mapped("student_id"))

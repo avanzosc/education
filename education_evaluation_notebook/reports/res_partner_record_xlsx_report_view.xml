@@ -17,4 +17,12 @@
             file="education.partner_record"
     />
 
+    <report id="education_calendar_event_record_xlsx"
+            string="Student Records XLSX report"
+            model="calendar.event"
+            report_type="xlsx"
+            name="education.partner_calendar_record_xlsx"
+            file="education.partner_record"
+
+    />
 </odoo>
