@@ -14,6 +14,7 @@ class AcademicRecordReport(models.AbstractModel):
     _inherit = "report.education_schedule.academic_record"
 
     def generate_xlsx_report(self, workbook, data, objects):
+        self._define_formats(workbook)
         for schedule in objects:
             group_sheet = self.create_schedule_sheet(workbook, schedule)
             row = 8
