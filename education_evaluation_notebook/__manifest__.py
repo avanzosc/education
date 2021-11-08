@@ -7,6 +7,7 @@
     "category": "Education",
     "depends": [
         "education",
+        "calendar_school",
         "contacts_school",
         "contacts_school_education",
         "mail",
@@ -15,7 +16,7 @@
         "hr_education",
         "report_xlsx",
     ],
-    "author":  "AvanzoSC",
+    "author":  "AvanzOSC",
     "license": "AGPL-3",
     "website": "http://www.avanzosc.es",
     "data": [

@@ -11,13 +11,15 @@
             <t t-set="eval_type_text" t-value="field.convert_to_export(eval_type, evaluation_obj)" />
             <div class="page">
                 <div class="oe_structure"/>
-                <t t-set="course" t-value="o.student_group_ids.filtered(lambda g: g.academic_year_id == academic_year and g.group_type_id.type == 'official').mapped('course_id')" />
+                <t t-set="groups" t-value="o.student_group_ids.filtered(lambda g: g.academic_year_id == academic_year)" />
+                <t t-set="official_group" t-value="groups.filtered(lambda g: g.group_type_id.type == 'official')" />
+                <t t-set="student_course" t-value="official_group.mapped('course_id')" />
                 <t t-set="tutor" t-value="o.year_tutor_ids.filtered(lambda t: t.school_year_id == academic_year).mapped('teacher_id')"/>
                 <h2 class="text-center font-weight-bold mt-n1">Report Card</h2>
                 <div class="row mt32 mb32">
                     <div class="col-12">
                         <b>Student:</b> <span t-field="o.display_name"/><br/>
-                        <b>Education Course:</b> <span t-field="course and course[:1].display_name"/><br/>
+                        <b>Education Course:</b> <span t-field="student_course and student_course[:1].display_name"/><br/>
                         <b>Academic Year:</b> <span t-esc="academic_year and academic_year.display_name" /><br/>
                         <b>Period:</b> <span t-esc="eval_type_text" /><br/>
                         <b>Tutor:</b> <span t-esc="tutor and tutor[:1].display_name" /><br/>
@@ -25,14 +27,14 @@
                     </div>
                 </div>
                 <t t-set="records" t-value="o.get_academic_records_curricular(academic_year, eval_type=eval_type)" />
-                <t t-set="courses" t-value="records.mapped('n_line_id.schedule_id.subject_course_id')" />
+                <t t-set="courses" t-value="records.mapped('n_line_id.schedule_id.group_ids.course_id').filtered(lambda c: c in groups.mapped('course_id'))" />
                 <t t-set="retaken" t-value="any(records.mapped('retake_record_ids')) or any(records.mapped('child_record_ids').filtered('n_line_id.code').mapped('retake_record_ids'))" />
                 <t t-if="records">
                     <t t-foreach="courses" t-as="course">
                     <table class="table table-sm o_main_table borderless smallfont">
                         <thead>
                             <tr class="table-active">
-                                <th><t t-esc="course.display_name"/></th>
+                                <th><t t-esc="course.description"/></th>
                                 <t t-if="retaken">
                                     <th width="15%">Ordinary</th>
                                     <th width="15%">Extraordinary</th>
@@ -43,11 +45,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-foreach="records.filtered(lambda r: r.n_line_id.schedule_id.subject_course_id == course)" t-as="record">
+                            <t t-foreach="records.filtered(lambda r: course in r.n_line_id.schedule_id.mapped('group_ids.course_id'))" t-as="record">
                                 <t t-set="retake_record" t-value="record.retake_record_ids and record.retake_record_ids[:1]" />
                                 <tr>
                                     <th class="text-left">
-                                        <span t-field="record.subject_id" />
+                                        <span
+                                                t-esc="record.subject_id.get_subject_name(official_group.center_id, official_group.level_id, official_group.course_id, record.schedule_id.language_id)" />
                                     </th>
                                     <t t-if="record.exceptionality">
                                         <th class="text-left">
@@ -241,7 +244,7 @@
                     <h5>Comments</h5>
                     <div class="col-10">
                         <t t-foreach="evaluation_records" t-as="evaluation_record">
-                            <p><i><b><span t-esc="evaluation_record.subject_id.get_subject_name(o.current_center_id, o.current_level_id, o.current_course_id, evaluation_record.schedule_id.language_id)" />:</b></i>
+                            <p><i><b><span t-esc="evaluation_record.subject_id.get_subject_name(official_group.center_id, official_group.level_id, official_group.course_id, evaluation_record.schedule_id.language_id)" />:</b></i>
                             <i t-raw="evaluation_record.comments" /></p>
                         </t>
                     </div>
