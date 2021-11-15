@@ -11,6 +11,7 @@ class AcademicRecordReport(models.AbstractModel):
     _inherit = "report.report_xlsx.abstract"
 
     def __init__(self, pool, cr):
+        self.failed_format = None
         self.evaluated_format = None
         self.title_format = None
         self.header_format = None
@@ -88,16 +89,14 @@ class AcademicRecordReport(models.AbstractModel):
                 for competence_line in record_lines.filtered(
                         lambda r: r.parent_line_id.id == eval_line.id):
                     for exam_line in competence_line.exam_ids:
-                        exam = self._get_kid_record(student.id, records, exam_line.id)
-                        exam_mark = exam.filtered(lambda c: c.exam_id)
-                        exam_mark_mark = exam_mark.calculated_partial_mark if eval_type == 'provisional' else exam_mark.numeric_mark
-                        mark_format = self.evaluated_format if exam_line.state == 'assessed' else self.non_evaluated_format
-                        sheet.write(row, pos, str(round(exam_mark_mark,2)), mark_format)
+                        exam = self._get_kid_exam_record(student.id, records, exam_line.id)
+                        mark_format = self.get_record_format(exam.numeric_mark, exam.state)
+                        sheet.write(row, pos, str(round(exam.numeric_mark,2)), mark_format)
                         pos += 1
                     competence = self._get_kid_record(student.id, records, competence_line.id)
                     competence_mark = competence.filtered(lambda c: not c.exam_id)
                     competence_mark_mark = competence_mark.calculated_partial_mark if eval_type == 'provisional' else competence_mark.numeric_mark
-                    mark_format = self.evaluated_format if competence_mark.state == 'assessed' else self.non_evaluated_format
+                    mark_format = self.get_record_format(competence_mark_mark, competence_mark.state)
                     sheet.write(row, pos, str(round(competence_mark_mark,2)), mark_format)
                     pos += 1
                 eval = self._get_kid_record(student.id, records, eval_line.id)
@@ -126,6 +125,10 @@ class AcademicRecordReport(models.AbstractModel):
         return schedule_records.filtered(
             lambda r: r.student_id.id == kid_id and r.n_line_id.id == n_line_id)
 
+    def _get_kid_exam_record(self, kid_id, schedule_records, exam_id):
+        return schedule_records.filtered(
+            lambda r: r.student_id.id == kid_id and r.exam_id.id == exam_id)
+
     @api.model
     def _get_report_values(self, docids, data=None):
         return {
@@ -134,6 +137,13 @@ class AcademicRecordReport(models.AbstractModel):
             "docs": self.env['education.schedule'].browse(docids),
             #'report_type': data.get('report_type') if data else '',
         }
+
+    def get_record_format(self, mark, evaluated):
+        if evaluated == 'assessed':
+            if mark < 5:
+                return self.failed_format
+            return self.evaluated_format
+        return self.non_evaluated_format
 
     def _define_formats(self, workbook):
         base_format_vals = {
@@ -152,12 +162,12 @@ class AcademicRecordReport(models.AbstractModel):
         self.eval_subheader_format = workbook.add_format(eval_format_vals)
         competence_format_vals = dict(base_format_vals, fg_color="#e6e6e6")
         self.competence_subheader_format = workbook.add_format(competence_format_vals)
-        self.evaluated_format = workbook.add_format({
-            "bold": 1,
+        base_mark_format_vals = {
             "align": "center",
             "valign": "vjustify",
-        })
-        self.non_evaluated_format = workbook.add_format({
-            "align": "center",
-            "valign": "vjustify",
-        })
+        }
+        evaluated_format_vals = dict(base_mark_format_vals, bold='1')
+        failed_format_vals = dict(evaluated_format_vals, color="red")
+        self.failed_format = workbook.add_format(failed_format_vals)
+        self.evaluated_format = workbook.add_format(evaluated_format_vals)
+        self.non_evaluated_format = workbook.add_format(base_mark_format_vals)

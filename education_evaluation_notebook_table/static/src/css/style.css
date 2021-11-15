@@ -1,3 +1,6 @@
+.exceptionality_select {
+    max-width: 90px !important;
+}
 .exceptionality_placeholder{
     font-style: italic !important;
 }
@@ -69,4 +72,5 @@
 .student_schedule_td{
     min-width: 80px;
     text-align: left;
+    white-space: nowrap;
 }
