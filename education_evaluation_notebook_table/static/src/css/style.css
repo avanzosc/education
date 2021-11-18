@@ -34,7 +34,9 @@
    border-collapse: collapse;
 }
 #teacher_schedule_table{
+   height: 800px;
    overflow-x: auto;
+   overflow-y: auto;    /* Trigger vertical scroll    */
    display:block;
    text-align: center;
    td{
@@ -58,7 +60,7 @@
    }
 }
 .eval_schedule_td{
-    background-color: #b3ffb3;
+    background-color: #58BE98;
 }
 .global_schedule_td{
     background-color: #b3e6ff;
@@ -73,4 +75,14 @@
     min-width: 80px;
     text-align: left;
     white-space: nowrap;
+    position: sticky;
+    left: 0;
+    background-color: white;
+}
+.teacher_table_head_tr{
+    position: sticky;
+    top: 0 !important;
+}
+.assessed {
+    font-weight: bold;
 }
