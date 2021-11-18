@@ -11,14 +11,14 @@ class AcademicRecordReport(models.AbstractModel):
     _inherit = "report.report_xlsx.abstract"
 
     def __init__(self, pool, cr):
-        self.failed_format = None
-        self.evaluated_format = None
+        self.workbook = None
         self.title_format = None
         self.header_format = None
         self.subheader_format = None
         self.global_subheader_format = None
         self.eval_subheader_format = None
         self.competence_subheader_format = None
+        self.base_mark_format_vals = None
 
     def create_schedule_sheet(self, workbook, book):
 
@@ -47,35 +47,39 @@ class AcademicRecordReport(models.AbstractModel):
 
         sheet.write("A7", _("Student"), self.subheader_format)
 
-        for line in record_lines.filtered(lambda r: r.competence_id.global_check):
+        for line in record_lines.filtered(
+                lambda r: r.competence_id.global_check):
             pos = 1
-            for eval_line in record_lines.filtered(lambda r: r.parent_line_id.id == line.id):
-                for competence_line in record_lines.filtered(lambda r: r.parent_line_id.id == eval_line.id):
+            for eval_line in record_lines.filtered(
+                    lambda r: r.parent_line_id.id == line.id):
+                for competence_line in record_lines.filtered(
+                        lambda r: r.parent_line_id.id == eval_line.id):
                     for exam_line in competence_line.exam_ids:
                         sheet.write(6, pos,
                                     exam_line.display_name,
                                     self.subheader_format)
+                        sheet.set_column(6, pos, 10)
                         pos += 1
                     sheet.write(6, pos,
                                 competence_line.display_name,
                                 self.competence_subheader_format)
+                    sheet.set_column(6, pos, 20)
                     pos += 1
                 sheet.write(6, pos,
                             eval_line.display_name,
                             self.eval_subheader_format)
+                sheet.set_column(6, pos, 20)
                 pos += 1
 
             sheet.write(6, pos, line.display_name,
                         self.global_subheader_format)
             pos += 1
 
-        sheet.set_column("A:A", 8)
-        sheet.set_column("B:C", 40)
-        sheet.set_column("D:D", 17)
-        sheet.set_column("E:E", 17)
+        sheet.set_column("A:A", 35)
         return sheet
 
-    def fill_student_row_data(self, sheet, row, student, schedule, eval_type=None):
+    def fill_student_row_data(self, sheet, row,
+                              student, schedule, eval_type=None):
         sheet.write(row, 0, student.name)
 
         record_lines = schedule.record_ids.mapped('n_line_id')
@@ -89,25 +93,40 @@ class AcademicRecordReport(models.AbstractModel):
                 for competence_line in record_lines.filtered(
                         lambda r: r.parent_line_id.id == eval_line.id):
                     for exam_line in competence_line.exam_ids:
-                        exam = self._get_kid_exam_record(student.id, records, exam_line.id)
-                        mark_format = self.get_record_format(exam.numeric_mark, exam.state)
-                        sheet.write(row, pos, str(round(exam.numeric_mark,2)), mark_format)
+                        exam = self._get_kid_exam_record(
+                            student.id, records, exam_line.id)
+                        mark_format = self.get_record_format(
+                            exam.numeric_mark, exam.state)
+                        sheet.write(
+                            row, pos,
+                            str(round(exam.numeric_mark,2)), mark_format)
                         pos += 1
-                    competence = self._get_kid_record(student.id, records, competence_line.id)
-                    competence_mark = competence.filtered(lambda c: not c.exam_id)
+                    competence = self._get_kid_record(
+                        student.id, records, competence_line.id)
+                    competence_mark = competence.filtered(
+                        lambda c: not c.exam_id)
                     competence_mark_mark = competence_mark.calculated_partial_mark if eval_type == 'provisional' else competence_mark.numeric_mark
-                    mark_format = self.get_record_format(competence_mark_mark, competence_mark.state)
-                    sheet.write(row, pos, str(round(competence_mark_mark,2)), mark_format)
+                    mark_format = self.get_record_format(competence_mark_mark,
+                                                         competence_mark.state,
+                                                         'competence')
+                    sheet.write(
+                        row, pos,
+                        str(round(competence_mark_mark,2)), mark_format)
                     pos += 1
                 eval = self._get_kid_record(student.id, records, eval_line.id)
                 eval_mark_mark = eval.calculated_partial_mark if eval_type == 'provisional' else eval.numeric_mark
-                mark_format = self.evaluated_format if eval.state == 'assessed' else self.non_evaluated_format
+                mark_format = self.get_record_format(eval_mark_mark,
+                                                     eval.state,
+                                                     'evaluation')
+
                 sheet.write(row, pos, str(round(eval_mark_mark,2)), mark_format)
                 pos += 1
 
             global_mark = self._get_kid_record(student.id, records, line.id)
             global_mark_mark = global_mark.calculated_partial_mark if eval_type == 'provisional' else global_mark.numeric_mark
-            mark_format = self.evaluated_format if global_mark.state == 'assessed' else self.non_evaluated_format
+            mark_format = self.get_record_format(global_mark_mark,
+                                                 global_mark.state,
+                                                 'global')
             sheet.write(row, pos, str(round(global_mark_mark,2)), mark_format)
             pos += 1
 
@@ -138,14 +157,24 @@ class AcademicRecordReport(models.AbstractModel):
             #'report_type': data.get('report_type') if data else '',
         }
 
-    def get_record_format(self, mark, evaluated):
+    def get_record_format(self, mark, evaluated, eval_type=None,
+                          base_format_vals=None):
+        if not base_format_vals:
+            base_format_vals = self.base_mark_format_vals
         if evaluated == 'assessed':
-            if mark < 5:
-                return self.failed_format
-            return self.evaluated_format
-        return self.non_evaluated_format
+            base_format_vals = dict(base_format_vals, bold='1')
+        if mark < 5:
+            base_format_vals = dict(base_format_vals, color="red")
+        if eval_type == 'competence':
+            base_format_vals = dict(base_format_vals, fg_color="#f2f2f2")
+        if eval_type == 'evaluation':
+            base_format_vals = dict(base_format_vals, fg_color="#ffffcc")
+        if eval_type == 'global':
+            base_format_vals = dict(base_format_vals, fg_color="#ccffdd")
+        return self.workbook.add_format(base_format_vals)
 
     def _define_formats(self, workbook):
+        self.workbook = workbook
         base_format_vals = {
             "bold": 1,
             "border": 1,
@@ -161,13 +190,10 @@ class AcademicRecordReport(models.AbstractModel):
         eval_format_vals = dict(base_format_vals, fg_color="#ffff80")
         self.eval_subheader_format = workbook.add_format(eval_format_vals)
         competence_format_vals = dict(base_format_vals, fg_color="#e6e6e6")
-        self.competence_subheader_format = workbook.add_format(competence_format_vals)
-        base_mark_format_vals = {
+        self.competence_subheader_format = workbook.add_format(
+            competence_format_vals)
+        self.base_mark_format_vals = {
+            "border": 1,
             "align": "center",
             "valign": "vjustify",
         }
-        evaluated_format_vals = dict(base_mark_format_vals, bold='1')
-        failed_format_vals = dict(evaluated_format_vals, color="red")
-        self.failed_format = workbook.add_format(failed_format_vals)
-        self.evaluated_format = workbook.add_format(evaluated_format_vals)
-        self.non_evaluated_format = workbook.add_format(base_mark_format_vals)
