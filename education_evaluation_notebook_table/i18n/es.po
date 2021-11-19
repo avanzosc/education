@@ -145,7 +145,7 @@ msgstr "Alumno"
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "To change the status of an exam or competence, click on the headers of the table."
-msgstr "Para cambiar un examen o competencia de estado (Evaluado o Inicial) pincha en el nombre del examen o competencia."
+msgstr "Para cambiar un examen o competencia de estado (Evaluado o Inicial), GUARDA primero los cambios realizados y PINCHA en el nombre del examen o competencia."
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_evaluation_notebook_table_academic_record

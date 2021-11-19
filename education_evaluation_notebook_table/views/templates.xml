@@ -136,7 +136,10 @@
                                                       <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-foreach="competence.exam_ids" t-as="exam">
                                                          <t t-set="exam_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (exam._name, exam.id, exam.env.ref('education_evaluation_notebook.education_exam_action').id)"/>
                                                          <div t-ignore="true" class="text-center mb-2">
-                                                            <a t-att-href="exam_backend_url"><t t-esc="exam.name"/> (<t t-esc="exam.eval_percent"/>%)</a>
+                                                            <a t-att-href="exam_backend_url"><t t-esc="exam.name"/>
+                                                               <t t-if="exam.recovered_exam_id">(REC)</t>
+                                                               <t t-else="">(<t t-esc="exam.eval_percent"/>%)</t>
+                                                            </a>
                                                          </div>
                                                       </td>
                                                       <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
@@ -233,6 +236,7 @@
          <span t-att-class="'mark_retake' if sr.is_retake_record else None">
             <span t-att-class="'mark_fail' if sr.numeric_mark &lt; 5 else None">
                <t t-if="sr.state == 'assessed'">
+                  <br/>
                   <span class="assessed mark_input"><t t-esc="round(sr.numeric_mark, 2)"/></span><br/>
                   <span class="assessed" t-field="sr.exceptionality"/>
                </t>
@@ -247,7 +251,6 @@
                   </t>
                </select>
                </t>
-               <t t-if="sr.is_retake_record"><b>(REC)</b></t>
             </span>
          </span>
          <hr t-if="len(selected_record)>1"/>
