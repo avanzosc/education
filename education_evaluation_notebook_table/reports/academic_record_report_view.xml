@@ -4,16 +4,8 @@
             string="Schedule Academic Records Report"
             model="education.schedule"
             report_type="xlsx"
-            name="education_schedule.academic_record"
+            name="education_schedule.academic_record_xlsx"
             file="education_schedule.academic_record"
-            print_report_name="object.display_name"
-    />
-    <report id="schedule_academic_record_provisional_report_xlsx"
-            string="Schedule Academic Records Provisional Report"
-            model="education.schedule"
-            report_type="xlsx"
-            name="education_schedule.academic_record_provisional"
-            file="education_schedule.academic_record_provisional"
-            print_report_name="(object.display_name + ' (Provisional)')"
+            menu="False"
     />
 </odoo>

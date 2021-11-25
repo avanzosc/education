@@ -15,6 +15,7 @@
     ],
     "data": [
         "reports/academic_record_report_view.xml",
+        "wizards/print_education_schedule_records_view.xml",
         "views/templates.xml",
         "views/views.xml",
     ],
