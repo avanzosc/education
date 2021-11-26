@@ -51,11 +51,16 @@ class AcademicRecordReport(models.AbstractModel):
         sheet = workbook.add_worksheet(book.display_name)
 
         record_lines = book.record_ids.mapped('n_line_id')
-        if record_lines and self.eval_type != 'final':
+        if record_lines and self.eval_type not in ('final', 'reduced_final'):
             record_lines = record_lines.filtered(
                 lambda r: r.eval_type == self.eval_type)
-        max_range = len(record_lines) + len(self.schedule.exam_ids.filtered(
-            lambda e: e.eval_type == self.eval_type))
+
+        if self.eval_type == 'reduced_final':
+            max_range = len(record_lines.filtered(
+                lambda r: r.competence_id.global_check or r.competence_id.evaluation_check))
+        else:
+            max_range = len(record_lines) + len(self.schedule.exam_ids.filtered(
+                lambda e: e.eval_type == self.eval_type))
 
         sheet.merge_range(
             0, 0, 0, max_range, _("SCHEDULE ACADEMIC RECORDS"),
@@ -78,7 +83,7 @@ class AcademicRecordReport(models.AbstractModel):
 
         sheet.write("A7", _("Student"), self.subheader_format)
 
-        if self.eval_type == 'final':
+        if self.eval_type in ('final', 'reduced_final'):
             parent_lines = record_lines.filtered(
                 lambda r: r.competence_id.global_check)
         else:
@@ -89,10 +94,11 @@ class AcademicRecordReport(models.AbstractModel):
             pos = 1
             for child_line in record_lines.filtered(
                     lambda r: r.parent_line_id.id == line.id):
-                for child_child_line in record_lines.filtered(
-                        lambda r: r.parent_line_id.id == child_line.id):
-                    pos = self.paint_record_line(
-                        sheet, 6, pos, child_child_line)
+                if self.eval_type != 'reduced_final':
+                    for child_child_line in record_lines.filtered(
+                            lambda r: r.parent_line_id.id == child_line.id):
+                        pos = self.paint_record_line(
+                            sheet, 6, pos, child_child_line)
 
                 pos = self.paint_record_line(sheet, 6, pos, child_line)
 
@@ -151,11 +157,11 @@ class AcademicRecordReport(models.AbstractModel):
 
         records = schedule.record_ids
         record_lines = records.mapped('n_line_id')
-        if record_lines and self.eval_type != 'final':
+        if record_lines and self.eval_type not in ('final', 'reduced_final'):
             record_lines = record_lines.filtered(
                 lambda r: r.eval_type == self.eval_type)
 
-        if self.eval_type == 'final':
+        if self.eval_type in ('final', 'reduced_final'):
             parent_lines = record_lines.filtered(
                 lambda r: r.competence_id.global_check)
         else:
@@ -166,10 +172,11 @@ class AcademicRecordReport(models.AbstractModel):
             pos = 1
             for child_line in record_lines.filtered(
                     lambda r: r.parent_line_id.id == line.id):
-                for child_child_line in record_lines.filtered(
-                        lambda r: r.parent_line_id.id == child_line.id):
-                    pos = self.paint_record_mark(
-                        sheet, row, pos, child_child_line, student)
+                if self.eval_type != 'reduced_final':
+                    for child_child_line in record_lines.filtered(
+                            lambda r: r.parent_line_id.id == child_line.id):
+                        pos = self.paint_record_mark(
+                            sheet, row, pos, child_child_line, student)
 
                 pos = self.paint_record_mark(sheet, row, pos, child_line,
                                              student)

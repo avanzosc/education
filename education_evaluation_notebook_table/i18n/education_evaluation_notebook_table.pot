@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-18 10:34+0000\n"
-"PO-Revision-Date: 2021-11-18 10:34+0000\n"
+"POT-Creation-Date: 2021-11-26 09:33+0000\n"
+"PO-Revision-Date: 2021-11-26 09:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: education_evaluation_notebook_table
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.record_cell
-msgid "<b>(REC)</b>"
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
+msgid "(REC)"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
@@ -38,7 +38,7 @@ msgid "<span class=\"o_stat_text\">Records on Website</span>"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:37
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:72
 #, python-format
 msgid "Academic Year:"
 msgstr ""
@@ -54,19 +54,34 @@ msgid "Class Schedule"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:41
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:76
 #, python-format
 msgid "Classroom"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record__display_name
-#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record_provisional__display_name
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.view_edu_schedule_print_form
+msgid "Close"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record_xlsx__display_name
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:33
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:68
 #, python-format
 msgid "Education Center:"
 msgstr ""
@@ -82,8 +97,28 @@ msgid "Education Notebook Line"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record__id
-#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record_provisional__id
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__eval_type
+msgid "Evaluation Season"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.view_edu_schedule_print_form
+msgid "Export Education Records"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: selection:report.education.schedule.record.export,eval_type:0
+msgid "Final"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: selection:report.education.schedule.record.export,eval_type:0
+msgid "First"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record_xlsx__id
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__id
 msgid "ID"
 msgstr ""
 
@@ -93,9 +128,24 @@ msgid "Insert mark"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record____last_update
-#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record_provisional____last_update
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record_xlsx____last_update
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_record_export__mark_type
+msgid "Mark"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
@@ -104,7 +154,28 @@ msgid "No records found"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:31
+#: selection:report.education.schedule.record.export,mark_type:0
+msgid "Official"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.actions.act_window,name:education_evaluation_notebook_table.action_edu_schedule_print_form_values
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.view_edu_schedule_print_form
+msgid "Print Academic Records Report"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: selection:report.education.schedule.record.export,mark_type:0
+msgid "Provisional"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: selection:report.education.schedule.record.export,eval_type:0
+msgid "Reduced Final"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:66
 #, python-format
 msgid "SCHEDULE ACADEMIC RECORDS"
 msgstr ""
@@ -112,16 +183,6 @@ msgstr ""
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "Save changes <i class=\"fa fa-save\"/>"
-msgstr ""
-
-#. module: education_evaluation_notebook_table
-#: model:ir.model,name:education_evaluation_notebook_table.model_report_academic_record
-msgid "Schedule Academic Record Report"
-msgstr ""
-
-#. module: education_evaluation_notebook_table
-#: model:ir.actions.report,name:education_evaluation_notebook_table.schedule_academic_record_provisional_report_xlsx
-msgid "Schedule Academic Records Provisional Report"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
@@ -137,9 +198,19 @@ msgid "Schedules"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:48
+#: selection:report.education.schedule.record.export,eval_type:0
+msgid "Second"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:84
 #, python-format
 msgid "Student"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: selection:report.education.schedule.record.export,eval_type:0
+msgid "Third"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
@@ -148,17 +219,23 @@ msgid "To change the status of an exam or competence, click on the headers of th
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: model:ir.model,name:education_evaluation_notebook_table.model_report_education_evaluation_notebook_table_academic_record
-msgid "report.education_evaluation_notebook_table.academic_record"
+#: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_record_export
+msgid "Wizard to print Edu. Schedule Records Report"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_academic_record
-msgid "report.education_schedule.academic_record"
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:191
+#, python-format
+msgid "You can only get xlsx report of education schedules"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_academic_record_provisional
 msgid "report.education_schedule.academic_record_provisional"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_academic_record_xlsx
+msgid "report.education_schedule.academic_record_xlsx"
 msgstr ""
 
