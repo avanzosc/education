@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-08 10:52+0000\n"
-"PO-Revision-Date: 2021-11-08 10:52+0000\n"
+"POT-Creation-Date: 2021-11-26 14:06+0000\n"
+"PO-Revision-Date: 2021-11-26 14:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,6 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:37
 #: code:addons/education_evaluation_notebook/models/education_notebook_line.py:105
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:106
 #: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
 #, python-format
 msgid "Code must have a length of 3 characters "
@@ -2310,6 +2309,11 @@ msgstr ""
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__website_message_ids
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_print_partner_record_report__without_decimals
+msgid "Without Decimals"
 msgstr ""
 
 #. module: education_evaluation_notebook
