@@ -64,9 +64,6 @@
                         </group>
                     </group>
                     <notebook>
-                        <page name="description" string="Description">
-                            <field name="description" />
-                        </page>
                         <page name="records" string="Academic Records">
                             <button name="button_set_draft"
                                     string="Set assessed records as initial"
@@ -106,6 +103,9 @@
                                     <field name="recovered_record_id" invisible="True"/>
                                 </tree>
                             </field>
+                        </page>
+                        <page name="description" string="Description">
+                            <field name="description" />
                         </page>
                     </notebook>
                 </sheet>
