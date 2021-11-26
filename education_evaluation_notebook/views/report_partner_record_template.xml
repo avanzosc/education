@@ -11,7 +11,7 @@
             <t t-set="eval_type_text" t-value="field.convert_to_export(eval_type, evaluation_obj)" />
             <div class="page">
                 <div class="oe_structure"/>
-                <t t-set="groups" t-value="o.student_group_ids.filtered(lambda g: g.academic_year_id == academic_year)" />
+                <t t-set="groups" t-value="o.student_group_ids.filtered(lambda g: g.academic_year_id == academic_year and g.group_type_id.type in ['official','class'])" />
                 <t t-set="official_group" t-value="groups.filtered(lambda g: g.group_type_id.type == 'official')" />
                 <t t-set="student_course" t-value="official_group.mapped('course_id')" />
                 <t t-set="tutor" t-value="o.year_tutor_ids.filtered(lambda t: t.school_year_id == academic_year).mapped('teacher_id')"/>
