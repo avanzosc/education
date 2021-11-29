@@ -14,7 +14,6 @@
     }
 }
 .partial_mark {
-    color: grey;
     font-style: italic;
 }
 .mark_fail {
@@ -82,6 +81,9 @@
 .teacher_table_head_tr{
     position: sticky;
     top: 0 !important;
+    a {
+        color: black !important;
+    }
 }
 .assessed {
     font-weight: bold;
