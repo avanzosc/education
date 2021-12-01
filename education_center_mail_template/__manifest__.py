@@ -7,7 +7,7 @@
         "contacts_school",
         "website"
     ],
-    "author":  "AvanzoSC",
+    "author":  "AvanzOSC",
     "license": "AGPL-3",
     "website": "http://www.avanzosc.es",
     "data": [

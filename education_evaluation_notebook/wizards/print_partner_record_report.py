@@ -17,6 +17,8 @@ class ExportEducationRecordReport(models.TransientModel):
     eval_type = fields.Selection(
         selection=EVAL_TYPE, string="Evaluation Season", default="final",
         required=True)
+    without_decimals = fields.Boolean(
+        string="Without Decimals", default=False)
 
     @api.multi
     def print_report(self):
