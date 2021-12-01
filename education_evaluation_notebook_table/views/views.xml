@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="edu_schedule_web_records" model="ir.ui.view">
+        <field name="name">education.schedule.form</field>
+        <field name="model">education.schedule</field>
+        <field name="inherit_id" ref="education.education_schedule_view_form"/>
+        <field name="arch" type="xml">
+            <button name="button_show_notebook_lines" position="before">
+                <button class="oe_stat_button" type="object" name="button_open_website_academic_records" icon="fa-globe" style="background-color:#75d9b4;">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Records on Website</span>
+                    </div>
+                </button>
+            </button>
+        </field>
+    </record>
+    <record id="education_notebook_line_view_form" model="ir.ui.view">
+        <field name="name">education.notebook.line.form</field>
+        <field name="model">education.notebook.line</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_notebook_line_view_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object" name="button_open_website_academic_records" icon="fa-globe" attrs="{'invisible':[('schedule_id','=',0)]}" style="background-color:#75d9b4;">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Records on Website</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+    <record id="education_exam_view_form" model="ir.ui.view">
+        <field name="name">education.exam.form</field>
+        <field name="model">education.exam</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_exam_view_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object" name="button_open_website_academic_records" icon="fa-globe" attrs="{'invisible':[('schedule_id','=',0)]}" style="background-color:#75d9b4;">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Records on Website</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,90 @@
+.exceptionality_select {
+    max-width: 90px !important;
+}
+.exceptionality_placeholder{
+    font-style: italic !important;
+}
+.no_exceptionality{
+    background-color: #f2f2f2 !important;
+}
+.mark_retake {
+    font-weight: bold;
+    input{
+        font-weight: bold;
+    }
+}
+.partial_mark {
+    font-style: italic;
+}
+.mark_fail {
+    color: red;
+    input{
+        color: red !important;
+    }
+}
+#eval_buttons {
+   justify-content: center;
+}
+.btn-highlight {
+   border: 3px solid #3399ff !important;
+}
+#teacher_schedule_table, td, tr{
+   border: 1px solid #666666;
+   border-collapse: collapse;
+}
+#teacher_schedule_table{
+   height: 800px;
+   overflow-x: auto;
+   overflow-y: auto;    /* Trigger vertical scroll    */
+   display:block;
+   text-align: center;
+   td{
+    padding: 5px;
+   }
+   input {
+    background: rgba(255,255,255,0);
+    border-style: none;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+   }
+   input:focus, input:hover{
+    border-style:groove;
+   }
+   .select_disabled {
+    background-color: #cccccc;
+   }
+   select:focus, select:hover{
+    background-color: white;
+   }
+}
+.eval_schedule_td{
+    background-color: #58BE98;
+}
+.global_schedule_td{
+    background-color: #b3e6ff;
+}
+.comp_schedule_td{
+    background-color: #d9d9d9;
+}
+.exam_schedule_td{
+    background-color: #f2f2f2;
+}
+.student_schedule_td{
+    min-width: 80px;
+    text-align: left;
+    white-space: nowrap;
+    position: sticky;
+    left: 0;
+    background-color: white;
+}
+.teacher_table_head_tr{
+    position: sticky;
+    top: 0 !important;
+    a {
+        color: black !important;
+    }
+}
+.assessed {
+    font-weight: bold;
+}

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="assets_frontend" name="Evaluation notebook table assets" inherit_id="website.assets_frontend">
+      <xpath expr="." position="inside">
+         <link type="text/scss" href="/education_evaluation_notebook_table/static/src/css/style.css" rel="stylesheet"/>
+            <script type="text/javascript" src="/education_evaluation_notebook_table/static/src/js/script.js"/>
+      </xpath>
+   </template>
+   <template id="portal_schedules" inherit_id="portal.portal_my_home" name="Portal My Home : schedule entries">
+      <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+         <t t-call="portal.portal_docs_entry">
+            <t t-set="title">Schedules</t>
+            <t t-set="url" t-value="'/schedules'" />
+            <t t-set="count" t-value="schedules_count" />
+         </t>
+      </xpath>
+   </template>
+   <template id="teacher_schedule_table" name="Teacher Schedules">
+      <t t-call="website.layout">
+         <xpath expr="//div[@id='wrap']" position="replace">
+            <div class="oe_structure"
+               id="oe_structure_website_event_index_1" />
+            <div class="container">
+               <!-- Browser -->
+               <div class="row mt8">
+                  <div class="col-md-12">
+                     <ol class="breadcrumb mb0">
+                        <li class="breadcrumb-item">
+                           Schedules
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="row mt32 mb32">
+                  <!-- Central column -->
+                  <div class="col-lg-12" id="middle_column">
+                     <div class="o_portal_my_home">
+                        <div class="oe_structure" id="oe_structure_portal_my_home_1"
+                           data-oe-model="ir.ui.view" data-oe-id="599"
+                           data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]"></div>
+                        <div class="o_portal_docs list-group">
+                           <t t-foreach="schedules" t-as="schedule">
+                              <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between sm-link sm-link_text sm-link7"
+                                 t-attf-href="/schedule/{{schedule.id}}/califications">
+                                 <i class="fa fa-paste"></i>
+                                 <span class="sm-link__label">
+                                    <t t-esc="schedule.subject_id.description"/>
+                                    [
+                                    <t t-esc="schedule.classroom_id.description"/>
+                                    ]
+                                 </span>
+                                 <span class="badge badge-secondary badge-pill">
+                                    <t t-esc="schedule.record_count" />
+                                 </span>
+                              </a>
+                           </t>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </xpath>
+      </t>
+   </template>
+   <template id="schedule_calification_table" name="Teacher Schedule Table">
+      <t t-call="website.layout">
+         <xpath expr="//div[@id='wrap']" position="replace">
+            <div class="oe_structure"
+               id="oe_structure_website_event_index_1" />
+            <div class="container">
+               <!-- Browser -->
+               <div class="row mt8">
+                  <div class="col-md-12">
+                     <ol class="breadcrumb mb0">
+                        <li class="breadcrumb-item">
+                           <a href="/schedules">Schedules</a>
+                           /
+                           <t t-esc="schedule.subject_id.description"/>
+                           [
+                           <t t-esc="schedule.classroom_id.description"/>
+                           ]
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="row mt32 mb32">
+                  <div class="col-lg-12" id="middle_column">
+                     <div class="o_portal_my_home">
+                        <div class="oe_structure" id="oe_structure_portal_my_home_1"
+                           data-oe-model="ir.ui.view" data-oe-id="599"
+                           data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]">
+                        </div>
+                        <div class="o_portal_docs list-group">
+                           <t t-if="record_lines">
+                              <form>
+                                 <div id="eval_buttons" class="btn-group col-lg-12">
+                                    <t t-set="backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (schedule._name, schedule.id, schedule.env.ref('education.action_current_education_schedule').id)"/>
+                                    <a t-att-href="backend_url" class="btn btn-primary mr-2 mb-2"><i class="fa fa-arrow-right"/> Go to backend</a>
+                                    <t t-foreach="evaluations" t-as="evaluation">
+                                       <a t-att-id="evaluation.eval_type" class="eval_button btn btn-primary mr-2 mb-2">
+                                          <span t-field="evaluation.eval_type" />
+                                       </a>
+                                    </t>
+                                    <a id="all" class="eval_button btn btn-primary mb-2">All</a>
+                                    <button style="display:none;" id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-2 mb-2">
+                                       Save changes <i class="fa fa-save"></i>
+                                    </button>
+<!--                                    <a t-att-href="keep(report_type='pdf')" id="action_print" class="eval_button btn btn-primary ml-2 mb-2">Print <i class="fa fa-print"></i></a>-->
+                                 </div>
+                                 <div id="editing_msg" class="col-lg-12" style="display:none;">
+                                    <div class="text-center">
+                                       <i>You are editing this table</i>
+                                    </div>
+                                 </div>
+                                 <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
+                                 <input id="changed_select_ids" name="changed_select_ids" hidden="true"/>
+                              </form>
+                              <div class="col-lg-12">
+                                 <div class="text-center">
+                                    <h5>To change the status of an exam or competence, click on the headers of the table.</h5>
+                                 </div>
+                              </div>
+                              <div>
+                                 <table id="teacher_schedule_table">
+                                    <thead>
+                                       <tr class="teacher_table_head_tr">
+                                          <td class="student_schedule_td"/>
+                                          <t t-if="record_lines" t-foreach="record_lines.sorted('sequence')" t-as="line">
+                                             <t t-if="line.competence_id.global_check">
+                                                <t t-set="evals"
+                                                   t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
+                                                <t t-if="evals" t-foreach="evals.sorted('sequence')" t-as="eval">
+                                                   <t t-set="competences"
+                                                      t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
+                                                   <t t-if="competences" t-foreach="competences.sorted('sequence')" t-as="competence">
+                                                      <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-if="competence.exam_ids" t-foreach="competence.exam_ids.sorted('create_date')" t-as="exam">
+                                                         <t t-set="exam_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (exam._name, exam.id, exam.env.ref('education_evaluation_notebook.education_exam_action').id)"/>
+                                                         <div t-ignore="true" class="text-center mb-2">
+                                                            <a t-att-href="exam_backend_url"><t t-esc="exam.name"/>
+                                                               <t t-if="exam.recovered_exam_id">(REC)</t>
+                                                               <t t-else="">(<t t-esc="exam.eval_percent"/>%)</t>
+                                                            </a>
+                                                         </div>
+                                                      </td>
+                                                      <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
+                                                         <t t-set="competence_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (competence._name, competence.id, competence.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
+                                                         <div class="text-center mb-2">
+                                                            <a t-att-href="competence_backend_url"><t t-esc="competence.description"/> (<t t-esc="competence.eval_percent"/>%)</a>
+                                                         </div>
+                                                      </td>
+                                                   </t>
+                                                   <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
+                                                      <t t-set="eval_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (eval._name, eval.id, eval.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
+                                                      <div class="text-center mb-2">
+                                                         <a t-att-href="eval_backend_url"><t t-esc="eval.competence_id.display_name"/> <span t-field="eval.eval_type" /></a>
+                                                      </div>
+                                                   </td>
+                                                </t>
+                                                <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
+                                                   <t t-set="line_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (line._name, line.id, line.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
+                                                   <div class="text-center mb-2">
+                                                      <a t-att-href="line_backend_url"><t t-esc="line.competence_id.display_name"/><span t-field="line.eval_type" /></a>
+                                                   </div>
+                                                </td>
+                                             </t>
+                                          </t>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <t t-foreach="evaluation_record_students" t-as="student">
+                                          <t t-set="student_record_lines"
+                                             t-value="schedule_evaluation_records.filtered(lambda r: r.student_id.id == student.id)"/>
+                                          <tr>
+                                             <td class="student_schedule_td">
+                                                <span><t t-esc="student.name"/></span>
+                                             </td>
+                                             <t t-foreach="record_lines" t-as="line">
+                                                <t t-if="line.competence_id.global_check">
+                                                   <t t-set="evals"
+                                                      t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
+                                                   <t t-foreach="evals" t-as="eval">
+                                                      <t t-set="competences"
+                                                         t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
+                                                      <t t-foreach="competences" t-as="competence">
+                                                         <td t-foreach="competence.exam_ids" t-as="exam" t-att-class="'td_eval_' + exam.eval_type">
+                                                            <t t-set="exam_record" t-value="student_record_lines.filtered(lambda r: r.exam_id.id == exam.id)"/>
+                                                            <t t-call="education_evaluation_notebook_table.record_cell">
+                                                               <t t-set="selected_record" t-value="exam_record"/>
+                                                            </t>
+                                                         </td>
+                                                         <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
+                                                            <t t-set="comp_record" t-value="student_record_lines.filtered(lambda r: not r.exam_id and r.n_line_id.id == competence.id)"/>
+                                                            <t t-call="education_evaluation_notebook_table.record_cell">
+                                                               <t t-set="selected_record" t-value="comp_record"/>
+                                                            </t>
+                                                         </td>
+                                                      </t>
+                                                      <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
+                                                         <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
+                                                         <t t-call="education_evaluation_notebook_table.record_cell">
+                                                            <t t-set="selected_record" t-value="eval_record"/>
+                                                         </t>
+                                                      </td>
+                                                   </t>
+                                                   <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
+                                                      <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
+                                                      <t t-call="education_evaluation_notebook_table.record_cell">
+                                                         <t t-set="selected_record" t-value="global_record"/>
+                                                      </t>
+                                                   </td>
+                                                </t>
+                                             </t>
+                                          </tr>
+                                       </t>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </t>
+                           <t t-else="">
+                              <h2>
+                                 No records found
+                              </h2>
+                           </t>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </xpath>
+      </t>
+   </template>
+   <template id="record_cell">
+      <t t-foreach="selected_record" t-as="sr">
+         <span t-if="not sr.exam_id" t-att-class="'partial_mark' + (' mark_fail' if sr.calculated_partial_mark &lt; 5 else '')">
+            <t t-esc="sr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
+         <span t-att-class="'mark_retake' if sr.is_retake_record else None">
+            <span t-att-class="'mark_fail' if sr.numeric_mark &lt; 5 else None">
+               <t t-if="sr.state == 'assessed'">
+                  <br/>
+                  <span class="assessed mark_input"><t t-esc="round(sr.numeric_mark, 2)"/></span><br/>
+                  <span class="assessed" t-field="sr.exceptionality"/>
+               </t>
+               <t t-else="">
+                  <input readonly="True" class="mark_input" t-att-id="sr.id" t-att-value="round(sr.numeric_mark, 2)" placeholder="Insert mark"/>
+                  <select t-att-class="'exceptionality_select select_disabled' + (' no_exceptionality' if not sr.exceptionality else '')" name="exceptionality_select" t-att-id="sr.id">
+                  <option value=""></option>
+                  <t t-foreach="exceptionalities" t-as="exceptionality">
+                     <option t-att-value="exceptionality" t-att-selected="exceptionality == sr.exceptionality">
+                        <t t-esc="exceptionalities[exceptionality]"/>
+                     </option>
+                  </t>
+               </select>
+               </t>
+            </span>
+         </span>
+         <hr t-if="len(selected_record)>1"/>
+      </t>
+   </template>
+</odoo>

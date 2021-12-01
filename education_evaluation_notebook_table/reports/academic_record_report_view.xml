@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report id="schedule_academic_record_report_xlsx"
+            string="Schedule Academic Records Report"
+            model="education.schedule"
+            report_type="xlsx"
+            name="education_schedule.academic_record_xlsx"
+            file="education_schedule.academic_record"
+            menu="False"
+    />
+</odoo>
