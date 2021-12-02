@@ -6,7 +6,9 @@
             <t t-set="current_year" t-value="request.env['education.academic_year'].search([('current','=',True)], limit=1)" />
             <t t-set="academic_year" t-value="request.env['education.academic_year'].browse(academic_year_id) or current_year" />
             <t t-set="eval_type" t-value="eval_type or 'final'" />
+            <t t-set="precision" t-value="0 if without_decimals else 2" />
             <t t-set="evaluation_obj" t-value="request.env['education.academic_year.evaluation']" />
+            <t t-set="mark_obj" t-value="request.env['education.mark.numeric']" />
             <t t-set="field" t-value="evaluation_obj._fields['eval_type']" />
             <t t-set="eval_type_text" t-value="field.convert_to_export(eval_type, evaluation_obj)" />
             <div class="page">
@@ -49,28 +51,37 @@
                                 <t t-set="retake_record" t-value="record.retake_record_ids and record.retake_record_ids[:1]" />
                                 <tr>
                                     <th class="text-left">
-                                        <span
-                                                t-esc="record.subject_id.get_subject_name(official_group.center_id, official_group.level_id, official_group.course_id, record.schedule_id.language_id)" />
+                                        <span t-esc="record.subject_id.get_subject_name(official_group.center_id, official_group.level_id, official_group.course_id, record.schedule_id.language_id)" />
                                     </th>
-                                    <t t-if="record.exceptionality">
+                                    <t t-if="record.exceptionality and record.exceptionality == 'reinforcement'">
+                                      <th class="text-left">
+                                            <span t-field="record.numeric_mark" t-options="{'precision': precision}"/> - <span t-esc="mark_obj._get_mark(round(record.numeric_mark, precision)).reduced_name"/> (<span t-field="record.exceptionality"/>)
+                                        </th>
+                                    </t>
+                                    <t t-elif="record.exceptionality">
                                         <th class="text-left">
                                             <span t-field="record.exceptionality" />
                                         </th>
                                     </t>
                                     <t t-else="">
                                         <th class="text-left">
-                                            <span t-field="record.numeric_mark" t-options="{'precision': 2}"/> - <span t-field="record.n_mark_reduced_name" />
+                                            <span t-field="record.numeric_mark" t-options="{'precision': precision}"/> - <span t-field="mark_obj._get_mark(round(record.numeric_mark, precision)).reduced_name" />
                                         </th>
                                     </t>
                                     <t t-if="retake_record">
-                                        <t t-if="retake_record.exceptionality">
+                                        <t t-if="retake_record.exceptionality and retake_record.exceptionality == 'reinforcement'">
+                                            <th class="text-left">
+                                                <span t-field="retake_record.numeric_mark" t-options="{'precision': precision}"/> - <span t-field="mark_obj._get_mark(round(retake_record.numeric_mark, precision)).reduced_name"/> (<span t-field="retake_record.exceptionality"/>)
+                                            </th>
+                                        </t>
+                                        <t t-elif="retake_record.exceptionality">
                                             <th class="text-left">
                                                 <span t-field="retake_record.exceptionality" />
                                             </th>
                                         </t>
                                         <t t-else="">
                                             <th class="text-left">
-                                                <span t-field="retake_record.numeric_mark" t-options="{'precision': 2}"/> - <span t-field="retake_record.n_mark_reduced_name" />
+                                                <span t-field="retake_record.numeric_mark" t-options="{'precision': precision}"/> - <span t-field="mark_obj._get_mark(round(retake_record.numeric_mark, precision)).reduced_name" />
                                             </th>
                                         </t>
                                     </t>
@@ -94,7 +105,12 @@
                                         <td class="text-left pl-5">
                                             <span t-field="child_record.n_line_id.description" />
                                         </td>
-                                        <t t-if="child_record.exceptionality">
+                                        <t t-if="child_record.exceptionality and record.exceptionality == 'reinforcement'">
+                                            <td class="text-left">
+                                                <span t-field="child_record.n_mark_reduced_name"/> (<span t-field="child_record.exceptionality"/>)
+                                            </td>
+                                        </t>
+                                        <t t-elif="child_record.exceptionality">
                                             <td class="text-left">
                                                 <span t-field="child_record.exceptionality" />
                                             </td>
@@ -105,7 +121,12 @@
                                             </td>
                                         </t>
                                         <t t-if="child_retake_record">
-                                            <t t-if="child_retake_record.exceptionality">
+                                            <t t-if="child_retake_record.exceptionality and retake_record.exceptionality == 'reinforcement'">
+                                              <th class="text-left">
+                                                  <span t-field="child_retake_record.n_mark_reduced_name" /> (<span t-field="child_retake_record.exceptionality"/>)
+                                              </th>
+                                            </t>
+                                            <t t-elif="child_retake_record.exceptionality">
                                                 <th class="text-left">
                                                     <span t-field="child_retake_record.exceptionality" />
                                                 </th>

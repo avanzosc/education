@@ -188,11 +188,14 @@ class EducationRecord(models.Model):
                  "n_line_id.competence_id.eval_mode", "exceptionality")
     def _compute_mark_id(self):
         mark_obj = self.env["education.mark.numeric"]
+        sys_params = self.env["ir.config_parameter"].sudo()
+        precision = int(sys_params.get_param(
+            "education.record.mark_precision", 2))
         for record in self:
             if (record.exceptionality != "exempt" and
                     record.competence_eval_mode != "behaviour"):
                 record.mark_id = mark_obj._get_mark(
-                    round(record.numeric_mark, 2))
+                    round(record.numeric_mark, precision))
 
     @api.multi
     @api.depends("student_id", "academic_year_id", "subject_id", "schedule_id")
@@ -404,10 +407,11 @@ class EducationRecord(models.Model):
         return new_records
 
     @api.multi
-    def action_round_numeric_mark(self):
+    def action_round_numeric_mark(self, precision=False):
         sys_params = self.env["ir.config_parameter"].sudo()
-        precision = int(sys_params.get_param(
-            "education.record.mark_precision", 0))
+        if precision is False:  # Distinguish between 0 and false
+            precision = int(sys_params.get_param(
+                "education.record.mark_precision", 0))
         for record in self.filtered(
                 lambda r: r.competence_eval_mode != "behaviour"):
             record.numeric_mark = round(

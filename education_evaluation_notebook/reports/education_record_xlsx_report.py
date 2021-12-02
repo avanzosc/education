@@ -290,8 +290,8 @@ class EducationGroupXlsx(models.AbstractModel):
                 mark_row_num += 1
             column_num += 3
             child_lines = notebook_lines.filtered(
-                    lambda l: l.subject_id == subject).mapped(
-                        "child_line_ids").filtered("code")
+                lambda l: l.subject_id == subject).mapped(
+                "child_line_ids").filtered("code")
             column_num += len(child_lines)
 
     def generate_xlsx_report(self, workbook, data, objects):

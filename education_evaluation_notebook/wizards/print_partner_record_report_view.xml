@@ -9,6 +9,7 @@
                         <field name="academic_year_id"
                                options="{'no_create': True, 'no_open': True}" />
                         <field name="eval_type" />
+                        <field name="without_decimals" />
                     </group>
                     <footer>
                         <button name="print_report" string="Print Report"

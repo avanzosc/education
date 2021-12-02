@@ -23,4 +23,5 @@ class PartnerRecordReport(models.AbstractModel):
             "docs": partners,
             "academic_year_id": data["form"]["academic_year_id"][0],
             "eval_type": data["form"]["eval_type"],
+            "without_decimals": data["form"]["without_decimals"],
         }
