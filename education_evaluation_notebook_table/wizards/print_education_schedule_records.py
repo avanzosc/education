@@ -21,11 +21,7 @@ class ExportEducationScheduleRecordReport(models.TransientModel):
 
     @api.multi
     def export_xls(self):
-        self.ensure_one()
-        schedule = self.env['education.schedule'].browse(
-            self.env.context.get("active_ids"))
         datas = {
-            "schedule": schedule.id,
             "mark_type": self.mark_type,
             "eval_type": self.eval_type
         }
