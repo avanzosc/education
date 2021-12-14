@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fleet_route_view_form" model="ir.ui.view">
+        <field name="model">fleet.route</field>
+        <field name="inherit_id" ref="fleet_route_school.fleet_route_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='passenger_ids']//kanban/field[@name='type']" position="after">
+                <field name="current_course_id" />
+                <field name="current_group_id" />
+            </xpath>
+            <xpath expr="//field[@name='passenger_ids']//div[hasclass('oe_kanban_details')]" position="inside">
+                <div>
+                    <t t-if="record.current_course_id.raw_value">
+                        <field name="current_course_id" />
+                    </t>
+                    <t t-if="record.current_course_id and record.current_group_id"> / </t>
+                    <t t-if="record.current_group_id.raw_value">
+                        <field name="current_group_id" />
+                    </t>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
