@@ -48,7 +48,8 @@ class AcademicRecordReport(models.AbstractModel):
 
     def create_schedule_sheet(self, workbook, book):
 
-        sheet = workbook.add_worksheet(book.display_name)
+        sheet = workbook.add_worksheet(
+            "{} {}".format(book.classroom_id.display_name, book.display_name))
 
         record_lines = book.record_ids.mapped('n_line_id')
         if record_lines and self.eval_type not in ('final', 'reduced_final'):
