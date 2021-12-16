@@ -2,7 +2,8 @@ import json
 
 from odoo import http, _
 from odoo.http import request
-from odoo.addons.education_evaluation_notebook.models.education_record import RECORD_EXCEPTIONALITY
+from odoo.addons.education_evaluation_notebook.models.education_record import \
+    RECORD_EXCEPTIONALITY
 from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.exceptions import AccessError, MissingError
 from odoo.addons.website.controllers.main import QueryURL
@@ -50,7 +51,8 @@ class EducationMain(CustomerPortal):
             return request.redirect('/main')
 
         if report_type:
-            self.print_schedule_record_reports(schedule_id, report_type, download, access_token)
+            self.print_schedule_record_reports(
+                schedule_id, report_type, download, access_token)
 
         if changed_input_ids:
             changed_input_ids_array = json.loads(changed_input_ids)
@@ -106,7 +108,8 @@ class EducationMain(CustomerPortal):
                 update_ok = None
                 if field_type == 'numeric_mark':
                     new_val = float(new_val)
-                    if edu_record.competence_id.min_mark <= new_val <= edu_record.competence_id.max_mark:
+                    if (edu_record.competence_id.min_mark <= new_val <=
+                            edu_record.competence_id.max_mark):
                         update_ok = True
                 if field_type == 'exceptionality':
                     update_ok = True
@@ -114,15 +117,17 @@ class EducationMain(CustomerPortal):
                     edu_record.sudo().update({field_type: new_val})
         return True
 
-    def print_schedule_record_reports(self, schedule_id, report_type, download, access_token):
+    def print_schedule_record_reports(
+            self, schedule_id, report_type, download, access_token):
         try:
             partner_sudo = self._document_check_access(
                 'education.schedule', schedule_id, access_token=access_token)
         except (AccessError, MissingError):
             return request.redirect('/schedules')
         if report_type in ('html', 'pdf', 'text'):
-            report_ref = \
-                'education_evaluation_notebook_table.schedule_academic_record_report_xlsx'
+            report_ref = (
+                'education_evaluation_notebook_table'
+                '.schedule_academic_record_report_xlsx')
             return self._show_report(
                 model=partner_sudo, report_type=report_type,
                 report_ref=report_ref,
