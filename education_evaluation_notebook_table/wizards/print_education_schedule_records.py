@@ -16,7 +16,8 @@ class ExportEducationScheduleRecordReport(models.TransientModel):
         ('official', 'Official')
     ], default="final", required=True)
     eval_type = fields.Selection(
-        selection=EVAL_TYPE+[('reduced_final', 'Reduced Final')], string="Evaluation Season", default="final",
+        selection=EVAL_TYPE+[('reduced_final', 'Reduced Final')],
+        string="Evaluation Season", default="final",
         required=True)
 
     @api.multi
