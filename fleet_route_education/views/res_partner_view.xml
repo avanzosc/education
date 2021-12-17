@@ -8,6 +8,7 @@
                 <field name="current_center_id" />
                 <field name="current_level_id" invisible="True" />
                 <field name="current_course_id" />
+                <field name="current_group_id" />
             </field>
             <tree position="attributes">
                 <attribute name="default_order">current_center_id,current_level_id,current_course_id,lastname,lastname2,firstname</attribute>
