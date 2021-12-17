@@ -22,7 +22,11 @@
     <record id="education_group_student_exam_report_view_calendar" model="ir.ui.view">
         <field name="model">education.group.student.exam.report</field>
         <field name="arch" type="xml">
-            <calendar string="Exams" date_start="exam_date" mode="month" color="group_id">
+            <calendar string="Exams"
+                      event_open_popup="true"
+                      date_start="exam_date"
+                      mode="month"
+                      color="group_id">
                 <field name="exam_description"/>
                 <field name="teacher_id"/>
                 <field name="subject_id"/>
@@ -33,7 +37,11 @@
         <record id="education_group_student_exam_report_view_calendar2" model="ir.ui.view">
         <field name="model">education.group.student.exam.report</field>
         <field name="arch" type="xml">
-            <calendar string="Exams" date_start="exam_date" mode="month" color="subject_id">
+            <calendar string="Exams"
+                      event_open_popup="true"
+                      date_start="exam_date"
+                      mode="month"
+                      color="subject_id">
                 <field name="exam_description"/>
                 <field name="teacher_id"/>
                 <field name="subject_id"/>
