@@ -17,6 +17,7 @@ class EducationGroupHomeworkReport(models.Model):
         comodel_name="education.homework", string="Homework")
     homework_description = fields.Char(string="Homework Description")
     homework_deadline = fields.Date(string="Homework Deadline")
+    homework_html_link = fields.Char(string="HTML link")
 
     _depends = {
         "education.schedule": [
@@ -24,6 +25,9 @@ class EducationGroupHomeworkReport(models.Model):
         ],
         "education.group": [
             "center_id", "course_id"
+        ],
+        "education.homework": [
+            "name", "date", "html_link", "schedule_id"
         ],
     }
 
@@ -35,6 +39,7 @@ class EducationGroupHomeworkReport(models.Model):
                 , edu_hw.id AS homework_id
                 , edu_hw.name AS homework_description
                 , edu_hw.date AS homework_deadline
+                , edu_hw.html_link AS homework_html_link
         """
         return super(EducationGroupHomeworkReport, self)._select() + select_str
 
@@ -46,7 +51,7 @@ class EducationGroupHomeworkReport(models.Model):
 
     def _group_by(self):
         group_by_str = """
-                , edu_hw.id, edu_hw.name, edu_hw.date
+                , edu_hw.id, edu_hw.name, edu_hw.date, edu_hw.html_link
         """
         return (super(EducationGroupHomeworkReport, self)._group_by() +
                 group_by_str)

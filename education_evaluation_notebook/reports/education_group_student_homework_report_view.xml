@@ -15,6 +15,7 @@
                 <field name="academic_year_id" />
                 <field name="homework_description" />
                 <field name="homework_deadline" />
+                <field name="homework_html_link" widget="url" />
             </tree>
         </field>
     </record>
@@ -33,7 +34,11 @@
     <record id="education_group_student_homework_report_view_calendar2" model="ir.ui.view">
         <field name="model">education.group.student.homework.report</field>
         <field name="arch" type="xml">
-            <calendar string="Homework" date_start="homework_deadline" mode="month" color="subject_id">
+            <calendar string="Homework"
+                      event_open_popup="true"
+                      date_start="homework_deadline"
+                      mode="month"
+                      color="subject_id">
                 <field name="homework_description"/>
                 <field name="teacher_id"/>
                 <field name="subject_id"/>

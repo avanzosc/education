@@ -17,11 +17,14 @@ class PartnerRecordReport(models.AbstractModel):
         report = self.env["ir.actions.report"]._get_report_from_name(
             "education_evaluation_notebook.education_partner_record")
         partners = self.env["res.partner"].browse(data["ids"])
+        academic_year_id = data["form"].get("academic_year_id", False)
+        eval_type = data["form"].get("eval_type", "final")
+        without_decimals = data["form"].get("without_decimals", False)
         return {
             "doc_ids": data["ids"],
             "doc_model": report.model,
             "docs": partners,
-            "academic_year_id": data["form"]["academic_year_id"][0],
-            "eval_type": data["form"]["eval_type"],
-            "without_decimals": data["form"]["without_decimals"],
+            "academic_year_id": academic_year_id and academic_year_id[0],
+            "eval_type": eval_type,
+            "without_decimals": without_decimals,
         }
