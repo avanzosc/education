@@ -1,7 +1,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import _, models
 from odoo.exceptions import UserError
 
 from odoo.addons.education_evaluation_notebook.models.\
@@ -37,19 +37,28 @@ class AcademicRecordReport(models.AbstractModel):
             col += 1
         return col
 
-    def paint_record_line(self, sheet, row, col, parent_line):
+    def paint_record_line(self, sheet, row, col, parent_line, all_records):
         col = self.paint_exam_record_line(sheet, row, col, parent_line)
+        cell_format = self.get_record_line_format(parent_line)
         sheet.write(row, col,
-                    parent_line.display_name,
-                    self.get_record_line_format(parent_line))
+                    parent_line.display_name, cell_format)
         sheet.set_column(row, col, 20)
         col += 1
+        recovered_lines = all_records.filtered(
+            lambda r: r.n_line_id.id == parent_line.id and r.is_retake_record)
+        if recovered_lines:
+            sheet.write(row, col,
+                        parent_line.display_name + ' [REC]',
+                        cell_format)
+            sheet.set_column(row, col, 20)
+            col += 1
         return col
 
     def create_schedule_sheet(self, workbook, schedule):
         sheet = workbook.add_worksheet(
             "{} {}".format(schedule.classroom_id.display_name, schedule.display_name))
 
+        records = schedule.record_ids
         record_lines = schedule.record_ids.mapped('n_line_id')
         if record_lines and self.eval_type not in ('final', 'reduced_final'):
             record_lines = record_lines.filtered(
@@ -99,11 +108,11 @@ class AcademicRecordReport(models.AbstractModel):
                     for child_child_line in record_lines.filtered(
                             lambda r: r.parent_line_id.id == child_line.id):
                         pos = self.paint_record_line(
-                            sheet, 6, pos, child_child_line)
+                            sheet, 6, pos, child_child_line, records)
 
-                pos = self.paint_record_line(sheet, 6, pos, child_line)
+                pos = self.paint_record_line(sheet, 6, pos, child_line, records)
 
-            pos = self.paint_record_line(sheet, 6, pos, line)
+            pos = self.paint_record_line(sheet, 6, pos, line, records)
 
         sheet.set_column("A:A", 35)
         return sheet
@@ -119,19 +128,35 @@ class AcademicRecordReport(models.AbstractModel):
             col += 1
         return col
 
-    def paint_record_mark(self, sheet, row, col, parent_record_line, student):
-        col = self.paint_exam_record_mark(
-            sheet, row, col, parent_record_line, student)
-        current_record = self._get_kid_record(parent_record_line, student)
-        current_record_mark = current_record.calculated_partial_mark if\
-            self.mark_type == 'provisional' else current_record.numeric_mark
-        mark_record_type = self.get_mark_eval_type(parent_record_line)
-        mark_format = self.get_record_format(
-            current_record_mark, current_record.state, mark_record_type)
-        sheet.write(
-            row, col,
-            str(round(current_record_mark, 2)), mark_format)
-        col += 1
+    def paint_record_mark(
+            self, sheet, row, col, parent_record_line, student, all_records):
+        records = self._get_kid_record(parent_record_line, student)
+        for record in records:
+            col = self.paint_exam_record_mark(
+                sheet, row, col, parent_record_line, student)
+            current_record_mark = record.calculated_partial_mark if\
+                self.mark_type == 'provisional' else record.numeric_mark
+            mark_record_type = self.get_mark_eval_type(parent_record_line)
+            mark_format = self.get_record_format(
+                current_record_mark, record.state, mark_record_type)
+            sheet.write(
+                row, col,
+                str(round(current_record_mark, 2)), mark_format)
+            col += 1
+            recovered_records = all_records.filtered(
+                lambda r: r.n_line_id.id == record.n_line_id.id and r.is_retake_record)
+            if recovered_records:
+                kid_recovered_record = recovered_records.filtered(
+                    lambda r: r.student_id.id == student.id)
+                cell_val = ''
+                if kid_recovered_record:
+                    cell_val = (
+                        kid_recovered_record.calculated_partial_mark if
+                        self.mark_type == 'provisional' else
+                        kid_recovered_record.numeric_mark)
+                sheet.write(row, col, cell_val, mark_format)
+                sheet.set_column(row, col, 20)
+                col += 1
         return col
 
     def get_mark_eval_type(self, record_line):
@@ -170,13 +195,13 @@ class AcademicRecordReport(models.AbstractModel):
                     for child_child_line in record_lines.filtered(
                             lambda r: r.parent_line_id.id == child_line.id):
                         pos = self.paint_record_mark(
-                            sheet, row, pos, child_child_line, student)
+                            sheet, row, pos, child_child_line, student, records)
 
-                pos = self.paint_record_mark(sheet, row, pos, child_line,
-                                             student)
+                pos = self.paint_record_mark(
+                    sheet, row, pos, child_line, student, records)
 
             pos = self.paint_record_mark(
-                sheet, row, pos, line, student)
+                sheet, row, pos, line, student, records)
 
     def generate_xlsx_report(self, workbook, data, objects):
         self._define_formats(workbook)
@@ -194,10 +219,12 @@ class AcademicRecordReport(models.AbstractModel):
                     group_sheet, row, student, schedule)
                 row += 1
 
-    def _get_kid_record(self, n_line, kid):
-        return n_line.record_ids.filtered(
-            lambda r: r.student_id == kid and not r.exam_id and
-            not r.recovered_record_id)
+    def _get_kid_record(self, n_line, student, recovered=False):
+        records = n_line.record_ids.filtered(
+            lambda r: r.student_id == student and not r.exam_id)
+        if recovered:
+            return records.filtered(lambda r: r.recovered_record_id)
+        return records.filtered(lambda r: not r.recovered_record_id)
 
     def _get_kid_exam_record(self, exam, kid):
         return exam.record_ids.filtered(
