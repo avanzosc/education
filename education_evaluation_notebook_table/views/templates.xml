@@ -141,6 +141,10 @@
                                                                <t t-else="">(<t t-esc="exam.eval_percent"/>%)</t>
                                                             </a>
                                                          </div>
+                                                         <t t-call="education_evaluation_notebook_table.dropdown_action_button">
+                                                            <t t-set="btn_id" t-value="exam.id"/>
+                                                            <t t-set="is_exam" t-value="exam.id"/>
+                                                         </t>
                                                       </td>
                                                       <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
                                                          <t t-set="competence_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (competence._name, competence.id, competence.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
@@ -255,5 +259,18 @@
          </span>
          <hr t-if="len(selected_record)>1"/>
       </t>
+   </template>
+
+   <template id="dropdown_action_button">
+      <div t-if="btn_id and schedule" class="dropdown">
+         <p style="display:none;" id="schedule_id"><t t-esc="schedule.id"/></p>
+         <button class="btn btn-secondary dropdown-toggle" type="button" t-attf-id="dropdownMenuButton_{{btn_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+         <div class="dropdown-menu" t-att-id="btn_id" t-attf-aria-labelledby="dropdownMenuButton_{{btn_id}}">
+            <a t-if="not is_exam" class="dropdown-item drop_action_nline copy" t-att-id="btn_id" href="#" value="copy">Copy partial calculated mark</a>
+            <a t-attf-class="dropdown-item drop_action_nline initial {{'exam' if is_exam else ''}}" t-att-id="btn_id" href="#">Set assessed record as initial</a>
+            <a t-attf-class="dropdown-item drop_action_nline assessed {{'exam' if is_exam else ''}}" style="font-weight: normal !important;" t-att-id="btn_id" href="#">Set pending record as assessed</a>
+            <a t-attf-class="dropdown-item drop_action_nline round {{'exam' if is_exam else ''}}" t-att-id="btn_id" href="#">Round official mark</a>
+         </div>
+      </div>
    </template>
 </odoo>
