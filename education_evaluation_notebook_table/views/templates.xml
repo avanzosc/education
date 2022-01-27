@@ -151,6 +151,9 @@
                                                          <div class="text-center mb-2">
                                                             <a t-att-href="competence_backend_url"><t t-esc="competence.description"/> (<t t-esc="competence.eval_percent"/>%)</a>
                                                          </div>
+                                                         <t t-call="education_evaluation_notebook_table.dropdown_action_button">
+                                                            <t t-set="btn_id" t-value="competence.id"/>
+                                                         </t>
                                                       </td>
                                                    </t>
                                                    <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
@@ -158,6 +161,9 @@
                                                       <div class="text-center mb-2">
                                                          <a t-att-href="eval_backend_url"><t t-esc="eval.competence_id.display_name"/> <span t-field="eval.eval_type" /></a>
                                                       </div>
+                                                      <t t-call="education_evaluation_notebook_table.dropdown_action_button">
+                                                         <t t-set="btn_id" t-value="eval.id"/>
+                                                      </t>
                                                    </td>
                                                 </t>
                                                 <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
@@ -165,6 +171,9 @@
                                                    <div class="text-center mb-2">
                                                       <a t-att-href="line_backend_url"><t t-esc="line.competence_id.display_name"/><span t-field="line.eval_type" /></a>
                                                    </div>
+                                                   <t t-call="education_evaluation_notebook_table.dropdown_action_button">
+                                                      <t t-set="btn_id" t-value="line.id"/>
+                                                   </t>
                                                 </td>
                                              </t>
                                           </t>

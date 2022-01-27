@@ -1,5 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function(require) {
     "use strict";
+    var ajax = require("web.ajax");
 
     function generate_new_values(changed_vals, changed_input){
         var new_val = {
@@ -69,5 +70,32 @@ $(document).ready(function() {
         $('#editing_msg').show();
         $('#save_schedule_btn').show();
     }
+
+    var update_json = $.Deferred();
+    update_json.resolve();
+    $(".drop_action_nline").click(function(){
+        var schedule = $('#schedule_id').text();
+        var n_line = $(this).attr('id');
+        var classes = {};
+        $($(this).attr('class').split(' ')).each(function() {
+           if (this !== '') {
+               classes[this] = this;
+           }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/schedule/action",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({'jsonrpc': "2.0", 'method': "call", "params": {'schedule_id': schedule, 'vals': classes, 'n_line': n_line,}}),
+            success: function(resp){
+               console.log("Finished. " + resp); //just use the resp here
+               location.reload();
+            },
+            error : function(err){
+                console.log("Error: " + err); //just use the err here
+            }
+        });
+    });
 
 });
