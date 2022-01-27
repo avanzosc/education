@@ -37,6 +37,36 @@ class EducationMain(CustomerPortal):
             'education_evaluation_notebook_table.' +
             'teacher_schedule_table', values)
 
+    @http.route(['/schedule/action'], type='json',
+                auth="user", methods=['POST'], website=True, csrf=False)
+    def schedule_califications_json(self, schedule_id, vals, n_line, **kw):
+
+        error = False
+        action = False
+        domain = [
+            ('schedule_id', '=', int(schedule_id)),
+        ]
+        if 'exam' in vals:
+            domain += [('exam_id', '=', int(n_line))]
+        else:
+            domain += [('n_line_id', '=', int(n_line))]
+        records = request.env['education.record'].sudo().search(domain)
+        if records:
+            if 'copy' in vals:
+                action = vals.get('copy')
+                records.action_copy_partial_calculated_mark()
+            if 'initial' in vals:
+                action = vals.get('initial')
+                records.button_set_draft()
+            if 'assessed' in vals:
+                action = vals.get('assessed')
+                records.button_set_assessed()
+            if 'round' in vals:
+                action = vals.get('round')
+                records.action_round_numeric_mark()
+
+        return {str(action): not error}
+
     @http.route(['/schedule/<int:schedule_id>/califications'], type='http',
                 auth="user", website=True)
     def schedule_califications(
