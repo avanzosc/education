@@ -137,14 +137,24 @@ class EducationMain(CustomerPortal):
             if edu_record and new_val:
                 update_ok = None
                 if field_type == 'numeric_mark':
-                    new_val = float(new_val)
-                    if (edu_record.competence_id.min_mark <= new_val <=
-                            edu_record.competence_id.max_mark):
-                        update_ok = True
+                    if self.check_value_spelling(new_val):
+                        new_val = float(new_val.replace(' ', '').replace(',', '.'))
+                        if (edu_record.competence_id.min_mark <= new_val <=
+                                edu_record.competence_id.max_mark):
+                            update_ok = True
+                    else:
+                        update_ok = False
                 if field_type == 'exceptionality':
                     update_ok = True
                 if update_ok:
                     edu_record.sudo().update({field_type: new_val})
+        return True
+
+    def check_value_spelling(self, new_val):
+        comma_dot_count = len(
+            [pos for pos, char in enumerate(new_val) if char in [',', '.']])
+        if comma_dot_count > 1:
+            return False
         return True
 
     def print_schedule_record_reports(
