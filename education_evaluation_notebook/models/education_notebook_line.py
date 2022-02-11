@@ -20,81 +20,153 @@ class EducationNotebookLine(models.Model):
         return default_dict.get("eval_type")
 
     code = fields.Char(
-        string="Code", help="This code is used for academic record report")
+        string="Code",
+        help="This code is used for academic record report",
+        index=True,
+    )
     sequence = fields.Integer(string="Sequence", default=1)
     schedule_id = fields.Many2one(
-        comodel_name="education.schedule", string="Class Schedule",
-        required=True, index=True)
+        comodel_name="education.schedule",
+        string="Class Schedule",
+        required=True,
+        index=True,
+    )
     teacher_id = fields.Many2one(
-        related="schedule_id.teacher_id", comodel_name="hr.employee",
-        string="Teacher", store=True, index=True)
+        related="schedule_id.teacher_id",
+        comodel_name="hr.employee",
+        string="Teacher",
+        store=True,
+        index=True,
+    )
     a_year_id = fields.Many2one(
         related="schedule_id.academic_year_id",
         comodel_name="education.academic_year",
-        string="Academic Year", store=True)
+        string="Academic Year",
+        store=True,
+        index=True,
+    )
     education_center_id = fields.Many2one(
-        related="schedule_id.center_id", comodel_name="res.partner",
-        string="Education Center", store=True)
+        related="schedule_id.center_id",
+        comodel_name="res.partner",
+        string="Education Center",
+        store=True,
+        index=True,
+    )
     classroom_id = fields.Many2one(
-        related="schedule_id.classroom_id", comodel_name="education.classroom",
-        string="Classroom", store=True)
+        related="schedule_id.classroom_id",
+        comodel_name="education.classroom",
+        string="Classroom",
+        store=True,
+        index=True,
+    )
     task_type_id = fields.Many2one(
-        related="schedule_id.task_type_id", comodel_name="education.task_type",
-        string="Task Type", store=True)
+        related="schedule_id.task_type_id",
+        comodel_name="education.task_type",
+        string="Task Type",
+        store=True,
+        index=True,
+    )
     subject_id = fields.Many2one(
-        related="schedule_id.subject_id", comodel_name="education.subject",
-        string="Education Subject", store=True)
+        related="schedule_id.subject_id",
+        comodel_name="education.subject",
+        string="Education Subject",
+        store=True,
+        index=True,
+    )
     level_ids = fields.Many2many(
         related="schedule_id.subject_id.level_ids",
-        comodel_name="education.level", string="Education Levels",
+        comodel_name="education.level",
+        string="Education Levels",
         relation="notebook_line_education_level_rel",
-        column1="line_id", column2="level_id", store=True)
+        column1="line_id",
+        column2="level_id",
+        store=True,
+    )
     competence_id = fields.Many2one(
-        comodel_name="education.competence", string="Competence",
-        required=True, index=True)
+        comodel_name="education.competence",
+        string="Competence",
+        required=True,
+        index=True,
+    )
     description = fields.Char(string="Description", required=True)
     eval_percent = fields.Float(string="Percent (%)", default=100.0)
     eval_type = fields.Selection(
-        selection=EVAL_TYPE, string="Evaluation Season",
-        default=default_eval_type, required=True)
+        selection=EVAL_TYPE,
+        string="Evaluation Season",
+        default=default_eval_type,
+        required=True,
+    )
     exam_ids = fields.One2many(
-        comodel_name="education.exam", inverse_name="n_line_id",
-        tring="Exams", editable=True)
+        comodel_name="education.exam",
+        inverse_name="n_line_id",
+        tring="Exams",
+        editable=True,
+    )
     exam_count = fields.Integer(
-        compute="_compute_exam_count", string="# Exams")
+        compute="_compute_exam_count",
+        string="# Exams",
+    )
     competence_type_id = fields.Many2one(
-        comodel_name="education.competence.type", string="Competence Type",
-        index=True)
+        comodel_name="education.competence.type",
+        string="Competence Type",
+        index=True,
+    )
     parent_line_id = fields.Many2one(
-        comodel_name="education.notebook.line", string="Parent Line",
-        ondelete="restrict", index=True)
+        comodel_name="education.notebook.line",
+        string="Parent Line",
+        ondelete="restrict",
+        index=True,
+    )
     child_line_ids = fields.One2many(
-        comodel_name="education.notebook.line", inverse_name="parent_line_id",
-        string="Child Lines")
+        comodel_name="education.notebook.line",
+        inverse_name="parent_line_id",
+        string="Child Lines",
+    )
     child_line_count = fields.Integer(
-        compute="_compute_child_line_count", string="# Child Lines")
+        compute="_compute_child_line_count",
+        string="# Child Lines",
+        store=True,
+    )
     parent_parent_line_id = fields.Many2one(
-        comodel_name="education.notebook.line", string="Parent Parent Line",
-        related="parent_line_id.parent_line_id", store=True)
+        comodel_name="education.notebook.line",
+        string="Parent Parent Line",
+        related="parent_line_id.parent_line_id",
+        store=True,
+    )
     exists_master = fields.Boolean(
-        string="Is master", compute="_compute_master_competences", store=True)
+        string="Is master",
+        compute="_compute_master_competences",
+        store=True,
+        index=True,
+    )
     evaluation_competence = fields.Boolean(
-        related="competence_id.evaluation_check", store=True,
-        string="Evaluation Competence")
+        related="competence_id.evaluation_check",
+        store=True,
+        string="Evaluation Competence",
+        index=True,
+    )
     global_competence = fields.Boolean(
-        related="competence_id.global_check", store=True,
-        string="Global Competence")
+        related="competence_id.global_check",
+        store=True,
+        string="Global Competence",
+        index=True,
+    )
     record_ids = fields.One2many(
-        comodel_name="education.record", inverse_name="n_line_id",
-        string="Academic Records")
+        comodel_name="education.record",
+        inverse_name="n_line_id",
+        string="Academic Records",
+    )
     record_count = fields.Integer(
-        compute="_compute_record_count", string="# Academic Record",
-        store=True)
+        compute="_compute_record_count",
+        string="# Academic Record",
+        store=True,
+    )
     show_record_ids = fields.Many2many(
         comodel_name="education.record",
         compute="_compute_show_record_ids",
         string="Academic Records (filtered)",
-        store=True)
+        store=True,
+    )
     notes = fields.Html(string="Notes")
 
     @api.constrains("code")
@@ -157,11 +229,17 @@ class EducationNotebookLine(models.Model):
         return action_dict
 
     @api.multi
-    @api.depends("record_ids")
+    @api.depends("record_ids", "record_ids.exam_id")
     def _compute_record_count(self):
         for line in self:
             line.record_count = len(
                 line.record_ids.filtered(lambda r: not r.exam_id))
+            
+    @api.multi
+    @api.depends("child_line_ids")
+    def _compute_child_line_count(self):
+        for line in self:
+            line.child_line_count = len(line.child_line_ids)
 
     @api.multi
     @api.depends("competence_id", "competence_id.evaluation_check",

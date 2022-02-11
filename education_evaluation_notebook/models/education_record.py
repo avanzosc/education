@@ -34,114 +34,226 @@ class EducationRecord(models.Model):
             allfields=["state"])["state"]["selection"]
 
     exam_id = fields.Many2one(
-        comodel_name="education.exam", string="Exam", ondelete="cascade",
-        index=True)
+        comodel_name="education.exam",
+        string="Exam",
+        ondelete="cascade",
+        index=True,
+    )
     exam_type_id = fields.Many2one(
-        comodel_name="education.exam.type", related="exam_id.exam_type_id",
-        string="Exam Type", store=True)
+        comodel_name="education.exam.type",
+        related="exam_id.exam_type_id",
+        string="Exam Type",
+        store=True,
+    )
     exam_eval_percent = fields.Float(
-        compute="_compute_eval_percent", string="Percent (%)", store=True)
+        compute="_compute_eval_percent",
+        string="Percent (%)",
+        store=True,
+    )
     exam_state = fields.Selection(
-        selection="_get_selection_exam_state", string="Exam State",
-        related="exam_id.state", store=True)
+        selection="_get_selection_exam_state",
+        string="Exam State",
+        related="exam_id.state",
+        store=True,
+    )
     date = fields.Date(
-        related="exam_id.date", string="Exam Date", store=True)
+        related="exam_id.date",
+        string="Exam Date",
+        store=True,
+    )
     n_line_id = fields.Many2one(
-        comodel_name="education.notebook.line", string="Notebook Line",
-        required=True, ondelete="cascade", index=True)
+        comodel_name="education.notebook.line",
+        string="Notebook Line",
+        required=True,
+        ondelete="cascade",
+        index=True,
+    )
     competence_id = fields.Many2one(
-        related="n_line_id.competence_id", comodel_name="education.competence",
-        store=True, string="Competence", index=True)
+        related="n_line_id.competence_id",
+        comodel_name="education.competence",
+        store=True,
+        string="Competence",
+        index=True,
+    )
     competence_eval_mode = fields.Selection(
-        related="n_line_id.competence_id.eval_mode", string="Evaluation Mode",
-        store=True)
+        related="n_line_id.competence_id.eval_mode",
+        string="Evaluation Mode",
+        store=True,
+    )
     evaluation_competence = fields.Boolean(
         related="n_line_id.competence_id.evaluation_check",
-        string="Evaluation Competence", store=True)
+        string="Evaluation Competence",
+        store=True,
+    )
     global_competence = fields.Boolean(
         related="n_line_id.competence_id.global_check",
-        string="Global Competence", store=True)
+        string="Global Competence",
+        store=True,
+    )
     schedule_id = fields.Many2one(
-        comodel_name="education.schedule", related="n_line_id.schedule_id",
-        string="Class Schedule", store=True, index=True)
+        comodel_name="education.schedule",
+        related="n_line_id.schedule_id",
+        string="Class Schedule",
+        store=True,
+        index=True,
+    )
     subject_id = fields.Many2one(
-        comodel_name="education.subject", string="Education Subject",
-        related="n_line_id.schedule_id.subject_id", store=True, index=True)
+        comodel_name="education.subject",
+        string="Education Subject",
+        related="n_line_id.schedule_id.subject_id",
+        store=True,
+        index=True,
+    )
     subject_name = fields.Char(
-        string="Subject Name", compute="_compute_subject_name", index=True)
+        string="Subject Name",
+        compute="_compute_subject_name",
+        index=True,
+    )
     teacher_id = fields.Many2one(
-        comodel_name="hr.employee", related="n_line_id.schedule_id.teacher_id",
-        string="Teacher", store=True, index=True)
+        comodel_name="hr.employee",
+        related="n_line_id.schedule_id.teacher_id",
+        string="Teacher",
+        store=True,
+        index=True,
+    )
     academic_year_id = fields.Many2one(
         comodel_name="education.academic_year",
         related="n_line_id.schedule_id.academic_year_id",
-        string="Academic Year", store=True, index=True)
+        string="Academic Year",
+        store=True,
+        index=True,
+    )
     evaluation_id = fields.Many2one(
         comodel_name="education.academic_year.evaluation",
-        compute="_compute_evaluation_id", string="Evaluation", store=True,
-        compute_sudo=True, index=True)
+        compute="_compute_evaluation_id",
+        string="Evaluation",
+        store=True,
+        compute_sudo=True,
+        index=True,
+    )
     eval_type = fields.Selection(
-        selection=EVAL_TYPE, related="n_line_id.eval_type",
-        string="Evaluation Season", store=True)
+        selection=EVAL_TYPE,
+        related="n_line_id.eval_type",
+        string="Evaluation Season",
+        store=True,
+    )
     student_id = fields.Many2one(
-        comodel_name="res.partner", string="Student", required=True,
-        ondelete="cascade", index=True)
-    numeric_mark = fields.Float(string="Official Mark", group_operator="max")
+        comodel_name="res.partner",
+        string="Student",
+        required=True,
+        ondelete="cascade",
+        index=True,
+    )
+    numeric_mark = fields.Float(
+        string="Official Mark",
+        group_operator="max",
+    )
     behaviour_mark_id = fields.Many2one(
-        comodel_name="education.mark.behaviour", string="Behaviour Mark",
-        copy=False)
+        comodel_name="education.mark.behaviour",
+        string="Behaviour Mark",
+        copy=False,
+        index=True,
+    )
     calculated_numeric_mark = fields.Float(
-        compute="_compute_generate_marks", string="Calculated Numeric Mark",
-        store=True, group_operator="max")
+        compute="_compute_generate_marks",
+        string="Calculated Numeric Mark",
+        store=True,
+        group_operator="max",
+        index=True,
+    )
     calculated_partial_mark = fields.Float(
-        compute="_compute_partial_marks", string="Calculated Partial Mark",
-        store=True, group_operator="max")
+        compute="_compute_partial_marks",
+        string="Calculated Partial Mark",
+        store=True,
+        group_operator="max",
+    )
     mark_id = fields.Many2one(
-        comodel_name="education.mark.numeric", string="Numeric Mark (Text)",
-        compute="_compute_mark_id", store=True, index=True)
+        comodel_name="education.mark.numeric",
+        string="Numeric Mark (Text)",
+        compute="_compute_mark_id",
+        store=True,
+        index=True,
+    )
     n_mark_reduced_name = fields.Char(
-        related="mark_id.reduced_name", comodel_name="education.mark.numeric",
-        string="Reduced Numeric Mark", store=True, index=True)
+        related="mark_id.reduced_name",
+        comodel_name="education.mark.numeric",
+        string="Reduced Numeric Mark",
+        store=True,
+        index=True,
+    )
     parent_record_id = fields.Many2one(
-        comodel_name="education.record", string="Parent Record", index=True,
-        ondelete="restrict")
+        comodel_name="education.record",
+        string="Parent Record",
+        index=True,
+        ondelete="restrict",
+    )
     child_record_ids = fields.One2many(
-        comodel_name="education.record", inverse_name="parent_record_id",
-        string="Academic Records", editable=True)
+        comodel_name="education.record",
+        inverse_name="parent_record_id",
+        string="Academic Records",
+        editable=True,
+    )
     child_record_count = fields.Integer(
         compute="_compute_child_record_count",
-        string="# Child Records", store=True, compute_sudo=True)
+        string="# Child Records",
+        store=True,
+        compute_sudo=True,
+    )
     state = fields.Selection(
-        selection=RECORD_STATE, string="Record State", default="initial")
+        selection=RECORD_STATE,
+        string="Record State",
+        default="initial",
+        index=True,
+    )
     exceptionality = fields.Selection(
-        selection=RECORD_EXCEPTIONALITY, string="Exceptionality",
+        selection=RECORD_EXCEPTIONALITY,
+        string="Exceptionality",
         help="* Exempt: When the student does not have any record or exam.\n"
              "* Not Taken: When the student did not do the expected.\n"
              "* Not Evaluated: When the student was not able.\n"
              "* ICA: Individual Curriculum Adaptation.\n"
              "* IERP: Individual Educational Reinforcement Plan.\n"
-             "* Pending to Pass: subject from previous course.", copy=False)
+             "* Pending to Pass: subject from previous course.",
+        copy=False,
+        index=True,
+    )
     line_parent_id = fields.Many2one(
         comodel_name="education.notebook.line",
         related="n_line_id.parent_line_id",
-        string="Parent Notebook Line", store=True)
+        string="Parent Notebook Line",
+        store=True,
+        index=True,
+    )
     line_parent_parent_id = fields.Many2one(
         comodel_name="education.notebook.line",
         related="n_line_id.parent_parent_line_id",
-        string="Parent Parent Notebook Line", store=True)
+        string="Parent Parent Notebook Line",
+        store=True,
+        index=True,
+    )
     pass_mark = fields.Selection(
         selection=[('pass', 'Pass'),
                    ('fail', 'Fail')],
-        string="Passed Mark", compute="_compute_pass_mark", store=True)
+        string="Passed Mark",
+        compute="_compute_pass_mark",
+        store=True,
+        index=True,
+    )
     recovered_record_id = fields.Many2one(
-        comodel_name="education.record", string="Recovering Record",
-        index=True)
+        comodel_name="education.record",
+        string="Recovering Record",
+        index=True,
+    )
     retake_record_ids = fields.One2many(
-        comodel_name="education.record", inverse_name="recovered_record_id",
-        string="Retake Records")
+        comodel_name="education.record",
+        inverse_name="recovered_record_id",
+        string="Retake Records",
+    )
     retake_record_count = fields.Integer(
         compute="_compute_retake_record_count",
-        string="# Retake Records", store=True)
+        string="# Retake Records",
+        store=True,
+    )
     comments = fields.Text(string="Comments")
 
     @api.multi

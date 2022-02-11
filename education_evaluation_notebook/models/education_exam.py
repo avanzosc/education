@@ -19,53 +19,103 @@ class EducationExam(models.Model):
     _description = "Education Exam"
     _inherit = ["portal.mixin", "mail.thread", "mail.activity.mixin"]
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(
+        string="Name",
+        required=True,
+    )
     exam_type_id = fields.Many2one(
-        comodel_name="education.exam.type", string="Exam Type", required=True)
+        comodel_name="education.exam.type",
+        string="Exam Type",
+        required=True,
+        index=True,
+    )
     exam_etype = fields.Selection(
         string="Type", related="exam_type_id.e_type")
     n_line_id = fields.Many2one(
-        comodel_name="education.notebook.line", string="Notebook Line",
+        comodel_name="education.notebook.line",
+        string="Notebook Line",
+        domain="[('exists_master','=',False),('schedule_id','=',schedule_id)]",
         required=True,
-        domain="[('exists_master','=',False),('schedule_id','=',schedule_id)]")
+        index=True,
+    )
     schedule_id = fields.Many2one(
-        comodel_name="education.schedule", string="Class Schedule",
-        required=True)
+        comodel_name="education.schedule",
+        string="Class Schedule",
+        required=True,
+        index=True,
+    )
     eval_type = fields.Selection(
-        related="n_line_id.eval_type", string="Evaluation Season", store=True)
+        related="n_line_id.eval_type",
+        string="Evaluation Season",
+        store=True,
+    )
     teacher_id = fields.Many2one(
-        comodel_name="hr.employee", related="schedule_id.teacher_id",
-        string="Teacher", store=True)
+        comodel_name="hr.employee",
+        related="schedule_id.teacher_id",
+        string="Teacher",
+        store=True,
+        index=True,
+    )
     academic_year_id = fields.Many2one(
         comodel_name="education.academic_year",
         related="schedule_id.academic_year_id",
-        string="Academic Year", store=True)
+        string="Academic Year",
+        store=True,
+    )
     subject_id = fields.Many2one(
         comodel_name="education.subject",
         related="schedule_id.subject_id",
         string="Education Subject", store=True)
-    date = fields.Date(string="Exam date", copy=False)
-    eval_percent = fields.Float(string="Percent (%)", required=True)
+    date = fields.Date(
+        string="Exam date",
+        copy=False,
+    )
+    eval_percent = fields.Float(
+        string="Percent (%)",
+        required=True,
+    )
     state = fields.Selection(
         selection=EXAM_STATES,
-        default="draft", track_visibility="onchange", string="Status",
-        copy=False)
+        default="draft",
+        track_visibility="onchange",
+        string="Status",
+        copy=False,
+        index=True,
+    )
     recovered_exam_id = fields.Many2one(
-        comodel_name="education.exam", string="Recovered Exam")
+        comodel_name="education.exam",
+        string="Recovered Exam",
+        index=True,
+    )
     recovered_exam_type_id = fields.Many2one(
-        comodel_name="education.exam.type", string="Recovered Exam Type",
-        related="recovered_exam_id.exam_type_id")
+        comodel_name="education.exam.type",
+        string="Recovered Exam Type",
+        related="recovered_exam_id.exam_type_id",
+    )
     retake_ids = fields.One2many(
-        comodel_name="education.exam", inverse_name="recovered_exam_id",
-        string="Retake Exams")
+        comodel_name="education.exam",
+        inverse_name="recovered_exam_id",
+        string="Retake Exams",
+    )
     retake_count = fields.Integer(
-        compute="_compute_retake_count", string="# Retakes")
-    mark_close_date = fields.Date(string="Closing Date", copy=False)
+        compute="_compute_retake_count",
+        string="# Retakes",
+        store=True,
+    )
+    mark_close_date = fields.Date(
+        string="Closing Date",
+        copy=False,
+    )
     record_ids = fields.One2many(
-        comodel_name="education.record", inverse_name="exam_id",
-        string="Academic Records")
+        comodel_name="education.record",
+        inverse_name="exam_id",
+        string="Academic Records",
+    )
     record_count = fields.Integer(
-        compute="_compute_record_count", string="# Records", store=True)
+        compute="_compute_record_count",
+        string="# Records",
+        store=True,
+    )
     description = fields.Text(string="Description")
 
     @api.constrains("n_line_id", "schedule_id")
