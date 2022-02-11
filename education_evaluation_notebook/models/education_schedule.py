@@ -10,31 +10,52 @@ class EducationSchedule(models.Model):
     _inherit = "education.schedule"
 
     notebook_line_ids = fields.One2many(
-        comodel_name="education.notebook.line", inverse_name="schedule_id",
-        string="Notebook Lines")
+        comodel_name="education.notebook.line",
+        inverse_name="schedule_id",
+        string="Notebook Lines",
+    )
     notebook_line_count = fields.Integer(
         compute="_compute_notebook_line_count",
-        string="# Notebook Lines", store=True)
+        string="# Notebook Lines",
+        store=True,
+    )
     master_notebook_line_ids = fields.One2many(
-        comodel_name="education.notebook.line", inverse_name="schedule_id",
+        comodel_name="education.notebook.line",
+        inverse_name="schedule_id",
         string="Master Notebook Lines",
         domain=['|', ('evaluation_competence', '=', True),
-                ('global_competence', '=', True)])
+                ('global_competence', '=', True)],
+    )
     exam_ids = fields.One2many(
-        comodel_name="education.exam", inverse_name="schedule_id",
-        string="Exams")
+        comodel_name="education.exam",
+        inverse_name="schedule_id",
+        string="Exams",
+    )
     exam_count = fields.Integer(
-        compute="_compute_exam_count", string="# Exams", store=True)
+        compute="_compute_exam_count",
+        string="# Exams",
+        store=True,
+    )
     record_ids = fields.One2many(
-        comodel_name="education.record", inverse_name="schedule_id",
-        string="Academic Records", store=True)
+        comodel_name="education.record",
+        inverse_name="schedule_id",
+        string="Academic Records",
+    )
     record_count = fields.Integer(
-        compute="_compute_record_count", string="# Records")
+        compute="_compute_record_count",
+        string="# Records",
+        store=True,
+    )
     homework_ids = fields.One2many(
-        comodel_name="education.homework", inverse_name="schedule_id",
-        string="Homework")
+        comodel_name="education.homework",
+        inverse_name="schedule_id",
+        string="Homework",
+    )
     homework_count = fields.Integer(
-        compute="_compute_homework_count", string="# Homework")
+        compute="_compute_homework_count",
+        string="# Homework",
+        store=True,
+    )
 
     @api.multi
     @api.depends("homework_ids")
