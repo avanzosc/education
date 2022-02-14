@@ -176,7 +176,7 @@ class EducationSchedule(models.Model):
             evaluation=False):
         self.ensure_one()
         notebook_line_obj = self.env["education.notebook.line"]
-        record = notebook_line_obj.search([
+        record = notebook_line_obj.sudo().search([
             ("schedule_id", "=", self.id),
             ("competence_id", "=", competence.id),
             ("eval_type", "=", evaluation and evaluation.eval_type or "final"),
