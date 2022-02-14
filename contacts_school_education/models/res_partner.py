@@ -8,41 +8,62 @@ from odoo.tools.safe_eval import safe_eval
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     next_course_ids = fields.One2many(
-        comodel_name='education.course.change', inverse_name='school_id',
-        string='Next Courses')
+        comodel_name="education.course.change",
+        inverse_name="school_id",
+        string="Next Courses",
+    )
     prev_course_ids = fields.One2many(
-        comodel_name='education.course.change', inverse_name='next_school_id',
-        string='Previous Courses')
+        comodel_name="education.course.change",
+        inverse_name="next_school_id",
+        string="Previous Courses",
+    )
     alumni_center_id = fields.Many2one(
-        comodel_name='res.partner', string='Last Education Center',
-        domain=[('educational_category', '=', 'school')])
+        comodel_name="res.partner",
+        string="Last Education Center",
+        domain=[("educational_category", "=", "school")],
+    )
     alumni_academic_year_id = fields.Many2one(
-        comodel_name='education.academic_year', string='Last Academic Year')
-    alumni_member = fields.Boolean(string='Alumni Association Member')
+        comodel_name="education.academic_year",
+        string="Last Academic Year",
+        index=True,
+    )
+    alumni_member = fields.Boolean(string="Alumni Association Member")
     student_group_ids = fields.Many2many(
-        comodel_name='education.group', relation='edu_group_student',
-        column1='student_id', column2='group_id', string='Education Groups',
+        comodel_name="education.group", relation="edu_group_student",
+        column1="student_id", column2="group_id", string="Education Groups",
         readonly=True)
     current_group_id = fields.Many2one(
-        comodel_name='education.group', string='Current Group')
+        comodel_name="education.group",
+        string="Current Group",
+        index=True,
+    )
     current_center_id = fields.Many2one(
-        comodel_name='res.partner', string='Current Education Center')
+        comodel_name="res.partner",
+        string="Current Education Center",
+        index=True,
+    )
     current_level_id = fields.Many2one(
-        comodel_name="education.level", string='Current Education Level')
+        comodel_name="education.level",
+        string="Current Education Level",
+        index=True,
+    )
     current_course_id = fields.Many2one(
-        comodel_name='education.course', string='Current Course')
+        comodel_name="education.course",
+        string="Current Course",
+        index=True,
+    )
     childs_current_center_ids = fields.Many2many(
-        comodel_name='res.partner',
-        string='Children\'s Current Education Centers', compute_sudo=True,
-        compute='_compute_child_current_group_ids', store=True,
+        comodel_name="res.partner",
+        string="Children's Current Education Centers", compute_sudo=True,
+        compute="_compute_child_current_group_ids", store=True,
         relation="rel_family_center", column1="family_id", column2="center_id")
     childs_current_course_ids = fields.Many2many(
-        comodel_name='education.course',
-        string='Children\'s Current Courses', compute_sudo=True,
-        compute='_compute_child_current_group_ids', store=True,
+        comodel_name="education.course",
+        string="Children's Current Courses", compute_sudo=True,
+        compute="_compute_child_current_group_ids", store=True,
         relation="rel_family_course", column1="family_id", column2="course_id")
     classroom_ids = fields.One2many(
         comodel_name="education.classroom", inverse_name="center_id",
@@ -92,7 +113,7 @@ class ResPartner(models.Model):
                  "child_ids.current_center_id", "child_ids.current_course_id")
     def _compute_child_current_group_ids(self):
         for partner in self.filtered(
-                lambda p: p.educational_category == 'family'):
+                lambda p: p.educational_category == "family"):
             children = partner.child_ids.filtered(
                 lambda c: c.educational_category == "student")
             partner.childs_current_center_ids = [
@@ -188,7 +209,7 @@ class ResPartner(models.Model):
         self.ensure_one()
         if self.educational_category != "school":
             return
-        action = self.env.ref('contacts.action_contacts')
+        action = self.env.ref("contacts.action_contacts")
         action_dict = action and action.read()[0]
         domain = expression.AND([
             [("current_center_id", "=", self.id)],
