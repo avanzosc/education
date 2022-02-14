@@ -149,7 +149,7 @@ class EducationExam(models.Model):
                 student, parent_record) if self.recovered_exam_id else False)
         if not exam_record or (exam_record and
                                exam_record.pass_mark == "fail"):
-            record = record_obj.search([
+            record = record_obj.sudo().search([
                 ("exam_id", "=", self.id),
                 ("n_line_id", "=", self.n_line_id.id),
                 ("student_id", "=", student.id),

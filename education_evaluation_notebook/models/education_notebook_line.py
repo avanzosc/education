@@ -289,7 +289,7 @@ class EducationNotebookLine(models.Model):
         if parent_record:
             record_domain = expression.AND(
                 [record_domain, [("parent_record_id", "=", parent_record.id)]])
-        record = record_obj.search(record_domain, limit=1)
+        record = record_obj.sudo().search(record_domain, limit=1)
         if not record:
             record = record_obj.create({
                 "n_line_id": self.id,
