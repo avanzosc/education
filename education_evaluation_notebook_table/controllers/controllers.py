@@ -134,7 +134,7 @@ class EducationMain(CustomerPortal):
             record_id = value['record_id']
             new_val = value['new_val']
             edu_record = record_obj.sudo().browse(int(record_id))
-            if edu_record and new_val:
+            if edu_record and (new_val or field_type == 'exceptionality'):
                 update_ok = None
                 if field_type == 'numeric_mark':
                     if self.check_value_spelling(new_val):
@@ -145,6 +145,8 @@ class EducationMain(CustomerPortal):
                     else:
                         update_ok = False
                 if field_type == 'exceptionality':
+                    if new_val == "":
+                        new_val = None
                     update_ok = True
                 if update_ok:
                     edu_record.sudo().update({field_type: new_val})
