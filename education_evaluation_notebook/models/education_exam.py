@@ -242,6 +242,8 @@ class EducationExam(models.Model):
             "hide_behaviour": True,
             "hide_exam": False,
         })
+        action_dict["views"] = action_dict.get("views", [])
+        action_dict["views"].append((False, "pivot"))
         domain = expression.AND([
             [("exam_id", "=", self.id)],
             safe_eval(action.domain or "[]")])

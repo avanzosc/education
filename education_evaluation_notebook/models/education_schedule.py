@@ -103,6 +103,8 @@ class EducationSchedule(models.Model):
         action = self.env.ref(
             "education_evaluation_notebook.education_record_action")
         action_dict = action.read()[0] if action else {}
+        action_dict["views"] = action_dict.get("views", [])
+        action_dict["views"].append((False, "pivot"))
         domain = expression.AND([
             [("n_line_id", "in", self.notebook_line_ids.ids)],
             safe_eval(action.domain or "[]")])
