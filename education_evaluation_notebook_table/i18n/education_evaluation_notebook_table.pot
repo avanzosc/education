@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-26 09:33+0000\n"
-"PO-Revision-Date: 2021-11-26 09:33+0000\n"
+"POT-Creation-Date: 2022-03-01 10:52+0000\n"
+"PO-Revision-Date: 2022-03-01 10:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgid "<span class=\"o_stat_text\">Records on Website</span>"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:72
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:82
 #, python-format
 msgid "Academic Year:"
 msgstr ""
@@ -54,7 +54,7 @@ msgid "Class Schedule"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:76
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:86
 #, python-format
 msgid "Classroom"
 msgstr ""
@@ -62,6 +62,11 @@ msgstr ""
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.view_edu_schedule_print_form
 msgid "Close"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.dropdown_action_button
+msgid "Copy partial calculated mark"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
@@ -81,7 +86,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:68
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:78
 #, python-format
 msgid "Education Center:"
 msgstr ""
@@ -175,7 +180,12 @@ msgid "Reduced Final"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:66
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.dropdown_action_button
+msgid "Round official mark"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:76
 #, python-format
 msgid "SCHEDULE ACADEMIC RECORDS"
 msgstr ""
@@ -203,7 +213,17 @@ msgid "Second"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:84
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.dropdown_action_button
+msgid "Set assessed record as initial"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.dropdown_action_button
+msgid "Set pending record as assessed"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:94
 #, python-format
 msgid "Student"
 msgstr ""
@@ -224,14 +244,9 @@ msgid "Wizard to print Edu. Schedule Records Report"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:191
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:210
 #, python-format
 msgid "You can only get xlsx report of education schedules"
-msgstr ""
-
-#. module: education_evaluation_notebook_table
-#: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_academic_record_provisional
-msgid "report.education_schedule.academic_record_provisional"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
