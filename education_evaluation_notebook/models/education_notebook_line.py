@@ -221,6 +221,8 @@ class EducationNotebookLine(models.Model):
             "hide_calculated": self.competence_id.eval_mode == "behaviour",
             "hide_behaviour": self.competence_id.eval_mode == "numeric",
         })
+        action_dict["views"] = action_dict.get("views", [])
+        action_dict["views"].append((False, "pivot"))
         domain = expression.AND([
             [("n_line_id", "=", self.id),
              ("exam_id", "=", False)],
