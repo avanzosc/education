@@ -33,9 +33,17 @@ $(document).ready(function(require) {
         $(this).removeClass("select_disabled");
         $('#editing_msg').show();
         $('#save_schedule_btn').show();
-        var changed_vals = $('#changed_select_ids').val();
+        var changed_vals = $('#changed_except_ids').val();
         var changed_vals_obj = generate_new_values(changed_vals, $(this));
-        $('#changed_select_ids').val(JSON.stringify(changed_vals_obj));
+        $('#changed_except_ids').val(JSON.stringify(changed_vals_obj));
+    });
+    $("#teacher_schedule_table .behaviour_mark_select").change(function(){
+        $(this).removeClass("select_disabled");
+        $('#editing_msg').show();
+        $('#save_schedule_btn').show();
+        var changed_vals = $('#changed_attit_ids').val();
+        var changed_vals_obj = generate_new_values(changed_vals, $(this));
+        $('#changed_attit_ids').val(JSON.stringify(changed_vals_obj));
     });
     $(".eval_button").click(function(){
         var evaluation = this.id;

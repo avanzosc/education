@@ -113,7 +113,8 @@
                                     </div>
                                  </div>
                                  <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
-                                 <input id="changed_select_ids" name="changed_select_ids" hidden="true"/>
+                                 <input id="changed_except_ids" name="changed_except_ids" hidden="true"/>
+                                 <input id="changed_attit_ids" name="changed_attit_ids" hidden="true"/>
                               </form>
                               <div class="col-lg-12">
                                  <div class="text-center">
@@ -251,18 +252,27 @@
                <t t-if="sr.state == 'assessed'">
                   <br/>
                   <span class="assessed mark_input"><t t-esc="round(sr.numeric_mark, 2)"/></span><br/>
-                  <span class="assessed" t-field="sr.exceptionality"/>
+                  <span class="assessed" t-field="sr.exceptionality"/><br/>
+                  <span class="assessed" t-field="sr.behaviour_mark_id.display_name"/>
                </t>
                <t t-else="">
                   <input readonly="True" class="mark_input" t-att-id="sr.id" t-att-value="round(sr.numeric_mark, 2)" placeholder="Insert mark"/>
                   <select t-att-class="'exceptionality_select select_disabled' + (' no_exceptionality' if not sr.exceptionality else '')" name="exceptionality_select" t-att-id="sr.id">
-                  <option value=""></option>
-                  <t t-foreach="exceptionalities" t-as="exceptionality">
-                     <option t-att-value="exceptionality" t-att-selected="exceptionality == sr.exceptionality">
-                        <t t-esc="exceptionalities[exceptionality]"/>
-                     </option>
-                  </t>
-               </select>
+                     <option value=""></option>
+                     <t t-foreach="exceptionalities" t-as="exceptionality">
+                        <option t-att-value="exceptionality" t-att-selected="exceptionality == sr.exceptionality">
+                           <t t-esc="exceptionalities[exceptionality]"/>
+                        </option>
+                     </t>
+                  </select>
+                  <select t-if="behaviour_marks and (sr.competence_id.eval_mode == 'behaviour' or sr.competence_id.evaluation_check or sr.competence_id.global_check)" class="behaviour_mark_select select_disabled" name="behaviour_mark_select" t-att-id="sr.id">
+                     <option value=""></option>
+                     <t t-foreach="behaviour_marks" t-as="behaviour_mark">
+                        <option t-att-value="behaviour_mark.id" t-att-selected="behaviour_mark.id == sr.behaviour_mark_id.id">
+                           <t t-esc="behaviour_mark.name"/>
+                        </option>
+                     </t>
+                  </select>
                </t>
             </span>
          </span>
