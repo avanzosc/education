@@ -48,8 +48,10 @@ class EducationMain(CustomerPortal):
         ]
         if 'exam' in vals:
             domain += [('exam_id', '=', int(n_line))]
+            exam = request.env['education.exam'].sudo().browse(int(n_line))
         else:
             domain += [('n_line_id', '=', int(n_line))]
+            exam = None
         records = request.env['education.record'].sudo().search(domain)
         if records:
             if 'copy' in vals:
@@ -57,10 +59,16 @@ class EducationMain(CustomerPortal):
                 records.action_copy_partial_calculated_mark()
             if 'initial' in vals:
                 action = vals.get('initial')
-                records.button_set_draft()
+                if exam:
+                    exam.action_marking()
+                else:
+                    records.button_set_draft()
             if 'assessed' in vals:
                 action = vals.get('assessed')
-                records.button_set_assessed()
+                if exam:
+                    exam.action_graded()
+                else:
+                    records.button_set_assessed()
             if 'round' in vals:
                 action = vals.get('round')
                 records.action_round_numeric_mark()
