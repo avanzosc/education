@@ -136,7 +136,6 @@ class EducationMain(CustomerPortal):
             line_records = line.record_ids.filtered(lambda r: r.is_retake_record)
             if line_records:
                 retake_record_lines = retake_record_lines + line if retake_record_lines else line
-        print('!!', retake_record_lines)
         return retake_record_lines
 
     def get_record_exceptionality_library(self):
