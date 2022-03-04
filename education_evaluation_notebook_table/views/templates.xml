@@ -165,6 +165,14 @@
                                                          <t t-set="btn_id" t-value="eval.id"/>
                                                       </t>
                                                    </td>
+                                                   <t t-if="retake_record_lines and eval.id in retake_record_lines.ids">
+                                                      <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
+                                                         <t t-set="eval_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (eval._name, eval.id, eval.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
+                                                         <div class="text-center mb-2">
+                                                            <a t-att-href="eval_backend_url"><t t-esc="eval.competence_id.display_name"/> <span t-field="eval.eval_type" /> [RETAKE]</a>
+                                                         </div>
+                                                      </td>
+                                                   </t>
                                                 </t>
                                                 <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
                                                    <t t-set="line_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (line._name, line.id, line.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
@@ -209,11 +217,19 @@
                                                          </td>
                                                       </t>
                                                       <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
-                                                         <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
+                                                         <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id and not r.is_retake_record)"/>
                                                          <t t-call="education_evaluation_notebook_table.record_cell">
                                                             <t t-set="selected_record" t-value="eval_record"/>
                                                          </t>
                                                       </td>
+                                                      <t t-if="retake_record_lines and eval.id in retake_record_lines.ids">
+                                                         <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
+                                                            <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id and r.is_retake_record)"/>
+                                                            <t t-call="education_evaluation_notebook_table.record_cell">
+                                                               <t t-set="selected_record" t-value="eval_record"/>
+                                                            </t>
+                                                         </td>
+                                                      </t>
                                                    </t>
                                                    <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
                                                       <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>

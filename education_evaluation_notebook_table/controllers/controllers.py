@@ -111,6 +111,7 @@ class EducationMain(CustomerPortal):
         record_lines = schedule_evaluation_records.mapped('n_line_id')
         evaluations = record_lines.filtered(
             lambda l: l.competence_id.evaluation_check or l.competence_id.global_check)
+        retake_record_lines = self.get_retake_record_lines(record_lines)
 
         url = '/schedule/%s/califications' % schedule_id
         keep = QueryURL(url, access_token=access_token)
@@ -120,6 +121,7 @@ class EducationMain(CustomerPortal):
             'schedule_evaluation_records': schedule_evaluation_records,
             'evaluation_record_students': evaluation_record_students,
             'record_lines': record_lines,
+            'retake_record_lines': retake_record_lines,
             'evaluations': evaluations,
             'exceptionalities': self.get_record_exceptionality_library(),
         }
@@ -127,6 +129,15 @@ class EducationMain(CustomerPortal):
         return http.request.render(
             'education_evaluation_notebook_table.' +
             'schedule_calification_table', values)
+
+    def get_retake_record_lines(self, record_lines):
+        retake_record_lines = None
+        for line in record_lines:
+            line_records = line.record_ids.filtered(lambda r: r.is_retake_record)
+            if line_records:
+                retake_record_lines = retake_record_lines + line if retake_record_lines else line
+        print('!!', retake_record_lines)
+        return retake_record_lines
 
     def get_record_exceptionality_library(self):
         exceptionality_lib = {}
