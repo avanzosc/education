@@ -247,7 +247,10 @@ class EducationExam(models.Model):
         domain = expression.AND([
             [("exam_id", "=", self.id)],
             safe_eval(action.domain or "[]")])
-        action_dict.update({"domain": domain})
+        action_dict.update({
+            "domain": domain,
+            "view_mode": "form,tree,pivot",
+        })
         return action_dict
 
     @api.multi
