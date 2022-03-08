@@ -79,7 +79,7 @@ class EducationMain(CustomerPortal):
                 auth="user", website=True)
     def schedule_califications(
             self, schedule_id=None, changed_input_ids=None,
-            changed_select_ids=None, download=False, report_type=None,
+            changed_except_ids=None, changed_attit_ids=None, download=False, report_type=None,
             access_token=None, **args):
 
         logged_employee = request.env['hr.employee'].search([
@@ -96,10 +96,14 @@ class EducationMain(CustomerPortal):
             changed_input_ids_array = json.loads(changed_input_ids)
             self.update_new_schedule_records(
                 changed_input_ids_array, 'numeric_mark')
-        if changed_select_ids:
-            changed_select_ids_array = json.loads(changed_select_ids)
+        if changed_except_ids:
+            changed_select_ids_array = json.loads(changed_except_ids)
             self.update_new_schedule_records(
                 changed_select_ids_array, 'exceptionality')
+        if changed_attit_ids:
+            changed_attit_ids_array = json.loads(changed_attit_ids)
+            self.update_new_schedule_records(
+                changed_attit_ids_array, 'behaviour_mark_id')
 
         schedule_obj = request.env['education.schedule']
 
@@ -122,6 +126,7 @@ class EducationMain(CustomerPortal):
             'record_lines': record_lines,
             'evaluations': evaluations,
             'exceptionalities': self.get_record_exceptionality_library(),
+            'behaviour_marks': self.get_record_behaviour_mark_library(),
         }
 
         return http.request.render(
@@ -136,13 +141,17 @@ class EducationMain(CustomerPortal):
             })
         return exceptionality_lib
 
+    def get_record_behaviour_mark_library(self, schedule=None):
+        behaviour_marks = request.env['education.mark.behaviour'].sudo().search([])
+        return behaviour_marks
+
     def update_new_schedule_records(self, new_values_array, field_type):
         record_obj = request.env['education.record']
         for value in new_values_array:
             record_id = value['record_id']
             new_val = value['new_val']
             edu_record = record_obj.sudo().browse(int(record_id))
-            if edu_record and (new_val or field_type == 'exceptionality'):
+            if edu_record and (new_val or field_type in ('exceptionality', 'behaviour_mark_id')):
                 update_ok = None
                 if field_type == 'numeric_mark':
                     if self.check_value_spelling(new_val):
@@ -152,7 +161,7 @@ class EducationMain(CustomerPortal):
                             update_ok = True
                     else:
                         update_ok = False
-                if field_type == 'exceptionality':
+                if field_type in ('exceptionality', 'behaviour_mark_id'):
                     if new_val == "":
                         new_val = None
                     update_ok = True
