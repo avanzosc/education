@@ -24,10 +24,16 @@ class ResPartner(models.Model):
         comodel_name="res.partner",
         string="Last Education Center",
         domain=[("educational_category", "=", "school")],
+        index=True,
     )
     alumni_academic_year_id = fields.Many2one(
         comodel_name="education.academic_year",
         string="Last Academic Year",
+        index=True,
+    )
+    alumni_course_id = fields.Many2one(
+        comodel_name="education.course",
+        string="Last Education Course",
         index=True,
     )
     alumni_member = fields.Boolean(string="Alumni Association Member")
@@ -196,6 +202,7 @@ class ResPartner(models.Model):
             "old_student": True,
             "alumni_center_id": current_group.center_id.id,
             "alumni_academic_year_id": current_group.academic_year_id.id,
+            "alumni_course_id": current_group.course_id.id,
             "current_center_id": False,
             "current_level_id": False,
             "current_course_id": False,
