@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 11:09+0000\n"
-"PO-Revision-Date: 2022-03-04 11:09+0000\n"
+"POT-Creation-Date: 2022-03-01 10:53+0000\n"
+"PO-Revision-Date: 2022-03-01 10:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "<i class=\"fa fa-arrow-right\"/> Go to backend"
-msgstr "<i class=\"fa fa-arrow-right\"/> Ir a Backend"
+msgstr "<i class=\"fa fa-arrow-right\"/> Ir a Cuadro Horario"
 
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
@@ -119,7 +119,7 @@ msgstr ""
 #. module: education_evaluation_notebook_table
 #: selection:report.education.schedule.record.export,eval_type:0
 msgid "First"
-msgstr "Primero"
+msgstr "Primera"
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model.fields,field_description:education_evaluation_notebook_table.field_report_education_schedule_academic_record_xlsx__id
@@ -210,17 +210,17 @@ msgstr "Horarios"
 #. module: education_evaluation_notebook_table
 #: selection:report.education.schedule.record.export,eval_type:0
 msgid "Second"
-msgstr "Segundo"
+msgstr "Segunda"
 
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.dropdown_action_button
 msgid "Set assessed record as initial"
-msgstr "Pasar a estado inicial"
+msgstr "Pasar la nota a estado INICIAL"
 
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.dropdown_action_button
 msgid "Set pending record as assessed"
-msgstr "Pasar a estado corregido"
+msgstr "Pasar la nota a estado EVALUADO"
 
 #. module: education_evaluation_notebook_table
 #: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:94
@@ -231,12 +231,16 @@ msgstr "Alumno"
 #. module: education_evaluation_notebook_table
 #: selection:report.education.schedule.record.export,eval_type:0
 msgid "Third"
-msgstr "Tercero"
+msgstr "Tercera"
 
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "To change the status of an exam or competence, click on the headers of the table."
-msgstr "Para cambiar un examen o competencia de estado (Evaluado o Inicial), GUARDA primero los cambios realizados y PINCHA en el nombre del examen o competencia."
+msgstr "Notas - Inicial o Evaluado:  &nbsp &nbsp <FONT COLOR=\"gray\">                                                                                                                                                              \n"
+"GUARDA los cambios &rarr; PINCHA en la flecha amarilla del examen o competencia  &rarr; ELIGE la acción correspondiente </FONT>    <br/>\n"
+" <br/>\n"
+"INICIAL: <FONT COLOR=\"gray\">Editable - Letra normal - Nota NO publicada en CONECTAS </FONT>   &nbsp  &nbsp &nbsp &nbsp &nbsp    EVALUADO: <FONT COLOR=\"gray\"> No editable -Letra en negrita - Nota SI publicada en CONECTAS</FONT>    <br/>                       \n"
+""
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_record_export
@@ -253,4 +257,3 @@ msgstr ""
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_academic_record_xlsx
 msgid "report.education_schedule.academic_record_xlsx"
 msgstr ""
-
