@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 10:53+0000\n"
-"PO-Revision-Date: 2022-03-01 10:53+0000\n"
+"POT-Creation-Date: 2022-03-14 17:03+0000\n"
+"PO-Revision-Date: 2022-03-14 17:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "<i class=\"fa fa-arrow-right\"/> Go to backend"
-msgstr "<i class=\"fa fa-arrow-right\"/> Ir a Cuadro Horario"
+msgstr "<i class=\"fa fa-arrow-right\"/> Volver al Cuadro Horario"
 
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
@@ -35,10 +35,10 @@ msgstr "<i>Estás editando esta tabla</i>"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.education_notebook_line_view_form
 msgid "<span class=\"o_stat_text\">Records on Website</span>"
-msgstr "<span class=\"o_stat_text\">Ver notas en Web</span>"
+msgstr "<span class=\"o_stat_text\">Tabla notas en Web</span>"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:82
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:88
 #, python-format
 msgid "Academic Year:"
 msgstr "Año académico:"
@@ -46,7 +46,7 @@ msgstr "Año académico:"
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "All"
-msgstr "Todos"
+msgstr "Todas"
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_education_schedule
@@ -54,7 +54,7 @@ msgid "Class Schedule"
 msgstr "Horario de clases"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:86
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:92
 #, python-format
 msgid "Classroom"
 msgstr "Clase"
@@ -86,7 +86,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:78
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:84
 #, python-format
 msgid "Education Center:"
 msgstr "Centro Educativo:"
@@ -159,6 +159,12 @@ msgid "No records found"
 msgstr "No hay registros"
 
 #. module: education_evaluation_notebook_table
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:57
+#, python-format
+msgid "Observations for the evaluation"
+msgstr "Observaciones de evaluación"
+
+#. module: education_evaluation_notebook_table
 #: selection:report.education.schedule.record.export,mark_type:0
 msgid "Official"
 msgstr "Oficial"
@@ -185,7 +191,7 @@ msgid "Round official mark"
 msgstr "Redondear nota oficial"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:76
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:82
 #, python-format
 msgid "SCHEDULE ACADEMIC RECORDS"
 msgstr "REGISTROS ACADÉMICOS HORARIO DE CLASE"
@@ -223,7 +229,7 @@ msgid "Set pending record as assessed"
 msgstr "Pasar la nota a estado EVALUADO"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:94
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:100
 #, python-format
 msgid "Student"
 msgstr "Alumno"
@@ -236,11 +242,15 @@ msgstr "Tercera"
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "To change the status of an exam or competence, click on the headers of the table."
-msgstr "Notas - Inicial o Evaluado:  &nbsp &nbsp <FONT COLOR=\"gray\">                                                                                                                                                              \n"
-"GUARDA los cambios &rarr; PINCHA en la flecha amarilla del examen o competencia  &rarr; ELIGE la acción correspondiente </FONT>    <br/>\n"
-" <br/>\n"
-"INICIAL: <FONT COLOR=\"gray\">Editable - Letra normal - Nota NO publicada en CONECTAS </FONT>   &nbsp  &nbsp &nbsp &nbsp &nbsp    EVALUADO: <FONT COLOR=\"gray\"> No editable -Letra en negrita - Nota SI publicada en CONECTAS</FONT>    <br/>                       \n"
-""
+msgstr "Para cambiar de estado de las notas (Inicial o Evaluado):                                                                                                                                                                               \n"
+"  1. GUARDA primero los cambios realizados                                                                                                                                   \n"
+"  2. PINCHA en la flecha amarilla del examen o competencia\n"
+"  3. ELIGE la acción correspondiente          \n"
+"\n"
+"    \n"
+"INICIAL: LOS PADRES NO LO VEN Y NO CUENTA PARA EL CALCULO DE LA NOTA PROVISIONAL\n"
+"EVALUADO: LOS PADRES LO VEN Y CUENTA PARA EL CALCULO DE LA NOTA PROVISIONAL                                                                                                                                                     \n"
+"            "
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_record_export
@@ -248,7 +258,7 @@ msgid "Wizard to print Edu. Schedule Records Report"
 msgstr "Wizard para imprimir Informe de Registros Académicos"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:210
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:225
 #, python-format
 msgid "You can only get xlsx report of education schedules"
 msgstr ""

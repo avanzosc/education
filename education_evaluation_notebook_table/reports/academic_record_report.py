@@ -52,6 +52,12 @@ class AcademicRecordReport(models.AbstractModel):
                         cell_format)
             sheet.set_column(row, col, 20)
             col += 1
+        if parent_line.competence_id.evaluation_check:
+            sheet.write(row, col,
+                        _('Observations for the evaluation'),
+                        cell_format)
+            sheet.set_column(row, col, 20)
+            col += 1
         return col
 
     def create_schedule_sheet(self, workbook, schedule):
@@ -139,9 +145,13 @@ class AcademicRecordReport(models.AbstractModel):
             mark_record_type = self.get_mark_eval_type(parent_record_line)
             mark_format = self.get_record_format(
                 current_record_mark, record.state, mark_record_type)
+            write_val = str(round(current_record_mark, 2))
+            if record.exceptionality:
+                exceptionality = dict(self.env['education.record']._fields['exceptionality'].selection).get(record.exceptionality)
+                write_val = write_val + ' [%s]' % _(exceptionality)
             sheet.write(
                 row, col,
-                str(round(current_record_mark, 2)), mark_format)
+                write_val, mark_format)
             col += 1
             recovered_records = all_records.filtered(
                 lambda r: r.n_line_id.id == record.n_line_id.id and r.is_retake_record)
@@ -154,6 +164,11 @@ class AcademicRecordReport(models.AbstractModel):
                         kid_recovered_record.calculated_partial_mark if
                         self.mark_type == 'provisional' else
                         kid_recovered_record.numeric_mark)
+                sheet.write(row, col, cell_val, mark_format)
+                sheet.set_column(row, col, 20)
+                col += 1
+            if record.competence_id.evaluation_check:
+                cell_val = record.comments if record.comments else ''
                 sheet.write(row, col, cell_val, mark_format)
                 sheet.set_column(row, col, 20)
                 col += 1
