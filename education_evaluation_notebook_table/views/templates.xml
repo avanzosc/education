@@ -166,6 +166,14 @@
                                                          <t t-set="btn_id" t-value="eval.id"/>
                                                       </t>
                                                    </td>
+                                                   <t t-if="retake_record_lines and eval.id in retake_record_lines.ids">
+                                                      <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
+                                                         <t t-set="eval_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (eval._name, eval.id, eval.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
+                                                         <div class="text-center mb-2">
+                                                            <a t-att-href="eval_backend_url"><t t-esc="eval.competence_id.display_name"/> <span t-field="eval.eval_type" /> [RETAKE]</a>
+                                                         </div>
+                                                      </td>
+                                                   </t>
                                                 </t>
                                                 <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
                                                    <t t-set="line_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (line._name, line.id, line.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
@@ -210,11 +218,19 @@
                                                          </td>
                                                       </t>
                                                       <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
-                                                         <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id)"/>
+                                                         <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id and not r.is_retake_record)"/>
                                                          <t t-call="education_evaluation_notebook_table.record_cell">
                                                             <t t-set="selected_record" t-value="eval_record"/>
                                                          </t>
                                                       </td>
+                                                      <t t-if="retake_record_lines and eval.id in retake_record_lines.ids">
+                                                         <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
+                                                            <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id and r.is_retake_record)"/>
+                                                            <t t-call="education_evaluation_notebook_table.record_cell">
+                                                               <t t-set="selected_record" t-value="eval_record"/>
+                                                            </t>
+                                                         </td>
+                                                      </t>
                                                    </t>
                                                    <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
                                                       <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
@@ -245,15 +261,17 @@
    </template>
    <template id="record_cell">
       <t t-foreach="selected_record" t-as="sr">
-         <span t-if="not sr.exam_id" t-att-class="'partial_mark' + (' mark_fail' if sr.calculated_partial_mark &lt; 5 else '')">
+         <span t-if="not sr.exam_id and sr.competence_id.eval_mode != 'behaviour'" t-att-class="'partial_mark' + (' mark_fail' if sr.calculated_partial_mark &lt; 5 else '')">
             <t t-esc="sr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
          <span t-att-class="'mark_retake' if sr.is_retake_record else None">
             <span t-att-class="'mark_fail' if sr.numeric_mark &lt; 5 else None">
                <t t-if="sr.state == 'assessed'">
                   <br/>
-                  <span class="assessed mark_input"><t t-esc="round(sr.numeric_mark, 2)"/></span><br/>
-                  <span class="assessed" t-field="sr.exceptionality"/><br/>
-                  <span class="assessed" t-field="sr.behaviour_mark_id.display_name"/>
+                  <t t-if="sr.competence_id.eval_mode != 'behaviour'">
+                     <span class="assessed mark_input"><t t-esc="round(sr.numeric_mark, 2)"/></span><br/>
+                     <span class="assessed" t-field="sr.exceptionality"/><br/>
+                  </t>
+                  <span t-if="sr.competence_id.eval_mode != 'numeric' and sr.behaviour_mark_id" class="assessed" t-field="sr.behaviour_mark_id.display_name"/>
                </t>
                <t t-else="">
                   <t t-if="sr.competence_id.eval_mode != 'behaviour'">

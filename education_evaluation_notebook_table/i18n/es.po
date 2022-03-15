@@ -257,4 +257,3 @@ msgstr ""
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_academic_record_xlsx
 msgid "report.education_schedule.academic_record_xlsx"
 msgstr ""
-
