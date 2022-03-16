@@ -90,3 +90,8 @@
 .assessed {
     font-weight: bold;
 }
+#save_schedule_btn{
+ background-color: #FF6A00 !important;
+ border-color: grey !important;
+ color: black !important;
+}
