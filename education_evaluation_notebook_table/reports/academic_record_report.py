@@ -128,9 +128,13 @@ class AcademicRecordReport(models.AbstractModel):
             exam_record = self._get_kid_exam_record(exam, student)
             mark_format = self.get_record_format(
                 exam_record.numeric_mark, exam_record.state)
+            write_val = str(round(exam_record.numeric_mark, 2))
+            if exam_record.exceptionality:
+                exceptionality = dict(self.env['education.record']._fields['exceptionality'].selection).get(exam_record.exceptionality)
+                write_val = write_val + ' [%s]' % _(exceptionality)
             sheet.write(
                 row, col,
-                str(round(exam_record.numeric_mark, 2)), mark_format)
+                write_val, mark_format)
             col += 1
         return col
 
