@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 10:52+0000\n"
-"PO-Revision-Date: 2022-03-01 10:52+0000\n"
+"POT-Creation-Date: 2022-03-14 17:03+0000\n"
+"PO-Revision-Date: 2022-03-14 17:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgid "<span class=\"o_stat_text\">Records on Website</span>"
 msgstr "<span class=\"o_stat_text\">Notak ikusi Webgunean</span>"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:82
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:88
 #, python-format
 msgid "Academic Year:"
 msgstr ""
@@ -54,7 +54,7 @@ msgid "Class Schedule"
 msgstr "Ordutegia"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:86
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:92
 #, python-format
 msgid "Classroom"
 msgstr ""
@@ -86,7 +86,7 @@ msgid "Display Name"
 msgstr "Izena erakutsi"
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:78
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:84
 #, python-format
 msgid "Education Center:"
 msgstr ""
@@ -159,6 +159,12 @@ msgid "No records found"
 msgstr "Ez da erregistrorik aurkitu"
 
 #. module: education_evaluation_notebook_table
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:57
+#, python-format
+msgid "Observations for the evaluation"
+msgstr ""
+
+#. module: education_evaluation_notebook_table
 #: selection:report.education.schedule.record.export,mark_type:0
 msgid "Official"
 msgstr ""
@@ -185,7 +191,7 @@ msgid "Round official mark"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:76
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:82
 #, python-format
 msgid "SCHEDULE ACADEMIC RECORDS"
 msgstr ""
@@ -223,7 +229,7 @@ msgid "Set pending record as assessed"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:94
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:100
 #, python-format
 msgid "Student"
 msgstr "Ikaslea"
@@ -244,7 +250,7 @@ msgid "Wizard to print Edu. Schedule Records Report"
 msgstr ""
 
 #. module: education_evaluation_notebook_table
-#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:210
+#: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:225
 #, python-format
 msgid "You can only get xlsx report of education schedules"
 msgstr ""
