@@ -262,7 +262,7 @@
    <template id="record_cell">
       <t t-foreach="selected_record" t-as="sr">
          <span t-if="not sr.exam_id and sr.competence_id.eval_mode != 'behaviour'" t-att-class="'partial_mark' + (' mark_fail' if sr.calculated_partial_mark &lt; 5 else '')">
-            <t t-esc="sr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/></span>
+            [<t t-esc="sr.calculated_partial_mark" t-options='{"widget": "float", "precision": 2}'/>]</span>
          <span t-att-class="'mark_retake' if sr.is_retake_record else None">
             <span t-att-class="'mark_fail' if sr.numeric_mark &lt; 5 else None">
                <t t-if="sr.state == 'assessed'">
