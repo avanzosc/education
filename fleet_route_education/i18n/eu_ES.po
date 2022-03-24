@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-31 13:15+0000\n"
-"PO-Revision-Date: 2021-08-31 13:15+0000\n"
+"POT-Creation-Date: 2022-03-24 13:50+0000\n"
+"PO-Revision-Date: 2022-03-24 13:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr ""
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
 msgid "<b>Shift:</b>"
-msgstr ""
+msgstr "<b>Txanda:</b>"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_passenger_list_report_qweb_template
@@ -143,6 +143,7 @@ msgstr "Kontaktua"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Course"
 msgstr "Maila"
@@ -191,6 +192,7 @@ msgstr "Izena erakutsi"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__center_id
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Education Center"
 msgstr "Ikastetxea"
@@ -203,6 +205,7 @@ msgstr ""
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__level_id
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Education Level"
 msgstr ""
@@ -240,6 +243,7 @@ msgstr ". module: fleet_route_educatio: model:ir.model.fields,field_description:
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 msgid "Group"
 msgstr "Taldea"
 
@@ -346,7 +350,7 @@ msgstr ""
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
 msgid "Stops"
-msgstr ""
+msgstr "Geltokiak"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search

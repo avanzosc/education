@@ -19,6 +19,13 @@
                     </t>
                 </div>
             </xpath>
+            <xpath expr="//field[@name='stop_passenger_ids']/tree//field[@name='partner_id']"
+                   position="after">
+                <field name="partner_center_id" string="Education Center" />
+                <field name="partner_level_id" string="Education Level" />
+                <field name="partner_course_id" string="Course" />
+                <field name="partner_group_id" string="Group" />
+            </xpath>
         </field>
     </record>
 </odoo>

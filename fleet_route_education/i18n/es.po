@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-31 13:16+0000\n"
-"PO-Revision-Date: 2021-08-31 13:16+0000\n"
+"POT-Creation-Date: 2022-03-24 13:51+0000\n"
+"PO-Revision-Date: 2022-03-24 13:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -146,6 +146,7 @@ msgstr "Contacto"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Course"
 msgstr "Curso educativo"
@@ -194,6 +195,7 @@ msgstr "Nombre mostrado"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__center_id
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
@@ -206,6 +208,7 @@ msgstr "Curso"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__level_id
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Education Level"
 msgstr "Nivel educativo"
@@ -243,6 +246,7 @@ msgstr "Producto media ruta ida"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 msgid "Group"
 msgstr "Grupo"
 
