@@ -6,8 +6,6 @@ from odoo import api, models
 class EducationSchedule(models.Model):
     _inherit = 'education.schedule'
 
-#    access_token = fields.Char('Access Token', groups="base.group_user")
-
     @api.multi
     def button_open_website_academic_records(self):
         self.ensure_one()
@@ -15,5 +13,5 @@ class EducationSchedule(models.Model):
         return {
             'type': 'ir.actions.act_url',
             'url': url,
-            'target': 'self',
+            'target': 'new',
         }
