@@ -115,6 +115,7 @@
                                  <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
                                  <input id="changed_except_ids" name="changed_except_ids" hidden="true"/>
                                  <input id="changed_attit_ids" name="changed_attit_ids" hidden="true"/>
+                                 <input id="selected_eval" name="selected_eval" t-att-value="selected_eval" hidden="true"/>
                               </form>
                               <div class="col-lg-12">
                                  <div class="text-center">
@@ -126,15 +127,15 @@
                                     <thead>
                                        <tr class="teacher_table_head_tr">
                                           <td class="student_schedule_td"/>
-                                          <t t-if="record_lines" t-foreach="record_lines.sorted('sequence')" t-as="line">
+                                          <t t-if="record_lines" t-foreach="record_lines" t-as="line">
                                              <t t-if="line.competence_id.global_check">
                                                 <t t-set="evals"
                                                    t-value="record_lines.filtered(lambda r: r.parent_line_id.id == line.id)"/>
-                                                <t t-if="evals" t-foreach="evals.sorted('sequence')" t-as="eval">
+                                                <t t-if="evals" t-foreach="evals" t-as="eval">
                                                    <t t-set="competences"
                                                       t-value="record_lines.filtered(lambda r: r.parent_line_id.id == eval.id)"/>
-                                                   <t t-if="competences" t-foreach="competences.sorted('sequence')" t-as="competence">
-                                                      <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-if="competence.exam_ids" t-foreach="competence.exam_ids.sorted('create_date')" t-as="exam">
+                                                   <t t-if="competences" t-foreach="competences" t-as="competence">
+                                                      <td t-att-class="'exam_schedule_td td_eval_' + exam.eval_type" t-if="competence.exam_ids" t-foreach="competence.exam_ids" t-as="exam">
                                                          <t t-set="exam_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (exam._name, exam.id, exam.env.ref('education_evaluation_notebook.education_exam_action').id)"/>
                                                          <div t-ignore="true" class="text-center mb-2">
                                                             <a t-att-href="exam_backend_url"><t t-esc="exam.name"/>
