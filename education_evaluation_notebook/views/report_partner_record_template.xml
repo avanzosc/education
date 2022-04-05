@@ -183,14 +183,19 @@
                                                 </t>
                                             </td>
                                         </tr>
+                                        <tr t-if="no_type_child_record.comments">
+                                            <td colspan="2">
+                                                <i t-esc="no_type_child_record.comments"/>
+                                            </td>
+                                        </tr>
                                     </t>
-                                    <tr t-if="no_type_child_records.filtered('comments')">
+                                    <!--<tr t-if="no_type_child_records.filtered('comments')">
                                         <td colspan="2">
                                             <t t-foreach="no_type_child_records.filtered('comments').mapped('comments')" t-as="record_comment">
                                                 <i t-esc="record_comment"/>
                                             </t>
                                         </td>
-                                    </tr>
+                                    </tr>-->
                                     <t t-foreach="competence_types" t-as="competence_type">
                                         <tr>
                                             <td class="text-left pl-3" colspan="2">
