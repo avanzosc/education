@@ -2,17 +2,22 @@ $(document).ready(function(require) {
     "use strict";
     var ajax = require("web.ajax");
 
-    var evaluation = $('#selected_eval').val();
-    if(evaluation && evaluation != 'all'){
-        $('.eval_button').removeClass('btn-highlight');
-        $('#'+evaluation).addClass('btn-highlight');
-        $('td').hide();
-        $('.student_schedule_td').show();
-        $('.td_eval_' + evaluation).show();
-        if(evaluation == 'final'){
-            $('.final_td').show();
+    update_table_eval();
+
+    function update_table_eval(){
+        var evaluation = $('#selected_eval').val();
+        if(evaluation && evaluation != 'all'){
+            $('.eval_button').removeClass('btn-highlight');
+            $('#'+evaluation).addClass('btn-highlight');
+            $('td').hide();
+            $('.student_schedule_td').show();
+            $('.td_eval_' + evaluation).show();
+            if(evaluation == 'final'){
+                $('.final_td').show();
+            }
         }
     }
+
 
 
     function generate_new_values(changed_vals, changed_input){
@@ -124,6 +129,7 @@ $(document).ready(function(require) {
             success: function(resp){
                console.log("Finished. " + resp); //just use the resp here
                location.reload();
+               update_table_eval();
             },
             error : function(err){
                 console.log("Error: " + err); //just use the err here
