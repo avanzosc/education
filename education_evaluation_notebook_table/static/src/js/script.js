@@ -2,6 +2,19 @@ $(document).ready(function(require) {
     "use strict";
     var ajax = require("web.ajax");
 
+    var evaluation = $('#selected_eval').val();
+    if(evaluation && evaluation != 'all'){
+        $('.eval_button').removeClass('btn-highlight');
+        $('#'+evaluation).addClass('btn-highlight');
+        $('td').hide();
+        $('.student_schedule_td').show();
+        $('.td_eval_' + evaluation).show();
+        if(evaluation == 'final'){
+            $('.final_td').show();
+        }
+    }
+
+
     function generate_new_values(changed_vals, changed_input){
         var new_val = {
             record_id: changed_input.attr('id'),
@@ -60,6 +73,7 @@ $(document).ready(function(require) {
                 $('.final_td').show();
             }
         }
+        $('#selected_eval').val(evaluation);
     });
     $(".mark_input").keypress(function (e) {
         var key = e.which;
@@ -84,6 +98,7 @@ $(document).ready(function(require) {
     $(".drop_action_nline").click(function(){
         var schedule = $('#schedule_id').text();
         var n_line = $(this).attr('id');
+        var eval_id = $(this).attr('id');
         var classes = {};
         $($(this).attr('class').split(' ')).each(function() {
            if (this !== '') {
@@ -95,7 +110,17 @@ $(document).ready(function(require) {
             url: "/schedule/action",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({'jsonrpc': "2.0", 'method': "call", "params": {'schedule_id': schedule, 'vals': classes, 'n_line': n_line,}}),
+            data: JSON.stringify(
+                {
+                    'jsonrpc': "2.0",
+                    'method': "call",
+                    "params": {
+                        'schedule_id': schedule,
+                        'vals': classes,
+                        'n_line': n_line,
+                        'eval_id': eval_id
+                    }
+                }),
             success: function(resp){
                console.log("Finished. " + resp); //just use the resp here
                location.reload();

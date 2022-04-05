@@ -13,7 +13,7 @@ class EducationMain(CustomerPortal):
 
     @http.route(['/schedules'], type='http',
                 auth="user", website=True)
-    def schedule(self):
+    def schedule(self, **args):
 
         logged_employee = request.env['hr.employee'].search([
             ('user_id', '=', request.uid)])
@@ -73,15 +73,14 @@ class EducationMain(CustomerPortal):
             if 'round' in vals:
                 action = vals.get('round')
                 records.action_round_numeric_mark()
-
         return {str(action): not error}
 
     @http.route(['/schedule/<int:schedule_id>/califications'], type='http',
                 auth="user", website=True)
     def schedule_califications(
-            self, schedule_id=None, changed_input_ids=None,
-            changed_except_ids=None, changed_attit_ids=None, download=False, report_type=None,
-            access_token=None, **args):
+            self, schedule_id=None, changed_input_ids=None, selected_eval=None,
+            changed_except_ids=None, changed_attit_ids=None,
+            download=False, report_type=None, access_token=None, **args):
 
         logged_employee = request.env['hr.employee'].search([
             ('user_id', '=', request.uid)])
@@ -113,7 +112,8 @@ class EducationMain(CustomerPortal):
         evaluation_record_students = schedule_evaluation_records.mapped(
             'student_id')
 
-        record_lines = schedule_evaluation_records.mapped('n_line_id')
+        record_lines = schedule_evaluation_records.mapped('n_line_id').sorted(
+            'create_date')
         evaluations = record_lines.filtered(
             lambda l: l.competence_id.evaluation_check or l.competence_id.global_check)
         retake_record_lines = self.get_retake_record_lines(record_lines)
@@ -128,6 +128,7 @@ class EducationMain(CustomerPortal):
             'record_lines': record_lines,
             'retake_record_lines': retake_record_lines,
             'evaluations': evaluations,
+            'selected_eval': selected_eval,
             'exceptionalities': self.get_record_exceptionality_library(),
             'behaviour_marks': self.get_record_behaviour_mark_library(),
         }
