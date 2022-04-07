@@ -142,10 +142,10 @@
                                         </t>
                                     </tr>
                                     <tr t-if="child_record.comments">
-                                        <td colspan="3"><i t-raw="child_record.comments" /></td>
+                                        <td colspan="3" style="color: dimgray;"><i t-raw="child_record.comments" /></td>
                                     </tr>
                                     <tr t-if="child_retake_record.comments">
-                                        <td colspan="3"><i t-raw="child_retake_record.comments" /></td>
+                                        <td colspan="3" style="color: dimgray;"><i t-raw="child_retake_record.comments" /></td>
                                     </tr>
                                 </t>
                             </t>
@@ -184,7 +184,7 @@
                                             </td>
                                         </tr>
                                         <tr t-if="no_type_child_record.comments">
-                                            <td colspan="2">
+                                            <td colspan="2" style="color: dimgray;">
                                                 <i t-esc="no_type_child_record.comments"/>
                                             </td>
                                         </tr>
@@ -219,16 +219,16 @@
                                                 </td>
                                             </tr>
                                             <tr t-if="type_child_record.comments">
-                                                <td colspan="2"><span t-raw="type_child_record.comments" /></td>
+                                                <td colspan="2" style="color: dimgray;"><span t-raw="type_child_record.comments" /></td>
                                             </tr>
                                         </t>
-                                        <tr t-if="type_child_records.filtered('comments')">
+                                       <!-- <tr t-if="type_child_records.filtered('comments')">
                                             <td colspan="2">
                                                 <t t-foreach="type_child_records.filtered('comments').mapped('comments')" t-as="record_comment">
                                                     <i t-esc="record_comment"/>
                                                 </t>
                                             </td>
-                                        </tr>
+                                        </tr>-->
                                     </t>
                                 </t>
                             </t>
@@ -258,7 +258,7 @@
                                         </td>
                                     </tr>
                                     <tr t-if="child_record.comments">
-                                        <td colspan="2"><i t-raw="child_record.comments" /></td>
+                                        <td colspan="2" style="color: dimgray;"><i t-raw="child_record.comments" /></td>
                                     </tr>
                                 </t>
                             </t>
