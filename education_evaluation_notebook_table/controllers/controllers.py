@@ -37,49 +37,42 @@ class EducationMain(CustomerPortal):
             'education_evaluation_notebook_table.' +
             'teacher_schedule_table', values)
 
-    @http.route(['/schedule/action'], type='json',
-                auth="user", methods=['POST'], website=True, csrf=False)
-    def schedule_califications_json(self, schedule_id, vals, n_line, **kw):
+    def schedule_califications_json(self, schedule_id, action, n_line, is_exam=None):
 
-        error = False
-        action = False
+        n_line = request.env['education.notebook.line'].browse(int(n_line))
         domain = [
-            ('schedule_id', '=', int(schedule_id)),
+            ('schedule_id', '=', schedule_id),
         ]
         ExamObj = request.env['education.exam'].sudo()
-        if 'exam' in vals:
-            domain += [('exam_id', '=', int(n_line))]
-            record_exams = ExamObj.browse(int(n_line))
+        if is_exam:
+            domain += [('exam_id', '=', n_line.id)]
+            record_exams = ExamObj.browse(n_line.id)
         else:
-            domain += [('n_line_id', '=', int(n_line))]
+            domain += [('n_line_id', '=', n_line.id)]
             record_exams = ExamObj.search([
-                ('n_line_id', '=', int(n_line))
+                ('n_line_id', '=', n_line.id)
             ])
         records = request.env['education.record'].sudo().search(domain)
         if records:
-            if 'copy' in vals:
-                action = vals.get('copy')
+            if action == 'copy':
                 records.action_copy_partial_calculated_mark()
-            if 'initial' in vals:
-                action = vals.get('initial')
+            if action == 'initial':
                 if record_exams:
                     record_exams.action_marking()
                 records.button_set_draft()
-            if 'assessed' in vals:
-                action = vals.get('assessed')
+            if action == 'assessed':
                 if record_exams:
                     record_exams.action_graded()
                 records.button_set_assessed()
-            if 'round' in vals:
-                action = vals.get('round')
+            if action == 'round':
                 records.action_round_numeric_mark()
-        return {str(action): not error}
 
     @http.route(['/schedule/<int:schedule_id>/califications'], type='http',
                 auth="user", website=True)
     def schedule_califications(
-            self, schedule_id=None, changed_input_ids=None, selected_eval=None,
+            self, schedule_id=None, changed_input_ids=None,
             changed_except_ids=None, changed_attit_ids=None,
+            selected_eval=None, action=None, n_line_id=None, is_exam=None,
             download=False, report_type=None, access_token=None, **args):
 
         logged_employee = request.env['hr.employee'].search([
@@ -91,6 +84,9 @@ class EducationMain(CustomerPortal):
         if report_type:
             self.print_schedule_record_reports(
                 schedule_id, report_type, download, access_token)
+
+        if action and n_line_id:
+            self.schedule_califications_json(schedule_id, action, n_line_id, is_exam)
 
         if changed_input_ids:
             changed_input_ids_array = json.loads(changed_input_ids)
@@ -113,7 +109,7 @@ class EducationMain(CustomerPortal):
             'student_id')
 
         record_lines = schedule_evaluation_records.mapped('n_line_id').sorted(
-            'create_date')
+            'sequence')
         evaluations = record_lines.filtered(
             lambda l: l.competence_id.evaluation_check or l.competence_id.global_check)
         retake_record_lines = self.get_retake_record_lines(record_lines)

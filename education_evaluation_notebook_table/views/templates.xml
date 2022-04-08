@@ -302,15 +302,20 @@
    </template>
 
    <template id="dropdown_action_button">
-      <div t-if="btn_id and schedule" class="dropdown">
-         <p style="display:none;" id="schedule_id"><t t-esc="schedule.id"/></p>
-         <button class="btn btn-secondary dropdown-toggle" type="button" t-attf-id="dropdownMenuButton_{{btn_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-         <div class="dropdown-menu" t-att-id="btn_id" t-attf-aria-labelledby="dropdownMenuButton_{{btn_id}}">
-            <a t-if="not is_exam" class="dropdown-item drop_action_nline copy" t-att-id="btn_id" href="#" value="copy">Copy partial calculated mark</a>
-            <a t-attf-class="dropdown-item drop_action_nline initial {{'exam' if is_exam else ''}}" t-att-id="btn_id" href="#">Set assessed record as initial</a>
-            <a t-attf-class="dropdown-item drop_action_nline assessed {{'exam' if is_exam else ''}}" style="font-weight: normal !important;" t-att-id="btn_id" href="#">Set pending record as assessed</a>
-            <a t-attf-class="dropdown-item drop_action_nline round {{'exam' if is_exam else ''}}" t-att-id="btn_id" href="#">Round official mark</a>
+      <form t-attf-id="record_action_#{btn_id}" class="action_record_form" method="POST" t-attf-action="/schedule/#{schedule.id}/califications">
+         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+         <input id="selected_eval" name="selected_eval" t-att-value="selected_eval" hidden="true"/>
+         <input id="n_line_id" name="n_line_id" t-att-value="btn_id" hidden="true"/>
+         <input id="is_exam" name="is_exam" t-att-value="is_exam" hidden="true"/>
+         <div t-if="btn_id and schedule" class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" t-attf-id="dropdownMenuButton_{{btn_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu" t-att-id="btn_id" t-attf-aria-labelledby="dropdownMenuButton_{{btn_id}}">
+               <button name="action" value="copy" class="dropdown-item drop_action_nline" t-if="not is_exam">Copy partial calculated mark</button>
+               <button name="action" value="initial" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set assessed record as initial</button>
+               <button name="action" value="assessed" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set pending record as assessed</button>
+               <button name="action" value="round" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Round official mark</button>
+            </div>
          </div>
-      </div>
+      </form>
    </template>
 </odoo>
