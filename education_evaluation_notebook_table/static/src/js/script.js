@@ -3,17 +3,20 @@ $(document).ready(function(require) {
     var ajax = require("web.ajax");
 
     var evaluation = $('#selected_eval').val();
-    if(evaluation && evaluation != 'all'){
-        $('.eval_button').removeClass('btn-highlight');
-        $('#'+evaluation).addClass('btn-highlight');
-        $('td').hide();
-        $('.student_schedule_td').show();
-        $('.td_eval_' + evaluation).show();
-        if(evaluation == 'final'){
-            $('.final_td').show();
+    update_table_eval(evaluation);
+
+    function update_table_eval(evaluation){
+        if(evaluation && evaluation != 'all'){
+            $('.eval_button').removeClass('btn-highlight');
+            $('#'+evaluation).addClass('btn-highlight');
+            $('td').hide();
+            $('.student_schedule_td').show();
+            $('.td_eval_' + evaluation).show();
+            if(evaluation == 'final'){
+                $('.final_td').show();
+            }
         }
     }
-
 
     function generate_new_values(changed_vals, changed_input){
         var new_val = {
@@ -60,6 +63,7 @@ $(document).ready(function(require) {
     });
     $(".eval_button").click(function(){
         var evaluation = this.id;
+        $('input[name=selected_eval]').attr('value', evaluation);
         $('.eval_button').removeClass('btn-highlight');
         $(this).addClass('btn-highlight');
         $('td').hide();
@@ -73,7 +77,6 @@ $(document).ready(function(require) {
                 $('.final_td').show();
             }
         }
-        $('#selected_eval').val(evaluation);
     });
     $(".mark_input").keypress(function (e) {
         var key = e.which;
@@ -92,43 +95,4 @@ $(document).ready(function(require) {
         $('#editing_msg').show();
         $('#save_schedule_btn').show();
     }
-
-    var update_json = $.Deferred();
-    update_json.resolve();
-    $(".drop_action_nline").click(function(){
-        var schedule = $('#schedule_id').text();
-        var n_line = $(this).attr('id');
-        var eval_id = $(this).attr('id');
-        var classes = {};
-        $($(this).attr('class').split(' ')).each(function() {
-           if (this !== '') {
-               classes[this] = this;
-           }
-        });
-        $.ajax({
-            type: "POST",
-            url: "/schedule/action",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(
-                {
-                    'jsonrpc': "2.0",
-                    'method': "call",
-                    "params": {
-                        'schedule_id': schedule,
-                        'vals': classes,
-                        'n_line': n_line,
-                        'eval_id': eval_id
-                    }
-                }),
-            success: function(resp){
-               console.log("Finished. " + resp); //just use the resp here
-               location.reload();
-            },
-            error : function(err){
-                console.log("Error: " + err); //just use the err here
-            }
-        });
-    });
-
 });
