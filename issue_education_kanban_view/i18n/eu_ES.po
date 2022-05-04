@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-19 10:59+0000\n"
-"PO-Revision-Date: 2020-05-19 10:59+0000\n"
+"POT-Creation-Date: 2022-05-04 18:02+0000\n"
+"PO-Revision-Date: 2022-05-04 18:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Affect to"
 msgstr ""
 
 #. module: issue_education_kanban_view
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_delete_issue_view_form
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_assistance_issue_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_negative_issue_view_form
 #: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_positive_issue_view_form
 msgid "Cancel"
@@ -50,6 +50,21 @@ msgstr "Kontaktua"
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_count
 msgid "Count"
+msgstr "Kontua "
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.actions.act_window,help:issue_education_kanban_view.res_partner_education_issue_action
+msgid "Crear un nuevo documento"
+msgstr ""
+
+#. module: issue_education_kanban_view
+#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_assistance_issue_view_form
+msgid "Create Assistance Issues"
+msgstr ""
+
+#. module: issue_education_kanban_view
+#: model:ir.actions.act_window,name:issue_education_kanban_view.action_wiz_create_assistance_issue
+msgid "Create Assistance Issues in Batch"
 msgstr ""
 
 #. module: issue_education_kanban_view
@@ -71,44 +86,39 @@ msgid "Create positive issue"
 msgstr ""
 
 #. module: issue_education_kanban_view
-#: model:ir.actions.act_window,name:issue_education_kanban_view.act_wiz_create_delete_issue
-msgid "Create/Delete Issue"
-msgstr ""
-
-#. module: issue_education_kanban_view
-#: model_terms:ir.ui.view,arch_db:issue_education_kanban_view.wiz_create_delete_issue_view_form
-msgid "Create/Delete issue"
-msgstr ""
-
-#. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__create_uid
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__create_uid
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__create_uid
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__create_uid
 msgid "Created by"
 msgstr "Nork sortua"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__create_date
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__create_date
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__create_date
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__create_date
 msgid "Created on"
 msgstr "Noiz sortua"
 
 #. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__date
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__issue_date
 msgid "Date"
 msgstr "Data"
 
 #. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__dayofweek
+msgid "Day of Week"
+msgstr "Asteko eguna"
+
+#. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__name
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__name
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__name
 msgid "Description"
 msgstr "Deskribapena"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__display_name
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__display_name
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__display_name
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__display_name
 msgid "Display Name"
 msgstr "Izena erakutsi"
@@ -117,7 +127,7 @@ msgstr "Izena erakutsi"
 #: model:ir.model,name:issue_education_kanban_view.model_education_group
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__group_id
 msgid "Education Group"
-msgstr ""
+msgstr "Hezkuntza taldea"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__education_level_id
@@ -131,46 +141,41 @@ msgid "Generate/View issues"
 msgstr ""
 
 #. module: issue_education_kanban_view
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__group_id
-msgid "Group"
-msgstr "Taldea"
-
-#. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__id
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__id
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__id
 msgid "ID"
 msgstr ""
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_type_id
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__issue_type_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__issue_type_id
 msgid "Issue type"
 msgstr ""
 
 #. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issue_by_schedule
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__issues_on_day
 msgid "Issues on day"
 msgstr ""
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue____last_update
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue____last_update
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue____last_update
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue____last_update
 msgid "Last Modified on"
 msgstr "Azken aldaketa"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__write_uid
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__write_uid
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__write_uid
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__write_uid
 msgid "Last Updated by"
 msgstr "Azkenengoz eguneratu zuena"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__write_date
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__write_date
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__write_date
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__write_date
 msgid "Last Updated on"
 msgstr "Azken eguneraketa noiz"
@@ -187,7 +192,6 @@ msgid "Partner Education Issues Kanban"
 msgstr ""
 
 #. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:94
 #: code:addons/issue_education_kanban_view/wizard/wiz_create_issue.py:101
 #, python-format
 msgid "Please select an issue type!"
@@ -215,7 +219,6 @@ msgstr ""
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__education_schedule_id
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__schedule_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__education_schedule_id
 msgid "Schedule"
 msgstr ""
@@ -223,7 +226,7 @@ msgstr ""
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__school_id
 msgid "School"
-msgstr ""
+msgstr "Ikastetxea"
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__school_issue_type_id
@@ -247,7 +250,6 @@ msgstr ""
 
 #. module: issue_education_kanban_view
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_student_issue__student_id
-#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_delete_issue__student_id
 #: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_issue__student_id
 msgid "Student"
 msgstr "Ikaslea"
@@ -271,29 +273,18 @@ msgid "Student: {}, Issue type: {}"
 msgstr ""
 
 #. module: issue_education_kanban_view
+#: model:ir.model.fields,field_description:issue_education_kanban_view.field_wiz_create_assistance_issue__partner_ids
+msgid "Students"
+msgstr "Ikasleak"
+
+#. module: issue_education_kanban_view
+#: model:ir.model,name:issue_education_kanban_view.model_wiz_create_assistance_issue
+msgid "Wizard for assistance issue creation"
+msgstr ""
+
+#. module: issue_education_kanban_view
 #: model:ir.model,name:issue_education_kanban_view.model_wiz_create_issue
 msgid "Wizard for create issues"
-msgstr ""
-
-#. module: issue_education_kanban_view
-#: model:ir.model,name:issue_education_kanban_view.model_wiz_create_delete_issue
-msgid "Wizard for create or delete issue on day"
-msgstr ""
-
-#. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:53
-#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:119
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:49
-#, python-format
-msgid "You are going to CREATE an {} issue"
-msgstr ""
-
-#. module: issue_education_kanban_view
-#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:62
-#: code:addons/issue_education_kanban_view/tests/test_issue_education_kanban_view.py:129
-#: code:addons/issue_education_kanban_view/wizard/wiz_create_delete_issue.py:44
-#, python-format
-msgid "You are going to DELETE an {} issue"
 msgstr ""
 
 #. module: issue_education_kanban_view

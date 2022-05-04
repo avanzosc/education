@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-14 11:31+0000\n"
-"PO-Revision-Date: 2021-09-14 11:31+0000\n"
+"POT-Creation-Date: 2022-05-04 18:08+0000\n"
+"PO-Revision-Date: 2022-05-04 18:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__message_needaction
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_needaction
 msgid "Action Needed"
+msgstr ""
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__active
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+msgid "Active"
 msgstr ""
 
 #. module: issue_education
@@ -365,6 +371,11 @@ msgid "Image"
 msgstr ""
 
 #. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+msgid "Inactive"
+msgstr ""
+
+#. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_inappropriate
 msgid "Inappropriate"
 msgstr ""
@@ -389,7 +400,6 @@ msgstr ""
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue_proof
 #: model:ir.model,name:issue_education.model_school_issue_proof
-#: model:ir.ui.menu,name:issue_education.school_proof_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_proof_menuitem
 msgid "Issue Proof"
 msgstr ""
@@ -954,7 +964,8 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: issue_education
-#: model:ir.actions.server,name:issue_education.action_update_education_group
+#: model:ir.actions.server,name:issue_education.action_update_education_group_claim
+#: model:ir.actions.server,name:issue_education.action_update_education_group_issue
 msgid "Update official group"
 msgstr ""
 
@@ -978,7 +989,6 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: issue_education
-#: code:addons/issue_education/models/school_claim.py:103
 #: code:addons/issue_education/models/school_claim.py:115
 #, python-format
 msgid "You can only delete draft reports."

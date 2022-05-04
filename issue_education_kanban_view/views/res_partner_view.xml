@@ -28,6 +28,8 @@
                                            t-foreach="record.student_issue_ids.raw_value.slice(0,5)" t-as="issue">
                                         <t t-set="issue_type"
                                            t-value="issue.college_issue_type_id" />
+                                        <t t-set="issue_schedule"
+                                           t-value="issue.education_schedule_id" />
                                         <div class="col-sm-2">
                                             <a
                                                 name="create_delete_issue" type="object" t-attf-data-context="{'issue_type': #{issue_type[0]} }">
@@ -36,7 +38,14 @@
                                                 t-att-title="issue.name" t-att-alt="issue.name" width="40" height="40"
                                                 class="oe_kanban_avatar float-right" />
                                             </a>
-                                            <b><t t-esc="issue.issues_on_day" /></b>
+                                            <b><t t-if="issue.issue_by_schedule">
+                                                <span style="color:red">
+                                                    <t t-esc="issue.issues_on_day" />
+                                                </span>
+                                            </t>
+                                            <t t-else="">
+                                                <t t-esc="issue.issues_on_day" />
+                                            </t></b>
                                         </div>
                                     </t>
                                     <div class="col-sm-1" />

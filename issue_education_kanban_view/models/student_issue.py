@@ -24,6 +24,8 @@ class StudentIssue(models.Model):
         related='college_issue_type_id.issue_type_id')
     issue_count = fields.Integer(
         string='Count', compute='_compute_issue_count')
+    issue_by_schedule = fields.Integer(
+        string='Issues on day', compute='_compute_issue_count')
     issues_on_day = fields.Integer(
         string='Issues on day', compute='_compute_issue_count')
 
@@ -36,11 +38,15 @@ class StudentIssue(models.Model):
                 ('school_issue_type_id', '=',
                  student_issue.college_issue_type_id.id),
             ])
-            if student_issue.education_schedule_id:
-                school_issues.filtered(
-                    lambda i: i.education_schedule_id ==
-                    student_issue.education_schedule_id)
+            # if student_issue.education_schedule_id:
+            #     school_issues = school_issues.filtered(
+            #         lambda i: i.education_schedule_id ==
+            #         student_issue.education_schedule_id)
             student_issue.issue_count = len(
                 school_issues.filtered(lambda i: i.issue_date < today))
             student_issue.issues_on_day = len(
                 school_issues.filtered(lambda i: i.issue_date == today))
+            student_issue.issue_by_schedule = len(
+                school_issues.filtered(
+                    lambda i: i.issue_date == today
+                    and i.education_schedule_id == student_issue.education_schedule_id))

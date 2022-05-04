@@ -12,7 +12,7 @@
         "web_tree_duplicate",
     ],
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/education",
     "category": "Customer Relationship Management",
     "data": [
         "security/ir.model.access.csv",

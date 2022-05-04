@@ -13,11 +13,12 @@
         "web_ir_actions_act_view_reload",
     ],
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/education",
     "category": "Customer Relationship Management",
     "data": [
         "security/ir.model.access.csv",
         "wizard/wiz_create_issue_view.xml",
+        "wizard/wiz_create_assistance_issue_view.xml",
         "views/education_group_view.xml",
         "views/education_schedule_view.xml",
         "views/school_issue_view.xml",

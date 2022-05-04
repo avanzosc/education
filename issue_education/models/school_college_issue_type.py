@@ -43,6 +43,10 @@ class SchoolCollegeIssueType(models.Model):
         column2='partner_id',
         relation='rel_school_issue_type_partner')
     image = fields.Binary(string='Image', attachment=True)
+    active = fields.Boolean(
+        string="Active",
+        default=True,
+    )
 
     @api.onchange('issue_type_id')
     def onchange_issue_type_id(self):
