@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-26 14:07+0000\n"
-"PO-Revision-Date: 2021-11-26 14:07+0000\n"
+"POT-Creation-Date: 2022-05-09 13:10+0000\n"
+"PO-Revision-Date: 2022-05-09 13:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,13 @@ msgid "* Exempt: When the student does not have any record or exam.\n"
 "* ICA: Individual Curriculum Adaptation.\n"
 "* IERP: Individual Educational Reinforcement Plan.\n"
 "* Pending to Pass: subject from previous course."
-msgstr ""
+msgstr "* Exento: Cuando el alumno no tiene que hacer ningún examen\n"
+"* No Presentado: El alumno no ha presentado el examen\n"
+"* No Evaluado: El alumno no ha podido hacer el examen\n"
+"* ACI: Adaptación Curricular Individual\n"
+"* PIRE: Plan individual de refuerzo educativo\n"
+"* Pendiente de aprobar\n"
+""
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
@@ -198,6 +204,11 @@ msgstr "Año académico"
 #, python-format
 msgid "Academic year must have defined start and end dates."
 msgstr "El año académico debe tener definidos la fecha de inicio y de fin."
+
+#. module: education_evaluation_notebook
+#: selection:education.record,exceptionality:0
+msgid "Access Adjustments"
+msgstr "Adaptaciones de acceso"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__access_warning
@@ -407,7 +418,7 @@ msgstr "Código"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:37
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:105
+#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:177
 #: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
 #, python-format
 msgid "Code must have a length of 3 characters "
@@ -990,7 +1001,6 @@ msgstr "Fecha del examen"
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_exam_menu
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_exam_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_exam_report_view_calendar
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_exam_report_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_exam_report_view_calendar2
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
@@ -1228,6 +1238,8 @@ msgid "Groups Homework Report for Student"
 msgstr "Informe de deberes por alumno"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__homework_html_link
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_homework_report__homework_html_link
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__html_link
 msgid "HTML link"
 msgstr "Enlace HTML"
@@ -1245,6 +1257,7 @@ msgstr "Feliz Cumpleaños"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__homework_ids
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_homework_historic_menu
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_homework_menu
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_homework_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_homework_report_view_calendar
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_student_homework_report_view_calendar2
@@ -1528,7 +1541,7 @@ msgstr "Nota máx."
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_has_error
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_has_error
 msgid "Message Delivery error"
-msgstr "Mensaje de Error de entrega"
+msgstr "Error de Envío de Mensaje"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_ids
@@ -1725,7 +1738,8 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:378
+#: code:addons/education_evaluation_notebook/models/education_record.py:493
+#: code:addons/education_evaluation_notebook/models/education_record.py:494
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -2162,7 +2176,7 @@ msgid "Teacher"
 msgstr "Profesor"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:76
+#: code:addons/education_evaluation_notebook/models/education_exam.py:126
 #, python-format
 msgid "The class schedule and the notebook line's schedule areinconsistent. The selected notebook line must be from theselected class schedule."
 msgstr ""
@@ -2354,7 +2368,7 @@ msgid "Wizard to print Report Card Report"
 msgstr "Asistente para imprimir boletines de notas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:295
+#: code:addons/education_evaluation_notebook/models/education_exam.py:350
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr "Solo puedes eliminar un examen borrador."
@@ -2373,14 +2387,15 @@ msgid "You must select at least one student."
 msgstr "Debe seleccionar al menos un alumno."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:224
+#: code:addons/education_evaluation_notebook/models/education_exam.py:279
 #, python-format
 msgid "You must set an exam date."
 msgstr "Debe seleccionar una fecha de examen."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:313
-#: code:addons/education_evaluation_notebook/models/education_record.py:448
+#: code:addons/education_evaluation_notebook/models/education_exam.py:368
+#: code:addons/education_evaluation_notebook/models/education_record.py:564
+#: code:addons/education_evaluation_notebook/models/education_record.py:565
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:316
 #, python-format
 msgid "[RETAKE] {}"

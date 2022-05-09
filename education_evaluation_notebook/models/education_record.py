@@ -18,7 +18,8 @@ RECORD_EXCEPTIONALITY = [
     ("not_evaluated", "Not Evaluated"),
     ("adaptation", "ICA"),
     ("reinforcement", "IERP"),
-    ("pending", "Pending to Pass")
+    ("pending", "Pending to Pass"),
+    ("neae", "Access Adjustments"),
 ]
 
 
