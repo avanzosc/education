@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-14 11:31+0000\n"
-"PO-Revision-Date: 2021-09-14 11:31+0000\n"
+"POT-Creation-Date: 2022-05-04 18:09+0000\n"
+"PO-Revision-Date: 2022-05-04 18:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,12 @@ msgstr "Alerta de acceso"
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_needaction
 msgid "Action Needed"
 msgstr "Acción requerida"
+
+#. module: issue_education
+#: model:ir.model.fields,field_description:issue_education.field_school_college_issue_type__active
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+msgid "Active"
+msgstr "Activo"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__activity_ids
@@ -75,7 +81,7 @@ msgstr "Asistencia"
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__message_attachment_count
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_attachment_count
 msgid "Attachment Count"
-msgstr "Conteo de archivos adjuntos"
+msgstr "Nº de archivos adjuntos"
 
 #. module: issue_education
 #: model:ir.model,name:issue_education.model_education_schedule
@@ -365,6 +371,11 @@ msgid "Image"
 msgstr "Imagen"
 
 #. module: issue_education
+#: model_terms:ir.ui.view,arch_db:issue_education.school_college_issue_type_view_search
+msgid "Inactive"
+msgstr "Inactivo"
+
+#. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_inappropriate
 msgid "Inappropriate"
 msgstr "Inadecuada"
@@ -389,7 +400,6 @@ msgstr "Nº incidencias"
 #. module: issue_education
 #: model:ir.actions.act_window,name:issue_education.action_school_issue_proof
 #: model:ir.model,name:issue_education.model_school_issue_proof
-#: model:ir.ui.menu,name:issue_education.school_proof_historic_menuitem
 #: model:ir.ui.menu,name:issue_education.school_proof_menuitem
 msgid "Issue Proof"
 msgstr "Justificante de incidencia"
@@ -531,7 +541,7 @@ msgstr "Nº de reuniones"
 #: model:ir.model.fields,field_description:issue_education.field_school_issue__message_has_error
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_proof__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de Envío de Mensaje"
+msgstr "Mensaje de Error de entrega"
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_claim__message_ids
@@ -650,7 +660,7 @@ msgstr "Grupo oficial"
 #. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_no_coexistence
 msgid "Opposite to coexistence"
-msgstr "Contraria a la convivencia"
+msgstr ""
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_issue_type__other_managers
@@ -840,7 +850,7 @@ msgstr "Secuencia"
 #. module: issue_education
 #: model:school.issue.severity.scale,name:issue_education.school_issue_severity_scale_disruptive
 msgid "Seriosly disruptive"
-msgstr "Gravemente perjudicial"
+msgstr ""
 
 #. module: issue_education
 #: model:ir.model.fields,field_description:issue_education.field_school_college_educational_measure__severity_level_id
@@ -957,7 +967,8 @@ msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
 
 #. module: issue_education
-#: model:ir.actions.server,name:issue_education.action_update_education_group
+#: model:ir.actions.server,name:issue_education.action_update_education_group_claim
+#: model:ir.actions.server,name:issue_education.action_update_education_group_issue
 msgid "Update official group"
 msgstr "Actualizar grupo oficial"
 
@@ -981,7 +992,6 @@ msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
 
 #. module: issue_education
-#: code:addons/issue_education/models/school_claim.py:103
 #: code:addons/issue_education/models/school_claim.py:115
 #, python-format
 msgid "You can only delete draft reports."

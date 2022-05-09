@@ -50,6 +50,7 @@ class ResPartner(models.Model):
 
     def create_delete_issue(self):
         self.ensure_one()
+        today = fields.Date.context_today(self)
         context = self.env.context
         issue_type = self.env['school.college.issue.type'].browse(
             context.get('issue_type'))
@@ -61,13 +62,13 @@ class ResPartner(models.Model):
             group = schedule.group_ids.filtered(
                 lambda g: self in g.student_ids)[:1]
         issue_obj = self.env['school.issue']
-        issue = issue_obj._find_today_issue(
-            self.id, issue_type.id, group.id, schedule.id)
+        issue = issue_obj._find_issue(
+            self.id, today, issue_type.id, group.id, schedule.id)
         if issue:
             issue.unlink()
         else:
             vals = issue_obj.prepare_issue_vals(
-                issue_type, self, schedule, group)
+                today, issue_type, self, schedule, group)
             issue_obj.create(vals)
         # Close wizard and reload view
         return {

@@ -3,7 +3,7 @@
     <record id="school_college_issue_type_view_tree" model="ir.ui.view">
         <field name="model">school.college.issue.type</field>
         <field name="arch" type="xml">
-            <tree duplicate="true">
+            <tree duplicate="true" decoration-muted="not active">
                 <field name="sequence" widget="handle" />
                 <field name="company_id" />
                 <field name="school_id" />
@@ -11,6 +11,7 @@
                 <field name="issue_type_id" />
                 <field name="education_level_id" />
                 <field name="educational_measure_ids" widget="many2many_tags" />
+                <field name="active" invisible="True" />
             </tree>
         </field>
     </record>
@@ -25,6 +26,8 @@
                 <field name="name" />
                 <field name="issue_type_id" />
                 <field name="education_level_id" />
+                <filter string="Active" name="active" domain="[('active', '=',True)]"/>
+                <filter string="Inactive" name="inactive" domain="[('active', '=',False)]"/>
                 <group expand="0" string="Group By">
                    <filter string="Company" name="group-company" domain="[]" context="{'group_by':'company_id'}"/>
                    <filter string="School" name="group-school" domain="[]" context="{'group_by':'school_id'}"/>
