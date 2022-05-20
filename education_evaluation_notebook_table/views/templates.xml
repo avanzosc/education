@@ -223,6 +223,9 @@
                                                          <t t-call="education_evaluation_notebook_table.record_cell">
                                                             <t t-set="selected_record" t-value="eval_record"/>
                                                          </t>
+                                                         <t t-call="education_evaluation_notebook_table.dropdown_record_action_button">
+                                                            <t t-set="btn_id" t-value="eval_record.id"/>
+                                                         </t>
                                                       </td>
                                                       <t t-if="retake_record_lines and eval.id in retake_record_lines.ids">
                                                          <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
@@ -314,6 +317,20 @@
                <button name="action" value="initial" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set assessed record as initial</button>
                <button name="action" value="assessed" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set pending record as assessed</button>
                <button name="action" value="round" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Round official mark</button>
+            </div>
+         </div>
+      </form>
+   </template>
+   <template id="dropdown_record_action_button">
+      <form t-attf-id="record_action_#{btn_id}" class="action_record_form" method="POST" t-attf-action="/schedule/#{schedule.id}/califications">
+         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+         <input id="record_id" name="n_line_id" t-att-value="btn_id" hidden="true"/>
+         <div t-if="btn_id and schedule" class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" t-attf-id="dropdownMenuButton_{{btn_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu" t-att-id="btn_id" t-attf-aria-labelledby="dropdownMenuButton_{{btn_id}}">
+               <button name="action" value="initial" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set assessed record as initial</button>
+               <button name="action" value="assessed" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set pending record as assessed</button>
+               <button name="action" value="retake" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Round official mark</button>
             </div>
          </div>
       </form>

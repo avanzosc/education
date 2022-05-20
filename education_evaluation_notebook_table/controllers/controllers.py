@@ -67,13 +67,20 @@ class EducationMain(CustomerPortal):
             if action == 'round':
                 records.action_round_numeric_mark()
 
+    def schedule_record_califications_json(self, action, record):
+
+        record = request.env['education.record'].browse(int(record))
+        if record:
+            if action == 'retake':
+                record.button_retake()
+
     @http.route(['/schedule/<int:schedule_id>/califications'], type='http',
                 auth="user", website=True)
     def schedule_califications(
             self, schedule_id=None, changed_input_ids=None,
             changed_except_ids=None, changed_attit_ids=None,
-            selected_eval=None, action=None, n_line_id=None, is_exam=None,
-            download=False, report_type=None, access_token=None, **args):
+            selected_eval=None, action=None, n_line_id=None, record_id=None,
+            is_exam=None, download=False, report_type=None, access_token=None, **args):
 
         logged_employee = request.env['hr.employee'].search([
             ('user_id', '=', request.uid)])
@@ -85,8 +92,11 @@ class EducationMain(CustomerPortal):
             self.print_schedule_record_reports(
                 schedule_id, report_type, download, access_token)
 
-        if action and n_line_id:
-            self.schedule_califications_json(schedule_id, action, n_line_id, is_exam)
+        if action:
+            if n_line_id:
+                self.schedule_califications_json(schedule_id, action, n_line_id, is_exam)
+            if record_id:
+                self.schedule_record_califications_json(action, record_id)
 
         if changed_input_ids:
             changed_input_ids_array = json.loads(changed_input_ids)
