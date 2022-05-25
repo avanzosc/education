@@ -337,6 +337,7 @@
    <template id="dropdown_record_action_button">
       <form t-attf-id="record_action_#{btn_id}" class="action_record_form" method="POST" t-attf-action="/schedule/#{schedule.id}/califications">
          <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+         <input id="selected_eval" name="selected_eval" t-att-value="selected_eval" hidden="true"/>
          <input id="record_id" name="record_id" t-att-value="btn_id" hidden="true"/>
          <div t-if="btn_id and schedule" class="dropdown">
             <button class="btn btn-secondary dropdown-toggle dropdown_record" type="button" t-attf-id="dropdownMenuButton_{{btn_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
