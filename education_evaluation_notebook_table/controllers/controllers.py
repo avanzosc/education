@@ -72,7 +72,11 @@ class EducationMain(CustomerPortal):
         record = request.env['education.record'].browse(int(record))
         if record:
             if action == 'retake':
-                record.button_retake()
+                record.action_retake()
+            if action == 'initial':
+                record.button_set_draft()
+            if action == 'assessed':
+                record.button_set_assessed()
 
     @http.route(['/schedule/<int:schedule_id>/califications'], type='http',
                 auth="user", website=True)
