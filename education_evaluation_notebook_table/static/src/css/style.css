@@ -16,9 +16,9 @@
 }
 .mark_retake {
     font-weight: bold;
-    input{
+/*    input{
         font-weight: bold;
-    }
+    }*/
 }
 .partial_mark {
     font-style: italic;
