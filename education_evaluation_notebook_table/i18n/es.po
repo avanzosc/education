@@ -273,7 +273,7 @@ msgstr ""
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "[RETAKE]"
-msgstr ""
+msgstr "[REC]"
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_academic_record_xlsx
