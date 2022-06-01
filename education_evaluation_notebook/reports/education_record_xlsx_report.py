@@ -148,7 +148,6 @@ class EducationGroupXlsx(models.AbstractModel):
                     num_mark = record.numeric_mark
                     mark_name = record.mark_id
                     num_mark_name = record.n_mark_reduced_name
-                mark_list.append(num_mark)
                 behaviour = record.behaviour_mark_id.display_name or _("UN")
                 format_amount = self.format_amount
                 format_mark = self.format_border
@@ -180,6 +179,8 @@ class EducationGroupXlsx(models.AbstractModel):
                 else:
                     sheet.write(
                         row_num, column_num + 1, num_mark_name, format_mark)
+                if record.exceptionality not in ("exempt", "not_evaluated"):
+                    mark_list.append(num_mark)
                 sheet.write(
                     row_num, column_num + 2, behaviour, format_behaviour)
                 column_num += 3
