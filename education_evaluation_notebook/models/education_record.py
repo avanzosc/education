@@ -437,7 +437,7 @@ class EducationRecord(models.Model):
         self.ensure_one()
         if self.child_record_ids:
             return all(x.is_not_evaluated() for x in self.child_record_ids)
-        elif self.exceptionality in ["not_taken", "not_evaluated"]:
+        elif self.exceptionality in ["not_evaluated"]:
             return True
         return False
 
