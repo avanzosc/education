@@ -98,9 +98,12 @@ class EducationGroupXlsx(models.AbstractModel):
             self.format_border_final)
         mark_name = record.mark_id
         if record.exceptionality:
-            field = record._fields['exceptionality']
+            field = record._fields["exceptionality"]
             text = field.convert_to_export(
                 record.exceptionality, record)
+            if record.exceptionality in (
+                "adaptation", "reinforcement", "pending", "neae"):
+                text = "{} ({})".format(float(record.numeric_mark), text)
             sheet.write(
                 row_num, column_num, text, format_border)
         else:
