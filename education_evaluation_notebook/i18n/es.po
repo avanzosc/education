@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 13:10+0000\n"
-"PO-Revision-Date: 2022-05-09 13:10+0000\n"
+"POT-Creation-Date: 2022-06-21 15:16+0000\n"
+"PO-Revision-Date: 2022-06-21 15:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1312,7 +1312,7 @@ msgstr "ACI"
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "ICA Record"
-msgstr "Nota ICA"
+msgstr "Nota ACI"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation__id
@@ -1738,8 +1738,7 @@ msgid "Numeric Marks"
 msgstr "Notas númericas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_record.py:493
-#: code:addons/education_evaluation_notebook/models/education_record.py:494
+#: code:addons/education_evaluation_notebook/models/education_record.py:491
 #, python-format
 msgid "Numeric mark must be between {} and {}"
 msgstr "La nota debe estar entre {} y {}"
@@ -2285,7 +2284,7 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:152
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:151
 #, python-format
 msgid "UN"
 msgstr "ND"
@@ -2375,7 +2374,8 @@ msgstr "Solo puedes eliminar un examen borrador."
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:208
-#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:303
+#: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:211
+#: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:304
 #, python-format
 msgid "You can only get xlsx report of education groups"
 msgstr "Solo puede obtener el informe xlsx de grupos educativos"
@@ -2394,8 +2394,7 @@ msgstr "Debe seleccionar una fecha de examen."
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_exam.py:368
-#: code:addons/education_evaluation_notebook/models/education_record.py:564
-#: code:addons/education_evaluation_notebook/models/education_record.py:565
+#: code:addons/education_evaluation_notebook/models/education_record.py:562
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:316
 #, python-format
 msgid "[RETAKE] {}"

@@ -53,7 +53,8 @@
                                     <th class="text-left">
                                         <span t-esc="record.subject_id.get_subject_name(official_group.center_id, official_group.level_id, official_group.course_id, record.schedule_id.language_id)" />
                                     </th>
-                                    <t t-if="record.exceptionality and record.exceptionality in ('adaptation', 'reinforcement')">
+                                    <t
+                                        t-if="record.exceptionality and record.exceptionality in ('adaptation', 'reinforcement', 'pending', 'neae')">
                                       <th class="text-left">
                                             <span t-field="record.numeric_mark" t-options="{'precision': precision}"/> - <span t-esc="mark_obj._get_mark(round(record.numeric_mark, precision)).reduced_name"/> (<span t-field="record.exceptionality"/>)
                                       </th>
@@ -69,7 +70,7 @@
                                         </th>
                                     </t>
                                     <t t-if="retake_record">
-                                        <t t-if="retake_record.exceptionality and retake_record.exceptionality in ('adaptation', 'reinforcement')">
+                                        <t t-if="retake_record.exceptionality and retake_record.exceptionality in ('adaptation', 'reinforcement', 'pending', 'neae')">
                                             <th class="text-left">
                                                 <span t-field="retake_record.numeric_mark" t-options="{'precision': precision}"/> - <span t-field="mark_obj._get_mark(round(retake_record.numeric_mark, precision)).reduced_name"/> (<span t-field="retake_record.exceptionality"/>)
                                             </th>
@@ -105,7 +106,7 @@
                                         <td class="text-left pl-5">
                                             <span t-field="child_record.n_line_id.description" />
                                         </td>
-                                        <t t-if="child_record.exceptionality and child_record.exceptionality in ('adaptation', 'reinforcement')">
+                                        <t t-if="child_record.exceptionality and child_record.exceptionality in ('adaptation', 'reinforcement', 'pending', 'neae')">
                                             <td class="text-left">
                                                 <span t-field="child_record.n_mark_reduced_name"/> (<span t-field="child_record.exceptionality"/>)
                                             </td>
@@ -121,7 +122,7 @@
                                             </td>
                                         </t>
                                         <t t-if="child_retake_record">
-                                            <t t-if="child_retake_record.exceptionality and child_retake_record.exceptionality in ('adaptation', 'reinforcement')">
+                                            <t t-if="child_retake_record.exceptionality and child_retake_record.exceptionality in ('adaptation', 'reinforcement', 'pending', 'neae')">
                                               <th class="text-left">
                                                   <span t-field="child_retake_record.n_mark_reduced_name" /> (<span t-field="child_retake_record.exceptionality"/>)
                                               </th>
