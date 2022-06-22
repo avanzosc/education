@@ -247,7 +247,7 @@
                                                       </t>
                                                    </t>
                                                    <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
-                                                      <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id)"/>
+                                                      <t t-set="global_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id and not r.is_retake_record)"/>
                                                       <t t-call="education_evaluation_notebook_table.record_cell">
                                                          <t t-set="selected_record" t-value="global_record"/>
                                                       </t>
