@@ -215,7 +215,7 @@
                                                             </t>
                                                          </td>
                                                          <td t-att-class="'comp_schedule_td td_eval_' + competence.eval_type">
-                                                            <t t-set="comp_record" t-value="student_record_lines.filtered(lambda r: not r.exam_id and r.n_line_id.id == competence.id)"/>
+                                                            <t t-set="comp_record" t-value="student_record_lines.filtered(lambda r: not r.exam_id and r.n_line_id.id == competence.id and not r.is_retake_record)"/>
                                                             <t t-call="education_evaluation_notebook_table.record_cell">
                                                                <t t-set="selected_record" t-value="comp_record"/>
                                                             </t>
