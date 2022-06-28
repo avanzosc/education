@@ -157,6 +157,14 @@
                                                             <t t-set="btn_id" t-value="competence.id"/>
                                                          </t>
                                                       </td>
+                                                      <t t-if="retake_record_lines and competence.id in retake_record_lines.ids">
+                                                         <td t-att-class="'comp_schedule_td final_td td_eval_' + competence.eval_type">
+                                                            <t t-set="eval_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (competence._name, competence.id, competence.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
+                                                            <div class="text-center mb-2">
+                                                               <a t-att-href="eval_backend_url"><t t-esc="competence.competence_id.display_name"/> <span t-field="competence.eval_type" /> [RETAKE]</a>
+                                                            </div>
+                                                         </td>
+                                                      </t>
                                                    </t>
                                                    <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
                                                       <t t-set="eval_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (eval._name, eval.id, eval.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
@@ -185,6 +193,14 @@
                                                       <t t-set="btn_id" t-value="line.id"/>
                                                    </t>
                                                 </td>
+                                                <t t-if="retake_record_lines and line.id in retake_record_lines.ids">
+                                                   <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
+                                                      <t t-set="eval_backend_url" t-value="'/web#return_label=Website&amp;model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (line._name, line.id, line.env.ref('education_evaluation_notebook.education_notebook_line_action').id)"/>
+                                                      <div class="text-center mb-2">
+                                                         <a t-att-href="line_backend_url"><t t-esc="line.competence_id.display_name"/> <span t-field="line.eval_type" /> [RETAKE]</a>
+                                                      </div>
+                                                   </td>
+                                                </t>
                                              </t>
                                           </t>
                                        </tr>
@@ -223,6 +239,19 @@
                                                                <t t-set="btn_id" t-value="comp_record.id"/>
                                                             </t>
                                                          </td>
+                                                         <t t-if="student_record_lines and retake_record_lines and competence.id in retake_record_lines.ids">
+                                                            <td t-att-class="'comp_schedule_td final_td td_eval_' + competence.eval_type">
+                                                               <t t-set="comp_records" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == competence.id and r.is_retake_record)"/>
+                                                               <t t-foreach="comp_records" t-as="comp_record">
+                                                                  <t t-call="education_evaluation_notebook_table.record_cell">
+                                                                     <t t-set="selected_record" t-value="comp_record"/>
+                                                                  </t>
+                                                                  <t t-call="education_evaluation_notebook_table.dropdown_record_action_button">
+                                                                     <t t-set="btn_id" t-value="comp_record.id"/>
+                                                                  </t>
+                                                               </t>
+                                                            </td>
+                                                         </t>
                                                       </t>
                                                       <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
                                                          <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id and not r.is_retake_record)"/>
@@ -236,12 +265,14 @@
                                                       </td>
                                                       <t t-if="retake_record_lines and eval.id in retake_record_lines.ids">
                                                          <td t-att-class="'eval_schedule_td final_td td_eval_' + eval.eval_type">
-                                                            <t t-set="eval_record" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id and r.is_retake_record)"/>
-                                                            <t t-call="education_evaluation_notebook_table.record_cell">
-                                                               <t t-set="selected_record" t-value="eval_record"/>
-                                                            </t>
-                                                            <t t-call="education_evaluation_notebook_table.dropdown_record_action_button">
-                                                               <t t-set="btn_id" t-value="eval_record.id"/>
+                                                            <t t-set="eval_records" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == eval.id and r.is_retake_record)"/>
+                                                            <t t-foreach="eval_records" t-as="eval_record">
+                                                               <t t-call="education_evaluation_notebook_table.record_cell">
+                                                                  <t t-set="selected_record" t-value="eval_record"/>
+                                                               </t>
+                                                               <t t-call="education_evaluation_notebook_table.dropdown_record_action_button">
+                                                                  <t t-set="btn_id" t-value="eval_record.id"/>
+                                                               </t>
                                                             </t>
                                                          </td>
                                                       </t>
@@ -255,6 +286,19 @@
                                                          <t t-set="btn_id" t-value="global_record.id"/>
                                                       </t>
                                                    </td>
+                                                   <t t-if="retake_record_lines and line.id in retake_record_lines.ids">
+                                                      <td t-att-class="'global_schedule_td final_td td_eval_' + line.eval_type">
+                                                         <t t-set="global_records" t-value="student_record_lines.filtered(lambda r: r.n_line_id.id == line.id and r.is_retake_record)"/>
+                                                         <t t-foreach="global_records" t-as="global_record">
+                                                            <t t-call="education_evaluation_notebook_table.record_cell">
+                                                               <t t-set="selected_record" t-value="global_record"/>
+                                                            </t>
+                                                            <t t-call="education_evaluation_notebook_table.dropdown_record_action_button">
+                                                               <t t-set="btn_id" t-value="global_record.id"/>
+                                                            </t>
+                                                         </t>
+                                                      </td>
+                                                   </t>
                                                 </t>
                                              </t>
                                           </tr>
