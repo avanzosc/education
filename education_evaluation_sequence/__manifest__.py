@@ -13,6 +13,7 @@
     ],
     "data": [
         "data/education_notebook_line_data.xml",
+        "views/view.xml",
     ],
     "installable": True,
     "application": True,

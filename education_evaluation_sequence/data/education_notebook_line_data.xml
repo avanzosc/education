@@ -4,7 +4,7 @@
     	<record id="action_set_notebook_sequence" model="ir.actions.server">
         	<field name="name">Set Notebook Sequence</field>
         	<field name="model_id" ref="education_evaluation_notebook.model_education_notebook_line"/>
-        	<field name="state">
+        	<field name="code">
 				if records:
 					records.set_sequence_order()
 			</field>
@@ -12,7 +12,7 @@
     	<record id="action_set_exam_sequence" model="ir.actions.server">
         	<field name="name">Set Exam Sequence</field>
         	<field name="model_id" ref="education_evaluation_notebook.model_education_exam"/>
-        	<field name="state">
+        	<field name="code">
 				if records:
 					records.set_sequence_order()
 			</field>
