@@ -274,9 +274,9 @@ class EducationExam(models.Model):
     def action_marking(self):
         for exam in self.filtered(lambda e: e.state in ["draft", "done"]):
             if exam.state == "draft":
-                if not exam.date:
-                    raise ValidationError(
-                        _('You must set an exam date.'))
+                # if not exam.date:
+                #     raise ValidationError(
+                #         _('You must set an exam date.'))
                 exam.action_generate_record()
             else:
                 exam.mapped("record_ids").button_set_draft()
