@@ -62,6 +62,7 @@ class EducationMain(CustomerPortal):
                 records.button_set_draft()
             if action == 'assessed':
                 if record_exams:
+                    record_exams.action_marking()
                     record_exams.action_graded()
                 records.button_set_assessed()
             if action == 'round':
