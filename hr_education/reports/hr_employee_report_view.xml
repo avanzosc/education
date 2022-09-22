@@ -32,6 +32,8 @@
                 <field name="job_id" />
                 <field name="department_id" />
                 <field name="edu_type_id" />
+                <filter string="Active" name="active" domain="[('active', '=',True)]"/>
+                <filter string="Inactive" name="inactive" domain="[('active', '=',False)]"/>
             </search>
         </field>
     </record>
@@ -43,6 +45,7 @@
         <field name="view_mode">tree</field>
         <field name="search_view_id"
                ref="hr_employee_report_view_search"/>
+        <field name="context">{'search_default_active': 1}</field>
     </record>
 
     <menuitem id="hr_employee_report_menu"

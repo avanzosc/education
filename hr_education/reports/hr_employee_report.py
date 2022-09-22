@@ -64,12 +64,14 @@ class HrEmployeeReport(models.Model):
         comodel_name="education.idtype", string="ID Type")
     edu_type_id = fields.Many2one(
         comodel_name="hr.employee.edu_type", string="Employee Education Type")
+    active = fields.Boolean()
 
     def _select(self):
         select_str = """
             SELECT
                 row_number() OVER () as id,
                 e.id AS employee_id,
+                e.active AS active,
                 e.address_home_id AS address_home_id,
                 e.country_id AS country_id,
                 e.gender AS gender,
