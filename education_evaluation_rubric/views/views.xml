@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="education_notebook_line_view_form" model="ir.ui.view">
+        <field name="model">education.notebook.line</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_notebook_line_view_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" name="button_box">
+                <button name="action_survey_user_input" type="object"
+                        class="oe_stat_button" icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('survey_input_count','=', 0)]}">
+                    <field string="Answers" name="survey_input_count" widget="statinfo"/>
+                </button>
+            </div>
+            <field name="task_type_id" position="after">
+                <field name="eval_mode" invisible="1"/>
+                <field name="survey_id" attrs="{'invisible':[('eval_mode','!=','rubric')]}"/>
+            </field>
+        </field>
+    </record>
+    <record id="education_record_view_tree" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_record_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="recovered_record_id" position="after">
+                <field name="survey_input_id" invisible="1"/>
+                <button name="button_respond_survey" string="Open survey"
+                        type="object" icon="fa-pencil" help="Open"
+                        attrs="{'invisible':[('survey_input_id','=',False)]}"/>
+            </field>
+        </field>
+    </record>
+    <record id="survey_form" model="ir.ui.view">
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <field name="quizz_mode" position="after">
+                <field name="competence_id"/>
+                <field name="level_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+    <record id="survey_user_input_form" model="ir.ui.view">
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="responsible"/>
+            </field>
+            <!--<field name="quizz_mark" position="after">
+                <field name="average_grade"/>
+            </field>-->
+            <xpath expr="//group" position="inside">
+                <group>
+                    <field name="education_record_id"/>
+                    <field name="academic_year"/>
+                    <field name="evaluation"/>
+                    <field name="description"/>
+                    <field name="subject_id"/>
+                    <field name="education_center"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="survey_user_input_tree" model="ir.ui.view">
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_tree"/>
+        <field name="arch" type="xml">
+            <field name="quizz_score" position="after">
+                <field name="average_grade"/>
+            </field>
+        </field>
+    </record>
+</odoo>
