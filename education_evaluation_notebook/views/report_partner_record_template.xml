@@ -157,6 +157,11 @@
                 </t>
                 <t t-set="teaching_records" t-value="o.get_academic_records_teaching(academic_year, eval_type=eval_type)" />
                 <t t-if="teaching_records">
+                    <t t-foreach="teaching_records.mapped('n_line_id.notes')"
+                       t-as="teaching_note">
+                        <span t-raw="teaching_note" />
+                    </t>
+                    <br />
                     <table class="table table-sm o_main_table borderless smallfont">
                         <tbody>
                             <t t-foreach="teaching_records" t-as="teaching_record">
