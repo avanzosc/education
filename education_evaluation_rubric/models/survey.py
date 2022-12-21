@@ -7,12 +7,18 @@ class SurveySurvey(models.Model):
     _inherit = "survey.survey"
 
     responsible = fields.Many2one('hr.employee', string='Responsible')
-    competence_id = fields.Many2one(
+    competence_ids = fields.Many2many(
         comodel_name="education.competence", string="Competence")
     level_ids = fields.Many2many(
         comodel_name='education.level', string='Levels',
         relation='rel_education_level_survey',
         column1='survey_id', column2='level_id')
+    education_course_ids = fields.Many2many(
+        string="Education Courses",
+        comodel_name="education.course")
+    subject_ids = fields.Many2many(
+        string="Education Subjects",
+        comodel_name="education.subject")
 
 
 class SurveyUserInput(models.Model):
@@ -43,7 +49,9 @@ class SurveyUserInput(models.Model):
     @api.onchange('quizz_score', 'user_input_line_ids')
     def compute_average_grade(self):
         for record in self:
-            record.average_grade = record.quizz_score/len(record.user_input_line_ids)
+            if record.education_record_id:
+                record.average_grade = record.quizz_score/len(record.user_input_line_ids)
+                record.education_record_id.set_numeric_mark(record.quizz_score)
 
 
 class SurveyUserInputLine(models.Model):

@@ -30,3 +30,7 @@ class EducationRecord(models.Model):
         res = super(EducationRecord, self).create(vals)
         res.create_survey_input()
         return res
+
+    def set_numeric_mark(self, mark):
+        for record in self:
+            record.numeric_mark = mark

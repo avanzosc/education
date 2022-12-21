@@ -13,8 +13,26 @@
             </div>
             <field name="task_type_id" position="after">
                 <field name="eval_mode" invisible="1"/>
-                <field name="survey_id" attrs="{'invisible':[('eval_mode','!=','rubric')]}"/>
+                <field name="survey_id"
+                       attrs="{'invisible':[('eval_mode','!=','rubric')]}"
+                       domain="[
+                            ('competence_ids', 'in', competence_id),
+                            ('level_ids', 'in', level_ids),
+                            ('subject_ids', 'in', subject_id)]"/>
+<!--                            ('education_course_ids', 'in', course_ids),-->
+
             </field>
+            <xpath expr="//field[@name='child_line_ids']/tree/field[@name='competence_type_id']" position="after">
+          <!--      <field name="competence_ids" invisible="1"/>
+                <field name="level_ids" invisible="1"/>
+                <field name="subject_ids" invisible="1"/>
+                <field name="education_course_ids" invisible="1"/>-->
+                <field name="survey_id"/> <!--domain="[
+                ('competence_ids', 'in', competence_id.ids),
+                ('level_ids', 'in', level_ids.ids),
+                ('education_course_ids', 'in', subject_id.course_ids.ids),
+                ('subject_ids', 'in', subject_id.ids)]"/>-->
+            </xpath>
         </field>
     </record>
     <record id="education_record_view_tree" model="ir.ui.view">
@@ -34,8 +52,10 @@
         <field name="inherit_id" ref="survey.survey_form"/>
         <field name="arch" type="xml">
             <field name="quizz_mode" position="after">
-                <field name="competence_id"/>
+                <field name="competence_ids" widget="many2many_tags"/>
                 <field name="level_ids" widget="many2many_tags"/>
+                <field name="education_course_ids" widget="many2many_tags"/>
+                <field name="subject_ids" widget="many2many_tags"/>
             </field>
         </field>
     </record>

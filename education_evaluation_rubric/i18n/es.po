@@ -1,0 +1,177 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* education_evaluation_rubric
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-21 13:41+0000\n"
+"PO-Revision-Date: 2022-12-21 13:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_record
+msgid "Academic Record"
+msgstr "Registro academico"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__academic_year
+msgid "Academic Year"
+msgstr "Año académico"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
+msgid "Answers"
+msgstr "Respuestas"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__average_grade
+msgid "Average Grade"
+msgstr "Nota media"
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+msgid "Behaviour"
+msgstr "Comportamiento"
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+msgid "Both"
+msgstr "Ambos"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__competence_ids
+msgid "Competence"
+msgstr "Competencia"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__education_center
+msgid "Education Center"
+msgstr "Centro educativo"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_competence
+msgid "Education Competence"
+msgstr "Competencia"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__course_ids
+msgid "Education Course"
+msgstr "Curso"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__education_course_ids
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__subject_ids
+msgid "Education Courses"
+msgstr "Cursos educativos"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_notebook_line
+msgid "Education Notebook Line"
+msgstr "Línea de cuaderno de evaluación"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__education_record_id
+msgid "Education Record"
+msgstr "Registro académico"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_competence__eval_mode
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__eval_mode
+msgid "Evaluation Mode"
+msgstr "Modo de evaluación"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__evaluation
+msgid "Evaluation Season"
+msgstr "Evaluación"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__level_ids
+msgid "Levels"
+msgstr "Niveles"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__notebook_line_id
+msgid "Notebook Line"
+msgstr "Línea de cuaderno"
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+msgid "Numeric"
+msgstr "Numérico"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_record_view_tree
+msgid "Open"
+msgstr "Abierto"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_record_view_tree
+msgid "Open survey"
+msgstr "Brir encuesta"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__responsible
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+#: model:education.competence,name:education_evaluation_rubric.education_competence_rubric
+msgid "Rubric"
+msgstr "Rúbrica"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__subject_id
+msgid "Subject"
+msgstr "Asunto"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_survey
+msgid "Survey"
+msgstr "Planificación"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__survey_input_id
+msgid "Survey Input"
+msgstr "Entrada de encuesta"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_ids
+msgid "Survey Inputs"
+msgstr "Entradas de encuesta"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_id
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__survey_id
+msgid "Survey Template"
+msgstr "Plantilla de encuesta"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Entrada de usuario de la encuesta"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Línea de entrada de usuario de la encuesta"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_count
+msgid "Survey input count"
+msgstr ""
+

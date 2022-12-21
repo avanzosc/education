@@ -8,6 +8,8 @@ class EducationNotebookLine(models.Model):
     _inherit = 'education.notebook.line'
 
     eval_mode = fields.Selection(related='competence_id.eval_mode')
+    course_ids = fields.Many2many(
+        'education.course', string='Education Course', related="subject_id.course_ids")
     survey_id = fields.Many2one('survey.survey', string='Survey Template')
     survey_input_ids = fields.Many2many(
         string="Survey Inputs",
