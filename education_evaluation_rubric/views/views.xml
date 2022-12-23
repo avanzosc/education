@@ -4,6 +4,9 @@
         <field name="model">education.notebook.line</field>
         <field name="inherit_id" ref="education_evaluation_notebook.education_notebook_line_view_form"/>
         <field name="arch" type="xml">
+            <button name="button_create_student_records" position="after">
+                <button name="button_open_all_survey_inputs" string="Answer All Surveys" type="object" attrs="{'invisible': [('survey_input_count','=', 0)]}"/>
+            </button>
             <div class="oe_button_box" name="button_box">
                 <button name="action_survey_user_input" type="object"
                         class="oe_stat_button" icon="fa-pencil-square-o"
@@ -32,7 +35,7 @@
                             ('subject_ids', 'in', subject_id),
                             '|',
                             ('education_course_ids', '=', False),
-                            ('education_course_ids', 'in', course_ids)]]"/>
+                            ('education_course_ids', 'in', course_ids)]"/>
                 <button name="button_create_custom_survey"
                         confirm="By creating a custom survey template existing survey inputs will be deleted."
                         string="Create custom survey" type="object" attrs="{'invisible': [('edited_survey_show','=', True)]}"/>
