@@ -2,6 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
 from odoo import exceptions
+from odoo.exceptions import UserError
 
 
 class EducationNotebookLine(models.Model):
@@ -11,6 +12,8 @@ class EducationNotebookLine(models.Model):
     course_ids = fields.Many2many(
         'education.course', string='Education Course', related="subject_id.course_ids")
     survey_id = fields.Many2one('survey.survey', string='Survey Template')
+    edited_survey_id = fields.Many2one('survey.survey', string='Custom Survey Template')
+    edited_survey_show = fields.Boolean(default=False, string='Custom Survey Show')
     survey_input_ids = fields.Many2many(
         string="Survey Inputs",
         comodel_name="survey.user_input",
@@ -47,6 +50,19 @@ class EducationNotebookLine(models.Model):
                 raise exceptions.ValidationError('Please Select Survey for Rubric Competence')
 
         super(EducationNotebookLine, self).button_create_student_records()
+
+    @api.multi
+    def button_create_custom_survey(self):
+        for record in self:
+            if record.survey_id:
+                if record.survey_input_ids:
+                    record.survey_input_ids.unlink()
+                record.edited_survey_id = record.survey_id.copy({
+                    'responsible': record.teacher_id.id,
+                })
+                record.edited_survey_id.title = record.survey_id.title + '(' + record.teacher_id.display_name + ')'
+                record.record_ids.create_survey_input()
+                record.edited_survey_show = True
 
     @api.onchange('survey_id')
     def _onchange_survey(self):

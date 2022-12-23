@@ -7,7 +7,11 @@ class EducationRecord(models.Model):
     _inherit = 'education.record'
 
     survey_input_id = fields.Many2one('survey.user_input', string='Survey Input')
-    survey_id = fields.Many2one('survey.survey', related='n_line_id.survey_id')
+    survey_id = fields.Many2one('survey.survey', compute='compute_survey')
+
+    def compute_survey(self):
+        for record in self:
+            record.survey_id = record.n_line_id.edited_survey_id.id if record.n_line_id.edited_survey_id else record.n_line_id.survey_id.id
 
     def create_survey_input(self):
         for record in self:
