@@ -14,6 +14,7 @@
     ],
     "data": [
         "data/education_competence_data.xml",
+        "views/templates.xml",
         "views/views.xml",
     ],
     "installable": True,

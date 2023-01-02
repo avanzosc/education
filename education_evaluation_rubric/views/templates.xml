@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sfinished" inherit_id="survey.sfinished">
+        <xpath expr="//h1" position="after">
+            <h2 t-if="survey_input"><t t-esc="survey_input.partner_id.display_name"/></h2>
+        </xpath>
+        <xpath expr="//t[@t-call='survey.back']" position="after">
+            <t t-call="education_evaluation_rubric.survey_student_button"/>
+            <t t-call="education_evaluation_rubric.survey_student_next_button"/>
+        </xpath>
+    </template>
+    <template id="survey_init" inherit_id="survey.survey_init">
+        <xpath expr="//h1[@t-field='survey.title']" position="after">
+            <h2 t-if="survey_input"><t t-esc="survey_input.partner_id.display_name"/></h2>
+        </xpath>
+        <xpath expr="//t[@t-call='survey.back']" position="before">
+            <t t-call="education_evaluation_rubric.survey_student_button"/>
+        </xpath>
+    </template>
+    <template id="survey_student_button" name="Student Button Survey">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Student
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <t t-foreach="student_ids" t-as="student_id">
+                  <t t-set="student_input" t-value="input_ids.filtered(lambda i: i.partner_id.id == student_id.id)"/>
+                  <a t-if="student_input and len(student_input) == 1"
+                     class="dropdown-item"
+                    t-att-href="survey.with_context(relative_url=True).public_url + '/' + student_input.token"
+                  >
+                    <t t-esc="student_id.display_name"/>
+                  </a>
+              </t>
+          </div>
+        </div>
+    </template>
+    <template id="survey_student_next_button" name="Student Button Next Survey">
+            <div class="float-left" t-if="link_next_student">
+                <a class="btn btn-secondary m-10" t-att-href="link_next_student" role="button">
+                    Next Student
+                </a>
+            </div>
+    </template>
+    <template id="assets_frontend"
+      inherit_id="website.assets_frontend" name="Adding files">
+      <xpath expr="." position="inside">
+       <link rel="stylesheet"
+        href="/education_evaluation_rubric/static/src/css/style.css" />
+      </xpath>
+    </template>
+</odoo>
