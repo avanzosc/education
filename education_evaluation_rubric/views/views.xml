@@ -64,6 +64,9 @@
                             '|',
                             ('education_course_ids', '=', False),
                             ('education_course_ids', 'in', course_ids)]"/>
+                 <button name="button_create_custom_survey"
+                        confirm="By creating a custom survey template existing survey inputs will be deleted."
+                        string="Create custom survey" type="object" attrs="{'invisible': [('edited_survey_show','=', True)]}"/>
                 <field name="edited_survey_id"
                        attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
             </xpath>
