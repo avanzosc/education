@@ -73,8 +73,6 @@
                 <field name="edited_survey_id"
                        attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
 
-                <field name="edited_survey_id"
-                       attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
             </xpath>
         </field>
     </record>
