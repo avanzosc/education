@@ -19,6 +19,7 @@
                 <field name="edited_survey_show" invisible="1"/>
                 <field name="course_ids" invisible="1"/>
                 <field name="survey_id"
+                       options='{"no_open": True}'
                        attrs="{'invisible':[('eval_mode','!=','rubric')]}"
                        domain="[
                             '|',
@@ -38,7 +39,7 @@
                             ('education_course_ids', 'in', course_ids)]"/>
                 <button name="button_create_custom_survey"
                         confirm="By creating a custom survey template existing survey inputs will be deleted."
-                        string="Create custom survey" type="object" attrs="{'invisible': [('edited_survey_show','=', True)]}"/>
+                        string="Create custom survey" type="object" attrs="{'invisible': ['|',('edited_survey_show','=', False),('edited_survey_id', '!=', False)]}"/>
                 <field name="edited_survey_id"
                        attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
 
@@ -48,7 +49,9 @@
                 <field name="teacher_id" invisible="1"/>
                 <field name="subject_id" invisible="1"/>
                 <field name="course_ids" invisible="1"/>
-                <field name="survey_id" domain="[
+                <field name="survey_id"
+                       options='{"no_open": True}'
+                       domain="[
                             '|',
                             ('responsible', '=', False),
                             ('responsible', '=', teacher_id),
@@ -64,9 +67,12 @@
                             '|',
                             ('education_course_ids', '=', False),
                             ('education_course_ids', 'in', course_ids)]"/>
-                 <button name="button_create_custom_survey"
+                <button name="button_create_custom_survey"
                         confirm="By creating a custom survey template existing survey inputs will be deleted."
-                        string="Create custom survey" type="object" attrs="{'invisible': [('edited_survey_show','=', True), ('survey_id', '!=', None)]}"/>
+                        string="Create custom survey" type="object" attrs="{'invisible': ['|',('edited_survey_show','=', True),('survey_id', '=', False)]}"/>
+                <field name="edited_survey_id"
+                       attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
+
                 <field name="edited_survey_id"
                        attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
             </xpath>
