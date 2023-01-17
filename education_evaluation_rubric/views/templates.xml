@@ -42,6 +42,15 @@
                 </a>
             </div>
     </template>
+    <template id="survey_matrix_text" inherit_id="survey.matrix">
+        <xpath expr="//input[@type='checkbox']" position="after">
+            <t t-if="question.survey_text_ids" t-set="survey_text"
+               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2.id == row_label.id and t.label_id_1.id == col_label.id)"/>
+            <span t-if="survey_text">
+                <t t-esc="survey_text.text"/>
+            </span>
+        </xpath>
+    </template>
     <template id="assets_frontend"
       inherit_id="website.assets_frontend" name="Adding files">
       <xpath expr="." position="inside">

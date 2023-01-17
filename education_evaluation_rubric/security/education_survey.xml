@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="education_survey_own_rule" model="ir.rule">
+        <field name="name">Survey teacher own rule</field>
+        <field name="model_id" ref="survey.model_survey_survey"/>
+        <field name="domain_force">[('responsible.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+    <record id="education_survey_teacher_template_rule" model="ir.rule">
+        <field name="name">Survey teacher template rule</field>
+        <field name="model_id" ref="survey.model_survey_survey"/>
+        <field name="domain_force">[('is_base_survey','=',True)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+</odoo>

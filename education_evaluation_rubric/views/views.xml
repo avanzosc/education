@@ -22,6 +22,7 @@
                        options='{"no_open": True}'
                        attrs="{'invisible':[('eval_mode','!=','rubric')]}"
                        domain="[
+                            ('is_base_survey', '=', True),
                             '|',
                             ('responsible', '=', False),
                             ('responsible', '=', teacher_id),
@@ -52,6 +53,7 @@
                 <field name="survey_id"
                        options='{"no_open": True}'
                        domain="[
+                            ('is_base_survey', '=', True),
                             '|',
                             ('responsible', '=', False),
                             ('responsible', '=', teacher_id),
@@ -93,6 +95,7 @@
         <field name="inherit_id" ref="survey.survey_form"/>
         <field name="arch" type="xml">
             <field name="quizz_mode" position="after">
+                <field name="is_base_survey"/>
                 <field name="responsible"/>
                 <field name="competence_ids" widget="many2many_tags"/>
                 <field name="level_ids" widget="many2many_tags"/>
@@ -129,6 +132,24 @@
         <field name="arch" type="xml">
             <field name="quizz_score" position="after">
                 <field name="average_grade"/>
+            </field>
+        </field>
+    </record>
+    <record id="survey_question_text_form" model="ir.ui.view">
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form"/>
+        <field name="arch" type="xml">
+            <field name="labels_ids_2" position="after">
+                <separator/>
+                <label for="survey_text_ids" attrs="{'invisible': [('type', '!=', 'matrix')]}"/>
+                <button name="create_survey_texts" type="object" string="Create survey texts"/>
+                <field name="survey_text_ids" context="{'default_question_id_2': active_id}" attrs="{'invisible': [('type', '!=', 'matrix')]}">
+                    <tree editable="bottom">
+                        <field name="label_id_1"/>
+                        <field name="label_id_2"/>
+                        <field name="text"/>
+                    </tree>
+                </field>
             </field>
         </field>
     </record>
