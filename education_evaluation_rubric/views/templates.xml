@@ -9,6 +9,16 @@
             <t t-call="education_evaluation_rubric.survey_student_next_button"/>
         </xpath>
     </template>
+    <template id="page" inherit_id="survey.page">
+        <xpath expr="//h1" position="after">
+            <h2 t-if="survey_input"><t t-esc="survey_input.partner_id.display_name"/></h2>
+        </xpath>
+    </template>
+    <template id="back" inherit_id="survey.back">
+        <xpath expr="//a" position="after">
+            <a t-if="survey_input" role="button" t-attf-href="/web#view_type=form&amp;model=education.notebook.line&amp;id=#{survey_input.notebook_line_id.id}&amp;action=943" class="btn btn-secondary">Back to Notebook Line</a>
+        </xpath>
+    </template>
     <template id="survey_init" inherit_id="survey.survey_init">
         <xpath expr="//h1[@t-field='survey.title']" position="after">
             <h2 t-if="survey_input"><t t-esc="survey_input.partner_id.display_name"/></h2>
