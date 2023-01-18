@@ -9,10 +9,13 @@
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
     "depends": [
+        "education",
         "education_evaluation_notebook",
         "survey_usability",
     ],
     "data": [
+        "security/education_survey.xml",
+        "security/ir.model.access.csv",
         "data/education_competence_data.xml",
         "views/templates.xml",
         "views/views.xml",

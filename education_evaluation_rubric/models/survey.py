@@ -6,7 +6,7 @@ from odoo import api, fields, models
 class SurveySurvey(models.Model):
     _inherit = "survey.survey"
 
-    responsible = fields.Many2one('hr.employee', string='Responsible')
+    responsible = fields.Many2one('hr.employee', string='Responsible Teacher')
     competence_ids = fields.Many2many(
         comodel_name="education.competence", string="Competence")
     level_ids = fields.Many2many(
@@ -19,6 +19,7 @@ class SurveySurvey(models.Model):
     subject_ids = fields.Many2many(
         string="Education Subjects",
         comodel_name="education.subject")
+    is_base_survey = fields.Boolean('Is base survey')
 
 
 class SurveyUserInput(models.Model):
@@ -62,3 +63,46 @@ class SurveyUserInputLine(models.Model):
         user_input = self.env['survey.user_input'].browse(user_input_id)
         user_input.compute_average_grade()
         return res
+
+
+class SurveyQuestionText(models.Model):
+    _name = "survey.question.text"
+    _description = 'Survey Question Text (Matrix)'
+
+    question_id = fields.Many2one(
+        comodel_name="survey.question",
+        string="Question",
+        required=True,)
+
+    label_id_1 = fields.Many2one(
+        string="Survey Label 1",
+        comodel_name="survey.label",
+        required=True)
+
+    label_id_2 = fields.Many2one(
+        string="Survey Label 2",
+        comodel_name="survey.label",
+        required=True)
+
+    text = fields.Text('Text')
+
+
+class SurveyQuestion(models.Model):
+    _inherit = "survey.question"
+
+    survey_text_ids = fields.One2many(
+        string='Matrix Texts',
+        comodel_name='survey.question.text',
+        inverse_name='question_id',)
+
+    def create_survey_texts(self):
+        for record in self:
+            text_obj = self.env['survey.question.text']
+            if record.type == 'matrix':
+                for label in record.labels_ids:
+                    for label2 in record.labels_ids_2:
+                        text_obj.create({
+                            'question_id': record.id,
+                            'label_id_1': label.id,
+                            'label_id_2': label2.id,
+                        })
