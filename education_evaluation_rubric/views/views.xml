@@ -139,6 +139,9 @@
         <field name="model">survey.question</field>
         <field name="inherit_id" ref="survey.survey_question_form"/>
         <field name="arch" type="xml">
+            <field name="quizz_mark" position="after">
+                <field name="color"/>
+            </field>
             <field name="labels_ids_2" position="after">
                 <separator/>
                 <label for="survey_text_ids" attrs="{'invisible': [('type', '!=', 'matrix')]}"/>

@@ -95,6 +95,8 @@ class SurveyQuestion(models.Model):
         comodel_name='survey.question.text',
         inverse_name='question_id',)
 
+    color = fields.Text('Color Hex')
+
     def create_survey_texts(self):
         for record in self:
             text_obj = self.env['survey.question.text']
