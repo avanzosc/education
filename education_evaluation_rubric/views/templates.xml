@@ -54,7 +54,10 @@
     </template>
     <template id="survey_matrix_text" inherit_id="survey.matrix">
         <xpath expr="//th[@t-foreach='question.labels_ids']" position="attributes">
-            <attribute name="t-att-style">'background-color:#'+question.color+';'</attribute>
+            <attribute name="t-att-style">'background-color:#'+col_label.color+';' if col_label.color else ''</attribute>
+        </xpath>
+        <xpath expr="//td[@t-foreach='question.labels_ids']" position="attributes">
+            <attribute name="t-att-style">'background-color:#'+col_label.color+';' if col_label.color else ''</attribute>
         </xpath>
         <xpath expr="//input[@type='checkbox']" position="after">
             <t t-if="question.survey_text_ids" t-set="survey_text"
