@@ -87,6 +87,12 @@ class SurveyQuestionText(models.Model):
     text = fields.Text('Text')
 
 
+class SurveyLabel(models.Model):
+    _inherit = "survey.label"
+
+    color = fields.Text('Color Hex')
+
+
 class SurveyQuestion(models.Model):
     _inherit = "survey.question"
 
@@ -94,8 +100,6 @@ class SurveyQuestion(models.Model):
         string='Matrix Texts',
         comodel_name='survey.question.text',
         inverse_name='question_id',)
-
-    color = fields.Text('Color Hex')
 
     def create_survey_texts(self):
         for record in self:
