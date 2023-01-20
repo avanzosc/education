@@ -60,7 +60,7 @@
             <attribute name="t-att-style">'background-color:'+col_label.color+';' if col_label.color else ''</attribute>
         </xpath>
         <xpath expr="//td[@t-foreach='question.labels_ids']" position="attributes">
-            <attribute name="t-att-style">'background-color:'+col_label.color+';' if col_label.color else ''</attribute>
+            <attribute name="t-att-style">'color:'+col_label.color+';' if col_label.color else ''</attribute>
             <attribute name="class">td_survey</attribute>
         </xpath>
         <xpath expr="//td[@t-foreach='question.labels_ids']/input" position="attributes">
