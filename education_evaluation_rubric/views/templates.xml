@@ -80,7 +80,7 @@
        <link rel="stylesheet"
         href="/education_evaluation_rubric/static/src/css/style.css" />
        <link rel="stylesheet"
-        href="/education_evaluation_rubric/static/src/js/static.js" />
+        href="/education_evaluation_rubric/static/src/js/script.js" />
       </xpath>
     </template>
 </odoo>
