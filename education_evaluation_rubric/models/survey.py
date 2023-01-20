@@ -21,6 +21,23 @@ class SurveySurvey(models.Model):
         comodel_name="education.subject")
     is_base_survey = fields.Boolean('Is base survey')
 
+    def copy_survey_texts(self, original_survey):
+        self.ensure_one()
+        if original_survey.page_ids and original_survey.page_ids.question_ids:
+            original_survey_texts = original_survey.page_ids.question_ids.survey_text_ids
+            for question in self.page_ids.question_ids:
+                for label in question.label_ids:
+                    for label2 in question.label_ids_2:
+                        survey_text = original_survey_texts.filtered(
+                            lambda t: t.label_id_1.value == label.value and t.label_id_2.value == label2.value)
+                        self.env['survey.question.text'].create({
+                            'question_id': question.id,
+                            'label_id_1': label.id,
+                            'label_id_2': label2.id,
+                            'text': survey_text.text,
+                        })
+
+
 
 class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"
@@ -99,8 +116,8 @@ class SurveyQuestion(models.Model):
     survey_text_ids = fields.One2many(
         string='Matrix Texts',
         comodel_name='survey.question.text',
-        inverse_name='question_id',
-        copy=True)
+        inverse_name='question_id'
+    )
 
     def create_survey_texts(self):
         for record in self:

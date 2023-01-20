@@ -63,6 +63,7 @@ class EducationNotebookLine(models.Model):
                 record.edited_survey_id.title = record.survey_id.title + '(' + record.teacher_id.display_name + ')'
                 record.record_ids.create_survey_input()
                 record.edited_survey_show = True
+                record.edited_survey_id.copy_survey_texts(record.survey_id)
 
     @api.onchange('survey_id')
     def _onchange_survey(self):

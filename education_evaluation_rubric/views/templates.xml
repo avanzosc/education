@@ -53,11 +53,18 @@
             </div>
     </template>
     <template id="survey_matrix_text" inherit_id="survey.matrix">
+        <xpath expr="//th[@t-foreach='question.labels_ids']/span" position="after">
+          (<span t-field="col_label.quizz_mark"/>)
+        </xpath>
         <xpath expr="//th[@t-foreach='question.labels_ids']" position="attributes">
-            <attribute name="t-att-style">'background-color:#'+col_label.color+';' if col_label.color else ''</attribute>
+            <attribute name="t-att-style">'background-color:'+col_label.color+';' if col_label.color else ''</attribute>
         </xpath>
         <xpath expr="//td[@t-foreach='question.labels_ids']" position="attributes">
-            <attribute name="t-att-style">'background-color:#'+col_label.color+';' if col_label.color else ''</attribute>
+            <attribute name="t-att-style">'background-color:'+col_label.color+';' if col_label.color else ''</attribute>
+            <attribute name="class">td_survey</attribute>
+        </xpath>
+        <xpath expr="//td[@t-foreach='question.labels_ids']/input" position="attributes">
+            <attribute name="class">input_survey</attribute>
         </xpath>
         <xpath expr="//input[@type='checkbox']" position="after">
             <t t-if="question.survey_text_ids" t-set="survey_text"
@@ -72,6 +79,8 @@
       <xpath expr="." position="inside">
        <link rel="stylesheet"
         href="/education_evaluation_rubric/static/src/css/style.css" />
+       <link rel="stylesheet"
+        href="/education_evaluation_rubric/static/src/js/static.css" />
       </xpath>
     </template>
 </odoo>
