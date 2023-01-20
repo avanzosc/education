@@ -26,8 +26,8 @@ class SurveySurvey(models.Model):
         if original_survey.page_ids and original_survey.page_ids.question_ids:
             original_survey_texts = original_survey.page_ids.question_ids.survey_text_ids
             for question in self.page_ids.question_ids:
-                for label in question.label_ids:
-                    for label2 in question.label_ids_2:
+                for label in question.labels_ids:
+                    for label2 in question.labels_ids_2:
                         survey_text = original_survey_texts.filtered(
                             lambda t: t.label_id_1.value == label.value and t.label_id_2.value == label2.value)
                         self.env['survey.question.text'].create({
