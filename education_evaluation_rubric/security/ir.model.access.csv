@@ -1,3 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_survey_question_text_year,survey_question_text all,model_survey_question_text,,1,0,0,0
 access_survey_question_text_manager,survey_question_text manager,model_survey_question_text,education.education_responsible,1,1,1,1
+access_survey_question_text_teacher,survey_question_text teacher,model_survey_question_text,base.group_user,1,1,1,1
+access_survey_question_teacher,survey_question teacher,model_survey_question,base.group_user,1,1,1,1
+access_survey_page_teacher,survey_page teacher,model_survey_page,base.group_user,1,1,1,1
+access_survey_label_teacher,survey_label teacher,model_survey_label,base.group_user,1,1,1,1
+access_survey_teacher,survey_survey teacher,model_survey_survey,base.group_user,1,1,1,1
