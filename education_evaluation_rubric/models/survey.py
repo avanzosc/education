@@ -99,7 +99,8 @@ class SurveyQuestion(models.Model):
     survey_text_ids = fields.One2many(
         string='Matrix Texts',
         comodel_name='survey.question.text',
-        inverse_name='question_id',)
+        inverse_name='question_id',
+        copy=True)
 
     def create_survey_texts(self):
         for record in self:
