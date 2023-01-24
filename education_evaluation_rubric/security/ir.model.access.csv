@@ -5,4 +5,5 @@ access_survey_question_text_teacher,survey_question_text teacher,model_survey_qu
 access_survey_question_teacher,survey_question teacher,survey.model_survey_question,base.group_user,1,1,1,1
 access_survey_page_teacher,survey_page teacher,survey.model_survey_page,base.group_user,1,1,1,1
 access_survey_label_teacher,survey_label teacher,survey.model_survey_label,base.group_user,1,1,1,1
+access_survey_user_input_teacher,survey_user_input teacher,survey.model_survey_user_input,base.group_user,1,1,1,1
 access_survey_teacher,survey_survey teacher,survey.model_survey_survey,base.group_user,1,1,1,1

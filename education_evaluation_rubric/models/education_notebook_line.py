@@ -59,7 +59,13 @@ class EducationNotebookLine(models.Model):
                     record.survey_input_ids.unlink()
                 record.edited_survey_id = record.survey_id.copy({
                     'responsible': record.teacher_id.id,
+                    'create_uid': self.env.uid,
                 })
+                create_uid = self.env.uid
+                for page in record.sudo().survey_id.page_ids:
+                    page = page.copy({
+                        'survey_id': record.edited_survey_id.id,
+                    })
                 record.edited_survey_id.title = record.survey_id.title + '(' + record.teacher_id.display_name + ')'
                 record.record_ids.create_survey_input()
                 record.edited_survey_show = True

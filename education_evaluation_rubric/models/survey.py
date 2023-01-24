@@ -38,6 +38,11 @@ class SurveySurvey(models.Model):
                         })
 
 
+class SurveyPage(models.Model):
+    _inherit = "survey.page"
+
+    responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
+
 
 class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"
@@ -71,6 +76,12 @@ class SurveyUserInput(models.Model):
                 record.average_grade = record.quizz_score/len(record.user_input_line_ids)
                 record.education_record_id.set_numeric_mark(record.quizz_score)
 
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        res.create_uid = self.env.uid
+        return res
+
 
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
@@ -85,6 +96,8 @@ class SurveyUserInputLine(models.Model):
 class SurveyQuestionText(models.Model):
     _name = "survey.question.text"
     _description = 'Survey Question Text (Matrix)'
+
+    responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="question_id.responsible")
 
     question_id = fields.Many2one(
         comodel_name="survey.question",
@@ -112,6 +125,8 @@ class SurveyLabel(models.Model):
 
 class SurveyQuestion(models.Model):
     _inherit = "survey.question"
+
+    responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
 
     survey_text_ids = fields.One2many(
         string='Matrix Texts',
