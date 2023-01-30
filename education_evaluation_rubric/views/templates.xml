@@ -11,7 +11,13 @@
     </template>
     <template id="page" inherit_id="survey.page">
         <xpath expr="//h1" position="after">
-            <h2 t-if="survey_input"><t t-esc="survey_input.partner_id.display_name"/></h2>
+            <t t-if="survey_input">
+                <h2><t t-esc="survey_input.partner_id.display_name"/></h2>
+                <t t-if="survey_input.notebook_line_id">
+                    <h3><t t-esc="survey_input.notebook_line_id.subject_id.display_name"/></h3>
+                    <h3><t t-esc="survey_input.notebook_line_id.display_name"/></h3>
+                </t>
+            </t>
         </xpath>
     </template>
     <template id="back" inherit_id="survey.back">
@@ -21,7 +27,13 @@
     </template>
     <template id="survey_init" inherit_id="survey.survey_init">
         <xpath expr="//h1[@t-field='survey.title']" position="after">
-            <h2 t-if="survey_input"><t t-esc="survey_input.partner_id.display_name"/></h2>
+            <t t-if="survey_input">
+                <h2><t t-esc="survey_input.partner_id.display_name"/></h2>
+                <t t-if="survey_input.notebook_line_id">
+                    <h3><t t-esc="survey_input.notebook_line_id.subject_id.display_name"/></h3>
+                    <h3><t t-esc="survey_input.notebook_line_id.display_name"/></h3>
+                </t>
+            </t>
         </xpath>
         <xpath expr="//t[@t-call='survey.back']" position="before">
             <t t-call="education_evaluation_rubric.survey_student_button"/>
