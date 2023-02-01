@@ -12,6 +12,7 @@
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
+                <field name="exam_name" />
                 <field name="exam_description" />
                 <field name="exam_date" />
                 <field name="exam_state" />
@@ -27,6 +28,7 @@
                       date_start="exam_date"
                       mode="month"
                       color="group_id">
+                <field name="exam_name" />
                 <field name="exam_description"/>
                 <field name="teacher_id"/>
                 <field name="subject_id"/>
@@ -45,6 +47,7 @@
                 <field name="teacher_id" />
                 <field name="classroom_id" />
                 <field name="academic_year_id" />
+                <field name="exam_name" />
                 <field name="exam_description" />
                 <field name="exam_date" />
                 <field name="exam_state" />
@@ -74,6 +77,7 @@
                             context="{'group_by':'classroom_id'}"/>
                     <filter string="Academic year" name="academic_year"
                             context="{'group_by':'academic_year_id'}"/>
+                    <separator />
                     <filter string="Exam" name="exam"
                             context="{'group_by':'exam_id'}" />
                     <filter string="Exam Date" name="exam_date"
