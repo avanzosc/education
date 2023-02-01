@@ -17,7 +17,8 @@ class EducationGroupExamReport(models.Model):
 
     exam_id = fields.Many2one(
         comodel_name="education.homework", string="Exam")
-    exam_description = fields.Char(string="Exam Description")
+    exam_name = fields.Char(string="Exam Name")
+    exam_description = fields.Text(string="Exam Description")
     exam_date = fields.Date(string="Exam Date")
     exam_state = fields.Selection(selection=EXAM_STATES, string="Status")
 
@@ -36,7 +37,8 @@ class EducationGroupExamReport(models.Model):
     def _select(self):
         select_str = """
                 , edu_exam.id AS exam_id
-                , edu_exam.name AS exam_description
+                , edu_exam.name AS exam_name
+                , edu_exam.description AS exam_description
                 , edu_exam.date AS exam_date
                 , edu_exam.state AS exam_state
         """
@@ -50,7 +52,8 @@ class EducationGroupExamReport(models.Model):
 
     def _group_by(self):
         group_by_str = """
-                , edu_exam.id, edu_exam.name, edu_exam.date, edu_exam.state
+                , edu_exam.id, edu_exam.name, edu_exam.description, edu_exam.date,
+                edu_exam.state
         """
         return (super(EducationGroupExamReport, self)._group_by() +
                 group_by_str)
