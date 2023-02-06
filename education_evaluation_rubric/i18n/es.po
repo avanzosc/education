@@ -133,7 +133,7 @@ msgstr "Registro académico"
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__subject_ids
 msgid "Education Subjects"
-msgstr ""
+msgstr "Asignaturas"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_competence__eval_mode

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-17 11:12+0000\n"
-"PO-Revision-Date: 2023-01-17 11:12+0000\n"
+"POT-Creation-Date: 2023-02-06 15:50+0000\n"
+"PO-Revision-Date: 2023-02-06 15:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,11 @@ msgid "Average Grade"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.back
+msgid "Back to Notebook Line"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: selection:education.competence,eval_mode:0
 msgid "Behaviour"
 msgstr ""
@@ -53,6 +58,11 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
 msgid "By creating a custom survey template existing survey inputs will be deleted."
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__color
+msgid "Color Hex"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -217,6 +227,10 @@ msgid "Responsible"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_page__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__responsible
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__responsible
 msgid "Responsible Teacher"
 msgstr ""
@@ -254,6 +268,11 @@ msgid "Survey Inputs"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_label
+msgid "Survey Label"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__label_id_1
 msgid "Survey Label 1"
 msgstr ""
@@ -261,6 +280,11 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__label_id_2
 msgid "Survey Label 2"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_page
+msgid "Survey Page"
 msgstr ""
 
 #. module: education_evaluation_rubric
