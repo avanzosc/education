@@ -128,6 +128,7 @@
                 <attribute name="readonly">1</attribute>
             </field>
             <field name="skipped" position="after">
+                <field name="value_suggested_row" options="{'no_create': True}"/>
                 <field name="value_suggested" options="{'no_create': True}"/>
                 <field name="quizz_mark"/>
             </field>
