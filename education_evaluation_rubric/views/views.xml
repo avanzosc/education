@@ -130,7 +130,6 @@
             <field name="skipped" position="after">
                 <field name="value_suggested_row" options="{'no_create': True}"/>
                 <field name="value_suggested" options="{'no_create': True}"/>
-                <field name="quizz_mark"/>
             </field>
             <field name="user_input_line_ids" position="attributes">
                 <attribute name="editable">bottom</attribute>
