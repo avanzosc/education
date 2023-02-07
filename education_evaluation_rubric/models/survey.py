@@ -81,6 +81,9 @@ class SurveyUserInput(models.Model):
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
 
+    labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
+    labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
+
     def save_lines(self, user_input_id, question, post, answer_tag):
         res = super(SurveyUserInputLine, self).save_lines(user_input_id, question, post, answer_tag)
         user_input = self.env['survey.user_input'].browse(user_input_id)

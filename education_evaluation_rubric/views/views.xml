@@ -118,6 +118,10 @@
             <field name="question_id" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
+            <field name="answer_type" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
             <field name="date_create" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
@@ -128,12 +132,20 @@
                 <attribute name="readonly">1</attribute>
             </field>
             <field name="skipped" position="after">
-                <field name="value_suggested_row" options="{'no_create': True}"/>
-                <field name="value_suggested" options="{'no_create': True}"/>
+                <field name="labels_ids" invisible="1"/>
+                <field name="labels_ids_2" invisible="1"/>
+                <field name="value_suggested_row"
+                       options="{'no_create': True}"
+                       domain="[
+                            ('id', 'in', labels_ids_2)]"/>
+                <field name="value_suggested"
+                       options="{'no_create': True}"
+                       domain="[
+                            ('id', 'in', labels_ids)]"/>
             </field>
-            <field name="user_input_line_ids" position="attributes">
+            <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
-            </field>
+            </xpath>
             <xpath expr="//group" position="inside">
                 <group>
                     <field name="education_record_id"/>
