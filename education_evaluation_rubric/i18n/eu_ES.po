@@ -1,0 +1,335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* education_evaluation_rubric
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-09 10:09+0000\n"
+"PO-Revision-Date: 2023-02-09 10:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_record
+msgid "Academic Record"
+msgstr "Erregistro akademikoa"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__academic_year
+msgid "Academic Year"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
+msgid "Answer All Surveys"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
+msgid "Answers"
+msgstr "Erantzunak "
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__average_grade
+msgid "Average Grade"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.back
+msgid "Back to Notebook Line"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.back
+msgid "Back to Survey Input"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+msgid "Behaviour"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+msgid "Both"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
+msgid "By creating a custom survey template existing survey inputs will be deleted."
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__color
+msgid "Color Hex"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__competence_ids
+msgid "Competence"
+msgstr "Konpetentzia"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
+msgid "Create custom survey"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_question_text_form
+msgid "Create survey texts"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__create_uid
+msgid "Created by"
+msgstr "Nork sortua"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__create_date
+msgid "Created on"
+msgstr "Noiz sortua"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__edited_survey_show
+msgid "Custom Survey Show"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__edited_survey_id
+msgid "Custom Survey Template"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__description
+msgid "Description"
+msgstr "Deskribapena"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__display_name
+msgid "Display Name"
+msgstr "Izena erakutsi"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__education_center
+msgid "Education Center"
+msgstr "Ikastetxea"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_competence
+msgid "Education Competence"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__course_ids
+msgid "Education Course"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__education_course_ids
+msgid "Education Courses"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_notebook_line
+msgid "Education Notebook Line"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__education_record_id
+msgid "Education Record"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__subject_ids
+msgid "Education Subjects"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_competence__eval_mode
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__eval_mode
+msgid "Evaluation Mode"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__evaluation
+msgid "Evaluation Season"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__id
+msgid "ID"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__is_base_survey
+msgid "Is base survey"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text____last_update
+msgid "Last Modified on"
+msgstr "Azken aldaketa"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__write_uid
+msgid "Last Updated by"
+msgstr "Azkenengoz eguneratu zuena"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__write_date
+msgid "Last Updated on"
+msgstr "Azken eguneraketa noiz"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__level_ids
+msgid "Levels"
+msgstr "Mailak"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question__survey_text_ids
+msgid "Matrix Texts"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_student_next_button
+msgid "Next Student"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__notebook_line_id
+msgid "Notebook Line"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+msgid "Numeric"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_record_view_tree
+msgid "Open"
+msgstr "Irekita"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_record_view_tree
+msgid "Open survey"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__question_id
+msgid "Question"
+msgstr "Galdera "
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__responsible
+msgid "Responsible"
+msgstr "Arduraduna"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_page__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__responsible
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__responsible
+msgid "Responsible Teacher"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: selection:education.competence,eval_mode:0
+#: model:education.competence,name:education_evaluation_rubric.education_competence_rubric
+msgid "Rubric"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_student_button
+msgid "Student"
+msgstr "Ikaslea"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__subject_id
+msgid "Subject"
+msgstr "Gaia"
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_survey
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__survey_id
+msgid "Survey"
+msgstr "Ikerketa"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__survey_input_id
+msgid "Survey Input"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_ids
+msgid "Survey Inputs"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_label
+msgid "Survey Label"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__label_id_1
+msgid "Survey Label 1"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__label_id_2
+msgid "Survey Label 2"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_page
+msgid "Survey Page"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_question
+msgid "Survey Question"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_question_text
+msgid "Survey Question Text (Matrix)"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_id
+msgid "Survey Template"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_user_input
+msgid "Survey User Input"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_count
+msgid "Survey input count"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__text
+msgid "Text"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__labels_ids
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__labels_ids_2
+msgid "Types of answers"
+msgstr ""
+

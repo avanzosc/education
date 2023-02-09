@@ -80,7 +80,7 @@ class EducationNotebookLine(models.Model):
     def button_open_all_survey_inputs(self):
         self.ensure_one()
         first_survey = self.env['survey.user_input'].search([
-            ('id', 'in', self.survey_input_ids.ids)], order="id desc")
+            ('id', 'in', self.survey_input_ids.ids)], order="id asc")
         res = first_survey[0].button_respond_survey()
         res['target'] = 'new'
         return res

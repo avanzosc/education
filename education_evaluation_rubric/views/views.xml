@@ -108,10 +108,17 @@
         <field name="model">survey.user_input</field>
         <field name="inherit_id" ref="survey.survey_user_input_form"/>
         <field name="arch" type="xml">
-
-            <!--<field name="quizz_mark" position="after">
-                <field name="average_grade"/>
-            </field>-->
+            <xpath expr="//group" position="inside">
+                <group>
+                    <field name="education_record_id"/>
+                    <field name="academic_year"/>
+                    <field name="evaluation"/>
+                    <field name="description"/>
+                    <field name="subject_id"/>
+                    <field name="education_center"/>
+                    <field name="average_grade"/>
+                </group>
+            </xpath>
             <field name="page_id" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
@@ -124,20 +131,16 @@
             </field>
             <field name="date_create" position="attributes">
                 <attribute name="readonly">1</attribute>
-            </field>
-            <field name="quizz_mark" position="attributes">
-                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
             </field>
             <field name="skipped" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
+            <field name="quizz_mark" position="after">
+                <field name="value_free_text"/>
+            </field>
             <field name="skipped" position="after">
                 <field name="labels_ids" invisible="1"/>
-                <field name="labels_ids_2" invisible="1"/>
-                <field name="value_suggested_row"
-                       options="{'no_create': True}"
-                       domain="[
-                            ('id', 'in', labels_ids_2)]"/>
                 <field name="value_suggested"
                        options="{'no_create': True}"
                        domain="[
@@ -145,16 +148,6 @@
             </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
-            </xpath>
-            <xpath expr="//group" position="inside">
-                <group>
-                    <field name="education_record_id"/>
-                    <field name="academic_year"/>
-                    <field name="evaluation"/>
-                    <field name="description"/>
-                    <field name="subject_id"/>
-                    <field name="education_center"/>
-                </group>
             </xpath>
         </field>
     </record>
