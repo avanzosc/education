@@ -48,7 +48,7 @@ msgstr "Regresar al cuaderno del profesor"
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.back
 msgid "Back to Survey Input"
-msgstr "Regresar a entrada de encuesta"
+msgstr "Editar respuestas"
 
 #. module: education_evaluation_rubric
 #: selection:education.competence,eval_mode:0

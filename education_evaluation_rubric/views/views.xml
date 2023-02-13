@@ -145,6 +145,11 @@
                        options="{'no_create': True}"
                        domain="[
                             ('id', 'in', labels_ids)]"/>
+                <field name="value_suggested_row"
+                       readonly="1"
+                       options="{'no_create': True}"
+                       domain="[
+                            ('id', 'in', labels_ids_2)]"/>
             </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
