@@ -141,6 +141,7 @@
             </field>
             <field name="skipped" position="after">
                 <field name="labels_ids" invisible="1"/>
+                <field name="labels_ids_2" invisible="1"/>
                 <field name="value_suggested"
                        options="{'no_create': True}"
                        domain="[
