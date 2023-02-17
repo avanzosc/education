@@ -104,6 +104,25 @@
             <span t-foreach="survey_texts" t-as="survey_text">
                 <t t-esc="survey_text.text"/>
             </span>
+            <t t-if="survey_input and survey_input.user_input_line_ids" t-set="input_id"
+               t-value="survey_input.mapped('user_input_line_ids').filtered(lambda i: i.value_suggested_row == row_label and i.value_suggested == col_label)"/>
+            <t t-if="input_id">
+                <br/>
+                <small>
+                    <i>
+                        <t t-esc="input_id.value_free_text"/>
+                    </i>
+                </small>
+            </t>
+        </xpath>
+    </template>
+    <template id="result_matrix_text" inherit_id="survey.result_matrix">
+        <xpath expr="//td[hasclass('survey_answer')]" position="inside">
+            <t t-if="question.survey_text_ids" t-set="survey_texts"
+               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2.id == row_label.id and t.label_id_1.id == col_label.id)"/>
+            <span t-foreach="survey_texts" t-as="survey_text">
+                <t t-esc="survey_text.text"/>
+            </span>
         </xpath>
     </template>
     <template id="assets_frontend"

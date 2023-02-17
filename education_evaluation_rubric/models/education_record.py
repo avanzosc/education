@@ -38,3 +38,11 @@ class EducationRecord(models.Model):
     def set_numeric_mark(self, mark):
         for record in self:
             record.numeric_mark = mark
+
+    @api.onchange('survey_input_id', 'survey_input_id.quizz_score')
+    @api.depends('survey_input_id', 'survey_input_id.quizz_score')
+    def onchange_survey_mark(self):
+        self.endure_one()
+        self.behaviour_mark_id = self.env['education.mark.behaviour'].browse(1)
+        self.partial_mark = self.survey_input_id.quizz_score.quizz_score
+        self.set_numeric_mark(self.survey_input_id.quizz_score.quizz_score)

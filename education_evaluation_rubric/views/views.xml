@@ -90,6 +90,15 @@
             </field>
         </field>
     </record>
+    <record id="education_record_view_form" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_record_view_form"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="survey_input_id"/>
+            </field>
+        </field>
+    </record>
     <record id="survey_form" model="ir.ui.view">
         <field name="model">survey.survey</field>
         <field name="inherit_id" ref="survey.survey_form"/>
@@ -116,9 +125,11 @@
                     <field name="description"/>
                     <field name="subject_id"/>
                     <field name="education_center"/>
-                    <field name="average_grade"/>
                 </group>
             </xpath>
+            <field name="quizz_score" position="after">
+                <field name="average_grade" readonly="1"/>
+            </field>
             <field name="page_id" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
@@ -129,28 +140,26 @@
                 <attribute name="readonly">1</attribute>
                 <attribute name="invisible">1</attribute>
             </field>
-            <field name="date_create" position="attributes">
-                <attribute name="readonly">1</attribute>
-                <attribute name="invisible">1</attribute>
-            </field>
+            <xpath expr="//tree/field[@name='date_create']" position="replace"/>
             <field name="skipped" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
             <field name="quizz_mark" position="after">
                 <field name="value_free_text"/>
+                <field name="date_create" readonly="1"/>
             </field>
             <field name="skipped" position="after">
                 <field name="labels_ids" invisible="1"/>
                 <field name="labels_ids_2" invisible="1"/>
-                <field name="value_suggested"
-                       options="{'no_create': True}"
-                       domain="[
-                            ('id', 'in', labels_ids)]"/>
                 <field name="value_suggested_row"
                        readonly="1"
                        options="{'no_create': True}"
                        domain="[
                             ('id', 'in', labels_ids_2)]"/>
+                <field name="value_suggested"
+                       options="{'no_create': True}"
+                       domain="[
+                            ('id', 'in', labels_ids)]"/>
             </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
