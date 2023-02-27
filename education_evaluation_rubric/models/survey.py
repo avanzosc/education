@@ -72,12 +72,11 @@ class SurveyUserInput(models.Model):
 
     @api.onchange('quizz_score', 'user_input_line_ids')
     def compute_average_grade(self):
-        self_ids = self._origin.ids if '_origin' in self else self.ids
+        self_ids = self.ids or self._origin.ids
         records = self.env['survey.user_input'].browse(self_ids)
         for record in records:
             if record.education_record_id:
                 record.average_grade = record.quizz_score/len(record.user_input_line_ids) if record.quizz_score else 0.0
-                record.education_record_id.set_numeric_mark(record.quizz_score)
 
 
 class SurveyUserInputLine(models.Model):
@@ -97,7 +96,6 @@ class SurveyUserInputLine(models.Model):
         self.ensure_one()
         self.quizz_mark = self.value_suggested.quizz_mark
         self.user_input_id.compute_average_grade()
-
 
 
 class SurveyQuestionText(models.Model):

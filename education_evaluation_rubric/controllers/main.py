@@ -33,6 +33,7 @@ class WebsiteSurvey(Survey):
             res.qcontext.update({
                 'student_ids': schedule.student_ids,
                 'survey_input': survey_input,
+                'schedule': schedule,
                 'input_ids': input_ids,
             })
         return res

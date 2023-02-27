@@ -8,6 +8,7 @@ class EducationRecord(models.Model):
 
     survey_input_id = fields.Many2one('survey.user_input', string='Survey Input')
     survey_id = fields.Many2one('survey.survey', compute='compute_survey')
+    quizz_score = fields.Float(related='survey_input_id.quizz_score')
 
     def compute_survey(self):
         for record in self:
@@ -38,11 +39,10 @@ class EducationRecord(models.Model):
     def set_numeric_mark(self, mark):
         for record in self:
             record.numeric_mark = mark
+            if not record.behaviour_mark_id:
+                record.behaviour_mark_id = self.env['education.mark.behaviour'].browse(1)
 
-    @api.onchange('survey_input_id', 'survey_input_id.quizz_score')
-    @api.depends('survey_input_id', 'survey_input_id.quizz_score')
-    def onchange_survey_mark(self):
-        self.endure_one()
-        self.behaviour_mark_id = self.env['education.mark.behaviour'].browse(1)
-        self.partial_mark = self.survey_input_id.quizz_score.quizz_score
-        self.set_numeric_mark(self.survey_input_id.quizz_score.quizz_score)
+    @api.onchange('quizz_score')
+    def _onchange_survey_mark(self):
+        self.ensure_one()
+        self.set_numeric_mark(self.quizz_score)

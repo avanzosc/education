@@ -25,7 +25,6 @@
             <t t-if="survey_input">
                 <a role="button" t-attf-href="/web#view_type=form&amp;model=education.notebook.line&amp;id=#{survey_input.notebook_line_id.id}&amp;action=943" class="btn btn-secondary">Back to Notebook Line</a>
                 <a role="button" t-attf-href="/web#view_type=form&amp;model=survey.user_input&amp;id=#{survey_input.id}&amp;action=276" class="btn btn-secondary">Back to Survey Input</a>
-
             </t>
         </xpath>
     </template>

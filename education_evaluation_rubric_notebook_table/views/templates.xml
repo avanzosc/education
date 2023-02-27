@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="back" inherit_id="education_evaluation_rubric.back">
+      <xpath expr="//a" position="after">
+          <a t-if="schedule" role="button" t-attf-href="/schedule/#{schedule.id}/califications" class="btn btn-secondary" target="_blank">Open Teacher Table</a>
+      </xpath>
+    </template>
     <template id="dropdown_action_button" inherit_id="education_evaluation_notebook_table.dropdown_action_button">
       <xpath expr="//div[hasclass('dropdown-menu')]" position="inside">
           <a t-att-href="survey_url" t-if="survey_url" target="_blank" name="action" value="rubric" t-attf-class="btn dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Answer all surveys</a>
