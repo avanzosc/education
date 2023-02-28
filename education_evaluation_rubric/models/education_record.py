@@ -42,7 +42,5 @@ class EducationRecord(models.Model):
             if not record.behaviour_mark_id:
                 record.behaviour_mark_id = self.env['education.mark.behaviour'].browse(1)
 
-    @api.onchange('quizz_score')
     def _onchange_survey_mark(self):
-        self.ensure_one()
         self.set_numeric_mark(self.quizz_score)

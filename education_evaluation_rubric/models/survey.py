@@ -78,6 +78,11 @@ class SurveyUserInput(models.Model):
             if record.education_record_id:
                 record.average_grade = record.quizz_score/len(record.user_input_line_ids) if record.quizz_score else 0.0
 
+    def write(self, vals):
+        res = super().write(vals)
+        self.mapped('education_record_id')._onchange_survey_mark()
+        return res
+
 
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
