@@ -78,6 +78,22 @@
             </xpath>
         </field>
     </record>
+    <record id="education_exam_view_form" model="ir.ui.view">
+        <field name="model">education.exam</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_exam_view_form"/>
+        <field name="arch" type="xml">
+            <button name="action_generate_record" position="after">
+                <button name="button_open_all_survey_inputs" string="Answer All Surveys" type="object" attrs="{'invisible': [('survey_input_count','=', 0)]}"/>
+            </button>
+            <div class="oe_button_box" name="button_box">
+                <button name="action_survey_user_input" type="object"
+                        class="oe_stat_button" icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('survey_input_count','=', 0)]}">
+                    <field string="Answers" name="survey_input_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
     <record id="education_record_view_tree" model="ir.ui.view">
         <field name="model">education.record</field>
         <field name="inherit_id" ref="education_evaluation_notebook.education_record_view_tree"/>
@@ -110,6 +126,7 @@
                 <field name="level_ids" widget="many2many_tags"/>
                 <field name="education_course_ids" widget="many2many_tags"/>
                 <field name="subject_ids" widget="many2many_tags"/>
+                <field name="related_record_mark"/>
             </field>
         </field>
     </record>

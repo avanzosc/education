@@ -20,6 +20,13 @@ class SurveySurvey(models.Model):
         string="Education Subjects",
         comodel_name="education.subject")
     is_base_survey = fields.Boolean('Is base survey')
+    related_record_mark = fields.Selection(
+        string='Records inherit mark',
+        selection=[
+            ('quizz_score', 'Quizz Score'),
+            ('average_grade', 'Average Grade'),
+        ],
+        help='Select whether to relate quizz_mark or average_grade on education record numeric marks.')
 
     def copy_survey_texts(self, original_survey):
         self.ensure_one()
@@ -56,6 +63,8 @@ class SurveyUserInput(models.Model):
         'education.record', string='Education Record')
     notebook_line_id = fields.Many2one(
         'education.notebook.line', string='Notebook Line')
+    exam_id = fields.Many2one(
+        'education.exam', string='Education Exam')
     academic_year = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',
         related='education_record_id.academic_year_id')

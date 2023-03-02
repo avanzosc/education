@@ -59,7 +59,7 @@
         </xpath>
     </template>
     <template id="survey_student_button" name="Student Button Survey">
-        <div class="dropdown">
+        <div class="dropdown" groups="education.education_user">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Student
           </button>
