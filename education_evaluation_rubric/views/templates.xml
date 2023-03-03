@@ -80,7 +80,7 @@
         </div>
     </template>
     <template id="survey_student_next_button" name="Student Button Next Survey">
-            <div class="float-left" t-if="link_next_student">
+            <div class="float-left" t-if="link_next_student" groups="education.education_user">
                 <a class="btn btn-secondary m-10" t-att-href="link_next_student" role="button">
                     Next Student
                 </a>
