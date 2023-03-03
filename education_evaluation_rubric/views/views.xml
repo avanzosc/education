@@ -92,6 +92,9 @@
                     <field string="Answers" name="survey_input_count" widget="statinfo"/>
                 </button>
             </div>
+            <field name="mark_close_date" position="after">
+                <field name="survey_id"/>
+            </field>
         </field>
     </record>
     <record id="education_record_view_tree" model="ir.ui.view">
@@ -168,6 +171,7 @@
             <field name="skipped" position="after">
                 <field name="labels_ids" invisible="1"/>
                 <field name="labels_ids_2" invisible="1"/>
+                <field name="record_state" invisible="1"/>
                 <field name="value_suggested_row"
                        readonly="1"
                        options="{'no_create': True}"
@@ -175,6 +179,7 @@
                             ('id', 'in', labels_ids_2)]"/>
                 <field name="value_suggested"
                        options="{'no_create': True}"
+                       attrs="{'readonly': [('record_state','=','assessed')]}"
                        domain="[
                             ('id', 'in', labels_ids)]"/>
             </field>

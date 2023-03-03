@@ -26,6 +26,7 @@ class SurveySurvey(models.Model):
             ('quizz_score', 'Quizz Score'),
             ('average_grade', 'Average Grade'),
         ],
+        default='quizz_score', required=True,
         help='Select whether to relate quizz_mark or average_grade on education record numeric marks.')
 
     def copy_survey_texts(self, original_survey):
@@ -45,6 +46,12 @@ class SurveySurvey(models.Model):
                                 'text': survey_text.text,
                             })
 
+    def write(self, vals):
+        res = super().write(vals)
+        for record in self.user_input_ids.mapped('education_record_id'):
+            record._onchange_survey_mark()
+        return res
+
 
 class SurveyPage(models.Model):
     _inherit = "survey.page"
@@ -62,9 +69,9 @@ class SurveyUserInput(models.Model):
     education_record_id = fields.Many2one(
         'education.record', string='Education Record')
     notebook_line_id = fields.Many2one(
-        'education.notebook.line', string='Notebook Line')
+        'education.notebook.line', string='Notebook Line', ondelete='cascade')
     exam_id = fields.Many2one(
-        'education.exam', string='Education Exam')
+        'education.exam', string='Education Exam', ondelete='cascade')
     academic_year = fields.Many2one(
         comodel_name='education.academic_year', string='Academic Year',
         related='education_record_id.academic_year_id')
@@ -78,6 +85,8 @@ class SurveyUserInput(models.Model):
     education_center = fields.Many2one(
         comodel_name='res.partner', string='Education Center',
         related='education_record_id.education_center_id')
+    record_state = fields.Selection(
+        'Education Record Status', related='education_record_id.state')
 
     @api.onchange('quizz_score', 'user_input_line_ids')
     def compute_average_grade(self):
@@ -98,6 +107,8 @@ class SurveyUserInputLine(models.Model):
 
     labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
+    record_state = fields.Selection(
+        'Education Record Status', related='user_input_id.state')
 
     def save_lines(self, user_input_id, question, post, answer_tag):
         res = super(SurveyUserInputLine, self).save_lines(user_input_id, question, post, answer_tag)

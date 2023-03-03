@@ -84,3 +84,63 @@ class EducationNotebookLine(models.Model):
         res = first_survey[0].button_respond_survey()
         res['target'] = 'new'
         return res
+
+    def get_survey_url(self):
+        for record in self:
+            if record.survey_id and record.competence_id.eval_mode == 'rubric':
+                url_get = record.button_open_all_survey_inputs()
+                return url_get.get('url', None)
+
+
+class EducationExam(models.Model):
+    _inherit = 'education.exam'
+
+    survey_input_ids = fields.Many2many(
+        string="Survey Inputs",
+        comodel_name="survey.user_input",
+        relation="survey_input_exam_rel",
+        column1="exam_id",
+        column2="input_id",
+        compute="_compute_survey_input"
+    )
+    survey_input_count = fields.Integer('Survey input count', compute="_compute_survey_input_count")
+    survey_id = fields.Many2one('survey.survey', compute='compute_survey')
+
+    def compute_survey(self):
+        for record in self:
+            record.survey_id = record.n_line_id.edited_survey_id.id if record.n_line_id.edited_survey_id else record.n_line_id.survey_id.id
+
+    def _compute_survey_input(self):
+        for record in self:
+            record.survey_input_ids = self.env['survey.user_input'].search([
+                ('exam_id', '=', record.id)
+            ])
+
+    def _compute_survey_input_count(self):
+        for record in self:
+            record.survey_input_count = len(record.survey_input_ids)
+
+    @api.multi
+    def button_open_all_survey_inputs(self):
+        self.ensure_one()
+        first_survey = self.env['survey.user_input'].search([
+            ('id', 'in', self.survey_input_ids.ids)], order="id asc")
+        res = first_survey[0].button_respond_survey()
+        res['target'] = 'new'
+        return res
+
+    @api.multi
+    def action_survey_user_input(self):
+        self.ensure_one()
+        action_rec = self.env.ref('survey.action_survey_user_input')
+        action = action_rec.read()[0]
+        action.update({
+            'domain': [('exam_id', '=', self.id)],
+        })
+        return action
+
+    def get_survey_url(self):
+        for record in self:
+            if record.survey_id and record.survey_input_ids:
+                url_get = record.button_open_all_survey_inputs()
+                return url_get.get('url', None)
