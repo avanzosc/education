@@ -32,7 +32,7 @@ class SurveySurvey(models.Model):
     def copy_survey_texts(self, original_survey):
         self.ensure_one()
         if original_survey.page_ids and original_survey.page_ids.question_ids:
-            original_survey_texts = original_survey.page_ids.question_ids.survey_text_ids
+            original_survey_texts = original_survey.mapped('page_ids').mapped('question_ids').mapped('survey_text_ids')
             for page in self.page_ids:
                 for question in page.question_ids:
                     for label in question.labels_ids:
