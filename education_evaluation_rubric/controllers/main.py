@@ -15,8 +15,12 @@ class WebsiteSurvey(Survey):
         ], limit=1)
         if survey_input:
             schedule = survey_input.education_record_id.schedule_id
-            input_ids = survey.user_input_ids.filtered(
-                    lambda i: i.notebook_line_id.id == survey_input.notebook_line_id.id)
+            if survey_input.exam_id:
+                input_ids = survey.user_input_ids.filtered(
+                    lambda i: i.exam_id == survey_input.exam_id)
+            else:
+                input_ids = survey.user_input_ids.filtered(
+                    lambda i: i.notebook_line_id.id == survey_input.notebook_line_id.id and not i.exam_id)
             is_next = False
             next_student_input = None
             for index, item in enumerate(input_ids):
@@ -48,8 +52,12 @@ class WebsiteSurvey(Survey):
             if survey_input.state == 'done':
                 return request.redirect('/survey/print/%s/%s' % (survey.id, survey_input.token))
             schedule = survey_input.education_record_id.schedule_id
-            input_ids = survey.user_input_ids.filtered(
-                    lambda i: i.notebook_line_id.id == survey_input.notebook_line_id.id)
+            if survey_input.exam_id:
+                input_ids = survey.user_input_ids.filtered(
+                    lambda i: i.exam_id == survey_input.exam_id)
+            else:
+                input_ids = survey.user_input_ids.filtered(
+                    lambda i: i.notebook_line_id.id == survey_input.notebook_line_id.id and not i.exam_id)
             is_next = False
             next_student_input = None
             for index, item in enumerate(input_ids):
@@ -78,9 +86,12 @@ class WebsiteSurvey(Survey):
         ], limit=1)
         if survey_input:
             schedule = survey_input.education_record_id.schedule_id
-            input_ids = survey.user_input_ids.filtered(
-                lambda
-                    i: i.notebook_line_id.id == survey_input.notebook_line_id.id)
+            if survey_input.exam_id:
+                input_ids = survey.user_input_ids.filtered(
+                    lambda i: i.exam_id == survey_input.exam_id)
+            else:
+                input_ids = survey.user_input_ids.filtered(
+                    lambda i: i.notebook_line_id.id == survey_input.notebook_line_id.id and not i.exam_id)
             res.qcontext.update({
                 'student_ids': schedule.student_ids,
                 'survey_input': survey_input,
