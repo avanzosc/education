@@ -108,8 +108,8 @@
             <attribute name="class">input_survey</attribute>
         </xpath>
         <xpath expr="//input[@type='checkbox']" position="after">
-            <t t-if="question.survey_text_ids" t-set="survey_texts"
-               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2.id == row_label.id and t.label_id_1.id == col_label.id)"/>
+            <t t-if="question.survey_text_ids and col_label" t-set="survey_texts"
+               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2 and t.label_id_2.id == row_label.id and t.label_id_1 and t.label_id_1.id == col_label.id)"/>
             <span t-foreach="survey_texts" t-as="survey_text">
                 <t t-esc="survey_text.text"/>
             </span>
@@ -127,8 +127,8 @@
     </template>
     <template id="result_matrix_text" inherit_id="survey.result_matrix">
         <xpath expr="//td[hasclass('survey_answer')]" position="inside">
-            <t t-if="question.survey_text_ids" t-set="survey_texts"
-               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2.id == row_label.id and t.label_id_1.id == col_label.id)"/>
+            <t t-if="question.survey_text_ids and col_label" t-set="survey_texts"
+               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2 and t.label_id_2.id == row_label.id and t.label_id_1 and t.label_id_1.id == col_label.id)"/>
             <span t-foreach="survey_texts" t-as="survey_text">
                 <t t-esc="survey_text.text"/>
             </span>
