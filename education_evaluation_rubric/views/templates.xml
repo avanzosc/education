@@ -22,8 +22,14 @@
         </xpath>
     </template>
     <template id="back" inherit_id="survey.back">
+        <xpath expr="//div" position="attributes">
+            <attribute name="groups">education.education_user</attribute>
+        </xpath>
+        <xpath expr="//a" position="attributes">
+            <attribute name="t-if">show_buttons</attribute>
+        </xpath>
         <xpath expr="//a" position="after">
-            <t t-if="survey_input">
+            <t t-if="survey_input and show_buttons">
                 <a role="button" t-attf-href="/web#view_type=form&amp;model=education.notebook.line&amp;id=#{survey_input.notebook_line_id.id}&amp;action=943" class="btn btn-secondary">Back to Notebook Line</a>
                 <a t-if="survey_input.exam_id" role="button" t-attf-href="/web#view_type=form&amp;model=record.exam&amp;id=#{survey_input.exam_id.id}&amp;action=939" class="btn btn-secondary">Back to Exam</a>
                 <a role="button" t-attf-href="/web#view_type=form&amp;model=survey.user_input&amp;id=#{survey_input.id}&amp;action=276" class="btn btn-secondary">Back to Survey Input</a>
@@ -53,7 +59,7 @@
                     <h3><t t-esc="survey_input.notebook_line_id.subject_id.display_name"/></h3>
                     <h3><t t-esc="survey_input.notebook_line_id.display_name"/></h3>
                 <h3 t-if="survey_input.exam_id"><t t-esc="survey_input.exam_id.display_name"/></h3>
-                    <h4 t-if="survey_input.education_record_id">Mark: <t t-esc="survey_input.education_record_id.numeric_mark"/></h4>
+                    <h4 t-if="survey_input.education_record_id and survey_input.education_record_id.state == 'assessed'">Mark: <t t-esc="survey_input.education_record_id.numeric_mark"/></h4>
                 </t>
             </t>
         </xpath>
@@ -63,7 +69,7 @@
         </xpath>
     </template>
     <template id="survey_student_button" name="Student Button Survey">
-        <div class="dropdown" groups="education.education_user">
+        <div t-if="show_buttons" class="dropdown" groups="education.education_user">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Student
           </button>
@@ -81,7 +87,7 @@
         </div>
     </template>
     <template id="survey_student_next_button" name="Student Button Next Survey">
-            <div class="float-left" t-if="link_next_student" groups="education.education_user">
+            <div class="float-left" t-if="link_next_student and show_buttons" groups="education.education_user">
                 <a class="btn btn-secondary m-10" t-att-href="link_next_student" role="button">
                     Next Student
                 </a>

@@ -145,6 +145,7 @@
                     <field name="description"/>
                     <field name="subject_id"/>
                     <field name="education_center"/>
+                    <field name="responsible"/>
                 </group>
             </xpath>
             <field name="quizz_score" position="after">

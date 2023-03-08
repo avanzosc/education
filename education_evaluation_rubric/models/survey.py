@@ -64,7 +64,7 @@ class SurveyUserInput(models.Model):
 
     responsible = fields.Many2one(
         comodel_name='hr.employee', string='Responsible',
-        related='survey_id.responsible')
+        compute='compute_survey_input_responsible')
     average_grade = fields.Float(string='Average Grade')
     education_record_id = fields.Many2one(
         'education.record', string='Education Record')
@@ -87,6 +87,10 @@ class SurveyUserInput(models.Model):
         related='education_record_id.education_center_id')
     record_state = fields.Selection(
         'Education Record Status', related='education_record_id.state')
+
+    def compute_survey_input_responsible(self):
+        for record in self:
+            record.responsible = record.education_record_id.teacher_id.id if record.education_record_id else record.survey_id.responsible.id
 
     @api.onchange('quizz_score', 'user_input_line_ids')
     def compute_average_grade(self):

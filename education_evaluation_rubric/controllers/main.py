@@ -29,7 +29,9 @@ class WebsiteSurvey(Survey):
                     break
                 if survey_input == item:
                     is_next = True
-            if next_student_input:
+            logged_user = request.env['res.users'].browse(request.uid)
+            show_buttons = True if logged_user.employee_id == schedule.teacher_id else False
+            if next_student_input and show_buttons:
                 trail = "/%s" % next_student_input.token if next_student_input else ""
                 link_next_student = survey.with_context(relative_url=True).public_url + trail
                 res.qcontext.update({
@@ -39,6 +41,7 @@ class WebsiteSurvey(Survey):
                 'survey_input': survey_input,
                 'schedule': schedule,
                 'input_ids': input_ids,
+                'show_buttons': show_buttons,
             })
         return res
         
@@ -66,7 +69,9 @@ class WebsiteSurvey(Survey):
                     break
                 if survey_input == item:
                     is_next = True
-            if next_student_input:
+            logged_user = request.env['res.users'].browse(request.uid)
+            show_buttons = True if logged_user.employee_id == schedule.teacher_id else False
+            if next_student_input and show_buttons:
                 trail = "/%s" % next_student_input.token if next_student_input else ""
                 link_next_student = survey.with_context(relative_url=True).public_url + trail
                 res.qcontext.update({
@@ -75,6 +80,7 @@ class WebsiteSurvey(Survey):
                 'student_ids': schedule.student_ids,
                 'survey_input': survey_input,
                 'input_ids': input_ids,
+                'show_buttons': show_buttons,
             })
         return res
         

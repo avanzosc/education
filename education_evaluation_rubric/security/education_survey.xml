@@ -29,7 +29,7 @@
     <record id="education_survey_question_teacher_rule" model="ir.rule">
         <field name="name">Survey question teacher rule</field>
         <field name="model_id" ref="survey.model_survey_question"/>
-        <field name="domain_force">['|',('create_uid','=',user.id),('responsible','=',user.employee_id.id)]</field>
+        <field name="domain_force">['|',('create_uid','=',user.id), '|', ('responsible','=',user.employee_id.id), ('responsible','=',None)]</field>
         <field name="groups" eval="[(4, ref('base.group_user'))]"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_write" eval="1"/>
@@ -39,7 +39,7 @@
     <record id="education_survey_page_teacher_rule" model="ir.rule">
         <field name="name">Survey page teacher rule</field>
         <field name="model_id" ref="survey.model_survey_page"/>
-        <field name="domain_force">['|',('create_uid','=',user.id),('responsible','=',user.employee_id.id)]</field>
+        <field name="domain_force">['|',('create_uid','=',user.id), '|', ('responsible','=',user.employee_id.id), ('responsible','=',None)]</field>
         <field name="groups" eval="[(4, ref('base.group_user'))]"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_write" eval="1"/>
