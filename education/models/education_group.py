@@ -11,7 +11,7 @@ from odoo.tools.safe_eval import safe_eval
 
 class EducationGroup(models.Model):
     _name = 'education.group'
-    _inherit = 'education.data'
+    _inherit = ['education.data', 'mail.thread', 'mail.activity.mixin']
     _description = 'Education Group'
     _rec_name = 'description'
     _order = 'academic_year_id, education_code'
