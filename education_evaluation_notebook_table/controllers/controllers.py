@@ -67,6 +67,8 @@ class EducationMain(CustomerPortal):
                 records.button_set_assessed()
             if action == 'round':
                 records.action_round_numeric_mark()
+            if action == 'round_tenth':
+                records.action_round_numeric_mark(precision=1)
 
     def schedule_record_califications_json(self, action, record):
 

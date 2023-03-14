@@ -374,6 +374,7 @@
                <button name="action" value="initial" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set assessed record as initial</button>
                <button name="action" value="assessed" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Set pending record as assessed</button>
                <button name="action" value="round" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Round official mark</button>
+               <button name="action" value="round_tenth" t-attf-class="dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Round official mark (to a tenth)</button>
             </div>
          </div>
       </form>
