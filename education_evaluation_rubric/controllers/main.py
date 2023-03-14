@@ -7,6 +7,12 @@ from odoo.addons.survey.controllers.main import Survey
 
 class WebsiteSurvey(Survey):
 
+    def comp_show_buttons(self, schedule):
+        logged_user = request.env['res.users'].browse(request.uid)
+        group_secretary = request.env['res.groups'].search([('name', '=', 'Group Secretary')])
+        show_buttons = True if logged_user.employee_id == schedule.teacher_id or logged_user in group_secretary.users else False
+        return show_buttons
+
     @http.route()
     def print_survey(self, survey, token, **post):
         res = super().print_survey(survey, token, **post)
@@ -29,8 +35,7 @@ class WebsiteSurvey(Survey):
                     break
                 if survey_input == item:
                     is_next = True
-            logged_user = request.env['res.users'].browse(request.uid)
-            show_buttons = True if logged_user.employee_id == schedule.teacher_id else False
+            show_buttons = self.comp_show_buttons(schedule)
             if next_student_input and show_buttons:
                 trail = "/%s" % next_student_input.token if next_student_input else ""
                 link_next_student = survey.with_context(relative_url=True).public_url + trail
@@ -69,8 +74,8 @@ class WebsiteSurvey(Survey):
                     break
                 if survey_input == item:
                     is_next = True
-            logged_user = request.env['res.users'].browse(request.uid)
-            show_buttons = True if logged_user.employee_id == schedule.teacher_id else False
+
+            show_buttons = self.comp_show_buttons(schedule)
             if next_student_input and show_buttons:
                 trail = "/%s" % next_student_input.token if next_student_input else ""
                 link_next_student = survey.with_context(relative_url=True).public_url + trail
