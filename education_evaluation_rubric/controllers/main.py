@@ -9,7 +9,7 @@ class WebsiteSurvey(Survey):
 
     def comp_show_buttons(self, schedule):
         logged_user = request.env['res.users'].browse(request.uid)
-        group_secretary = request.env['res.groups'].search([('name', '=', 'Group Secretary')])
+        group_secretary = request.env['res.groups'].sudo().search([('name', '=', 'Group Secretary')])
         show_buttons = True if logged_user.employee_id == schedule.teacher_id or logged_user in group_secretary.users else False
         return show_buttons
 
