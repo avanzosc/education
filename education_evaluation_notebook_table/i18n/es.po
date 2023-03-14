@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-25 15:54+0000\n"
-"PO-Revision-Date: 2022-05-25 15:54+0000\n"
+"POT-Creation-Date: 2023-03-14 12:36+0000\n"
+"PO-Revision-Date: 2023-03-14 12:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "<i>Estás editando esta tabla</i>"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.education_notebook_line_view_form
 msgid "<span class=\"o_stat_text\">Records on Website</span>"
-msgstr "<span class=\"o_stat_text\">Tabla notas en Web</span>"
+msgstr "<span class=\"o_stat_text\">Tabla Notas</span>"
 
 #. module: education_evaluation_notebook_table
 #: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:88
@@ -46,7 +46,7 @@ msgstr "Año académico:"
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "All"
-msgstr "Todas"
+msgstr "Todos"
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_education_schedule
@@ -196,6 +196,11 @@ msgid "Round official mark"
 msgstr "Redondear nota oficial"
 
 #. module: education_evaluation_notebook_table
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.dropdown_action_button
+msgid "Round official mark (to a tenth)"
+msgstr "Redondear nota oficial (a 1 décima)"
+
+#. module: education_evaluation_notebook_table
 #: code:addons/education_evaluation_notebook_table/reports/academic_record_report.py:82
 #, python-format
 msgid "SCHEDULE ACADEMIC RECORDS"
@@ -249,15 +254,13 @@ msgstr "Tercera"
 #. module: education_evaluation_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook_table.schedule_calification_table
 msgid "To change the status of an exam or competence, click on the headers of the table."
-msgstr "Para cambiar de estado de las notas (Inicial o Evaluado):                                                                                                                                                                               \n"
-"  1. GUARDA primero los cambios realizados                                                                                                                                   \n"
-"  2. PINCHA en la flecha amarilla del examen o competencia\n"
-"  3. ELIGE la acción correspondiente          \n"
+msgstr "\n"
+"Notas - Inicial o Evaluado:  &nbsp &nbsp <FONT COLOR=\"gray\">                                                                                                                                                              \n"
+"GUARDA los cambios &rarr; PINCHA en la flecha amarilla del examen o competencia  &rarr; ELIGE la acción correspondiente </FONT>    <br/>\n"
+" <br/>\n"
+"INICIAL: <FONT COLOR=\"gray\">Editable - Letra normal - Nota NO publicada en CONECTAS </FONT>   &nbsp  &nbsp &nbsp &nbsp &nbsp    EVALUADO: <FONT COLOR=\"gray\"> No editable -Letra en negrita - Nota SI publicada en CONECTAS</FONT>    <br/>                       \n"
 "\n"
-"    \n"
-"INICIAL: LOS PADRES NO LO VEN Y NO CUENTA PARA EL CALCULO DE LA NOTA PROVISIONAL\n"
-"EVALUADO: LOS PADRES LO VEN Y CUENTA PARA EL CALCULO DE LA NOTA PROVISIONAL                                                                                                                                                     \n"
-"            "
+""
 
 #. module: education_evaluation_notebook_table
 #: model:ir.model,name:education_evaluation_notebook_table.model_report_education_schedule_record_export
