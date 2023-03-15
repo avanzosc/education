@@ -18,7 +18,7 @@ msgstr ""
 #. module: education_evaluation_rubric_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric_notebook_table.back
 msgid "<span>Open Teacher Table</span>"
-msgstr "<span>ir al cuaderno del profesor</span>"
+msgstr "<span>Ir al cuaderno del profesor</span>"
 
 #. module: education_evaluation_rubric_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric_notebook_table.dropdown_action_button

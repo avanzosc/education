@@ -183,7 +183,7 @@ msgstr "Evaluación"
 #. module: education_evaluation_rubric
 #: model:res.groups,name:education_evaluation_rubric.education_secretary_group
 msgid "Group Secretary"
-msgstr "Secretaría"
+msgstr ""
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__id
