@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 10:09+0000\n"
-"PO-Revision-Date: 2023-02-09 10:09+0000\n"
+"POT-Creation-Date: 2023-03-15 17:19+0000\n"
+"PO-Revision-Date: 2023-03-15 17:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_print
+msgid "<span>Mark: </span>"
+msgstr ""
 
 #. module: education_evaluation_rubric
 #: model:ir.model,name:education_evaluation_rubric.model_education_record
@@ -26,18 +31,26 @@ msgid "Academic Year"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
 msgid "Answer All Surveys"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
 msgid "Answers"
 msgstr "Erantzunak "
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__average_grade
+#: selection:survey.survey,related_record_mark:0
 msgid "Average Grade"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.back
+msgid "Back to Exam"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -136,6 +149,12 @@ msgid "Education Courses"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_exam
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__exam_id
+msgid "Education Exam"
+msgstr "Azterketa"
+
+#. module: education_evaluation_rubric
 #: model:ir.model,name:education_evaluation_rubric.model_education_notebook_line
 msgid "Education Notebook Line"
 msgstr ""
@@ -159,6 +178,11 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__evaluation
 msgid "Evaluation Season"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:res.groups,name:education_evaluation_rubric.education_secretary_group
+msgid "Group Secretary"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -227,6 +251,21 @@ msgid "Question"
 msgstr "Galdera "
 
 #. module: education_evaluation_rubric
+#: selection:survey.survey,related_record_mark:0
+msgid "Quizz Score"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__record_state
+msgid "Record State"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__related_record_mark
+msgid "Records inherit mark"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__responsible
 msgid "Responsible"
 msgstr "Arduraduna"
@@ -247,6 +286,21 @@ msgid "Rubric"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__quizz_score
+msgid "Score for the quiz"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,help:education_evaluation_rubric.field_survey_survey__related_record_mark
+msgid "Select whether to relate quizz_mark or average_grade on education record numeric marks."
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__record_state
+msgid "Status"
+msgstr "Egoera"
+
+#. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_student_button
 msgid "Student"
 msgstr "Ikaslea"
@@ -258,6 +312,7 @@ msgstr "Gaia"
 
 #. module: education_evaluation_rubric
 #: model:ir.model,name:education_evaluation_rubric.model_survey_survey
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_id
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__survey_id
 msgid "Survey"
 msgstr "Ikerketa"
@@ -268,6 +323,7 @@ msgid "Survey Input"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_input_ids
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_ids
 msgid "Survey Inputs"
 msgstr ""
@@ -318,6 +374,7 @@ msgid "Survey User Input Line"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_input_count
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_count
 msgid "Survey input count"
 msgstr ""

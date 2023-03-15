@@ -59,7 +59,8 @@
                     <h3><t t-esc="survey_input.notebook_line_id.subject_id.display_name"/></h3>
                     <h3><t t-esc="survey_input.notebook_line_id.display_name"/></h3>
                 <h3 t-if="survey_input.exam_id"><t t-esc="survey_input.exam_id.display_name"/></h3>
-                    <h4 t-if="survey_input.education_record_id and survey_input.education_record_id.state == 'assessed'">Mark: <t t-esc="survey_input.education_record_id.numeric_mark"/></h4>
+                    <h4 t-if="survey_input.education_record_id and survey_input.education_record_id.state == 'assessed'">
+                        <span>Mark: </span><t t-esc="survey_input.education_record_id.numeric_mark"/></h4>
                 </t>
             </t>
         </xpath>

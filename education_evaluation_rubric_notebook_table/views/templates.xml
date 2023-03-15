@@ -2,7 +2,8 @@
 <odoo>
     <template id="back" inherit_id="education_evaluation_rubric.back">
       <xpath expr="//a" position="after">
-          <a t-if="schedule and show_buttons" role="button" t-attf-href="/schedule/#{schedule.id}/califications" class="btn btn-secondary" target="_blank">Open Teacher Table</a>
+          <a t-if="schedule and show_buttons" role="button" t-attf-href="/schedule/#{schedule.id}/califications" class="btn btn-secondary" target="_blank">
+              <span>Open Teacher Table</span></a>
       </xpath>
     </template>
     <template id="dropdown_action_button" inherit_id="education_evaluation_notebook_table.dropdown_action_button">
