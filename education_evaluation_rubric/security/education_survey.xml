@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="education_secretary_group" model="res.groups">
+        <field name="name">Group Secretary</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+    <record id="education_survey_own_rule" model="ir.rule">
+        <field name="name">Survey teacher own rule</field>
+        <field name="model_id" ref="survey.model_survey_survey"/>
+        <field name="domain_force">[('responsible.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+    </record>
+    <record id="education_survey_teacher_template_rule" model="ir.rule">
+        <field name="name">Survey teacher template rule</field>
+        <field name="model_id" ref="survey.model_survey_survey"/>
+        <field name="domain_force">[('is_base_survey','=',True)]</field>
+        <field name="groups" eval="[(4, ref('education.education_user'))]"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+    <record id="education_survey_teacher_rule" model="ir.rule">
+        <field name="name">Survey teacher rule</field>
+        <field name="model_id" ref="survey.model_survey_survey"/>
+        <field name="domain_force">['|',('create_uid','=',user.id),('responsible','=',user.employee_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+    <record id="education_survey_question_teacher_rule" model="ir.rule">
+        <field name="name">Survey question teacher rule</field>
+        <field name="model_id" ref="survey.model_survey_question"/>
+        <field name="domain_force">['|',('create_uid','=',user.id), '|', ('responsible','=',user.employee_id.id), ('responsible','=',None)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+    <record id="education_survey_page_teacher_rule" model="ir.rule">
+        <field name="name">Survey page teacher rule</field>
+        <field name="model_id" ref="survey.model_survey_page"/>
+        <field name="domain_force">['|',('create_uid','=',user.id), '|', ('responsible','=',user.employee_id.id), ('responsible','=',None)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+    <record id="education_survey_user_input_teacher_rule" model="ir.rule">
+        <field name="name">Survey user_input teacher rule</field>
+        <field name="model_id" ref="survey.model_survey_user_input"/>
+        <field name="domain_force">['|',('create_uid','=',user.id),('responsible','=',user.employee_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+    <record id="education_survey_label_teacher_rule" model="ir.rule">
+        <field name="name">Survey label teacher rule</field>
+        <field name="model_id" ref="survey.model_survey_label"/>
+        <field name="domain_force">[('create_uid','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+    <record id="education_survey_user_input_parent_rule" model="ir.rule">
+        <field name="name">Survey user_input parent rule</field>
+        <field name="model_id" ref="survey.model_survey_user_input"/>
+        <field name="domain_force">[('partner_id','in',user.partner_id.progenitor_child_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+</odoo>

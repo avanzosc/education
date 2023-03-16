@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="education_competence_rubric" model="education.competence"
+            forcecreate="True">
+        <field name="eval_mode">rubric</field>
+        <field name="name">Rubric</field>
+        <field name="min_mark">0</field>
+        <field name="max_mark">10</field>
+        <field name="passed_mark">5</field>
+        <field name="level_ids">75,86</field>
+    </record>
+</odoo>

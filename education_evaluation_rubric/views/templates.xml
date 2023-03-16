@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sfinished" inherit_id="survey.sfinished">
+        <xpath expr="//h1" position="after">
+            <h2 t-if="survey_input"><t t-esc="survey_input.partner_id.display_name"/></h2>
+        </xpath>
+        <xpath expr="//t[@t-call='survey.back']" position="after">
+            <t t-call="education_evaluation_rubric.survey_student_button"/>
+            <t t-call="education_evaluation_rubric.survey_student_next_button"/>
+        </xpath>
+    </template>
+    <template id="page" inherit_id="survey.page">
+        <xpath expr="//h1" position="after">
+            <t t-if="survey_input">
+                <h2><t t-esc="survey_input.partner_id.display_name"/></h2>
+                <t t-if="survey_input.notebook_line_id">
+                    <h3><t t-esc="survey_input.notebook_line_id.subject_id.display_name"/></h3>
+                    <h3><t t-esc="survey_input.notebook_line_id.display_name"/></h3>
+                </t>
+                <h3 t-if="survey_input.exam_id"><t t-esc="survey_input.exam_id.display_name"/></h3>
+            </t>
+        </xpath>
+    </template>
+    <template id="back" inherit_id="survey.back">
+        <xpath expr="//div" position="attributes">
+            <attribute name="groups">education.education_user</attribute>
+        </xpath>
+        <xpath expr="//a" position="attributes">
+            <attribute name="t-if">show_buttons</attribute>
+        </xpath>
+        <xpath expr="//a" position="after">
+            <t t-if="survey_input and show_buttons">
+                <a role="button" t-attf-href="/web#view_type=form&amp;model=education.notebook.line&amp;id=#{survey_input.notebook_line_id.id}&amp;action=943" class="btn btn-secondary">Back to Notebook Line</a>
+                <a t-if="survey_input.exam_id" role="button" t-attf-href="/web#view_type=form&amp;model=record.exam&amp;id=#{survey_input.exam_id.id}&amp;action=939" class="btn btn-secondary">Back to Exam</a>
+                <a role="button" t-attf-href="/web#view_type=form&amp;model=survey.user_input&amp;id=#{survey_input.id}&amp;action=276" class="btn btn-secondary">Back to Survey Input</a>
+            </t>
+        </xpath>
+    </template>
+    <template id="survey_init" inherit_id="survey.survey_init">
+        <xpath expr="//h1[@t-field='survey.title']" position="after">
+            <t t-if="survey_input">
+                <h2><t t-esc="survey_input.partner_id.display_name"/></h2>
+                <t t-if="survey_input.notebook_line_id">
+                    <h3><t t-esc="survey_input.notebook_line_id.subject_id.display_name"/></h3>
+                    <h3><t t-esc="survey_input.notebook_line_id.display_name"/></h3>
+                </t>
+                <h3 t-if="survey_input.exam_id"><t t-esc="survey_input.exam_id.display_name"/></h3>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-call='survey.back']" position="before">
+            <t t-call="education_evaluation_rubric.survey_student_button"/>
+        </xpath>
+    </template>
+    <template id="survey_print" inherit_id="survey.survey_print">
+        <xpath expr="//t[@t-if='survey.description']" position="after">
+            <t t-if="survey_input">
+                <h2><t t-esc="survey_input.partner_id.display_name"/></h2>
+                <t t-if="survey_input.notebook_line_id">
+                    <h3><t t-esc="survey_input.notebook_line_id.subject_id.display_name"/></h3>
+                    <h3><t t-esc="survey_input.notebook_line_id.display_name"/></h3>
+                <h3 t-if="survey_input.exam_id"><t t-esc="survey_input.exam_id.display_name"/></h3>
+                    <h4 t-if="survey_input.education_record_id">
+                        <span>Mark: </span>
+                        <t t-if="survey_input.survey_id.related_record_mark == 'quizz_score'" t-esc="survey_input.quizz_score" t-options='{"widget": "float", "precision": 2}'/>
+                        <t t-else="" t-esc="survey_input.average_grade" t-options='{"widget": "float", "precision": 2}'/>
+                    </h4>
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-call='survey.back']" position="before">
+            <t t-call="education_evaluation_rubric.survey_student_button"/>
+            <t t-call="education_evaluation_rubric.survey_student_next_button"/>
+        </xpath>
+    </template>
+    <template id="survey_student_button" name="Student Button Survey">
+        <div t-if="show_buttons" class="dropdown" groups="education.education_user">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Student
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <t t-foreach="student_ids" t-as="student_id">
+                  <t t-set="student_input" t-value="input_ids.filtered(lambda i: i.partner_id.id == student_id.id)"/>
+                  <a t-if="student_input and len(student_input) == 1"
+                     class="dropdown-item"
+                    t-att-href="survey.with_context(relative_url=True).public_url + '/' + student_input.token"
+                  >
+                    <t t-esc="student_id.display_name"/>
+                  </a>
+              </t>
+          </div>
+        </div>
+    </template>
+    <template id="survey_student_next_button" name="Student Button Next Survey">
+            <div class="float-left" t-if="link_next_student and show_buttons" groups="education.education_user">
+                <a class="btn btn-secondary m-10" t-att-href="link_next_student" role="button">
+                    Next Student
+                </a>
+            </div>
+    </template>
+    <template id="survey_matrix_text" inherit_id="survey.matrix">
+        <xpath expr="//th[@t-foreach='question.labels_ids']/span" position="after">
+          (<span t-field="col_label.quizz_mark"/>)
+        </xpath>
+        <xpath expr="//th[@t-foreach='question.labels_ids']" position="attributes">
+            <attribute name="t-att-style">'background-color:'+col_label.color+';' if col_label.color else ''</attribute>
+        </xpath>
+        <xpath expr="//td[@t-foreach='question.labels_ids']" position="attributes">
+            <attribute name="t-att-style">'color:'+col_label.color+';' if col_label.color else ''</attribute>
+            <attribute name="class">td_survey</attribute>
+        </xpath>
+        <xpath expr="//td[@t-foreach='question.labels_ids']/input" position="attributes">
+            <attribute name="class">input_survey</attribute>
+        </xpath>
+        <xpath expr="//input[@type='checkbox']" position="after">
+            <t t-if="question.survey_text_ids and col_label" t-set="survey_texts"
+               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2 and t.label_id_2.id == row_label.id and t.label_id_1 and t.label_id_1.id == col_label.id)"/>
+            <span t-foreach="survey_texts" t-as="survey_text">
+                <t t-esc="survey_text.text"/>
+            </span>
+            <t t-if="survey_input and survey_input.user_input_line_ids" t-set="input_id"
+               t-value="survey_input.mapped('user_input_line_ids').filtered(lambda i: i.value_suggested_row == row_label and i.value_suggested == col_label)"/>
+            <t t-if="input_id">
+                <br/>
+                <small>
+                    <i>
+                        <t t-esc="input_id.value_free_text"/>
+                    </i>
+                </small>
+            </t>
+        </xpath>
+    </template>
+    <template id="result_matrix_text" inherit_id="survey.result_matrix">
+        <xpath expr="//td[hasclass('survey_answer')]" position="inside">
+            <t t-if="question.survey_text_ids and col_label" t-set="survey_texts"
+               t-value="question.survey_text_ids.filtered(lambda t: t.label_id_2 and t.label_id_2.id == row_label.id and t.label_id_1 and t.label_id_1.id == col_label.id)"/>
+            <span t-foreach="survey_texts" t-as="survey_text">
+                <t t-esc="survey_text.text"/>
+            </span>
+        </xpath>
+    </template>
+    <template id="assets_frontend"
+      inherit_id="website.assets_frontend" name="Adding files">
+      <xpath expr="." position="inside">
+       <link rel="stylesheet"
+        href="/education_evaluation_rubric/static/src/css/style.css" />
+       <link rel="stylesheet"
+        href="/education_evaluation_rubric/static/src/js/script.js" />
+      </xpath>
+    </template>
+</odoo>
