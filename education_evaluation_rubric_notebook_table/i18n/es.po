@@ -18,7 +18,7 @@ msgstr ""
 #. module: education_evaluation_rubric_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric_notebook_table.back
 msgid "<span>Open Teacher Table</span>"
-msgstr "<span>Ir al cuaderno del profesor</span>"
+msgstr "<span>Ir a la tabla de notas</span>"
 
 #. module: education_evaluation_rubric_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric_notebook_table.dropdown_action_button
@@ -28,7 +28,7 @@ msgstr "Responder rúbricas"
 #. module: education_evaluation_rubric_notebook_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric_notebook_table.dropdown_record_action_button
 msgid "Answer survey"
-msgstr ""
+msgstr "Responder rúbrica"
 
 #. module: education_evaluation_rubric_notebook_table
 #: model:ir.model,name:education_evaluation_rubric_notebook_table.model_education_notebook_line
