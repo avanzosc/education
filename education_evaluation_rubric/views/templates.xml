@@ -61,8 +61,8 @@
                 <h3 t-if="survey_input.exam_id"><t t-esc="survey_input.exam_id.display_name"/></h3>
                     <h4 t-if="survey_input.education_record_id">
                         <span>Mark: </span>
-                        <t t-if="survey_input.survey_id.related_record_mark == 'quizz_score'" t-esc="survey_input.quizz_score"/>
-                        <t t-else="" t-esc="survey_input.average_grade"/>
+                        <t t-if="survey_input.survey_id.related_record_mark == 'quizz_score'" t-esc="survey_input.quizz_score" t-options='{"widget": "float", "precision": 2}/>
+                        <t t-else="" t-esc="survey_input.average_grade" t-options='{"widget": "float", "precision": 2}/>
                     </h4>
                 </t>
             </t>
