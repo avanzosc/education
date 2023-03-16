@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="back" inherit_id="education_evaluation_rubric.back">
+      <xpath expr="//a" position="after">
+          <a t-if="schedule and show_buttons" role="button" t-attf-href="/schedule/#{schedule.id}/califications" class="btn btn-secondary" target="_blank">
+              <span>Open Teacher Table</span></a>
+      </xpath>
+    </template>
+    <template id="dropdown_action_button" inherit_id="education_evaluation_notebook_table.dropdown_action_button">
+      <xpath expr="//div[hasclass('dropdown-menu')]" position="inside">
+          <a t-att-href="survey_url" t-if="survey_url" target="_blank" name="action" value="rubric" t-attf-class="btn dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Answer all surveys</a>
+      </xpath>
+    </template>
+    <template id="dropdown_record_action_button" inherit_id="education_evaluation_notebook_table.dropdown_record_action_button">
+      <xpath expr="//div[hasclass('dropdown-menu')]" position="inside">
+          <a t-att-href="survey_url" t-if="survey_url" target="_blank" name="action" value="rubric" t-attf-class="btn dropdown-item drop_action_nline {{'exam' if is_exam else ''}}">Answer survey</a>
+      </xpath>
+    </template>
+    <template id="schedule_calification_table" inherit_id="education_evaluation_notebook_table.schedule_calification_table">
+        <xpath expr="//t[@t-value='competence.id']" position="after">
+            <t t-set="eval_mode" t-value="competence.competence_id.eval_mode"/>
+            <t t-if="eval_mode == 'rubric'">
+                <t t-set="survey_url" t-value="competence.get_survey_url()"/>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-set='is_exam']" position="after">
+            <t t-if="exam.survey_input_ids">
+                <t t-set="survey_url" t-value="exam.get_survey_url()"/>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-value='exam_record.id']" position="after">
+            <t t-if="exam_record.survey_input_id">
+                <t t-set="survey_url" t-value="exam_record.get_survey_url()"/>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-value='eval.id']" position="after">
+            <t t-set="eval_mode" t-value="eval.competence_id.eval_mode"/>
+        </xpath>
+        <xpath expr="//t[@t-value='line.id']" position="after">
+            <t t-set="eval_mode" t-value="line.competence_id.eval_mode"/>
+        </xpath>
+        <xpath expr="//t[@t-value='exam.id']" position="after">
+            <t t-set="eval_mode" t-value="exam.n_line_id.competence_id.eval_mode"/>
+        </xpath>
+    </template>
+</odoo>
