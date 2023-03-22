@@ -100,6 +100,17 @@ class SurveyUserInput(models.Model):
             if record.education_record_id:
                 record.average_grade = record.quizz_score/len(record.user_input_line_ids) if record.quizz_score else 0.0
 
+    @api.depends('user_input_line_ids.quizz_mark')
+    def _compute_quizz_score(self):
+        for user_input in self:
+            quizz_score = 0
+            if sum(user_input.user_input_line_ids.mapped('percentage')) > 0:
+                for line in user_input.user_input_line_ids:
+                    quizz_score += (line.quizz_mark * line.percentage / 100)
+                user_input.quizz_score = quizz_score
+            else:
+                super()._compute_quizz_score()
+
     def write(self, vals):
         res = super().write(vals)
         self.mapped('education_record_id')._onchange_survey_mark()
@@ -109,6 +120,7 @@ class SurveyUserInput(models.Model):
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
 
+    percentage = fields.Float('Eval. percentage', related="value_suggested_row.percentage")
     labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
@@ -153,6 +165,8 @@ class SurveyQuestionText(models.Model):
 
 class SurveyLabel(models.Model):
     _inherit = "survey.label"
+
+    percentage = fields.Float('Eval. percentage')
 
     responsible = fields.Many2one(
         'hr.employee', string='Responsible Teacher',
