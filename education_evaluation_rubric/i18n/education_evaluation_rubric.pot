@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 17:18+0000\n"
-"PO-Revision-Date: 2023-03-15 17:18+0000\n"
+"POT-Creation-Date: 2023-03-23 08:35+0000\n"
+"PO-Revision-Date: 2023-03-23 08:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -167,6 +167,12 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__subject_ids
 msgid "Education Subjects"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__percentage
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__percentage
+msgid "Eval. percentage"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -382,6 +388,12 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__text
 msgid "Text"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: code:addons/education_evaluation_rubric/models/survey.py:207
+#, python-format
+msgid "The sum of all label percentages cannot be greater than 100."
 msgstr ""
 
 #. module: education_evaluation_rubric

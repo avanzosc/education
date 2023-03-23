@@ -1,6 +1,7 @@
 # Copyright 2022 Leire Martinez de Santos - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class SurveySurvey(models.Model):
@@ -198,6 +199,13 @@ class SurveyQuestion(models.Model):
         inverse_name='question_id',
       #  copy=True
     )
+
+    @api.onchange('labels_ids_2', 'labels_ids_2.percentage')
+    def _onchange_label_percentage(self):
+        if sum(self.labels_ids_2.mapped('percentage')) > 100:
+            raise UserError(
+                _('The sum of all label percentages cannot be greater than 100.')
+            )
 
     def create_survey_texts(self):
         for record in self:
