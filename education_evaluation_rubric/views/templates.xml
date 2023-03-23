@@ -98,6 +98,9 @@
             </div>
     </template>
     <template id="survey_matrix_text" inherit_id="survey.matrix">
+        <xpath expr="//span[@t-field='row_label.value']" position="after">
+            <t t-if="row_label.percentage">(<span t-field="row_label.percentage"/>%)</t>
+        </xpath>
         <xpath expr="//th[@t-foreach='question.labels_ids']/span" position="after">
           (<span t-field="col_label.quizz_mark"/>)
         </xpath>
