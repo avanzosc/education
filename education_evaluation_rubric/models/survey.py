@@ -121,7 +121,10 @@ class SurveyUserInput(models.Model):
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
 
-    percentage = fields.Float('Eval. percentage', default="value_suggested_row.percentage")
+    def _default_percentage(self):
+        return self.value_suggested_row.percentage
+
+    percentage = fields.Float('Eval. percentage', default=_default_percentage)
     labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
