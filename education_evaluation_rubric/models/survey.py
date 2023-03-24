@@ -121,14 +121,15 @@ class SurveyUserInput(models.Model):
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
 
-    def _default_percentage(self):
-        return self.value_suggested_row.percentage
-
-    percentage = fields.Float('Eval. percentage', default=_default_percentage)
+    percentage = fields.Float('Eval. percentage', compute="_compute_percentage")
     labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
         'Education Record Status', related='user_input_id.state')
+
+    def _compute_percentage(self):
+        for record in self:
+            record.percentage = record.value_suggested_row.percentage
 
     def save_lines(self, user_input_id, question, post, answer_tag):
         res = super(SurveyUserInputLine, self).save_lines(user_input_id, question, post, answer_tag)
