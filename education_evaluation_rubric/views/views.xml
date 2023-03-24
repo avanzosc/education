@@ -166,7 +166,7 @@
                 <attribute name="readonly">1</attribute>
             </field>
             <field name="quizz_mark" position="after">
-                <field name="percentage"/>
+                <field name="percentage" readonly="0"/>
                 <field name="value_free_text"/>
                 <field name="date_create" readonly="1"/>
             </field>
