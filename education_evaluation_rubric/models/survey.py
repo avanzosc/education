@@ -1,6 +1,7 @@
 # Copyright 2022 Leire Martinez de Santos - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class SurveySurvey(models.Model):
@@ -100,6 +101,17 @@ class SurveyUserInput(models.Model):
             if record.education_record_id:
                 record.average_grade = record.quizz_score/len(record.user_input_line_ids) if record.quizz_score else 0.0
 
+    @api.depends('user_input_line_ids.quizz_mark')
+    def _compute_quizz_score(self):
+        for user_input in self:
+            quizz_score = 0
+            if sum(user_input.user_input_line_ids.mapped('percentage')) > 0:
+                for line in user_input.user_input_line_ids:
+                    quizz_score += (line.quizz_mark * line.percentage / 100)
+                user_input.quizz_score = quizz_score
+            else:
+                super()._compute_quizz_score()
+
     def write(self, vals):
         res = super().write(vals)
         self.mapped('education_record_id')._onchange_survey_mark()
@@ -109,10 +121,21 @@ class SurveyUserInput(models.Model):
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
 
+    percentage = fields.Float('Eval. percentage')
     labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
         'Education Record Status', related='user_input_id.state')
+
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        res._compute_percentage()
+        return res
+
+    def _compute_percentage(self):
+        for record in self:
+            record.percentage = record.value_suggested_row.percentage
 
     def save_lines(self, user_input_id, question, post, answer_tag):
         res = super(SurveyUserInputLine, self).save_lines(user_input_id, question, post, answer_tag)
@@ -154,6 +177,8 @@ class SurveyQuestionText(models.Model):
 class SurveyLabel(models.Model):
     _inherit = "survey.label"
 
+    percentage = fields.Float('Eval. percentage')
+
     responsible = fields.Many2one(
         'hr.employee', string='Responsible Teacher',
         compute="_compute_label_responsible", store=True)
@@ -184,6 +209,13 @@ class SurveyQuestion(models.Model):
         inverse_name='question_id',
       #  copy=True
     )
+
+    @api.onchange('labels_ids_2', 'labels_ids_2.percentage')
+    def _onchange_label_percentage(self):
+        if sum(self.labels_ids_2.mapped('percentage')) > 100:
+            raise UserError(
+                _('The sum of all label percentages cannot be greater than 100.')
+            )
 
     def create_survey_texts(self):
         for record in self:

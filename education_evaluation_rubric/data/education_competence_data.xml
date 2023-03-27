@@ -9,4 +9,11 @@
         <field name="passed_mark">5</field>
         <field name="level_ids">75,86</field>
     </record>
+    <record id="survey_input_percentage_inherit" model="ir.actions.server">
+        <field name="name">Inherit parent percentage</field>
+        <field name="model_id" ref="survey.model_survey_user_input"/>
+        <field name="binding_model_id" ref="survey.model_survey_user_input"/>
+        <field name="state">code</field>
+        <field name="code">records.mapped('user_input_line_ids')._compute_percentage()</field>
+    </record>
 </odoo>
