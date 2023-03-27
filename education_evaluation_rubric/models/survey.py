@@ -121,11 +121,17 @@ class SurveyUserInput(models.Model):
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
 
-    percentage = fields.Float('Eval. percentage', compute="_compute_percentage")
+    percentage = fields.Float('Eval. percentage')
     labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
         'Education Record Status', related='user_input_id.state')
+
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        res._compute_percentage()
+        return res
 
     def _compute_percentage(self):
         for record in self:
