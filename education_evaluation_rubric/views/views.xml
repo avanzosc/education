@@ -207,6 +207,7 @@
                 <field name="color"/>
             </field>
             <xpath expr="//field[@name='labels_ids_2']/tree" position="inside">
+                <field name="competence_types" widget="many2many_tags"/>
                 <field name="percentage" sum="Total Percent"/>
             </xpath>
             <field name="labels_ids_2" position="after">

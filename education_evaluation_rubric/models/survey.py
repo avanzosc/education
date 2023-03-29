@@ -179,6 +179,11 @@ class SurveyLabel(models.Model):
 
     percentage = fields.Float('Eval. percentage')
 
+    competence_types = fields.Many2many(
+        comodel_name='education.competence.type', string='Competence types',
+        relation='rel_competence_type_survey',
+        column1='label_id', column2='competence_type_id')
+
     responsible = fields.Many2one(
         'hr.employee', string='Responsible Teacher',
         compute="_compute_label_responsible", store=True)
