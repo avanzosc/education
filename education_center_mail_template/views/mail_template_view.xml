@@ -5,8 +5,10 @@
         <field name="inherit_id" ref="mail.email_template_form" />
         <field name="arch" type="xml">
             <field name="model_id" position="after">
-                <field name="center_template_id" 
-                    domain="[('name','=','mail_center_template')]"/>
+                <field name="center_template_id"
+                       domain="[('name','=','mail_center_template')]" />
+                <field name="allowed_center_ids"
+                       domain="[('educational_category','=','school')]" />
             </field>
         </field>
     </record>
