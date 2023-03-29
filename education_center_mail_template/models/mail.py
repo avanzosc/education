@@ -8,6 +8,10 @@ class MailTemplate(models.Model):
 
     center_template_id = fields.Many2one(
         string='Center template', comodel_name='ir.ui.view')
+    allowed_center_ids = fields.Many2many(
+        comodel_name="res.partner", string="Allowed Education Centers",
+        help="This field is intended to filtering purpose only"
+    )
 
     @api.multi
     def send_mail(self, res_id, force_send=False, raise_exception=False,
