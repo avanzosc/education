@@ -148,6 +148,7 @@
                 <field name="educational_category" invisible="True" />
             </group>
             <field name="birthdate_date" position="after">
+                <field name="gender" />
                 <label for="child_number" />
                 <div>
                     <field name="family_child_number" class="oe_inline" /> of
@@ -283,6 +284,9 @@
                     <field name="comment" placeholder="Internal note..."/>
                 </page>
             </notebook>
+            <group name="main_left" position="inside">
+                <field name="gender"/>
+            </group>
         </field>
     </record>
 
