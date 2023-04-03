@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="assets_frontend" name="Evaluation tutor table assets" inherit_id="website.assets_frontend">
+      <xpath expr="." position="inside">
+         <link type="text/scss" href="/education_evaluation_tutor_table/static/src/css/style.css" rel="stylesheet"/>
+         <script type="text/javascript" src="/education_evaluation_tutor_table/static/src/js/script.js"/>
+      </xpath>
+   </template>
+   <template id="portal_meetings" inherit_id="portal.portal_my_home" name="Portal My Home : tutor meeting entries">
+      <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+         <t t-call="portal.portal_docs_entry">
+            <t t-set="title">Meetings</t>
+            <t t-set="url" t-value="'/meetings'" />
+            <t t-set="count" t-value="meetings_count" />
+         </t>
+      </xpath>
+   </template>
+   <template id="student_meetings_table" name="Teacher Student Meetings">
+      <t t-call="website.layout">
+         <xpath expr="//div[@id='wrap']" position="replace">
+            <div class="oe_structure"
+               id="oe_structure_website_event_index_1" />
+            <div class="container">
+               <!-- Browser -->
+               <div class="row mt8">
+                  <div class="col-md-12">
+                     <ol class="breadcrumb mb0">
+                        <li class="breadcrumb-item">
+                           <a href="/schedules">Meetings</a>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="row mt32 mb32">
+                  <div class="col-lg-12" id="middle_column">
+                     <div class="o_portal_my_home">
+                        <div class="oe_structure" id="oe_structure_portal_my_home_1"
+                           data-oe-model="ir.ui.view" data-oe-id="599"
+                           data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]">
+                        </div>
+                        <div class="o_portal_docs list-group">
+                           <t t-if="meetings">
+                             <div>
+                                <form id="real_done">
+                                   <div class="button-group text-center">
+                                       <button id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-2 mb-2">
+                                          Save changes <i class="fa fa-save"></i>
+                                       </button>
+                                   </div>
+                                   <table class="table_tutor_meetings">
+                                      <thead>
+                                          <tr>
+                                             <th/>
+                                             <th t-foreach="evaluations" t-as="evaluation" colspan="3" class="eval_th text-center">
+                                                <t t-esc="evaluations_str[evaluation]"/>
+                                             </th>
+                                          </tr>
+                                         <tr>
+                                             <th/>
+                                            <t t-foreach="evaluations" t-as="evaluation">
+                                               <th class="meeting_th text-center">
+                                                  Planned
+                                               </th>
+                                               <th class="meeting_th text-center">
+                                                  Done
+                                               </th>
+                                               <th class="meeting_th text-center">
+                                                  Real done
+                                               </th>
+                                            </t>
+                                         </tr>
+                                      </thead>
+                                      <tbody>
+                                         <tr t-foreach="students" t-as="student">
+                                            <t t-set="student_meetings" t-value="meetings.filtered(lambda m: m.student_id == student)"/>
+                                            <td><t t-esc="student.display_name"/></td>
+                                            <t t-foreach="evaluations" t-as="evaluation">
+                                               <td class="planned_td">
+                                                  <t t-set="student_meetings_planned" t-value="student_meetings.filtered(lambda m: m.state in ['draft','open', 'done'] and m.eval_type==evaluation)"/>
+                                                  <t t-esc="len(student_meetings_planned)"/>
+                                               </td>
+                                               <td class="done_td">
+                                                  <t t-set="student_meetings_done" t-value="student_meetings.filtered(lambda m: m.state == 'done' and m.eval_type==evaluation)"/>
+                                                  <t t-esc="len(student_meetings_done)"/>
+                                               </td>
+                                               <td class="real_done_td"><input type="text" t-att-name="'%s_%s' % (evaluation, student.id)"/></td>
+                                            </t>
+                                         </tr>
+                                      </tbody>
+                                   </table>
+                                </form>
+                             </div>
+                           </t>
+                           <t t-else="">
+                              <h2>
+                                 No meetings found
+                              </h2>
+                           </t>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </xpath>
+      </t>
+   </template>
+</odoo>
