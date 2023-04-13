@@ -52,7 +52,9 @@ class EducationMain(CustomerPortal):
         change_ids = []
         eval_change_ids = {}
         eval_change_vals = {}
-        changed_input_ids = json.loads(args.get('changed_input_ids', None))
+        changed_input_ids = args.get('changed_input_ids', {})
+        if changed_input_ids != {}:
+            changed_input_ids = json.loads(changed_input_ids)
         for input_id in changed_input_ids:
             record_id = input_id.get('record_id', None)
             new_val = input_id.get('new_val', None)
