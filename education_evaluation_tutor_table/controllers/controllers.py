@@ -51,27 +51,33 @@ class EducationMain(CustomerPortal):
 
         change_ids = []
         eval_change_ids = {}
-        for arg in args:
-            vals = arg.split('_')
-            eval_ref = vals[0]
-            student_id = int(vals[1])
-            month_id = int(vals[2])
-            type_ref = vals[3]
-            if args[arg] != '':
-                change_ids.append(student_id)
-                eval_ids = eval_change_ids.get(eval_ref, [])
-                if eval_ids != []:
-                    eval_by_types = eval_ids.get(type_ref, {})
-                    if month_id:
-                        eval_ids = eval_by_types.get(month_id, [])
-                eval_ids.append(int(vals[1]))
-                eval_change_ids.update({
-                    eval_ref: {
-                        type_ref: {
-                            month_id: eval_ids
+        eval_change_vals = {}
+        changed_input_ids = json.loads(args.get('changed_input_ids', None))
+        for input_id in changed_input_ids:
+            record_id = input_id.get('record_id', None)
+            new_val = input_id.get('new_val', None)
+            if record_id and new_val:
+                vals = record_id.split('_')
+                eval_ref = vals[0]
+                student_id = int(vals[1])
+                month_id = int(vals[2])
+                type_ref = vals[3]
+                if input_id.get('record_id') != '':
+                    change_ids.append(student_id)
+                    eval_ids = eval_change_ids.get(eval_ref, [])
+                    if eval_ids != []:
+                        eval_by_types = eval_ids.get(type_ref, {})
+                        if month_id:
+                            eval_ids = eval_by_types.get(month_id, [])
+                    eval_ids.append(student_id)
+                    eval_change_ids.update({
+                        eval_ref: {
+                            type_ref: {
+                                month_id: eval_ids
+                            }
                         }
-                    }
-                })
+                    })
+                    eval_change_vals.update({record_id: int(new_val)})
 
         meetings_change_students = partner_obj.sudo().search([
             ('id', 'in', change_ids)
@@ -81,8 +87,8 @@ class EducationMain(CustomerPortal):
                 for month in eval_change_ids[eval][type_ref]:
                     for student in meetings_change_students:
                         student_meetigs = meetings.filtered(lambda m: m.student_id.id == student.id and m.eval_type == eval)
-                        new_value = int(args[eval+'_'+str(student.id)+'_'+str(month)+'_'+type_ref])
-                        if len(student_meetigs) > new_value:
+                        new_value = eval_change_vals.get(eval+'_'+str(student.id)+'_'+str(month)+'_'+type_ref, None)
+                        if new_value and len(student_meetigs) > new_value:
                             self.update_meetings_done(
                                 student, new_value, evaluation=eval, month=month,
                                 type_ref=type_ref, teacher=logged_employee, academic_year=current_academic_year)

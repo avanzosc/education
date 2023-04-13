@@ -43,11 +43,13 @@
                              <div>
                                 <form id="real_done">
                                    <div class="button-group text-center">
+                                       <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
                                        <button id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-2 mb-2">
                                           Save changes <i class="fa fa-save"></i>
                                        </button>
                                    </div>
-                                   <div>
+                                </form>
+                                <div>
                                       <table class="table_tutor_meetings">
                                          <thead>
                                              <tr>
@@ -121,8 +123,7 @@
                                             </tr>
                                          </tbody>
                                       </table>
-                                   </div>
-                                </form>
+                                </div>
                              </div>
                            </t>
                            <t t-else="">
@@ -169,7 +170,7 @@
          <t t-if="done_nr_student" t-esc="len(done_nr_student)"/>
          <t t-else="">0</t>
       </td>
-      <td class="real_done_td student_td"><input type="text" t-att-name="'%s_%s_%s_student' % (td_eval, td_student.id, td_month)"/></td>
+      <td class="real_done_td student_td"><input class="meeting_real_input" type="text" t-att-name="'%s_%s_%s_student' % (td_eval, td_student.id, td_month)"/></td>
       <t t-set="planned_nr_parent" t-if="planned_nr" t-value="planned_nr.filtered(lambda m: FAMILY_TUTORING in m.categ_ids.ids)"/>
       <t t-set="done_nr_parent" t-if="done_nr" t-value="done_nr.filtered(lambda m: FAMILY_TUTORING in m.categ_ids.ids)"/>
       <td class="planned_td parent_td">
@@ -180,6 +181,6 @@
          <t t-if="done_nr_parent" t-esc="len(done_nr_parent)"/>
          <t t-else="">0</t>
       </td>
-      <td class="real_done_td parent_td"><input type="text" t-att-name="'%s_%s_%s_parent' % (td_eval, td_student.id, td_month)"/></td>
+      <td class="real_done_td parent_td"><input class="meeting_real_input" type="text" t-att-name="'%s_%s_%s_parent' % (td_eval, td_student.id, td_month)"/></td>
    </template>
 </odoo>
