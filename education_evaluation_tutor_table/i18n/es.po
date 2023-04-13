@@ -60,7 +60,7 @@ msgstr "Febrero"
 #: code:addons/education_evaluation_tutor_table/controllers/controllers.py:16
 #, python-format
 msgid "January"
-msgstr "nero"
+msgstr "Enero"
 
 #. module: education_evaluation_tutor_table
 #: code:addons/education_evaluation_tutor_table/controllers/controllers.py:22
@@ -112,7 +112,7 @@ msgstr "Octubre"
 #. module: education_evaluation_tutor_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_tutor_table.student_meetings_table
 msgid "Parent"
-msgstr "Padre"
+msgstr "Padres"
 
 #. module: education_evaluation_tutor_table
 #: model_terms:ir.ui.view,arch_db:education_evaluation_tutor_table.meetings_th_group
