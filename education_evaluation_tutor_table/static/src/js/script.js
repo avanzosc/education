@@ -5,7 +5,12 @@ $(document).ready(function(require) {
     if(selected_eval){
         show_eval_info(selected_eval);
     }
+    inputs_to_disable();
 
+    function inputs_to_disable(){
+        var disable_inputs = $('input.meeting_real_input.disabled');
+        disable_inputs.attr('disabled', true);
+    }
 
     function update_new_values(changed_vals, changed_input){
         var new_val = {
