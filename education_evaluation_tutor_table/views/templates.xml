@@ -43,6 +43,15 @@
                              <div>
                                 <form id="real_done">
                                    <div class="button-group text-center">
+                                      <t t-foreach="sorted(evaluations)" t-as="evaluation">
+                                          <a t-att-id="evaluation" class="eval_button_tutor btn btn-primary ml-2 mb-2">
+                                             <t t-esc="evaluations_str[evaluation]"/>
+                                          </a>
+                                      </t>
+                                      <a id="all" class="eval_button_tutor btn btn-primary ml-2 mb-2">
+                                          ALL
+                                      </a>
+                                       <input id="selected_eval" name="selected_eval" t-att-value="selected_eval" hidden="true"/>
                                        <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
                                        <button id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-2 mb-2">
                                           Save changes <i class="fa fa-save"></i>
@@ -52,41 +61,35 @@
                                 <div>
                                       <table class="table_tutor_meetings">
                                          <thead>
-                                             <tr>
-                                                <th/>
-                                                <t t-foreach="evaluations" t-as="evaluation">
+                                             <tr class="tr_meetings">
+                                                <th class="blank"/>
+                                                <t t-foreach="sorted(evaluations)" t-as="evaluation">
                                                    <t t-foreach="evaluation_months[evaluation]" t-as="month">
-                                                      <th colspan="6" class="month_th text-center">
+                                                      <th colspan="3" t-attf-class="month_th td_{{evaluation}} text-center">
                                                          <t t-esc="months_str[month]"/>
                                                       </th>
                                                    </t>
-                                                   <th colspan="6" class="eval_th text-center">
+                                                   <th colspan="3" t-attf-class="eval_th td_{{evaluation}} text-center">
                                                       <t t-esc="evaluations_str[evaluation]"/>
                                                    </th>
                                                 </t>
                                              </tr>
-                                            <tr>
-                                               <th/>
-                                               <t t-foreach="evaluations" t-as="evaluation">
+                                            <tr class="tr_meetings">
+                                               <th class="blank"/>
+                                               <t t-foreach="sorted(evaluations)" t-as="evaluation">
                                                   <t t-foreach="evaluation_months[evaluation]" t-as="month">
-                                                     <th colspan="3" class="student_th text-center">
+                                                     <th colspan="3" t-attf-class="student_th td_{{evaluation}} text-center">
                                                          Student
                                                      </th>
-                                                     <th colspan="3" class="parent_th text-center">
-                                                         Parent
-                                                     </th>
                                                   </t>
-                                                  <th colspan="3" class="student_th text-center">
-                                                     Student
-                                                  </th>
-                                                  <th colspan="3" class="parent_th text-center">
+                                                  <th colspan="3" t-attf-class="parent_th td_{{evaluation}} text-center">
                                                      Parent
                                                   </th>
                                                </t>
                                             </tr>
-                                            <tr>
-                                                <th/>
-                                                <t t-foreach="evaluations" t-as="evaluation">
+                                            <tr class="tr_meetings">
+                                                <th class="blank"/>
+                                                <t t-foreach="sorted(evaluations)" t-as="evaluation">
                                                    <t t-foreach="evaluation_months[evaluation]" t-as="month">
                                                       <t t-call="education_evaluation_tutor_table.meetings_th_group"/>
                                                    </t>
@@ -98,7 +101,7 @@
                                             <tr t-foreach="students" t-as="student">
                                                <t t-set="student_meetings" t-value="meetings.filtered(lambda m: m.student_id == student)"/>
                                                <td class="td_student_name"><t t-esc="student.display_name"/></td>
-                                               <t t-foreach="evaluations" t-as="evaluation">
+                                               <t t-foreach="sorted(evaluations)" t-as="evaluation">
                                                   <t t-set="student_meetings_planned" t-value="student_meetings.filtered(lambda m: m.state in ['draft','open', 'done'] and m.eval_type==evaluation)"/>
                                                   <t t-set="student_meetings_done" t-value="student_meetings.filtered(lambda m: m.state == 'done' and m.eval_type==evaluation)"/>
                                                    <t t-foreach="evaluation_months[evaluation]" t-as="month">
@@ -110,6 +113,7 @@
                                                          <t t-set="td_student" t-value="student"/>
                                                          <t t-set="td_eval" t-value="evaluation"/>
                                                          <t t-set="td_month" t-value="month"/>
+                                                         <t t-set="meeting_type" t-value="'student'"/>
                                                       </t>
                                                    </t>
                                                   <t t-call="education_evaluation_tutor_table.meetings_td_group">
@@ -118,6 +122,7 @@
                                                       <t t-set="td_student" t-value="student"/>
                                                       <t t-set="td_eval" t-value="evaluation"/>
                                                       <t t-set="td_month" t-value="0"/>
+                                                      <t t-set="meeting_type" t-value="'parent'"/>
                                                   </t>
                                                </t>
                                             </tr>
@@ -140,47 +145,35 @@
       </t>
    </template>
    <template id="meetings_th_group" name="Meetings header group">
-      <th class="meeting_th text-center">
+      <th t-attf-class="meeting_th text-center td_{{evaluation}}">
          Planned
       </th>
-      <th class="meeting_th text-center">
+      <th t-attf-class="meeting_th text-center td_{{evaluation}}">
          Done
       </th>
-      <th class="meeting_th text-center real_done_td">
-         Real done
-      </th>
-      <th class="meeting_th text-center">
-         Planned
-      </th>
-      <th class="meeting_th text-center">
-         Done
-      </th>
-      <th class="meeting_th text-center real_done_td">
+      <th t-attf-class="meeting_th text-center real_done_td td_{{evaluation}}">
          Real done
       </th>
    </template>
    <template id="meetings_td_group" name="Meetings input group">
-      <t t-set="planned_nr_student" t-if="planned_nr" t-value="planned_nr.filtered(lambda m: STUDENT_TUTORING in m.categ_ids.ids)"/>
-      <t t-set="done_nr_student" t-if="done_nr" t-value="done_nr.filtered(lambda m: STUDENT_TUTORING in m.categ_ids.ids)"/>
-      <td class="planned_td student_td">
-         <t t-if="planned_nr_student" t-esc="len(planned_nr_student)"/>
+      <t t-if="meeting_type == 'student'">
+         <t t-set="planned_nr_filter" t-if="planned_nr" t-value="planned_nr.filtered(lambda m: STUDENT_TUTORING in m.categ_ids.ids)"/>
+         <t t-set="done_nr_filter" t-if="done_nr" t-value="done_nr.filtered(lambda m: STUDENT_TUTORING in m.categ_ids.ids)"/>
+         <t t-set="meeting_type" t-value="'student'"/>
+      </t>
+      <t t-else="">
+         <t t-set="planned_nr_filter" t-if="planned_nr" t-value="planned_nr.filtered(lambda m: FAMILY_TUTORING in m.categ_ids.ids)"/>
+         <t t-set="done_nr_filter" t-if="done_nr" t-value="done_nr.filtered(lambda m: FAMILY_TUTORING in m.categ_ids.ids)"/>
+         <t t-set="meeting_type" t-value="'parent'"/>
+      </t>
+      <td t-attf-class="planned_td td_{{td_eval}}">
+         <t t-if="planned_nr" t-esc="len(planned_nr_filter)"/>
          <t t-else="">0</t>
       </td>
-      <td class="done_td student_td">
-         <t t-if="done_nr_student" t-esc="len(done_nr_student)"/>
+      <td t-attf-class="done_td td_{{td_eval}}">
+         <t t-if="done_nr" t-esc="len(done_nr_filter)"/>
          <t t-else="">0</t>
       </td>
-      <td class="real_done_td student_td"><input class="meeting_real_input" type="text" t-att-name="'%s_%s_%s_student' % (td_eval, td_student.id, td_month)"/></td>
-      <t t-set="planned_nr_parent" t-if="planned_nr" t-value="planned_nr.filtered(lambda m: FAMILY_TUTORING in m.categ_ids.ids)"/>
-      <t t-set="done_nr_parent" t-if="done_nr" t-value="done_nr.filtered(lambda m: FAMILY_TUTORING in m.categ_ids.ids)"/>
-      <td class="planned_td parent_td">
-         <t t-if="planned_nr_parent" t-esc="len(planned_nr_parent)"/>
-         <t t-else="">0</t>
-      </td>
-      <td class="done_td parent_td">
-         <t t-if="done_nr_parent" t-esc="len(done_nr_parent)"/>
-         <t t-else="">0</t>
-      </td>
-      <td class="real_done_td parent_td"><input class="meeting_real_input" type="text" t-att-name="'%s_%s_%s_parent' % (td_eval, td_student.id, td_month)"/></td>
+      <td t-attf-class="real_done_td td_{{td_eval}}"><input class="meeting_real_input" type="text" t-att-name="'%s_%s_%s_%s' % (td_eval, td_student.id, td_month, meeting_type)"/></td>
    </template>
 </odoo>

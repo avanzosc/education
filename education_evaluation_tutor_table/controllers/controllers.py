@@ -52,8 +52,9 @@ class EducationMain(CustomerPortal):
         change_ids = []
         eval_change_ids = {}
         eval_change_vals = {}
+        selected_eval = args.get('selected_eval', None)
         changed_input_ids = args.get('changed_input_ids', {})
-        if changed_input_ids != {}:
+        if changed_input_ids != {} and len(changed_input_ids) > 0:
             changed_input_ids = json.loads(changed_input_ids)
         for input_id in changed_input_ids:
             record_id = input_id.get('record_id', None)
@@ -66,7 +67,7 @@ class EducationMain(CustomerPortal):
                 type_ref = vals[3]
                 if input_id.get('record_id') != '':
                     change_ids.append(student_id)
-                    eval_ids = eval_change_ids.get(eval_ref, [])
+                    eval_ids = eval_change_ids.get(eval_ref, {}).get(type_ref, {}).get(month_id, [])
                     if eval_ids != []:
                         eval_by_types = eval_ids.get(type_ref, {})
                         if month_id:
@@ -116,6 +117,7 @@ class EducationMain(CustomerPortal):
             'evaluations_str': EVALUATIONS,
             'months_str': MONTHS,
             'evaluation_months': evaluation_months,
+            'selected_eval': selected_eval,
             'STUDENT_TUTORING': STUDENT_TUTORING.id,
             'FAMILY_TUTORING': FAMILY_TUTORING.id,
         }
@@ -144,7 +146,10 @@ class EducationMain(CustomerPortal):
         meetings_to_update = new_done
         for meeting in meetings.filtered(lambda m: m.state not in ['done', 'cancel']):
             if meetings_to_update:
-                meeting.action_open()
+                if type_ref == 'student':
+                    meeting.action_open()
+                else:
+                    meeting.action_done()
                 meetings_to_update -= 1
 
     def get_tutoring_types(self):

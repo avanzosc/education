@@ -36,3 +36,18 @@
     border-right: 0.5px black solid !important;
 
 }
+.td_student_name, th.blank{
+    min-width: 80px;
+    text-align: left;
+    white-space: nowrap;
+    position: sticky;
+    left: 0;
+    background-color: white;
+}
+.tr_meetings{
+    position: sticky;
+    top: 0 !important;
+    a {
+        color: black !important;
+    }
+}
