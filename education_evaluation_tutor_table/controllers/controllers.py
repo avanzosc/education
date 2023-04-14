@@ -67,10 +67,10 @@ class EducationMain(CustomerPortal):
                 type_ref = vals[3]
                 if input_id.get('record_id') != '':
                     change_ids.append(student_id)
-                    eval_ids = eval_change_ids.get(eval_ref, {}).get(type_ref, {}).get(month_id, [])
+                    eval_ids = eval_change_ids.get(eval_ref, {}).get(type_ref, []) #.get(month_id, [])
                     if eval_ids != []:
                         eval_by_types = eval_ids.get(type_ref, {})
-                        if month_id:
+                        if month_id or month_id == 0:
                             eval_ids = eval_by_types.get(month_id, [])
                     eval_ids.append(student_id)
                     eval_change_ids.update({
