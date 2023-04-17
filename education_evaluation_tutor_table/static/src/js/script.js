@@ -1,6 +1,8 @@
 $(document).ready(function(require) {
     "use strict";
 
+    let ajax = require("web.ajax");
+
     var selected_eval = $('input[name=selected_eval]').attr('value');
     if(selected_eval){
         show_eval_info(selected_eval);
@@ -39,6 +41,13 @@ $(document).ready(function(require) {
         $('.eval_button_tutor').removeClass('btn-highlight');
         $(this).addClass('btn-highlight');
         show_eval_info(evaluation);
+    });
+
+    $(".duplicate_meeting").click(function(){
+        var value = this.id;
+        console.log(value);
+        $('#input_duplicate').attr('value', value);
+        $('form#real_done').submit();
     });
 
     function show_eval_info(evaluation){

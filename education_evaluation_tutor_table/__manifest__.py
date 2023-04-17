@@ -14,6 +14,7 @@
         "education_evaluation_notebook",
     ],
     "data": [
+        "views/views.xml",
         "views/templates.xml",
     ],
     "installable": True,

@@ -2,8 +2,6 @@ import json
 
 from odoo import http, _
 from odoo.http import request
-from odoo.addons.education_evaluation_notebook.models.education_record import \
-    RECORD_EXCEPTIONALITY
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
 EVALUATIONS = {
@@ -43,10 +41,21 @@ class EducationMain(CustomerPortal):
             return request.redirect('/main')
 
         current_academic_year = self.get_current_academic_year()
+        STUDENT_TUTORING, FAMILY_TUTORING = self.get_tutoring_types()
+
+        input_duplicate = args.get('input_duplicate', None)
+        if input_duplicate:
+            vals = input_duplicate.split('_')
+            eval_ref = vals[0]
+            student_id = int(vals[1])
+            month_id = int(vals[2])
+            type_ref = vals[3]
+            new_meetig= self.input_duplicate(eval_ref, student_id, month_id, type_ref, current_academic_year.id)
 
         meetings = calendar_event_obj.sudo().search([
             ('teacher_id', '=', logged_employee.id),
             ('academic_year_id', '=', current_academic_year.id),
+            ('categ_ids', 'in', [STUDENT_TUTORING.id, FAMILY_TUTORING.id]),
         ], order='eval_type')
 
         change_ids = []
@@ -109,7 +118,6 @@ class EducationMain(CustomerPortal):
             evaluation_months.update({
                 eval: month_obj
             })
-        STUDENT_TUTORING, FAMILY_TUTORING = self.get_tutoring_types()
         values = {
             'meetings': meetings,
             'students': meetings.mapped('student_id'),
@@ -160,3 +168,22 @@ class EducationMain(CustomerPortal):
             "calendar_school.calendar_event_type_family_tutoring",
             raise_if_not_found=False)
         return STUDENT_TUTORING, FAMILY_TUTORING
+
+    def input_duplicate(self, eval_id, student_id, month, type_ref, academic_year):
+        student_tutoring, family_tutoring = self.get_tutoring_types()
+        meeting_type = student_tutoring if type_ref == 'student' else family_tutoring
+        meetings = request.env['calendar.event'].sudo().search([
+            ('academic_year_id', '=', academic_year),
+            ('eval_type', '=', eval_id),
+            ('student_id', '=', student_id),
+            ('categ_ids', 'in', meeting_type.ids),
+        ])
+        if month:
+            meetings = meetings.filtered(lambda m: m.start_datetime.month == month)
+        for meeting in meetings:
+            new_meetig = meeting.sudo().copy()
+            if type_ref == 'student':
+                new_meetig.action_open()
+            else:
+                new_meetig.action_done()
+            return new_meetig

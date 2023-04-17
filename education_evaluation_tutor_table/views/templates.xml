@@ -53,6 +53,7 @@
                                       </a>
                                        <input id="selected_eval" name="selected_eval" t-att-value="selected_eval" hidden="true"/>
                                        <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
+                                       <input id="input_duplicate" name="input_duplicate" hidden="true"/>
                                        <button id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-2 mb-2">
                                           Save changes <i class="fa fa-save"></i>
                                        </button>
@@ -174,8 +175,15 @@
          <t t-if="done_nr" t-esc="len(done_nr_filter)"/>
          <t t-else="">0</t>
       </td>
-      <t t-if="not planned_nr or (done_nr_filter and planned_nr_filter and len(planned_nr_filter) == len(done_nr_filter))" t-set="input_disable" t-value="1"/>
-      <t t-else="" t-set="input_disable" t-value="0"/>
-      <td t-attf-class="real_done_td td_{{td_eval}}"><input t-att-class="'meeting_real_input' + (' disabled' if input_disable==1 else '')" type="text" t-att-name="'%s_%s_%s_%s' % (td_eval, td_student.id, td_month, meeting_type)"/></td>
+      <td t-attf-class="real_done_td td_{{td_eval}}">
+         <t t-if="not planned_nr or (done_nr_filter and planned_nr_filter and len(planned_nr_filter) == len(done_nr_filter))">
+            <button t-att-href="'/meetings/%s/%s/%s/duplicate' % (td_student.id, td_month, td_eval)" class="duplicate_meeting" t-att-id="'%s_%s_%s_%s' % (td_eval, td_student.id, td_month, meeting_type)">
+               <i class="fa fa-plus"/>
+            </button>
+         </t>
+         <t t-else="">
+            <input class="meeting_real_input" type="text" t-att-name="'%s_%s_%s_%s' % (td_eval, td_student.id, td_month, meeting_type)"/>
+         </t>
+      </td>
    </template>
 </odoo>
