@@ -2,6 +2,7 @@ import json
 
 from odoo import http, _
 from odoo.http import request
+from odoo.exceptions import AccessError, MissingError
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
 EVALUATIONS = {
@@ -187,3 +188,10 @@ class EducationMain(CustomerPortal):
             else:
                 new_meetig.action_done()
             return new_meetig
+
+    @http.route('/tutor/meeting/print/<int:student_id>', type='http', auth='public', website=True, sitemap=False)
+    def certification_print(self, student_id, review=False, answer_token=None, **post):
+        student = request.env['res.partner'].sudo().browse(student_id)
+        return CustomerPortal()._show_report(
+            model=student, report_type='pdf',
+            report_ref='education_evaluation_notebook.education_student_record_xlsx', download=True)

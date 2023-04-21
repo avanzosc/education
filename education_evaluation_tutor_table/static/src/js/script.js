@@ -45,8 +45,13 @@ $(document).ready(function(require) {
 
     $(".duplicate_meeting").click(function(){
         var value = this.id;
-        console.log(value);
         $('#input_duplicate').attr('value', value);
+        $('form#real_done').submit();
+    });
+
+    $("button.duplicate_meeting").click(function(){
+        var value = this.id;
+        $('#download_xls').attr('value', value);
         $('form#real_done').submit();
     });
 
