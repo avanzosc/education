@@ -42,7 +42,7 @@ class EducationNotebookObservation(models.Model):
         compute="_compute_state", store=True)
     event_teacher_id = fields.Many2one(
         comodel_name="hr.employee", string="Meeting Teacher",
-        related="calendar_event_id.teacher_id")
+        related="calendar_event_id.teacher_id", store=True)
 
     _sql_constraints = [
         ('unique_observation_event_notebook_line',
