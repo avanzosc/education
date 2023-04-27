@@ -73,10 +73,33 @@ $(document).ready(function(require) {
         var key = e.which;
         if(key == 13)  // the enter key code
         {
+           var all_rows = $("tr");
+           var last_row = all_rows.last();
+           var last_row_index = last_row[0].rowIndex;
            var col = $(this).closest("td").index();
-           var next_mark_input = $(this).closest('tr').next().find('td:eq('+col+')').find('input');
-           next_mark_input.prop("readonly", false);
-           next_mark_input.focus();
+           var next_tr = $(this).closest('tr').next();
+           var current_row = $(this).closest('tr')[0].rowIndex;
+           var inputs_len = 0;
+           if (next_tr.length == 0 && $(this).closest('tr')[0].rowIndex === last_row_index){
+                inputs_len = 1;
+           }
+           var next_mark_input = next_tr.find('td:eq('+col+')').find('input');
+           var row = current_row+1;
+           inputs_len = next_mark_input.length;
+           while(inputs_len === 0){
+               next_tr = next_tr.next();
+               next_mark_input = next_tr.find('td:eq('+col+')').find('input');
+               if(next_tr.length > 0 || row === next_tr[0].rowIndex){
+                   if (next_mark_input.length === 1){
+                        inputs_len = 1;
+                   }
+               }
+               row++;
+           }
+           if(next_mark_input.length != 0){
+               next_mark_input.prop("readonly", false);
+               next_mark_input.focus();
+           }
         }
     });
 });

@@ -54,14 +54,15 @@
                                        <input id="selected_eval" name="selected_eval" t-att-value="selected_eval" hidden="true"/>
                                        <input id="changed_input_ids" name="changed_input_ids" hidden="true"/>
                                        <input id="input_duplicate" name="input_duplicate" hidden="true"/>
-                                       <input id="download_xls" name="download" hidden="true"/>
+<!--                                       <input id="download_xls" name="download" hidden="true"/>-->
                                        <button id="save_schedule_btn" type="submit" class="save_button btn btn-primary ml-2 mb-2">
                                           Save changes <i class="fa fa-save"></i>
                                        </button>
                                    </div>
-                                   <div>
+                                   <br/>
+                                   <div class="text-center">
                                       <p><strong>Tutor table instructions</strong></p>
-                                      <ul>
+                                      <ul class="list-group">
                                          <li><span style="color: gray;">The Column <strong>REAL DONE</strong> sets the real number of done meetings and Save Changes</span></li>
                                          <li><span style="color: gray;">The maximum of done meetings are planned by the education center. You cannot save a greater number than that.</span></li>
                                          <li><span style="color: gray;">You can add a new tutor meeting by clicking the button <strong>+</strong></span><span style="color: gray;"> if you hit the maximum.</span><span style="color: gray;"></span><span style="color: gray;"></span></li>
@@ -111,7 +112,7 @@
                                          <tbody>
                                             <tr t-foreach="students" t-as="student">
                                                <t t-set="student_meetings" t-value="meetings.filtered(lambda m: m.student_id == student)"/>
-                                               <td class="td_student_name"><t t-esc="student.display_name"/> <a class="button btn btn-secondary download_xls" t-att-href="'/tutor/meeting/print/%s' % student.id" id="student.id"><i class="fa fa-download"/></a></td>
+                                               <td class="td_student_name"><t t-esc="student.display_name"/> <!--<a class="button btn btn-secondary download_xls" t-att-href="'/tutor/meeting/print/%s' % student.id" id="student.id"><i class="fa fa-download"/></a>--></td>
                                                <t t-foreach="sorted(evaluations)" t-as="evaluation">
                                                   <t t-set="student_meetings_planned" t-value="student_meetings.filtered(lambda m: m.state in ['draft','open', 'done'] and m.eval_type==evaluation)"/>
                                                   <t t-set="student_meetings_done" t-value="student_meetings.filtered(lambda m: m.state == 'done' and m.eval_type==evaluation)"/>

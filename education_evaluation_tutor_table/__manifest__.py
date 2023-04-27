@@ -11,6 +11,8 @@
     "depends": [
         "portal",
         "website",
+        "report_xlsx",
+        "education",
         "education_evaluation_notebook",
     ],
     "data": [

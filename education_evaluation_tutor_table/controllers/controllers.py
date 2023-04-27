@@ -2,6 +2,7 @@ import json
 
 from odoo import http, _
 from odoo.http import request
+from werkzeug.utils import redirect
 from odoo.exceptions import AccessError, MissingError
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
@@ -189,9 +190,9 @@ class EducationMain(CustomerPortal):
                 new_meetig.action_done()
             return new_meetig
 
-    @http.route('/tutor/meeting/print/<int:student_id>', type='http', auth='public', website=True, sitemap=False)
-    def certification_print(self, student_id, review=False, answer_token=None, **post):
-        student = request.env['res.partner'].sudo().browse(student_id)
-        return CustomerPortal()._show_report(
-            model=student, report_type='pdf',
-            report_ref='education_evaluation_notebook.education_student_record_xlsx', download=True)
+    # @http.route('/tutor/meeting/print/<int:student_id>', type='http', auth='public', website=True, sitemap=False)
+    # def meeting_print(self, student_id, review=False, answer_token=None, **post):
+    #     export_obj = request.env['report.education.partner_education_record_xlsx.export'].sudo()
+    #     attachment, file_name = export_obj.export_xls_web(student_id)
+    #     return redirect(
+    #         'web/content/?model=ir.attachment&field=datas&download=true&id=%s&filename=%s' % (attachment, file_name))
