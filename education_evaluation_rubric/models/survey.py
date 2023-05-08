@@ -126,6 +126,9 @@ class SurveyUserInputLine(models.Model):
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
         'Education Record Status', related='user_input_id.state')
+    competence_types = fields.Many2many(
+        comodel_name='education.competence.type', string='Competence types',
+        related='value_suggested_row.competence_types',)
 
     @api.model
     def create(self, vals):

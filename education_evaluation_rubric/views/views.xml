@@ -184,6 +184,7 @@
                        attrs="{'readonly': [('record_state','=','assessed')]}"
                        domain="[
                             ('id', 'in', labels_ids)]"/>
+                <field name="competence_types" widget="many2many_tags"/>
             </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
