@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 13:51+0000\n"
-"PO-Revision-Date: 2022-03-24 13:51+0000\n"
+"POT-Creation-Date: 2023-05-08 15:03+0000\n"
+"PO-Revision-Date: 2023-05-08 15:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -94,6 +94,16 @@ msgid "<span>Surnames</span>"
 msgstr "<span>Apellidos</span>"
 
 #. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Academic Year"
+msgstr "Año académico"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__academic_year_id
+msgid "Academic year"
+msgstr "Año académico"
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
 msgid "Bus Issues"
 msgstr "Incidencias de bus"
@@ -149,19 +159,33 @@ msgstr "Contacto"
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Course"
-msgstr "Curso educativo"
+msgstr "Curso"
 
 #. module: fleet_route_education
+#: model:ir.actions.server,name:fleet_route_education.action_create_request_passengers
+msgid "Create Request Passengers"
+msgstr "Crear Pasajeros desde inscripción"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__create_uid
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__create_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__create_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__create_date
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__create_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__create_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Current Academic Year"
+msgstr "Año académico actual"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_course_id
@@ -184,6 +208,48 @@ msgid "Current Group"
 msgstr "Grupo actual"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__date_end
+msgid "Date End"
+msgstr "Fecha fin"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__date_init
+msgid "Date Init"
+msgstr "Fecha de Inicio"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Date from month"
+msgstr "Fecha desde (mes)"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Departure Area"
+msgstr "Zona ida"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Departure Stop"
+msgstr "Parada de ida"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__departure_stop_id
+msgid "Departure stop"
+msgstr "Parada de ida"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__departure_area_id
+msgid "Depatrure area"
+msgstr "Zona ida"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__display_name
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb__display_name
@@ -193,7 +259,10 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__education_center_id
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__education_center_id
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__center_id
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_stop_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
@@ -212,6 +281,15 @@ msgstr "Curso"
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Education Level"
 msgstr "Nivel educativo"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_area_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_area_view_tree
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_form
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_tree
+msgid "Fleet route area"
+msgstr "Área de ruta"
 
 #. module: fleet_route_education
 #: code:addons/fleet_route_education/reports/education_bus_group_list_report.py:16
@@ -251,11 +329,14 @@ msgid "Group"
 msgstr "Grupo"
 
 #. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__id
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb__id
@@ -265,6 +346,8 @@ msgid "ID"
 msgstr ""
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area____last_update
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb____last_update
@@ -274,21 +357,35 @@ msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__write_uid
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__write_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__write_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__write_date
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__write_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__write_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: fleet_route_education
 #: selection:res.partner.fleet.route.report,bus_passenger:0
 msgid "No"
 msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__parent_id
+msgid "Parent"
+msgstr "Padre"
 
 #. module: fleet_route_education
 #: model:ir.model,name:fleet_route_education.model_res_partner_fleet_route_report
@@ -308,10 +405,46 @@ msgid "Passenger List"
 msgstr "Lista de pasajeros"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__passenger_ids
+msgid "Passengers"
+msgstr "Pasajeros"
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.print_education_bus_group_list_report_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.print_fleet_route_passenger_list_report_view_form
 msgid "Print Report"
 msgstr "Imprimir informe"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Return Area"
+msgstr "Zona vuelta"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Return Stop"
+msgstr "Parada vuelta"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__return_area_id
+msgid "Return area"
+msgstr "Zona vuelta"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__return_stop_id
+msgid "Return stop"
+msgstr "Parada vuelta"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop__area_id
+msgid "Route Area"
+msgstr "Zonas de ruta"
+
+#. module: fleet_route_education
+#: model:ir.actions.act_window,name:fleet_route_education.fleet_route_area_action
+#: model:ir.ui.menu,name:fleet_route_education.fleet_route_area_menu
+msgid "Route Areas"
+msgstr "Zonas de ruta"
 
 #. module: fleet_route_education
 #: model:ir.actions.act_window,name:fleet_route_education.action_print_fleet_route_passenger_list_report
@@ -323,6 +456,17 @@ msgstr "Listado de pasajeros de ruta"
 #: model:ir.model,name:fleet_route_education.model_report_fleet_route_education_fleet_route_passenger_list_report_qweb
 msgid "Route Passenger List Report"
 msgstr "Informe listado de pasajeros de ruta"
+
+#. module: fleet_route_education
+#: model:ir.actions.act_window,name:fleet_route_education.fleet_route_request_action
+#: model:ir.ui.menu,name:fleet_route_education.fleet_route_request_menu
+msgid "Route Requests"
+msgstr "Solicitudes de Rutas"
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_fleet_route_stop
+msgid "Route Stop"
+msgstr "Parada"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
@@ -351,11 +495,18 @@ msgid "Select Date"
 msgstr "Seleccionar fecha"
 
 #. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_fleet_route_area
+#: model:ir.model,name:fleet_route_education.model_fleet_route_request
+msgid "Stop areas for fleet routes"
+msgstr "Zonas de parada para rutas"
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
 msgid "Stops"
 msgstr "Paradas"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__student_id
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_fleet_route_report_view_search
 msgid "Student"
 msgstr "Alumno"
@@ -373,7 +524,7 @@ msgstr "Asistente para imprimir listado de bus"
 #. module: fleet_route_education
 #: model:ir.model,name:fleet_route_education.model_print_fleet_route_passenger_list_report
 msgid "Wizard to print Route Passenger List"
-msgstr "Asistente para imprimir listado de pasajeros de ruta""
+msgstr "Asistente para imprimir listado de pasajeros de ruta\""
 
 #. module: fleet_route_education
 #: selection:res.partner.fleet.route.report,bus_passenger:0

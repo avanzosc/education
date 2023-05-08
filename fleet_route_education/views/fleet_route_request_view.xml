@@ -73,7 +73,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="fleet_route_request_action" parent="fleet.fleet_vehicles" id="fleet_route_request_menu" groups="fleet.fleet_group_user"/>
+    <menuitem action="fleet_route_request_action" parent="fleet_route.fleet_route_base_menuitem" id="fleet_route_request_menu" groups="fleet.fleet_group_user"/>
 
     <record model="ir.actions.server" id="action_create_request_passengers">
         <field name="name">Create Request Passengers</field>

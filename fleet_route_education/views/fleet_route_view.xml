@@ -56,5 +56,5 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="fleet_route_area_action" parent="fleet.fleet_vehicles" id="fleet_route_area_menu" groups="fleet.fleet_group_user"/>
+    <menuitem action="fleet_route_area_action" parent="fleet_route.fleet_route_base_menuitem" id="fleet_route_area_menu" groups="fleet.fleet_group_user"/>
 </odoo>
