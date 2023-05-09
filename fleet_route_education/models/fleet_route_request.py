@@ -4,6 +4,13 @@
 from odoo import api, fields, models
 
 
+class FleetRoute(models.Model):
+    _inherit = "fleet.route"
+
+    date_start_request = fields.Datetime("Date start requests")
+    date_end_request = fields.Datetime("Date end requests")
+
+
 class FleetRouteRequest(models.Model):
     _name = "fleet.route.request"
     _description = 'Stop areas for fleet routes'
@@ -17,8 +24,8 @@ class FleetRouteRequest(models.Model):
         domain="[('educational_category', '=', 'school')]",
     )
     date = fields.Datetime("Date")
-    date_init = fields.Datetime("Date Init")
-    date_end = fields.Datetime("Date End")
+    date_init = fields.Datetime("Date Init", related="departure_stop_id.route_id.date_start_request")
+    date_end = fields.Datetime("Date End", related="departure_stop_id.route_id.date_end_request")
     parent_id = fields.Many2one(
         comodel_name='res.partner',
         string='Parent',
