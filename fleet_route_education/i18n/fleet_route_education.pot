@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-08 15:02+0000\n"
-"PO-Revision-Date: 2023-05-08 15:02+0000\n"
+"POT-Creation-Date: 2023-05-09 11:26+0000\n"
+"PO-Revision-Date: 2023-05-09 11:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -220,8 +220,23 @@ msgid "Date Init"
 msgstr ""
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route__date_end_request
+msgid "Date end requests"
+msgstr ""
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
 msgid "Date from month"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route__date_start_request
+msgid "Date start requests"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__dayofweek_ids
+msgid "Days of Week"
 msgstr ""
 
 #. module: fleet_route_education
@@ -430,6 +445,11 @@ msgstr ""
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__return_stop_id
 msgid "Return stop"
+msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_fleet_route
+msgid "Route"
 msgstr ""
 
 #. module: fleet_route_education

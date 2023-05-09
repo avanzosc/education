@@ -21,6 +21,7 @@
                         <field name="departure_stop_id"/>
                         <field name="return_area_id"/>
                         <field name="return_stop_id"/>
+                        <field name="dayofweek_ids" widget="many2many_tags"/>
                     </group>
                 </sheet>
             </form>

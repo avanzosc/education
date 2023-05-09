@@ -60,6 +60,10 @@ class FleetRouteRequest(models.Model):
         relation='rel_request_passenger',
         column1='request_id', column2='passenger_id'
     )
+    dayofweek_ids = fields.Many2many(
+        comodel_name="fleet.route.stop.weekday", string="Days of Week",
+        relation="res_fleet_route_stop_request_weekday",
+        column1="request_id", column2="weekday_id")
 
     def action_create_passengers(self):
         for record in self:
