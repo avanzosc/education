@@ -90,3 +90,4 @@ class FleetRouteRequest(models.Model):
             return_passenger = self.env['fleet.route.stop.passenger'].create(values)
             record.passenger_ids = [(4, departure_passenger.id)]
             record.passenger_ids = [(4, return_passenger.id)]
+            record.state = 'done'

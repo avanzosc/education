@@ -6,6 +6,8 @@
         <field name="arch" type="xml">
             <form string="Fleet route area">
                 <header>
+                    <button string="Create passenger" name="action_create_passengers"
+                            states="draft" type="object" class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="open,done,cancel"/>
                 </header>
                 <sheet>
