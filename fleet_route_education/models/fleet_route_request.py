@@ -65,6 +65,14 @@ class FleetRouteRequest(models.Model):
         relation="res_fleet_route_stop_request_weekday",
         column1="request_id", column2="weekday_id")
 
+    state = fields.Selection(
+        [
+            ('open', 'Draft'),
+            ('done', 'Accepted'),
+            ('cancel', 'Cancelled'),
+        ],
+        string="Status", default='open',)
+
     def action_create_passengers(self):
         for record in self:
             values = {

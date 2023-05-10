@@ -5,6 +5,9 @@
         <field name="model">fleet.route.request</field>
         <field name="arch" type="xml">
             <form string="Fleet route area">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="open,done,cancel"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="parent_id"/>
