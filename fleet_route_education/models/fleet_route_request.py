@@ -74,7 +74,7 @@ class FleetRouteRequest(models.Model):
         string="Status", default='open',)
 
     def action_create_passengers(self):
-        for record in self:
+        for record in self.filtered(lambda r: r.state == 'open'):
             values = {
                 'partner_id': record.student_id.id,
                 'start_date': record.date_init,
@@ -91,3 +91,19 @@ class FleetRouteRequest(models.Model):
             record.passenger_ids = [(4, departure_passenger.id)]
             record.passenger_ids = [(4, return_passenger.id)]
             record.state = 'done'
+
+    def create(self, vals):
+        if not vals.get('return_area_id', None):
+            return_stop = self.env['fleet.route.stop'].browse(vals.get('return_stop_id'))
+            vals.update({
+                'return_area_id': return_stop.area_id.id if return_stop.area_id else None
+            })
+        if not vals.get('departure_area_id', None):
+            departure_stop = self.env['fleet.route.stop'].browse(vals.get('departure_stop_id'))
+            vals.update({
+                'departure_area_id': departure_stop.area_id.id if departure_stop.area_id else None
+            })
+        res = super().create(vals)
+        if not res.education_center_id:
+            res.education_center_id = res.student_id.current_center_id.id
+        return

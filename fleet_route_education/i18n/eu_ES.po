@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-09 11:26+0000\n"
-"PO-Revision-Date: 2023-05-09 11:26+0000\n"
+"POT-Creation-Date: 2023-05-11 07:30+0000\n"
+"PO-Revision-Date: 2023-05-11 07:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -101,6 +101,11 @@ msgid "Academic year"
 msgstr ""
 
 #. module: fleet_route_education
+#: selection:fleet.route.request,state:0
+msgid "Accepted"
+msgstr ""
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
 msgid "Bus Issues"
 msgstr ""
@@ -114,6 +119,11 @@ msgstr ""
 #. module: fleet_route_education
 #: model:ir.model,name:fleet_route_education.model_report_fleet_route_education_report_education_bus_group
 msgid "Bus List Report"
+msgstr ""
+
+#. module: fleet_route_education
+#: selection:fleet.route.request,state:0
+msgid "Cancelled"
 msgstr ""
 
 #. module: fleet_route_education
@@ -161,6 +171,11 @@ msgstr "Maila"
 #. module: fleet_route_education
 #: model:ir.actions.server,name:fleet_route_education.action_create_request_passengers
 msgid "Create Request Passengers"
+msgstr ""
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_form
+msgid "Create passenger"
 msgstr ""
 
 #. module: fleet_route_education
@@ -269,6 +284,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__display_name
 msgid "Display Name"
 msgstr "Izena erakutsi"
+
+#. module: fleet_route_education
+#: selection:fleet.route.request,state:0
+msgid "Draft"
+msgstr ""
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__education_center_id
@@ -510,6 +530,11 @@ msgstr "Sekzio"
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__date
 msgid "Select Date"
 msgstr ""
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__state
+msgid "Status"
+msgstr "Egoera"
 
 #. module: fleet_route_education
 #: model:ir.model,name:fleet_route_education.model_fleet_route_area

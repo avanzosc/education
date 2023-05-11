@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-09 11:26+0000\n"
-"PO-Revision-Date: 2023-05-09 11:26+0000\n"
+"POT-Creation-Date: 2023-05-11 07:30+0000\n"
+"PO-Revision-Date: 2023-05-11 07:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -104,6 +104,11 @@ msgid "Academic year"
 msgstr "Año académico"
 
 #. module: fleet_route_education
+#: selection:fleet.route.request,state:0
+msgid "Accepted"
+msgstr "Aceptado"
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
 msgid "Bus Issues"
 msgstr "Incidencias de bus"
@@ -118,6 +123,11 @@ msgstr "Listado de bus"
 #: model:ir.model,name:fleet_route_education.model_report_fleet_route_education_report_education_bus_group
 msgid "Bus List Report"
 msgstr "Informe listado de bus"
+
+#. module: fleet_route_education
+#: selection:fleet.route.request,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.print_education_bus_group_list_report_view_form
@@ -165,6 +175,11 @@ msgstr "Curso"
 #: model:ir.actions.server,name:fleet_route_education.action_create_request_passengers
 msgid "Create Request Passengers"
 msgstr "Crear Pasajeros desde inscripción"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_form
+msgid "Create passenger"
+msgstr "Crear pasajero"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__create_uid
@@ -272,6 +287,11 @@ msgstr "Zona ida"
 #: model:ir.model.fields,field_description:fleet_route_education.field_res_partner_fleet_route_report__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: fleet_route_education
+#: selection:fleet.route.request,state:0
+msgid "Draft"
+msgstr "Borrador"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__education_center_id
@@ -513,6 +533,11 @@ msgstr "Sección"
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__date
 msgid "Select Date"
 msgstr "Seleccionar fecha"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__state
+msgid "Status"
+msgstr "Estado"
 
 #. module: fleet_route_education
 #: model:ir.model,name:fleet_route_education.model_fleet_route_area

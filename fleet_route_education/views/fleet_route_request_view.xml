@@ -36,7 +36,7 @@
         <field name="name">fleet.route.request.tree</field>
         <field name="model">fleet.route.request</field>
         <field name="arch" type="xml">
-            <tree string="Fleet route area">
+            <tree string="Fleet route area" default_order='date desc'>
                 <field name="parent_id"/>
                 <field name="student_id"/>
                 <field name="date"/>
