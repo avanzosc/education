@@ -7,3 +7,5 @@ fleet_route_request_user,fleet_route_request_user,model_fleet_route_request,flee
 fleet_route_request_public,fleet_route_request_public,model_fleet_route_request,,1,0,0,0
 fleet_route_request,fleet_route_request,model_fleet_route_request,base.group_user,1,1,1,1
 fleet_route_passenger,fleet_route_passenger,model_fleet_route_stop_passenger,,1,1,1,1
+fleet_route_request_date_public,fleet_route_request_date_public,model_fleet_route_request_date,,1,0,0,0
+fleet_route_request_date_user,fleet_route_request_date_user,model_fleet_route_request_date,fleet.fleet_group_user,1,1,1,1

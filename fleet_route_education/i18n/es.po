@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-11 07:30+0000\n"
-"PO-Revision-Date: 2023-05-11 07:30+0000\n"
+"POT-Creation-Date: 2023-05-11 10:10+0000\n"
+"PO-Revision-Date: 2023-05-11 10:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -100,6 +100,7 @@ msgstr "Año académico"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__academic_year_id
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__academic_year_id
 msgid "Academic year"
 msgstr "Año académico"
 
@@ -107,6 +108,11 @@ msgstr "Año académico"
 #: selection:fleet.route.request,state:0
 msgid "Accepted"
 msgstr "Aceptado"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,help:fleet_route_education.field_fleet_route_request_date__route_id
+msgid "Apply to routes"
+msgstr "Aplicar a rutas"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.res_partner_education_minimal_view_form
@@ -123,6 +129,16 @@ msgstr "Listado de bus"
 #: model:ir.model,name:fleet_route_education.model_report_fleet_route_education_report_education_bus_group
 msgid "Bus List Report"
 msgstr "Informe listado de bus"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: fleet_route_education
+#: model:ir.actions.server,name:fleet_route_education.action_cancel_requests
+msgid "Cancel requests"
+msgstr "Cancelar petición"
 
 #. module: fleet_route_education
 #: selection:fleet.route.request,state:0
@@ -184,6 +200,7 @@ msgstr "Crear pasajero"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__create_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__create_uid
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__create_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__create_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__create_uid
 msgid "Created by"
@@ -192,6 +209,7 @@ msgstr "Creado por"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__create_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__create_date
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__create_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__create_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__create_date
 msgid "Created on"
@@ -228,29 +246,29 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__date_end
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__date_end
 msgid "Date End"
 msgstr "Fecha fin"
 
 #. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__date_init
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__date_end_passenger
+msgid "Date End Passenger"
+msgstr "Fecha fin pasajero"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__date_init
 msgid "Date Init"
 msgstr "Fecha de Inicio"
 
 #. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route__date_end_request
-msgid "Date end requests"
-msgstr "Fecha fin subscripciones"
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__date_init_passenger
+msgid "Date Init Passenger"
+msgstr "Fecha inicio pasajero"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
 msgid "Date from month"
 msgstr "Fecha (mes)"
-
-#. module: fleet_route_education
-#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route__date_start_request
-msgid "Date start requests"
-msgstr "Fecha inicio subscripciones"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__dayofweek_ids
@@ -280,6 +298,7 @@ msgstr "Zona ida"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__display_name
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__display_name
 #: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb__display_name
@@ -372,6 +391,7 @@ msgstr "Agrupar por"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__id
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__id
 #: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb__id
@@ -383,6 +403,7 @@ msgstr ""
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request____last_update
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report____last_update
 #: model:ir.model.fields,field_description:fleet_route_education.field_report_fleet_route_education_fleet_route_passenger_list_report_qweb____last_update
@@ -394,6 +415,7 @@ msgstr "Última modificación en"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__write_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__write_uid
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__write_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__write_uid
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__write_uid
 msgid "Last Updated by"
@@ -402,6 +424,7 @@ msgstr "Última actualización por"
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_area__write_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__write_date
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__write_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_education_bus_group_list_report__write_date
 #: model:ir.model.fields,field_description:fleet_route_education.field_print_fleet_route_passenger_list_report__write_date
 msgid "Last Updated on"
@@ -451,6 +474,11 @@ msgid "Print Report"
 msgstr "Imprimir informe"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route__request_dates
+msgid "Request Dates"
+msgstr "Fechas para inscripciones"
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
 msgid "Return Area"
 msgstr "Zona vuelta"
@@ -472,6 +500,7 @@ msgstr "Parada vuelta"
 
 #. module: fleet_route_education
 #: model:ir.model,name:fleet_route_education.model_fleet_route
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__route_id
 msgid "Route"
 msgstr "Ruta"
 
@@ -514,6 +543,11 @@ msgid "Route Stops"
 msgstr "Paradas de bus"
 
 #. module: fleet_route_education
+#: sql_constraint:fleet.route.request.date:0
+msgid "Route and Academic year combination is not Unique!"
+msgstr "La combinación de ruta y año académico debe ser única!"
+
+#. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_complete_product_id
 msgid "Route complete product"
 msgstr "Producto ruta completa"
@@ -522,6 +556,11 @@ msgstr "Producto ruta completa"
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__route_half_product_id
 msgid "Route half product"
 msgstr "Producto media ruta"
+
+#. module: fleet_route_education
+#: model:ir.model,name:fleet_route_education.model_fleet_route_request_date
+msgid "Route request inscription dates"
+msgstr "Fechas de inscripcion de ruta"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_stop_passenger__partner_group_section_id
@@ -536,8 +575,19 @@ msgstr "Seleccionar fecha"
 
 #. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__state
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
 msgid "Status"
 msgstr "Estado"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Status Closed"
+msgstr "Aceptadas"
+
+#. module: fleet_route_education
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
+msgid "Status Open"
+msgstr "Pendientes"
 
 #. module: fleet_route_education
 #: model:ir.model,name:fleet_route_education.model_fleet_route_area

@@ -28,8 +28,16 @@
             </xpath>
             <group name="head" position="inside">
                 <group>
-                    <field name="date_start_request"/>
-                    <field name="date_end_request"/>
+                    <field name="request_dates">
+                        <tree editable="bottom"
+                              nolabel="1" context="{'default_route_id':active_id}">
+                            <field name="academic_year_id"/>
+                            <field name="date_init"/>
+                            <field name="date_end"/>
+                            <field name="date_init_passenger"/>
+                            <field name="date_end_passenger"/>
+                        </tree>
+                    </field>
                 </group>
             </group>
         </field>
