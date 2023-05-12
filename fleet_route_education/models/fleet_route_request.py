@@ -80,8 +80,8 @@ class FleetRouteRequest(models.Model):
         domain="[('educational_category', '=', 'school')]",
     )
     date = fields.Datetime("Date")
-    date_init = fields.Datetime("Date Init", related="request_date.date_init_passenger")
-    date_end = fields.Datetime("Date End", related="request_date.date_end_passenger")
+    date_init = fields.Datetime("Date Init")
+    date_end = fields.Datetime("Date End")
     parent_id = fields.Many2one(
         comodel_name='res.partner',
         string='Parent',
@@ -136,16 +136,18 @@ class FleetRouteRequest(models.Model):
                 'start_date': record.date_init,
                 'end_date': record.date_end,
             }
-            values.update({
-                'stop_id': record.departure_stop_id.id,
-            })
-            departure_passenger = self.env['fleet.route.stop.passenger'].create(values)
-            values.update({
-                'stop_id': record.return_stop_id.id,
-            })
-            return_passenger = self.env['fleet.route.stop.passenger'].create(values)
-            record.passenger_ids = [(4, departure_passenger.id)]
-            record.passenger_ids = [(4, return_passenger.id)]
+            if record.departure_stop_id:
+                values.update({
+                    'stop_id': record.departure_stop_id.id,
+                })
+                departure_passenger = self.env['fleet.route.stop.passenger'].create(values)
+                record.passenger_ids = [(4, departure_passenger.id)]
+            if record.return_stop_id:
+                values.update({
+                    'stop_id': record.return_stop_id.id,
+                })
+                return_passenger = self.env['fleet.route.stop.passenger'].create(values)
+                record.passenger_ids = [(4, return_passenger.id)]
             record.state = 'done'
 
     def action_cancel_request(self):
@@ -168,4 +170,13 @@ class FleetRouteRequest(models.Model):
             res.education_center_id = res.student_id.current_center_id.id
         if not res.academic_year_id and res.request_date:
             res.academic_year_id = res.request_date.academic_year_id.id
+        if res.academic_year_id and not res.request_date:
+            route = res.departure_stop_id.route_id if res.departure_stop_id else res.return_stop_id.route_id
+            if route:
+                request_date = route.request_dates.filtered(
+                    lambda r: r.academic_year_id.id == res.academic_year_id.id)
+                res.request_date = request_date.id if request_date else None
+                if request_date:
+                    res.date_init = res.request_date.date_init_passenger
+                    res.date_end = res.request_date.date_end_passenger
         return

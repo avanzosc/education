@@ -83,6 +83,14 @@
     </record>
     <menuitem action="fleet_route_request_action" parent="fleet_route.fleet_route_base_menuitem" id="fleet_route_request_menu" groups="fleet.fleet_group_user"/>
 
+    <record id='fleet_route_request_date_action' model='ir.actions.act_window'>
+        <field name="name">Route Request Dates</field>
+        <field name="res_model">fleet.route.request.date</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="fleet_route_request_date_action" parent="fleet_route.fleet_route_base_menuitem" id="fleet_route_request_date_menu" groups="fleet.fleet_group_user"/>
+
     <record model="ir.actions.server" id="action_create_request_passengers">
         <field name="name">Create Request Passengers</field>
         <field name="model_id" ref="fleet_route_education.model_fleet_route_request"/>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-11 10:10+0000\n"
-"PO-Revision-Date: 2023-05-11 10:10+0000\n"
+"POT-Creation-Date: 2023-05-12 12:01+0000\n"
+"PO-Revision-Date: 2023-05-12 12:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -146,6 +146,13 @@ msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: fleet_route_education
+#: model:ir.actions.server,name:fleet_route_education.route_dates_active_cron_ir_actions_server
+#: model:ir.cron,cron_name:fleet_route_education.route_dates_active_cron
+#: model:ir.cron,name:fleet_route_education.route_dates_active_cron
+msgid "Check fleet routes active"
+msgstr "Rutas activas"
+
+#. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.print_education_bus_group_list_report_view_form
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.print_fleet_route_passenger_list_report_view_form
 msgid "Close"
@@ -246,6 +253,7 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__date_end
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__date_end
 msgid "Date End"
 msgstr "Fecha fin"
@@ -256,6 +264,7 @@ msgid "Date End Passenger"
 msgstr "Fecha fin pasajero"
 
 #. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__date_init
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__date_init
 msgid "Date Init"
 msgstr "Fecha de Inicio"
@@ -264,6 +273,11 @@ msgstr "Fecha de Inicio"
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__date_init_passenger
 msgid "Date Init Passenger"
 msgstr "Fecha inicio pasajero"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request_date__is_dates_active
+msgid "Date active"
+msgstr "Fecha activa"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
@@ -474,9 +488,25 @@ msgid "Print Report"
 msgstr "Imprimir informe"
 
 #. module: fleet_route_education
+#: model:ir.actions.server,name:fleet_route_education.action_route_dates_active
+msgid "Recalc active routes"
+msgstr "Recalcular rutas activas"
+
+#. module: fleet_route_education
 #: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route__request_dates
 msgid "Request Dates"
 msgstr "Fechas para inscripciones"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route_request__request_date
+msgid "Request date"
+msgstr "Fecha de inscripción"
+
+#. module: fleet_route_education
+#: model:ir.model.fields,field_description:fleet_route_education.field_fleet_route__requests_active
+#: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_view_form
+msgid "Requests active"
+msgstr "Inscripciones activas"
 
 #. module: fleet_route_education
 #: model_terms:ir.ui.view,arch_db:fleet_route_education.fleet_route_request_view_search
@@ -525,6 +555,12 @@ msgstr "Listado de pasajeros de ruta"
 #: model:ir.model,name:fleet_route_education.model_report_fleet_route_education_fleet_route_passenger_list_report_qweb
 msgid "Route Passenger List Report"
 msgstr "Informe listado de pasajeros de ruta"
+
+#. module: fleet_route_education
+#: model:ir.actions.act_window,name:fleet_route_education.fleet_route_request_date_action
+#: model:ir.ui.menu,name:fleet_route_education.fleet_route_request_date_menu
+msgid "Route Request Dates"
+msgstr "Fechas de inscripción a rutas"
 
 #. module: fleet_route_education
 #: model:ir.actions.act_window,name:fleet_route_education.fleet_route_request_action
