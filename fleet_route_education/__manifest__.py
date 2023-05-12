@@ -15,6 +15,7 @@
         "contacts_school_education",
     ],
     "data": [
+        "data/data.xml",
         "security/ir.model.access.csv",
         "security/fleet_route_education_groups.xml",
         "security/fleet_route_education_security.xml",

@@ -26,6 +26,9 @@
                 <field name="partner_course_id" string="Course" />
                 <field name="partner_group_id" string="Group" />
             </xpath>
+            <field name="company_id" position="after">
+                <field name="requests_active" string="Requests active" />
+            </field>
             <group name="head" position="inside">
                 <group>
                     <field name="request_dates">
@@ -36,6 +39,7 @@
                             <field name="date_end"/>
                             <field name="date_init_passenger"/>
                             <field name="date_end_passenger"/>
+                            <field name="is_dates_active" icon="fa-check"/>
                         </tree>
                     </field>
                 </group>

@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from datetime import date, datetime, time
 
 
 class FleetRoute(models.Model):
@@ -10,8 +11,25 @@ class FleetRoute(models.Model):
     request_dates = fields.One2many(
         comodel_name='fleet.route.request.date',
         inverse_name='route_id')
-    # date_start_request = fields.Datetime("Date start requests")
-    # date_end_request = fields.Datetime("Date end requests")
+    requests_active = fields.Boolean('Requests active', compute="_compute_requests_active")
+
+    @api.onchange('request_dates')
+    def _compute_requests_active(self):
+        for record in self:
+            record.is_request_active()
+
+    def update_date_active(self):
+        for record in self:
+            record.request_dates._compute_is_dates_active()
+
+    def is_request_active(self):
+        self.ensure_one()
+        self.requests_active = True if True in self.request_dates.mapped('is_dates_active') else False
+
+    @api.model
+    def cron_update_date_active(self):
+        for record in self:
+            record.update_date_active()
 
 
 class FleetRouteRequestDate(models.Model):
@@ -29,6 +47,21 @@ class FleetRouteRequestDate(models.Model):
     date_end = fields.Datetime("Date End")
     date_init_passenger = fields.Datetime("Date Init Passenger")
     date_end_passenger = fields.Datetime("Date End Passenger")
+    is_dates_active = fields.Boolean('Date active', compute="_compute_is_dates_active")
+
+    def _compute_is_dates_active(self):
+        for record in self:
+            today = datetime.today()
+            record.is_dates_active = (not record.date_init or record.date_init <= today) and (not record.date_end or record.date_end >= today)
+
+    def onchange_dates(self):
+        self._compute_is_dates_active()
+
+    @api.model
+    def create(self, vals):
+        res = super(FleetRouteRequestDate, self).create(vals)
+        res._compute_is_dates_active()
+        return res
 
 
 class FleetRouteRequest(models.Model):
@@ -38,14 +71,17 @@ class FleetRouteRequest(models.Model):
     academic_year_id = fields.Many2one(
         comodel_name="education.academic_year",
         string="Academic year")
+    request_date = fields.Many2one(
+        comodel_name="fleet.route.request.date",
+        string="Request date")
     education_center_id = fields.Many2one(
         comodel_name='res.partner',
         string='Education Center',
         domain="[('educational_category', '=', 'school')]",
     )
     date = fields.Datetime("Date")
-    # date_init = fields.Datetime("Date Init", related="departure_stop_id.route_id.date_start_request")
-    # date_end = fields.Datetime("Date End", related="departure_stop_id.route_id.date_end_request")
+    date_init = fields.Datetime("Date Init", related="request_date.date_init_passenger")
+    date_end = fields.Datetime("Date End", related="request_date.date_end_passenger")
     parent_id = fields.Many2one(
         comodel_name='res.partner',
         string='Parent',
@@ -130,4 +166,6 @@ class FleetRouteRequest(models.Model):
         res = super().create(vals)
         if not res.education_center_id:
             res.education_center_id = res.student_id.current_center_id.id
+        if not res.academic_year_id and res.request_date:
+            res.academic_year_id = res.request_date.academic_year_id.id
         return

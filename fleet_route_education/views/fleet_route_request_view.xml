@@ -16,6 +16,8 @@
                         <field name="student_id"/>
                         <field name="passenger_ids" widget="many2many_tags"/>
                         <field name="date"/>
+                        <field name="date_init"/>
+                        <field name="date_end"/>
                         <field name="academic_year_id"/>
                         <field name="education_center_id"/>
                     </group>
