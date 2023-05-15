@@ -80,8 +80,8 @@ class FleetRouteRequest(models.Model):
         domain="[('educational_category', '=', 'school')]",
     )
     date = fields.Datetime("Date")
-    date_init = fields.Datetime("Date Init")
-    date_end = fields.Datetime("Date End")
+    date_init = fields.Date("Date Init")
+    date_end = fields.Date("Date End")
     parent_id = fields.Many2one(
         comodel_name='res.partner',
         string='Parent',
