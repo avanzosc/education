@@ -133,7 +133,7 @@ class SurveyUserInputLine(models.Model):
     def compute_competence_types(self):
         for record in self:
             record.competence_types = record.value_suggested_row.competence_types.filtered(
-                lambda c: record.user_input_id.partner_id.current_level_id.id in c.level_ids.ids)
+                lambda c: record.user_input_id.partner_id.current_level_id.id in c.education_level_ids.ids)
 
     @api.model
     def create(self, vals):
