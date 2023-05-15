@@ -11,6 +11,20 @@
                 <field name="partner_course_id" string="Course" />
                 <field name="partner_group_id" string="Group" />
             </xpath>
+            <group name="head" position="after">
+                <group>
+                    <field name="area_id"/>
+                </group>
+            </group>
+        </field>
+    </record>
+    <record id="fleet_route_stop_view_tree" model="ir.ui.view">
+        <field name="model">fleet.route.stop</field>
+        <field name="inherit_id" ref="fleet_route.fleet_route_stop_view_tree" />
+        <field name="arch" type="xml">
+            <field name="manager_phone_mobile" position="after">
+                <field name="area_id"/>
+            </field>
         </field>
     </record>
 </odoo>
