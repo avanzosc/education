@@ -45,8 +45,8 @@ class FleetRouteRequestDate(models.Model):
         string="Academic year", required=True)
     date_init = fields.Datetime("Date Init")
     date_end = fields.Datetime("Date End")
-    date_init_passenger = fields.Datetime("Date Init Passenger")
-    date_end_passenger = fields.Datetime("Date End Passenger")
+    date_init_passenger = fields.Date("Date Init Passenger")
+    date_end_passenger = fields.Date("Date End Passenger")
     is_dates_active = fields.Boolean('Date active', compute="_compute_is_dates_active")
 
     def _compute_is_dates_active(self):
