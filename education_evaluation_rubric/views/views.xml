@@ -166,7 +166,7 @@
                 <attribute name="readonly">1</attribute>
             </field>
             <field name="quizz_mark" position="after">
-                <field name="percentage" readonly="0"/>
+                <field name="percentage" readonly="0" sum="Total Percent"/>
                 <field name="value_free_text"/>
                 <field name="date_create" readonly="1"/>
             </field>
@@ -184,6 +184,7 @@
                        attrs="{'readonly': [('record_state','=','assessed')]}"
                        domain="[
                             ('id', 'in', labels_ids)]"/>
+                <field name="competence_types" widget="many2many_tags"/>
             </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
@@ -207,7 +208,8 @@
                 <field name="color"/>
             </field>
             <xpath expr="//field[@name='labels_ids_2']/tree" position="inside">
-                <field name="percentage"/>
+                <field name="competence_types" widget="many2many_tags"/>
+                <field name="percentage" sum="Total Percent"/>
             </xpath>
             <field name="labels_ids_2" position="after">
                 <separator/>

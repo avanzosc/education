@@ -126,6 +126,14 @@ class SurveyUserInputLine(models.Model):
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
         'Education Record Status', related='user_input_id.state')
+    competence_types = fields.Many2many(
+        comodel_name='education.competence.type', string='Competence types',
+        compute='compute_competence_types')
+
+    def compute_competence_types(self):
+        for record in self:
+            record.competence_types = record.value_suggested_row.competence_types.filtered(
+                lambda c: record.user_input_id.partner_id.current_level_id.id in c.level_ids.ids)
 
     @api.model
     def create(self, vals):
@@ -178,6 +186,11 @@ class SurveyLabel(models.Model):
     _inherit = "survey.label"
 
     percentage = fields.Float('Eval. percentage')
+
+    competence_types = fields.Many2many(
+        comodel_name='education.competence.type', string='Competence types',
+        relation='rel_competence_type_survey',
+        column1='label_id', column2='competence_type_id')
 
     responsible = fields.Many2one(
         'hr.employee', string='Responsible Teacher',
