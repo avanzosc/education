@@ -2,6 +2,7 @@ from . import education_academic_year
 from . import education_academic_year_evaluation
 from . import education_competence
 from . import education_competence_type
+from . import education_competence_profile
 from . import education_course_change
 from . import education_exam
 from . import education_exam_type

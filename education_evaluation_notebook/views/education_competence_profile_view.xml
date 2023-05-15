@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="education_competence_type_view_tree"
+    <record id="education_competence_profile_view_tree"
             model="ir.ui.view">
-        <field name="model">education.competence.type</field>
+        <field name="model">education.competence.profile</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
                 <field name="description" />
-                <field name="competence_profile_id" />
-                <field name="education_level_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
 
-    <record id="education__competence_type_view_form"
+    <record id="education__competence_profile_view_form"
             model="ir.ui.view">
-        <field name="model">education.competence.type</field>
+        <field name="model">education.competence.profile</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group name="main">
                         <field name="name" />
                         <field name="description" />
-                        <field name="competence_profile_id" />
-                        <field name="education_level_ids" widget="many2many_tags"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="education_competence_type_action" model="ir.actions.act_window">
-        <field name="name">Competence Types</field>
+    <record id="education_competence_profile_action" model="ir.actions.act_window">
+        <field name="name">Competence Profiles</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">education.competence.type</field>
+        <field name="res_model">education.competence.profile</field>
         <field name="view_mode">form,tree</field>
         <field name="view_type">form</field>
-        <field name="view_id" ref="education_competence_type_view_tree"/>
+        <field name="view_id" ref="education_competence_profile_view_tree"/>
     </record>
 </odoo>

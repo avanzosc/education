@@ -9,3 +9,10 @@ class EducationCompetenceType(models.Model):
     _description = "Competence Type"
 
     name = fields.Char(string="Name")
+    description = fields.Char(string="Competence type description")
+    competence_profile_id = fields.Many2one(
+        comodel_name="education.competence.profile",
+        string="Competence profile")
+    education_level_ids = fields.Many2many(
+        comodel_name="education.level",
+        string="Education Levels")
