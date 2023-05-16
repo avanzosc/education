@@ -197,7 +197,7 @@ class SurveyLabel(models.Model):
 
     level_ids = fields.Many2many(
         comodel_name='education.level',
-        related="question_id.level_ids")
+        related="question_id_2.level_ids")
 
     responsible = fields.Many2one(
         'hr.employee', string='Responsible Teacher',
