@@ -109,7 +109,7 @@ class EducationNotebookLine(models.Model):
     competence_type_id = fields.Many2one(
         comodel_name="education.competence.type",
         string="Competence Type",
-        index=True,
+        index=True, domain="[('education_level_ids', 'in', level_ids)]"
     )
     parent_line_id = fields.Many2one(
         comodel_name="education.notebook.line",
