@@ -59,6 +59,9 @@ class SurveyPage(models.Model):
 
     responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
 
+    level_ids = fields.Many2many(
+        comodel_name='education.level',
+        related="survey_id.level_ids")
 
 class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"
@@ -192,6 +195,10 @@ class SurveyLabel(models.Model):
         relation='rel_competence_type_survey',
         column1='label_id', column2='competence_type_id')
 
+    level_ids = fields.Many2many(
+        comodel_name='education.level',
+        related="question_id.level_ids")
+
     responsible = fields.Many2one(
         'hr.employee', string='Responsible Teacher',
         compute="_compute_label_responsible", store=True)
@@ -215,6 +222,10 @@ class SurveyQuestion(models.Model):
     responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
 
 #    labels_ids_2 = fields.One2many(copy=True)
+
+    level_ids = fields.Many2many(
+        comodel_name='education.level',
+        related="page_id.level_ids")
 
     survey_text_ids = fields.One2many(
         string='Matrix Texts',
