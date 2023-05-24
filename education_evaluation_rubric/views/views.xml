@@ -45,7 +45,7 @@
                        attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
 
             </field>
-            <xpath expr="//field[@name='child_line_ids']/tree/field[@name='competence_type_id']" position="after">
+            <xpath expr="//field[@name='child_line_ids']/tree/field[@name='competence_type_ids']" position="after">
                 <field name="edited_survey_show" invisible="1"/>
                 <field name="teacher_id" invisible="1"/>
                 <field name="subject_id" invisible="1"/>

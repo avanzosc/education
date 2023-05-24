@@ -45,7 +45,7 @@
                         <field name="description" />
                         <field name="eval_type" />
                         <field name="eval_percent" />
-                        <field name="competence_type_id" />
+                        <field name="competence_type_ids" widget="many2many_tags"/>
                         <button name="button_open_notebook_line_form" icon="fa-edit"
                                 string="Open Line" type="object" />
                         <button name="button_show_child_lines" icon="fa-list"

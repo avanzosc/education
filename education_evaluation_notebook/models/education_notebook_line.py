@@ -106,9 +106,12 @@ class EducationNotebookLine(models.Model):
         compute="_compute_exam_count",
         string="# Exams",
     )
-    competence_type_id = fields.Many2one(
+    competence_type_ids = fields.Many2many(
         comodel_name="education.competence.type",
-        string="Competence Type",
+        relation='competence_type_n_line_rel',
+        column1='n_line_id',
+        column2='competence_type_id',
+        string="Competence Types",
         index=True, domain="[('education_level_ids', 'in', level_ids)]"
     )
     parent_line_id = fields.Many2one(
