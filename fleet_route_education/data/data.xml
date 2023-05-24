@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="True">
+    <record id="action_route_dates_active" model="ir.actions.server">
+        <field name="name">Recalc active routes</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="fleet_route.model_fleet_route"/>
+        <field name="binding_model_id" ref="fleet_route.model_fleet_route"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                records.update_date_active()
+        </field>
+    </record>
+    <record model="ir.cron" id="route_dates_active_cron">
+        <field name="name">Check fleet routes active</field>
+        <field name="model_id" ref="fleet_route.model_fleet_route"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_update_date_active()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall" />
+    </record>
+</odoo>

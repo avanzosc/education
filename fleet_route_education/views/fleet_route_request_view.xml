@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fleet_route_request_view_form" model="ir.ui.view">
+        <field name="name">fleet.route.request.form</field>
+        <field name="model">fleet.route.request</field>
+        <field name="arch" type="xml">
+            <form string="Fleet route area">
+                <header>
+                    <button string="Create passenger" name="action_create_passengers" type="object" attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                    <button string="Cancel" name="action_cancel_request" type="object" attrs="{'invisible': [('state', '=', 'cancel')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="open,done,cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="parent_id"/>
+                        <field name="student_id"/>
+                        <field name="passenger_ids" widget="many2many_tags"/>
+                        <field name="date"/>
+                        <field name="date_init"/>
+                        <field name="date_end"/>
+                        <field name="academic_year_id"/>
+                        <field name="education_center_id"/>
+                    </group>
+                    <group>
+                        <field name="departure_area_id"/>
+                        <field name="departure_stop_id"/>
+                        <field name="return_area_id"/>
+                        <field name="return_stop_id"/>
+                        <field name="dayofweek_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="fleet_route_request_view_tree" model="ir.ui.view">
+        <field name="name">fleet.route.request.tree</field>
+        <field name="model">fleet.route.request</field>
+        <field name="arch" type="xml">
+            <tree string="Fleet route area" decoration-success="state=='done'" decoration-bf="state=='open'" decoration-muted="state=='cancel'" default_order='date desc'>
+                <field name="parent_id"/>
+                <field name="student_id"/>
+                <field name="state"/>
+                <field name="date"/>
+                <field name="departure_area_id"/>
+                <field name="departure_stop_id"/>
+                <field name="return_area_id"/>
+                <field name="return_stop_id"/>
+                <field name="academic_year_id"/>
+                <field name="education_center_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="fleet_route_request_view_search" model="ir.ui.view">
+        <field name="name">fleet.route.request.search</field>
+        <field name="model">fleet.route.request</field>
+        <field name="arch" type="xml">
+            <search string="Fleet route area">
+                <field name="parent_id"/>
+                <field name="student_id"/>
+                <field name="education_center_id"/>
+                <filter string="Current Academic Year" name="current_academic_year"
+                        domain="[('academic_year_id.current','=',True)]" />
+                <filter string="Status Open" name="state" domain="[('state','=','open')]" />
+                <filter string="Status Closed" name="state" domain="[('state','=','done')]" />
+                <group expand="1" string="Group By">
+                    <filter string="Departure Area" name="group_departure_area" context="{'group_by': 'departure_area_id'}"/>
+                    <filter string="Departure Stop" name="group_departure_stop" context="{'group_by': 'departure_stop_id'}"/>
+                    <filter string="Return Area" name="group_return_area" context="{'group_by': 'return_area_id'}"/>
+                    <filter string="Return Stop" name="group_return_stop" context="{'group_by': 'return_stop_id'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Academic Year" name="group_academic_year" context="{'group_by': 'academic_year_id'}"/>
+                    <filter string="Education Center" name="group_education_center" context="{'group_by': 'education_center_id'}"/>
+                    <filter string="Date from month" name="group_date" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id='fleet_route_request_action' model='ir.actions.act_window'>
+        <field name="name">Route Requests</field>
+        <field name="res_model">fleet.route.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="fleet_route_request_action" parent="fleet_route.fleet_route_base_menuitem" id="fleet_route_request_menu" groups="fleet.fleet_group_user"/>
+
+    <record id='fleet_route_request_date_action' model='ir.actions.act_window'>
+        <field name="name">Route Request Dates</field>
+        <field name="res_model">fleet.route.request.date</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="fleet_route_request_date_action" parent="fleet_route.fleet_route_base_menuitem" id="fleet_route_request_date_menu" groups="fleet.fleet_group_user"/>
+
+    <record model="ir.actions.server" id="action_create_request_passengers">
+        <field name="name">Create Request Passengers</field>
+        <field name="model_id" ref="fleet_route_education.model_fleet_route_request"/>
+        <field name="binding_model_id" ref="fleet_route_education.model_fleet_route_request" />
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                records.action_create_passengers()
+        </field>
+    </record>
+    <record model="ir.actions.server" id="action_cancel_requests">
+        <field name="name">Cancel requests</field>
+        <field name="model_id" ref="fleet_route_education.model_fleet_route_request"/>
+        <field name="binding_model_id" ref="fleet_route_education.model_fleet_route_request" />
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                records.action_cancel_request()
+        </field>
+    </record>
+</odoo>

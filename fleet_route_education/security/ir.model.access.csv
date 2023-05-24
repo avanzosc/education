@@ -1,2 +1,11 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 res_partner_fleet_route_report,res_partner_fleet_route_report,model_res_partner_fleet_route_report,fleet.fleet_group_user,1,0,0,0
+fleet_route_area_user,fleet_route_area_user,model_fleet_route_area,fleet.fleet_group_user,1,0,0,0
+fleet_route_area_public,fleet_route_area_public,model_fleet_route_area,,1,0,0,0
+fleet_route_area,fleet_route_area,model_fleet_route_area,base.group_user,1,1,1,1
+fleet_route_request_user,fleet_route_request_user,model_fleet_route_request,fleet.fleet_group_user,1,0,0,0
+fleet_route_request_public,fleet_route_request_public,model_fleet_route_request,,1,0,0,0
+fleet_route_request,fleet_route_request,model_fleet_route_request,base.group_user,1,1,1,1
+fleet_route_passenger,fleet_route_passenger,model_fleet_route_stop_passenger,,1,1,1,1
+fleet_route_request_date_public,fleet_route_request_date_public,model_fleet_route_request_date,,1,0,0,0
+fleet_route_request_date_user,fleet_route_request_date_user,model_fleet_route_request_date,fleet.fleet_group_user,1,1,1,1

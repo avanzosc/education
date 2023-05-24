@@ -26,6 +26,53 @@
                 <field name="partner_course_id" string="Course" />
                 <field name="partner_group_id" string="Group" />
             </xpath>
+            <field name="company_id" position="after">
+                <field name="requests_active" string="Requests active" />
+            </field>
+            <group name="head" position="inside">
+                <group>
+                    <field name="request_dates">
+                        <tree editable="bottom"
+                              nolabel="1" context="{'default_route_id':active_id}">
+                            <field name="academic_year_id"/>
+                            <field name="date_init"/>
+                            <field name="date_end"/>
+                            <field name="date_init_passenger"/>
+                            <field name="date_end_passenger"/>
+                            <field name="is_dates_active" icon="fa-check"/>
+                        </tree>
+                    </field>
+                </group>
+            </group>
         </field>
     </record>
+    <record id="fleet_route_area_view_form" model="ir.ui.view">
+        <field name="name">fleet.route.area.form</field>
+        <field name="model">fleet.route.area</field>
+        <field name="arch" type="xml">
+            <form string="Fleet route area">
+                <group>
+                    <field name="name"/>
+                    <field name="education_center_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="fleet_route_area_view_tree" model="ir.ui.view">
+        <field name="name">fleet.route.area.tree</field>
+        <field name="model">fleet.route.area</field>
+        <field name="arch" type="xml">
+            <tree string="Fleet route area">
+                <field name="name"/>
+                <field name="education_center_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id='fleet_route_area_action' model='ir.actions.act_window'>
+        <field name="name">Route Areas</field>
+        <field name="res_model">fleet.route.area</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="fleet_route_area_action" parent="fleet_route.fleet_route_base_menuitem" id="fleet_route_area_menu" groups="fleet.fleet_group_user"/>
 </odoo>

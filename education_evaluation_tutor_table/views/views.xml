@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_url_education_tutor_meetings" model="ir.actions.act_url">
+        <field name="name">Meetings</field>
+        <field name="url">/meetings</field>
+        <field name="target">self</field>
+    </record>
+    <menuitem id="education_tutor_meeting_table_menu"
+              name="Tutor Meetings"
+              action="action_url_education_tutor_meetings"
+              web_icon="education_evaluation_tutor_table,static/src/img/interview.png"
+              sequence="0"/>
+</odoo>
