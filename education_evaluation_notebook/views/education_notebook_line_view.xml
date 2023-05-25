@@ -19,7 +19,7 @@
                 <field name="eval_percent" />
                 <field name="parent_line_id" invisible="True" />
                 <field name="parent_parent_line_id" invisible="True" />
-                <field name="competence_type_id" />
+                <field name="competence_type_ids" widget="many2many_tags"/>
                 <field name="schedule_id" invisible="True" />
                 <field name="teacher_id" groups="education.education_responsible" />
                 <field name="subject_id" />
@@ -39,7 +39,7 @@
                 <field name="description" filter_domain="['|',('description','ilike',self),('code','ilike',self)]" />
                 <field name="code" />
                 <field name="eval_percent"  />
-                <field name="competence_type_id" />
+                <field name="competence_type_ids" widget="many2many_tags" />
                 <field name="schedule_id" />
                 <field name="teacher_id" groups="education.education_responsible" />
                 <field name="a_year_id" />
@@ -68,9 +68,6 @@
                         context="{'group_by':'eval_type'}" string="Evaluation" />
                     <filter name="groupby_competence"
                         context="{'group_by':'competence_id'}" string="Competence" />
-                    <filter name="groupby_competencetype"
-                        context="{'group_by':'competence_type_id'}"
-                        string="Competence type" />
                     <filter name="groupby_teacher"
                         context="{'group_by':'teacher_id'}" string="Teacher"
                         groups="education.education_responsible" />
@@ -126,7 +123,7 @@
                                    attrs="{'required':[('global_competence','=',False)], 'readonly': [('id','!=',False)]}"/>
                             <field name="parent_parent_line_id"
                                    attrs="{'invisible':[('parent_parent_line_id','=',False)]}" />
-                            <field name="competence_type_id"  />
+                            <field name="competence_type_ids" widget="many2many_tags" />
                             <field name="sequence" attrs="{'invisible': ['|',('global_competence','=',True),('evaluation_competence','=',True)]}" />
                         </group>
                         <group string="Class Schedule Info">
@@ -194,7 +191,7 @@
                                     <field name="code" />
                                     <field name="eval_type" />
                                     <field name="eval_percent" sum="Total Percent"/>
-                                    <field name="competence_type_id" />
+                                    <field name="competence_type_ids" widget="many2many_tags" />
                                     <button name="button_open_notebook_line_form" icon="fa-edit"
                                             string="Open Line" type="object" />
                                     <button name="button_create_student_records" icon="fa-book"

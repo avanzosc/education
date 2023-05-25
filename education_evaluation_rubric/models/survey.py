@@ -59,6 +59,9 @@ class SurveyPage(models.Model):
 
     responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
 
+    level_ids = fields.Many2many(
+        comodel_name='education.level',
+        related="survey_id.level_ids")
 
 class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"
@@ -126,6 +129,14 @@ class SurveyUserInputLine(models.Model):
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
         'Education Record Status', related='user_input_id.state')
+    competence_types = fields.Many2many(
+        comodel_name='education.competence.type', string='Competence types',
+        compute='compute_competence_types')
+
+    def compute_competence_types(self):
+        for record in self:
+            record.competence_types = record.value_suggested_row.competence_types.filtered(
+                lambda c: record.user_input_id.partner_id.current_level_id.id in c.education_level_ids.ids)
 
     @api.model
     def create(self, vals):
@@ -179,6 +190,15 @@ class SurveyLabel(models.Model):
 
     percentage = fields.Float('Eval. percentage')
 
+    competence_types = fields.Many2many(
+        comodel_name='education.competence.type', string='Competence types',
+        relation='rel_competence_type_survey',
+        column1='label_id', column2='competence_type_id')
+
+    level_ids = fields.Many2many(
+        comodel_name='education.level',
+        related="question_id_2.level_ids")
+
     responsible = fields.Many2one(
         'hr.employee', string='Responsible Teacher',
         compute="_compute_label_responsible", store=True)
@@ -202,6 +222,10 @@ class SurveyQuestion(models.Model):
     responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
 
 #    labels_ids_2 = fields.One2many(copy=True)
+
+    level_ids = fields.Many2many(
+        comodel_name='education.level',
+        related="page_id.level_ids")
 
     survey_text_ids = fields.One2many(
         string='Matrix Texts',

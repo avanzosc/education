@@ -45,7 +45,7 @@
                        attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
 
             </field>
-            <xpath expr="//field[@name='child_line_ids']/tree/field[@name='competence_type_id']" position="after">
+            <xpath expr="//field[@name='child_line_ids']/tree/field[@name='competence_type_ids']" position="after">
                 <field name="edited_survey_show" invisible="1"/>
                 <field name="teacher_id" invisible="1"/>
                 <field name="subject_id" invisible="1"/>
@@ -166,7 +166,7 @@
                 <attribute name="readonly">1</attribute>
             </field>
             <field name="quizz_mark" position="after">
-                <field name="percentage" readonly="0"/>
+                <field name="percentage" readonly="0" sum="Total Percent"/>
                 <field name="value_free_text"/>
                 <field name="date_create" readonly="1"/>
             </field>
@@ -184,6 +184,7 @@
                        attrs="{'readonly': [('record_state','=','assessed')]}"
                        domain="[
                             ('id', 'in', labels_ids)]"/>
+                <field name="competence_types" widget="many2many_tags"/>
             </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
@@ -203,11 +204,15 @@
         <field name="model">survey.question</field>
         <field name="inherit_id" ref="survey.survey_question_form"/>
         <field name="arch" type="xml">
+            <field name="type" position="after">
+            </field>
             <field name="quizz_mark" position="after">
                 <field name="color"/>
             </field>
             <xpath expr="//field[@name='labels_ids_2']/tree" position="inside">
-                <field name="percentage"/>
+                <field name="competence_types" widget="many2many_tags" domain="[('education_level_ids', 'in', level_ids)]"/>
+                <field name="percentage" sum="Total Percent"/>
+                <field name="level_ids" invisible="1"/>
             </xpath>
             <field name="labels_ids_2" position="after">
                 <separator/>
