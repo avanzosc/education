@@ -6,10 +6,9 @@
             <pivot string="Competences Report" disable_linking="True">
                 <field name="group_id" type="row" />
                 <field name="schedule_id" type="row" />
-                <field name="n_line_id" type="row" />
                 <field name="student_id" type="row" />
                 <field name="competence_type_id" type="col"/>
-                <field name="education_record_id" type="col" />
+                <field name="n_line_id" type="col" />
             </pivot>
         </field>
     </record>
