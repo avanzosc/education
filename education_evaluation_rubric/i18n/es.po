@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 11:01+0000\n"
-"PO-Revision-Date: 2023-03-27 11:01+0000\n"
+"POT-Creation-Date: 2023-06-02 12:14+0000\n"
+"PO-Revision-Date: 2023-06-02 12:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.edu_schedule_web_records
+msgid "<span class=\"o_stat_text\">Rubric Questions</span>"
+msgstr "<span class=\"o_stat_text\">Preguntas Rubrica</span>"
 
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_print
@@ -79,6 +84,11 @@ msgid "By creating a custom survey template existing survey inputs will be delet
 msgstr "Si crea una encuesta propia las líneas de encuesta previamente creadas se borrarán."
 
 #. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_schedule
+msgid "Class Schedule"
+msgstr "Horario de clases"
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__color
 msgid "Color Hex"
 msgstr ""
@@ -87,6 +97,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__competence_ids
 msgid "Competence"
 msgstr "Competencia"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__competence_types
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__competence_types
+msgid "Competence types"
+msgstr "Tipos de competencia"
 
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
@@ -189,7 +205,7 @@ msgstr "Evaluación"
 #. module: education_evaluation_rubric
 #: model:res.groups,name:education_evaluation_rubric.education_secretary_group
 msgid "Group Secretary"
-msgstr ""
+msgstr "Secretaria grupo"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__id
@@ -222,6 +238,9 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__level_ids
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_page__level_ids
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question__level_ids
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__level_ids
 msgid "Levels"
 msgstr "Niveles"
@@ -295,6 +314,12 @@ msgstr "Profesor responsable"
 #: model:education.competence,name:education_evaluation_rubric.education_competence_rubric
 msgid "Rubric"
 msgstr "Rúbrica"
+
+#. module: education_evaluation_rubric
+#: code:addons/education_evaluation_rubric/models/education_schedule.py:27
+#, python-format
+msgid "Schedule rubric questions"
+msgstr "Preguntas de rubrica"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__quizz_score
@@ -396,10 +421,16 @@ msgid "Text"
 msgstr "Texto"
 
 #. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/survey.py:217
+#: code:addons/education_evaluation_rubric/models/survey.py:241
 #, python-format
 msgid "The sum of all label percentages cannot be greater than 100."
 msgstr "La suma de todos los porcentajes no debe superar el 100%."
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_question_text_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_user_input_form
+msgid "Total Percent"
+msgstr "Porcentaje total"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__labels_ids

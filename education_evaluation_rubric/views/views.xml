@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="edu_schedule_web_records" model="ir.ui.view">
+        <field name="name">education.schedule.form</field>
+        <field name="model">education.schedule</field>
+        <field name="inherit_id" ref="education.education_schedule_view_form"/>
+        <field name="arch" type="xml">
+            <button name="button_show_notebook_lines" position="before">
+                <button class="oe_stat_button" type="object" name="button_open_rubric_questions" icon="fa-reorder">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Rubric Questions</span>
+                    </div>
+                </button>
+            </button>
+        </field>
+    </record>
     <record id="education_notebook_line_view_form" model="ir.ui.view">
         <field name="model">education.notebook.line</field>
         <field name="inherit_id" ref="education_evaluation_notebook.education_notebook_line_view_form"/>
