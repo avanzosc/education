@@ -12,7 +12,8 @@ class EducationSchedule(models.Model):
     def _rubric_questions_count(self):
         for record in self:
             domain = record._rubric_questions_domain()
-            record.rubric_questions_count = self.env['survey.question'].search_count(domain)
+            if len(domain) > 0:
+                record.rubric_questions_count = self.env['survey.question'].search_count(domain)
 
     def _rubric_questions_domain(self):
         self.ensure_one()
