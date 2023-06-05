@@ -29,6 +29,8 @@ class EducationGroupCompetenceReport(models.Model):
         comodel_name="education.competence.type", string="Competence Type")
     n_line_id = fields.Many2one(
         comodel_name="education.notebook.line", string="Notebook Line")
+    competence_profile_id = fields.Many2one(
+        comodel_name="education.competence.profile", string="Notebook Line")
 
     def _select(self):
         select_str = """
@@ -40,7 +42,8 @@ class EducationGroupCompetenceReport(models.Model):
                 ntbl.id AS n_line_id,
                 erec.id AS education_record_id,
                 erec.numeric_mark AS numeric_mark,
-                ctrel.competence_type_id AS competence_type_id
+                ctrel.competence_type_id AS competence_type_id,
+                ecp.id AS competence_profile_id
         """
         return select_str
 
@@ -50,6 +53,8 @@ class EducationGroupCompetenceReport(models.Model):
                 JOIN edu_schedule_group as sch ON grp.id = sch.group_id
                 JOIN education_notebook_line ntbl ON ntbl.schedule_id = sch.schedule_id
                 JOIN competence_type_n_line_rel ctrel ON ctrel.n_line_id = ntbl.id
+                JOIN education_competence_type ect ON ctrel.competence_type_id = ect.id
+                JOIN education_competence_profile ecp ON ect.competence_profile_id = ecp.id
                 JOIN education_record erec ON erec.n_line_id = ntbl.id
                 JOIN res_partner stu ON stu.id = erec.student_id
         """
@@ -57,7 +62,7 @@ class EducationGroupCompetenceReport(models.Model):
 
     def _group_by(self):
         group_by_str = """
-            GROUP BY grp.id, sch.schedule_id, stu.id, ntbl.id, ctrel.competence_type_id, erec.id
+            GROUP BY grp.id, sch.schedule_id, stu.id, ntbl.id, ctrel.competence_type_id, ecp.id, erec.id
          """
         return group_by_str
 
