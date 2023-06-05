@@ -6,8 +6,10 @@
         <field name="inherit_id" ref="education.education_schedule_view_form"/>
         <field name="arch" type="xml">
             <button name="button_show_notebook_lines" position="before">
-                <button class="oe_stat_button" type="object" name="button_open_rubric_questions" icon="fa-reorder">
+                <button class="oe_stat_button" type="object" name="button_open_rubric_questions" icon="fa-reorder"
+                        attrs="{'invisible': [('rubric_questions_count','=',0)]}">
                     <div class="o_stat_info">
+                        <field name="rubric_questions_count" class="o_stat_value"/>
                         <span class="o_stat_text">Rubric Questions</span>
                     </div>
                 </button>

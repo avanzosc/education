@@ -1,17 +1,23 @@
 # Copyright 2023 Leire Martinez de Santos - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import _, api, models
+from odoo import _, api, fields, models
 
 
 class EducationSchedule(models.Model):
     _inherit = 'education.schedule'
 
-    @api.multi
-    def button_open_rubric_questions(self):
+    rubric_questions_count = fields.Integer(
+        'Rubric questions count', compute='_rubric_questions_count')
+
+    def _rubric_questions_count(self):
+        for record in self:
+            domain = record._rubric_questions_domain()
+            record.rubric_questions_count = self.env['survey.question'].search_count(domain)
+
+    def _rubric_questions_domain(self):
         self.ensure_one()
         domain = []
         survey_ids = self.notebook_line_ids.mapped('edited_survey_id')
-        survey_question_ids = None
         if not survey_ids:
             n_line_survey_ids = self.notebook_line_ids.mapped('survey_id')
             survey_ids = self.env['survey.survey'].search([
@@ -22,10 +28,16 @@ class EducationSchedule(models.Model):
                 ('survey_id', 'in', survey_ids.ids),
             ])
             domain += [('id', 'in', survey_question_ids.ids)]
+        return domain
+
+    @api.multi
+    def button_open_rubric_questions(self):
+        self.ensure_one()
+        domain = self._rubric_questions_domain()
         return {
             'type': 'ir.actions.act_window',
             'name': _('Schedule rubric questions'),
             'res_model': 'survey.question',
-            'view_mode': 'tree',
+            'view_mode': 'tree,form',
             'domain': domain,
         }
