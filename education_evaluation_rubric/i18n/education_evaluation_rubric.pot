@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 11:00+0000\n"
-"PO-Revision-Date: 2023-03-27 11:00+0000\n"
+"POT-Creation-Date: 2023-06-05 15:54+0000\n"
+"PO-Revision-Date: 2023-06-05 15:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -79,6 +79,11 @@ msgid "By creating a custom survey template existing survey inputs will be delet
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_education_schedule
+msgid "Class Schedule"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__color
 msgid "Color Hex"
 msgstr ""
@@ -86,6 +91,12 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__competence_ids
 msgid "Competence"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__competence_types
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__competence_types
+msgid "Competence types"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -222,6 +233,9 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__level_ids
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_page__level_ids
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question__level_ids
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__level_ids
 msgid "Levels"
 msgstr ""
@@ -229,6 +243,11 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question__survey_text_ids
 msgid "Matrix Texts"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: selection:survey.survey,related_record_mark:0
+msgid "Maximum Average Grade"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -396,9 +415,15 @@ msgid "Text"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/survey.py:217
+#: code:addons/education_evaluation_rubric/models/survey.py:242
 #, python-format
 msgid "The sum of all label percentages cannot be greater than 100."
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_question_text_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_user_input_form
+msgid "Total Percent"
 msgstr ""
 
 #. module: education_evaluation_rubric

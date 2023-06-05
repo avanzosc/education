@@ -26,6 +26,7 @@ class SurveySurvey(models.Model):
         selection=[
             ('quizz_score', 'Quizz Score'),
             ('average_grade', 'Average Grade'),
+            ('maximum_average', 'Maximum Average Grade'),
         ],
         default='quizz_score', required=True,
         help='Select whether to relate quizz_mark or average_grade on education record numeric marks.')
