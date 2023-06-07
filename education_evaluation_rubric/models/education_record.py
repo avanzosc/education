@@ -57,9 +57,13 @@ class EducationRecord(models.Model):
         elif self.survey_id.related_record_mark == 'average_grade':
             ret_value = self.survey_input_id.average_grade
         elif self.survey_id.related_record_mark == 'maximum_average':
+            self.survey_input_id.update_line_value_suggested()
             survey = self.survey_input_id.survey_id
-            max_points = sum(survey.mapped('page_ids').mapped('question_ids').mapped('labels_ids').mapped('quizz_mark'))
-            ret_value = self.quizz_score / max_points * 10
+            max_value = survey.mapped('page_ids').mapped('question_ids').mapped('labels_ids').sorted(
+                key=lambda m: m.quizz_mark, reverse=True)[0]
+            max_points = max_value.quizz_mark * len(survey.mapped('page_ids').mapped('question_ids').mapped('labels_ids_2'))
+            quizz_score = sum(self.survey_input_id.user_input_line_ids.mapped('quizz_mark'))
+            ret_value = quizz_score / max_points * 10
             if 0 > ret_value or 10 < ret_value:
                 ret_value = None
         return ret_value
