@@ -38,7 +38,7 @@ class EducationNotebookTemplate(models.Model):
         comodel_name="education.competence", string="Competence",
         domain="[('evaluation_check', '!=', True), "
                "('global_check', '!=', True)]", required=True)
-    competence_type_ids = fields.Many2one(
+    competence_type_ids = fields.Many2many(
         comodel_name="education.competence.type",
         relation='competence_type_n_template_rel',
         column1='n_template_id',

@@ -97,7 +97,7 @@
                             <field name="eval_type" />
                             <field name="eval_percent" />
                             <field name="competence_id" options="{'no_create': True, 'no_edit': True}" />
-                            <field name="competence_type_ids" widget="many2many_tags"  options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="competence_type_ids" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
                         </group>
                     </group>
                 </sheet>
