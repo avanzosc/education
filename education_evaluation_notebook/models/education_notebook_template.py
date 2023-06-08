@@ -38,8 +38,12 @@ class EducationNotebookTemplate(models.Model):
         comodel_name="education.competence", string="Competence",
         domain="[('evaluation_check', '!=', True), "
                "('global_check', '!=', True)]", required=True)
-    competence_type_id = fields.Many2one(
-        comodel_name="education.competence.type", string="Competence Type")
+    competence_type_ids = fields.Many2one(
+        comodel_name="education.competence.type",
+        relation='competence_type_n_template_rel',
+        column1='n_template_id',
+        column2='competence_type_id',
+        string="Competence Types",)
     name = fields.Char(string="Description", required=True)
     eval_percent = fields.Float(
         string="Percent (%)", default=100.0, group_operator="max")
