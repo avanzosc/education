@@ -77,7 +77,7 @@ class EducationNotebookTemplate(models.Model):
             "description": self.name,
             "eval_percent": self.eval_percent,
             "eval_type": self.eval_type,
-            "competence_type_id": self.competence_type_id.id,
+            "competence_type_ids": self.competence_type_ids.ids,
             "parent_line_id": parent_line and parent_line.id or False,
         }
         return vals
