@@ -113,6 +113,7 @@
         <xpath expr="//td[@t-foreach='question.labels_ids']" position="attributes">
             <attribute name="t-att-style">'color:'+col_label.color+';' if col_label.color else ''</attribute>
             <attribute name="class">td_survey</attribute>
+            <attribute name="onclick">$(this).find('.input_survey').prop('checked', true);</attribute>
         </xpath>
         <xpath expr="//td[@t-foreach='question.labels_ids']/input" position="attributes">
             <attribute name="class">input_survey</attribute>
