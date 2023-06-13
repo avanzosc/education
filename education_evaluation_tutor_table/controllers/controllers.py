@@ -55,9 +55,11 @@ class EducationMain(CustomerPortal):
             new_meetig= self.input_duplicate(eval_ref, student_id, month_id, type_ref, current_academic_year.id)
 
         meetings = calendar_event_obj.sudo().search([
-            ('teacher_id', '=', logged_employee.id),
             ('academic_year_id', '=', current_academic_year.id),
             ('categ_ids', 'in', [STUDENT_TUTORING.id, FAMILY_TUTORING.id]),
+            '|',
+            ('teacher_id', '=', logged_employee.id),
+            ('substitute_teacher_id', '=', logged_employee.id),
         ], order='eval_type')
 
         change_ids = []
