@@ -145,12 +145,16 @@ class EducationMain(CustomerPortal):
             domain += [('academic_year_id', '=', academic_year.id)]
         if evaluation:
             domain += [('eval_type', '=', evaluation)]
-        if teacher:
-            domain += [('teacher_id', '=', teacher.id)]
         if type_ref == 'student':
             domain += [('categ_ids', 'in', STUDENT_TUTORING.ids)]
         elif type_ref == 'parent':
             domain += [('categ_ids', 'in', FAMILY_TUTORING.ids)]
+        if teacher:
+            domain += [
+                '|',
+                ('teacher_id', '=', teacher.id),
+                ('substitute_teacher_id', '=', teacher.id),
+            ]
 
         meetings = request.env['calendar.event'].sudo().search(domain)
         if month:
