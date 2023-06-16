@@ -85,10 +85,12 @@ class FleetRouteRequest(models.Model):
     parent_id = fields.Many2one(
         comodel_name='res.partner',
         string='Parent',
+        domain=[("educational_category", "=", "progenitor")],
     )
     student_id = fields.Many2one(
         comodel_name='res.partner',
         string='Student',
+        domain=[("educational_category", "=", "student")],
     )
     departure_area_id = fields.Many2one(
         comodel_name='fleet.route.area',
@@ -154,6 +156,7 @@ class FleetRouteRequest(models.Model):
         for record in self:
             record.state = 'cancel'
 
+    @api.model
     def create(self, vals):
         if not vals.get('return_area_id', None):
             return_stop = self.env['fleet.route.stop'].browse(vals.get('return_stop_id'))
@@ -179,4 +182,4 @@ class FleetRouteRequest(models.Model):
                 if request_date:
                     res.date_init = res.request_date.date_init_passenger
                     res.date_end = res.request_date.date_end_passenger
-        return
+        return res
