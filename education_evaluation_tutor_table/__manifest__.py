@@ -13,6 +13,7 @@
         "website",
         "report_xlsx",
         "education",
+        "calendar_school",
         "education_evaluation_notebook",
     ],
     "data": [

@@ -59,6 +59,8 @@ class EducationMain(CustomerPortal):
             ('categ_ids', 'in', [STUDENT_TUTORING.id, FAMILY_TUTORING.id]),
             '|',
             ('teacher_id', '=', logged_employee.id),
+            '|',
+            ('substitute_id', '=', logged_employee.id),
             ('substitute_teacher_id', '=', logged_employee.id),
         ], order='eval_type')
 
