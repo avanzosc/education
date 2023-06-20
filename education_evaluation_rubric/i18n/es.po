@@ -16,6 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.edu_schedule_web_records
+msgid "<span class=\"o_stat_text\">Rubric Questions</span>"
+msgstr "<span class=\"o_stat_text\">Preguntas Rubrica</span>"
+
+#. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_print
 msgid "<span>Mark: </span>"
 msgstr "<span>Nota: </span>"
@@ -314,6 +319,12 @@ msgstr "Profesor responsable"
 #: model:education.competence,name:education_evaluation_rubric.education_competence_rubric
 msgid "Rubric"
 msgstr "Rúbrica"
+
+#. module: education_evaluation_rubric
+#: code:addons/education_evaluation_rubric/models/education_schedule.py:27
+#, python-format
+msgid "Schedule rubric questions"
+msgstr "Preguntas de rubrica"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__quizz_score

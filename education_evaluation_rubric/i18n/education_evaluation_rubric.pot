@@ -16,6 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.edu_schedule_web_records
+msgid "<span class=\"o_stat_text\">Rubric Questions</span>"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_print
 msgid "<span>Mark: </span>"
 msgstr ""
@@ -313,6 +318,12 @@ msgstr ""
 #: selection:education.competence,eval_mode:0
 #: model:education.competence,name:education_evaluation_rubric.education_competence_rubric
 msgid "Rubric"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: code:addons/education_evaluation_rubric/models/education_schedule.py:27
+#, python-format
+msgid "Schedule rubric questions"
 msgstr ""
 
 #. module: education_evaluation_rubric

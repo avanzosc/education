@@ -2,23 +2,20 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Education Evaluation Notebook - Tutor Table",
+    "name": "Education Competence Report",
     "version": "12.0.1.0.0",
     "category": "Hidden",
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
     "depends": [
-        "portal",
-        "website",
-        "report_xlsx",
         "education",
-        "calendar_school",
         "education_evaluation_notebook",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/views.xml",
-        "views/templates.xml",
+        "reports/education_group_competence_report_view.xml",
     ],
     "installable": True,
     "auto_install": True,

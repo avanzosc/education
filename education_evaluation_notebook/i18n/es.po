@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-15 13:24+0000\n"
-"PO-Revision-Date: 2023-05-15 13:24+0000\n"
+"POT-Creation-Date: 2023-06-08 10:34+0000\n"
+"PO-Revision-Date: 2023-06-08 10:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -188,7 +188,7 @@ msgstr "Año académico"
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:59
 #, python-format
 msgid "Academic Year:"
-msgstr "Año académico"
+msgstr "Año Académico"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_exam_report_view_search
@@ -226,7 +226,7 @@ msgstr "Acumulado"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_needaction
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción requerida"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_numeric__active
@@ -267,7 +267,7 @@ msgstr "Nota evaluada"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_attachment_count
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_attachment_count
 msgid "Attachment Count"
-msgstr "Conteo de archivos adjuntos"
+msgstr "Nº de archivos adjuntos"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:92
@@ -418,8 +418,8 @@ msgstr "Código"
 
 #. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/models/education_competence.py:37
-#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:177
-#: code:addons/education_evaluation_notebook/models/education_notebook_template.py:52
+#: code:addons/education_evaluation_notebook/models/education_notebook_line.py:180
+#: code:addons/education_evaluation_notebook/models/education_notebook_template.py:56
 #, python-format
 msgid "Code must have a length of 3 characters "
 msgstr "El código debe tener 3 carácteres"
@@ -453,14 +453,13 @@ msgstr "Perfil de competencia"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_competence_type
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_type_id
-#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__competence_type_id
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_template_view_search
 msgid "Competence Type"
 msgstr "Tipo de competencia"
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_type_action
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_type_ids
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__competence_type_ids
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_type_menu
 msgid "Competence Types"
 msgstr "Tipos de competencia"
@@ -479,11 +478,6 @@ msgstr "Perfil de competencia"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__description
 msgid "Competence profile description"
 msgstr "Descripción"
-
-#. module: education_evaluation_notebook
-#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_search
-msgid "Competence type"
-msgstr "Tipo de competencia"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__description
@@ -633,7 +627,7 @@ msgstr "Año actual"
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_exam__access_url
 #: model:ir.model.fields,help:education_evaluation_notebook.field_education_record__access_url
 msgid "Customer Portal URL"
-msgstr "URL para portal"
+msgstr "URL del portal de cliente"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__date
@@ -715,7 +709,7 @@ msgstr "Relación de centro educativo y curso"
 #: code:addons/education_evaluation_notebook/reports/res_partner_record_xlsx_report.py:46
 #, python-format
 msgid "Education Center:"
-msgstr "Centro educativo:"
+msgstr "Centro Educativo:"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_academic_year_evaluation_view_search
@@ -1159,7 +1153,7 @@ msgstr "Seguidores (Empresas)"
 #: code:addons/education_evaluation_notebook/reports/partner_record_report.py:16
 #, python-format
 msgid "Form content is missing, this report cannot be printed."
-msgstr "Falta el contenido del formulario, este informe no se puede imprimir."
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.report_partner_record_document
@@ -1580,7 +1574,7 @@ msgstr "Nota máx."
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_has_error
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_record__message_has_error
 msgid "Message Delivery error"
-msgstr "Error de Envío de Mensaje"
+msgstr "Mensaje de Error de entrega"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__message_ids
@@ -1803,7 +1797,7 @@ msgstr "Abrir registros académicos"
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Open Exam"
-msgstr ""
+msgstr "Examen abierto"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form

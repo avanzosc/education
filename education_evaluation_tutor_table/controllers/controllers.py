@@ -55,9 +55,13 @@ class EducationMain(CustomerPortal):
             new_meetig= self.input_duplicate(eval_ref, student_id, month_id, type_ref, current_academic_year.id)
 
         meetings = calendar_event_obj.sudo().search([
-            ('teacher_id', '=', logged_employee.id),
             ('academic_year_id', '=', current_academic_year.id),
             ('categ_ids', 'in', [STUDENT_TUTORING.id, FAMILY_TUTORING.id]),
+            '|',
+            ('teacher_id', '=', logged_employee.id),
+            '|',
+            ('substitute_id', '=', logged_employee.id),
+            ('substitute_teacher_id', '=', logged_employee.id),
         ], order='eval_type')
 
         change_ids = []
@@ -143,12 +147,16 @@ class EducationMain(CustomerPortal):
             domain += [('academic_year_id', '=', academic_year.id)]
         if evaluation:
             domain += [('eval_type', '=', evaluation)]
-        if teacher:
-            domain += [('teacher_id', '=', teacher.id)]
         if type_ref == 'student':
             domain += [('categ_ids', 'in', STUDENT_TUTORING.ids)]
         elif type_ref == 'parent':
             domain += [('categ_ids', 'in', FAMILY_TUTORING.ids)]
+        if teacher:
+            domain += [
+                '|',
+                ('teacher_id', '=', teacher.id),
+                ('substitute_teacher_id', '=', teacher.id),
+            ]
 
         meetings = request.env['calendar.event'].sudo().search(domain)
         if month:
