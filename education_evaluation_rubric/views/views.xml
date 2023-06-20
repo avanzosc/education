@@ -44,7 +44,7 @@
                             ('responsible', '=', teacher_id),
                             '|',
                             ('school_ids', '=', False),
-                            ('school_ids', 'in', competence_id),
+                            ('school_ids', 'in', education_center_id),
                             '|',
                             ('competence_ids', '=', False),
                             ('competence_ids', 'in', competence_id),
