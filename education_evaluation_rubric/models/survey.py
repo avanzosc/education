@@ -10,6 +10,9 @@ class SurveySurvey(models.Model):
     responsible = fields.Many2one('hr.employee', string='Responsible Teacher')
     competence_ids = fields.Many2many(
         comodel_name="education.competence", string="Competence")
+    school_ids = fields.Many2many(
+        string="Schools",
+        comodel_name="res.partner", domain="[('educational_category', '=', 'school')]")
     level_ids = fields.Many2many(
         comodel_name='education.level', string='Levels',
         relation='rel_education_level_survey',
@@ -62,6 +65,7 @@ class SurveyPage(models.Model):
     level_ids = fields.Many2many(
         comodel_name='education.level',
         related="survey_id.level_ids")
+
 
 class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"

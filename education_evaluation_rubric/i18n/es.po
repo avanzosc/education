@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-02 12:14+0000\n"
-"PO-Revision-Date: 2023-06-02 12:14+0000\n"
+"POT-Creation-Date: 2023-06-20 07:01+0000\n"
+"PO-Revision-Date: 2023-06-20 07:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -316,10 +316,20 @@ msgid "Rubric"
 msgstr "Rúbrica"
 
 #. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/education_schedule.py:27
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_schedule__rubric_questions_count
+msgid "Rubric questions count"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: code:addons/education_evaluation_rubric/models/education_schedule.py:40
 #, python-format
 msgid "Schedule rubric questions"
 msgstr "Preguntas de rubrica"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__school_ids
+msgid "Schools"
+msgstr "Colegios"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__quizz_score
@@ -421,7 +431,7 @@ msgid "Text"
 msgstr "Texto"
 
 #. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/survey.py:241
+#: code:addons/education_evaluation_rubric/models/survey.py:245
 #, python-format
 msgid "The sum of all label percentages cannot be greater than 100."
 msgstr "La suma de todos los porcentajes no debe superar el 100%."
