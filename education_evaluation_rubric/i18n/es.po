@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-02 12:14+0000\n"
-"PO-Revision-Date: 2023-06-02 12:14+0000\n"
+"POT-Creation-Date: 2023-06-05 15:55+0000\n"
+"PO-Revision-Date: 2023-06-05 15:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -251,6 +251,11 @@ msgid "Matrix Texts"
 msgstr "Textos de matriz"
 
 #. module: education_evaluation_rubric
+#: selection:survey.survey,related_record_mark:0
+msgid "Maximum Average Grade"
+msgstr "Nota media máxima"
+
+#. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_student_next_button
 msgid "Next Student"
 msgstr "Siguiente alumno"
@@ -421,7 +426,7 @@ msgid "Text"
 msgstr "Texto"
 
 #. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/survey.py:241
+#: code:addons/education_evaluation_rubric/models/survey.py:242
 #, python-format
 msgid "The sum of all label percentages cannot be greater than 100."
 msgstr "La suma de todos los porcentajes no debe superar el 100%."
