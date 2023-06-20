@@ -251,6 +251,11 @@ msgid "Matrix Texts"
 msgstr "Textos de matriz"
 
 #. module: education_evaluation_rubric
+#: selection:survey.survey,related_record_mark:0
+msgid "Maximum Average Grade"
+msgstr "Nota media máxima"
+
+#. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_student_next_button
 msgid "Next Student"
 msgstr "Siguiente alumno"

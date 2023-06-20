@@ -29,6 +29,7 @@ class SurveySurvey(models.Model):
         selection=[
             ('quizz_score', 'Quizz Score'),
             ('average_grade', 'Average Grade'),
+            ('maximum_average', 'Maximum Average Grade'),
         ],
         default='quizz_score', required=True,
         help='Select whether to relate quizz_mark or average_grade on education record numeric marks.')
@@ -123,6 +124,10 @@ class SurveyUserInput(models.Model):
         res = super().write(vals)
         self.mapped('education_record_id')._onchange_survey_mark()
         return res
+
+    def update_line_value_suggested(self):
+        for record in self.mapped('user_input_line_ids'):
+            record.quizz_mark = record.value_suggested.quizz_mark
 
 
 class SurveyUserInputLine(models.Model):
