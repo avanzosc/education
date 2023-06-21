@@ -69,6 +69,7 @@
                 <field name="teacher_id" invisible="1"/>
                 <field name="subject_id" invisible="1"/>
                 <field name="course_ids" invisible="1"/>
+                <field name="education_center_id" invisible="1"/>
                 <field name="survey_id"
                        options='{"no_open": True}'
                        domain="[
@@ -76,6 +77,9 @@
                             '|',
                             ('responsible', '=', False),
                             ('responsible', '=', teacher_id),
+                            '|',
+                            ('school_ids', '=', False),
+                            ('school_ids', 'in', education_center_id),
                             '|',
                             ('competence_ids', '=', False),
                             ('competence_ids', 'in', competence_id),
