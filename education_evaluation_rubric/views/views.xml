@@ -43,6 +43,9 @@
                             ('responsible', '=', False),
                             ('responsible', '=', teacher_id),
                             '|',
+                            ('school_ids', '=', False),
+                            ('school_ids', 'in', education_center_id),
+                            '|',
                             ('competence_ids', '=', False),
                             ('competence_ids', 'in', competence_id),
                             '|',
@@ -66,6 +69,7 @@
                 <field name="teacher_id" invisible="1"/>
                 <field name="subject_id" invisible="1"/>
                 <field name="course_ids" invisible="1"/>
+                <field name="education_center_id" invisible="1"/>
                 <field name="survey_id"
                        options='{"no_open": True}'
                        domain="[
@@ -73,6 +77,9 @@
                             '|',
                             ('responsible', '=', False),
                             ('responsible', '=', teacher_id),
+                            '|',
+                            ('school_ids', '=', False),
+                            ('school_ids', 'in', education_center_id),
                             '|',
                             ('competence_ids', '=', False),
                             ('competence_ids', 'in', competence_id),
@@ -141,10 +148,11 @@
             <field name="quizz_mode" position="after">
                 <field name="is_base_survey"/>
                 <field name="responsible"/>
-                <field name="competence_ids" widget="many2many_tags"/>
-                <field name="level_ids" widget="many2many_tags"/>
-                <field name="education_course_ids" widget="many2many_tags"/>
-                <field name="subject_ids" widget="many2many_tags"/>
+                <field name="school_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
+                <field name="competence_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
+                <field name="level_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
+                <field name="education_course_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
+                <field name="subject_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
                 <field name="related_record_mark"/>
             </field>
         </field>

@@ -10,16 +10,26 @@ class SurveySurvey(models.Model):
     responsible = fields.Many2one('hr.employee', string='Responsible Teacher')
     competence_ids = fields.Many2many(
         comodel_name="education.competence", string="Competence")
+    school_ids = fields.Many2many(
+        string="Schools",
+        comodel_name="res.partner",
+        relation='rel_school_survey',
+        column1='survey_id', column2='school_id',
+        domain="[('educational_category', '=', 'school')]")
     level_ids = fields.Many2many(
         comodel_name='education.level', string='Levels',
         relation='rel_education_level_survey',
         column1='survey_id', column2='level_id')
     education_course_ids = fields.Many2many(
         string="Education Courses",
-        comodel_name="education.course")
+        comodel_name="education.course",
+        relation='rel_education_course_survey',
+        column1='survey_id', column2='course_id')
     subject_ids = fields.Many2many(
         string="Education Subjects",
-        comodel_name="education.subject")
+        comodel_name="education.subject",
+        relation='rel_education_subject_survey',
+        column1='survey_id', column2='subject_id')
     is_base_survey = fields.Boolean('Is base survey')
     related_record_mark = fields.Selection(
         string='Records inherit mark',
