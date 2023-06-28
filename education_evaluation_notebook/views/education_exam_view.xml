@@ -60,6 +60,7 @@
                             <field name="n_line_id" options="{'no_create': True, 'no_edit': True}" />
                             <field name="teacher_id" />
                             <field name="subject_id" />
+                            <field name="education_criteria_ids" widget="many2many_tags" options="{'no_create': True}"/>
                             <field name="mark_close_date" readonly="True" states="closed"/>
                         </group>
                     </group>

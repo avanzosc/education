@@ -117,6 +117,9 @@ class EducationExam(models.Model):
         store=True,
     )
     description = fields.Text(string="Description")
+    education_criteria_ids = fields.Many2many(
+        comodel_name="education.criteria",
+        string="Education Criteria")
 
     @api.constrains("n_line_id", "schedule_id")
     def _check_notebook_line_schedule(self):

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_criteria_view_tree"
+            model="ir.ui.view">
+        <field name="model">education.criteria</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="description" />
+                <field name="competence_specific_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="education__criteria_view_form"
+            model="ir.ui.view">
+        <field name="model">education.criteria</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="main">
+                        <field name="name" />
+                        <field name="description" />
+                        <field name="competence_specific_id" options="{'no_create': True}"/>
+                        <field name="level_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="school_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="course_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_criteria_action" model="ir.actions.act_window">
+        <field name="name">Education criteria</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">education.criteria</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="education_criteria_view_tree"/>
+    </record>
+</odoo>
