@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-08 10:34+0000\n"
-"PO-Revision-Date: 2023-06-08 10:34+0000\n"
+"POT-Creation-Date: 2023-06-29 10:59+0000\n"
+"PO-Revision-Date: 2023-06-29 10:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -188,7 +188,7 @@ msgstr "Año académico"
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:59
 #, python-format
 msgid "Academic Year:"
-msgstr "Año Académico"
+msgstr "Año académico:"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_exam_report_view_search
@@ -410,6 +410,8 @@ msgstr "Fecha de cierre"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__code
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__name
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_mark_behaviour__code
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__code
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__code
@@ -458,6 +460,7 @@ msgstr "Tipo de competencia"
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_type_action
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__competence_type_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__competence_type_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_template__competence_type_ids
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_type_menu
@@ -478,6 +481,12 @@ msgstr "Perfil de competencia"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__description
 msgid "Competence profile description"
 msgstr "Descripción"
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_competence_specific_action
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_competence_specific_menu
+msgid "Competence specific"
+msgstr "Competencia específica"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__description
@@ -572,7 +581,9 @@ msgstr "Crear horario para el próximo año académico"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__create_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__create_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam_type__create_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__create_uid
@@ -592,7 +603,9 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__create_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__create_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam_type__create_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__create_date
@@ -637,6 +650,8 @@ msgid "Deadline"
 msgstr "Fecha límite"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__description
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__description
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__description
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__description
@@ -650,7 +665,9 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__display_name
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__display_name
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam_type__display_name
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__display_name
@@ -722,6 +739,11 @@ msgid "Education Competence"
 msgstr "Competencia"
 
 #. module: education_evaluation_notebook
+#: model:ir.model,name:education_evaluation_notebook.model_education_competence_specific
+msgid "Education Competence Specific"
+msgstr "Competencia específica"
+
+#. module: education_evaluation_notebook
 #: code:addons/education_evaluation_notebook/reports/education_record_all_xlsx_report.py:69
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:69
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__course_id
@@ -741,6 +763,17 @@ msgstr "Curso"
 #, python-format
 msgid "Education Course:"
 msgstr "Curso:"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__course_ids
+msgid "Education Courses"
+msgstr "Cursos educativos"
+
+#. module: education_evaluation_notebook
+#: model:ir.model,name:education_evaluation_notebook.model_education_criteria
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__education_criteria_ids
+msgid "Education Criteria"
+msgstr "Criterio de evaluación"
 
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_exam
@@ -786,7 +819,9 @@ msgstr "Deberes escolares"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__level_ids
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__level_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__education_level_ids
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__level_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_notebook_line__level_ids
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_competence_view_form
 msgid "Education Levels"
@@ -814,6 +849,17 @@ msgstr "Línea de cuaderno de evaluación"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_record_view_search
 msgid "Education Subject"
 msgstr "Asignatura"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__subject_ids
+msgid "Education Subjects"
+msgstr "Asignaturas"
+
+#. module: education_evaluation_notebook
+#: model:ir.actions.act_window,name:education_evaluation_notebook.education_criteria_action
+#: model:ir.ui.menu,name:education_evaluation_notebook.education_criteria_menu
+msgid "Education criteria"
+msgstr "Criterio de evaluación"
 
 #. module: education_evaluation_notebook
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_academic_year_revision_menuitem
@@ -883,7 +929,7 @@ msgstr "Número de evaluación"
 #: code:addons/education_evaluation_notebook/wizards/export_res_partner_record_xlsx_report.py:33
 #, python-format
 msgid "Evaluation Record"
-msgstr "Línea de evaluación"
+msgstr "Regisrto académico"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__eval_type
@@ -1348,7 +1394,9 @@ msgstr "Nota ACI"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam_type__id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__id
@@ -1453,7 +1501,9 @@ msgstr "Idioma"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile____last_update
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type____last_update
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam_type____last_update
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report____last_update
@@ -1483,7 +1533,9 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__write_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__write_uid
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam_type__write_uid
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__write_uid
@@ -1503,7 +1555,9 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_profile__write_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__write_date
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam_type__write_date
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_homework__write_date
@@ -1797,7 +1851,7 @@ msgstr "Abrir registros académicos"
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Open Exam"
-msgstr "Examen abierto"
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
@@ -2056,6 +2110,12 @@ msgid "STUDENT LIST"
 msgstr "LISTADO DE ALUMNO"
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__school_ids
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__school_ids
+msgid "Schools"
+msgstr "Colegios"
+
+#. module: education_evaluation_notebook
 #: selection:education.academic_year.evaluation,eval_type:0
 #: selection:education.notebook.line,eval_type:0
 #: selection:education.notebook.template,eval_type:0
@@ -2126,6 +2186,11 @@ msgstr "Mostrar todos los registros que tienen la próxima fecha de acción ante
 #: model:education.competence,name:education_evaluation_notebook.competence_specific
 msgid "Specific"
 msgstr "Especifico"
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__competence_specific_id
+msgid "Specific Competence"
+msgstr "Competencia específica"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__state
@@ -2214,7 +2279,7 @@ msgid "Teacher"
 msgstr "Profesor"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:126
+#: code:addons/education_evaluation_notebook/models/education_exam.py:129
 #, python-format
 msgid "The class schedule and the notebook line's schedule areinconsistent. The selected notebook line must be from theselected class schedule."
 msgstr ""
@@ -2406,7 +2471,7 @@ msgid "Wizard to print Report Card Report"
 msgstr "Asistente para imprimir boletines de notas"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:350
+#: code:addons/education_evaluation_notebook/models/education_exam.py:353
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr "Solo puedes eliminar un examen borrador."
@@ -2425,7 +2490,7 @@ msgid "You must select at least one student."
 msgstr "Debe seleccionar al menos un alumno."
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:368
+#: code:addons/education_evaluation_notebook/models/education_exam.py:371
 #: code:addons/education_evaluation_notebook/models/education_record.py:562
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:316
 #, python-format

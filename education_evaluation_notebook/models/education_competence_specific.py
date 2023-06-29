@@ -19,7 +19,15 @@ class EducationCompetenceSpecific(models.Model):
         domain="[('educational_category', '=', 'school')]")
     competence_type_ids = fields.Many2many(
         comodel_name="education.competence.type",
-        string="Competence Types")
+        string="Competence Types",
+        domain="["
+               "'|',"
+               "('education_level_ids', 'in', level_ids),"
+               "('education_level_ids', '=', False)]")
     subject_ids = fields.Many2many(
         comodel_name="education.subject",
-        string="Education Subjects")
+        string="Education Subjects",
+        domain="["
+               "'|',"
+               "('level_ids', 'in', level_ids),"
+               "('level_ids', '=', False)]")

@@ -22,4 +22,5 @@ class EducationCriteria(models.Model):
         related="competence_specific_id.school_ids")
     course_ids = fields.Many2many(
         comodel_name="education.course",
-        string="Education Courses")
+        string="Education Courses",
+        domain="[('level_id', 'in', level_ids)]")
