@@ -47,8 +47,8 @@ class EducationScheduleCriteriaReport(models.Model):
     def _from(self):
         from_str = """
                 FROM education_schedule sch
-                JOIN education_criteria_education_schedule_rel cri_rel ON cri_rel.education_schedule_id = sch.id
-                JOIN education_criteria crit ON crit.id = cri_rel.education_criteria_id
+                JOIN rel_criteria_schedule cri_rel ON cri_rel.schedule_id = sch.id
+                JOIN education_criteria crit ON crit.id = cri_rel.criteria_id
                 JOIN education_competence_specific comp_spe ON comp_spe.id = crit.competence_specific_id
                 JOIN education_notebook_line ntbl ON ntbl.schedule_id = sch.id
                 JOIN education_record erec ON erec.n_line_id = ntbl.id
