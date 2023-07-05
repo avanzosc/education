@@ -55,7 +55,8 @@ class EducationSchedule(models.Model):
         comodel_name="education.criteria",
         string="Education Criteria",
         readonly=True,
-      #  compute="_compute_education_criteria",
+        compute="_compute_education_criteria",
+        store=True
     )
     education_competence_specific_ids = fields.Many2many(
         comodel_name="education.competence.specific",
