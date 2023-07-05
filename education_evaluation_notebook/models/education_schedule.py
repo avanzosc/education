@@ -54,8 +54,8 @@ class EducationSchedule(models.Model):
     education_criteria_ids = fields.Many2many(
         comodel_name="education.criteria",
         string="Education Criteria",
+        readonly=True,
         compute="_compute_education_criteria",
-        readonly=True
     )
     education_competence_specific_ids = fields.Many2many(
         comodel_name="education.competence.specific",
