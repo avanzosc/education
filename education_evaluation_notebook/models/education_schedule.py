@@ -51,11 +51,40 @@ class EducationSchedule(models.Model):
         inverse_name="schedule_id",
         string="Homework",
     )
+    education_criteria_ids = fields.Many2many(
+        comodel_name="education.criteria",
+        string="Education Criteria",
+        compute="_compute_education_criteria",
+        readonly=True
+    )
+    education_competence_specific_ids = fields.Many2many(
+        comodel_name="education.competence.specific",
+        string="Education Specific Competences",
+        readonly=True
+    )
     homework_count = fields.Integer(
         compute="_compute_homework_count",
         string="# Homework",
         store=True,
     )
+
+    @api.multi
+    @api.depends("homework_ids")
+    def _compute_education_criteria(self):
+        for schedule in self:
+            education_criteria_ids = self.env['education.criteria'].search([
+                '|',
+                ('level_ids', 'in', self.subject_id.level_ids.ids),
+                ('level_ids', '=', False),
+                '|',
+                ('school_ids', 'in', self.center_id.ids),
+                ('school_ids', '=', False),
+                '|',
+                ('course_ids', 'in', self.subject_id.course_ids.ids),
+                ('course_ids', '=', False),
+            ])
+            schedule.education_criteria_ids = education_criteria_ids.ids
+            schedule.education_competence_specific_ids = education_criteria_ids.mapped('competence_specific_id').ids
 
     @api.multi
     @api.depends("homework_ids")
@@ -93,6 +122,20 @@ class EducationSchedule(models.Model):
             {"default_schedule_id": self.id})
         domain = expression.AND([
             [("schedule_id", "=", self.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict
+
+    @api.multi
+    def button_show_education_criteria(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "education_evaluation_notebook.education_criteria_action")
+        action_dict = action.read()[0] if action else {}
+        action_dict["context"] = safe_eval(
+            action_dict.get("context", "{}"))
+        domain = expression.AND([
+            [("id", "in", self.education_criteria_ids)],
             safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict

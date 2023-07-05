@@ -34,6 +34,9 @@
                            string="Homework" />
                 </button>
             </div>
+            <field name="timetable_ids" position="after">
+                <field name="education_criteria_ids"/>
+            </field>
             <xpath expr="//field[@name='group_ids']/.." position="after">
                 <field name="master_notebook_line_ids" nolabel="True">
                     <tree decoration-info="global_competence==True"
