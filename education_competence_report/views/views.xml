@@ -11,4 +11,15 @@
             </div>
         </field>
     </record>
+    <record id="education_schedule_view_form" model="ir.ui.view">
+        <field name="model">education.schedule</field>
+        <field name="inherit_id" ref="education.education_schedule_view_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button name="button_open_schedule_criterias" type="object" class="oe_stat_button" icon="fa-reorder">
+                    <span class="o_stat_text">Education criteria</span>
+                </button>
+            </div>
+        </field>
+    </record>
 </odoo>
