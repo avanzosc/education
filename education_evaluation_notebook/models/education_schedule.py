@@ -56,12 +56,12 @@ class EducationSchedule(models.Model):
         string="Education Criteria",
         readonly=True,
         compute="_compute_education_criteria",
-        store=True
     )
     education_competence_specific_ids = fields.Many2many(
         comodel_name="education.competence.specific",
         string="Education Specific Competences",
-        readonly=True
+        readonly=True,
+        compute="_compute_competence_specific",
     )
     homework_count = fields.Integer(
         compute="_compute_homework_count",
@@ -70,7 +70,7 @@ class EducationSchedule(models.Model):
     )
 
     @api.multi
-    @api.depends("homework_ids")
+    @api.depends("subject_id", 'center_id')
     def _compute_education_criteria(self):
         for schedule in self:
             education_criteria_ids = self.env['education.criteria'].search([
@@ -85,7 +85,23 @@ class EducationSchedule(models.Model):
                 ('course_ids', '=', False),
             ])
             schedule.education_criteria_ids = education_criteria_ids.ids
-            schedule.education_competence_specific_ids = education_criteria_ids.mapped('competence_specific_id').ids
+
+    @api.multi
+    @api.depends("subject_id", 'center_id')
+    def _compute_competence_specific(self):
+        for schedule in self:
+            education_competence_specific_ids = self.env['education.competence.specific'].search([
+                '|',
+                ('level_ids', 'in', self.subject_id.level_ids.ids),
+                ('level_ids', '=', False),
+                '|',
+                ('school_ids', 'in', self.center_id.ids),
+                ('school_ids', '=', False),
+                '|',
+                ('subject_ids', 'in', self.subject_id.ids),
+                ('subject_ids', '=', False),
+            ])
+            schedule.education_competence_specific_ids = education_competence_specific_ids.ids
 
     @api.multi
     @api.depends("homework_ids")

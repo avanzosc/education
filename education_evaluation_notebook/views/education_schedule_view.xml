@@ -35,6 +35,7 @@
                 </button>
             </div>
             <field name="timetable_ids" position="after">
+                <field name="education_competence_specific_ids" widget="many2many_tags"/>
                 <field name="education_criteria_ids"/>
             </field>
             <xpath expr="//field[@name='group_ids']/.." position="after">
