@@ -16,6 +16,10 @@ class EducationCriteria(models.Model):
     level_ids = fields.Many2many(
         comodel_name="education.level",
         string="Education Levels", related="competence_specific_id.level_ids")
+    specific_comp_subject_ids = fields.Many2many(
+        comodel_name="education.subject",
+        string="Education subjects related",
+        related="competence_specific_id.subject_ids")
     school_ids = fields.Many2many(
         comodel_name="res.partner",
         string="Schools",
@@ -24,3 +28,7 @@ class EducationCriteria(models.Model):
         comodel_name="education.course",
         string="Education Courses",
         domain="[('level_id', 'in', level_ids)]")
+    subject_ids = fields.Many2many(
+        comodel_name="education.subject",
+        string="Education Subjects",
+        domain="[('id', 'in', specific_comp_subject_ids)]")

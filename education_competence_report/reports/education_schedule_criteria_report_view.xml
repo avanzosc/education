@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <pivot string="Criteria Report" disable_linking="True">
                 <field name="schedule_id" type="row" />
-                <field name="student_id" type="row" />
+                <field name="exam_id" type="row" />
                 <field name="competence_specific_id" type="col" />
                 <field name="education_criteria_id" type="col"/>
                 <field name="numeric_mark" type="measure"/>

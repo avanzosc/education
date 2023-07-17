@@ -83,6 +83,9 @@ class EducationSchedule(models.Model):
                 '|',
                 ('course_ids', 'in', self.subject_id.course_ids.ids),
                 ('course_ids', '=', False),
+                '|',
+                ('subject_ids', 'in', self.subject_id.ids),
+                ('subject_ids', '=', False),
             ])
             schedule.education_criteria_ids = education_criteria_ids.ids
 

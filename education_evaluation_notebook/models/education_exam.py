@@ -43,6 +43,7 @@ class EducationExam(models.Model):
         string="Class Schedule",
         required=True,
         index=True,
+        store=True,
     )
     eval_type = fields.Selection(
         related="n_line_id.eval_type",
@@ -117,9 +118,19 @@ class EducationExam(models.Model):
         store=True,
     )
     description = fields.Text(string="Description")
+    schedule_education_criteria_ids = fields.Many2many(
+        comodel_name="education.criteria",
+        string="Education criteria related",
+        related="schedule_id.education_criteria_ids"
+    )
     education_criteria_ids = fields.Many2many(
         comodel_name="education.criteria",
-        string="Education Criteria")
+        string="Education Criteria",
+        relation="exam_edu_criteria_rel",
+        column1="exam_id", column2="criteria_id",
+        store=True,
+        domain="[('id', 'in', schedule_education_criteria_ids)]"
+    )
 
     @api.constrains("n_line_id", "schedule_id")
     def _check_notebook_line_schedule(self):

@@ -21,6 +21,8 @@ class EducationScheduleCriteriaReport(models.Model):
         comodel_name="education.competence.specific", string="Competence Specific")
     education_record_id = fields.Many2one(
         'education.record', string='Education Record')
+    exam_id = fields.Many2one(
+        'education.exam', string='Education Exam')
     student_id = fields.Many2one(
         'res.partner', 'Student')
     numeric_mark = fields.Float(
@@ -36,7 +38,7 @@ class EducationScheduleCriteriaReport(models.Model):
                 row_number() OVER () as id,
                 sch.id AS schedule_id,
                 stu.id AS student_id,
-                ntbl.id AS n_line_id,
+                exm.id AS exam_id,
                 erec.id AS education_record_id,
                 erec.numeric_mark AS numeric_mark,
                 comp_spe.id AS competence_specific_id,
@@ -47,19 +49,19 @@ class EducationScheduleCriteriaReport(models.Model):
     def _from(self):
         from_str = """
                 FROM education_schedule sch
-                JOIN education_criteria_education_schedule_rel cri_rel ON cri_rel.education_schedule_id = sch.id
-                JOIN education_criteria crit ON crit.id = cri_rel.education_criteria_id
+                JOIN education_exam exm ON exm.schedule_id = sch.id
+                JOIN education_record erec ON erec.exam_id = exm.id
+                JOIN exam_edu_criteria_rel cri_rel ON cri_rel.exam_id = exm.id
+                JOIN education_criteria crit ON crit.id = cri_rel.criteria_id
                 JOIN education_competence_specific comp_spe ON comp_spe.id = crit.competence_specific_id
-                JOIN education_notebook_line ntbl ON ntbl.schedule_id = sch.id
-                JOIN education_record erec ON erec.n_line_id = ntbl.id
                 JOIN res_partner stu ON stu.id = erec.student_id
         """
         return from_str
 
     def _group_by(self):
         group_by_str = """
-            GROUP BY sch.id, crit.id, comp_spe.id, ntbl.id, stu.id, erec.id
-         """
+                    GROUP BY sch.id, crit.id, comp_spe.id, exm.id, stu.id, erec.id         
+                """
         return group_by_str
 
     @api.model_cr

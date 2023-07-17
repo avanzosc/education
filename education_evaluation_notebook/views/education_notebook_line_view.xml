@@ -147,6 +147,8 @@
                                     <field name="name" />
                                     <field name="description" />
                                     <field name="exam_type_id" />
+                                    <field name="schedule_education_criteria_ids" invisible="1"/>
+                                    <field name="education_criteria_ids" widget="many2many_tags"/>
                                     <field name="eval_percent" sum="Total Percent" />
                                     <field name="date" />
                                     <field name="mark_close_date" />
