@@ -99,6 +99,46 @@
                        attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
 
             </xpath>
+            <xpath expr="//field[@name='exam_ids']/tree/field[@name='exam_type_id']" position="after">
+                <field name="edited_survey_show" invisible="1"/>
+                <field name="teacher_id" invisible="1"/>
+                <field name="center_id" invisible="1"/>
+                <field name="competence_id" invisible="1"/>
+                <field name="level_id" invisible="1"/>
+                <field name="subject_id" invisible="1"/>
+                <field name="course_ids" invisible="1"/>
+                <field name="is_rubric"/>
+                <field name="survey_id"
+                       options='{"no_open": True}'
+                       domain="[
+                            ('is_base_survey', '=', True),
+                            '|',
+                            ('responsible', '=', False),
+                            ('responsible', '=', teacher_id),
+                            '|',
+                            ('school_ids', '=', False),
+                            ('school_ids', 'in', center_id),
+                            '|',
+                            ('competence_ids', '=', False),
+                            ('competence_ids', 'in', competence_id),
+                            '|',
+                            ('level_ids', '=', False),
+                            ('level_ids', 'in', level_id),
+                            '|',
+                            ('subject_ids', '=', False),
+                            ('subject_ids', 'in', subject_id),
+                            '|',
+                            ('education_course_ids', '=', False),
+                            ('education_course_ids', 'in', course_ids)]"
+                       attrs="{'invisible': [('is_rubric', '=', False)]}"/>
+                <button name="button_create_custom_survey"
+                        confirm="By creating a custom survey template existing survey inputs will be deleted."
+                        string="Create custom survey" type="object" attrs="{'invisible': [('is_rubric','=', False),'|',('edited_survey_show','=', True),('survey_id', '=', False)]}"/>
+                <field name="edited_survey_id"
+                       attrs="{'invisible': [('edited_survey_show','=', False)]}"
+                       readonly="1"/>
+
+            </xpath>
         </field>
     </record>
     <record id="education_exam_view_form" model="ir.ui.view">
@@ -116,7 +156,43 @@
                 </button>
             </div>
             <field name="mark_close_date" position="after">
-                <field name="survey_id"/>
+                <field name="teacher_id" invisible="1"/>
+                <field name="center_id" invisible="1"/>
+                <field name="competence_id" invisible="1"/>
+                <field name="level_id" invisible="1"/>
+                <field name="subject_id" invisible="1"/>
+                <field name="course_ids" invisible="1"/>
+                <field name="edited_survey_show" invisible="1"/>
+                <field name="is_rubric"/>
+                <field name="survey_id"
+                       options='{"no_open": True}'
+                       attrs="{'invisible':[('is_rubric','=',False)]}"
+                       domain="[
+                            ('is_base_survey', '=', True),
+                            '|',
+                            ('responsible', '=', False),
+                            ('responsible', '=', teacher_id),
+                            '|',
+                            ('school_ids', '=', False),
+                            ('school_ids', 'in', center_id),
+                            '|',
+                            ('competence_ids', '=', False),
+                            ('competence_ids', 'in', competence_id),
+                            '|',
+                            ('level_ids', '=', False),
+                            ('level_ids', 'in', level_id),
+                            '|',
+                            ('subject_ids', '=', False),
+                            ('subject_ids', 'in', subject_id),
+                            '|',
+                            ('education_course_ids', '=', False),
+                            ('education_course_ids', 'in', course_ids)]"/>
+                <button name="button_create_custom_survey"
+                        confirm="By creating a custom survey template existing survey inputs will be deleted."
+                        string="Create custom survey" type="object" attrs="{'invisible': ['|',('edited_survey_show','=', True),('edited_survey_id', '!=', False)]}"/>
+                <field name="edited_survey_id"
+                       readonly="1"
+                       attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
             </field>
         </field>
     </record>

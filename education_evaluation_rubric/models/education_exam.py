@@ -1,24 +1,21 @@
-# Copyright 2021 Leire Martinez de Santos - AvanzOSC
+# Copyright 2023 Leire Martinez de Santos - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
 from odoo import exceptions
-from odoo.exceptions import UserError
 
 
-class EducationNotebookLine(models.Model):
-    _inherit = 'education.notebook.line'
+class EducationExam(models.Model):
+    _inherit = 'education.exam'
 
-    eval_mode = fields.Selection(related='competence_id.eval_mode')
-    course_ids = fields.Many2many(
-        'education.course', string='Education Course', related="subject_id.course_ids")
     survey_id = fields.Many2one('survey.survey', string='Survey Template')
     edited_survey_id = fields.Many2one('survey.survey', string='Custom Survey Template')
     edited_survey_show = fields.Boolean(default=False, string='Custom Survey Show')
+    is_rubric = fields.Boolean(default=False, string='Is Rubric Exam')
     survey_input_ids = fields.Many2many(
         string="Survey Inputs",
         comodel_name="survey.user_input",
-        relation="survey_input_notebook_line_rel",
-        column1="notebook_id",
+        relation="survey_input_exam_rel",
+        column1="exam_id",
         column2="input_id",
         compute="_compute_survey_input")
     survey_input_count = fields.Integer('Survey input count', compute="_compute_survey_input_count")
@@ -26,7 +23,7 @@ class EducationNotebookLine(models.Model):
     def _compute_survey_input(self):
         for record in self:
             record.survey_input_ids = self.env['survey.user_input'].search([
-                ('notebook_line_id', '=', record.id)
+                ('exam_id', '=', record.id)
             ])
 
     def _compute_survey_input_count(self):
@@ -39,17 +36,17 @@ class EducationNotebookLine(models.Model):
         action_rec = self.env.ref('survey.action_survey_user_input')
         action = action_rec.read()[0]
         action.update({
-            'domain': [('notebook_line_id', '=', self.id)],
+            'domain': [('exam_id', '=', self.id)],
         })
         return action
 
     @api.multi
-    def button_create_student_records(self):
-        for record in self:
-            if record.eval_mode == 'rubric' and not record.survey_id:
+    def action_generate_record(self):
+        for record in self.filtered(lambda e: e.state in ('draft', 'progress')):
+            if record.is_rubric and not record.survey_id:
                 raise exceptions.ValidationError('Please Select Survey for Rubric Competence')
 
-        super(EducationNotebookLine, self).button_create_student_records()
+        super(EducationExam, self).action_generate_record()
 
     @api.multi
     def button_create_custom_survey(self):
@@ -87,7 +84,7 @@ class EducationNotebookLine(models.Model):
 
     def get_survey_url(self):
         for record in self:
-            if record.survey_id and record.competence_id.eval_mode == 'rubric':
+            if record.survey_id and record.competence_id.is_rubric:
                 url_get = record.button_open_all_survey_inputs()
                 return url_get.get('url', None)
 
