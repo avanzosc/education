@@ -148,11 +148,19 @@ class SurveyUserInputLine(models.Model):
     competence_types = fields.Many2many(
         comodel_name='education.competence.type', string='Competence types',
         compute='compute_competence_types')
+    competence_specific = fields.Many2many(
+        comodel_name='education.competence.specific', string='Competence specific',
+        compute='compute_competence_specific')
 
     def compute_competence_types(self):
         for record in self:
             record.competence_types = record.value_suggested_row.competence_types.filtered(
                 lambda c: record.user_input_id.partner_id.current_level_id.id in c.education_level_ids.ids)
+
+    def compute_competence_specific(self):
+        for record in self:
+            record.competence_specific = record.value_suggested_row.competence_specific.filtered(
+                lambda c: record.user_input_id.partner_id.current_level_id.id in c.level_ids.ids)
 
     @api.model
     def create(self, vals):
@@ -210,6 +218,11 @@ class SurveyLabel(models.Model):
         comodel_name='education.competence.type', string='Competence types',
         relation='rel_competence_type_survey',
         column1='label_id', column2='competence_type_id')
+
+    competence_specific = fields.Many2many(
+        comodel_name='education.competence.specific', string='Competence specific',
+        relation='rel_competence_specific_survey',
+        column1='label_id', column2='competence_specific_id')
 
     level_ids = fields.Many2many(
         comodel_name='education.level',

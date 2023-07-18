@@ -34,6 +34,12 @@
                            string="Homework" />
                 </button>
             </div>
+            <xpath expr="//sheet/group[1]/group[1]" position="after">
+                <group>
+                    <field name="education_competence_specific_ids" widget="many2many_tags"/>
+                    <field name="education_criteria_ids"/>
+                </group>
+            </xpath>
             <xpath expr="//field[@name='group_ids']/.." position="after">
                 <field name="master_notebook_line_ids" nolabel="True">
                     <tree decoration-info="global_competence==True"

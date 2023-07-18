@@ -16,6 +16,7 @@
         "security/ir.model.access.csv",
         "views/views.xml",
         "reports/education_group_competence_report_view.xml",
+        "reports/education_schedule_criteria_report_view.xml",
     ],
     "installable": True,
     "auto_install": True,

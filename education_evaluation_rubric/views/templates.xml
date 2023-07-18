@@ -100,8 +100,8 @@
     <template id="survey_matrix_text" inherit_id="survey.matrix">
         <xpath expr="//span[@t-field='row_label.value']" position="after">
             <t t-if="row_label.percentage">(<span t-field="row_label.percentage"/>%)</t>
-            <t t-foreach="row_label.competence_types" t-as="competence_type">
-                <span class="badge badge-pill badge-secondary"><t t-esc="competence_type.name"/></span>
+            <t t-foreach="row_label.competence_specific" t-as="competence_specific">
+                <span class="badge badge-pill badge-secondary"><t t-esc="competence_specific.name"/></span>
             </t>
         </xpath>
         <xpath expr="//th[@t-foreach='question.labels_ids']/span" position="after">

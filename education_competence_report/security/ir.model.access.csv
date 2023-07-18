@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_group_comp_report,edu_group_comp_report all,model_education_group_competence_report,,1,0,0,0
 access_group_comp_report_admin,edu_group_comp_report admin,model_education_group_competence_report,education.education_responsible,1,1,1,1
+access_schedule_criteria_report,edu_schedule_criteria_report all,model_education_schedule_criteria_report,,1,0,0,0
+access_schedule_criteria_report_admin,edu_schedule_criteria_report admin,model_education_schedule_criteria_report,education.education_responsible,1,1,1,1

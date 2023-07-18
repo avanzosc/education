@@ -45,6 +45,14 @@
               parent="education_evaluation_notebook_menu"
               action="education_competence_type_action"
               sequence="4" />
+    <menuitem id="education_criteria_menu"
+              parent="education_evaluation_notebook_menu"
+              action="education_criteria_action"
+              sequence="4" />
+    <menuitem id="education_competence_specific_menu"
+              parent="education_evaluation_notebook_menu"
+              action="education_competence_specific_action"
+              sequence="4" />
     <menuitem id="education_competence_profile_menu"
               parent="education_evaluation_notebook_menu"
               action="education_competence_profile_action"
