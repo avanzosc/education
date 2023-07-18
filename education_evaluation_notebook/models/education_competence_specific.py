@@ -20,6 +20,8 @@ class EducationCompetenceSpecific(models.Model):
     competence_type_ids = fields.Many2many(
         comodel_name="education.competence.type",
         string="Competence Types",
+        relation="edu_comp_specific_type_rel",
+        column1="comp_specific_id", column2="comp_type_id",
         domain="["
                "'|',"
                "('education_level_ids', 'in', level_ids),"
