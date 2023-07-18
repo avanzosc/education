@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_schedule_criteria_report_view_pivot" model="ir.ui.view">
+        <field name="model">education.schedule.criteria.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Criteria Report" disable_linking="True">
+                <field name="schedule_id" type="row" />
+                <field name="student_id" type="row" />
+                <field name="competence_specific_id" type="col" />
+                <field name="education_criteria_id" type="col"/>
+                <field name="numeric_mark" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="education_schedule_criteria_report_view_tree" model="ir.ui.view">
+        <field name="model">education.schedule.criteria.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="schedule_id"/>
+                <field name="student_id"/>
+                <field name="competence_specific_id"/>
+                <field name="education_criteria_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="education_schedule_criteria_report_view_search" model="ir.ui.view">
+        <field name="model">education.schedule.criteria.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="student_id"/>
+                <field name="n_line_id"/>
+                <field name="schedule_id"/>
+                <field name="student_id"/>
+                <field name="competence_specific_id"/>
+                <field name="education_criteria_id"/>
+                <group expand="1" string="Group By">
+                    <filter string="Schedule" name="schedule"
+                            context="{'group_by':'schedule_id'}"/>
+                    <filter string="Edu. criteria" name="education_criteria"
+                            context="{'group_by':'education_criteria_id'}"/>
+                    <filter string="Comp. specific" name="comp_specific"
+                            context="{'group_by':'competence_specific_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_competence_report.action_education_schedule_criteria_from"
+            model="ir.actions.act_window">
+         <field name="name">Education Criteria marks</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="view_id" ref="education_competence_report.education_schedule_criteria_report_view_pivot" />
+         <field name="res_model">education.schedule.criteria.report</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">pivot,tree,form</field>
+         <field name="context">{'search_default_group_group_id': 1}</field>
+         <field name="search_view_id" ref="education_schedule_criteria_report_view_search"/>
+    </record>
+</odoo>

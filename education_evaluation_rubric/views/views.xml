@@ -209,6 +209,7 @@
                        domain="[
                             ('id', 'in', labels_ids)]"/>
                 <field name="competence_types" widget="many2many_tags"/>
+                <field name="competence_specific" widget="many2many_tags"/>
             </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">bottom</attribute>
@@ -234,7 +235,7 @@
                 <field name="color"/>
             </field>
             <xpath expr="//field[@name='labels_ids_2']/tree" position="inside">
-                <field name="competence_types" widget="many2many_tags" domain="[('education_level_ids', 'in', level_ids)]"/>
+                <field name="competence_specific" widget="many2many_tags" domain="[('level_ids', 'in', level_ids)]"/>
                 <field name="percentage" sum="Total Percent"/>
                 <field name="level_ids" invisible="1"/>
             </xpath>
