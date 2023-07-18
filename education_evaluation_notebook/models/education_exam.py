@@ -132,6 +132,31 @@ class EducationExam(models.Model):
         domain="[('id', 'in', schedule_education_criteria_ids)]"
     )
 
+    center_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Education Center",
+        related="n_line_id.schedule_id.center_id",
+        store=True,
+        index=True,
+    )
+    level_id = fields.Many2one(
+        comodel_name="education.level",
+        string="Education Level",
+        related="n_line_id.schedule_id.level_id",
+        store=True,
+        index=True,
+    )
+    competence_id = fields.Many2one(
+        'education.competence',
+        string="Education competence",
+        related="n_line_id.competence_id"
+    )
+    course_ids = fields.Many2many(
+        'education.course',
+        string="Education course",
+        related="n_line_id.subject_id.course_ids"
+    )
+
     @api.constrains("n_line_id", "schedule_id")
     def _check_notebook_line_schedule(self):
         for exam in self:
