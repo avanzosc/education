@@ -36,7 +36,13 @@
             </div>
             <xpath expr="//sheet/group[1]/group[1]" position="after">
                 <group>
-                    <field name="education_competence_specific_ids" widget="many2many_tags"/>
+                    <field name="education_competence_specific_ids">
+                      <tree>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="competence_type_ids" widget="many2many_tags"/>
+                      </tree>
+                    </field>
                     <field name="education_criteria_ids"/>
                 </group>
             </xpath>
