@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-29 10:59+0000\n"
-"PO-Revision-Date: 2023-06-29 10:59+0000\n"
+"POT-Creation-Date: 2023-07-19 07:31+0000\n"
+"PO-Revision-Date: 2023-07-19 07:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -690,6 +690,7 @@ msgstr "Goitibeherako menua"
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_create_academic_year_evaluation_line__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__center_id
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_exam_report__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_homework_report__center_id
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_group_student_exam_report__center_id
@@ -762,6 +763,7 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_criteria
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__education_criteria_ids
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__education_criteria_ids
 msgid "Education Criteria"
 msgstr ""
 
@@ -808,6 +810,11 @@ msgid "Education Homework"
 msgstr ""
 
 #. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__level_id
+msgid "Education Level"
+msgstr ""
+
+#. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence__level_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__level_ids
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_type__education_level_ids
@@ -820,6 +827,11 @@ msgstr ""
 #. module: education_evaluation_notebook
 #: model:ir.model,name:education_evaluation_notebook.model_education_notebook_line
 msgid "Education Notebook Line"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_schedule__education_competence_specific_ids
+msgid "Education Specific Competences"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -842,13 +854,34 @@ msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_competence_specific__subject_ids
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__subject_ids
 msgid "Education Subjects"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__competence_id
+msgid "Education competence"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__course_ids
+msgid "Education course"
 msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.actions.act_window,name:education_evaluation_notebook.education_criteria_action
 #: model:ir.ui.menu,name:education_evaluation_notebook.education_criteria_menu
 msgid "Education criteria"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__schedule_education_criteria_ids
+msgid "Education criteria related"
+msgstr ""
+
+#. module: education_evaluation_notebook
+#: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__specific_comp_subject_ids
+msgid "Education subjects related"
 msgstr ""
 
 #. module: education_evaluation_notebook
@@ -2266,7 +2299,7 @@ msgid "Teacher"
 msgstr "Irakaslea"
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:129
+#: code:addons/education_evaluation_notebook/models/education_exam.py:165
 #, python-format
 msgid "The class schedule and the notebook line's schedule areinconsistent. The selected notebook line must be from theselected class schedule."
 msgstr ""
@@ -2458,7 +2491,7 @@ msgid "Wizard to print Report Card Report"
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:353
+#: code:addons/education_evaluation_notebook/models/education_exam.py:389
 #, python-format
 msgid "You can only delete an exam in draft state."
 msgstr ""
@@ -2477,7 +2510,7 @@ msgid "You must select at least one student."
 msgstr ""
 
 #. module: education_evaluation_notebook
-#: code:addons/education_evaluation_notebook/models/education_exam.py:371
+#: code:addons/education_evaluation_notebook/models/education_exam.py:407
 #: code:addons/education_evaluation_notebook/models/education_record.py:562
 #: code:addons/education_evaluation_notebook/tests/test_education_evaluation_notebook.py:316
 #, python-format
