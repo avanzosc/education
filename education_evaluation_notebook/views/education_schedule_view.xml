@@ -34,40 +34,48 @@
                            string="Homework" />
                 </button>
             </div>
-            <xpath expr="//sheet/group[1]/group[1]" position="after">
-                <group>
-                    <field name="education_competence_specific_ids">
-                      <tree>
-                        <field name="name"/>
-                        <field name="description"/>
-                        <field name="competence_type_ids" widget="many2many_tags"/>
-                      </tree>
-                    </field>
-                    <field name="education_criteria_ids"/>
-                </group>
-            </xpath>
-            <xpath expr="//field[@name='group_ids']/.." position="after">
-                <field name="master_notebook_line_ids" nolabel="True">
-                    <tree decoration-info="global_competence==True"
-                          decoration-success="evaluation_competence==True"
-                          create="false">
-                        <field name="competence_id" />
-                        <field name="global_competence" invisible="True" />
-                        <field name="evaluation_competence" invisible="True" />
-                        <field name="description" />
-                        <field name="eval_type" />
-                        <field name="eval_percent" />
-                        <field name="competence_type_ids" widget="many2many_tags"/>
-                        <button name="button_open_notebook_line_form" icon="fa-edit"
-                                string="Open Line" type="object" />
-                        <button name="button_show_child_lines" icon="fa-list"
-                                string="Show Child Lines" type="object" />
-                        <button name="button_create_student_records" icon="fa-book"
-                                string="Create Academic Records" type="object" />
-                        <button name="button_show_records" icon="fa-th"
-                                string="Open Academic Records" type="object" />
-                    </tree>
-                </field>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Notebook Lines">
+                        <field name="master_notebook_line_ids" nolabel="True">
+                            <tree decoration-info="global_competence==True"
+                                  decoration-success="evaluation_competence==True"
+                                  create="false">
+                                <field name="competence_id" />
+                                <field name="global_competence" invisible="True" />
+                                <field name="evaluation_competence" invisible="True" />
+                                <field name="description" />
+                                <field name="eval_type" />
+                                <field name="eval_percent" />
+                                <field name="competence_type_ids" widget="many2many_tags"/>
+                                <button name="button_open_notebook_line_form" icon="fa-edit"
+                                        string="Open Line" type="object" />
+                                <button name="button_show_child_lines" icon="fa-list"
+                                        string="Show Child Lines" type="object" />
+                                <button name="button_create_student_records" icon="fa-book"
+                                        string="Create Academic Records" type="object" />
+                                <button name="button_show_records" icon="fa-th"
+                                        string="Open Academic Records" type="object" />
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Specific Competences">
+                        <group string="Specific Competences">
+                            <field name="education_competence_specific_ids">
+                              <tree>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="competence_type_ids" widget="many2many_tags"/>
+                              </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Evaluation criteria">
+                        <group string="Evaluation criteria">
+                            <field name="education_criteria_ids"/>
+                        </group>
+                    </page>
+                </notebook>
             </xpath>
         </field>
     </record>
