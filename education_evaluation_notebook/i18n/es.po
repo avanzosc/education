@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 07:31+0000\n"
-"PO-Revision-Date: 2023-07-19 07:31+0000\n"
+"POT-Creation-Date: 2023-07-27 09:21+0000\n"
+"PO-Revision-Date: 2023-07-27 09:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -188,7 +188,7 @@ msgstr "Año académico"
 #: code:addons/education_evaluation_notebook/reports/education_record_xlsx_report.py:59
 #, python-format
 msgid "Academic Year:"
-msgstr "Año académico:"
+msgstr "Año academico:"
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_group_exam_report_view_search
@@ -962,7 +962,7 @@ msgstr "Número de evaluación"
 #: code:addons/education_evaluation_notebook/wizards/export_res_partner_record_xlsx_report.py:33
 #, python-format
 msgid "Evaluation Record"
-msgstr "Registro"
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_academic_year_evaluation__eval_type
@@ -981,6 +981,11 @@ msgstr "Evaluación"
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_academic_year_evaluation_view_search
 msgid "Evaluation Seasons"
 msgstr "Evaluaciones"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
+msgid "Evaluation criteria"
+msgstr "Criterios de evaluación"
 
 #. module: education_evaluation_notebook
 #: selection:education.exam.type,e_type:0
@@ -1884,7 +1889,7 @@ msgstr "Abrir registros académicos"
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
 msgid "Open Exam"
-msgstr "Examen abierto"
+msgstr ""
 
 #. module: education_evaluation_notebook
 #: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_line_view_form
@@ -2224,6 +2229,11 @@ msgstr "Especifico"
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_criteria__competence_specific_id
 msgid "Specific Competence"
 msgstr "Competencia específica"
+
+#. module: education_evaluation_notebook
+#: model_terms:ir.ui.view,arch_db:education_evaluation_notebook.education_notebook_schedule_view_form
+msgid "Specific Competences"
+msgstr "Competencias específicas"
 
 #. module: education_evaluation_notebook
 #: model:ir.model.fields,field_description:education_evaluation_notebook.field_education_exam__state
