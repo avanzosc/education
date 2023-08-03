@@ -1,7 +1,7 @@
 # Copyright 2023 Leire Martinez de Santos - Avanzosc S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class EducationCriteria(models.Model):
@@ -19,7 +19,11 @@ class EducationCriteria(models.Model):
     specific_comp_subject_ids = fields.Many2many(
         comodel_name="education.subject",
         string="Education subjects related",
-        related="competence_specific_id.subject_ids")
+        relation="specific_comp_subject_criteria_rel",
+        column1="criteria_id", column2="specific_comp_id",
+        related="competence_specific_id.subject_ids",
+        store=True
+    )
     school_ids = fields.Many2many(
         comodel_name="res.partner",
         string="Schools",
@@ -31,4 +35,19 @@ class EducationCriteria(models.Model):
     subject_ids = fields.Many2many(
         comodel_name="education.subject",
         string="Education Subjects",
-        domain="[('id', 'in', specific_comp_subject_ids)]")
+        domain="["
+               "('id', 'in', specific_comp_subject_ids),"
+               "('course_ids', 'in', course_ids),"
+               "]")
+
+    @api.onchange('course_ids')
+    def onchange_course_ids(self):
+        for record in self:
+            if not record.course_ids:
+                subject_ids = record.specific_comp_subject_ids
+            else:
+                subject_ids = self.env['education.subject'].search([
+                    ('id', 'in', record.specific_comp_subject_ids.ids),
+                    ('course_ids', 'in', record.course_ids.ids),
+                ])
+            record.subject_ids = subject_ids
