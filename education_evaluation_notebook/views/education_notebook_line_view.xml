@@ -140,13 +140,15 @@
                     <notebook>
                         <page name="exams" string="Exams"
                               attrs="{'invisible': ['|',('global_competence','=',True),('evaluation_competence','=',True)]}">
-                            <field name="exam_ids">
+                            <field name="exam_ids"
+                                   context="{'default_schedule_id': schedule_id}">
                                 <tree editable="bottom"
                                       decoration-info="state=='done'"
                                       decoration-muted="state=='closed'">
                                     <field name="name" />
                                     <field name="description" />
                                     <field name="exam_type_id" />
+                                    <field name="schedule_id" invisible="1" />
                                     <field name="schedule_education_criteria_ids" invisible="1"/>
                                     <field name="education_criteria_ids" widget="many2many_tags"/>
                                     <field name="eval_percent" sum="Total Percent" />
