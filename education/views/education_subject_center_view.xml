@@ -74,7 +74,7 @@
                             </field>
                         </page>
                         <page name="programme" string="Programme of Study">
-                            <field name="programme" readonly="True"/>
+                            <field name="programme" />
                         </page>
                     </notebook>
                 </sheet>
