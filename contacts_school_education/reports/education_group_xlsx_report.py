@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, fields, models
+from odoo import _, models
 
 _logger = logging.getLogger(__name__)
 
@@ -39,4 +39,3 @@ class EducationGroupXlsx(models.AbstractModel):
             "G" + str(row),
             ", ".join(extracurricular_groups.mapped("description"))
             if extracurricular_groups else "")
-
