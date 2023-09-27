@@ -9,6 +9,7 @@
             <t t-call="education_evaluation_rubric.survey_student_next_button"/>
         </xpath>
     </template>
+
     <template id="page" inherit_id="survey.page">
         <xpath expr="//h1" position="after">
             <t t-if="survey_input">
@@ -21,6 +22,7 @@
             </t>
         </xpath>
     </template>
+
     <template id="back" inherit_id="survey.back">
         <xpath expr="//div" position="attributes">
             <attribute name="groups">education.education_user</attribute>
@@ -36,6 +38,7 @@
             </t>
         </xpath>
     </template>
+
     <template id="survey_init" inherit_id="survey.survey_init">
         <xpath expr="//h1[@t-field='survey.title']" position="after">
             <t t-if="survey_input">
@@ -51,6 +54,7 @@
             <t t-call="education_evaluation_rubric.survey_student_button"/>
         </xpath>
     </template>
+
     <template id="survey_print" inherit_id="survey.survey_print">
         <xpath expr="//t[@t-if='survey.description']" position="after">
             <t t-if="survey_input">
@@ -72,6 +76,7 @@
             <t t-call="education_evaluation_rubric.survey_student_next_button"/>
         </xpath>
     </template>
+
     <template id="survey_student_button" name="Student Button Survey">
         <div t-if="show_buttons" class="dropdown" groups="education.education_user">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,13 +95,17 @@
           </div>
         </div>
     </template>
+
     <template id="survey_student_next_button" name="Student Button Next Survey">
-            <div class="float-left" t-if="link_next_student and show_buttons" groups="education.education_user">
-                <a class="btn btn-secondary m-10" t-att-href="link_next_student" role="button">
-                    Next Student
-                </a>
-            </div>
+        <div class="float-left" t-if="link_next_student and show_buttons"
+             groups="education.education_user">
+            <a class="btn btn-secondary m-10" t-att-href="link_next_student"
+               role="button">
+                Next Student
+            </a>
+        </div>
     </template>
+
     <template id="survey_matrix_text" inherit_id="survey.matrix">
         <xpath expr="//span[@t-field='row_label.value']" position="after">
             <t t-if="row_label.percentage">(<span t-field="row_label.percentage"/>%)</t>
@@ -136,6 +145,7 @@
             </t>
         </xpath>
     </template>
+
     <template id="result_matrix_text" inherit_id="survey.result_matrix">
         <xpath expr="//td[hasclass('survey_answer')]" position="inside">
             <t t-if="question.survey_text_ids and col_label" t-set="survey_texts"
@@ -145,13 +155,14 @@
             </span>
         </xpath>
     </template>
+
     <template id="assets_frontend"
-      inherit_id="website.assets_frontend" name="Adding files">
-      <xpath expr="." position="inside">
-       <link rel="stylesheet"
-        href="/education_evaluation_rubric/static/src/css/style.css" />
-       <link rel="stylesheet"
-        href="/education_evaluation_rubric/static/src/js/script.js" />
-      </xpath>
+              inherit_id="website.assets_frontend" name="Adding files">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet"
+                  href="/education_evaluation_rubric/static/src/css/style.css"/>
+            <link rel="stylesheet"
+                  href="/education_evaluation_rubric/static/src/js/script.js"/>
+        </xpath>
     </template>
 </odoo>

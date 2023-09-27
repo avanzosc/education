@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_user_input_form" model="ir.ui.view">
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <group>
+                    <field name="education_record_id"/>
+                    <field name="academic_year"/>
+                    <field name="evaluation"/>
+                    <field name="description"/>
+                    <field name="subject_id"/>
+                    <field name="education_center"/>
+                    <field name="responsible"/>
+                </group>
+            </xpath>
+            <field name="quizz_score" position="after">
+                <field name="average_grade" readonly="1"/>
+            </field>
+            <field name="page_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="question_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="answer_type" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath
+                expr="//field[@name='user_input_line_ids']//tree/field[@name='date_create']"
+                   position="replace"/>
+            <field name="skipped" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="quizz_mark" position="after">
+                <field name="percentage" readonly="0" sum="Total Percent"/>
+                <field name="value_free_text"/>
+                <field name="date_create" readonly="1"/>
+            </field>
+            <field name="skipped" position="after">
+                <field name="labels_ids" invisible="1"/>
+                <field name="labels_ids_2" invisible="1"/>
+                <field name="record_state" invisible="1"/>
+                <field name="value_suggested_row"
+                       readonly="1"
+                       options="{'no_create': True}"
+                       domain="[
+                            ('id', 'in', labels_ids_2)]"/>
+                <field name="value_suggested"
+                       options="{'no_create': True}"
+                       attrs="{'readonly': [('record_state','=','assessed')]}"
+                       domain="[
+                            ('id', 'in', labels_ids)]"/>
+                <field name="competence_types" widget="many2many_tags"/>
+                <field name="competence_specific" widget="many2many_tags"/>
+            </field>
+<!--            <xpath expr="//tree" position="attributes">-->
+<!--                <attribute name="editable">bottom</attribute>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+    <record id="survey_user_input_tree" model="ir.ui.view">
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_tree"/>
+        <field name="arch" type="xml">
+            <field name="quizz_score" position="after">
+                <field name="average_grade"/>
+            </field>
+        </field>
+    </record>
+</odoo>

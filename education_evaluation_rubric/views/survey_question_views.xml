@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_question_view_form" model="ir.ui.view">
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+            </field>
+            <field name="quizz_mark" position="after">
+                <field name="color"/>
+            </field>
+            <xpath expr="//field[@name='labels_ids_2']/tree" position="inside">
+                <field name="competence_specific" widget="many2many_tags" domain="[('level_ids', 'in', level_ids)]"/>
+                <field name="percentage" sum="Total Percent"/>
+                <field name="level_ids" invisible="1"/>
+            </xpath>
+            <field name="labels_ids_2" position="after">
+                <separator/>
+                <label for="survey_text_ids" attrs="{'invisible': [('type', '!=', 'matrix')]}"/>
+                <button name="create_survey_texts" type="object" string="Create survey texts"/>
+                <field name="survey_text_ids" context="{'default_question_id_2': active_id}" attrs="{'invisible': [('type', '!=', 'matrix')]}">
+                    <tree editable="bottom">
+                        <field name="label_id_1"/>
+                        <field name="label_id_2"/>
+                        <field name="text"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+</odoo>

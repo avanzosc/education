@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-18 08:01+0000\n"
-"PO-Revision-Date: 2023-07-18 08:01+0000\n"
+"POT-Creation-Date: 2023-09-27 14:59+0000\n"
+"PO-Revision-Date: 2023-09-27 14:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_input_count
+msgid "# Survey Responses"
+msgstr ""
 
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.edu_schedule_web_records
@@ -37,8 +42,13 @@ msgstr ""
 
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_form
-#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
 msgid "Answer All Surveys"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_record_view_tree
+msgid "Answer Survey"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -100,9 +110,20 @@ msgid "Competence"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__competence_specific
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__competence_specific
+msgid "Competence specific"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__competence_types
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__competence_types
 msgid "Competence types"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_form
+msgid "Create Survey Responses"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -112,7 +133,7 @@ msgid "Create custom survey"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_question_text_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_question_view_form
 msgid "Create survey texts"
 msgstr ""
 
@@ -127,7 +148,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__edited_survey_show
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
+msgid "Custom"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__edited_survey_show
 msgid "Custom Survey Show"
 msgstr ""
@@ -265,8 +290,24 @@ msgid "Maximum Average Grade"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__missing_survey_inputs
+msgid "Missing Survey Responses"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_student_next_button
 msgid "Next Student"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: code:addons/education_evaluation_rubric/models/education_record.py:87
+#, python-format
+msgid "No survey user input to show."
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_search
+msgid "Not Rubric Exam"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -280,13 +321,9 @@ msgid "Numeric"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_record_view_tree
-msgid "Open"
-msgstr ""
-
-#. module: education_evaluation_rubric
-#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_record_view_tree
-msgid "Open survey"
+#: code:addons/education_evaluation_rubric/models/education_exam.py:66
+#, python-format
+msgid "Please Select Survey for Rubric Competence"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -330,11 +367,17 @@ msgid "Rubric"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_search
+msgid "Rubric Exam"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_schedule__rubric_questions_count
 msgid "Rubric questions count"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: code:addons/education_evaluation_rubric/models/education_schedule.py:35
 #: code:addons/education_evaluation_rubric/models/education_schedule.py:40
 #, python-format
 msgid "Schedule rubric questions"
@@ -353,6 +396,11 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,help:education_evaluation_rubric.field_survey_survey__related_record_mark
 msgid "Select whether to relate quizz_mark or average_grade on education record numeric marks."
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__edited_survey_show
+msgid "Show Custom Survey"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -382,7 +430,6 @@ msgid "Survey Input"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_input_ids
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_ids
 msgid "Survey Inputs"
 msgstr ""
@@ -418,6 +465,16 @@ msgid "Survey Question Text (Matrix)"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_record__survey_input_state
+msgid "Survey Response State"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_input_ids
+msgid "Survey Responses"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_id
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_id
 msgid "Survey Template"
@@ -434,9 +491,13 @@ msgid "Survey User Input Line"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__survey_input_count
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__survey_input_count
 msgid "Survey input count"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
+msgid "Template"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -445,13 +506,14 @@ msgid "Text"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/survey.py:257
+#: code:addons/education_evaluation_rubric/models/survey.py:270
+#: code:addons/education_evaluation_rubric/models/survey.py:281
 #, python-format
 msgid "The sum of all label percentages cannot be greater than 100."
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_question_text_form
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_question_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_user_input_form
 msgid "Total Percent"
 msgstr ""

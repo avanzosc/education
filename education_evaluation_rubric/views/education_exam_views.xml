@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_exam_view_form" model="ir.ui.view">
+        <field name="model">education.exam</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_exam_view_form"/>
+        <field name="arch" type="xml">
+            <button name="action_generate_record" position="after">
+                <button name="button_open_all_survey_inputs" string="Answer All Surveys" type="object" attrs="{'invisible': [('survey_input_count','=', 0)]}"/>
+                <button name="button_create_missing_survey_inputs"
+                        string="Create Survey Responses"
+                        type="object"
+                        attrs="{'invisible': [('missing_survey_inputs', '=', False)]}" />
+            </button>
+            <div class="oe_button_box" name="button_box">
+                <button name="action_survey_user_input" type="object"
+                        class="oe_stat_button" icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('survey_input_count','=', 0)]}">
+                    <field string="Answers" name="survey_input_count" widget="statinfo"/>
+                </button>
+            </div>
+            <field name="mark_close_date" position="after">
+                <field name="teacher_id" invisible="1"/>
+                <field name="center_id" invisible="1"/>
+                <field name="competence_id" invisible="1"/>
+                <field name="level_id" invisible="1"/>
+                <field name="subject_id" invisible="1"/>
+                <field name="course_ids" invisible="1"/>
+                <field name="edited_survey_show" invisible="1"/>
+                <field name="is_rubric"/>
+                <field name="missing_survey_inputs" invisible="1" />
+                <field name="survey_id"
+                       options='{"no_open": True}'
+                       attrs="{'invisible':[('is_rubric','=',False)]}"
+                       domain="[
+                            ('is_base_survey', '=', True),
+                            '|',
+                            ('responsible', '=', False),
+                            ('responsible', '=', teacher_id),
+                            '|',
+                            ('school_ids', '=', False),
+                            ('school_ids', 'in', center_id),
+                            '|',
+                            ('competence_ids', '=', False),
+                            ('competence_ids', 'in', competence_id),
+                            '|',
+                            ('level_ids', '=', False),
+                            ('level_ids', 'in', level_id),
+                            '|',
+                            ('subject_ids', '=', False),
+                            ('subject_ids', 'in', subject_id),
+                            '|',
+                            ('education_course_ids', '=', False),
+                            ('education_course_ids', 'in', course_ids)]"/>
+                <button name="button_create_custom_survey"
+                        confirm="By creating a custom survey template existing survey inputs will be deleted."
+                        string="Create custom survey" type="object" attrs="{'invisible': ['|',('edited_survey_show','=', True),('edited_survey_id', '!=', False)]}"/>
+                <field name="edited_survey_id"
+                       readonly="1"
+                       attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
+            </field>
+            <xpath
+                expr="//field[@name='record_ids']/tree//field[@name='recovered_record_id']" position="after">
+                    <field name="survey_input_id" invisible="1" />
+                    <field name="survey_input_state" invisible="1" />
+                    <button name="button_respond_survey" string="Answer Survey"
+                            type="object" icon="fa-edit"
+                            attrs="{'invisible':['|', ('survey_input_id','=',False), ('survey_input_state', '=', 'done')]}" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="education_exam_view_search" model="ir.ui.view">
+        <field name="model">education.exam</field>
+        <field name="inherit_id"
+               ref="education_evaluation_notebook.education_exam_view_search" />
+        <field name="arch" type="xml">
+            <filter name="final_eval" position="after">
+                <separator />
+                <filter name="is_rubric" string="Rubric Exam"
+                        domain="[('is_rubric','=',True)]"/>
+                <filter name="is_not_rubric" string="Not Rubric Exam"
+                        domain="[('is_rubric','!=',True)]"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

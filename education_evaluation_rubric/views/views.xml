@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="edu_schedule_web_records" model="ir.ui.view">
-        <field name="name">education.schedule.form</field>
-        <field name="model">education.schedule</field>
-        <field name="inherit_id" ref="education.education_schedule_view_form"/>
-        <field name="arch" type="xml">
-            <button name="button_show_notebook_lines" position="before">
-                <button class="oe_stat_button" type="object" name="button_open_rubric_questions" icon="fa-reorder"
-                        attrs="{'invisible': [('rubric_questions_count','=',0)]}">
-                    <div class="o_stat_info">
-                        <field name="rubric_questions_count" class="o_stat_value"/>
-                        <span class="o_stat_text">Rubric Questions</span>
-                    </div>
-                </button>
-            </button>
-        </field>
-    </record>
+
+
     <record id="education_notebook_line_view_form" model="ir.ui.view">
         <field name="model">education.notebook.line</field>
         <field name="inherit_id" ref="education_evaluation_notebook.education_notebook_line_view_form"/>
         <field name="arch" type="xml">
-            <button name="button_create_student_records" position="after">
+            <button name="fi" position="after">
                 <button name="button_open_all_survey_inputs" string="Answer All Surveys" type="object" attrs="{'invisible': [('survey_input_count','=', 0)]}"/>
             </button>
             <div class="oe_button_box" name="button_box">
@@ -34,34 +20,34 @@
                 <field name="eval_mode" invisible="1"/>
                 <field name="edited_survey_show" invisible="1"/>
                 <field name="course_ids" invisible="1"/>
-                <field name="survey_id"
-                       options='{"no_open": True}'
-                       attrs="{'invisible':[('eval_mode','!=','rubric')]}"
-                       domain="[
-                            ('is_base_survey', '=', True),
-                            '|',
-                            ('responsible', '=', False),
-                            ('responsible', '=', teacher_id),
-                            '|',
-                            ('school_ids', '=', False),
-                            ('school_ids', 'in', education_center_id),
-                            '|',
-                            ('competence_ids', '=', False),
-                            ('competence_ids', 'in', competence_id),
-                            '|',
-                            ('level_ids', '=', False),
-                            ('level_ids', 'in', level_ids),
-                            '|',
-                            ('subject_ids', '=', False),
-                            ('subject_ids', 'in', subject_id),
-                            '|',
-                            ('education_course_ids', '=', False),
-                            ('education_course_ids', 'in', course_ids)]"/>
-                <button name="button_create_custom_survey"
-                        confirm="By creating a custom survey template existing survey inputs will be deleted."
-                        string="Create custom survey" type="object" attrs="{'invisible': ['|',('edited_survey_show','=', False),('edited_survey_id', '!=', False)]}"/>
-                <field name="edited_survey_id"
-                       attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
+<!--                <field name="survey_id"-->
+<!--                       options='{"no_open": True}'-->
+<!--                       attrs="{'invisible':[('eval_mode','!=','rubric')]}"-->
+<!--                       domain="[-->
+<!--                            ('is_base_survey', '=', True),-->
+<!--                            '|',-->
+<!--                            ('responsible', '=', False),-->
+<!--                            ('responsible', '=', teacher_id),-->
+<!--                            '|',-->
+<!--                            ('school_ids', '=', False),-->
+<!--                            ('school_ids', 'in', education_center_id),-->
+<!--                            '|',-->
+<!--                            ('competence_ids', '=', False),-->
+<!--                            ('competence_ids', 'in', competence_id),-->
+<!--                            '|',-->
+<!--                            ('level_ids', '=', False),-->
+<!--                            ('level_ids', 'in', level_ids),-->
+<!--                            '|',-->
+<!--                            ('subject_ids', '=', False),-->
+<!--                            ('subject_ids', 'in', subject_id),-->
+<!--                            '|',-->
+<!--                            ('education_course_ids', '=', False),-->
+<!--                            ('education_course_ids', 'in', course_ids)]"/>-->
+<!--                <button name="button_create_custom_survey"-->
+<!--                        confirm="By creating a custom survey template existing survey inputs will be deleted."-->
+<!--                        string="Create custom survey" type="object" attrs="{'invisible': ['|',('edited_survey_show','=', False),('edited_survey_id', '!=', False)]}"/>-->
+<!--                <field name="edited_survey_id"-->
+<!--                       attrs="{'invisible': [('edited_survey_show','=', False)]}"/>-->
 
             </field>
             <xpath expr="//field[@name='child_line_ids']/tree/field[@name='competence_type_ids']" position="after">
@@ -139,194 +125,6 @@
                        readonly="1"/>
 
             </xpath>
-        </field>
-    </record>
-    <record id="education_exam_view_form" model="ir.ui.view">
-        <field name="model">education.exam</field>
-        <field name="inherit_id" ref="education_evaluation_notebook.education_exam_view_form"/>
-        <field name="arch" type="xml">
-            <button name="action_generate_record" position="after">
-                <button name="button_open_all_survey_inputs" string="Answer All Surveys" type="object" attrs="{'invisible': [('survey_input_count','=', 0)]}"/>
-            </button>
-            <div class="oe_button_box" name="button_box">
-                <button name="action_survey_user_input" type="object"
-                        class="oe_stat_button" icon="fa-pencil-square-o"
-                        attrs="{'invisible': [('survey_input_count','=', 0)]}">
-                    <field string="Answers" name="survey_input_count" widget="statinfo"/>
-                </button>
-            </div>
-            <field name="mark_close_date" position="after">
-                <field name="teacher_id" invisible="1"/>
-                <field name="center_id" invisible="1"/>
-                <field name="competence_id" invisible="1"/>
-                <field name="level_id" invisible="1"/>
-                <field name="subject_id" invisible="1"/>
-                <field name="course_ids" invisible="1"/>
-                <field name="edited_survey_show" invisible="1"/>
-                <field name="is_rubric"/>
-                <field name="survey_id"
-                       options='{"no_open": True}'
-                       attrs="{'invisible':[('is_rubric','=',False)]}"
-                       domain="[
-                            ('is_base_survey', '=', True),
-                            '|',
-                            ('responsible', '=', False),
-                            ('responsible', '=', teacher_id),
-                            '|',
-                            ('school_ids', '=', False),
-                            ('school_ids', 'in', center_id),
-                            '|',
-                            ('competence_ids', '=', False),
-                            ('competence_ids', 'in', competence_id),
-                            '|',
-                            ('level_ids', '=', False),
-                            ('level_ids', 'in', level_id),
-                            '|',
-                            ('subject_ids', '=', False),
-                            ('subject_ids', 'in', subject_id),
-                            '|',
-                            ('education_course_ids', '=', False),
-                            ('education_course_ids', 'in', course_ids)]"/>
-                <button name="button_create_custom_survey"
-                        confirm="By creating a custom survey template existing survey inputs will be deleted."
-                        string="Create custom survey" type="object" attrs="{'invisible': ['|',('edited_survey_show','=', True),('edited_survey_id', '!=', False)]}"/>
-                <field name="edited_survey_id"
-                       readonly="1"
-                       attrs="{'invisible': [('edited_survey_show','=', False)]}"/>
-            </field>
-        </field>
-    </record>
-    <record id="education_record_view_tree" model="ir.ui.view">
-        <field name="model">education.record</field>
-        <field name="inherit_id" ref="education_evaluation_notebook.education_record_view_tree"/>
-        <field name="arch" type="xml">
-            <field name="recovered_record_id" position="after">
-                <field name="survey_input_id" invisible="1"/>
-                <button name="button_respond_survey" string="Open survey"
-                        type="object" icon="fa-pencil" help="Open"
-                        attrs="{'invisible':[('survey_input_id','=',False)]}"/>
-            </field>
-        </field>
-    </record>
-    <record id="education_record_view_form" model="ir.ui.view">
-        <field name="model">education.record</field>
-        <field name="inherit_id" ref="education_evaluation_notebook.education_record_view_form"/>
-        <field name="arch" type="xml">
-            <field name="date" position="after">
-                <field name="survey_input_id"/>
-            </field>
-        </field>
-    </record>
-    <record id="survey_form" model="ir.ui.view">
-        <field name="model">survey.survey</field>
-        <field name="inherit_id" ref="survey.survey_form"/>
-        <field name="arch" type="xml">
-            <field name="quizz_mode" position="after">
-                <field name="is_base_survey"/>
-                <field name="responsible"/>
-                <field name="school_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
-                <field name="competence_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
-                <field name="level_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
-                <field name="education_course_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
-                <field name="subject_ids" widget="many2many_tags" options="{'no_create_edit': True}" />
-                <field name="related_record_mark"/>
-            </field>
-        </field>
-    </record>
-    <record id="survey_user_input_form" model="ir.ui.view">
-        <field name="model">survey.user_input</field>
-        <field name="inherit_id" ref="survey.survey_user_input_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//group" position="inside">
-                <group>
-                    <field name="education_record_id"/>
-                    <field name="academic_year"/>
-                    <field name="evaluation"/>
-                    <field name="description"/>
-                    <field name="subject_id"/>
-                    <field name="education_center"/>
-                    <field name="responsible"/>
-                </group>
-            </xpath>
-            <field name="quizz_score" position="after">
-                <field name="average_grade" readonly="1"/>
-            </field>
-            <field name="page_id" position="attributes">
-                <attribute name="readonly">1</attribute>
-            </field>
-            <field name="question_id" position="attributes">
-                <attribute name="readonly">1</attribute>
-            </field>
-            <field name="answer_type" position="attributes">
-                <attribute name="readonly">1</attribute>
-                <attribute name="invisible">1</attribute>
-            </field>
-            <xpath expr="//tree/field[@name='date_create']" position="replace"/>
-            <field name="skipped" position="attributes">
-                <attribute name="readonly">1</attribute>
-            </field>
-            <field name="quizz_mark" position="after">
-                <field name="percentage" readonly="0" sum="Total Percent"/>
-                <field name="value_free_text"/>
-                <field name="date_create" readonly="1"/>
-            </field>
-            <field name="skipped" position="after">
-                <field name="labels_ids" invisible="1"/>
-                <field name="labels_ids_2" invisible="1"/>
-                <field name="record_state" invisible="1"/>
-                <field name="value_suggested_row"
-                       readonly="1"
-                       options="{'no_create': True}"
-                       domain="[
-                            ('id', 'in', labels_ids_2)]"/>
-                <field name="value_suggested"
-                       options="{'no_create': True}"
-                       attrs="{'readonly': [('record_state','=','assessed')]}"
-                       domain="[
-                            ('id', 'in', labels_ids)]"/>
-                <field name="competence_types" widget="many2many_tags"/>
-                <field name="competence_specific" widget="many2many_tags"/>
-            </field>
-            <xpath expr="//tree" position="attributes">
-                <attribute name="editable">bottom</attribute>
-            </xpath>
-        </field>
-    </record>
-    <record id="survey_user_input_tree" model="ir.ui.view">
-        <field name="model">survey.user_input</field>
-        <field name="inherit_id" ref="survey.survey_user_input_tree"/>
-        <field name="arch" type="xml">
-            <field name="quizz_score" position="after">
-                <field name="average_grade"/>
-            </field>
-        </field>
-    </record>
-    <record id="survey_question_text_form" model="ir.ui.view">
-        <field name="model">survey.question</field>
-        <field name="inherit_id" ref="survey.survey_question_form"/>
-        <field name="arch" type="xml">
-            <field name="type" position="after">
-            </field>
-            <field name="quizz_mark" position="after">
-                <field name="color"/>
-            </field>
-            <xpath expr="//field[@name='labels_ids_2']/tree" position="inside">
-                <field name="competence_specific" widget="many2many_tags" domain="[('level_ids', 'in', level_ids)]"/>
-                <field name="percentage" sum="Total Percent"/>
-                <field name="level_ids" invisible="1"/>
-            </xpath>
-            <field name="labels_ids_2" position="after">
-                <separator/>
-                <label for="survey_text_ids" attrs="{'invisible': [('type', '!=', 'matrix')]}"/>
-                <button name="create_survey_texts" type="object" string="Create survey texts"/>
-                <field name="survey_text_ids" context="{'default_question_id_2': active_id}" attrs="{'invisible': [('type', '!=', 'matrix')]}">
-                    <tree editable="bottom">
-                        <field name="label_id_1"/>
-                        <field name="label_id_2"/>
-                        <field name="text"/>
-                    </tree>
-                </field>
-            </field>
         </field>
     </record>
 </odoo>
