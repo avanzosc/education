@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_notebook_line_view_form" model="ir.ui.view">
+        <field name="model">education.notebook.line</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_notebook_line_view_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" name="button_box">
+                <button name="action_survey_user_input" type="object"
+                        class="oe_stat_button" icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('survey_input_count','=', 0)]}">
+                    <field string="Answers" name="survey_input_count" widget="statinfo"/>
+                </button>
+            </div>
+            <xpath expr="//field[@name='exam_ids']//tree" position="attributes">
+                <attribute name="decoration-bf">is_rubric</attribute>
+            </xpath>
+            <xpath expr="//field[@name='exam_ids']/tree//field[@name='exam_type_id']"
+                   position="after">
+                <field name="edited_survey_show" invisible="1"/>
+                <field name="teacher_id" invisible="1"/>
+                <field name="center_id" invisible="1"/>
+                <field name="competence_id" invisible="1"/>
+                <field name="level_id" invisible="1"/>
+                <field name="subject_id" invisible="1"/>
+                <field name="course_ids" invisible="1"/>
+                <field name="is_rubric" />
+                <field name="survey_id"
+                       string="Template"
+                       options="{'no_open': True}"
+                       domain="[
+                            ('is_base_survey', '=', True),
+                            '|',
+                            ('responsible', '=', False),
+                            ('responsible', '=', teacher_id),
+                            '|',
+                            ('school_ids', '=', False),
+                            ('school_ids', 'in', center_id),
+                            '|',
+                            ('competence_ids', '=', False),
+                            ('competence_ids', 'in', competence_id),
+                            '|',
+                            ('level_ids', '=', False),
+                            ('level_ids', 'in', level_id),
+                            '|',
+                            ('subject_ids', '=', False),
+                            ('subject_ids', 'in', subject_id),
+                            '|',
+                            ('education_course_ids', '=', False),
+                            ('education_course_ids', 'in', course_ids)]"
+                       attrs="{'invisible': [('is_rubric', '=', False)]}"/>
+                <button name="button_create_custom_survey"
+                        confirm="By creating a custom survey template existing survey inputs will be deleted."
+                        string="Create custom survey" type="object" icon="fa-arrow-right"
+                        attrs="{'invisible': [('is_rubric','=', False),'|',('edited_survey_show','=', True),('survey_id', '=', False)]}"/>
+                <field name="edited_survey_id" string="Custom"
+                       attrs="{'invisible': [('edited_survey_show','=', False)]}"
+                       readonly="1"/>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

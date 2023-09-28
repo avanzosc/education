@@ -1,13 +1,14 @@
 # Copyright 2022 Leire Martinez de Santos - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
 
 class SurveySurvey(models.Model):
     _inherit = "survey.survey"
 
-    responsible = fields.Many2one('hr.employee', string='Responsible Teacher')
+    responsible = fields.Many2one(
+        comodel_name='hr.employee', string='Responsible Teacher')
     competence_ids = fields.Many2many(
         comodel_name="education.competence", string="Competence")
     school_ids = fields.Many2many(
@@ -40,6 +41,16 @@ class SurveySurvey(models.Model):
         ],
         default='quizz_score', required=True,
         help='Select whether to relate quizz_mark or average_grade on education record numeric marks.')
+
+    def copy_data(self, default=None):
+        title = default.get("title", False)
+        datas = super(SurveySurvey, self).copy_data(default=default)
+        if title:
+            for data in datas:
+                data.update({
+                    "title": title,
+                })
+        return datas
 
     def copy_survey_texts(self, original_survey):
         self.ensure_one()

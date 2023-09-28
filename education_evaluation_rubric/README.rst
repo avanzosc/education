@@ -7,7 +7,7 @@ Education Evaluation Rubric
 ===========================
 
 * Allows a new evaluation type 'Rubric'
-- evaluates notebook records with surveys
+  - evaluates notebook records with surveys
 
 Credits
 =======

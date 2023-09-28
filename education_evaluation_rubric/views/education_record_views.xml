@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_record_view_tree" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_record_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="recovered_record_id" position="after">
+                <field name="survey_input_id" invisible="1" />
+                <field name="survey_input_state" invisible="1" />
+                <button name="button_respond_survey" string="Answer Survey"
+                        type="object" icon="fa-edit"
+                        attrs="{'invisible':['|', ('survey_input_id','=',False), ('survey_input_state', '=', 'done')]}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="education_record_view_form" model="ir.ui.view">
+        <field name="model">education.record</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.education_record_view_form"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="survey_input_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>
