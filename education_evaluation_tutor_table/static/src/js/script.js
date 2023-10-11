@@ -43,17 +43,17 @@ $(document).ready(function(require) {
         show_eval_info(evaluation);
     });
 
-    $(".duplicate_meeting").click(function(){
+    $(".duplicate_meeting").one("click", function(){
         var value = this.id;
         $('#input_duplicate').attr('value', value);
         $('form#real_done').submit();
     });
 
-    $("button.duplicate_meeting").click(function(){
-        var value = this.id;
-        $('#download_xls').attr('value', value);
-        $('form#real_done').submit();
-    });
+//    $("button.duplicate_meeting").click(function(){
+//        var value = this.id;
+//        $('#download_xls').attr('value', value);
+//        $('form#real_done').submit();
+//    });
 
     function show_eval_info(evaluation){
         $('td').hide();

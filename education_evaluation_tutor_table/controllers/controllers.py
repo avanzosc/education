@@ -30,8 +30,7 @@ MONTHS = {
 
 class EducationMain(CustomerPortal):
 
-    @http.route(['/meetings'], type='http',
-                auth="user", website=True)
+    @http.route(['/meetings'], type='http', auth="user", website=True)
     def meetings(self, **args):
         logged_employee = request.env['hr.employee'].search([
             ('user_id', '=', request.uid)])
@@ -45,14 +44,14 @@ class EducationMain(CustomerPortal):
         current_academic_year = self.get_current_academic_year()
         STUDENT_TUTORING, FAMILY_TUTORING = self.get_tutoring_types()
 
-        input_duplicate = args.get('input_duplicate', None)
+        input_duplicate = args.pop('input_duplicate', None)
         if input_duplicate:
             vals = input_duplicate.split('_')
             eval_ref = vals[0]
             student_id = int(vals[1])
             month_id = int(vals[2])
             type_ref = vals[3]
-            new_meetig= self.input_duplicate(eval_ref, student_id, month_id, type_ref, current_academic_year.id)
+            self.input_duplicate(eval_ref, student_id, month_id, type_ref, current_academic_year.id)
 
         meetings = calendar_event_obj.sudo().search([
             ('academic_year_id', '=', current_academic_year.id),
