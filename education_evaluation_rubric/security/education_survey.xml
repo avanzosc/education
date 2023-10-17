@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
-    <record id="education_secretary_group" model="res.groups">
-        <field name="name">Group Secretary</field>
+    <record id="survey_button_group" model="res.groups">
+        <field name="name">Show survey buttons in teacher portal</field>
         <field name="category_id" ref="base.module_category_hidden"/>
     </record>
     <record id="education_survey_own_rule" model="ir.rule">

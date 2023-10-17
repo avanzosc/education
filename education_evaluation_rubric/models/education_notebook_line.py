@@ -14,22 +14,17 @@ class EducationNotebookLine(models.Model):
     survey_id = fields.Many2one('survey.survey', string='Survey Template')
     edited_survey_id = fields.Many2one('survey.survey', string='Custom Survey Template')
     edited_survey_show = fields.Boolean(default=False, string='Custom Survey Show')
-    survey_input_ids = fields.Many2many(
+    survey_input_ids = fields.One2many(
         string="Survey Inputs",
         comodel_name="survey.user_input",
-        relation="survey_input_notebook_line_rel",
-        column1="notebook_id",
-        column2="input_id",
-        compute="_compute_survey_input")
-    survey_input_count = fields.Integer('Survey input count', compute="_compute_survey_input_count")
+        inverse_name="notebook_line_id"
+    )
+    survey_input_count = fields.Integer(
+        string="Survey input count",
+        compute="_compute_survey_input",
+    )
 
     def _compute_survey_input(self):
-        for record in self:
-            record.survey_input_ids = self.env['survey.user_input'].search([
-                ('notebook_line_id', '=', record.id)
-            ])
-
-    def _compute_survey_input_count(self):
         for record in self:
             record.survey_input_count = len(record.survey_input_ids)
 
@@ -79,17 +74,18 @@ class EducationNotebookLine(models.Model):
     @api.multi
     def button_open_all_survey_inputs(self):
         self.ensure_one()
-        first_survey = self.env['survey.user_input'].search([
-            ('id', 'in', self.survey_input_ids.ids)], order="id asc")
-        res = first_survey[0].button_respond_survey()
-        res['target'] = 'new'
+        first_survey = self.env["survey.user_input"].search([
+            ("id", "in", self.survey_input_ids.ids),
+            ("state", "!=", "done")
+        ], order="id asc")
+        res = first_survey[:1].button_respond_survey()
+        res["target"] = 'new'
         return res
 
     def get_survey_url(self):
-        for record in self:
-            if record.survey_id and record.competence_id.eval_mode == 'rubric':
-                url_get = record.button_open_all_survey_inputs()
-                return url_get.get('url', None)
+        self.ensure_one()
+        url_get = self.button_open_all_survey_inputs()
+        return url_get.get("url", None)
 
 #
 # class EducationExam(models.Model):

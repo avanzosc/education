@@ -5,42 +5,42 @@ from odoo.exceptions import UserError
 
 
 class EducationRecord(models.Model):
-    _inherit = 'education.record'
+    _inherit = "education.record"
 
     survey_input_id = fields.Many2one(
-        comodel_name='survey.user_input', string='Survey Input')
+        comodel_name="survey.user_input", string="Survey Input")
     survey_input_state = fields.Selection(
         string="Survey Response State", related="survey_input_id.state"
     )
     survey_id = fields.Many2one(
-        comodel_name='survey.survey', compute='_compute_survey')
-    quizz_score = fields.Float(related='survey_input_id.quizz_score')
+        comodel_name="survey.survey", compute="_compute_survey")
+    quizz_score = fields.Float(related="survey_input_id.quizz_score")
 
     @api.depends("exam_id", "exam_id.edited_survey_id", "exam_id.survey_id")
     def _compute_survey(self):
         for record in self:
             record.survey_id = (record.exam_id and
-                                (record.exam_id.exam.edited_survey_id or
+                                (record.exam_id.edited_survey_id or
                                  record.exam_id.survey_id))
 
     def create_survey_input(self, survey):
-        user_input_obj = self.env['survey.user_input']
+        user_input_obj = self.env["survey.user_input"]
         if not survey:
             return
         for record in self:
             record.survey_input_id = user_input_obj.create({
-                'survey_id': survey.id,
-                'partner_id': record.student_id.id,
-                'responsible': record.teacher_id.id,
-                'notebook_line_id': record.n_line_id.id,
-                'exam_id': record.exam_id.id if record.exam_id else None,
-                'education_record_id': record.id,
+                "survey_id": survey.id,
+                "partner_id": record.student_id.id,
+                "responsible": record.teacher_id.id,
+                "notebook_line_id": record.n_line_id.id,
+                "exam_id": record.exam_id.id if record.exam_id else None,
+                "education_record_id": record.id,
             })
 
     def button_respond_survey(self):
         self.ensure_one()
         res = self.survey_input_id.button_respond_survey()
-        res['target'] = 'new'
+        res["target"] = "new"
         return res
 
     def create(self, vals):
@@ -54,10 +54,10 @@ class EducationRecord(models.Model):
         for record in self:
             record.numeric_mark = mark
             if not record.behaviour_mark_id:
-                record.behaviour_mark_id = self.env['education.mark.behaviour'].browse(1)
+                record.behaviour_mark_id = self.env["education.mark.behaviour"].browse(1)
 
     def _onchange_survey_mark(self):
-        if self.state != 'assessed':
+        if self.state != "assessed":
             set_mark = self.compute_numeric_mark()
             if set_mark:
                 self.set_numeric_mark(set_mark)
@@ -66,16 +66,16 @@ class EducationRecord(models.Model):
         self.ensure_one()
         ret_value = 0.0
         survey = self.survey_input_id.survey_id
-        if survey.related_record_mark == 'quizz_score':
+        if survey.related_record_mark == "quizz_score":
             ret_value = self.quizz_score
-        elif survey.related_record_mark == 'average_grade':
+        elif survey.related_record_mark == "average_grade":
             ret_value = self.survey_input_id.average_grade
-        elif survey.related_record_mark == 'maximum_average':
+        elif survey.related_record_mark == "maximum_average":
             self.survey_input_id.update_line_value_suggested()
-            max_value = survey.mapped('page_ids').mapped('question_ids').mapped('labels_ids').sorted(
+            max_value = survey.mapped("page_ids").mapped("question_ids").mapped("labels_ids").sorted(
                 key=lambda m: m.quizz_mark, reverse=True)[0]
-            max_points = max_value.quizz_mark * len(survey.mapped('page_ids').mapped('question_ids').mapped('labels_ids_2'))
-            quizz_score = sum(self.survey_input_id.user_input_line_ids.mapped('quizz_mark'))
+            max_points = max_value.quizz_mark * len(survey.mapped("page_ids").mapped("question_ids").mapped("labels_ids_2"))
+            quizz_score = sum(self.survey_input_id.user_input_line_ids.mapped("quizz_mark"))
             ret_value = quizz_score / max_points * 10
             if 0 > ret_value or 10 < ret_value:
                 ret_value = None
@@ -86,5 +86,5 @@ class EducationRecord(models.Model):
         if not self.survey_input_id:
             return UserError(_("No survey user input to show."))
         url_get = self.button_respond_survey()
-        return url_get.get('url', None)
+        return url_get.get("url", None)
 
