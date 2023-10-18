@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 15:00+0000\n"
-"PO-Revision-Date: 2023-09-27 15:00+0000\n"
+"POT-Creation-Date: 2023-10-17 14:51+0000\n"
+"PO-Revision-Date: 2023-10-17 14:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -378,7 +378,6 @@ msgstr ""
 
 #. module: education_evaluation_rubric
 #: code:addons/education_evaluation_rubric/models/education_schedule.py:35
-#: code:addons/education_evaluation_rubric/models/education_schedule.py:40
 #, python-format
 msgid "Schedule rubric questions"
 msgstr ""
@@ -401,6 +400,11 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_exam__edited_survey_show
 msgid "Show Custom Survey"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:res.groups,name:education_evaluation_rubric.survey_button_group
+msgid "Show survey buttons in teacher portal"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -506,7 +510,6 @@ msgid "Text"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/survey.py:270
 #: code:addons/education_evaluation_rubric/models/survey.py:281
 #, python-format
 msgid "The sum of all label percentages cannot be greater than 100."

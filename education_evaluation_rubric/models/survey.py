@@ -82,8 +82,9 @@ class SurveyPage(models.Model):
     responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
 
     level_ids = fields.Many2many(
-        comodel_name='education.level',
-        related="survey_id.level_ids")
+        comodel_name="education.level",
+        related="survey_id.level_ids",
+    )
 
 
 class SurveyUserInput(models.Model):
@@ -151,8 +152,9 @@ class SurveyUserInput(models.Model):
 class SurveyUserInputLine(models.Model):
     _inherit = "survey.user_input_line"
 
-    percentage = fields.Float('Eval. percentage')
-    labels_ids = fields.One2many(string='Types of answers', related="question_id.labels_ids")
+    percentage = fields.Float(string="Eval. percentage")
+    labels_ids = fields.One2many(
+        string="Types of answers", related="question_id.labels_ids")
     labels_ids_2 = fields.One2many(string='Types of answers', related="question_id.labels_ids_2")
     record_state = fields.Selection(
         'Education Record Status', related='user_input_id.state')
@@ -200,7 +202,9 @@ class SurveyQuestionText(models.Model):
     _name = "survey.question.text"
     _description = 'Survey Question Text (Matrix)'
 
-    responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="question_id.responsible")
+    responsible = fields.Many2one(
+        comodel_name="hr.employee", string="Responsible Teacher",
+                                  related="question_id.responsible")
 
     question_id = fields.Many2one(
         comodel_name="survey.question",
@@ -231,9 +235,12 @@ class SurveyLabel(models.Model):
         column1='label_id', column2='competence_type_id')
 
     competence_specific = fields.Many2many(
-        comodel_name='education.competence.specific', string='Competence specific',
+        comodel_name='education.competence.specific',
+        string='Competence specific',
         relation='rel_competence_specific_survey',
-        column1='label_id', column2='competence_specific_id')
+        column1='label_id',
+        column2='competence_specific_id',
+    )
 
     level_ids = fields.Many2many(
         comodel_name='education.level',
@@ -247,7 +254,9 @@ class SurveyLabel(models.Model):
 
     def _compute_label_responsible(self):
         for record in self:
-            record.responsible = record.question_id_2.responsible.id if record.question_id_2 else record.question_id.responsible.id
+            record.responsible = (record.question_id_2.responsible.id if
+                                  record.question_id_2 else
+                                  record.question_id.responsible.id)
 
     @api.model
     def create(self, vals):
@@ -259,27 +268,31 @@ class SurveyLabel(models.Model):
 class SurveyQuestion(models.Model):
     _inherit = "survey.question"
 
-    responsible = fields.Many2one('hr.employee', string='Responsible Teacher', related="survey_id.responsible")
+    responsible = fields.Many2one(
+        comodel_name="hr.employee",
+        string="Responsible Teacher",
+        related="survey_id.responsible",
+    )
 
 #    labels_ids_2 = fields.One2many(copy=True)
 
     level_ids = fields.Many2many(
-        comodel_name='education.level',
-        related="page_id.level_ids")
-
+        comodel_name="education.level",
+        related="survey_id.level_ids",
+    )
     survey_text_ids = fields.One2many(
-        string='Matrix Texts',
-        comodel_name='survey.question.text',
-        inverse_name='question_id',
+        string="Matrix Texts",
+        comodel_name="survey.question.text",
+        inverse_name="question_id",
       #  copy=True
     )
 
-    @api.onchange('labels_ids_2', 'labels_ids_2.percentage')
-    def _onchange_label_percentage(self):
-        if sum(self.labels_ids_2.mapped('percentage')) > 100:
-            raise UserError(
-                _('The sum of all label percentages cannot be greater than 100.')
-            )
+    # @api.onchange('labels_ids_2', 'labels_ids_2.percentage')
+    # def _onchange_label_percentage(self):
+    #     if sum(self.labels_ids_2.mapped('percentage')) > 100:
+    #         raise UserError(
+    #             _('The sum of all label percentages cannot be greater than 100.')
+    #         )
 
     def create_survey_texts(self):
         for record in self:
