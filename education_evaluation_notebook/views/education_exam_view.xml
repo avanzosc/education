@@ -132,6 +132,8 @@
                 <field name="n_line_id" />
                 <field name="eval_type" invisible="True" />
                 <field name="exam_type_id" options="{'no_create': True,'no_open':True}" />
+                <field name="education_criteria_ids" options="{'no_create': True,'no_open':True}" widget="many2many_tags"/>
+                <field name="schedule_education_criteria_ids" invisible="True" />
                 <field name="eval_percent" />
                 <field name="teacher_id" />
                 <field name="subject_id" />
