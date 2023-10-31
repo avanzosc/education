@@ -56,7 +56,10 @@
                                     <t
                                         t-if="record.exceptionality and record.exceptionality in ('adaptation', 'reinforcement', 'pending', 'neae')">
                                       <th class="text-left">
-                                            <span t-field="record.numeric_mark" t-options="{'precision': precision}"/> - <span t-esc="mark_obj._get_mark(round(record.numeric_mark, precision)).reduced_name"/> (<span t-field="record.exceptionality"/>)
+                                          <t t-if="course.level_id.education_code == '0009'">
+                                            <span t-field="record.numeric_mark" t-options="{'precision': precision}"/> -
+                                          </t>
+                                          <span t-esc="mark_obj._get_mark(round(record.numeric_mark, precision)).reduced_name"/> (<span t-field="record.exceptionality"/>)
                                       </th>
                                     </t>
                                     <t t-elif="record.exceptionality">
@@ -66,13 +69,19 @@
                                     </t>
                                     <t t-else="">
                                         <th class="text-left">
-                                            <span t-field="record.numeric_mark" t-options="{'precision': precision}"/> - <span t-field="mark_obj._get_mark(round(record.numeric_mark, precision)).reduced_name" />
+                                            <t t-if="course.level_id.education_code == '0009'">
+                                                <span t-field="record.numeric_mark" t-options="{'precision': precision}"/> -
+                                            </t>
+                                            <span t-field="mark_obj._get_mark(round(record.numeric_mark, precision)).reduced_name" />
                                         </th>
                                     </t>
                                     <t t-if="retake_record">
                                         <t t-if="retake_record.exceptionality and retake_record.exceptionality in ('adaptation', 'reinforcement', 'pending', 'neae')">
                                             <th class="text-left">
-                                                <span t-field="retake_record.numeric_mark" t-options="{'precision': precision}"/> - <span t-field="mark_obj._get_mark(round(retake_record.numeric_mark, precision)).reduced_name"/> (<span t-field="retake_record.exceptionality"/>)
+                                                <t t-if="course.level_id.education_code == '0009'">
+                                                    <span t-field="retake_record.numeric_mark" t-options="{'precision': precision}"/> -
+                                                </t>
+                                                <span t-field="mark_obj._get_mark(round(retake_record.numeric_mark, precision)).reduced_name"/> (<span t-field="retake_record.exceptionality"/>)
                                             </th>
                                         </t>
                                         <t t-elif="retake_record.exceptionality">
@@ -82,7 +91,10 @@
                                         </t>
                                         <t t-else="">
                                             <th class="text-left">
-                                                <span t-field="retake_record.numeric_mark" t-options="{'precision': precision}"/> - <span t-field="mark_obj._get_mark(round(retake_record.numeric_mark, precision)).reduced_name" />
+                                                <t t-if="course.level_id.education_code == '0009'">
+                                                    <span t-field="retake_record.numeric_mark" t-options="{'precision': precision}"/> -
+                                                </t>
+                                                <span t-field="mark_obj._get_mark(round(retake_record.numeric_mark, precision)).reduced_name" />
                                             </th>
                                         </t>
                                     </t>
