@@ -70,38 +70,40 @@ class EducationSchedule(models.Model):
     )
 
     @api.multi
-    @api.depends("subject_id", 'center_id')
+    @api.depends("subject_id", "center_id", "subject_id.level_ids", "subject_id.course_ids")
     def _compute_education_criteria(self):
+        criteria_obj = self.env['education.criteria']
         for schedule in self:
-            education_criteria_ids = self.env['education.criteria'].search([
+            education_criteria_ids = criteria_obj.search([
                 '|',
-                ('level_ids', 'in', self.subject_id.level_ids.ids),
+                ('level_ids', 'in', schedule.subject_id.level_ids.ids),
                 ('level_ids', '=', False),
                 '|',
-                ('school_ids', 'in', self.center_id.ids),
+                ('school_ids', 'in', schedule.center_id.ids),
                 ('school_ids', '=', False),
                 '|',
-                ('course_ids', 'in', self.subject_id.course_ids.ids),
+                ('course_ids', 'in', schedule.subject_id.course_ids.ids),
                 ('course_ids', '=', False),
                 '|',
-                ('subject_ids', 'in', self.subject_id.ids),
+                ('subject_ids', 'in', schedule.subject_id.ids),
                 ('subject_ids', '=', False),
             ])
             schedule.education_criteria_ids = education_criteria_ids.ids
 
     @api.multi
-    @api.depends("subject_id", 'center_id')
+    @api.depends("subject_id", "center_id", "subject_id.level_ids")
     def _compute_competence_specific(self):
+        competence_obj = self.env['education.competence.specific']
         for schedule in self:
-            education_competence_specific_ids = self.env['education.competence.specific'].search([
+            education_competence_specific_ids = competence_obj.search([
                 '|',
-                ('level_ids', 'in', self.subject_id.level_ids.ids),
+                ('level_ids', 'in', schedule.subject_id.level_ids.ids),
                 ('level_ids', '=', False),
                 '|',
-                ('school_ids', 'in', self.center_id.ids),
+                ('school_ids', 'in', schedule.center_id.ids),
                 ('school_ids', '=', False),
                 '|',
-                ('subject_ids', 'in', self.subject_id.ids),
+                ('subject_ids', 'in', schedule.subject_id.ids),
                 ('subject_ids', '=', False),
             ])
             schedule.education_competence_specific_ids = education_competence_specific_ids.ids
