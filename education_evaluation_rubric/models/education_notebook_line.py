@@ -78,6 +78,8 @@ class EducationNotebookLine(models.Model):
             ("id", "in", self.survey_input_ids.ids),
             ("state", "!=", "done")
         ], order="id asc")
+        if not first_survey:
+            return {}
         res = first_survey[:1].button_respond_survey()
         res["target"] = 'new'
         return res
