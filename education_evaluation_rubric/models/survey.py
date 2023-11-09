@@ -43,7 +43,7 @@ class SurveySurvey(models.Model):
         help='Select whether to relate quizz_mark or average_grade on education record numeric marks.')
 
     def copy_data(self, default=None):
-        title = default.get("title", False)
+        title = default.get("title", False) if default else False
         datas = super(SurveySurvey, self).copy_data(default=default)
         if title:
             for data in datas:
