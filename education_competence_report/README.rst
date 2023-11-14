@@ -7,7 +7,7 @@ Education Competence Report
 ===========================
 
 * Creates reports for education:
-- Education group marks by competence types
+  - Education group marks by competence types
 
 Credits
 =======
@@ -20,6 +20,5 @@ Contributors
 
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Leire Martinez de Santos <leiremartinez@avanzosc.es>
-
 
 Do not contact contributors directly about support or help with technical issues.
