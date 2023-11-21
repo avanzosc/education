@@ -22,6 +22,8 @@
                 <field name="n_line_id"/>
                 <field name="education_record_id"/>
                 <field name="competence_type_id"/>
+                <field name="competence_profile_id" />
+                <field name="numeric_mark" />
             </tree>
         </field>
     </record>

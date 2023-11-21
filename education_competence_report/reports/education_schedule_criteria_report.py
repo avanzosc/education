@@ -11,26 +11,32 @@ class EducationScheduleCriteriaReport(models.Model):
     _description = 'Education Schedule Criteria Report'
     _auto = False
     _rec_name = "schedule_id"
-    _order = "schedule_id,student_id,n_line_id,education_criteria_id,competence_specific_id,education_record_id"
+    _order = "schedule_id,student_id,education_criteria_id,competence_specific_id,education_record_id"
 
     schedule_id = fields.Many2one(
-        'education.schedule', 'Education Schedule')
+        comodel_name="education.schedule", string="Education Schedule")
     education_criteria_id = fields.Many2one(
-        'education.criteria', 'Education Schedule')
+        comodel_name="education.criteria", string="Education Criteria")
     competence_specific_id = fields.Many2one(
         comodel_name="education.competence.specific", string="Competence Specific")
+    competence_type_id = fields.Many2one(
+        comodel_name="education.competence.type", string="Competence Type",
+    )
+    competence_profile_id = fields.Many2one(
+        comodel_name="education.competence.profile", string="Competence Profile"
+    )
     education_record_id = fields.Many2one(
-        'education.record', string='Education Record')
+        comodel_name="education.record", string="Education Record")
     exam_id = fields.Many2one(
-        'education.exam', string='Education Exam')
+        comodel_name="education.exam", string="Education Exam")
     student_id = fields.Many2one(
-        'res.partner', 'Student')
+        comodel_name="res.partner", string="Student")
     numeric_mark = fields.Float(
         string="Official Mark",
         group_operator="avg",
     )
-    n_line_id = fields.Many2one(
-        comodel_name="education.notebook.line", string="Notebook Line")
+    # n_line_id = fields.Many2one(
+    #     comodel_name="education.notebook.line", string="Notebook Line")
 
     def _select(self):
         select_str = """
@@ -42,7 +48,9 @@ class EducationScheduleCriteriaReport(models.Model):
                 erec.id AS education_record_id,
                 erec.numeric_mark AS numeric_mark,
                 comp_spe.id AS competence_specific_id,
-                crit.id AS education_criteria_id
+                crit.id AS education_criteria_id,
+                ecp.id AS competence_profile_id,
+                comp_type.id AS competence_type_id
         """
         return select_str
 
@@ -54,13 +62,16 @@ class EducationScheduleCriteriaReport(models.Model):
                 JOIN exam_edu_criteria_rel cri_rel ON cri_rel.exam_id = exm.id
                 JOIN education_criteria crit ON crit.id = cri_rel.criteria_id
                 JOIN education_competence_specific comp_spe ON comp_spe.id = crit.competence_specific_id
+                JOIN edu_comp_specific_type_rel comp_type_rel ON comp_type_rel.comp_specific_id = comp_spe.id
+                JOIN education_competence_type comp_type ON comp_type_rel.comp_type_id = comp_type.id
+                JOIN education_competence_profile ecp ON comp_type.competence_profile_id = ecp.id
                 JOIN res_partner stu ON stu.id = erec.student_id
         """
         return from_str
 
     def _group_by(self):
         group_by_str = """
-                    GROUP BY sch.id, crit.id, comp_spe.id, exm.id, stu.id, erec.id         
+                    GROUP BY sch.id, stu.id, exm.id, crit.id, comp_spe.id, ecp.id, comp_type.id, erec.id
                 """
         return group_by_str
 

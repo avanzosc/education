@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_group_view_form" model="ir.ui.view">
+        <field name="model">education.group</field>
+        <field name="inherit_id" ref="education_evaluation_notebook.res_partner_record_view_added" />
+        <field name="arch" type="xml">
+            <button name="button_show_records" position="after">
+                <button name="button_open_criteria_report" type="object"
+                        class="oe_stat_button" icon="fa-book">
+                    <span class="o_stat_text">Criteria Report</span>
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>
