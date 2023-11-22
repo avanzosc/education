@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template t-name="report_partner_record_document"
+              inherit_id="education_evaluation_notebook.report_partner_record_document">
+        <xpath expr="//t[@t-if='non_curricular_records']" position="before">
+            <t t-set="non_curricular_rubric_records" t-value="o.get_academic_records_non_curricular_rubrics(academic_year, eval_type=eval_type)"/>
+            <t t-if="non_curricular_rubric_records">
+                <h4 class="text-center">Rubric Qualifications</h4>
+                <t t-foreach="non_curricular_records" t-as="non_curricular_record">
+                    <span t-raw="non_curricular_record.n_line_id.notes" />
+                    <t t-foreach="non_curricular_rubric_records.filtered(lambda r: r.parent_record_id == non_curricular_record)" t-as="record">
+                        <t t-foreach="record.child_record_ids.filtered(lambda r: r.survey_input_id)" t-as="child_record">
+                            <t t-set="input_lines" t-value="child_record.survey_input_id.user_input_line_ids.filtered(lambda l: not l.skipped)"/>
+                            <t t-foreach="input_lines.mapped('question_id')" t-as="question">
+                                <table class="table table-sm table-fixed o_main_table borderless smallfont">
+                                    <t t-set="question_texts" t-value="question.survey_text_ids"/>
+                                    <t t-set="answer_lines" t-value="input_lines.filtered(lambda l: l.question_id == question)" />
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                                <span class="lead font-weight-bold" t-field="question.display_name" />
+                                            </th>
+                                        </tr>
+                                        <tr class="table-active">
+                                          <th>Specific Competence</th>
+                                          <th>Level</th>
+                                          <th>Explanation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="answer_lines.filtered(lambda l: l.answer_type == 'suggestion')" t-as="matrix_line">
+                                            <t t-set="survey_texts" t-value="question_texts.filtered(lambda t: t.label_id_1 == matrix_line.value_suggested and t.label_id_2 == matrix_line.value_suggested_row)"/>
+                                            <tr>
+                                                <td style="width:40%">
+                                                    <span t-field="matrix_line.value_suggested_row"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="matrix_line.value_suggested"/>
+                                                </td>
+                                                <td style="width:40%">
+                                                    <t t-foreach="survey_texts" t-as="survey_text">
+                                                        <span t-field="survey_text.text"/>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <t t-foreach="answer_lines.filtered(lambda l: l.answer_type == 'text')" t-as="text_line">
+                                            <tr>
+                                                <th colspan="2">
+                                                  <span t-field="question.comments_message" />
+                                                </th>
+                                                <td>
+                                                    <span t-field="text_line.value_text"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                                <br/>
+                            </t>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-if='non_curricular_records']" position="attributes">
+            <attribute name="t-if">not non_curricular_rubric_records and non_curricular_records</attribute>
+        </xpath>
+    </template>
+</odoo>

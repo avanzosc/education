@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-17 14:51+0000\n"
-"PO-Revision-Date: 2023-10-17 14:51+0000\n"
+"POT-Creation-Date: 2023-11-27 12:41+0000\n"
+"PO-Revision-Date: 2023-11-27 12:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_form
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_notebook_line_view_form
 msgid "Answers"
-msgstr "Erantzunak "
+msgstr "Erantzunak"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__average_grade
@@ -120,6 +120,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__competence_types
 msgid "Competence types"
 msgstr ""
+
+#. module: education_evaluation_rubric
+#: model:ir.model,name:education_evaluation_rubric.model_res_partner
+msgid "Contact"
+msgstr "Kontaktua"
 
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_form
@@ -210,6 +215,12 @@ msgid "Education Record"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__record_state
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__record_state
+msgid "Education Record Status"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__subject_ids
 msgid "Education Subjects"
 msgstr ""
@@ -221,14 +232,19 @@ msgid "Eval. percentage"
 msgstr ""
 
 #. module: education_evaluation_rubric
+#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__evaluation
+msgid "Evaluation"
+msgstr ""
+
+#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_competence__eval_mode
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_education_notebook_line__eval_mode
 msgid "Evaluation Mode"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__evaluation
-msgid "Evaluation Season"
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.report_partner_record_document
+msgid "Explanation"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -270,6 +286,11 @@ msgstr "Azkenengoz eguneratu zuena"
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__write_date
 msgid "Last Updated on"
 msgstr "Azken eguneraketa noiz"
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.report_partner_record_document
+msgid "Level"
+msgstr "Hezkuntza-aldia"
 
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_label__level_ids
@@ -337,11 +358,6 @@ msgid "Quizz Score"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input__record_state
-msgid "Record State"
-msgstr ""
-
-#. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_survey__related_record_mark
 msgid "Records inherit mark"
 msgstr ""
@@ -369,6 +385,11 @@ msgstr ""
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.education_exam_view_search
 msgid "Rubric Exam"
+msgstr ""
+
+#. module: education_evaluation_rubric
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.report_partner_record_document
+msgid "Rubric Qualifications"
 msgstr ""
 
 #. module: education_evaluation_rubric
@@ -408,9 +429,9 @@ msgid "Show survey buttons in teacher portal"
 msgstr ""
 
 #. module: education_evaluation_rubric
-#: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_user_input_line__record_state
-msgid "Status"
-msgstr "Egoera"
+#: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.report_partner_record_document
+msgid "Specific Competence"
+msgstr ""
 
 #. module: education_evaluation_rubric
 #: model_terms:ir.ui.view,arch_db:education_evaluation_rubric.survey_student_button
@@ -507,12 +528,6 @@ msgstr "Txantiloia"
 #. module: education_evaluation_rubric
 #: model:ir.model.fields,field_description:education_evaluation_rubric.field_survey_question_text__text
 msgid "Text"
-msgstr ""
-
-#. module: education_evaluation_rubric
-#: code:addons/education_evaluation_rubric/models/survey.py:281
-#, python-format
-msgid "The sum of all label percentages cannot be greater than 100."
 msgstr ""
 
 #. module: education_evaluation_rubric
