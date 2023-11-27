@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-14 13:26+0000\n"
-"PO-Revision-Date: 2023-11-14 13:26+0000\n"
+"POT-Creation-Date: 2023-11-28 10:13+0000\n"
+"PO-Revision-Date: 2023-11-28 10:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,12 @@ msgstr "<span class=\"o_stat_text\">Tipos de Competencia</span>"
 
 #. module: education_competence_report
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_view_form
+#: model_terms:ir.ui.view,arch_db:education_competence_report.res_partner_minimal_view_form
+#: model_terms:ir.ui.view,arch_db:education_competence_report.res_partner_view_form
+msgid "<span class=\"o_stat_text\">Criteria Report</span>"
+msgstr "<span class=\"o_stat_text\">Salida Competencial</span>"
+
+#. module: education_competence_report
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_schedule_view_form
 msgid "<span class=\"o_stat_text\">Education criteria</span>"
 msgstr "<span class=\"o_stat_text\">Criterios de evaluación</span>"
@@ -32,14 +38,17 @@ msgid "Class Schedule"
 msgstr "Horario de clases"
 
 #. module: education_competence_report
-#: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_criteria_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_schedule_criteria_report_view_search
 msgid "Comp. specific"
 msgstr "Competencia específica"
 
 #. module: education_competence_report
+#: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__competence_profile_id
+msgid "Competence Profile"
+msgstr "Perfil de competencias"
+
+#. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__competence_specific_id
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__competence_specific_id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__competence_specific_id
 msgid "Competence Specific"
 msgstr "Competencia específica"
@@ -60,38 +69,39 @@ msgid "Competences Report"
 msgstr "Informe de competencias"
 
 #. module: education_competence_report
-#: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_criteria_report_view_pivot
+#: model:ir.model,name:education_competence_report.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: education_competence_report
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_schedule_criteria_report_view_pivot
+#: model_terms:ir.ui.view,arch_db:education_competence_report.education_student_criteria_report_group_view_pivot
+#: model_terms:ir.ui.view,arch_db:education_competence_report.education_student_criteria_report_student_view_pivot
 msgid "Criteria Report"
 msgstr "Informe de criterios"
 
 #. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__display_name
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__display_name
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: education_competence_report
-#: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_criteria_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_schedule_criteria_report_view_search
 msgid "Edu. criteria"
 msgstr "Criterios de eval."
 
 #. module: education_competence_report
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__education_criteria_id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__education_criteria_id
 msgid "Education Criteria"
 msgstr "Criterio de evaluación"
 
 #. module: education_competence_report
-#: model:ir.actions.act_window,name:education_competence_report.action_education_group_criteria_from
 #: model:ir.actions.act_window,name:education_competence_report.action_education_schedule_criteria_from
 msgid "Education Criteria marks"
 msgstr "Notas"
 
 #. module: education_competence_report
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__exam_id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__exam_id
 msgid "Education Exam"
 msgstr "Examen"
@@ -99,7 +109,6 @@ msgstr "Examen"
 #. module: education_competence_report
 #: model:ir.model,name:education_competence_report.model_education_group
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__group_id
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__group_id
 msgid "Education Group"
 msgstr "Grupo educativo"
 
@@ -109,20 +118,18 @@ msgid "Education Group Competence Report"
 msgstr "Informe de competencias de grupo educativo"
 
 #. module: education_competence_report
-#: model:ir.model,name:education_competence_report.model_education_group_criteria_report
+#: model:ir.model,name:education_competence_report.model_education_student_criteria_report
 msgid "Education Group Criteria Report"
 msgstr "Informe de criterios por grupo educativo"
 
 #. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__education_record_id
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__education_record_id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__education_record_id
 msgid "Education Record"
 msgstr "Registro académico"
 
 #. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__schedule_id
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__schedule_id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__schedule_id
 msgid "Education Schedule"
 msgstr "Horario"
@@ -139,50 +146,53 @@ msgstr "Grupo"
 
 #. module: education_competence_report
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_competence_report_view_search
-#: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_criteria_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_schedule_criteria_report_view_search
 msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: education_competence_report
+#: model:ir.actions.act_window,name:education_competence_report.education_student_criteria_report_group_action
+msgid "Group Education Criteria Marks Report"
+msgstr ""
+
+#. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__id
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__id
 msgid "ID"
 msgstr ""
 
 #. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report____last_update
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report____last_update
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: education_competence_report
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__competence_profile_id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__n_line_id
 msgid "Notebook Line"
 msgstr "Línea de cuaderno"
 
 #. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__numeric_mark
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__numeric_mark
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__numeric_mark
 msgid "Official Mark"
 msgstr "Nota oficial"
 
 #. module: education_competence_report
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_competence_report_view_search
-#: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_criteria_report_view_search
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_schedule_criteria_report_view_search
 msgid "Schedule"
 msgstr "Planificacion"
 
 #. module: education_competence_report
 #: model:ir.model.fields,field_description:education_competence_report.field_education_group_competence_report__student_id
-#: model:ir.model.fields,field_description:education_competence_report.field_education_group_criteria_report__student_id
 #: model:ir.model.fields,field_description:education_competence_report.field_education_schedule_criteria_report__student_id
 #: model_terms:ir.ui.view,arch_db:education_competence_report.education_group_competence_report_view_search
 msgid "Student"
 msgstr "Alumno"
+
+#. module: education_competence_report
+#: model:ir.actions.act_window,name:education_competence_report.education_student_criteria_report_student_action
+msgid "Student Education Criteria Marks Report"
+msgstr ""
 
