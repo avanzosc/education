@@ -25,7 +25,7 @@
                         <b>Academic Year:</b> <span t-esc="academic_year and academic_year.display_name" /><br/>
                         <b>Period:</b> <span t-esc="eval_type_text" /><br/>
                         <b>Tutor:</b> <span t-esc="tutor and tutor[:1].display_name" /><br/>
-                        <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A, %Y-%m-%d')"/>
+                        <b>Date:</b> <span t-esc="context_timestamp(datetime.datetime.now())" t-options="{'widget': 'date'}"/>
                     </div>
                 </div>
                 <t t-set="records" t-value="o.get_academic_records_curricular(academic_year, eval_type=eval_type)" />
