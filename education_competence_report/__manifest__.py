@@ -17,7 +17,7 @@
         "reports/education_group_competence_report_view.xml",
         "reports/education_schedule_criteria_report_view.xml",
         "reports/education_student_criteria_report_view.xml",
-        "views/views.xml",
+        "views/education_schedule_view.xml",
         "views/education_group_view.xml",
         "views/res_partner_view.xml",
     ],

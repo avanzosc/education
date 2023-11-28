@@ -25,8 +25,8 @@ class EducationGroupCompetenceReport(models.Model):
         string="Official Mark",
         group_operator="avg",
     )
-    # competence_specific_id = fields.Many2one(
-    #     comodel_name="education.competence.specific", string="Competence Specific")
+    competence_specific_id = fields.Many2one(
+        comodel_name="education.competence.specific", string="Competence Specific")
     competence_type_id = fields.Many2one(
         comodel_name="education.competence.type", string="Competence Type")
     n_line_id = fields.Many2one(
@@ -44,6 +44,7 @@ class EducationGroupCompetenceReport(models.Model):
                 ntbl.id AS n_line_id,
                 erec.id AS education_record_id,
                 erec.numeric_mark AS numeric_mark,
+                cspe.id AS competence_specific_id,
                 ctrel.competence_type_id AS competence_type_id,
                 ecp.id AS competence_profile_id
         """
@@ -56,6 +57,8 @@ class EducationGroupCompetenceReport(models.Model):
                 JOIN education_notebook_line ntbl ON ntbl.schedule_id = sch.schedule_id
                 JOIN competence_type_n_line_rel ctrel ON ctrel.n_line_id = ntbl.id
                 JOIN education_competence_type ect ON ctrel.competence_type_id = ect.id
+                JOIN edu_comp_specific_type_rel sp_typ_rel ON sp_typ_rel.comp_type_id = ect.id
+                JOIN education_competence_specific cspe ON sp_typ_rel.comp_specific_id = cspe.id
                 JOIN education_competence_profile ecp ON ect.competence_profile_id = ecp.id
                 JOIN education_record erec ON erec.n_line_id = ntbl.id
                 JOIN res_partner stu ON stu.id = erec.student_id
@@ -64,7 +67,7 @@ class EducationGroupCompetenceReport(models.Model):
 
     def _group_by(self):
         group_by_str = """
-            GROUP BY grp.id, sch.schedule_id, stu.id, ntbl.id, ctrel.competence_type_id, ecp.id, erec.id
+            GROUP BY grp.id, sch.schedule_id, stu.id, ntbl.id, cspe.id, ctrel.competence_type_id, ecp.id, erec.id
          """
         return group_by_str
 
