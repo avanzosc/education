@@ -76,6 +76,10 @@ class WebsiteSurvey(Survey):
         if survey_input:
             if survey_input.state == 'done':
                 return request.redirect('/survey/print/%s/%s' % (survey.id, survey_input.token))
+            if survey_input.state == "new":
+                survey_input.write({
+                    "state": "skip",
+                })
             schedule = survey_input.education_record_id.schedule_id
             if survey_input.exam_id:
                 input_ids = survey.user_input_ids.filtered(
