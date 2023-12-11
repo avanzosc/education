@@ -18,44 +18,42 @@
             <field name="quizz_score" position="after">
                 <field name="average_grade" readonly="1"/>
             </field>
-            <field name="page_id" position="attributes">
+            <xpath expr="//field[@name='user_input_line_ids']//tree/field[@name='page_id']" position="attributes">
                 <attribute name="readonly">1</attribute>
-            </field>
-            <field name="question_id" position="attributes">
+            </xpath>
+            <xpath expr="//field[@name='user_input_line_ids']//tree/field[@name='question_id']" position="attributes">
                 <attribute name="readonly">1</attribute>
-            </field>
-            <field name="answer_type" position="attributes">
+            </xpath>
+            <xpath expr="//field[@name='user_input_line_ids']//tree/field[@name='answer_type']" position="attributes">
                 <attribute name="readonly">1</attribute>
                 <attribute name="invisible">1</attribute>
-            </field>
+            </xpath>
             <xpath
                 expr="//field[@name='user_input_line_ids']//tree/field[@name='date_create']"
                    position="replace"/>
-            <field name="skipped" position="attributes">
+            <xpath expr="//field[@name='user_input_line_ids']//tree/field[@name='skipped']" position="attributes">
                 <attribute name="readonly">1</attribute>
-            </field>
-            <field name="quizz_mark" position="after">
+            </xpath>
+            <xpath expr="//field[@name='user_input_line_ids']//tree/field[@name='quizz_mark']" position="after">
                 <field name="percentage" readonly="0" sum="Total Percent"/>
                 <field name="value_free_text"/>
                 <field name="date_create" readonly="1"/>
-            </field>
-            <field name="skipped" position="after">
+            </xpath>
+            <xpath expr="//field[@name='user_input_line_ids']//tree/field[@name='skipped']" position="after">
                 <field name="labels_ids" invisible="1"/>
                 <field name="labels_ids_2" invisible="1"/>
                 <field name="record_state" invisible="1"/>
                 <field name="value_suggested_row"
                        readonly="1"
                        options="{'no_create': True}"
-                       domain="[
-                            ('id', 'in', labels_ids_2)]"/>
+                       domain="[('id', 'in', labels_ids_2)]"/>
                 <field name="value_suggested"
                        options="{'no_create': True}"
                        attrs="{'readonly': [('record_state','=','assessed')]}"
-                       domain="[
-                            ('id', 'in', labels_ids)]"/>
+                       domain="[('id', 'in', labels_ids)]"/>
                 <field name="competence_types" widget="many2many_tags"/>
                 <field name="competence_specific" widget="many2many_tags"/>
-            </field>
+            </xpath>
 <!--            <xpath expr="//tree" position="attributes">-->
 <!--                <attribute name="editable">bottom</attribute>-->
 <!--            </xpath>-->
@@ -68,6 +66,43 @@
         <field name="arch" type="xml">
             <field name="quizz_score" position="after">
                 <field name="average_grade"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_line_view_form" model="ir.ui.view">
+        <field name="model">survey.user_input_line</field>
+        <field name="inherit_id" ref="survey.survey_user_input_line_form" />
+        <field name="arch" type="xml">
+            <field name="quizz_mark" position="after">
+                <field name="percentage" />
+            </field>
+            <field name="value_suggested_row" position="before">
+                <field name="labels_ids" invisible="1"/>
+                <field name="labels_ids_2" invisible="1"/>
+                <field name="record_state" invisible="1"/>
+            </field>
+            <field name="question_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="answer_type" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="skipped" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="value_suggested_row" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+                <attribute name="domain">[('id', 'in', labels_ids_2)]</attribute>
+            </field>
+            <field name="value_suggested" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+                <attribute name="domain">[('id', 'in', labels_ids)]</attribute>
+                <attribute name="attrs">{
+                    'invisible': [('answer_type','!=','suggestion')],
+                    'readonly': [('record_state','=','assessed')],
+                    }</attribute>
             </field>
         </field>
     </record>
