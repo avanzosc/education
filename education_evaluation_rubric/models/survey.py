@@ -99,13 +99,20 @@ class SurveyUserInput(models.Model):
         compute="compute_survey_input_responsible")
     average_grade = fields.Float(string="Average Grade")
     education_record_id = fields.Many2one(
-        comodel_name="education.record", string="Education Record")
+        comodel_name="education.record",
+        string="Education Record",
+        ondelete="cascade",
+    )
     notebook_line_id = fields.Many2one(
         comodel_name="education.notebook.line",
         string="Notebook Line",
-        ondelete="cascade")
+        ondelete="cascade",
+    )
     exam_id = fields.Many2one(
-        comodel_name="education.exam", string="Education Exam", ondelete="cascade")
+        comodel_name="education.exam",
+        string="Education Exam",
+        ondelete="cascade",
+    )
     academic_year = fields.Many2one(
         comodel_name="education.academic_year", string="Academic Year",
         related="education_record_id.academic_year_id")
@@ -154,9 +161,20 @@ class SurveyUserInput(models.Model):
         self.mapped("education_record_id")._onchange_survey_mark()
         return res
 
+    @api.multi
+    def unlink(self):
+        to_unlink = self
+        if self.env.context.get("avoid_rubrics", False):
+            to_unlink = self.filtered(lambda i: not i.education_record_id)
+        return super(SurveyUserInput, to_unlink).unlink()
+
     def update_line_value_suggested(self):
         for record in self.mapped("user_input_line_ids"):
             record.quizz_mark = record.value_suggested.quizz_mark
+
+    @api.model
+    def do_clean_emptys(self):
+        super(SurveyUserInput, self.with_context(avoid_rubrics=True)).do_clean_emptys()
 
 
 class SurveyUserInputLine(models.Model):
