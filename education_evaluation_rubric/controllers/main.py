@@ -8,6 +8,8 @@ from odoo.addons.survey.controllers.main import Survey
 class WebsiteSurvey(Survey):
 
     def comp_show_buttons(self, schedule):
+        if not schedule:
+            return False
         show_buttons = (
             True if (request.env.user.employee_id == schedule.teacher_id or
                      request.env.user.has_group(
@@ -30,7 +32,8 @@ class WebsiteSurvey(Survey):
             ('token', '=', token)
         ], limit=1)
         if survey_input:
-            schedule = survey_input.education_record_id.schedule_id
+            schedule = (survey_input.education_record_id and
+                        survey_input.education_record_id.schedule_id)
             if survey_input.exam_id:
                 input_ids = survey.user_input_ids.filtered(
                     lambda i: i.exam_id == survey_input.exam_id)
@@ -52,7 +55,7 @@ class WebsiteSurvey(Survey):
                 res.qcontext.update({
                     'link_next_student': link_next_student})
             res.qcontext.update({
-                'student_ids': schedule.student_ids,
+                'student_ids': schedule and schedule.student_ids,
                 'survey_input': survey_input,
                 'schedule': schedule,
                 'input_ids': input_ids,
@@ -80,7 +83,8 @@ class WebsiteSurvey(Survey):
                 survey_input.write({
                     "state": "skip",
                 })
-            schedule = survey_input.education_record_id.schedule_id
+            schedule = (survey_input.education_record_id and
+                        survey_input.education_record_id.schedule_id)
             if survey_input.exam_id:
                 input_ids = survey.user_input_ids.filtered(
                     lambda i: i.exam_id == survey_input.exam_id)
@@ -103,7 +107,7 @@ class WebsiteSurvey(Survey):
                 res.qcontext.update({
                     'link_next_student': link_next_student})
             res.qcontext.update({
-                'student_ids': schedule.student_ids,
+                'student_ids': schedule and schedule.student_ids,
                 'survey_input': survey_input,
                 'input_ids': input_ids,
                 'show_buttons': show_buttons,
@@ -123,7 +127,8 @@ class WebsiteSurvey(Survey):
             ('token', '=', token)
         ], limit=1)
         if survey_input:
-            schedule = survey_input.education_record_id.schedule_id
+            schedule = (survey_input.education_record_id and
+                        survey_input.education_record_id.schedule_id)
             if survey_input.exam_id:
                 input_ids = survey.user_input_ids.filtered(
                     lambda i: i.exam_id == survey_input.exam_id)
@@ -131,7 +136,7 @@ class WebsiteSurvey(Survey):
                 input_ids = survey.user_input_ids.filtered(
                     lambda i: i.notebook_line_id.id == survey_input.notebook_line_id.id and not i.exam_id)
             res.qcontext.update({
-                'student_ids': schedule.student_ids,
+                'student_ids': schedule and schedule.student_ids,
                 'survey_input': survey_input,
                 'input_ids': input_ids,
                 "show_buttons": self.comp_show_buttons(schedule),
