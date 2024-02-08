@@ -73,7 +73,7 @@ class SurveySurvey(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        for record in self.user_input_ids.mapped("education_record_id"):
+        for record in self.mapped("user_input_ids.education_record_id"):
             record._onchange_survey_mark()
         return res
 
@@ -158,7 +158,8 @@ class SurveyUserInput(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        self.mapped("education_record_id")._onchange_survey_mark()
+        for record in self.mapped("education_record_id"):
+            record._onchange_survey_mark()
         return res
 
     @api.multi
